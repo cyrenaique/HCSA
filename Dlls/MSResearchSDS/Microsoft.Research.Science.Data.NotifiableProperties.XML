@@ -1,0 +1,235 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Microsoft.Research.Science.Data.NotifiableProperties</name>
+    </assembly>
+    <members>
+        <member name="T:Microsoft.Research.Science.Data.NotifiableProperties.CompositePropertySource">
+            <summary>
+            Represents a property source that is built as a composition of a number of other property sources.
+            </summary>
+            <remarks>
+            The <see cref="T:Microsoft.Research.Science.Data.NotifiableProperties.CompositePropertySource"/> instance can include a number of propery sources implementing <see cref="T:Microsoft.Research.Science.Data.NotifiableProperties.IPropertySource"/>.
+            Each source is added using <see cref="M:Microsoft.Research.Science.Data.NotifiableProperties.CompositePropertySource.AddSource(System.String,Microsoft.Research.Science.Data.NotifiableProperties.IPropertySource)"/> method with some name.
+            In the composition of sources, each property has name composed from source name and property name, delimited by dot ('.').
+            For example, if we add a property source "Source" with property "Value", then in the composition the property has name "Source.Value".
+            </remarks>
+        </member>
+        <member name="T:Microsoft.Research.Science.Data.NotifiableProperties.IPropertySource">
+            <summary>
+            Represents an object which can get <see cref="T:Microsoft.Research.Science.Data.NotifiableProperties.INotifiableProperty"/>
+            descriptions for properties by name.
+            </summary>
+        </member>
+        <member name="M:Microsoft.Research.Science.Data.NotifiableProperties.IPropertySource.GetProperty(System.String)">
+            <summary>
+            Gets an instance of <see cref="T:Microsoft.Research.Science.Data.NotifiableProperties.INotifiableProperty"/> for the given property.
+            </summary>
+            <param name="propertyName">Name of property.</param>
+            <returns>Dynamic description of the property.</returns>
+        </member>
+        <member name="M:Microsoft.Research.Science.Data.NotifiableProperties.CompositePropertySource.AddSource(System.String,Microsoft.Research.Science.Data.NotifiableProperties.IPropertySource)">
+            <summary>
+            Adds a property source to the composition.
+            </summary>
+            <param name="sourceName"></param>
+            <param name="source"></param>
+        </member>
+        <member name="M:Microsoft.Research.Science.Data.NotifiableProperties.CompositePropertySource.GetProperty(System.String)">
+            <summary>
+            Gets the property by its name, which is composed from source name and property name, delimited by dot ('.'),
+            e.g. "SourceName"."PropertyName".
+            </summary>
+            <param name="name"></param>
+            <returns></returns>
+            <remarks>
+            The <see cref="T:Microsoft.Research.Science.Data.NotifiableProperties.CompositePropertySource"/> instance can include a number of propery sources implementing <see cref="T:Microsoft.Research.Science.Data.NotifiableProperties.IPropertySource"/>.
+            Each source is added using <see cref="M:Microsoft.Research.Science.Data.NotifiableProperties.CompositePropertySource.AddSource(System.String,Microsoft.Research.Science.Data.NotifiableProperties.IPropertySource)"/> method with some name.
+            In the composition of sources, each property has name composed from source name and property name, delimited by dot ('.').
+            For example, if we add a property source "Source" with property "Value", then in the composition the property has name "Source.Value".
+            </remarks>
+        </member>
+        <member name="T:Microsoft.Research.Science.Data.NotifiableProperties.DependencyObjectPropertiesSource">
+            <summary>
+            Represents a property source for dependency properties of a dependency object.
+            </summary>
+        </member>
+        <member name="T:Microsoft.Research.Science.Data.NotifiableProperties.DependencyPropertyChangedNotifier">
+            <summary>
+            Notifies whenever given dependency property is changed.
+            </summary>
+        </member>
+        <member name="T:Microsoft.Research.Science.Data.NotifiableProperties.NotifiableDependencyProperty">
+            <summary>
+            Wraps a dependency property to be a notifiable property.
+            </summary>
+        </member>
+        <member name="T:Microsoft.Research.Science.Data.NotifiableProperties.INotifiableProperty">
+            <summary>
+            Represents the property as pair of name and value, which notifies as it changes.
+            </summary>
+        </member>
+        <member name="P:Microsoft.Research.Science.Data.NotifiableProperties.INotifiableProperty.Name">
+            <summary>
+            Gets the name of the property.
+            </summary>
+        </member>
+        <member name="P:Microsoft.Research.Science.Data.NotifiableProperties.INotifiableProperty.OwnerType">
+            <summary>
+            Gets the property owner type.
+            </summary>
+        </member>
+        <member name="P:Microsoft.Research.Science.Data.NotifiableProperties.INotifiableProperty.PropertyType">
+            <summary>
+            Gets the type that the property uses for its value.
+            </summary>
+        </member>
+        <member name="P:Microsoft.Research.Science.Data.NotifiableProperties.INotifiableProperty.Value">
+            <summary>
+            Gets or sets the value of the property.
+            </summary>
+        </member>
+        <member name="P:Microsoft.Research.Science.Data.NotifiableProperties.INotifiableProperty.SynchronizationContext">
+            <summary>
+            Gets the synchronization context for the properties which (if not null) must be used to set/get value. 
+            </summary>
+        </member>
+        <member name="T:Microsoft.Research.Science.Data.NotifiableProperties.NotifiablePropertyCollection">
+            <summary>
+            Represents a user-defined collection of notifiable properties.
+            </summary>
+            <example>
+            <code>
+            NotifiablePropertyCollection source = new NotifiablePropertyCollection();	
+            source.AddProperty(new NotifiableDependencyProperty(textBox1, "Text"));
+            source.AddProperty(new NotifiableDependencyProperty(textBox2, "Text"), "Text2"); // "textBox2.Text" has alias "Text2" in the source
+            
+            DataSet ds = new NotifiablePropertiesDataSet(source);
+            var varText = ds.AddVariable&lt;string&gt;("Text", 1); // bound with textBox1.Text
+            var varText2 = ds.AddVariable&lt;string&gt;("Text2", 1); // bound with textBox2.Text
+            ds.Commit();
+            </code>
+            </example>
+        </member>
+        <member name="T:Microsoft.Research.Science.Data.NotifiableProperties.IPropertiesStore">
+            <summary>
+            Represents an object which stores a number of notifiable properties.
+            </summary>
+            <remarks>
+            If source implements this interface, NotifiablePropertiesDataSet instance on initialization
+            enumerates through this list and automatically creates related variables.
+            </remarks>
+        </member>
+        <member name="M:Microsoft.Research.Science.Data.NotifiableProperties.IPropertiesStore.GetProperties">
+            <summary>
+            Gets the pairs of (name, property).
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Microsoft.Research.Science.Data.NotifiableProperties.NotifiablePropertyCollection.#ctor">
+            <summary>
+            Creates an instance of the type.
+            </summary>
+        </member>
+        <member name="M:Microsoft.Research.Science.Data.NotifiableProperties.NotifiablePropertyCollection.#ctor(Microsoft.Research.Science.Data.NotifiableProperties.INotifiableProperty,System.Boolean)">
+            <summary>
+            Creates an instance of the type.
+            </summary>
+            <param name="addVariablesAtInitialize">Determines whether all properties of the collection must be taken at initialization or not.</param>
+            <param name="property">Initial property in the collection.</param>
+        </member>
+        <member name="M:Microsoft.Research.Science.Data.NotifiableProperties.NotifiablePropertyCollection.AddProperty(Microsoft.Research.Science.Data.NotifiableProperties.INotifiableProperty,System.String)">
+            <summary>
+            Adds the property to the collection with the name specified.
+            </summary>
+            <param name="property"></param>
+        </member>
+        <member name="M:Microsoft.Research.Science.Data.NotifiableProperties.NotifiablePropertyCollection.AddProperty(Microsoft.Research.Science.Data.NotifiableProperties.INotifiableProperty)">
+            <summary>
+            Adds the property to the collection with the name taken from the property.Name property.
+            </summary>
+            <param name="property"></param>
+        </member>
+        <member name="P:Microsoft.Research.Science.Data.NotifiableProperties.NotifiablePropertyCollection.AddVariablesAtInitialize">
+            <summary>
+            If set, data set will create variables for each property from the collection
+            given in the constructor.
+            </summary>
+        </member>
+        <member name="M:Microsoft.Research.Science.Data.NotifiableProperties.Utils.GetDependencyProperty(System.Windows.DependencyObject,System.String)">
+            <summary>
+            Gets the dependency property with name <paramref name="propertyName"/>.
+            </summary>
+            <param name="obj"></param>
+            <param name="propertyName"></param>
+            <returns></returns>
+            <exception cref="T:System.Exception">Thrown if the expected property not found.</exception>
+        </member>
+        <member name="T:Microsoft.Research.Science.Data.NotifiableProperties.NotifiablePropertiesDataSet">
+            <summary>
+            Represents a <see cref="T:Microsoft.Research.Science.Data.DataSet"/> provider, whose variables are bound to properties of some objects.
+            </summary>
+            <remarks>
+            <para>
+            This DataSet provider is designed to enable using DataSet to represent a state of UI elements. 
+            For example, let we have a WPF control with TextBox and Slider controls. 
+            An instance of <see cref="T:Microsoft.Research.Science.Data.NotifiableProperties.NotifiablePropertiesDataSet"/> can be created and bound to some properties of these controls:
+            </para>
+            <code>
+            var properties = new CompositePropertySource();
+            properties.AddSource("TextBox", new DependencyObjectPropertiesSource(srcTextBox)); // represents all properties of the TextBox
+            properties.AddSource("Slider", new DependencyObjectPropertiesSource(srcSlider)); // represents all properties of the srcSlider
+            
+            DataSet ds = new NotifiablePropertiesDataSet(properties);
+            ds.AddVariable&lt;string&gt;("TextBox.Text"); // variable "TextBox.Text" is bound to string property srcTextBox.Text
+            ds.AddVariable&lt;double&gt;("Slider.Value"); // variable "Slider.Value" is bound to double property srcSlider.Value
+            </code>
+            <para>
+            As seen from the example, an instance of the <see cref="T:Microsoft.Research.Science.Data.NotifiableProperties.NotifiablePropertiesDataSet"/> is created for a property source object
+            which implements <see cref="T:Microsoft.Research.Science.Data.NotifiableProperties.IPropertySource"/> interface. The source allows to change certain properties and to be notified when these are changed.
+            </para>
+            <para>
+            The <see cref="T:Microsoft.Research.Science.Data.NotifiableProperties.NotifiablePropertiesDataSet"/> can contain only properties available in the given property source; name of new variable 
+            must be name of a property in the source. Each variable must have data type equal to type of the property; variable must be scalar.
+            There are some implemeneted property sources: <see cref="T:Microsoft.Research.Science.Data.NotifiableProperties.DependencyObjectPropertiesSource"/>, <see cref="T:Microsoft.Research.Science.Data.NotifiableProperties.CompositePropertySource"/>,
+            <see cref="T:Microsoft.Research.Science.Data.NotifiableProperties.NotifiablePropertyCollection"/>, but this list can be extended by implementing the interface <see cref="T:Microsoft.Research.Science.Data.NotifiableProperties.IPropertySource"/>.
+            </para>
+            <para>
+            Once created, the DataSet is updated as the properties change; and vice versa, as we change values of its variables,
+            bound properties are updated correspondingly:
+            </para>
+            <code>
+            // Get data:
+            string textBoxText = ((string[])ds["TextBox.Text"].GetData())[0]; // gets an actual value of srcTextBox.Text
+            double sliderValue = ((double[])ds["Slider.Value"].GetData())[0]; // gets an actual value of srcSlider.Value
+            
+            // Put data:
+            dataSet["TextBox.Text"].PutData(new string[] { "new text" }); // set new value to srcTextBox.Text
+            dataSet["Slider.Value"].PutData(new double[] { Math.PI }); // sets new value to srcSlider.Value
+            </code>
+            </remarks>
+        </member>
+        <member name="M:Microsoft.Research.Science.Data.NotifiableProperties.NotifiablePropertiesDataSet.#ctor(Microsoft.Research.Science.Data.NotifiableProperties.INotifiableProperty)">
+            <summary>
+            Initializes read-only data set with one variable based on given <paramref name="property"/>.
+            </summary>
+            <param name="property"></param>
+        </member>
+        <member name="T:Microsoft.Research.Science.Data.NotifiableProperties.NotifiablePropertiesVariable`1">
+            <summary>
+            Provides an access to a single dependency property.
+            </summary>
+        </member>
+        <member name="M:Microsoft.Research.Science.Data.NotifiableProperties.NotifiablePropertiesVariable`1.Source_PropertyChanged(System.Object,System.ComponentModel.PropertyChangedEventArgs)">
+            <summary>
+            The method is call when the property is changed.
+            </summary>
+        </member>
+        <member name="M:Microsoft.Research.Science.Data.NotifiableProperties.NotifiablePropertiesVariable`1.UpdateValue(`0)">
+            <summary>
+            Starts new transaction, updates value and commits it.
+            </summary>
+            <param name="newValue"></param>
+        </member>
+    </members>
+</doc>

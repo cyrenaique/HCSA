@@ -1,0 +1,2114 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003" ToolsVersion="4.0">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>8.0.50727</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{FF1F8666-DA92-4052-ABA9-C6ADB629EA50}</ProjectGuid>
+    <OutputType>WinExe</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>HCSAnalyzer</RootNamespace>
+    <AssemblyName>HCSAnalyzer</AssemblyName>
+    <StartupObject>
+    </StartupObject>
+    <RunPostBuildEvent>OnBuildSuccess</RunPostBuildEvent>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <FileUpgradeFlags>
+    </FileUpgradeFlags>
+    <UpgradeBackupLocation>
+    </UpgradeBackupLocation>
+    <OldToolsVersion>2.0</OldToolsVersion>
+    <TargetFrameworkProfile />
+    <IsWebBootstrapper>false</IsWebBootstrapper>
+    <PublishUrl>publish\</PublishUrl>
+    <Install>true</Install>
+    <InstallFrom>Disk</InstallFrom>
+    <UpdateEnabled>true</UpdateEnabled>
+    <UpdateMode>Foreground</UpdateMode>
+    <UpdateInterval>7</UpdateInterval>
+    <UpdateIntervalUnits>Days</UpdateIntervalUnits>
+    <UpdatePeriodically>false</UpdatePeriodically>
+    <UpdateRequired>false</UpdateRequired>
+    <MapFileExtensions>true</MapFileExtensions>
+    <ProductName>HCS Analyzer</ProductName>
+    <CreateWebPageOnPublish>true</CreateWebPageOnPublish>
+    <WebPage>publish.htm</WebPage>
+    <ApplicationRevision>0</ApplicationRevision>
+    <ApplicationVersion>1.2.4.0</ApplicationVersion>
+    <UseApplicationTrust>false</UseApplicationTrust>
+    <CreateDesktopShortcut>true</CreateDesktopShortcut>
+    <PublishWizardCompleted>true</PublishWizardCompleted>
+    <BootstrapperEnabled>true</BootstrapperEnabled>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <CodeAnalysisRuleSet>AllRules.ruleset</CodeAnalysisRuleSet>
+    <PlatformTarget>x86</PlatformTarget>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <CodeAnalysisRuleSet>AllRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|x86'">
+    <DebugSymbols>true</DebugSymbols>
+    <OutputPath>bin\x86\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <DebugType>full</DebugType>
+    <PlatformTarget>x86</PlatformTarget>
+    <CodeAnalysisLogFile>bin\Debug\IMPlateAnalysis.exe.CodeAnalysisLog.xml</CodeAnalysisLogFile>
+    <CodeAnalysisUseTypeNameInSuppression>true</CodeAnalysisUseTypeNameInSuppression>
+    <CodeAnalysisModuleSuppressionsFile>GlobalSuppressions.cs</CodeAnalysisModuleSuppressionsFile>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>AllRules.ruleset</CodeAnalysisRuleSet>
+    <CodeAnalysisRuleSetDirectories>;C:\Program Files (x86)\Microsoft Visual Studio 10.0\Team Tools\Static Analysis Tools\\Rule Sets</CodeAnalysisRuleSetDirectories>
+    <CodeAnalysisIgnoreBuiltInRuleSets>false</CodeAnalysisIgnoreBuiltInRuleSets>
+    <CodeAnalysisRuleDirectories>;C:\Program Files (x86)\Microsoft Visual Studio 10.0\Team Tools\Static Analysis Tools\FxCop\\Rules</CodeAnalysisRuleDirectories>
+    <CodeAnalysisIgnoreBuiltInRules>false</CodeAnalysisIgnoreBuiltInRules>
+    <UseVSHostingProcess>false</UseVSHostingProcess>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|x86'">
+    <OutputPath>bin\x86\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <DebugType>pdbonly</DebugType>
+    <PlatformTarget>x86</PlatformTarget>
+    <CodeAnalysisLogFile>bin\Release\IMPlateAnalysis.exe.CodeAnalysisLog.xml</CodeAnalysisLogFile>
+    <CodeAnalysisUseTypeNameInSuppression>true</CodeAnalysisUseTypeNameInSuppression>
+    <CodeAnalysisModuleSuppressionsFile>GlobalSuppressions.cs</CodeAnalysisModuleSuppressionsFile>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>AllRules.ruleset</CodeAnalysisRuleSet>
+    <CodeAnalysisRuleSetDirectories>;C:\Program Files (x86)\Microsoft Visual Studio 10.0\Team Tools\Static Analysis Tools\\Rule Sets</CodeAnalysisRuleSetDirectories>
+    <CodeAnalysisIgnoreBuiltInRuleSets>false</CodeAnalysisIgnoreBuiltInRuleSets>
+    <CodeAnalysisRuleDirectories>;C:\Program Files (x86)\Microsoft Visual Studio 10.0\Team Tools\Static Analysis Tools\FxCop\\Rules</CodeAnalysisRuleDirectories>
+  </PropertyGroup>
+  <PropertyGroup>
+    <ApplicationIcon>Controls\LogoType1.ico</ApplicationIcon>
+  </PropertyGroup>
+  <PropertyGroup>
+    <ManifestCertificateThumbprint>7CC9311FD0F562EEF8A4B75805C1B853AA9027BB</ManifestCertificateThumbprint>
+  </PropertyGroup>
+  <PropertyGroup>
+    <ManifestKeyFile>IMPlateAnalysis_TemporaryKey.pfx</ManifestKeyFile>
+  </PropertyGroup>
+  <PropertyGroup>
+    <GenerateManifests>false</GenerateManifests>
+  </PropertyGroup>
+  <PropertyGroup>
+    <SignManifests>false</SignManifests>
+  </PropertyGroup>
+  <PropertyGroup />
+  <PropertyGroup />
+  <PropertyGroup>
+    <SignAssembly>false</SignAssembly>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|x64'">
+    <DebugSymbols>true</DebugSymbols>
+    <OutputPath>bin\x64\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <DebugType>full</DebugType>
+    <PlatformTarget>x64</PlatformTarget>
+    <CodeAnalysisLogFile>bin\Debug\IMPlateAnalysis.exe.CodeAnalysisLog.xml</CodeAnalysisLogFile>
+    <CodeAnalysisUseTypeNameInSuppression>true</CodeAnalysisUseTypeNameInSuppression>
+    <CodeAnalysisModuleSuppressionsFile>GlobalSuppressions.cs</CodeAnalysisModuleSuppressionsFile>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>AllRules.ruleset</CodeAnalysisRuleSet>
+    <CodeAnalysisRuleSetDirectories>;C:\Program Files (x86)\Microsoft Visual Studio 10.0\Team Tools\Static Analysis Tools\\Rule Sets</CodeAnalysisRuleSetDirectories>
+    <CodeAnalysisIgnoreBuiltInRuleSets>false</CodeAnalysisIgnoreBuiltInRuleSets>
+    <CodeAnalysisRuleDirectories>;C:\Program Files (x86)\Microsoft Visual Studio 10.0\Team Tools\Static Analysis Tools\FxCop\\Rules</CodeAnalysisRuleDirectories>
+    <CodeAnalysisIgnoreBuiltInRules>false</CodeAnalysisIgnoreBuiltInRules>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|x64'">
+    <OutputPath>bin\x64\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <DebugType>pdbonly</DebugType>
+    <PlatformTarget>x64</PlatformTarget>
+    <CodeAnalysisLogFile>bin\Release\IMPlateAnalysis.exe.CodeAnalysisLog.xml</CodeAnalysisLogFile>
+    <CodeAnalysisUseTypeNameInSuppression>true</CodeAnalysisUseTypeNameInSuppression>
+    <CodeAnalysisModuleSuppressionsFile>GlobalSuppressions.cs</CodeAnalysisModuleSuppressionsFile>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>AllRules.ruleset</CodeAnalysisRuleSet>
+    <CodeAnalysisRuleSetDirectories>;C:\Program Files (x86)\Microsoft Visual Studio 10.0\Team Tools\Static Analysis Tools\\Rule Sets</CodeAnalysisRuleSetDirectories>
+    <CodeAnalysisIgnoreBuiltInRuleSets>false</CodeAnalysisIgnoreBuiltInRuleSets>
+    <CodeAnalysisRuleDirectories>;C:\Program Files (x86)\Microsoft Visual Studio 10.0\Team Tools\Static Analysis Tools\FxCop\\Rules</CodeAnalysisRuleDirectories>
+    <CodeAnalysisIgnoreBuiltInRules>false</CodeAnalysisIgnoreBuiltInRules>
+  </PropertyGroup>
+  <PropertyGroup />
+  <PropertyGroup />
+  <PropertyGroup>
+    <TargetZone>Internet</TargetZone>
+  </PropertyGroup>
+  <PropertyGroup>
+    <ApplicationManifest>Properties\app.manifest</ApplicationManifest>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Accord">
+      <HintPath>Dlls\Accord.dll</HintPath>
+    </Reference>
+    <Reference Include="Accord.Math">
+      <HintPath>Dlls\Accord.Math.dll</HintPath>
+    </Reference>
+    <Reference Include="Accord.Statistics">
+      <HintPath>Dlls\Accord.Statistics.dll</HintPath>
+    </Reference>
+    <Reference Include="AForge">
+      <HintPath>Dlls\AForge.dll</HintPath>
+    </Reference>
+    <Reference Include="AForge.Math">
+      <HintPath>Dlls\AForge.Math.dll</HintPath>
+    </Reference>
+    <Reference Include="AlgLib">
+      <HintPath>Dlls\AlgLib.dll</HintPath>
+    </Reference>
+    <Reference Include="Emgu.CV, Version=2.2.1.1150, Culture=neutral, PublicKeyToken=7281126722ab4438, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>Dlls\OpenCV64\Emgu.CV.dll</HintPath>
+    </Reference>
+    <Reference Include="Emgu.Util, Version=2.2.1.1150, Culture=neutral, PublicKeyToken=7281126722ab4438, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>Dlls\OpenCV64\Emgu.Util.dll</HintPath>
+    </Reference>
+    <Reference Include="FreeImageNET, Version=3.15.1.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>Dlls\FreeImage64\FreeImageNET.dll</HintPath>
+    </Reference>
+    <Reference Include="HCSPlugin">
+      <HintPath>Dlls\HCSPlugin.dll</HintPath>
+    </Reference>
+    <Reference Include="ICSharpCode.SharpZipLib">
+      <HintPath>Dlls\ICSharpCode.SharpZipLib.dll</HintPath>
+    </Reference>
+    <Reference Include="IKVM.AWT.WinForms">
+      <HintPath>Dlls\IKVM.AWT.WinForms.dll</HintPath>
+    </Reference>
+    <Reference Include="IKVM.OpenJDK.Beans">
+      <HintPath>Dlls\IKVM.OpenJDK.Beans.dll</HintPath>
+    </Reference>
+    <Reference Include="IKVM.OpenJDK.Charsets">
+      <HintPath>Dlls\IKVM.OpenJDK.Charsets.dll</HintPath>
+    </Reference>
+    <Reference Include="IKVM.OpenJDK.Corba">
+      <HintPath>Dlls\IKVM.OpenJDK.Corba.dll</HintPath>
+    </Reference>
+    <Reference Include="IKVM.OpenJDK.Core">
+      <HintPath>Dlls\IKVM.OpenJDK.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="IKVM.OpenJDK.Jdbc">
+      <HintPath>Dlls\IKVM.OpenJDK.Jdbc.dll</HintPath>
+    </Reference>
+    <Reference Include="IKVM.OpenJDK.Management">
+      <HintPath>Dlls\IKVM.OpenJDK.Management.dll</HintPath>
+    </Reference>
+    <Reference Include="IKVM.OpenJDK.Media">
+      <HintPath>Dlls\IKVM.OpenJDK.Media.dll</HintPath>
+    </Reference>
+    <Reference Include="IKVM.OpenJDK.Misc">
+      <HintPath>Dlls\IKVM.OpenJDK.Misc.dll</HintPath>
+    </Reference>
+    <Reference Include="IKVM.OpenJDK.Naming">
+      <HintPath>Dlls\IKVM.OpenJDK.Naming.dll</HintPath>
+    </Reference>
+    <Reference Include="IKVM.OpenJDK.Remoting">
+      <HintPath>Dlls\IKVM.OpenJDK.Remoting.dll</HintPath>
+    </Reference>
+    <Reference Include="IKVM.OpenJDK.Security">
+      <HintPath>Dlls\IKVM.OpenJDK.Security.dll</HintPath>
+    </Reference>
+    <Reference Include="IKVM.OpenJDK.SwingAWT">
+      <HintPath>Dlls\IKVM.OpenJDK.SwingAWT.dll</HintPath>
+    </Reference>
+    <Reference Include="IKVM.OpenJDK.Text">
+      <HintPath>Dlls\IKVM.OpenJDK.Text.dll</HintPath>
+    </Reference>
+    <Reference Include="IKVM.OpenJDK.Tools">
+      <HintPath>Dlls\IKVM.OpenJDK.Tools.dll</HintPath>
+    </Reference>
+    <Reference Include="IKVM.OpenJDK.Util">
+      <HintPath>Dlls\IKVM.OpenJDK.Util.dll</HintPath>
+    </Reference>
+    <Reference Include="IKVM.OpenJDK.XML.API">
+      <HintPath>Dlls\IKVM.OpenJDK.XML.API.dll</HintPath>
+    </Reference>
+    <Reference Include="IKVM.OpenJDK.XML.Bind">
+      <HintPath>Dlls\IKVM.OpenJDK.XML.Bind.dll</HintPath>
+    </Reference>
+    <Reference Include="IKVM.OpenJDK.XML.Crypto">
+      <HintPath>Dlls\IKVM.OpenJDK.XML.Crypto.dll</HintPath>
+    </Reference>
+    <Reference Include="IKVM.OpenJDK.XML.Parse">
+      <HintPath>Dlls\IKVM.OpenJDK.XML.Parse.dll</HintPath>
+    </Reference>
+    <Reference Include="IKVM.OpenJDK.XML.Transform">
+      <HintPath>Dlls\IKVM.OpenJDK.XML.Transform.dll</HintPath>
+    </Reference>
+    <Reference Include="IKVM.OpenJDK.XML.WebServices">
+      <HintPath>Dlls\IKVM.OpenJDK.XML.WebServices.dll</HintPath>
+    </Reference>
+    <Reference Include="IKVM.OpenJDK.XML.XPath">
+      <HintPath>Dlls\IKVM.OpenJDK.XML.XPath.dll</HintPath>
+    </Reference>
+    <Reference Include="IKVM.Reflection">
+      <HintPath>Dlls\IKVM.Reflection.dll</HintPath>
+    </Reference>
+    <Reference Include="IKVM.Runtime">
+      <HintPath>Dlls\IKVM.Runtime.dll</HintPath>
+    </Reference>
+    <Reference Include="IKVM.Runtime.JNI">
+      <HintPath>Dlls\IKVM.Runtime.JNI.dll</HintPath>
+    </Reference>
+    <Reference Include="Kitware.mummy.Runtime, Version=1.0.2.599, Culture=neutral, PublicKeyToken=995c7fb9db2c1b44, processorArchitecture=x86">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>Dlls\vtk64\Kitware.mummy.Runtime.dll</HintPath>
+    </Reference>
+    <Reference Include="Kitware.VTK, Version=5.6.1.599, Culture=neutral, PublicKeyToken=995c7fb9db2c1b44, processorArchitecture=AMD64">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>Dlls\vtk64\Kitware.VTK.dll</HintPath>
+    </Reference>
+    <Reference Include="loci_tools, Version=0.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>Dlls\BioFormats\loci_tools.dll</HintPath>
+    </Reference>
+    <Reference Include="MIConvexHullPlugin">
+      <HintPath>Dlls\MIConvexHullPlugin.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Ccr.Core, Version=2.2.76.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="Microsoft.Msagl">
+      <HintPath>Dlls\Microsoft.Msagl.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Msagl.Drawing">
+      <HintPath>Dlls\Microsoft.Msagl.Drawing.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Msagl.GraphViewerGDI">
+      <HintPath>Dlls\Microsoft.Msagl.GraphViewerGDI.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Research.Science.Data, Version=1.3.14517.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>Dlls\MSResearchSDS\Microsoft.Research.Science.Data.dll</HintPath>
+    </Reference>
+    <Reference Include="MINE">
+      <HintPath>Dlls\Mine\MINE.dll</HintPath>
+    </Reference>
+    <Reference Include="PresentationCore" />
+    <Reference Include="PresentationFramework" />
+    <Reference Include="SQLite.Designer">
+      <HintPath>Dlls\SQlite\SQLite.Designer.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Data.SQLite">
+      <HintPath>Dlls\SQlite\System.Data.SQLite.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Data.SQLite.Linq">
+      <HintPath>Dlls\SQlite\System.Data.SQLite.Linq.dll</HintPath>
+    </Reference>
+    <Reference Include="System.DirectoryServices" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.EnterpriseServices" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.ServiceModel" />
+    <Reference Include="System.Web.Services" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Windows.Forms.DataVisualization" />
+    <Reference Include="System.Xaml" />
+    <Reference Include="System.XML" />
+    <Reference Include="weka">
+      <HintPath>Dlls\weka.dll</HintPath>
+    </Reference>
+    <Reference Include="WindowsBase" />
+    <Reference Include="WindowsFormsIntegration" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Cell-by-Cell and DB\FormForModelsHistory.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Cell-by-Cell and DB\FormForModelsHistory.Designer.cs">
+      <DependentUpon>FormForModelsHistory.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Cell-by-Cell and DB\FormForSingleCellClassifOptions.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Cell-by-Cell and DB\FormForSingleCellClassifOptions.Designer.cs">
+      <DependentUpon>FormForSingleCellClassifOptions.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Cell-by-Cell and DB\FormForSingleCellDescOperations.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Cell-by-Cell and DB\FormForSingleCellDescOperations.Designer.cs">
+      <DependentUpon>FormForSingleCellDescOperations.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Cell-by-Cell and DB\FormForSubPopulationId.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Cell-by-Cell and DB\FormForSubPopulationId.Designer.cs">
+      <DependentUpon>FormForSubPopulationId.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Cell-by-Cell and DB\FormManualGating.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Cell-by-Cell and DB\FormManualGating.Designer.cs">
+      <DependentUpon>FormManualGating.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Cell-by-Cell and DB\Simulator\Classes\cNewAgent.cs" />
+    <Compile Include="Cell-by-Cell and DB\Simulator\Classes\cStimulus.cs" />
+    <Compile Include="ClassBase.cs" />
+    <Compile Include="Classes\Base Components\Beta\cBetaComponent.cs" />
+    <Compile Include="Classes\Base Components\cComponent.cs" />
+    <Compile Include="Classes\Base Components\cDataAnalysis.cs" />
+    <Compile Include="Classes\Base Components\DataAnalysis\Arithmetic\cArithmetic_Abs.cs" />
+    <Compile Include="Classes\Base Components\DataAnalysis\Arithmetic\cArithmetic_Log.cs" />
+    <Compile Include="Classes\Base Components\DataAnalysis\Arithmetic\cArithmetic_DualOperator.cs" />
+    <Compile Include="Classes\Base Components\DataAnalysis\Classification\cClustering.cs" />
+    <Compile Include="Classes\Base Components\DataAnalysis\ColumnBasedAnalysis\cHistogramBuilder.cs" />
+    <Compile Include="Classes\Base Components\DataAnalysis\Fitting &amp; Regression\cLinearRegression.cs" />
+    <Compile Include="Classes\Base Components\DataAnalysis\Fitting &amp; Regression\cSigmoidFitting.cs" />
+    <Compile Include="Classes\Base Components\DataAnalysis\Metric &amp; Comparison\cCorrelation.cs" />
+    <Compile Include="Classes\Base Components\DataAnalysis\Metric &amp; Comparison\cCorrelationMatrix.cs" />
+    <Compile Include="Classes\Base Components\DataAnalysis\Metric &amp; Comparison\cDistances.cs" />
+    <Compile Include="Classes\Base Components\DataAnalysis\Metric &amp; Comparison\Abstract\cMetric.cs" />
+    <Compile Include="Classes\Base Components\DataAnalysis\Metric &amp; Comparison\Tests\cANOVA.cs" />
+    <Compile Include="Classes\Base Components\DataAnalysis\Metric &amp; Comparison\Tests\cMannWithneyTest.cs" />
+    <Compile Include="Classes\Base Components\DataAnalysis\Metric &amp; Comparison\Tests\cStudent_tTest.cs" />
+    <Compile Include="Classes\Base Components\DataAnalysis\Metric &amp; Comparison\Tests\cTwoSampleUnpooledTTest.cs" />
+    <Compile Include="Classes\Base Components\DataAnalysis\Metric &amp; Comparison\Tests\cSignTest.cs" />
+    <Compile Include="Classes\Base Components\DataAnalysis\Metric &amp; Comparison\Tests\cWilcoxonTest.cs" />
+    <Compile Include="Classes\Base Components\DataAnalysis\Metric &amp; Comparison\Tests\cTwoSampleFTest.cs" />
+    <Compile Include="Classes\Base Components\DataAnalysis\Metric &amp; Comparison\cDotProduct.cs" />
+    <Compile Include="Classes\Base Components\DataAnalysis\Metric &amp; Comparison\cCovarianceMatrix.cs" />
+    <Compile Include="Classes\Base Components\DataAnalysis\Metric &amp; Comparison\cDistanceMahalanobis.cs" />
+    <Compile Include="Classes\Base Components\DataAnalysis\Metric &amp; Comparison\cZFactor.cs" />
+    <Compile Include="Classes\Base Components\DataAnalysis\NormalityTests\cNormalityJarqueBera.cs" />
+    <Compile Include="Classes\Base Components\DataAnalysis\NormalityTests\cNormalityAndersonDarling.cs" />
+    <Compile Include="Classes\Base Components\DataAnalysis\Projectors\Apply Projection\cLinearProjector.cs" />
+    <Compile Include="Classes\Base Components\DataAnalysis\Projectors\Compute Basis\cProjectorComp.cs" />
+    <Compile Include="Classes\Base Components\DataAnalysis\Projectors\Compute Basis\cProjectorLDA.cs" />
+    <Compile Include="Classes\Base Components\DataAnalysis\Metric &amp; Comparison\cMineAnalysis.cs" />
+    <Compile Include="Classes\Base Components\DataAnalysis\Projectors\Compute Basis\cProjectorPCA.cs" />
+    <Compile Include="Classes\Base Components\DataAnalysis\Arithmetic\cArithmeticOperation.cs" />
+    <Compile Include="Classes\Base Components\DataAnalysis\Arithmetic\cArithmetic_Power.cs" />
+    <Compile Include="Classes\Base Components\DataAnalysis\ColumnBasedAnalysis\cStatistics.cs" />
+    <Compile Include="Classes\Base Components\DataAnalysis\Transforms\cNormalProbabilityPlot.cs" />
+    <Compile Include="Classes\Base Components\DataAnalysis\Transforms\cNormalize.cs" />
+    <Compile Include="Classes\Base Components\DataManip\cConvertToImage.cs" />
+    <Compile Include="Classes\Base Components\DataManip\cInverse.cs" />
+    <Compile Include="Classes\Base Components\DataManip\cConvertImageToDataTable.cs" />
+    <Compile Include="Classes\Base Components\DataManip\cLinearize.cs" />
+    <Compile Include="Classes\Base Components\DataManip\cAddNoise.cs" />
+    <Compile Include="Classes\Base Components\DataManip\cMerge.cs" />
+    <Compile Include="Classes\Base Components\DataManip\cClean.cs" />
+    <Compile Include="Classes\Base Components\DataManip\cWellMerger.cs" />
+    <Compile Include="Classes\Base Components\DataManip\cTranspose.cs" />
+    <Compile Include="Classes\Base Components\DataManip\cSort.cs" />
+    <Compile Include="Classes\Base Components\DataManip\Export\cDBToCSV.cs" />
+    <Compile Include="Classes\Base Components\DataStructures\cCurveForGraph.cs" />
+    <Compile Include="Classes\Base Components\DataStructures\cExtendedControl.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Classes\Base Components\DataStructures\cExtendedList.cs" />
+    <Compile Include="Classes\Base Components\DataStructures\cExtendedTable.cs" />
+    <Compile Include="Classes\Base Components\DataStructures\cExtendedValue.cs" />
+    <Compile Include="Classes\Base Components\DataStructures\cListExtendedTable.cs" />
+    <Compile Include="Classes\Base Components\Data\cFeedBackMessage.cs" />
+    <Compile Include="Classes\Base Components\Data\cFunctions.cs" />
+    <Compile Include="Classes\Base Components\DataManip\cBuildDensityMap.cs" />
+    <Compile Include="Classes\Base Components\Data\cTableFrom3DObjects.cs" />
+    <Compile Include="Classes\Base Components\Data\cRandomGenerator.cs" />
+    <Compile Include="Classes\Base Components\Data\cCSVToTable.cs" />
+    <Compile Include="Classes\Base Components\Data_Functions\cDataGeneratorSigmoid.cs" />
+    <Compile Include="Classes\Base Components\Data_Functions\cDataGeneratorTitration.cs" />
+    <Compile Include="Classes\Base Components\General\cLineForGraph.cs" />
+    <Compile Include="Classes\Base Components\General\cLookUpTable.cs" />
+    <Compile Include="Classes\Base Components\GUI\cComponentGUI.cs" />
+    <Compile Include="Classes\Base Components\GUI\cGUI_ListClasses.cs" />
+    <Compile Include="Classes\Base Components\GUI\cGUI_ListSingleClasse.cs" />
+    <Compile Include="Classes\Base Components\GUI\cGUI_2ClassesSelection.cs" />
+    <Compile Include="Classes\Base Components\GUI\cGUI_ListPlates.cs" />
+    <Compile Include="Classes\Base Components\GUI\cGUI_ListWellProperty.cs" />
+    <Compile Include="Classes\Base Components\GUI\FormForHistoBinOptions.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Classes\Base Components\GUI\FormForHistoBinOptions.Designer.cs">
+      <DependentUpon>FormForHistoBinOptions.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Classes\Base Components\GUI\FormGUIForProperties.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Classes\Base Components\GUI\FormGUIForProperties.Designer.cs">
+      <DependentUpon>FormGUIForProperties.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Classes\Base Components\GUI\PanelForWellPropertySelection.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Classes\Base Components\GUI\FormForSingleSlider.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Classes\Base Components\GUI\FormForSingleSlider.Designer.cs">
+      <DependentUpon>FormForSingleSlider.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Classes\Base Components\GUI\FormForStatDesc.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Classes\Base Components\GUI\FormForStatDesc.Designer.cs">
+      <DependentUpon>FormForStatDesc.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Classes\Base Components\GUI\FormForXYMinMax.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Classes\Base Components\GUI\FormForXYMinMax.Designer.cs">
+      <DependentUpon>FormForXYMinMax.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Classes\Base Components\GUI\PanelForPlatesSelection.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Classes\Base Components\Viewers\1D\cChartRadar.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Classes\Base Components\Viewers\1D\cViewerPie.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Classes\Base Components\Viewers\1D\cSerieInfo.cs" />
+    <Compile Include="Classes\Base Components\Viewers\1D\cViewerStackedHistogram.cs" />
+    <Compile Include="Classes\Base Components\Viewers\1D\cViewerHistogram.cs" />
+    <Compile Include="Classes\Base Components\Viewers\1D\cViewerBoxPlot.cs" />
+    <Compile Include="Classes\Base Components\Viewers\1D\cViewerGraph1D.cs" />
+    <Compile Include="Classes\Base Components\Viewers\2D\cImageToFile.cs" />
+    <Compile Include="Classes\Base Components\Viewers\2D\cViewerRadar.cs" />
+    <Compile Include="Classes\Base Components\Viewers\2D\cViewerGraphTree.cs" />
+    <Compile Include="Classes\Base Components\Viewers\2D\cViewerListWellsTreeView.cs" />
+    <Compile Include="Classes\Base Components\Viewers\2D\cViewerGraph.cs" />
+    <Compile Include="Classes\Base Components\Viewers\2D\cViewerHeatMap.cs" />
+    <Compile Include="Classes\Base Components\Viewers\2D\cViewerHisto.cs" />
+    <Compile Include="Classes\Base Components\Viewers\2D\cViewerImage.cs" />
+    <Compile Include="Classes\Base Components\Viewers\2D\cViewerScatter2D.cs" />
+    <Compile Include="Classes\Base Components\Viewers\2D\cViewer2DScatterPoint.cs" />
+    <Compile Include="Classes\Base Components\Viewers\3D\ComplexObjects\c3DObjectScatterPoints.cs" />
+    <Compile Include="Classes\Base Components\Viewers\3D\ComplexObjects\c3DObject_Axis.cs" />
+    <Compile Include="Classes\Base Components\Viewers\3D\ComplexObjects\cComplexObject.cs" />
+    <Compile Include="Classes\Base Components\Viewers\3D\ComplexObjects\c3DObjectMeshFromImage.cs" />
+    <Compile Include="Classes\Base Components\Viewers\3D\ComplexObjects\c3DObject_Plate2D.cs" />
+    <Compile Include="Classes\Base Components\Viewers\3D\ComplexObjects\c3DObject_Screening2D.cs" />
+    <Compile Include="Classes\Base Components\Viewers\3D\Copy of cViewerScatter3D.cs" />
+    <Compile Include="Classes\Base Components\Viewers\3D\cViewer3D.cs" />
+    <Compile Include="Classes\Base Components\Viewers\3D\cViewerImage3D.cs" />
+    <Compile Include="Classes\Base Components\Viewers\3D\cViewerElevationMap3D.cs" />
+    <Compile Include="Classes\Base Components\Viewers\1D\cChart1DBoxPlot.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Classes\Base Components\Viewers\1D\cChart1DGraph.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Classes\Base Components\Viewers\3D\Form3DTreeView.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Classes\Base Components\Viewers\3D\Form3DTreeView.Designer.cs">
+      <DependentUpon>Form3DTreeView.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Classes\Base Components\Viewers\3D\FormFor3DObjectParam.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Classes\Base Components\Viewers\3D\FormFor3DObjectParam.Designer.cs">
+      <DependentUpon>FormFor3DObjectParam.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Classes\Base Components\Viewers\3D\FormFor3DVolumeDisplayParam.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Classes\Base Components\Viewers\3D\FormFor3DVolumeDisplayParam.Designer.cs">
+      <DependentUpon>FormFor3DVolumeDisplayParam.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Classes\Base Components\Viewers\cGraphGeneral.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Classes\Base Components\Viewers\1D\cChart1DHistogram.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Classes\Base Components\Viewers\1D\cChart1DStackedHistogram.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Classes\Base Components\Viewers\2D\cChart2DScatterPoint.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Classes\Base Components\Viewers\Designers\cDesignerColumn.cs" />
+    <Compile Include="Classes\Base Components\Viewers\Designers\cDesignerSplitter.cs" />
+    <Compile Include="Classes\Base Components\Viewers\Designers\cDesignerParent.cs" />
+    <Compile Include="Classes\Base Components\Viewers\Designers\cDesignerTab.cs" />
+    <Compile Include="Classes\Base Components\Viewers\Designers\cDesignerSinglePanel.cs" />
+    <Compile Include="Classes\Base Components\Viewers\Designers\cDesignerMultiChoices.cs" />
+    <Compile Include="Classes\Base Components\Viewers\Designers\FormForMultiChoice.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Classes\Base Components\Viewers\Designers\FormForMultiChoice.Designer.cs">
+      <DependentUpon>FormForMultiChoice.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Classes\Base Components\Viewers\Display\cDisplayToClipBoard.cs" />
+    <Compile Include="Classes\Base Components\Viewers\Display\cDisplayToWindow.cs" />
+    <Compile Include="Classes\Base Components\Viewers\Table\cTableToHTML.cs" />
+    <Compile Include="Classes\Base Components\Viewers\Display\FormForDisplay.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Classes\Base Components\Viewers\Display\FormForDisplay.Designer.cs">
+      <DependentUpon>FormForDisplay.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Classes\Base Components\Viewers\Text\cViewerText.cs" />
+    <Compile Include="Classes\Base Components\Viewers\Table\cViewerTableAsRichText.cs" />
+    <Compile Include="Classes\Base Components\Viewers\Table\cTableToClipBoard.cs" />
+    <Compile Include="Classes\Base Components\Viewers\Table\cTableToFile.cs" />
+    <Compile Include="Classes\Base Components\Viewers\Table\cViewerTable.cs" />
+    <Compile Include="Classes\DRC Analysis\FormsForDRCAnalysis\FormForDRCDesignValidation.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Classes\DRC Analysis\FormsForDRCAnalysis\FormForDRCDesignValidation.Designer.cs">
+      <DependentUpon>FormForDRCDesignValidation.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Classes\General Types\CGlobalInfoToBeExported.cs" />
+    <Compile Include="Classes\General Types\cImageMetaInfo.cs" />
+    <Compile Include="Classes\General Types\cItemForListBox.cs" />
+    <Compile Include="Classes\General Types\cObjectWithClass.cs" />
+    <Compile Include="Classes\General Types\cPlateLUTManager.cs" />
+    <Compile Include="Classes\General Types\Screen.Plate.Well\cDRCPoint.cs" />
+    <Compile Include="Classes\General Types\Screen.Plate.Well\cGroup.cs" />
+    <Compile Include="Classes\General Types\Screen.Plate.Well\cListGroups.cs" />
+    <Compile Include="Classes\General Types\Screen.Plate.Well\cListPlates.cs" />
+    <Compile Include="Classes\General Types\Properties\cListProperty.cs" />
+    <Compile Include="Classes\General Types\Properties\cListPropertyType.cs" />
+    <Compile Include="Classes\General Types\Screen.Plate.Well\cScreeningClassStatus.cs" />
+    <Compile Include="Classes\General Types\Properties\cProperty.cs" />
+    <Compile Include="Classes\General Types\Properties\cPropertyType.cs" />
+    <Compile Include="Classes\General Types\Screen.Plate.Well\DRC\cGeneralDRC.cs" />
+    <Compile Include="Classes\General Types\Screen.Plate.Well\Properties\FormForNewProperty.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Classes\General Types\Screen.Plate.Well\Properties\FormForNewProperty.Designer.cs">
+      <DependentUpon>FormForNewProperty.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Classes\General Types\Screen.Plate.Well\Properties\FormForPropertiesManager.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Classes\General Types\Screen.Plate.Well\Properties\FormForPropertiesManager.Designer.cs">
+      <DependentUpon>FormForPropertiesManager.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Classes\General Types\Screen.Plate.Well\Well\cListListWells.cs" />
+    <Compile Include="Classes\General Types\Single Cell\cCellularPhenotype.cs" />
+    <Compile Include="Classes\General Types\cDBConnection.cs" />
+    <Compile Include="Classes\General Types\Screen.Plate.Well\Descriptors&amp;Signatures\cDescriptorsType.cs" />
+    <Compile Include="Classes\General Types\cImageAccessor.cs" />
+    <Compile Include="Classes\General Types\cReplicate.cs" />
+    <Compile Include="Classes\General Types\Single Cell\cSingleBiologicalObject.cs" />
+    <Compile Include="Classes\General Types\cGeneralComponent.cs" />
+    <Compile Include="Classes\General Types\Single Cell\cListSingleBiologicalObjects.cs" />
+    <Compile Include="Classes\General Types\Screen.Plate.Well\Well\cListWells.cs" />
+    <Compile Include="Classes\General Types\Screen.Plate.Well\Well\cWellClass.cs" />
+    <Compile Include="Classes\HCSAnalyzer2.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Classes\ImageAnalysis\2D_Engine\c2DBiologicalObject.cs" />
+    <Compile Include="Classes\ImageAnalysis\3D_Engine\3Dplugin\ClassInfoForObject3D.cs" />
+    <Compile Include="Classes\ImageAnalysis\3D_Engine\3Dplugin\FormFor3DVolumeRendering.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Classes\ImageAnalysis\3D_Engine\3Dplugin\FormFor3DVolumeRendering.Designer.cs">
+      <DependentUpon>FormFor3DVolumeRendering.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Classes\ImageAnalysis\3D_Engine\3Dplugin\FormForArrow.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Classes\ImageAnalysis\3D_Engine\3Dplugin\FormForArrow.Designer.cs">
+      <DependentUpon>FormForArrow.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Classes\ImageAnalysis\3D_Engine\3Dplugin\FormForControl.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Classes\ImageAnalysis\3D_Engine\3Dplugin\FormForControl.Designer.cs">
+      <DependentUpon>FormForControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Classes\ImageAnalysis\3D_Engine\3Dplugin\FormForDataGridView.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Classes\ImageAnalysis\3D_Engine\3Dplugin\FormForDataGridView.Designer.cs">
+      <DependentUpon>FormForDataGridView.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Classes\ImageAnalysis\3D_Engine\3Dplugin\FormForInfoBeforeStarting.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Classes\ImageAnalysis\3D_Engine\3Dplugin\FormForInfoBeforeStarting.Designer.cs">
+      <DependentUpon>FormForInfoBeforeStarting.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Classes\ImageAnalysis\3D_Engine\3Dplugin\FormForInOut.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Classes\ImageAnalysis\3D_Engine\3Dplugin\FormForInOut.Designer.cs">
+      <DependentUpon>FormForInOut.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Classes\ImageAnalysis\3D_Engine\3Dplugin\FormForLinkToMasterInfo.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Classes\ImageAnalysis\3D_Engine\3Dplugin\FormForLinkToMasterInfo.Designer.cs">
+      <DependentUpon>FormForLinkToMasterInfo.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Classes\ImageAnalysis\3D_Engine\3Dplugin\FormForLUT.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Classes\ImageAnalysis\3D_Engine\3Dplugin\FormForLUT.Designer.cs">
+      <DependentUpon>FormForLUT.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Classes\ImageAnalysis\3D_Engine\3Dplugin\FormForMaster.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Classes\ImageAnalysis\3D_Engine\3Dplugin\FormForMaster.Designer.cs">
+      <DependentUpon>FormForMaster.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Classes\ImageAnalysis\3D_Engine\3Dplugin\FormForPostProcessings.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Classes\ImageAnalysis\3D_Engine\3Dplugin\FormForPostProcessings.Designer.cs">
+      <DependentUpon>FormForPostProcessings.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Classes\ImageAnalysis\3D_Engine\3Dplugin\FormForPreProcessings.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Classes\ImageAnalysis\3D_Engine\3Dplugin\FormForPreProcessings.Designer.cs">
+      <DependentUpon>FormForPreProcessings.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Classes\ImageAnalysis\3D_Engine\3Dplugin\FormForResolution.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Classes\ImageAnalysis\3D_Engine\3Dplugin\FormForResolution.Designer.cs">
+      <DependentUpon>FormForResolution.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Classes\ImageAnalysis\3D_Engine\3Dplugin\FormForSingleValue.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Classes\ImageAnalysis\3D_Engine\3Dplugin\FormForSingleValue.Designer.cs">
+      <DependentUpon>FormForSingleValue.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Classes\ImageAnalysis\3D_Engine\3Dplugin\FormForSpotDetection.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Classes\ImageAnalysis\3D_Engine\3Dplugin\FormForSpotDetection.Designer.cs">
+      <DependentUpon>FormForSpotDetection.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Classes\ImageAnalysis\3D_Engine\3Dplugin\FormForThumbnails.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Classes\ImageAnalysis\3D_Engine\3Dplugin\FormForThumbnails.Designer.cs">
+      <DependentUpon>FormForThumbnails.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Classes\ImageAnalysis\3D_Engine\3Dplugin\FormForVolumeDetection.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Classes\ImageAnalysis\3D_Engine\3Dplugin\FormForVolumeDetection.Designer.cs">
+      <DependentUpon>FormForVolumeDetection.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Classes\ImageAnalysis\3D_Engine\3Dplugin\WindowPlugin3D.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Classes\ImageAnalysis\3D_Engine\3Dplugin\WindowPlugin3D.Designer.cs">
+      <DependentUpon>WindowPlugin3D.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Classes\ImageAnalysis\3D_Engine\Base\cvtkPiecewiseFunctionBuilder.cs" />
+    <Compile Include="Classes\ImageAnalysis\3D_Engine\c3DNewWorld.cs" />
+    <Compile Include="Classes\ImageAnalysis\3D_Engine\VolumeRendering\cVolumeRendering3D.cs" />
+    <Compile Include="Classes\ImageAnalysis\3D_Engine\cVolume3D_2.cs" />
+    <Compile Include="Classes\ImageAnalysis\3D_Engine\Detection\BaseDetection.cs" />
+    <Compile Include="Classes\ImageAnalysis\3D_Engine\Detection\Volume3DDetection.cs" />
+    <Compile Include="Classes\ImageAnalysis\3D_Engine\VolumeRendering\FormForVolumeRenderingOption.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Classes\ImageAnalysis\3D_Engine\VolumeRendering\FormForVolumeRenderingOption.Designer.cs">
+      <DependentUpon>FormForVolumeRenderingOption.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Classes\ImageAnalysis\cImageMontage.cs" />
+    <Compile Include="Classes\ImageAnalysis\cImageSeq.cs" />
+    <Compile Include="Classes\ImageAnalysis\Comparison\cOpticalFlow.cs" />
+    <Compile Include="Classes\ImageAnalysis\Convert\cImageToVTK.cs" />
+    <Compile Include="Classes\ImageAnalysis\EdgeDetection\cImageFilterCanny.cs" />
+    <Compile Include="Classes\ImageAnalysis\EdgeDetection\cImageSobel.cs" />
+    <Compile Include="Classes\ImageAnalysis\Filters\Morpho\cImageMorphoErode.cs" />
+    <Compile Include="Classes\ImageAnalysis\Filters\cImageFilterMedian.cs" />
+    <Compile Include="Classes\ImageAnalysis\cImageFilter.cs" />
+    <Compile Include="Classes\ImageAnalysis\Filters\cImageFilterMedianHuang.cs" />
+    <Compile Include="Classes\ImageAnalysis\Filters\Morpho\cImageMorphoDilate.cs" />
+    <Compile Include="Classes\ImageAnalysis\FormsForImages\cImageDisplayProperties.cs" />
+    <Compile Include="Classes\ImageAnalysis\FormsForImages\Form1.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Classes\ImageAnalysis\FormsForImages\Form1.Designer.cs">
+      <DependentUpon>Form1.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Classes\ImageAnalysis\FormsForImages\FormForGeneratingScreenFromImages.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Classes\ImageAnalysis\FormsForImages\FormForGeneratingScreenFromImages.Designer.cs">
+      <DependentUpon>FormForGeneratingScreenFromImages.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Classes\ImageAnalysis\FormsForImages\FormForImageAccessInfo.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Classes\ImageAnalysis\FormsForImages\FormForImageAccessInfo.Designer.cs">
+      <DependentUpon>FormForImageAccessInfo.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Classes\ImageAnalysis\FormsForImages\FormForImageDisplay.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Classes\ImageAnalysis\FormsForImages\FormForNavigator.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Classes\ImageAnalysis\FormsForImages\FormForNavigator.Designer.cs">
+      <DependentUpon>FormForNavigator.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Classes\ImageAnalysis\ObjectDrawing\cImageDrawKernel.cs" />
+    <Compile Include="Classes\ImageAnalysis\ObjectDrawing\cImageAddSphere.cs" />
+    <Compile Include="Classes\ImageAnalysis\Segmentation\cImageSegmentationThreshold.cs" />
+    <Compile Include="Classes\ImageAnalysis\Segmentation\cImageSegmentationMeanShift.cs" />
+    <Compile Include="Classes\ImageAnalysis\Segmentation\cImageFindContours.cs" />
+    <Compile Include="Classes\ImageAnalysis\Segmentation\cImageSegmentationKMeans.cs" />
+    <Compile Include="Classes\ImageAnalysis\SpotDetection\cImageFilterLaplace.cs" />
+    <Compile Include="Classes\ImageAnalysis\SpotDetection\cImageFindLocalMax.cs" />
+    <Compile Include="Classes\ImageAnalysis\cSingleChannelImage.cs" />
+    <Compile Include="Classes\ImageAnalysis\Transforms\Geometrical\cImageGeometricResize.cs" />
+    <Compile Include="Classes\ImageAnalysis\Transforms\Geometrical\cImageGeometricFlip.cs" />
+    <Compile Include="Classes\ImageAnalysis\Transforms\Geometrical\cImageGeometricBinning.cs" />
+    <Compile Include="Classes\ImageAnalysis\Transforms\Maths\cImageAddNoise.cs" />
+    <Compile Include="Classes\ImageAnalysis\Transforms\Maths\cImageDistanceMap.cs" />
+    <Compile Include="Classes\Machine Learning\ClassificationInfo\PanelForParamLogistic.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Classes\Machine Learning\ClassificationInfo\PanelForParamLogistic.Designer.cs">
+      <DependentUpon>PanelForParamLogistic.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Classes\MetaComponents\DataAccess\cGetListPhenotypes.cs" />
+    <Compile Include="Classes\MetaComponents\DataAccess\cGetListWellValues.cs" />
+    <Compile Include="Classes\MetaComponents\DataAccess\cGetImageFromWells.cs" />
+    <Compile Include="Classes\MetaComponents\DataAnalysis\cDisplayCorrelationMatrix.cs" />
+    <Compile Include="Classes\MetaComponents\DataAnalysis\cSystematicErrorAnalyzer.cs" />
+    <Compile Include="Classes\MetaComponents\DataGenerator\cDisplayNewImage.cs" />
+    <Compile Include="Classes\MetaComponents\Display\cDisplayExtendedTable.cs" />
+    <Compile Include="Classes\MetaComponents\Display\cDisplayListExtendedTable.cs" />
+    <Compile Include="Classes\MetaComponents\Display\cComputeAndDisplayDRC.cs" />
+    <Compile Include="Classes\MetaComponents\Display\cDisplayDescriptorEvolutions.cs" />
+    <Compile Include="Classes\MetaComponents\Display\cComputeAndDisplayNormalPlot.cs" />
+    <Compile Include="Classes\MetaComponents\Display\cDisplayText.cs" />
+    <Compile Include="Classes\MetaComponents\Display\cDisplayListWell3DScatter.cs" />
+    <Compile Include="Classes\MetaComponents\Display\cDisplaySingleImage.cs" />
+    <Compile Include="Classes\MetaComponents\Display\cDisplaytree.cs" />
+    <Compile Include="Classes\MetaComponents\Display\cDisplayListWell3DDRC.cs" />
+    <Compile Include="Forms\cGloblaInfo.cs" />
+    <Compile Include="Forms\cGUIPlateLUT.cs" />
+    <Compile Include="Forms\ComplexForms\ExtendedTrackBar.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\ComplexForms\ExtendedTrackBar.Designer.cs">
+      <DependentUpon>ExtendedTrackBar.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\FormForDescriptorNormalization.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\FormForDescriptorNormalization.Designer.cs">
+      <DependentUpon>FormForDescriptorNormalization.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\FormForMahalanobisDistance.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\FormForMahalanobisDistance.Designer.cs">
+      <DependentUpon>FormForMahalanobisDistance.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\FormsForOptions\FormForAllOptions.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\FormsForOptions\FormForAllOptions.Designer.cs">
+      <DependentUpon>FormForAllOptions.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\FormsForOptions\FormOptionsForPlateName.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\FormsForOptions\FormOptionsForPlateName.Designer.cs">
+      <DependentUpon>FormOptionsForPlateName.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\IO\FormForPlateSelection.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\IO\FormForPlateSelection.Designer.cs">
+      <DependentUpon>FormForPlateSelection.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\IO\FormInfoForFileImporter.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\IO\FormInfoForFileImporter.Designer.cs">
+      <DependentUpon>FormInfoForFileImporter.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\ManualClustering\FormForManualClustering.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\ManualClustering\FormForManualClustering.Designer.cs">
+      <DependentUpon>FormForManualClustering.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\ManualClustering\FormForPanelFilterHits.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\ManualClustering\FormForPanelFilterHits.Designer.cs">
+      <DependentUpon>FormForPanelFilterHits.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\FormForPlateLUT.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\FormForPlateLUT.Designer.cs">
+      <DependentUpon>FormForPlateLUT.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\FormForPlateManager.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\FormForPlateManager.Designer.cs">
+      <DependentUpon>FormForPlateManager.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\FormForSplashScreen.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\FormForSplashScreen.Designer.cs">
+      <DependentUpon>FormForSplashScreen.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\IO\FormForDescFiltering.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\IO\FormForDescFiltering.Designer.cs">
+      <DependentUpon>FormForDescFiltering.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Classes\ImageAnalysis\3D_Engine\c3DWorld.cs" />
+    <Compile Include="Classes\ImageAnalysis\3D_Engine\cInteractiveObjects.cs" />
+    <Compile Include="Classes\ImageAnalysis\3D_Engine\cGeometricalObjects.cs" />
+    <Compile Include="Classes\ImageAnalysis\3D_Engine\cMatrix.cs" />
+    <Compile Include="Classes\ImageAnalysis\3D_Engine\cMetaBiologicalObject.cs" />
+    <Compile Include="Classes\ImageAnalysis\3D_Engine\cObject3D.cs" />
+    <Compile Include="Classes\SystematicErrors\cB-Score.cs" />
+    <Compile Include="Classes\Machine Learning\cDendoGram.cs" />
+    <Compile Include="Classes\General Types\Screen.Plate.Well\Descriptors&amp;Signatures\cSignature.cs" />
+    <Compile Include="Cell-by-Cell and DB\FormForOptionsSingleCellAnalysis.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Cell-by-Cell and DB\FormForOptionsSingleCellAnalysis.Designer.cs">
+      <DependentUpon>FormForOptionsSingleCellAnalysis.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\IO\FormForPlateAveraging.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\IO\FormForPlateAveraging.Designer.cs">
+      <DependentUpon>FormForPlateAveraging.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Classes\DRC Analysis\cDRCanalysis.cs" />
+    <Compile Include="Classes\SystematicErrors\cEdgeEffect.cs" />
+    <Compile Include="Cell-by-Cell and DB\cExportDatabase.cs" />
+    <Compile Include="Classes\General Types\cGlobalInfo.cs" />
+    <Compile Include="Classes\General Types\cHisto.cs" />
+    <Compile Include="Classes\cReference.cs" />
+    <Compile Include="Cell-by-Cell and DB\CSQLiteDB.cs" />
+    <Compile Include="Classes\ImageAnalysis\FormsForImages\cImageViewer.cs" />
+    <Compile Include="Classes\ImageAnalysis\cImage.cs" />
+    <Compile Include="Classes\ImageAnalysis\Filters\cImageFilterConvolution.cs" />
+    <Compile Include="Classes\General Types\MiscClasses.cs" />
+    <Compile Include="Classes\Machine Learning\cMachineLearning.cs" />
+    <Compile Include="Classes\Machine Learning\ClassificationInfo\FormForClassificationInfo.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Classes\Machine Learning\ClassificationInfo\FormForClassificationInfo.Designer.cs">
+      <DependentUpon>FormForClassificationInfo.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Classes\Machine Learning\ClassificationInfo\FormForKernelEditor.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Classes\Machine Learning\ClassificationInfo\FormForKernelEditor.Designer.cs">
+      <DependentUpon>FormForKernelEditor.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Classes\Machine Learning\ClassificationInfo\PanelForParamKNN.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Classes\Machine Learning\ClassificationInfo\PanelForParamKNN.Designer.cs">
+      <DependentUpon>PanelForParamKNN.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Classes\Machine Learning\ClassificationInfo\PanelForParamKStar.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Classes\Machine Learning\ClassificationInfo\PanelForParamKStar.Designer.cs">
+      <DependentUpon>PanelForParamKStar.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Classes\Machine Learning\ClassificationInfo\PanelForParamNaiveBayes.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Classes\Machine Learning\ClassificationInfo\PanelForParamNaiveBayes.Designer.cs">
+      <DependentUpon>PanelForParamNaiveBayes.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Classes\Machine Learning\ClassificationInfo\PanelForParamOneR.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Classes\Machine Learning\ClassificationInfo\PanelForParamOneR.Designer.cs">
+      <DependentUpon>PanelForParamOneR.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Classes\Machine Learning\ClassificationInfo\PanelForParamPerceptron.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Classes\Machine Learning\ClassificationInfo\PanelForParamPerceptron.Designer.cs">
+      <DependentUpon>PanelForParamPerceptron.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Classes\Machine Learning\ClassificationInfo\PanelForParamRandomForest.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Classes\Machine Learning\ClassificationInfo\PanelForParamRandomForest.Designer.cs">
+      <DependentUpon>PanelForParamRandomForest.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Classes\Machine Learning\ClassificationInfo\PanelForParamRandomTree.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Classes\Machine Learning\ClassificationInfo\PanelForParamRandomTree.Designer.cs">
+      <DependentUpon>PanelForParamRandomTree.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Classes\Machine Learning\ClassificationInfo\PanelForParamSVM.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Classes\Machine Learning\ClassificationInfo\PanelForParamSVM.Designer.cs">
+      <DependentUpon>PanelForParamSVM.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Classes\Machine Learning\ClassificationInfo\PanelForParamZeroR.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Classes\Machine Learning\ClassificationInfo\PanelForParamZeroR.Designer.cs">
+      <DependentUpon>PanelForParamZeroR.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Classes\Machine Learning\cParamForClusteringAndClassif.cs" />
+    <Compile Include="Classes\Machine Learning\ClusteringInfo\FormForClusteringInfo.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Classes\Machine Learning\ClusteringInfo\FormForClusteringInfo.Designer.cs">
+      <DependentUpon>FormForClusteringInfo.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Classes\Machine Learning\ClusteringInfo\PanelForParamCobWeb.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Classes\Machine Learning\ClusteringInfo\PanelForParamCobWeb.Designer.cs">
+      <DependentUpon>PanelForParamCobWeb.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Classes\Machine Learning\ClusteringInfo\PanelForParamFarthestFirst.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Classes\Machine Learning\ClusteringInfo\PanelForParamFarthestFirst.Designer.cs">
+      <DependentUpon>PanelForParamFarthestFirst.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Classes\Machine Learning\ClusteringInfo\PanelForParamHierarchical.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Classes\Machine Learning\ClusteringInfo\PanelForParamHierarchical.Designer.cs">
+      <DependentUpon>PanelForParamHierarchical.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Classes\Machine Learning\ClusteringInfo\PanelForParamKMeans.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Classes\Machine Learning\ClusteringInfo\PanelForParamKMeans.Designer.cs">
+      <DependentUpon>PanelForParamKMeans.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Classes\Machine Learning\ClusteringInfo\PanelForParamEM.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Classes\Machine Learning\ClusteringInfo\PanelForParamEM.Designer.cs">
+      <DependentUpon>PanelForParamEM.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Classes\Machine Learning\PanelForOptions\PanelForCellularPhenotypesColor.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Classes\Machine Learning\PanelForOptions\PanelForCellularPhenotypesColor.Designer.cs">
+      <DependentUpon>PanelForCellularPhenotypesColor.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Classes\Machine Learning\ClassificationInfo\PanelForParamJ48.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Classes\Machine Learning\ClassificationInfo\PanelForParamJ48.Designer.cs">
+      <DependentUpon>PanelForParamJ48.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Classes\Machine Learning\PanelForOptions\PanelForWellClassesColor.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Classes\Machine Learning\PanelForOptions\PanelForWellClassesColor.Designer.cs">
+      <DependentUpon>PanelForWellClassesColor.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Classes\Base Components\Viewers\2D\cPanelHisto.cs" />
+    <Compile Include="Classes\Base Components\Viewers\2D\FormPanelForHisto.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Classes\Base Components\Viewers\2D\FormPanelForHisto.Designer.cs">
+      <DependentUpon>FormPanelForHisto.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Cell-by-Cell and DB\Simulator\Classes\cClassForVariable.cs" />
+    <Compile Include="Cell-by-Cell and DB\Simulator\Forms\FormForCellTypeRelationships.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Cell-by-Cell and DB\Simulator\Forms\FormForCellTypeRelationships.Designer.cs">
+      <DependentUpon>FormForCellTypeRelationships.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Cell-by-Cell and DB\Simulator\Forms\FormForInfoSingleCellPopInit_Simulator.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Cell-by-Cell and DB\Simulator\Forms\FormForInfoSingleCellPopInit_Simulator.Designer.cs">
+      <DependentUpon>FormForInfoSingleCellPopInit_Simulator.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Cell-by-Cell and DB\Simulator\Forms\FormForRandSpecOfVar.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Cell-by-Cell and DB\Simulator\Forms\FormForRandSpecOfVar.Designer.cs">
+      <DependentUpon>FormForRandSpecOfVar.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Cell-by-Cell and DB\Simulator\Forms\FormForVariableDef.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Cell-by-Cell and DB\Simulator\Forms\FormForVariableDef.Designer.cs">
+      <DependentUpon>FormForVariableDef.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Cell-by-Cell and DB\Simulator\Forms\NewCellType\FormForNewCellType.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Cell-by-Cell and DB\Simulator\Forms\NewCellType\FormForNewCellType.Designer.cs">
+      <DependentUpon>FormForNewCellType.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Cell-by-Cell and DB\Simulator\Forms\NewCellType\PanelForParamCellCycle.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Cell-by-Cell and DB\Simulator\Forms\NewCellType\PanelForParamCellCycle.Designer.cs">
+      <DependentUpon>PanelForParamCellCycle.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Cell-by-Cell and DB\Simulator\Forms\NewCellType\PanelForParamVelocity.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Cell-by-Cell and DB\Simulator\Forms\NewCellType\PanelForParamVelocity.Designer.cs">
+      <DependentUpon>PanelForParamVelocity.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Cell-by-Cell and DB\Simulator\Forms\NewCellType\PanelForTransitionMatrix.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Cell-by-Cell and DB\Simulator\Forms\NewCellType\PanelForTransitionMatrix.Designer.cs">
+      <DependentUpon>PanelForTransitionMatrix.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Cell-by-Cell and DB\Simulator\Forms\NewCellType\PanelForParamGeneralForCellType.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Cell-by-Cell and DB\Simulator\Forms\NewCellType\PanelForParamGeneralForCellType.Designer.cs">
+      <DependentUpon>PanelForParamGeneralForCellType.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Cell-by-Cell and DB\Simulator\Forms\MainWindow\PanelForParamCellPopulations.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Cell-by-Cell and DB\Simulator\Forms\MainWindow\PanelForParamCellPopulations.Designer.cs">
+      <DependentUpon>PanelForParamCellPopulations.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Cell-by-Cell and DB\Simulator\Forms\MainWindow\PanelForParamCellTypes.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Cell-by-Cell and DB\Simulator\Forms\MainWindow\PanelForParamCellTypes.Designer.cs">
+      <DependentUpon>PanelForParamCellTypes.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Cell-by-Cell and DB\Simulator\Forms\MainWindow\PanelForParamPlateDesign.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Cell-by-Cell and DB\Simulator\Forms\MainWindow\PanelForParamPlateDesign.Designer.cs">
+      <DependentUpon>PanelForParamPlateDesign.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Cell-by-Cell and DB\Simulator\Forms\MainWindow\PanelForParamGeneral.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Cell-by-Cell and DB\Simulator\Forms\MainWindow\PanelForParamGeneral.Designer.cs">
+      <DependentUpon>PanelForParamGeneral.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Cell-by-Cell and DB\Simulator\Forms\MainWindow\PanelForParams3D.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Cell-by-Cell and DB\Simulator\Forms\MainWindow\PanelForParams3D.Designer.cs">
+      <DependentUpon>PanelForParams3D.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Cell-by-Cell and DB\Simulator\Forms\MainWindow\PanelForParamWorldDimensions.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Cell-by-Cell and DB\Simulator\Forms\MainWindow\PanelForParamWorldDimensions.Designer.cs">
+      <DependentUpon>PanelForParamWorldDimensions.cs</DependentUpon>
+    </Compile>
+    <Compile Include="GUI\External\ExtendedFolderBrowser.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="HCSAnalyzer2.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Service References\eUtils\Reference.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Compile>
+    <Compile Include="SubHCSAnalyzer\Classif.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="SubHCSAnalyzer\Clustering.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Classes\General Types\Screen.Plate.Well\cPlate.cs" />
+    <Compile Include="Classes\General Types\Screen.Plate.Well\cScreening.cs" />
+    <Compile Include="Classes\General Types\Screen.Plate.Well\Well\cWell.cs" />
+    <Compile Include="GUI\3D\FormFor3DDataDisplay.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="GUI\3D\FormFor3DDataDisplay.Designer.cs">
+      <DependentUpon>FormFor3DDataDisplay.cs</DependentUpon>
+    </Compile>
+    <Compile Include="GUI\3D\FormFor3DVizuOptions.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="GUI\3D\FormFor3DVizuOptions.Designer.cs">
+      <DependentUpon>FormFor3DVizuOptions.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Classes\Machine Learning\ClusteringForms\FormForEMInfo.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Classes\Machine Learning\ClusteringForms\FormForEMInfo.Designer.cs">
+      <DependentUpon>FormForEMInfo.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Classes\Machine Learning\ClusteringForms\FormForHierarchical.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Classes\Machine Learning\ClusteringForms\FormForHierarchical.Designer.cs">
+      <DependentUpon>FormForHierarchical.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Classes\Machine Learning\ClusteringForms\FormForKMeansInfo.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Classes\Machine Learning\ClusteringForms\FormForKMeansInfo.Designer.cs">
+      <DependentUpon>FormForKMeansInfo.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\FormForDescriptorInfo.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\FormForDescriptorInfo.Designer.cs">
+      <DependentUpon>FormForDescriptorInfo.cs</DependentUpon>
+    </Compile>
+    <Compile Include="GUI\FormsForGraphsDisplay\AboutBox.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="GUI\FormsForGraphsDisplay\AboutBox.Designer.cs">
+      <DependentUpon>AboutBox.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\FormForPCAAxisGeneration.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\FormForPCAAxisGeneration.Designer.cs">
+      <DependentUpon>FormForPCAAxisGeneration.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Classes\DRC Analysis\FormsForDRCAnalysis\FormForDRCSelection.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Classes\DRC Analysis\FormsForDRCAnalysis\FormForDRCSelection.Designer.cs">
+      <DependentUpon>FormForDRCSelection.cs</DependentUpon>
+    </Compile>
+    <Compile Include="GUI\cDisplayTable.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="GUI\FormsForGraphsDisplay\ForClassSelection\PanelForClassEditing.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="GUI\FormsForGraphsDisplay\ForClassSelection\PanelForClassSelection.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="GUI\FormsForGraphsDisplay\cWindowToDisplayHisto.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="GUI\FormsForGraphsDisplay\ForClassSelection\PanelForPhenotypeEditing.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="GUI\FormsForGraphsDisplay\ForClassSelection\UserControlForSingleClass.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="GUI\FormsForGraphsDisplay\ForClassSelection\UserControlForSingleClass.Designer.cs">
+      <DependentUpon>UserControlForSingleClass.cs</DependentUpon>
+    </Compile>
+    <Compile Include="GUI\FormsForGraphsDisplay\FormForMaxMinRequest.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="GUI\FormsForGraphsDisplay\FormForMaxMinRequest.Designer.cs">
+      <DependentUpon>FormForMaxMinRequest.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Classes\DRC Analysis\FormsForDRCAnalysis\FormForDRCDesign.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Classes\DRC Analysis\FormsForDRCAnalysis\FormForDRCDesign.Designer.cs">
+      <DependentUpon>FormForDRCDesign.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Cell-by-Cell and DB\FormForPointSize.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Cell-by-Cell and DB\FormForPointSize.Designer.cs">
+      <DependentUpon>FormForPointSize.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Cell-by-Cell and DB\FormForSingleCellsDisplayForProcess.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Cell-by-Cell and DB\FormForSingleCellsDisplayForProcess.Designer.cs">
+      <DependentUpon>FormForSingleCellsDisplayForProcess.cs</DependentUpon>
+    </Compile>
+    <Compile Include="GUI\FormsForGraphsDisplay\FormToDisplaySimpleTable.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="GUI\FormsForGraphsDisplay\FormToDisplaySimpleTable.Designer.cs">
+      <DependentUpon>FormToDisplaySimpleTable.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Cell-by-Cell and DB\FormToDisplayDataTable.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Cell-by-Cell and DB\FormToDisplayDataTable.Designer.cs">
+      <DependentUpon>FormToDisplayDataTable.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Classes\ImageAnalysis\FormsForImages\FormForLUTManager.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Classes\ImageAnalysis\FormsForImages\FormForLUTManager.Designer.cs">
+      <DependentUpon>FormForLUTManager.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Classes\ImageAnalysis\FormsForImages\UserControlSingleLUT.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Classes\ImageAnalysis\FormsForImages\UserControlSingleLUT.Designer.cs">
+      <DependentUpon>UserControlSingleLUT.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Classes\Machine Learning\ClassForOptions\Children\cBasicValueType.cs" />
+    <Compile Include="Classes\Machine Learning\ClassForOptions\Children\cOptions.cs" />
+    <Compile Include="Classes\Machine Learning\ClassForOptions\cListOptions.cs" />
+    <Compile Include="Forms\FormsForOptions\FormForFullScreeningViewOptions.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\FormsForOptions\FormForFullScreeningViewOptions.Designer.cs">
+      <DependentUpon>FormForFullScreeningViewOptions.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\FormsForOptions\FormForGlobalInfoOptions.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\FormsForOptions\FormForGlobalInfoOptions.Designer.cs">
+      <DependentUpon>FormForGlobalInfoOptions.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Classes\Machine Learning\PanelForOptions\PanelForOptions3D.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Classes\Machine Learning\PanelForOptions\PanelForOptions3D.Designer.cs">
+      <DependentUpon>PanelForOptions3D.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Classes\Machine Learning\PanelForOptions\PanelForPlatesandWells.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Classes\Machine Learning\PanelForOptions\PanelForPlatesandWells.Designer.cs">
+      <DependentUpon>PanelForPlatesandWells.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\IO\FormForDoubleProgress.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\IO\FormForDoubleProgress.Designer.cs">
+      <DependentUpon>FormForDoubleProgress.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\IO\FormForMultipleClassSelection.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\IO\FormForMultipleClassSelection.Designer.cs">
+      <DependentUpon>FormForMultipleClassSelection.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\IO\FormForMultivariateScreen.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\IO\FormForMultivariateScreen.Designer.cs">
+      <DependentUpon>FormForMultivariateScreen.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Classes\DRC Analysis\FormsForDRCAnalysis\FormToDisplayDRC.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Classes\DRC Analysis\FormsForDRCAnalysis\FormToDisplayDRC.Designer.cs">
+      <DependentUpon>FormToDisplayDRC.cs</DependentUpon>
+    </Compile>
+    <Compile Include="GUI\FormsForGraphsDisplay\SimpleFormForXY.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="GUI\FormsForGraphsDisplay\SimpleFormForXY.Designer.cs">
+      <DependentUpon>SimpleFormForXY.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Classes\Machine Learning\FormForClassificationTree.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Classes\Machine Learning\FormForClassificationTree.Designer.cs">
+      <DependentUpon>FormForClassificationTree.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\IO\FormForGenerateScreening.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\IO\FormForGenerateScreening.Designer.cs">
+      <DependentUpon>FormForGenerateScreening.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\FormForKeggGene.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\FormForKeggGene.Designer.cs">
+      <DependentUpon>FormForKeggGene.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Cell-by-Cell and DB\FormForPlateDimensions.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Cell-by-Cell and DB\FormForPlateDimensions.Designer.cs">
+      <DependentUpon>FormForPlateDimensions.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\FormForSwapClasses.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\FormForSwapClasses.Designer.cs">
+      <DependentUpon>FormForSwapClasses.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Classes\General Types\Screen.Plate.Well\Well\FormForWellInformation.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Classes\General Types\Screen.Plate.Well\Well\FormForWellInformation.Designer.cs">
+      <DependentUpon>FormForWellInformation.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\IO\FormForProgress.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\IO\FormForProgress.Designer.cs">
+      <DependentUpon>FormForProgress.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\IO\FormForVariability.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\IO\FormForVariability.Designer.cs">
+      <DependentUpon>FormForVariability.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\IO\FormForNewDescName.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\IO\FormForNewDescName.Designer.cs">
+      <DependentUpon>FormForNewDescName.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\IO\FormSaveScreening.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\IO\FormSaveScreening.Designer.cs">
+      <DependentUpon>FormSaveScreening.cs</DependentUpon>
+    </Compile>
+    <Compile Include="GUI\FormsForGraphsDisplay\FormToDisplayScreening.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="GUI\FormsForGraphsDisplay\FormToDisplayScreening.Designer.cs">
+      <DependentUpon>FormToDisplayScreening.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\PlateChart.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Controls\PlateTabPage.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="SubHCSAnalyzer\Import_Export.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\IO\FormForNameRequest.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\IO\FormForNameRequest.Designer.cs">
+      <DependentUpon>FormForNameRequest.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\FormForPathway.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\FormForPathway.Designer.cs">
+      <DependentUpon>FormForPathway.cs</DependentUpon>
+    </Compile>
+    <Compile Include="GUI\FormsForGraphsDisplay\FormForPie.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="GUI\FormsForGraphsDisplay\FormForPie.Designer.cs">
+      <DependentUpon>FormForPie.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\IO\FormForImportExcel.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\IO\FormForImportExcel.Designer.cs">
+      <DependentUpon>FormForImportExcel.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\FormForKegg.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\FormForKegg.Designer.cs">
+      <DependentUpon>FormForKegg.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Classes\Machine Learning\FormClassification.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Classes\Machine Learning\FormClassification.Designer.cs">
+      <DependentUpon>FormClassification.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\FormForNormalization.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\FormForNormalization.Designer.cs">
+      <DependentUpon>FormForNormalization.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\FormsForOptions\FormForOptionsWindow.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\FormsForOptions\FormForOptionsWindow.Designer.cs">
+      <DependentUpon>FormForOptionsWindow.cs</DependentUpon>
+    </Compile>
+    <Compile Include="GUI\FormsForGraphsDisplay\SimpleForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="GUI\FormsForGraphsDisplay\SimpleForm.Designer.cs">
+      <DependentUpon>SimpleForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\FormPlatesList.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\FormPlatesList.Designer.cs">
+      <DependentUpon>FormPlatesList.cs</DependentUpon>
+    </Compile>
+    <Compile Include="SubHCSAnalyzer\DimensionalityReduction.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="SubHCSAnalyzer\Normalization.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Classes\Machine Learning\FormDendogram.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Classes\Machine Learning\FormDendogram.Designer.cs">
+      <DependentUpon>FormDendogram.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Cell-by-Cell and DB\Simulator\Classes\cAgent.cs" />
+    <Compile Include="Cell-by-Cell and DB\Simulator\Classes\cSimulator.cs" />
+    <Compile Include="Cell-by-Cell and DB\Simulator\Classes\cWorld.cs" />
+    <Compile Include="Cell-by-Cell and DB\Simulator\Forms\MainWindow\FormForSimuGenerator.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Cell-by-Cell and DB\Simulator\Forms\MainWindow\FormForSimuGenerator.Designer.cs">
+      <DependentUpon>FormForSimuGenerator.cs</DependentUpon>
+    </Compile>
+    <Compile Include="SubHCSAnalyzer\SystematicErrorCorrection.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="WindowHCSAnalyzer.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="WindowHCSAnalyzer.Designer.cs">
+      <DependentUpon>WindowHCSAnalyzer.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="Cell-by-Cell and DB\FormForModelsHistory.resx">
+      <DependentUpon>FormForModelsHistory.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Cell-by-Cell and DB\FormForSingleCellClassifOptions.resx">
+      <DependentUpon>FormForSingleCellClassifOptions.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Cell-by-Cell and DB\FormForSingleCellDescOperations.resx">
+      <DependentUpon>FormForSingleCellDescOperations.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Cell-by-Cell and DB\FormForSubPopulationId.resx">
+      <DependentUpon>FormForSubPopulationId.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Cell-by-Cell and DB\FormManualGating.resx">
+      <DependentUpon>FormManualGating.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Classes\Base Components\GUI\FormForHistoBinOptions.resx">
+      <DependentUpon>FormForHistoBinOptions.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Classes\Base Components\GUI\FormForSingleSlider.resx">
+      <DependentUpon>FormForSingleSlider.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Classes\Base Components\GUI\FormForStatDesc.resx">
+      <DependentUpon>FormForStatDesc.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Classes\Base Components\GUI\FormForXYMinMax.resx">
+      <DependentUpon>FormForXYMinMax.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Classes\Base Components\GUI\FormGUIForProperties.resx">
+      <DependentUpon>FormGUIForProperties.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Classes\Base Components\Viewers\3D\Form3DTreeView.resx">
+      <DependentUpon>Form3DTreeView.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Classes\Base Components\Viewers\3D\FormFor3DObjectParam.resx">
+      <DependentUpon>FormFor3DObjectParam.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Classes\Base Components\Viewers\3D\FormFor3DVolumeDisplayParam.resx">
+      <DependentUpon>FormFor3DVolumeDisplayParam.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Classes\Base Components\Viewers\Designers\FormForMultiChoice.resx">
+      <DependentUpon>FormForMultiChoice.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Classes\Base Components\Viewers\Display\FormForDisplay.resx">
+      <DependentUpon>FormForDisplay.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Classes\DRC Analysis\FormsForDRCAnalysis\FormForDRCDesignValidation.resx">
+      <DependentUpon>FormForDRCDesignValidation.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Classes\General Types\Screen.Plate.Well\Properties\FormForNewProperty.resx">
+      <DependentUpon>FormForNewProperty.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Classes\General Types\Screen.Plate.Well\Properties\FormForPropertiesManager.resx">
+      <DependentUpon>FormForPropertiesManager.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Classes\ImageAnalysis\3D_Engine\3Dplugin\FormFor3DVolumeRendering.resx">
+      <DependentUpon>FormFor3DVolumeRendering.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Classes\ImageAnalysis\3D_Engine\3Dplugin\FormForArrow.resx">
+      <DependentUpon>FormForArrow.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Classes\ImageAnalysis\3D_Engine\3Dplugin\FormForControl.resx">
+      <DependentUpon>FormForControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Classes\ImageAnalysis\3D_Engine\3Dplugin\FormForDataGridView.resx">
+      <DependentUpon>FormForDataGridView.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Classes\ImageAnalysis\3D_Engine\3Dplugin\FormForInfoBeforeStarting.resx">
+      <DependentUpon>FormForInfoBeforeStarting.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Classes\ImageAnalysis\3D_Engine\3Dplugin\FormForInOut.resx">
+      <DependentUpon>FormForInOut.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Classes\ImageAnalysis\3D_Engine\3Dplugin\FormForLinkToMasterInfo.resx">
+      <DependentUpon>FormForLinkToMasterInfo.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Classes\ImageAnalysis\3D_Engine\3Dplugin\FormForLUT.resx">
+      <DependentUpon>FormForLUT.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Classes\ImageAnalysis\3D_Engine\3Dplugin\FormForMaster.resx">
+      <DependentUpon>FormForMaster.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Classes\ImageAnalysis\3D_Engine\3Dplugin\FormForPostProcessings.resx">
+      <DependentUpon>FormForPostProcessings.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Classes\ImageAnalysis\3D_Engine\3Dplugin\FormForPreProcessings.resx">
+      <DependentUpon>FormForPreProcessings.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Classes\ImageAnalysis\3D_Engine\3Dplugin\FormForResolution.resx">
+      <DependentUpon>FormForResolution.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Classes\ImageAnalysis\3D_Engine\3Dplugin\FormForSingleValue.resx">
+      <DependentUpon>FormForSingleValue.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Classes\ImageAnalysis\3D_Engine\3Dplugin\FormForSpotDetection.resx">
+      <DependentUpon>FormForSpotDetection.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Classes\ImageAnalysis\3D_Engine\3Dplugin\FormForThumbnails.resx">
+      <DependentUpon>FormForThumbnails.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Classes\ImageAnalysis\3D_Engine\3Dplugin\FormForVolumeDetection.resx">
+      <DependentUpon>FormForVolumeDetection.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Classes\ImageAnalysis\3D_Engine\3Dplugin\WindowPlugin3D.resx">
+      <DependentUpon>WindowPlugin3D.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Classes\ImageAnalysis\3D_Engine\VolumeRendering\FormForVolumeRenderingOption.resx">
+      <DependentUpon>FormForVolumeRenderingOption.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Classes\ImageAnalysis\FormsForImages\Form1.resx">
+      <DependentUpon>Form1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Classes\ImageAnalysis\FormsForImages\FormForGeneratingScreenFromImages.resx">
+      <DependentUpon>FormForGeneratingScreenFromImages.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Classes\ImageAnalysis\FormsForImages\FormForImageAccessInfo.resx">
+      <DependentUpon>FormForImageAccessInfo.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Classes\ImageAnalysis\FormsForImages\FormForNavigator.resx">
+      <DependentUpon>FormForNavigator.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Classes\Machine Learning\ClassificationInfo\PanelForParamLogistic.resx">
+      <DependentUpon>PanelForParamLogistic.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\ComplexForms\ExtendedTrackBar.resx">
+      <DependentUpon>ExtendedTrackBar.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\FormForDescriptorNormalization.resx">
+      <DependentUpon>FormForDescriptorNormalization.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\FormForMahalanobisDistance.resx">
+      <DependentUpon>FormForMahalanobisDistance.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\FormsForOptions\FormForAllOptions.resx">
+      <DependentUpon>FormForAllOptions.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\FormsForOptions\FormOptionsForPlateName.resx">
+      <DependentUpon>FormOptionsForPlateName.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\IO\FormForPlateSelection.resx">
+      <DependentUpon>FormForPlateSelection.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\IO\FormInfoForFileImporter.resx">
+      <DependentUpon>FormInfoForFileImporter.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\ManualClustering\FormForManualClustering.resx">
+      <DependentUpon>FormForManualClustering.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\ManualClustering\FormForPanelFilterHits.resx">
+      <DependentUpon>FormForPanelFilterHits.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\FormForPlateLUT.resx">
+      <DependentUpon>FormForPlateLUT.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\FormForPlateManager.resx">
+      <DependentUpon>FormForPlateManager.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\FormForSplashScreen.resx">
+      <DependentUpon>FormForSplashScreen.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\IO\FormForDescFiltering.resx">
+      <DependentUpon>FormForDescFiltering.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Cell-by-Cell and DB\FormForOptionsSingleCellAnalysis.resx">
+      <DependentUpon>FormForOptionsSingleCellAnalysis.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\IO\FormForPlateAveraging.resx">
+      <DependentUpon>FormForPlateAveraging.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="GUI\cDisplayTable.resx">
+      <DependentUpon>cDisplayTable.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Classes\ImageAnalysis\FormsForImages\cImageViewer.resx">
+      <DependentUpon>cImageViewer.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="GUI\3D\FormFor3DDataDisplay.resx">
+      <DependentUpon>FormFor3DDataDisplay.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="GUI\3D\FormFor3DVizuOptions.resx">
+      <DependentUpon>FormFor3DVizuOptions.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Classes\Machine Learning\ClusteringForms\FormForEMInfo.resx">
+      <DependentUpon>FormForEMInfo.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Classes\Machine Learning\ClusteringForms\FormForHierarchical.resx">
+      <DependentUpon>FormForHierarchical.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Classes\Machine Learning\ClusteringForms\FormForKMeansInfo.resx">
+      <DependentUpon>FormForKMeansInfo.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\FormForDescriptorInfo.resx">
+      <DependentUpon>FormForDescriptorInfo.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="GUI\FormsForGraphsDisplay\AboutBox.resx">
+      <DependentUpon>AboutBox.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\FormForPCAAxisGeneration.resx">
+      <DependentUpon>FormForPCAAxisGeneration.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="GUI\FormsForGraphsDisplay\cWindowToDisplayHisto.resx">
+      <DependentUpon>cWindowToDisplayHisto.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="GUI\FormsForGraphsDisplay\ForClassSelection\UserControlForSingleClass.resx">
+      <DependentUpon>UserControlForSingleClass.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Cell-by-Cell and DB\FormForPointSize.resx">
+      <DependentUpon>FormForPointSize.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Cell-by-Cell and DB\FormForSingleCellsDisplayForProcess.resx">
+      <DependentUpon>FormForSingleCellsDisplayForProcess.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="GUI\FormsForGraphsDisplay\FormToDisplaySimpleTable.resx">
+      <DependentUpon>FormToDisplaySimpleTable.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Cell-by-Cell and DB\FormToDisplayDataTable.resx">
+      <DependentUpon>FormToDisplayDataTable.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Classes\ImageAnalysis\FormsForImages\FormForLUTManager.resx">
+      <DependentUpon>FormForLUTManager.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Classes\ImageAnalysis\FormsForImages\UserControlSingleLUT.resx">
+      <DependentUpon>UserControlSingleLUT.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Classes\Machine Learning\ClassificationInfo\FormForClassificationInfo.resx">
+      <DependentUpon>FormForClassificationInfo.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Classes\Machine Learning\ClassificationInfo\FormForKernelEditor.resx">
+      <DependentUpon>FormForKernelEditor.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Classes\Machine Learning\ClassificationInfo\PanelForParamKNN.resx">
+      <DependentUpon>PanelForParamKNN.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Classes\Machine Learning\ClassificationInfo\PanelForParamKStar.resx">
+      <DependentUpon>PanelForParamKStar.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Classes\Machine Learning\ClassificationInfo\PanelForParamNaiveBayes.resx">
+      <DependentUpon>PanelForParamNaiveBayes.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Classes\Machine Learning\ClassificationInfo\PanelForParamOneR.resx">
+      <DependentUpon>PanelForParamOneR.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Classes\Machine Learning\ClassificationInfo\PanelForParamPerceptron.resx">
+      <DependentUpon>PanelForParamPerceptron.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Classes\Machine Learning\ClassificationInfo\PanelForParamRandomForest.resx">
+      <DependentUpon>PanelForParamRandomForest.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Classes\Machine Learning\ClassificationInfo\PanelForParamRandomTree.resx">
+      <DependentUpon>PanelForParamRandomTree.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Classes\Machine Learning\ClassificationInfo\PanelForParamSVM.resx">
+      <DependentUpon>PanelForParamSVM.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Classes\Machine Learning\ClassificationInfo\PanelForParamZeroR.resx">
+      <DependentUpon>PanelForParamZeroR.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Classes\Machine Learning\ClusteringInfo\FormForClusteringInfo.resx">
+      <DependentUpon>FormForClusteringInfo.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Classes\Machine Learning\ClusteringInfo\PanelForParamCobWeb.resx">
+      <DependentUpon>PanelForParamCobWeb.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Classes\Machine Learning\ClusteringInfo\PanelForParamFarthestFirst.resx">
+      <DependentUpon>PanelForParamFarthestFirst.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Classes\Machine Learning\ClusteringInfo\PanelForParamHierarchical.resx">
+      <DependentUpon>PanelForParamHierarchical.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Classes\Machine Learning\ClusteringInfo\PanelForParamKMeans.resx">
+      <DependentUpon>PanelForParamKMeans.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Classes\Machine Learning\ClusteringInfo\PanelForParamEM.resx">
+      <DependentUpon>PanelForParamEM.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\FormsForOptions\FormForFullScreeningViewOptions.resx">
+      <DependentUpon>FormForFullScreeningViewOptions.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\FormsForOptions\FormForGlobalInfoOptions.resx">
+      <DependentUpon>FormForGlobalInfoOptions.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Classes\Machine Learning\PanelForOptions\PanelForCellularPhenotypesColor.resx">
+      <DependentUpon>PanelForCellularPhenotypesColor.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Classes\Machine Learning\PanelForOptions\PanelForOptions3D.resx">
+      <DependentUpon>PanelForOptions3D.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Classes\Machine Learning\ClassificationInfo\PanelForParamJ48.resx">
+      <DependentUpon>PanelForParamJ48.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Classes\Machine Learning\PanelForOptions\PanelForPlatesandWells.resx">
+      <DependentUpon>PanelForPlatesandWells.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Classes\Machine Learning\PanelForOptions\PanelForWellClassesColor.resx">
+      <DependentUpon>PanelForWellClassesColor.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\IO\FormForDoubleProgress.resx">
+      <DependentUpon>FormForDoubleProgress.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\IO\FormForMultipleClassSelection.resx">
+      <DependentUpon>FormForMultipleClassSelection.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\IO\FormForMultivariateScreen.resx">
+      <DependentUpon>FormForMultivariateScreen.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Classes\DRC Analysis\FormsForDRCAnalysis\FormForDRCSelection.resx">
+      <DependentUpon>FormForDRCSelection.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="GUI\FormsForGraphsDisplay\FormForMaxMinRequest.resx">
+      <DependentUpon>FormForMaxMinRequest.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Classes\DRC Analysis\FormsForDRCAnalysis\FormForDRCDesign.resx">
+      <DependentUpon>FormForDRCDesign.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Classes\DRC Analysis\FormsForDRCAnalysis\FormToDisplayDRC.resx">
+      <DependentUpon>FormToDisplayDRC.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Classes\Base Components\Viewers\2D\FormPanelForHisto.resx">
+      <DependentUpon>FormPanelForHisto.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="GUI\FormsForGraphsDisplay\SimpleFormForXY.resx">
+      <DependentUpon>SimpleFormForXY.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Classes\Machine Learning\FormForClassificationTree.resx">
+      <DependentUpon>FormForClassificationTree.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\IO\FormForGenerateScreening.resx">
+      <DependentUpon>FormForGenerateScreening.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\FormForKeggGene.resx">
+      <DependentUpon>FormForKeggGene.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Cell-by-Cell and DB\FormForPlateDimensions.resx">
+      <DependentUpon>FormForPlateDimensions.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\FormForSwapClasses.resx">
+      <DependentUpon>FormForSwapClasses.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Classes\General Types\Screen.Plate.Well\Well\FormForWellInformation.resx">
+      <DependentUpon>FormForWellInformation.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\IO\FormForNewDescName.resx">
+      <DependentUpon>FormForNewDescName.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\IO\FormForProgress.resx">
+      <DependentUpon>FormForProgress.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\IO\FormForVariability.resx">
+      <DependentUpon>FormForVariability.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\IO\FormSaveScreening.resx">
+      <DependentUpon>FormSaveScreening.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="GUI\FormsForGraphsDisplay\FormToDisplayScreening.resx">
+      <DependentUpon>FormToDisplayScreening.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\IO\FormForNameRequest.resx">
+      <DependentUpon>FormForNameRequest.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\FormForPathway.resx">
+      <DependentUpon>FormForPathway.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="GUI\FormsForGraphsDisplay\FormForPie.resx">
+      <DependentUpon>FormForPie.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\IO\FormForImportExcel.resx">
+      <DependentUpon>FormForImportExcel.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\FormForKegg.resx">
+      <DependentUpon>FormForKegg.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Classes\Machine Learning\FormClassification.resx">
+      <DependentUpon>FormClassification.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\FormForNormalization.resx">
+      <DependentUpon>FormForNormalization.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\FormsForOptions\FormForOptionsWindow.resx">
+      <DependentUpon>FormForOptionsWindow.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="GUI\FormsForGraphsDisplay\SimpleForm.resx">
+      <DependentUpon>SimpleForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\FormPlatesList.resx">
+      <DependentUpon>FormPlatesList.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Classes\Machine Learning\FormDendogram.resx">
+      <DependentUpon>FormDendogram.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Cell-by-Cell and DB\Simulator\Forms\FormForCellTypeRelationships.resx">
+      <DependentUpon>FormForCellTypeRelationships.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Cell-by-Cell and DB\Simulator\Forms\FormForInfoSingleCellPopInit_Simulator.resx">
+      <DependentUpon>FormForInfoSingleCellPopInit_Simulator.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Cell-by-Cell and DB\Simulator\Forms\FormForRandSpecOfVar.resx">
+      <DependentUpon>FormForRandSpecOfVar.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Cell-by-Cell and DB\Simulator\Forms\NewCellType\PanelForParamCellCycle.resx">
+      <DependentUpon>PanelForParamCellCycle.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Cell-by-Cell and DB\Simulator\Forms\NewCellType\PanelForParamVelocity.resx">
+      <DependentUpon>PanelForParamVelocity.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Cell-by-Cell and DB\Simulator\Forms\NewCellType\PanelForTransitionMatrix.resx">
+      <DependentUpon>PanelForTransitionMatrix.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Cell-by-Cell and DB\Simulator\Forms\MainWindow\FormForSimuGenerator.resx">
+      <DependentUpon>FormForSimuGenerator.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Cell-by-Cell and DB\Simulator\Forms\FormForVariableDef.resx">
+      <DependentUpon>FormForVariableDef.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Cell-by-Cell and DB\Simulator\Forms\NewCellType\FormForNewCellType.resx">
+      <DependentUpon>FormForNewCellType.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Cell-by-Cell and DB\Simulator\Forms\NewCellType\PanelForParamGeneralForCellType.resx">
+      <DependentUpon>PanelForParamGeneralForCellType.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Cell-by-Cell and DB\Simulator\Forms\MainWindow\PanelForParamCellPopulations.resx">
+      <DependentUpon>PanelForParamCellPopulations.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Cell-by-Cell and DB\Simulator\Forms\MainWindow\PanelForParamCellTypes.resx">
+      <DependentUpon>PanelForParamCellTypes.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Cell-by-Cell and DB\Simulator\Forms\MainWindow\PanelForParamPlateDesign.resx">
+      <DependentUpon>PanelForParamPlateDesign.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Cell-by-Cell and DB\Simulator\Forms\MainWindow\PanelForParamGeneral.resx">
+      <DependentUpon>PanelForParamGeneral.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Cell-by-Cell and DB\Simulator\Forms\MainWindow\PanelForParams3D.resx">
+      <DependentUpon>PanelForParams3D.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Cell-by-Cell and DB\Simulator\Forms\MainWindow\PanelForParamWorldDimensions.resx">
+      <DependentUpon>PanelForParamWorldDimensions.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="WindowHCSAnalyzer.resx">
+      <SubType>Designer</SubType>
+      <DependentUpon>WindowHCSAnalyzer.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Resources.resx</DependentUpon>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <None Include="app.config" />
+    <None Include="Properties\app.manifest" />
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+    <None Include="RLibs\LPCM\data\calspeedflow.rda" />
+    <None Include="RLibs\LPCM\data\gaia.rda" />
+    <None Include="RLibs\LPCM\data\gvessel.rda" />
+    <None Include="RLibs\LPCM\DESCRIPTION" />
+    <None Include="RLibs\LPCM\help\aliases.rds" />
+    <None Include="RLibs\LPCM\help\AnIndex" />
+    <None Include="RLibs\LPCM\help\LPCM.rdb" />
+    <None Include="RLibs\LPCM\help\LPCM.rdx" />
+    <None Include="RLibs\LPCM\help\paths.rds" />
+    <None Include="RLibs\LPCM\INDEX" />
+    <None Include="RLibs\LPCM\MD5" />
+    <None Include="RLibs\LPCM\Meta\data.rds" />
+    <None Include="RLibs\LPCM\Meta\hsearch.rds" />
+    <None Include="RLibs\LPCM\Meta\links.rds" />
+    <None Include="RLibs\LPCM\Meta\nsInfo.rds" />
+    <None Include="RLibs\LPCM\Meta\package.rds" />
+    <None Include="RLibs\LPCM\Meta\Rd.rds" />
+    <None Include="RLibs\LPCM\NAMESPACE" />
+    <None Include="RLibs\LPCM\R\LPCM" />
+    <None Include="RLibs\LPCM\R\LPCM.rdb" />
+    <None Include="RLibs\LPCM\R\LPCM.rdx" />
+    <None Include="Service References\eUtils\eutils.wsdl" />
+    <None Include="WhatsNew.docx">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <BootstrapperPackage Include="Microsoft.Net.Client.3.5">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1 Client Profile</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.3.5.SP1">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1</ProductName>
+      <Install>true</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Windows.Installer.3.1">
+      <Visible>False</Visible>
+      <ProductName>Windows Installer 3.1</ProductName>
+      <Install>true</Install>
+    </BootstrapperPackage>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="bin\Capture.JPG" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="bin\Capture1.JPG" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Arrow.jpg" />
+    <None Include="Resources\MultiPlatesOn.jpg" />
+    <Content Include="FreeImage.dll">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="opencv_core231.dll">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="opencv_imgproc231.dll">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <None Include="Service References\eUtils\configuration91.svcinfo" />
+    <None Include="Service References\eUtils\configuration.svcinfo" />
+    <None Include="Service References\eUtils\HCSAnalyzer.eUtils.eInfoResult.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\eUtils\HCSAnalyzer.eUtils.eLinkResult.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\eUtils\HCSAnalyzer.eUtils.ePostResult.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\eUtils\HCSAnalyzer.eUtils.eSearchResult.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\eUtils\HCSAnalyzer.eUtils.eSpellResult.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\eUtils\HCSAnalyzer.eUtils.eSummaryResult.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\eUtils\HCSAnalyzer.eUtils.Result.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\eUtils\Reference.svcmap">
+      <Generator>WCF Proxy Generator</Generator>
+      <LastGenOutput>Reference.cs</LastGenOutput>
+    </None>
+    <Content Include="RLibs\LPCM\html\00Index.html" />
+    <Content Include="RLibs\LPCM\html\R.css" />
+    <Content Include="SQLite.Interop.dll">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <None Include="bin\Logo.PNG" />
+    <None Include="bin\DarkLogo.png" />
+    <None Include="bin\WhitePicture.png" />
+    <None Include="bin\LUT.PNG" />
+    <None Include="bin\ColumnEffect.png" />
+    <None Include="bin\RowEffect.png" />
+    <None Include="bin\BowlEffect.png" />
+    <None Include="bin\EdgeEffect.png" />
+    <Content Include="Controls\LogoType1.ico" />
+    <None Include="Resources\office-chart-scatter.ico" />
+    <None Include="Resources\zoom-out-41.ico" />
+    <None Include="Resources\zoom-in-41.ico" />
+    <None Include="Resources\zoom-out-4.ico" />
+    <None Include="Resources\zoom-in-4.ico" />
+    <None Include="Resources\db_update.ico" />
+    <None Include="Resources\insert-link.ico" />
+    <None Include="Resources\db_comit.ico" />
+    <None Include="Resources\format-justify-fill.ico" />
+    <None Include="Resources\help-about.ico" />
+    <None Include="Resources\configure-4.ico" />
+    <None Include="Resources\db_add.ico" />
+    <None Include="Resources\application-exit.ico" />
+    <None Include="Resources\document-open-5.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Classes\Machine Learning\ClassForOptions\Parent\" />
+  </ItemGroup>
+  <ItemGroup>
+    <WCFMetadata Include="Service References\" />
+  </ItemGroup>
+  <ItemGroup>
+    <WCFMetadataStorage Include="Service References\eUtils\" />
+  </ItemGroup>
+  <ItemGroup>
+    <COMReference Include="Microsoft.Office.Interop.Excel">
+      <Guid>{00020813-0000-0000-C000-000000000046}</Guid>
+      <VersionMajor>1</VersionMajor>
+      <VersionMinor>6</VersionMinor>
+      <Lcid>0</Lcid>
+      <WrapperTool>primary</WrapperTool>
+      <Isolated>False</Isolated>
+      <EmbedInteropTypes>False</EmbedInteropTypes>
+    </COMReference>
+    <COMReference Include="VBIDE">
+      <Guid>{0002E157-0000-0000-C000-000000000046}</Guid>
+      <VersionMajor>5</VersionMajor>
+      <VersionMinor>3</VersionMinor>
+      <Lcid>0</Lcid>
+      <WrapperTool>primary</WrapperTool>
+      <Isolated>False</Isolated>
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+    </COMReference>
+  </ItemGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <PropertyGroup>
+    <PostBuildEvent>
+    </PostBuildEvent>
+  </PropertyGroup>
+</Project>

@@ -1,0 +1,26 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 11.00
+# Visual Studio 2010
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ChemSpiderClient", "ChemSpiderSearchClient\ChemSpiderClient.csproj", "{48F9B653-C0AB-49F4-801B-247BC7B9D05E}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ChemSpiderClientTest(No Draw)", "ChemSpiderClientTest(No Draw)\ChemSpiderClientTest(No Draw).csproj", "{21491B40-3980-4C9B-97FD-A28FE263FFE9}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{48F9B653-C0AB-49F4-801B-247BC7B9D05E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{48F9B653-C0AB-49F4-801B-247BC7B9D05E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{48F9B653-C0AB-49F4-801B-247BC7B9D05E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{48F9B653-C0AB-49F4-801B-247BC7B9D05E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{21491B40-3980-4C9B-97FD-A28FE263FFE9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{21491B40-3980-4C9B-97FD-A28FE263FFE9}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{21491B40-3980-4C9B-97FD-A28FE263FFE9}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{21491B40-3980-4C9B-97FD-A28FE263FFE9}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

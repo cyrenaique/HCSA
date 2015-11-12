@@ -1,0 +1,1086 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>LibDescriptor</name>
+    </assembly>
+    <members>
+        <member name="T:IM.Library.Descriptor.ConnectedComponentDescriptor">
+            <summary>
+            A class containing various Descriptor methods for a ConnectedComponent object
+            by Seunghyun Moon
+            </summary>
+        </member>
+        <member name="M:IM.Library.Descriptor.ConnectedComponentDescriptor.#ctor">
+            <summary>
+            Constructor
+            </summary>
+        </member>
+        <member name="M:IM.Library.Descriptor.ConnectedComponentDescriptor.ConvexHullArea2D(IM.Library.Descriptor.ConnectedComponent)">
+            <summary> Return the ratio (Object Area) / (ConvexHull Area) - Rotation/Scale/Translation Invariant
+            </summary>
+            <param name="cc">Input Connected Component</param>
+        </member>
+        <member name="M:IM.Library.Descriptor.ConnectedComponentDescriptor.ConvexHullLength2D(IM.Library.Descriptor.ConnectedComponent)">
+            <summary> Return the ratio (ConvexHull Boundary Length) / (Object Boundary Length) - Rotation/Scale/Translation Invariant
+            </summary>
+            <param name="cc">Input Connected Component</param>
+        </member>
+        <member name="M:IM.Library.Descriptor.ConnectedComponentDescriptor.PrincipalAxes2D(IM.Library.Descriptor.ConnectedComponent)">
+            <summary> Return the ratio (Short Axis Length) / (Long Axis Length) - Rotation/Scale/Translation Invariant
+            </summary>
+            <param name="cc">Input Connected Component</param>
+        </member>
+        <member name="M:IM.Library.Descriptor.ConnectedComponentDescriptor.CircularVariance2D(IM.Library.Descriptor.ConnectedComponent)">
+            <summary> Return the (Circular Variance * 1000) - Rotation/Scale/Translation Invariant
+            </summary>
+            <param name="cc">Input Connected Component</param>
+        </member>
+        <member name="M:IM.Library.Descriptor.ConnectedComponentDescriptor.GeometricMoment2D(IM.Library.Descriptor.ConnectedComponent,System.Boolean,System.Int32,System.Int32,System.Int32)">
+            <summary> Return Normalized 2D Geometric Moment - Scale Invariant
+            </summary>
+            <param name="cc">Input Connected Component</param>
+            <param name="isIntensity">"true" - calculate intensity information moment / "false" - calculate binary information moment</param>
+            <param name="band">Band to use intensity information - Using when "isIntensity" is "true"</param>
+            <param name="p">Power Value of X-Coord (Order p)</param>
+            <param name="q">Power Value of Y-Coord (Order q)</param>        
+        </member>
+        <member name="M:IM.Library.Descriptor.ConnectedComponentDescriptor.CentralMoment2D(IM.Library.Descriptor.ConnectedComponent,System.Boolean,System.Int32,System.Int32,System.Int32)">
+            <summary> Return Normalized 2D Central Moment - Scale/Translation Invariant
+            </summary>
+            <param name="cc">Input Connected Component</param>
+            <param name="isIntensity">"true" - calculate intensity information moment / "false" - calculate binary information moment</param>
+            <param name="band">Band to use intensity information - Using when "isIntensity" is "true"</param>
+            <param name="p">Power Value of X-Coord (Order p)</param>
+            <param name="q">Power Value of Y-Coord (Order q)</param>
+        </member>
+        <member name="M:IM.Library.Descriptor.ConnectedComponentDescriptor.ComplexMoment2D(IM.Library.Descriptor.ConnectedComponent,System.Boolean,System.Int32,System.Int32,System.Int32)">
+            <summary> Return Normailzed 2D Complex Moment (Square Rooot of Real^2 + Imaginary^2) - Rotation/Scale/Translation Invariant
+            </summary>
+            <param name="cc">Input Connected Component</param>
+            <param name="isIntensity">"true" - calculate intensity information moment / "false" - calculate binary information moment</param>
+            <param name="band">Band to use intensity information - Using when "isIntensity" is "true"</param>
+            <param name="p">Power Value of X-Coord (Order p)</param>
+            <param name="q">Power Value of Y-Coord (Order q)</param>
+        </member>
+        <member name="M:IM.Library.Descriptor.ConnectedComponentDescriptor.HuMoment2D(IM.Library.Descriptor.ConnectedComponent,System.Boolean,System.Int32,System.Int32)">
+            <summary> Return Normalized 2D Hu's Invariant Moment - Rotation/Scale/Translation Invariant
+            </summary>
+            <param name="cc">Input Connected Component</param>
+            <param name="isIntensity">"true" - calculate intensity information moment / "false" - calculate binary information moment</param>
+            <param name="band">Band to use intensity information - Using when "isIntensity" is "true"</param>
+            <param name="n">Order</param>        
+        </member>
+        <member name="M:IM.Library.Descriptor.ConnectedComponentDescriptor.LegendreMoment2D(IM.Library.Descriptor.ConnectedComponent,System.Boolean,System.Int32,System.Int32,System.Int32)">
+            <summary> Return Normalized 2D Legendre Moments - Scale/Translation Invariant
+            </summary>
+            <param name="cc">Input Connected Component</param>
+            <param name="isIntensity">"true" - calculate intensity information moment / "false" - calculate binary information moment</param>
+            <param name="band">Band to use intensity information - Using when "isIntensity" is "true"</param>
+            <param name="p">Power Value of X-Coord (Order p)</param>
+            <param name="q">Power Value of Y-Coord (Order q)</param>
+        </member>
+        <member name="M:IM.Library.Descriptor.ConnectedComponentDescriptor.ZernikeMoment2D(IM.Library.Descriptor.ConnectedComponent,System.Boolean,System.Int32,System.Int32,System.Int32)">
+            <summary> Return Normalized 2D Zernike Moments - Rotation/Scale/Translation Invariant
+            </summary>
+            <param name="cc">Input Connected Component</param>
+            <param name="isIntensity">"true" - calculate intensity information moment / "false" - calculate binary information moment</param>
+            <param name="band">Band to use intensity information - Using when "isIntensity" is "true"</param>
+            <param name="p">Power Value of X-Coord (Order p)</param>
+            <param name="q">Power Value of Y-Coord (Order q)</param>
+        </member>
+        <member name="M:IM.Library.Descriptor.ConnectedComponentDescriptor.PseudoZernikeMoment2D(IM.Library.Descriptor.ConnectedComponent,System.Boolean,System.Int32,System.Int32,System.Int32)">
+            <summary> Return Normalized 2D Pseudo Zernike Moments - Rotation/Scale/Translation Invariant
+            </summary>
+            <param name="cc">Input Connected Component</param>
+            <param name="isIntensity">"true" - calculate intensity information moment / "false" - calculate binary information moment</param>
+            <param name="band">Band to use intensity information - Using when "isIntensity" is "true"</param>
+            <param name="p">Power Value of X-Coord (Order p)</param>
+            <param name="q">Power Value of Y-Coord (Order q)</param>
+        </member>
+        <member name="M:IM.Library.Descriptor.ConnectedComponentDescriptor.LegendrePoly2D(System.Int32,System.Double)">
+            <summary> Compute 2D Legendre Polynomial Coefficients
+            Input   : Two Indexes n, m / Radius r / Angle Theta
+            Return  : Zernike Polynomial Coefficients - Real Part and Imaginary Part
+            </summary>
+            <param name="n">Index</param>        
+            <param name="x">coord value</param>
+        </member>
+        <member name="M:IM.Library.Descriptor.ConnectedComponentDescriptor.ZernikePoly2D(System.Int32,System.Int32,System.Collections.Generic.List{System.Double},System.Collections.Generic.List{System.Double},System.Double[]@,System.Double[]@)">
+            <summary> Compute 2D Zernike Polynomial Coefficients
+            Input   : Two Indexes n, m / Radius r / Angle Theta
+            Return  : Zernike Polynomial Coefficients - Real Part and Imaginary Part
+            </summary>
+            <param name="n">1st Index</param>
+            <param name="m">2nd Index</param>
+            <param name="radiusList">Radius</param>
+            <param name="thetaList">Radius</param>
+            <param name="realMoments">Real Coeff</param>
+            <param name="imgMoments">Imaginary Coeff</param>
+        </member>
+        <member name="M:IM.Library.Descriptor.ConnectedComponentDescriptor.PseudoZernikePoly2D(System.Int32,System.Int32,System.Collections.Generic.List{System.Double},System.Collections.Generic.List{System.Double},System.Double[]@,System.Double[]@)">
+            <summary> Compute 2D Pseudo Zernike Polynomial Coefficients
+            Input   : Two Indexes n, m / Radius r / Angle Theta
+            Return  : Zernike Polynomial Coefficients - Real Part and Imaginary Part
+            </summary>
+            <param name="n">1st Index</param>
+            <param name="m">2nd Index</param>
+            <param name="radiusList">Radius</param>
+            <param name="thetaList">Radius</param>
+            <param name="realMoments">Real Coeff</param>
+            <param name="imgMoments">Imaginary Coeff</param>
+        </member>
+        <member name="M:IM.Library.Descriptor.ConnectedComponentDescriptor.CoOccurrenceMatrix2D(IM.Library.Descriptor.ConnectedComponent,System.Int32,System.Int32,System.Int32,System.Int32)">
+            <summary> Generate Co-occurrence matrix of input image - Do this step before run Haralick Feature Descriptors
+            Return  : List of double[] - Co-Occurrance Matrices of 0/45/90/135 degrees
+            </summary>
+            <param name="cc">Input Connected Component</param>
+            <param name="band">Band to use intensity information</param>
+            <param name="coSize">size of Co-Occurrence matrix</param>
+            <param name="dx">x-direction offset</param>
+            <param name="dy">y-direction offset</param>
+        </member>
+        <member name="M:IM.Library.Descriptor.ConnectedComponentDescriptor.Haralick2D_01_AngularSecondMoment(System.Collections.Generic.List{System.Double[]})">
+            <summary> Texture Descriptor using Haralick Feature - 01. Angluar Second Moment
+            Input   : List of double[] - Pre-generated Co-occurrance matrices of 0/45/90/135 degrees
+            Return  : List of double - Description values of 0/45/90/135 degrees
+            </summary>
+            <param name="coOccurMat">coOccurMat</param>
+        </member>
+        <member name="M:IM.Library.Descriptor.ConnectedComponentDescriptor.Haralick2D_02_Contrast(System.Collections.Generic.List{System.Double[]})">
+            <summary> Texture Descriptor using Haralick Feature - 02. Contrast
+            Input   : List of double[] - Pre-generated Co-occurrance matrices of 0/45/90/135 degrees
+            Return  : List of double - Description values of 0/45/90/135 degrees
+            </summary>
+            <param name="coOccurMat">coOccurMat</param>
+        </member>
+        <member name="M:IM.Library.Descriptor.ConnectedComponentDescriptor.Haralick2D_03_Correlation(System.Collections.Generic.List{System.Double[]})">
+            <summary> Texture Descriptor using Haralick Feature - 03. Correlation
+            Input   : List of double[] - Pre-generated Co-occurrance matrices of 0/45/90/135 degrees
+            Return  : List of double - Description values of 0/45/90/135 degrees
+            </summary>
+            <param name="coOccurMat">coOccurMat</param>
+        </member>
+        <member name="M:IM.Library.Descriptor.ConnectedComponentDescriptor.Haralick2D_04_SumOfSquares(System.Collections.Generic.List{System.Double[]})">
+            <summary> Texture Descriptor using Haralick Feature - 04. Sum of Squares : Variance
+            Input   : List of double[] - Pre-generated Co-occurrance matrices of 0/45/90/135 degrees
+            Return  : List of double - Description values of 0/45/90/135 degrees
+            </summary>
+            <param name="coOccurMat">coOccurMat</param>        
+        </member>
+        <member name="M:IM.Library.Descriptor.ConnectedComponentDescriptor.Haralick2D_05_InverseDiffMoment(System.Collections.Generic.List{System.Double[]})">
+            <summary> Texture Descriptor using Haralick Feature - 05. Inverse Difference Moment
+            Input   : List of double[] - Pre-generated Co-occurrance matrices of 0/45/90/135 degrees
+            Return  : List of double - Description values of 0/45/90/135 degrees
+            </summary>
+            <param name="coOccurMat">coOccurMat</param>
+        </member>
+        <member name="M:IM.Library.Descriptor.ConnectedComponentDescriptor.Haralick2D_06_SumAverage(System.Collections.Generic.List{System.Double[]})">
+            <summary> Texture Descriptor using Haralick Feature - 06. Sum Average
+            Input   : List of double[] - Pre-generated Co-occurrance matrices of 0/45/90/135 degrees
+            Return  : List of double - Description values of 0/45/90/135 degrees
+            </summary>
+            <param name="coOccurMat">coOccurMat</param>
+        </member>
+        <member name="M:IM.Library.Descriptor.ConnectedComponentDescriptor.Haralick2D_07_SumVariance(System.Collections.Generic.List{System.Double[]})">
+            <summary> Texture Descriptor using Haralick Feature - 07. Sum Variance
+            Input   : List of double[] - Pre-generated Co-occurrance matrices of 0/45/90/135 degrees
+            Return  : List of double - Description values of 0/45/90/135 degrees
+            </summary>
+            <param name="coOccurMat">coOccurMat</param>
+        </member>
+        <member name="M:IM.Library.Descriptor.ConnectedComponentDescriptor.Haralick2D_08_SumEntropy(System.Collections.Generic.List{System.Double[]})">
+            <summary> Texture Descriptor using Haralick Feature - 08. Sum Entropy
+            Input   : List of double[] - Pre-generated Co-occurrance matrices of 0/45/90/135 degrees
+            Return  : List of double - Description values of 0/45/90/135 degrees
+            </summary>
+            <param name="coOccurMat">coOccurMat</param>
+        </member>
+        <member name="M:IM.Library.Descriptor.ConnectedComponentDescriptor.Haralick2D_09_Entropy(System.Collections.Generic.List{System.Double[]})">
+            <summary> Texture Descriptor using Haralick Feature - 09. Entropy
+            Input   : List of double[] - Pre-generated Co-occurrance matrices of 0/45/90/135 degrees
+            Return  : List of double - Description values of 0/45/90/135 degrees
+            </summary>
+            <param name="coOccurMat">coOccurMat</param>
+        </member>
+        <member name="M:IM.Library.Descriptor.ConnectedComponentDescriptor.Haralick2D_10_DifferenceVariance(System.Collections.Generic.List{System.Double[]})">
+            <summary> Texture Descriptor using Haralick Feature - 10. Difference Variance
+            Input   : List of double[] - Pre-generated Co-occurrance matrices of 0/45/90/135 degrees
+            Return  : List of double - Description values of 0/45/90/135 degrees
+            </summary>
+            <param name="coOccurMat">coOccurMat</param>
+        </member>
+        <member name="M:IM.Library.Descriptor.ConnectedComponentDescriptor.Haralick2D_11_DifferenceEntropy(System.Collections.Generic.List{System.Double[]})">
+            <summary> Texture Descriptor using Haralick Feature - 11. Difference Entropy
+            Input   : List of double[] - Pre-generated Co-occurrance matrices of 0/45/90/135 degrees
+            Return  : List of double - Description values of 0/45/90/135 degrees
+            </summary>
+            <param name="coOccurMat">coOccurMat</param>
+        </member>
+        <member name="M:IM.Library.Descriptor.ConnectedComponentDescriptor.Haralick2D_12_InfoMeasuresOfCorr1(System.Collections.Generic.List{System.Double[]})">
+            <summary> Texture Descriptor using Haralick Feature - 12. Information Measure of Correlation 1
+            Input   : List of double[] - Pre-generated Co-occurrance matrices of 0/45/90/135 degrees
+            Return  : List of double - Description values of 0/45/90/135 degrees
+            </summary>
+            <param name="coOccurMat">coOccurMat</param>
+        </member>
+        <member name="M:IM.Library.Descriptor.ConnectedComponentDescriptor.Haralick2D_13_InfoMeasuresOfCorr2(System.Collections.Generic.List{System.Double[]})">
+            <summary> Texture Descriptor using Haralick Feature - 13. Information Measure of Correlation 2
+            Input   : List of double[] - Pre-generated Co-occurrance matrices of 0/45/90/135 degrees
+            Return  : List of double - Description values of 0/45/90/135 degrees
+            </summary>
+            <param name="coOccurMat">coOccurMat</param>
+        </member>
+        <member name="M:IM.Library.Descriptor.ConnectedComponentDescriptor.Haralick2D_14_MaximalCorrCoeff(System.Collections.Generic.List{System.Double[]})">
+            <summary> Texture Descriptor using Haralick Feature - 14. Maximal Correlation Coefficient
+            Input   : List of double[] - Pre-generated Co-occurrance matrices of 0/45/90/135 degrees
+            Return  : List of double - Description values of 0/45/90/135 degrees
+            </summary>
+            <param name="coOccurMat">coOccurMat</param>
+        </member>
+        <member name="M:IM.Library.Descriptor.ConnectedComponentDescriptor.FractalDescriptor2D(IM.Library.Descriptor.ConnectedComponent)">
+            <summary> Return double value
+            - Hausdorff Dimension of Object
+            </summary>
+            <param name="cc">Input Connected Component</param>
+        </member>
+        <member name="M:IM.Library.Descriptor.ConnectedComponentDescriptor.Compactness(IM.Library.Descriptor.ConnectedComponent)">
+            <summary>
+            Compactness. The compactness is Area*4PI / perimeter^2 and map to ]0;1].
+            </summary>
+            <param name="cc">The ConnectedComponent</param>
+            <returns>The compactness</returns>
+        </member>
+        <member name="M:IM.Library.Descriptor.ConnectedComponentDescriptor.Mean(IM.Library.Descriptor.ConnectedComponent,System.Int32)">
+            <summary>
+            Sample mean of intensity values.
+            </summary>
+            <param name="cc">The ConnectedComponent</param>
+            <param name="band">The band</param>
+            <returns>The sample mean</returns>
+        </member>
+        <member name="M:IM.Library.Descriptor.ConnectedComponentDescriptor.Variance(IM.Library.Descriptor.ConnectedComponent,System.Int32)">
+            <summary>
+            Sample variance of intensity values.
+            </summary>
+            <param name="cc">The ConnectedComponent</param>
+            <param name="band">The band</param>        
+            <returns>The sample variance</returns>
+        </member>
+        <member name="M:IM.Library.Descriptor.ConnectedComponentDescriptor.Skewness(IM.Library.Descriptor.ConnectedComponent,System.Int32)">
+            <summary>
+            Sample skewness of intensity values.
+            </summary>
+            <param name="cc">The ConnectedComponent</param>
+            <param name="band">The band</param>        
+            <returns>The sample skewness</returns>
+        </member>
+        <member name="M:IM.Library.Descriptor.ConnectedComponentDescriptor.Kurtosis(IM.Library.Descriptor.ConnectedComponent,System.Int32)">
+            <summary>
+            Sample kurtosis of intensity values.
+            </summary>
+            <param name="cc">The ConnectedComponent</param>
+            <param name="band">The band</param>
+            <returns>The sample Kurtosis</returns>
+        </member>
+        <member name="M:IM.Library.Descriptor.ConnectedComponentDescriptor.Rect2Polar2D(System.Collections.Generic.List{System.Int32[]},System.Double[]@,System.Collections.Generic.List{System.Double},System.Collections.Generic.List{System.Double})">
+            <summary> Change Coordinate System from Rectanglular to Polar
+            </summary>
+            <param name="binaryImage">Input Rectangular-Coordinate Object Points List</param>
+            <param name="centerPt">Center Points of Object</param>
+            <param name="polarRadius">Output Polar-Coordinate Radius of Object</param>
+            <param name="polarAngle">Output Polar-Coordinate Angles of Object</param>
+        </member>
+        <member name="M:IM.Library.Descriptor.ConnectedComponentDescriptor.IsLeft2D(System.Int32,System.Int32,System.Int32,System.Int32,System.Int32)">
+            <summary> Test if a Point is Left | On | Right of an Infinite Line
+            Input   : Three Points P0, P1, P2
+            Return  : Larger than 0 for P2 left of the Line through P0 and P1
+                      Equal to 0 for P2 on the Line
+                      Smaller than 0 for P2 Right of the Line
+            </summary>
+            <param name="P0">First Point of Line</param>
+            <param name="P1">Second Point of Line</param>
+            <param name="P2">Test Point</param>
+            <param name="sizeX">Image Width</param>
+            <param name="sizeY">Image Height</param>
+        </member>
+        <member name="M:IM.Library.Descriptor.ConnectedComponentDescriptor.IsLeft2D(System.Int32,System.Int32,System.Int32,System.Int32,System.Int32,System.Int32)">
+            <summary> Test if a Point is Left | On | Right of an Infinite Line
+            Input   : Three Points P0, P1, P2
+            Return  : Larger than 0 for P2 left of the Line through P0 and P1
+                      Equal to 0 for P2 on the Line
+                      Smaller than 0 for P2 Right of the Line
+            </summary>
+            <param name="P0X">X Coord of First Point of Line</param>
+            <param name="P0Y">Y Coord of First Point of Line</param>/// 
+            <param name="P1X">X Coord of Second Point of Line</param>
+            <param name="P1Y">Y Coord of Second Point of Line</param>/// 
+            <param name="P2X">X Coord of Test Point</param>
+            <param name="P2Y">Y Coord of Test Point</param>
+        </member>
+        <member name="M:IM.Library.Descriptor.ConnectedComponentDescriptor.Orientation2D_Triangle(System.Int32,System.Int32,System.Int32,System.Int32,System.Int32)">
+            <summary> Test the Orientation of a Triangle
+            Input   : Three Vertex Points V0, V1, V2
+            Return  : Larger than 0 for Counterclockwise
+                      Equal to 0 for None (Degenerate)
+                      Smaller than 0 for Clockwise
+            </summary>
+            <param name="V0">First Vertex Point of Triangle</param>
+            <param name="V1">Second Vertex Point of Triangle</param>
+            <param name="V2">Third Vertex Point of Triangle</param>
+            <param name="sizeX">Image Width</param>
+            <param name="sizeY">Image Height</param>
+        </member>
+        <member name="M:IM.Library.Descriptor.ConnectedComponentDescriptor.Area2D_Triangle(System.Int32,System.Int32,System.Int32,System.Int32,System.Int32)">
+            <summary> Compute the Area of a Triangle
+            Input   : Three Vertex Points V0, V1, V2
+            Return  : The (double) Area of Tiangle
+            </summary>
+            <param name="V0">First Vertex Point of Triangle</param>
+            <param name="V1">Second Vertex Point of Triangle</param>
+            <param name="V2">Third Vertex Point of Triangle</param>
+            <param name="sizeX">Image Width</param>
+            <param name="sizeY">Image Height</param>
+        </member>
+        <member name="M:IM.Library.Descriptor.ConnectedComponentDescriptor.Orientation2D_Polygon(System.Collections.Generic.List{System.Int32},System.Int32,System.Int32)">
+            <summary> Test the Orientation of a Polygon
+            Input   : List of Polygon Vertices
+            Return  : Larger than 0 for Counterclockwise
+                      Equal to 0 for None (Degenerate)
+                      Smaller than 0 for Clockwise
+            </summary>
+            <param name="InputImage">Vertices List of Polygon</param>
+            <param name="sizeX">Image Width</param>
+            <param name="sizeY">Image Height</param>
+        </member>
+        <member name="M:IM.Library.Descriptor.ConnectedComponentDescriptor.Area2D_Polygon(System.Collections.Generic.List{System.Int32},System.Int32,System.Int32)">
+            <summary> Compute the Area of a 2D Polygon
+            Input   : List of Polygon Vertices
+            Return  : The (double) Area of the Polygon
+            </summary>
+            <param name="InputImage">Vertices List of Polygon</param>
+            <param name="sizeX">Image Width</param>
+            <param name="sizeY">Image Height</param>
+        </member>
+        <member name="M:IM.Library.Descriptor.ConnectedComponentDescriptor.FindLongestAxisLength2D(IM.Library.Descriptor.ConnectedComponent)">
+            <summary> Find Longest Axis Length of Object
+            Input   : List of object Vertices (Boundary or Area)
+            Return  : Longest Axis Length of the Input Object
+            </summary>
+            <param name="cc">Object Boundary</param>
+        </member>
+        <member name="M:IM.Library.Descriptor.ConnectedComponentDescriptor.Maximize2D(System.Single[]@,System.Int32,System.Int32,System.Int32)">
+            <summary> Maximize the Image Object by input pixel size
+            Input   : Image
+            Return  : Maximized Image
+            </summary>
+            <param name="image">Image</param>
+            <param name="pixelSize">Radius Pixel Size</param>
+            <param name="sizeX">Image Width</param>
+            <param name="sizeY">Image Height</param>
+        </member>
+        <member name="M:IM.Library.Descriptor.ConnectedComponentDescriptor.Minimize2D(System.Single[]@,System.Int32,System.Int32,System.Int32)">
+            <summary> Minimize the Image Object by input pixel size
+            Input   : Image
+            Return  : Minimized Image
+            </summary>
+            <param name="image">Image</param>
+            <param name="pixelSize">Radius Pixel Size</param>
+            <param name="sizeX">Image Width</param>
+            <param name="sizeY">Image Height</param>
+        </member>
+        <member name="M:IM.Library.Descriptor.ConnectedComponentDescriptor.IntegerFactorial(System.Int32)">
+            <summary> Compute Integer Factorial
+            Input   : Integer
+            Return  : Long Integer
+            </summary>
+            <param name="inputValue">Integer</param>
+        </member>
+        <member name="T:IM.Library.Descriptor.ConnectedComponent">
+            <summary> A subset of connected voxels in an image.
+            </summary>
+        </member>
+        <member name="T:IM.Library.Descriptor.VoxelSet">
+            <summary> A subset of voxels in an image.
+            </summary>
+        </member>
+        <member name="M:IM.Library.Descriptor.VoxelSet.EuclidianDistanceIndex(System.Int32,System.Int32,System.Int32)">
+            <summary>
+            Return the index (in SurfacePoints) of the closest point from the provided argument (x,y,z) and -1 if (x,y,z) is inside the set
+            </summary>
+            <param name="x">x</param>
+            <param name="y">y</param>
+            <param name="z">z</param>
+            <returns></returns>
+        </member>
+        <member name="M:IM.Library.Descriptor.VoxelSet.Add(System.Int32,System.Int32,System.Int32,System.Int32)">
+            <summary>
+            Internally add a voxel to the set. This method must remain internal in order to maintain the consistency in the
+            case of a ConnectedComponent.
+            </summary>
+            <param name="imageIndex"></param>
+            <param name="x"></param>
+            <param name="y"></param>
+            <param name="z"></param>
+        </member>
+        <member name="P:IM.Library.Descriptor.VoxelSet.Connectivity">
+            <summary> The connectivity used to built this ConnectedComponent
+            </summary>
+        </member>
+        <member name="P:IM.Library.Descriptor.VoxelSet.NumBands">
+            <summary> The number of band
+            </summary>
+        </member>
+        <member name="P:IM.Library.Descriptor.VoxelSet.X">
+            <summary> The X coordinate of the object centroid
+            </summary>
+        </member>
+        <member name="P:IM.Library.Descriptor.VoxelSet.Y">
+            <summary> The Y coordinate of the object centroid
+            </summary>
+        </member>
+        <member name="P:IM.Library.Descriptor.VoxelSet.Z">
+            <summary> The Z coordinate of the object centroid
+            </summary>
+        </member>
+        <member name="P:IM.Library.Descriptor.VoxelSet.MinX">
+            <summary> The X coordinate of the bounding box of this object
+            </summary>
+        </member>
+        <member name="P:IM.Library.Descriptor.VoxelSet.MinY">
+            <summary> The Y coordinate of the bounding box of this object
+            </summary>
+        </member>
+        <member name="P:IM.Library.Descriptor.VoxelSet.MinZ">
+            <summary> The Z coordinate of the bounding box of this object
+            </summary>
+        </member>
+        <member name="P:IM.Library.Descriptor.VoxelSet.Width">
+            <summary> The width of the bounding box of this object
+            Add "+ 1" : Modified by Seunghyun
+            </summary>
+        </member>
+        <member name="P:IM.Library.Descriptor.VoxelSet.Height">
+            <summary> The height of the bounding box of this object
+            Add "+ 1" : Modified by Seunghyun
+            </summary>
+        </member>
+        <member name="P:IM.Library.Descriptor.VoxelSet.Depth">
+            <summary> The depth of the bounding box of this object
+            Add "+ 1" : Modified by Seunghyun
+            </summary>
+        </member>
+        <member name="P:IM.Library.Descriptor.VoxelSet.Label">
+            <summary> The label of this object
+            </summary>
+        </member>
+        <member name="P:IM.Library.Descriptor.VoxelSet.Volume">
+            <summary> The volume of this object
+            </summary>
+        </member>
+        <member name="P:IM.Library.Descriptor.VoxelSet.Intensity">
+            <summary> The average intensities of this object
+            </summary>
+        </member>
+        <member name="P:IM.Library.Descriptor.VoxelSet.MinIntensity">
+            <summary> The min intensity of this object
+            </summary>
+        </member>
+        <member name="P:IM.Library.Descriptor.VoxelSet.MaxIntensity">
+            <summary> The max intensity of this object
+            </summary>
+        </member>
+        <member name="P:IM.Library.Descriptor.VoxelSet.Points">
+            <summary> The list of 3D points of this object (list of int[]{x,y,z})
+            </summary>
+        </member>
+        <member name="P:IM.Library.Descriptor.VoxelSet.Indices">
+            <summary> The list of index of the voxels of this object in the Image3D.Data arrays (list of int)
+            </summary>
+        </member>
+        <member name="P:IM.Library.Descriptor.VoxelSet.Values">
+            <summary> The list of values of this object (list of float[]{band0, band1, ...})
+            </summary>
+        </member>
+        <member name="P:IM.Library.Descriptor.VoxelSet.SurfacePoints">
+            <summary> The list of 3D points of the surface of this object (list of int[]{x,y,z})
+            </summary>
+        </member>
+        <member name="P:IM.Library.Descriptor.VoxelSet.SurfaceIntensity">
+            <summary>  The average intensities of this object
+            </summary>
+        </member>
+        <member name="P:IM.Library.Descriptor.VoxelSet.IsOn2DEdge">
+            <summary> Indicate whenever this object is on the edge of the picture
+            </summary>
+        </member>
+        <member name="P:IM.Library.Descriptor.VoxelSet.Properties">
+            <summary> A free of use property hashtable
+            </summary>
+        </member>
+        <member name="P:IM.Library.Descriptor.VoxelSet.LabelImage">
+            <summary>
+            Retrieve the label image internally (restricted to this namespace: should not be change to snsure safety)
+            </summary>
+        </member>
+        <member name="P:IM.Library.Descriptor.VoxelSet.Image">
+            <summary>
+            Retrieve the original image internally (restricted to this namespace: should not be change to snsure safety)
+            </summary>
+        </member>
+        <member name="P:IM.Library.Descriptor.ConnectedComponent.Radii">
+            <summary> The radii of the object (distance between the mass center and every surface point)
+            </summary>
+        </member>
+        <member name="T:IM.Library.Descriptor.Component">
+            <summary> A subset of connected voxels in an image.
+            </summary>
+        </member>
+        <member name="T:IM.Library.Descriptor.ConnectedComponentSetDescriptor">
+            <summary>
+            A class containing various Descriptor methods for a ConnectedComponentSet object
+            by Seunghyun Moon
+            </summary>
+        </member>
+        <member name="M:IM.Library.Descriptor.ConnectedComponentSetDescriptor.#ctor">
+            <summary>
+            Constructor
+            </summary>
+        </member>
+        <member name="M:IM.Library.Descriptor.ConnectedComponentSetDescriptor.ConvexHullArea2D(IM.Library.Descriptor.ConnectedComponentSet)">
+            <summary> Return list of double values
+            - the ratio (Object Area) / (ConvexHull Area)
+            - Rotation/Scale/Translation Invariant
+            </summary>
+            <param name="ccs">Input Connected Component Set</param>
+        </member>
+        <member name="M:IM.Library.Descriptor.ConnectedComponentSetDescriptor.ConvexHullLength2D(IM.Library.Descriptor.ConnectedComponentSet)">
+            <summary> Return list of double values
+            - the ratio (ConvexHull Boundary Length) / (Object Boundary Length)
+            - Rotation/Scale/Translation Invariant
+            </summary>
+            <param name="ccs">Input Connected Component Set</param>
+        </member>
+        <member name="M:IM.Library.Descriptor.ConnectedComponentSetDescriptor.PrincipalAxes2D(IM.Library.Descriptor.ConnectedComponentSet)">
+            <summary> Return list of double values
+            - the ratio (Short Axis Length) / (Long Axis Length)
+            - Rotation/Scale/Translation Invariant
+            </summary>
+            <param name="ccs">Input Connected Component Set</param>
+        </member>
+        <member name="M:IM.Library.Descriptor.ConnectedComponentSetDescriptor.CircularVariance2D(IM.Library.Descriptor.ConnectedComponentSet)">
+            <summary> Return list of double values
+            - the (Circular Variance * 1000)
+            - Rotation/Scale/Translation Invariant
+            </summary>
+            <param name="ccs">Input Connected Component Set</param>
+        </member>
+        <member name="M:IM.Library.Descriptor.ConnectedComponentSetDescriptor.GeometricMoment2D(IM.Library.Descriptor.ConnectedComponentSet,System.Boolean,System.Int32,System.Int32,System.Int32)">
+            <summary> Return list of double values
+            - Normalized 2D Geometric Moment
+            - Scale Invariant
+            </summary>
+            <param name="ccs">Input Connected Component Set</param>
+            <param name="isIntensity">"true" - calculate intensity information moment / "false" - calculate binary information moment</param>
+            <param name="band">Band to use intensity information - Using when "isIntensity" is "true"</param>
+            <param name="p">Power Value of X-Coord (Order p)</param>
+            <param name="q">Power Value of Y-Coord (Order q)</param>        
+        </member>
+        <member name="M:IM.Library.Descriptor.ConnectedComponentSetDescriptor.CentralMoment2D(IM.Library.Descriptor.ConnectedComponentSet,System.Boolean,System.Int32,System.Int32,System.Int32)">
+            <summary> Return list of double values
+            - Normalized 2D Central Moment
+            - Scale/Translation Invariant
+            </summary>
+            <param name="ccs">Input Connected Component Set</param>
+            <param name="isIntensity">"true" - calculate intensity information moment / "false" - calculate binary information moment</param>
+            <param name="band">Band to use intensity information - Using when "isIntensity" is "true"</param>
+            <param name="p">Power Value of X-Coord (Order p)</param>
+            <param name="q">Power Value of Y-Coord (Order q)</param>
+        </member>
+        <member name="M:IM.Library.Descriptor.ConnectedComponentSetDescriptor.ComplexMoment2D(IM.Library.Descriptor.ConnectedComponentSet,System.Boolean,System.Int32,System.Int32,System.Int32)">
+            <summary> Return list of double values
+            - Normailzed 2D Complex Moment (Square Rooot of Real^2 + Imaginary^2)
+            - Rotation/Scale/Translation Invariant
+            </summary>
+            <param name="ccs">Input Connected Component Set</param>
+            <param name="isIntensity">"true" - calculate intensity information moment / "false" - calculate binary information moment</param>
+            <param name="band">Band to use intensity information - Using when "isIntensity" is "true"</param>
+            <param name="p">Power Value of X-Coord (Order p)</param>
+            <param name="q">Power Value of Y-Coord (Order q)</param>
+        </member>
+        <member name="M:IM.Library.Descriptor.ConnectedComponentSetDescriptor.HuMoment2D(IM.Library.Descriptor.ConnectedComponentSet,System.Boolean,System.Int32,System.Int32)">
+            <summary> Return list of double values
+            - Normalized 2D Hu's Invariant Moment
+            - Rotation/Scale/Translation Invariant
+            </summary>
+            <param name="ccs">Input Connected Component Set</param>
+            <param name="isIntensity">"true" - calculate intensity information moment / "false" - calculate binary information moment</param>
+            <param name="band">Band to use intensity information - Using when "isIntensity" is "true"</param>
+            <param name="n">Order</param>        
+        </member>
+        <member name="M:IM.Library.Descriptor.ConnectedComponentSetDescriptor.LegendreMoment2D(IM.Library.Descriptor.ConnectedComponentSet,System.Boolean,System.Int32,System.Int32,System.Int32)">
+            <summary> Return list of double values
+            - Normalized 2D Legendre Moments
+            - Scale/Translation Invariant
+            </summary>
+            <param name="ccs">Input Connected Component Set</param>
+            <param name="isIntensity">"true" - calculate intensity information moment / "false" - calculate binary information moment</param>
+            <param name="band">Band to use intensity information - Using when "isIntensity" is "true"</param>
+            <param name="p">Power Value of X-Coord (Order p)</param>
+            <param name="q">Power Value of Y-Coord (Order q)</param>
+        </member>
+        <member name="M:IM.Library.Descriptor.ConnectedComponentSetDescriptor.ZernikeMoment2D(IM.Library.Descriptor.ConnectedComponentSet,System.Boolean,System.Int32,System.Int32,System.Int32)">
+            <summary> Return list of double values
+            - Normalized 2D Zernike Moments
+            - Rotation/Scale/Translation Invariant
+            </summary>
+            <param name="ccs">Input Connected Component Set</param>
+            <param name="isIntensity">"true" - calculate intensity information moment / "false" - calculate binary information moment</param>
+            <param name="band">Band to use intensity information - Using when "isIntensity" is "true"</param>
+            <param name="p">Power Value of X-Coord (Order p)</param>
+            <param name="q">Power Value of Y-Coord (Order q)</param>
+        </member>
+        <member name="M:IM.Library.Descriptor.ConnectedComponentSetDescriptor.PseudoZernikeMoment2D(IM.Library.Descriptor.ConnectedComponentSet,System.Boolean,System.Int32,System.Int32,System.Int32)">
+            <summary> Return list of double values
+            - Normalized 2D Pseudo Zernike Moments
+            - Rotation/Scale/Translation Invariant
+            </summary>
+            <param name="ccs">Input Connected Component Set</param>
+            <param name="isIntensity">"true" - calculate intensity information moment / "false" - calculate binary information moment</param>
+            <param name="band">Band to use intensity information - Using when "isIntensity" is "true"</param>
+            <param name="p">Power Value of X-Coord (Order p)</param>
+            <param name="q">Power Value of Y-Coord (Order q)</param>
+        </member>
+        <member name="M:IM.Library.Descriptor.ConnectedComponentSetDescriptor.CoOccurrenceMatrix2D(IM.Library.Descriptor.ConnectedComponentSet,System.Int32,System.Int32,System.Int32,System.Int32)">
+            <summary> Return list of list of double[] values
+            - Co-Occurrance Matrices of 0/45/90/135 degrees for each connected component object        
+            </summary>
+            <param name="ccs">Input Connected Component Set</param>
+            <param name="band">Band to use intensity information</param>
+            <param name="coSize">size of Co-Occurrence matrix</param>
+            <param name="dx">x-direction offset</param>
+            <param name="dy">y-direction offset</param>
+        </member>
+        <member name="M:IM.Library.Descriptor.ConnectedComponentSetDescriptor.Haralick2D_01_AngularSecondMoment(System.Collections.Generic.List{System.Collections.Generic.List{System.Double[]}})">
+            <summary> Return list of list of double values
+            - Texture Descriptor using Haralick Feature - 01. Angluar Second Moment
+            - Return : Hararick feature descriptors values for 0/45/90/135 degrees, for each object
+            </summary>
+            <param name="coOccurMat">list of list of double[] generated by CoOccurrenceMatrix2D for ConnectedComponentSet</param>
+        </member>
+        <member name="M:IM.Library.Descriptor.ConnectedComponentSetDescriptor.Haralick2D_02_Contrast(System.Collections.Generic.List{System.Collections.Generic.List{System.Double[]}})">
+            <summary> Return list of list of double values
+            - Texture Descriptor using Haralick Feature - 02. Contrast
+            - Return : Hararick feature descriptors values for 0/45/90/135 degrees, for each object
+            </summary>
+            <param name="coOccurMat">list of list of double[] generated by CoOccurrenceMatrix2D for ConnectedComponentSet</param>
+        </member>
+        <member name="M:IM.Library.Descriptor.ConnectedComponentSetDescriptor.Haralick2D_03_Correlation(System.Collections.Generic.List{System.Collections.Generic.List{System.Double[]}})">
+            <summary> Return list of list of double values
+            - Texture Descriptor using Haralick Feature - 03. Correlation
+            - Return : Hararick feature descriptors values for 0/45/90/135 degrees, for each object
+            </summary>
+            <param name="coOccurMat">list of list of double[] generated by CoOccurrenceMatrix2D for ConnectedComponentSet</param>
+        </member>
+        <member name="M:IM.Library.Descriptor.ConnectedComponentSetDescriptor.Haralick2D_04_SumOfSquares(System.Collections.Generic.List{System.Collections.Generic.List{System.Double[]}})">
+            <summary> Return list of list of double values
+            - Texture Descriptor using Haralick Feature - 04. Sum of Squares : Variance
+            - Return : Hararick feature descriptors values for 0/45/90/135 degrees, for each object
+            </summary>
+            <param name="coOccurMat">list of list of double[] generated by CoOccurrenceMatrix2D for ConnectedComponentSet</param>
+        </member>
+        <member name="M:IM.Library.Descriptor.ConnectedComponentSetDescriptor.Haralick2D_05_InverseDiffMoment(System.Collections.Generic.List{System.Collections.Generic.List{System.Double[]}})">
+            <summary> Return list of list of double values
+            - Texture Descriptor using Haralick Feature - 05. Inverse Difference Moment
+            - Return : Hararick feature descriptors values for 0/45/90/135 degrees, for each object
+            </summary>
+            <param name="coOccurMat">list of list of double[] generated by CoOccurrenceMatrix2D for ConnectedComponentSet</param>
+        </member>
+        <member name="M:IM.Library.Descriptor.ConnectedComponentSetDescriptor.Haralick2D_06_SumAverage(System.Collections.Generic.List{System.Collections.Generic.List{System.Double[]}})">
+            <summary> Return list of list of double values
+            - Texture Descriptor using Haralick Feature - 06. Sum Average
+            - Return : Hararick feature descriptors values for 0/45/90/135 degrees, for each object
+            </summary>
+            <param name="coOccurMat">list of list of double[] generated by CoOccurrenceMatrix2D for ConnectedComponentSet</param>
+        </member>
+        <member name="M:IM.Library.Descriptor.ConnectedComponentSetDescriptor.Haralick2D_07_SumVariance(System.Collections.Generic.List{System.Collections.Generic.List{System.Double[]}})">
+            <summary> Return list of list of double values
+            - Texture Descriptor using Haralick Feature - 07. Sum Variance
+            - Return : Hararick feature descriptors values for 0/45/90/135 degrees, for each object
+            </summary>
+            <param name="coOccurMat">list of list of double[] generated by CoOccurrenceMatrix2D for ConnectedComponentSet</param>
+        </member>
+        <member name="M:IM.Library.Descriptor.ConnectedComponentSetDescriptor.Haralick2D_08_SumEntropy(System.Collections.Generic.List{System.Collections.Generic.List{System.Double[]}})">
+            <summary> Return list of list of double values
+            - Texture Descriptor using Haralick Feature - 08. Sum Entropy
+            - Return : Hararick feature descriptors values for 0/45/90/135 degrees, for each object
+            </summary>
+            <param name="coOccurMat">list of list of double[] generated by CoOccurrenceMatrix2D for ConnectedComponentSet</param>
+        </member>
+        <member name="M:IM.Library.Descriptor.ConnectedComponentSetDescriptor.Haralick2D_09_Entropy(System.Collections.Generic.List{System.Collections.Generic.List{System.Double[]}})">
+            <summary> Return list of list of double values
+            - Texture Descriptor using Haralick Feature - 09. Entropy
+            - Return : Hararick feature descriptors values for 0/45/90/135 degrees, for each object
+            </summary>
+            <param name="coOccurMat">list of list of double[] generated by CoOccurrenceMatrix2D for ConnectedComponentSet</param>
+        </member>
+        <member name="M:IM.Library.Descriptor.ConnectedComponentSetDescriptor.Haralick2D_10_DifferenceVariance(System.Collections.Generic.List{System.Collections.Generic.List{System.Double[]}})">
+            <summary> Return list of list of double values
+            - Texture Descriptor using Haralick Feature - 10. Difference Variance
+            - Return : Hararick feature descriptors values for 0/45/90/135 degrees, for each object
+            </summary>
+            <param name="coOccurMat">list of list of double[] generated by CoOccurrenceMatrix2D for ConnectedComponentSet</param>
+        </member>
+        <member name="M:IM.Library.Descriptor.ConnectedComponentSetDescriptor.Haralick2D_11_DifferenceEntropy(System.Collections.Generic.List{System.Collections.Generic.List{System.Double[]}})">
+            <summary> Return list of list of double values
+            - Texture Descriptor using Haralick Feature - 11. Difference Entropy
+            - Return : Hararick feature descriptors values for 0/45/90/135 degrees, for each object
+            </summary>
+            <param name="coOccurMat">list of list of double[] generated by CoOccurrenceMatrix2D for ConnectedComponentSet</param>
+        </member>
+        <member name="M:IM.Library.Descriptor.ConnectedComponentSetDescriptor.Haralick2D_12_InfoMeasuresOfCorr1(System.Collections.Generic.List{System.Collections.Generic.List{System.Double[]}})">
+            <summary> Return list of list of double values
+            - Texture Descriptor using Haralick Feature - 12. Information Measure of Correlation 1
+            - Return : Hararick feature descriptors values for 0/45/90/135 degrees, for each object
+            </summary>
+            <param name="coOccurMat">list of list of double[] generated by CoOccurrenceMatrix2D for ConnectedComponentSet</param>
+        </member>
+        <member name="M:IM.Library.Descriptor.ConnectedComponentSetDescriptor.Haralick2D_13_InfoMeasuresOfCorr2(System.Collections.Generic.List{System.Collections.Generic.List{System.Double[]}})">
+            <summary> Return list of list of double values
+            - Texture Descriptor using Haralick Feature - 13. Information Measure of Correlation 2
+            - Return : Hararick feature descriptors values for 0/45/90/135 degrees, for each object
+            </summary>
+            <param name="coOccurMat">list of list of double[] generated by CoOccurrenceMatrix2D for ConnectedComponentSet</param>
+        </member>
+        <member name="M:IM.Library.Descriptor.ConnectedComponentSetDescriptor.Haralick2D_14_MaximalCorrCoeff(System.Collections.Generic.List{System.Collections.Generic.List{System.Double[]}})">
+            <summary> Return list of list of double values
+            - Texture Descriptor using Haralick Feature - 14. Maximal Correlation Coefficient
+            - Return : Hararick feature descriptors values for 0/45/90/135 degrees, for each object
+            </summary>
+            <param name="coOccurMat">list of list of double[] generated by CoOccurrenceMatrix2D for ConnectedComponentSet</param>
+        </member>
+        <member name="M:IM.Library.Descriptor.ConnectedComponentSetDescriptor.FractalDescriptor2D(IM.Library.Descriptor.ConnectedComponentSet)">
+            <summary> Return list of double values
+            - Hausdorff Dimension of Each Object
+            </summary>
+            <param name="ccs">Input Connected Component Set</param>
+        </member>
+        <member name="M:IM.Library.Descriptor.ConnectedComponentSetDescriptor.Volume(IM.Library.Descriptor.ConnectedComponentSet)">
+            <summary>
+            Volume. The volume of the CC.
+            </summary>
+            <param name="ccs">The ConnectedComponentSet</param>
+            <returns>The volume</returns>
+        </member>
+        <member name="M:IM.Library.Descriptor.ConnectedComponentSetDescriptor.TotalIntensity(IM.Library.Descriptor.ConnectedComponentSet,System.Int32)">
+            <summary>
+            TotalIntensity. The TotalIntensity of the CC.
+            </summary>
+            <param name="ccs">The ConnectedComponentSet</param>
+            <returns>The TotalIntensity</returns>
+        </member>
+        <member name="M:IM.Library.Descriptor.ConnectedComponentSetDescriptor.TotalVolume(IM.Library.Descriptor.ConnectedComponentSet)">
+            <summary>
+            TotalVolume. The TotalVolume of the CC.
+            </summary>
+            <param name="ccs">The ConnectedComponentSet</param>
+            <returns>The TotalVolume</returns>
+        </member>
+        <member name="M:IM.Library.Descriptor.ConnectedComponentSetDescriptor.Compactness(IM.Library.Descriptor.ConnectedComponentSet)">
+            <summary>
+            Compactness. The compactness is Area*4PI / perimeter^2 and map to ]0;1].
+            </summary>
+            <param name="ccs">The ConnectedComponentSet</param>
+            <returns>The compactness</returns>
+        </member>
+        <member name="M:IM.Library.Descriptor.ConnectedComponentSetDescriptor.Mean(IM.Library.Descriptor.ConnectedComponentSet,System.Int32)">
+            <summary>
+            Sample mean of intensity values.
+            </summary>
+            <param name="ccs">The ConnectedComponentSet</param>
+            <param name="band">The band</param>
+            <returns>The sample mean</returns>
+        </member>
+        <member name="M:IM.Library.Descriptor.ConnectedComponentSetDescriptor.Variance(IM.Library.Descriptor.ConnectedComponentSet,System.Int32)">
+            <summary>
+            Sample variance of intensity values.
+            </summary>
+            <param name="ccs">The ConnectedComponentSet</param>
+            <param name="band">The band</param>        
+            <returns>The sample variance</returns>
+        </member>
+        <member name="M:IM.Library.Descriptor.ConnectedComponentSetDescriptor.Skewness(IM.Library.Descriptor.ConnectedComponentSet,System.Int32)">
+            <summary>
+            Sample skewness of intensity values.
+            </summary>
+            <param name="ccs">The ConnectedComponentSet</param>
+            <param name="band">The band</param>
+            <returns>The sample skewness</returns>
+        </member>
+        <member name="M:IM.Library.Descriptor.ConnectedComponentSetDescriptor.Kurtosis(IM.Library.Descriptor.ConnectedComponentSet,System.Int32)">
+            <summary>
+            Sample kurtosis of intensity values.
+            </summary>
+            <param name="ccs">The ConnectedComponentSet</param>
+            <param name="band">The band</param>        
+            <returns>The sample Kurtosis</returns>
+        </member>
+        <member name="T:IM.Library.Descriptor.ConnectedComponentSetTool">
+            <summary>
+            A class containing various Tools for a ConnectedComponentSet object
+            </summary>
+        </member>
+        <member name="M:IM.Library.Descriptor.ConnectedComponentSetTool.#ctor">
+            <summary>
+            Constructor
+            </summary>
+        </member>
+        <member name="M:IM.Library.Descriptor.ConnectedComponentSetTool.SortedPointsList(IM.Library.Descriptor.ConnectedComponentSet)">
+            <summary> Return list of list of int[]
+            [2D ONLY] Extracts the Sorted Points List from Connected Component Set Object<para/>        
+            </summary>
+            <param name="ccs">Input Connected Component Set</param>
+        </member>
+        <member name="M:IM.Library.Descriptor.ConnectedComponentSetTool.FreemanChainCode(IM.Library.Descriptor.ConnectedComponentSet)">
+            <summary> Return list of list of int[]
+            [2D ONLY] Extracts the Freeman Chain Code from Connected Component Object<para/>
+            </summary>
+            <param name="ccs">Input Connected Component Set</param>
+        </member>
+        <member name="M:IM.Library.Descriptor.ConnectedComponentSetTool.EllipseFit2D(IM.Library.Descriptor.ConnectedComponentSet)">
+            <summary>
+            [2D ONLY] Compute Coefficients for 2D Ellipse Fitting Problem from Given Points Data<para/>
+            Input  : ConnectedComponentSet Object
+            Output : List of double[6] of coefficients [a, b, h, p, q, d] Such That
+                     a*(x^2) + b*(y^2) + h*(xy) + p*(x) + q*(y) + d = 0
+            </summary>
+            <param name="ccs">Input ConnectedComponentSet Object</param>
+        </member>
+        <member name="M:IM.Library.Descriptor.ConnectedComponentSetTool.EllipseFit3D(IM.Library.Descriptor.ConnectedComponentSet)">
+            <summary>
+            [3D ONLY] Compute Coefficients for 3D Ellipse Fitting Problem from Given Points Data<para/>
+            Input  : ConnectedComponentSet Object
+            Output : List of double[10] of coefficients [a, b, c, f, g, h, p, q, r, d] Such That
+                     a*(x^2) + b*(y^2) + c*(z^2) + f*(yz) + g*(xz) + h*(xy) + p*(x) + q*(y) + r*(z) + d = 0
+            </summary>
+            <param name="ccs">Input ConnectedComponentSet Object</param>
+        </member>
+        <member name="M:IM.Library.Descriptor.ConnectedComponentSetTool.FillFittedEllipse(System.Collections.Generic.List{System.Single[]},System.Int32,System.Int32,System.Int32)">
+            <summary>
+            Fill inside area of ellipse given by coefficients
+            </summary>
+            <param name="coeff">List of ellipse coefficients - float[6] : 2D ellipse, float[10] : 3D ellipse</param>
+            <param name="width">Width of image</param>
+            <param name="height">Height of image</param>
+            <param name="depth">Depth of image</param>
+        </member>
+        <member name="M:IM.Library.Descriptor.ConnectedComponentSetTool.CircleFit2D(IM.Library.Descriptor.ConnectedComponentSet)">
+            <summary>
+            [2D ONLY] Compute Coefficients for 2D Circle Fitting Problem from Given Points Data<para/>
+            Input  : ConnectedComponentSet Object
+            Output : List of double[3] of coefficients [cneterX, centerY, radius] Such That
+                     (x - centerX)^2 + (y - centerY)^2 - (radius)^2 = 0
+            </summary>
+            <param name="ccs">Input ConnectedComponentSet Object</param>
+        </member>
+        <member name="M:IM.Library.Descriptor.ConnectedComponentSetTool.CircleFit3D(IM.Library.Descriptor.ConnectedComponentSet)">
+            <summary>
+            [3D ONLY] Compute Coefficients for 3D Circle Fitting Problem from Given Points Data<para/>
+            Input  : ConnectedComponentSet Object
+            Output : List of double[4] of coefficients [centarX, centerY, centerZ, radius] Such That
+                     (x - centerX)^2 + (y - centerY)^2 + (z - centerZ)^2 - (radius)^2 = 0
+            </summary>
+            <param name="ccs">Input ConnectedComponentSet Object</param>
+        </member>
+        <member name="M:IM.Library.Descriptor.ConnectedComponentSetTool.FillFittedCircle(System.Collections.Generic.List{System.Single[]},System.Int32,System.Int32,System.Int32)">
+            <summary>
+            Fill inside area of circle given by coefficients
+            </summary>
+            <param name="coeff">List of circle coefficients - float[3] : 2D circle, float[4] : 3D circle</param>
+            <param name="width">Width of image</param>
+            <param name="height">Height of image</param>
+            <param name="depth">Depth of image</param>
+        </member>
+        <member name="T:IM.Library.Descriptor.ConnectedComponentSet">
+            <summary> 
+            Utility class detecting connected components and their properties in a graylevel labeled image
+            </summary>
+        </member>
+        <member name="M:IM.Library.Descriptor.ConnectedComponentSet.#ctor(IM.Imaging.Image3D,System.Int32,IM.Library.Descriptor.Connectivity,System.Single,System.Single)">
+            <summary> 3D connected components detector
+            Computes various information on the detected objects
+            </summary>
+            <param name="labeledInputimage">Gray level input image (background value must be 0)</param>
+            <param name="band">the image band</param>
+            <param name="connectivity">Connectivity. MUST be 6 or 26</param>
+            <param name="minVolume">Minimum object volume to consider</param>
+            <param name="maxVolume">Maximum object volume to consider</param>
+        </member>
+        <member name="M:IM.Library.Descriptor.ConnectedComponentSet.#ctor(IM.Imaging.Image3D,IM.Imaging.Image3D,IM.Imaging.Image3D,System.Int32,IM.Library.Descriptor.Connectivity,System.Single,System.Single)">
+            <summary> 3D connected components detector
+            Computes various information on the detected objects
+            </summary>
+            <param name="labeledInputimage">Gray level input image (background value must be 0)</param>
+            <param name="labeledOutputImage">Empty input image of same size that labeledInput image (can be null)</param>
+            <param name="image">Original greyscale image (can be null)</param>
+            <param name="band">the image band</param>
+            <param name="connectivity">Connectivity. MUST be 6 or 26</param>
+            <param name="minVolume">Minimum object volume to consider</param>
+            <param name="maxVolume">Maximum object volume to consider</param>
+        </member>
+        <member name="M:IM.Library.Descriptor.ConnectedComponentSet.#ctor(IM.Imaging.Image3D,System.Int32,IM.Imaging.Image3D,IM.Imaging.Image3D,System.Int32,IM.Library.Descriptor.Connectivity,System.Single,System.Single)">
+            <summary> 3D connected components detector
+            Computes various information on the detected objects
+            </summary>
+            <param name="labeledInputimage">Gray level input image (background value must be 0)</param>
+            <param name="BandLabelInput">Channel for the K-Mean Image</param>
+            <param name="labeledOutputImage">Empty input image of same size that labeledInput image (can be null)</param>
+            <param name="image">Original greyscale image (can be null)</param>
+            <param name="band">the image band</param>
+            <param name="connectivity">Connectivity. MUST be 6 or 26</param>
+            <param name="minVolume">Minimum object volume to consider</param>
+            <param name="maxVolume">Maximum object volume to consider</param>
+        </member>
+        <member name="M:IM.Library.Descriptor.ConnectedComponentSet.#ctor(System.Collections.Generic.List{IM.Library.Descriptor.ConnectedComponent})">
+            <summary>
+            Grab a set of already computed ConnectedComponent into a ConnectedComponentSet
+            </summary>
+            <param name="list">The list of ConnectedComponent</param>
+        </member>
+        <member name="M:IM.Library.Descriptor.ConnectedComponentSet.FindConnectedComponents">
+            <summary> Looks for the connected components and extracts data
+            </summary>
+        </member>
+        <member name="M:IM.Library.Descriptor.ConnectedComponentSet.detect4">
+            <summary> Detect the connected component in 4-connectivity space (2D)
+            </summary>
+        </member>
+        <member name="M:IM.Library.Descriptor.ConnectedComponentSet.detect24">
+            <summary> Detect the connected component in 24-connectivity space (2D)
+            </summary>
+        </member>
+        <member name="M:IM.Library.Descriptor.ConnectedComponentSet.detect8">
+            <summary> Detect the connected component in 8-connectivity space (2D)
+            </summary>
+        </member>
+        <member name="M:IM.Library.Descriptor.ConnectedComponentSet.detect6">
+            <summary> Detect the connected component in 6-connectivity space (3D)
+            </summary>
+        </member>
+        <member name="M:IM.Library.Descriptor.ConnectedComponentSet.detect26">
+            <summary> Detect the connected component in 26-connectivity space (3D)
+            </summary>
+        </member>
+        <member name="P:IM.Library.Descriptor.ConnectedComponentSet.Count">
+            <summary> The number of detected objects 
+            </summary>
+        </member>
+        <member name="P:IM.Library.Descriptor.ConnectedComponentSet.Item(System.Int32)">
+            <summary> The detected objects
+            </summary>
+        </member>
+        <member name="P:IM.Library.Descriptor.ConnectedComponentSet.LabeledImage">
+            <summary>
+            Get the internal labeled image corresponding to this set 
+            </summary>
+        </member>
+        <member name="M:IM.Library.Descriptor.ConnectedComponentSet.ObjectGraph.add(System.Int32)">
+            <summary> Adds a new label (new node) in the object graph
+            </summary>
+            <param name="label">The label to add</param>
+        </member>
+        <member name="M:IM.Library.Descriptor.ConnectedComponentSet.ObjectGraph.Merge(System.Int32,System.Int32)">
+            <summary> Merges two labels (i.e. two graph nodes)
+            </summary>
+            <param name="label1">the first label to merge</param>
+            <param name="label2">the second label to merge</param>
+        </member>
+        <member name="M:IM.Library.Descriptor.ConnectedComponentSet.ObjectGraph.getAncestorLabel(System.Int32)">
+            <summary>Gets the root label of a given label
+            </summary>
+            <param name="label">the input object label</param>
+            <returns>The label of the oldest father of the input</returns>
+        </member>
+        <member name="M:IM.Library.Descriptor.ConnectedComponentSet.ObjectGraph.exists(System.Int32)">
+            <summary> Checks if a label already exists in the dictionnary
+            </summary>
+            <param name="label">the label to look for</param>
+            <returns>true if th label exists in the dictionnary</returns>
+        </member>
+        <member name="T:IM.Library.Descriptor.ConnectedComponentSet.ObjectGraph.Node">
+            <summary> Node of the object graph representing a detected object and its hierarchy
+            </summary>
+        </member>
+        <member name="T:IM.Library.Descriptor.ConnectedComponentTool">
+            <summary>
+            A class containing various Tools for a ConnectedComponentSet object
+            </summary>
+        </member>
+        <member name="M:IM.Library.Descriptor.ConnectedComponentTool.#ctor">
+            <summary>
+            Constructor
+            </summary>
+        </member>
+        <member name="M:IM.Library.Descriptor.ConnectedComponentTool.SortedPointsList(IM.Library.Descriptor.ConnectedComponent)">
+            <summary> [2D ONLY] Extracts the Sorted Points List from Connected Component Object<para/>
+            </summary>
+            <param name="cc">Input Connected Component</param>
+        </member>
+        <member name="M:IM.Library.Descriptor.ConnectedComponentTool.FreemanChainCode(IM.Library.Descriptor.ConnectedComponent)">
+            <summary> [2D ONLY] Extracts the Freeman Chain Code from Connected Component Object<para/>
+            </summary>
+            <param name="cc">Input Connected Component</param>
+        </member>
+        <member name="M:IM.Library.Descriptor.ConnectedComponentTool.EllipseFit2D(IM.Library.Descriptor.ConnectedComponent)">
+            <summary>
+            [2D ONLY] Compute Coefficients for Ellipse Fitting Problem from Given Points Data<para/>
+            Input  : Connected Component Object
+            Output : double[6] of coefficients [a, b, h, p, q, d] Such That
+                     a*(x^2) + b*(y^2) + h*(xy) + p*(x) + q*(y) + d = 0
+            </summary>
+            <param name="cc">Input ConnectedComponent object</param>
+        </member>
+        <member name="M:IM.Library.Descriptor.ConnectedComponentTool.EllipseFit3D(IM.Library.Descriptor.ConnectedComponent)">
+            <summary>
+            [3D ONLY] Compute Coefficients for 3D Ellipse Fitting Problem from Given Points Data<para/>
+            Input  : ConnectedComponentSet Object
+            Output : double[10] of coefficients [a, b, c, f, g, h, p, q, r, d] Such That
+                     a*(x^2) + b*(y^2) + c*(z^2) + f*(yz) + g*(xz) + h*(xy) + p*(x) + q*(y) + r*(z) + d = 0
+            </summary>
+            <param name="cc">Input ConnectedComponent Object</param>
+        </member>
+        <member name="M:IM.Library.Descriptor.ConnectedComponentTool.FillFittedEllipse(System.Single[],IM.Imaging.Image3D@,System.Int32)">
+            <summary>
+            Fill inside area of ellipse given by coefficients
+            </summary>
+            <param name="coeff">Ellipse coefficients - float[6] : 2D ellipse, float[10] : 3D ellipse</param>
+            <param name="output">Ellipse-filled image3D</param>
+            <param name="band">Band to draw</param>
+        </member>
+        <member name="M:IM.Library.Descriptor.ConnectedComponentTool.CircleFit2D(IM.Library.Descriptor.ConnectedComponent)">
+            <summary>
+            [2D ONLY] Compute Coefficients for 2D Circle Fitting Problem from Given Points Data<para/>
+            Input  : ConnectedComponent Object
+            Output : double[3] of coefficients [cneterX, centerY, radius] Such That
+                     (x - centerX)^2 + (y - centerY)^2 - (radius)^2 = 0
+            </summary>
+            <param name="cc">Input ConnectedComponent Object</param>
+        </member>
+        <member name="M:IM.Library.Descriptor.ConnectedComponentTool.CircleFit3D(IM.Library.Descriptor.ConnectedComponent)">
+            <summary>
+            [3D ONLY] Compute Coefficients for 3D Circle Fitting Problem from Given Points Data<para/>
+            Input  : ConnectedComponent Object
+            Output : double[4] of coefficients [centarX, centerY, centerZ, radius] Such That
+                     (x - centerX)^2 + (y - centerY)^2 + (z - centerZ)^2 - (radius)^2 = 0
+            </summary>
+            <param name="cc">Input ConnectedComponent Object</param>
+        </member>
+        <member name="M:IM.Library.Descriptor.ConnectedComponentTool.FillFittedCircle(System.Single[],IM.Imaging.Image3D@,System.Int32)">
+            <summary>
+            Fill inside area of circle given by coefficients
+            </summary>
+            <param name="coeff">Circle coefficients - float[3] : 2D circle, float[4] : 3D circle</param>
+            <param name="output">Circle-filled image3D</param>
+            <param name="band">Band to draw</param>
+        </member>
+    </members>
+</doc>

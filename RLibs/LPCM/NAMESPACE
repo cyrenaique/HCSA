@@ -1,0 +1,27 @@
+import("stats")
+import("graphics")
+
+export(coverage.raw, coverage, lpc.coverage, lpc.self.coverage, select.self.coverage, followx, kern, kernd,  kdex, distancevector, vecdist, mindist, enorm, lpc, lpc.control, lpc.project, lpc.spline, lpc.splinefun, lpc.fit.spline, lpc.spline.eval, lpc.project.spline, lpc.curve.length, meanshift, ms.rep, ms, ms.self.coverage,  Rc, base.Rc, unscale )
+
+S3method(plot, lpc)
+
+S3method(plot, lpc.spline)
+
+S3method(print, lpc)
+
+S3method(print, lpc.spline)
+
+S3method(Rc, lpc)
+
+S3method(Rc, lpc.spline)
+
+S3method(Rc, ms)
+
+S3method(unscale, lpc)
+
+S3method(unscale, lpc.spline)
+
+S3method(unscale, ms)
+
+
+

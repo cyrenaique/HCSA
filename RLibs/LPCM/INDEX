@@ -1,0 +1,22 @@
+LPCM-package            Local principal curve methods
+Rc                      Measuring goodness-of-fit for principal
+                        objects.
+calspeedflow            Speed-flow data from Calfornia.
+coverage                Coverage and self-coverage plots.
+followx                 Fit an individual branch of a local principal
+                        curve.
+gaia                    Gaia data
+gvessel                 North Atlantic Water Temperature Data.
+kern                    Auxilary kernel and distance functions.
+lpc                     Local principal curves
+lpc.control             Auxiliary parameters for controlling local
+                        principal curves.
+lpc.project             Projection onto LPC
+lpc.spline              Representing local principal curves through a
+                        cubic spline.
+lpc.splinefun           Auxiliary functions for spline fitting and
+                        projection.
+ms                      Mean shift clustering.
+plot.lpc                Plotting local principal curves
+print.lpc               Printing output for lpc and lpc.spline objects
+unscale                 Unscaling local principal objects.

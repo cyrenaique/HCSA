@@ -1,0 +1,448 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>LibScience</name>
+    </assembly>
+    <members>
+        <member name="T:IM.Library.Science.Mathematics.Calculus.Interpolation2D">
+            <summary>
+            This class contains NR code so it should be in IM.Library.Mathematics.Numericalrecipes class
+            </summary>
+        </member>
+        <member name="T:IM.Library.Science.Mathematics.Complex">
+            <summary> Struct defining a complex number (A+iB)
+            </summary>
+        </member>
+        <member name="M:IM.Library.Science.Mathematics.Complex.#ctor(System.Single,System.Single)">
+            <summary> Creates a new Complex number with specified real and imaginary parts
+            </summary>
+            <param name="real">the real part</param>
+            <param name="imaginary">the imaginary part</param>
+        </member>
+        <member name="M:IM.Library.Science.Mathematics.Complex.FromPolar(System.Single,System.Single)">
+            <summary> Creates a new complex number from polar coordinates
+            </summary>
+            <param name="norm">the norm</param>
+            <param name="thetaRadian">the angle</param>
+            <returns>the new complex</returns>
+        </member>
+        <member name="M:IM.Library.Science.Mathematics.Complex.ToString">
+            <summary> Pretty-print representation of this complex number
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:IM.Library.Science.Mathematics.Complex.GetHashCode">
+            <summary> Returns this complex's hashcode
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:IM.Library.Science.Mathematics.Complex.Equals(System.Object)">
+            <summary> compares the current complex with the given object
+            </summary>
+            <param name="obj">an object</param>
+            <returns></returns>
+        </member>
+        <member name="M:IM.Library.Science.Mathematics.Complex.Add(IM.Library.Science.Mathematics.Complex,IM.Library.Science.Mathematics.Complex)">
+            <summary> Adds 2 complex numbers
+            </summary>
+            <param name="a">a complex number</param>
+            <param name="b">a complex number</param>
+            <returns>a+b</returns>
+        </member>
+        <member name="M:IM.Library.Science.Mathematics.Complex.op_Addition(IM.Library.Science.Mathematics.Complex,IM.Library.Science.Mathematics.Complex)">
+            <summary> Adds 2 complex numbers
+            </summary>
+            <param name="a">a complex number</param>
+            <param name="b">a complex number</param>
+            <returns>a+b</returns>
+        </member>
+        <member name="M:IM.Library.Science.Mathematics.Complex.Subtract(IM.Library.Science.Mathematics.Complex,IM.Library.Science.Mathematics.Complex)">
+            <summary> Subtracts 2 complex numbers
+            </summary>
+            <param name="a">a complex number</param>
+            <param name="b">a complex number</param>
+            <returns>a-b</returns>
+        </member>
+        <member name="M:IM.Library.Science.Mathematics.Complex.op_Subtraction(IM.Library.Science.Mathematics.Complex,IM.Library.Science.Mathematics.Complex)">
+            <summary> Subtracts 2 complex numbers
+            </summary>
+            <param name="a">a complex number</param>
+            <param name="b">a complex number</param>
+            <returns>a-b</returns>
+        </member>
+        <member name="M:IM.Library.Science.Mathematics.Complex.Multiply(IM.Library.Science.Mathematics.Complex,IM.Library.Science.Mathematics.Complex)">
+            <summary> Multiplies 2 complex numbers
+            </summary>
+            <param name="a">a complex number</param>
+            <param name="b">a complex number</param>
+            <returns>a*b</returns>
+        </member>
+        <member name="M:IM.Library.Science.Mathematics.Complex.op_Multiply(IM.Library.Science.Mathematics.Complex,IM.Library.Science.Mathematics.Complex)">
+            <summary> Multiplies 2 complex numbers
+            </summary>
+            <param name="a">a complex number</param>
+            <param name="b">a complex number</param>
+            <returns>a*b</returns>
+        </member>
+        <member name="M:IM.Library.Science.Mathematics.Complex.Multiply(System.Single,IM.Library.Science.Mathematics.Complex)">
+            <summary> Multiplies a complex number and a scalar
+            </summary>
+            <param name="x">a scalar</param>
+            <param name="a">a complex number</param>
+            <returns>a*x</returns>
+        </member>
+        <member name="M:IM.Library.Science.Mathematics.Complex.op_Multiply(System.Single,IM.Library.Science.Mathematics.Complex)">
+            <summary> Multiplies a complex number and a scalar
+            </summary>
+            <param name="x">a scalar</param>
+            <param name="a">a complex number</param>
+            <returns>a*x</returns>
+        </member>
+        <member name="M:IM.Library.Science.Mathematics.Complex.Multiply(IM.Library.Science.Mathematics.Complex,System.Single)">
+            <summary> Multiplies a complex number and a scalar
+            </summary>
+            <param name="x">a scalar</param>
+            <param name="a">a complex number</param>
+            <returns>a*x</returns>
+        </member>
+        <member name="M:IM.Library.Science.Mathematics.Complex.op_Multiply(IM.Library.Science.Mathematics.Complex,System.Single)">
+            <summary> Multiplies a complex number and a scalar
+            </summary>
+            <param name="x">a scalar</param>
+            <param name="a">a complex number</param>
+            <returns>a*x</returns>
+        </member>
+        <member name="M:IM.Library.Science.Mathematics.Complex.Divide(IM.Library.Science.Mathematics.Complex,IM.Library.Science.Mathematics.Complex)">
+            <summary> Divides 2 complex numbers
+            </summary>
+            <param name="a">a complex number</param>
+            <param name="b">a complex number</param>
+            <returns>a/b</returns>
+        </member>
+        <member name="M:IM.Library.Science.Mathematics.Complex.op_Division(IM.Library.Science.Mathematics.Complex,IM.Library.Science.Mathematics.Complex)">
+            <summary> Divides 2 complex numbers
+            </summary>
+            <param name="a">a complex number</param>
+            <param name="b">a complex number</param>
+            <returns>a/b</returns>
+        </member>
+        <member name="M:IM.Library.Science.Mathematics.Complex.Divide(IM.Library.Science.Mathematics.Complex,System.Single)">
+            <summary> Divides a complex number by a scalar
+            </summary>
+            <param name="x">a scalar</param>
+            <param name="a">a complex number</param>
+            <returns>a*x</returns>
+        </member>
+        <member name="M:IM.Library.Science.Mathematics.Complex.op_Division(IM.Library.Science.Mathematics.Complex,System.Single)">
+            <summary> Divides a complex number by a scalar
+            </summary>
+            <param name="x">a scalar</param>
+            <param name="a">a complex number</param>
+            <returns>a*x</returns>
+        </member>
+        <member name="M:IM.Library.Science.Mathematics.Complex.op_Equality(IM.Library.Science.Mathematics.Complex,IM.Library.Science.Mathematics.Complex)">
+            <summary> Compares two complex numbers
+            </summary>
+            <param name="a">a complex number</param>
+            <param name="b">a complex number</param>
+            <returns>true if a = b</returns>
+        </member>
+        <member name="M:IM.Library.Science.Mathematics.Complex.op_Inequality(IM.Library.Science.Mathematics.Complex,IM.Library.Science.Mathematics.Complex)">
+            <summary> Compares two complex numbers
+            </summary>
+            <param name="a">a complex number</param>
+            <param name="b">a complex number</param>
+            <returns>true if a != b</returns>
+        </member>
+        <member name="M:IM.Library.Science.Mathematics.Complex.Conjugate(IM.Library.Science.Mathematics.Complex)">
+            <summary> Calculates the conjugate of a complex number
+            </summary>
+            <param name="z">a complex number</param>
+            <returns>the conjugate of z</returns>
+        </member>
+        <member name="M:IM.Library.Science.Mathematics.Complex.Norm(IM.Library.Science.Mathematics.Complex)">
+            <summary> Calculates the norm of a complex number
+            </summary>
+            <param name="z">a complex number</param>
+            <returns>the norm of z</returns>
+        </member>
+        <member name="M:IM.Library.Science.Mathematics.Complex.Sqrt(IM.Library.Science.Mathematics.Complex)">
+            <summary> Calculates the square root of a complex number
+            </summary>
+            <param name="z">a complex number</param>
+            <returns>sqrt(z)</returns>
+        </member>
+        <member name="M:IM.Library.Science.Mathematics.Complex.ConvertArrayToImage(IM.Library.Science.Mathematics.Complex[],IM.Imaging.Image3D,IM.Library.Science.Mathematics.Complex.ConversionType)">
+            <summary> Converts a complex array into a (hopefully) viewable Image3D
+            </summary>
+            <param name="input">a complex array</param>
+            <param name="output">a two band image</param>
+            <param name="conversionType">The type of conversion to perform</param>
+        </member>
+        <member name="P:IM.Library.Science.Mathematics.Complex.Real">
+            <summary> Gets or sets the real part of this complex number
+            </summary>
+        </member>
+        <member name="P:IM.Library.Science.Mathematics.Complex.Imaginary">
+            <summary> Gets or sets the imaginary part of this complex number
+            </summary>
+        </member>
+        <member name="P:IM.Library.Science.Mathematics.Complex.Abs">
+            <summary> Gets the absolute value of this complex number
+            </summary>
+        </member>
+        <member name="P:IM.Library.Science.Mathematics.Complex.Arg">
+            <summary> Gets the argument of this complex number
+            </summary>
+        </member>
+        <member name="T:IM.Library.Science.Mathematics.Complex.ConversionType">
+            <summary> Enumerates the different ways of converting a complex array into viewable images
+            </summary>
+        </member>
+        <member name="F:IM.Library.Science.Mathematics.Complex.ConversionType.Real_Imaginary">
+            <summary> Returns the real parts in band 0 and the imaginary parts in band 1
+            </summary>
+        </member>
+        <member name="F:IM.Library.Science.Mathematics.Complex.ConversionType.Phase_Magnitude">
+            <summary> Returns the phases in band 0 and the magnitudes in band 1
+            </summary>
+        </member>
+        <member name="T:IM.Library.Science.Mathematics.Calculus.Point">
+            <summary>
+            A point 0-dimensional mathematical object, which can 
+            be specified in n-dimensional space using n coordinates.
+            </summary>
+        </member>
+        <member name="T:IM.Library.Science.Mathematics.Calculus.FourierTransform">
+            <summary> Fourier Transform in 1, 2, 3 and 4 dimensions
+            </summary>
+            <item> <term>2.2</term> <description>(AD) upgraded toolbox to handle any data dimension automatically, really cool !</description> </item>
+            <item> <term>2.1</term> <description>(AD) uses unmanaged pointers to save a temporary buffer allocation</description> </item>
+            <item> <term>2.0</term> <description>(AD) included wrapper for the FFTW library (much much faster)</description> </item>
+            <item> <term>1.1</term> <description>(AD) optimized functions for the 3D case</description> </item>
+            <item> <term>1.0</term> <description>(AD) first operational build, copy paste of the original Science library code</description> </item>
+        </member>
+        <member name="M:IM.Library.Science.Mathematics.Calculus.FourierTransform.#ctor">
+            <summary> Creates a new instance of the Fourier Transform Toolbox
+            </summary>
+        </member>
+        <member name="M:IM.Library.Science.Mathematics.Calculus.FourierTransform.ClearBuffer">
+            <summary> Clears the temporary buffer used for the transform processes
+            </summary>
+        </member>
+        <member name="M:IM.Library.Science.Mathematics.Calculus.FourierTransform.Dft(IM.Library.Science.Mathematics.Complex[],System.Int32[],IM.Library.Science.Mathematics.Calculus.FourierTransform.Direction)">
+            <summary> Basic in-place Multi-dimensional Discrete Fourier Transform.
+            The array values are interpreted as real or complex depending on the transform direction
+            </summary>
+            <param name="data">the data to trasnform</param>
+            <param name="dimension">the dimension of the array</param>
+            <param name="direction">transform direction</param>
+        </member>
+        <member name="M:IM.Library.Science.Mathematics.Calculus.FourierTransform.Dft(IM.Imaging.Image3D,IM.Library.Science.Mathematics.Complex[],IM.Library.Science.Mathematics.Calculus.FourierTransform.Direction)">
+            <summary> Multi-dimensional Forward Discrete Fourier Transform specialized for Image3D objects.
+            Adjusts to the image dimension automatically, provided the given output array size coincides
+            </summary>
+            <param name="image">an image</param>
+            <param name="transform">a complex array</param>
+            <param name="direction">direction of the transform</param>
+        </member>
+        <member name="M:IM.Library.Science.Mathematics.Calculus.FourierTransform.Dft1(IM.Library.Science.Mathematics.Complex[],System.Boolean)">
+            <summary> 1D Discrete Fourier Transform
+            </summary>
+            <param name="data"></param>
+            <param name="forward"></param>
+            <returns></returns>
+        </member>
+        <member name="M:IM.Library.Science.Mathematics.Calculus.FourierTransform.Dft2(IM.Library.Science.Mathematics.Complex[],System.Int32,System.Int32,System.Boolean)">
+            <summary> 2D Discrete Fourier Transform
+            </summary>
+            <param name="data"></param>
+            <param name="forward"></param>
+            <returns></returns>
+        </member>
+        <member name="M:IM.Library.Science.Mathematics.Calculus.FourierTransform.Dft3(IM.Library.Science.Mathematics.Complex[],System.Int32,System.Int32,System.Int32,System.Boolean)">
+            <summary> In-place 3D Discrete Fourier Transform.
+            The array values are interpreted as real or complex depending on the transform direction
+            </summary>
+            <param name="data">the data to trasnform</param>
+            <param name="width">the image width</param>
+            <param name="height">the inage height</param>
+            <param name="depth">the image depth</param>
+            <param name="forward">true for forward transform, false for inverse transform</param>
+        </member>
+        <member name="M:IM.Library.Science.Mathematics.Calculus.FourierTransform.NR_Dft3_Forward(IM.Imaging.Image3D,IM.Library.Science.Mathematics.Complex[])">
+            <summary> 3D Forward Discrete Fourier Transform
+            </summary>
+            <param name="input">the input image</param>
+            <param name="output">the output complex array</param>
+        </member>
+        <member name="M:IM.Library.Science.Mathematics.Calculus.FourierTransform.NR_Dft3_Inverse(IM.Library.Science.Mathematics.Complex[],IM.Imaging.Image3D)">
+            <summary> 3D Inverse Discrete Fourier Transform
+            </summary>
+            <param name="input">the input complex array</param>
+            <param name="output">the output image</param>
+        </member>
+        <member name="T:IM.Library.Science.Mathematics.Calculus.FourierTransform.Flags">
+            <summary> FFTW planner flags
+            </summary>
+        </member>
+        <member name="F:IM.Library.Science.Mathematics.Calculus.FourierTransform.Flags.Measure">
+            <summary>
+            Tells FFTW to find an optimized plan by actually computing several FFTs and measuring their execution time. 
+            Depending on your machine, this can take some time (often a few seconds). Default (0x0). 
+            </summary>
+        </member>
+        <member name="F:IM.Library.Science.Mathematics.Calculus.FourierTransform.Flags.DestroyInput">
+            <summary>
+            Specifies that an out-of-place transform is allowed to overwrite its 
+            input array with arbitrary data; this can sometimes allow more efficient algorithms to be employed.
+            </summary>
+        </member>
+        <member name="F:IM.Library.Science.Mathematics.Calculus.FourierTransform.Flags.Unaligned">
+            <summary>
+            Rarely used. Specifies that the algorithm may not impose any unusual alignment requirements on the input/output 
+            arrays (i.e. no SIMD). This flag is normally not necessary, since the planner automatically detects 
+            misaligned arrays. The only use for this flag is if you want to use the guru interface to execute a given 
+            plan on a different array that may not be aligned like the original. 
+            </summary>
+        </member>
+        <member name="F:IM.Library.Science.Mathematics.Calculus.FourierTransform.Flags.ConserveMemory">
+            <summary>
+            Not used.
+            </summary>
+        </member>
+        <member name="F:IM.Library.Science.Mathematics.Calculus.FourierTransform.Flags.Exhaustive">
+            <summary>
+            Like Patient, but considers an even wider range of algorithms, including many that we think are 
+            unlikely to be fast, to produce the most optimal plan but with a substantially increased planning time. 
+            </summary>
+        </member>
+        <member name="F:IM.Library.Science.Mathematics.Calculus.FourierTransform.Flags.PreserveInput">
+            <summary>
+            Specifies that an out-of-place transform must not change its input array. 
+            </summary>
+            <remarks>
+            This is ordinarily the default, 
+            except for c2r and hc2r (i.e. complex-to-real) transforms for which DestroyInput is the default. 
+            In the latter cases, passing PreserveInput will attempt to use algorithms that do not destroy the 
+            input, at the expense of worse performance; for multi-dimensional c2r transforms, however, no 
+            input-preserving algorithms are implemented and the planner will return null if one is requested.
+            </remarks>
+        </member>
+        <member name="F:IM.Library.Science.Mathematics.Calculus.FourierTransform.Flags.Patient">
+            <summary>
+            Like Measure, but considers a wider range of algorithms and often produces a “more optimal?plan 
+            (especially for large transforms), but at the expense of several times longer planning time 
+            (especially for large transforms).
+            </summary>
+        </member>
+        <member name="F:IM.Library.Science.Mathematics.Calculus.FourierTransform.Flags.Estimate">
+            <summary>
+            Specifies that, instead of actual measurements of different algorithms, a simple heuristic is 
+            used to pick a (probably sub-optimal) plan quickly. With this flag, the input/output arrays 
+            are not overwritten during planning. 
+            </summary>
+        </member>
+        <member name="T:IM.Library.Science.Mathematics.Calculus.FourierTransform.Direction">
+            <summary> Defines direction of operation
+            </summary>
+        </member>
+        <member name="F:IM.Library.Science.Mathematics.Calculus.FourierTransform.Direction.Forward">
+            <summary>
+            Computes a regular DFT
+            </summary>
+        </member>
+        <member name="F:IM.Library.Science.Mathematics.Calculus.FourierTransform.Direction.Backward">
+            <summary>
+            Computes the inverse DFT
+            </summary>
+        </member>
+        <member name="T:IM.Library.Science.Mathematics.Calculus.FourierTransform.FFTW">
+            <summary> FFTW library wrapper
+            </summary>
+        </member>
+        <member name="M:IM.Library.Science.Mathematics.Calculus.FourierTransform.FFTW.malloc(System.Int32)">
+            <summary> Allocates FFTW-optimized unmanaged memory
+            </summary>
+            <param name="length">Amount to allocate, in bytes</param>
+            <returns>Pointer to allocated memory</returns>
+        </member>
+        <member name="M:IM.Library.Science.Mathematics.Calculus.FourierTransform.FFTW.free(System.IntPtr)">
+            <summary> Deallocates memory allocated by FFTW malloc
+            </summary>
+            <param name="mem">Pointer to memory to release</param>
+        </member>
+        <member name="M:IM.Library.Science.Mathematics.Calculus.FourierTransform.FFTW.destroy_plan(System.IntPtr)">
+            <summary> Deallocates an FFTW plan and all associated resources
+            </summary>
+            <param name="plan">Pointer to the plan to release</param>
+        </member>
+        <member name="M:IM.Library.Science.Mathematics.Calculus.FourierTransform.FFTW.cleanup">
+            <summary> Clears all memory used by FFTW, resets it to initial state. Does not replace destroy_plan and free
+            </summary>
+            <remarks>After calling fftw_cleanup, all existing plans become undefined, and you should not 
+            attempt to execute them nor to destroy them. You can however create and execute/destroy new plans, 
+            in which case FFTW starts accumulating wisdom information again. 
+            fftw_cleanup does not deallocate your plans; you should still call fftw_destroy_plan for this purpose.</remarks>
+        </member>
+        <member name="M:IM.Library.Science.Mathematics.Calculus.FourierTransform.FFTW.set_timelimit(System.Double)">
+            <summary> Sets the maximum time that can be used by the planner.
+            </summary>
+            <param name="seconds">Maximum time, in seconds.</param>
+            <remarks>This function instructs FFTW to spend at most seconds seconds (approximately) in the planner. 
+            If seconds == -1.0 (the default value), then planning time is unbounded. 
+            Otherwise, FFTW plans with a progressively wider range of algorithms until the the given time limit is 
+            reached or the given range of algorithms is explored, returning the best available plan. For example, 
+            specifying fftw_flags.Patient first plans in Estimate mode, then in Measure mode, then finally (time 
+            permitting) in Patient. If fftw_flags.Exhaustive is specified instead, the planner will further progress to 
+            Exhaustive mode. 
+            </remarks>
+        </member>
+        <member name="M:IM.Library.Science.Mathematics.Calculus.FourierTransform.FFTW.execute(System.IntPtr)">
+            <summary> Executes an FFTW plan, provided that the input and output arrays still exist
+            </summary>
+            <param name="plan">Pointer to the plan to execute</param>
+            <remarks>execute (and equivalents) is the only function in FFTW guaranteed to be thread-safe.</remarks>
+        </member>
+        <member name="M:IM.Library.Science.Mathematics.Calculus.FourierTransform.FFTW.dft_1d(System.Int32,System.IntPtr,System.IntPtr,IM.Library.Science.Mathematics.Calculus.FourierTransform.Direction,IM.Library.Science.Mathematics.Calculus.FourierTransform.Flags)">
+            <summary> Creates a plan for a 1-dimensional complex-to-complex DFT
+            </summary>
+            <param name="n">The logical size of the transform</param>
+            <param name="direction">Specifies the direction of the transform</param>
+            <param name="input">Pointer to an array of 8-byte complex numbers</param>
+            <param name="output">Pointer to an array of 8-byte complex numbers</param>
+            <param name="flags">Flags that specify the behavior of the planner</param>
+        </member>
+        <member name="M:IM.Library.Science.Mathematics.Calculus.FourierTransform.FFTW.dft_2d(System.Int32,System.Int32,System.IntPtr,System.IntPtr,IM.Library.Science.Mathematics.Calculus.FourierTransform.Direction,IM.Library.Science.Mathematics.Calculus.FourierTransform.Flags)">
+            <summary> Creates a plan for a 2-dimensional complex-to-complex DFT
+            </summary>
+            <param name="nx">The logical size of the transform along the first dimension</param>
+            <param name="ny">The logical size of the transform along the second dimension</param>
+            <param name="direction">Specifies the direction of the transform</param>
+            <param name="input">Pointer to an array of 8-byte complex numbers</param>
+            <param name="output">Pointer to an array of 8-byte complex numbers</param>
+            <param name="flags">Flags that specify the behavior of the planner</param>
+        </member>
+        <member name="M:IM.Library.Science.Mathematics.Calculus.FourierTransform.FFTW.dft_3d(System.Int32,System.Int32,System.Int32,System.IntPtr,System.IntPtr,IM.Library.Science.Mathematics.Calculus.FourierTransform.Direction,IM.Library.Science.Mathematics.Calculus.FourierTransform.Flags)">
+            <summary> Creates a plan for a 3-dimensional complex-to-complex DFT
+            </summary>
+            <param name="nx">The logical size of the transform along the first dimension</param>
+            <param name="ny">The logical size of the transform along the second dimension</param>
+            <param name="nz">The logical size of the transform along the third dimension</param>
+            <param name="direction">Specifies the direction of the transform</param>
+            <param name="input">Pointer to an array of 8-byte complex numbers</param>
+            <param name="output">Pointer to an array of 8-byte complex numbers</param>
+            <param name="flags">Flags that specify the behavior of the planner</param>
+        </member>
+        <member name="M:IM.Library.Science.Mathematics.Calculus.FourierTransform.FFTW.dft(System.Int32,System.Int32[],System.IntPtr,System.IntPtr,IM.Library.Science.Mathematics.Calculus.FourierTransform.Direction,IM.Library.Science.Mathematics.Calculus.FourierTransform.Flags)">
+            <summary> Creates a plan for an n-dimensional complex-to-complex DFT
+            </summary>
+            <param name="rank">Number of dimensions</param>
+            <param name="n">Array containing the logical size along each dimension</param>
+            <param name="direction">Specifies the direction of the transform</param>
+            <param name="input">Pointer to an array of 8-byte complex numbers</param>
+            <param name="output">Pointer to an array of 8-byte complex numbers</param>
+            <param name="flags">Flags that specify the behavior of the planner</param>
+        </member>
+    </members>
+</doc>

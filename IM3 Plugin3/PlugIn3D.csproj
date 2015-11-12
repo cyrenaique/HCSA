@@ -1,0 +1,295 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003" ToolsVersion="4.0">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>8.0.50727</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{1BFC105D-F5F4-44BC-B8C6-AF39FC380F68}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>IM3_Plugin3</RootNamespace>
+    <AssemblyName>IM3 Plugin3</AssemblyName>
+    <StartupObject>
+    </StartupObject>
+    <RunPostBuildEvent>OnOutputUpdated</RunPostBuildEvent>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <FileUpgradeFlags>
+    </FileUpgradeFlags>
+    <UpgradeBackupLocation>
+    </UpgradeBackupLocation>
+    <OldToolsVersion>2.0</OldToolsVersion>
+    <TargetFrameworkProfile />
+    <PublishUrl>publish\</PublishUrl>
+    <Install>true</Install>
+    <InstallFrom>Disk</InstallFrom>
+    <UpdateEnabled>false</UpdateEnabled>
+    <UpdateMode>Foreground</UpdateMode>
+    <UpdateInterval>7</UpdateInterval>
+    <UpdateIntervalUnits>Days</UpdateIntervalUnits>
+    <UpdatePeriodically>false</UpdatePeriodically>
+    <UpdateRequired>false</UpdateRequired>
+    <MapFileExtensions>true</MapFileExtensions>
+    <ApplicationRevision>0</ApplicationRevision>
+    <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
+    <IsWebBootstrapper>false</IsWebBootstrapper>
+    <UseApplicationTrust>false</UseApplicationTrust>
+    <BootstrapperEnabled>true</BootstrapperEnabled>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <CodeAnalysisRuleSet>AllRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <CodeAnalysisRuleSet>AllRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="IM.GlobalTools, Version=1.0.0.0, Culture=neutral, PublicKeyToken=a9cc51179976e144, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>C:\IM\IM\IM.GlobalTools.dll</HintPath>
+    </Reference>
+    <Reference Include="IM.Imaging, Version=1.0.0.0, Culture=neutral, PublicKeyToken=435cb99cba772a97, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>C:\IM\IM\IM.Imaging.dll</HintPath>
+    </Reference>
+    <Reference Include="IM.IO, Version=1.0.0.0, Culture=neutral, PublicKeyToken=23e933efb1864cb6, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>C:\IM\IM\IM.IO.dll</HintPath>
+    </Reference>
+    <Reference Include="IM.Plugin, Version=1.0.0.0, Culture=neutral, PublicKeyToken=8ae538ddb4f94984, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>C:\IM\IM\IM.Plugin.dll</HintPath>
+    </Reference>
+    <Reference Include="LibDescriptor, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\IM\IM\LibDescriptor.dll</HintPath>
+    </Reference>
+    <Reference Include="LibSQliteDatabase">
+      <HintPath>..\..\..\IM\IM\LibSQliteDatabase.dll</HintPath>
+    </Reference>
+    <Reference Include="LibVTKThierry">
+      <HintPath>..\..\..\IM\IM\LibVTKThierry.dll</HintPath>
+    </Reference>
+    <Reference Include="PresentationCore" />
+    <Reference Include="PresentationFramework" />
+    <Reference Include="System" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xaml" />
+    <Reference Include="System.Xml" />
+    <Reference Include="WindowsBase" />
+    <Reference Include="WindowsFormsIntegration" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="ClassInfoForObject3D.cs" />
+    <Compile Include="FormFor3DVolumeRendering.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormFor3DVolumeRendering.Designer.cs">
+      <DependentUpon>FormFor3DVolumeRendering.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FormForDataGridView.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormForDataGridView.Designer.cs">
+      <DependentUpon>FormForDataGridView.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FormForInfoBeforeStarting.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormForInfoBeforeStarting.Designer.cs">
+      <DependentUpon>FormForInfoBeforeStarting.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FormForMaster.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormForMaster.Designer.cs">
+      <DependentUpon>FormForMaster.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FormForLinkToMasterInfo.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormForLinkToMasterInfo.Designer.cs">
+      <DependentUpon>FormForLinkToMasterInfo.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FormForArrow.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormForArrow.Designer.cs">
+      <DependentUpon>FormForArrow.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FormForControl.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormForControl.Designer.cs">
+      <DependentUpon>FormForControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FormForInOut.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormForInOut.Designer.cs">
+      <DependentUpon>FormForInOut.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FormForLUT.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormForLUT.Designer.cs">
+      <DependentUpon>FormForLUT.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FormForPostProcessings.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormForPostProcessings.Designer.cs">
+      <DependentUpon>FormForPostProcessings.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FormForPreProcessings.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormForPreProcessings.Designer.cs">
+      <DependentUpon>FormForPreProcessings.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FormForResolution.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormForResolution.Designer.cs">
+      <DependentUpon>FormForResolution.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FormForSingleValue.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormForSingleValue.Designer.cs">
+      <DependentUpon>FormForSingleValue.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FormForSpotDetection.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormForSpotDetection.Designer.cs">
+      <DependentUpon>FormForSpotDetection.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FormForThumbnails.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormForThumbnails.Designer.cs">
+      <DependentUpon>FormForThumbnails.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FormForVolumeDetection.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormForVolumeDetection.Designer.cs">
+      <DependentUpon>FormForVolumeDetection.cs</DependentUpon>
+    </Compile>
+    <Compile Include="WindowPlugin3D.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="WindowPlugin3D.Designer.cs">
+      <DependentUpon>WindowPlugin3D.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="FormFor3DVolumeRendering.resx">
+      <DependentUpon>FormFor3DVolumeRendering.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormForDataGridView.resx">
+      <DependentUpon>FormForDataGridView.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormForInfoBeforeStarting.resx">
+      <DependentUpon>FormForInfoBeforeStarting.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormForMaster.resx">
+      <DependentUpon>FormForMaster.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormForLinkToMasterInfo.resx">
+      <DependentUpon>FormForLinkToMasterInfo.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormForArrow.resx">
+      <DependentUpon>FormForArrow.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormForControl.resx">
+      <DependentUpon>FormForControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormForInOut.resx">
+      <DependentUpon>FormForInOut.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormForLUT.resx">
+      <DependentUpon>FormForLUT.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormForPostProcessings.resx">
+      <DependentUpon>FormForPostProcessings.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormForPreProcessings.resx">
+      <DependentUpon>FormForPreProcessings.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormForResolution.resx">
+      <DependentUpon>FormForResolution.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormForSingleValue.resx">
+      <DependentUpon>FormForSingleValue.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormForSpotDetection.resx">
+      <DependentUpon>FormForSpotDetection.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormForThumbnails.resx">
+      <DependentUpon>FormForThumbnails.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormForVolumeDetection.resx">
+      <DependentUpon>FormForVolumeDetection.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="WindowPlugin3D.resx">
+      <SubType>Designer</SubType>
+      <DependentUpon>WindowPlugin3D.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Resources.resx</DependentUpon>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <BootstrapperPackage Include="Microsoft.Net.Client.3.5">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1 Client Profile</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.3.5.SP1">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1</ProductName>
+      <Install>true</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Windows.Installer.3.1">
+      <Visible>False</Visible>
+      <ProductName>Windows Installer 3.1</ProductName>
+      <Install>true</Install>
+    </BootstrapperPackage>
+  </ItemGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <PropertyGroup>
+    <PostBuildEvent>copy "$(TargetPath)"  "C:\IM\IM\Plugins"
+</PostBuildEvent>
+  </PropertyGroup>
+</Project>

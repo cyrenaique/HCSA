@@ -1,0 +1,2982 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>IM.IO</name>
+    </assembly>
+    <members>
+        <member name="T:IM.IO.UserConfig">
+            <summary>
+            Get UserConfig with login user
+            Update all library, plugins for user and admin.
+            Author : Kyungho 1/Dec/08
+            </summary>
+        </member>
+        <member name="M:IM.IO.UserConfig.#ctor(IM.IO.IMData.IMUser)">
+            <summary>
+            Initializes a new instance of the UserConfig class with loginUser
+            </summary>
+            <param name="user">The user.</param>
+        </member>
+        <member name="M:IM.IO.UserConfig.GetUserConfig">
+            <summary>
+            Get userConfig properties from IMDB WEB server
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:IM.IO.UserConfig.UpdatePlugins">
+            <summary>
+            Update plugins procedure
+            Compare local md5 of plugins and server m5d of plugins
+            </summary>
+        </member>
+        <member name="M:IM.IO.UserConfig.IsDeveloper">
+            <summary>
+            check is Developer or not
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:IM.IO.UserConfig.DownloadFile(System.String,System.String)">
+            <summary>
+            Downloads the file.
+            </summary>
+            <param name="uri">The URI.</param>
+            <param name="filename">The filename.</param>
+        </member>
+        <member name="M:IM.IO.UserConfig.ConnectIMServer(System.String,System.Object,System.String)">
+            <summary>
+            Connect IM Server and get strings.
+            Author: kyungho 20/Jan/09
+            </summary>
+            <param name="cmd">http request cmd</param>
+            <param name="key">key</param>
+            <param name="value">value</param>
+            <returns></returns>
+        </member>
+        <member name="M:IM.IO.UserConfig.ConnectIMServer(System.String,System.Object)">
+            <summary>
+            Connect IM Server and get Strings.
+            <para>Author: kyungho 20/Jan/09</para>
+            </summary>
+            <param name="cmd"></param>
+            <param name="key"></param>
+            <returns></returns>
+        </member>
+        <member name="M:IM.IO.UserConfig.GenerateURL(System.String,System.Object,System.String)">
+            <summary>
+            Generates the URL to connect IM WebServer 
+            </summary>
+            <param name="cmd">The CMD.</param>
+            <param name="key">The id.</param>
+            <param name="value">The passwd.</param>
+            <returns></returns>
+        </member>
+        <member name="M:IM.IO.UserConfig.XMLtoDataTable(System.String)">
+            <summary>
+            Simple XML file will be convert DataTable.
+            </summary>
+            <param name="fName">Name of the file name.</param>
+            <returns></returns>
+        </member>
+        <member name="T:IM.IO.FileWriter">
+            <summary>
+            FileWriter offers a set of static methods to save 
+            a Sequence or a WellPlate to image files.
+            <p>Author: A. Genovesio</p>
+            </summary>
+        </member>
+        <member name="M:IM.IO.FileWriter.WriteSequence(IM.Imaging.Sequence,System.String,IM.IO.ImageFormat,System.Int32,System.Int32,System.Int32)">
+            <summary>
+            Save a sequence as a file or as a directory of files
+            </summary>
+            <param name="sequence">The sequence to be save</param>
+            <param name="path">The (absolute) path (in case of a directory) or filename</param>
+            <param name="type">The format chosen to save the sequence</param>
+            <param name="bitsPerBand">The number of bits per band (8,16), -1 for default bpp of the selected format</param>
+        </member>
+        <member name="M:IM.IO.FileWriter.WriteSequenceView(IM.Imaging.Sequence,System.String,IM.IO.ImageFormat,System.Int32,System.Int32,System.Byte[][],System.Byte[][][],System.Boolean)">
+            <summary>
+            Save a sequence as a file or as a directory of files as it is view on the display
+            </summary>
+            <param name="sequence">The sequence to be save</param>
+            <param name="path">The (absolute) path (in case of a directory) or filename</param>
+            <param name="type">The format chosen to save the sequence</param>
+        </member>
+        <member name="M:IM.IO.FileWriter.WriteReportImages(IM.Imaging.Sequence,System.String,System.String,System.Int32,System.Int32,System.Byte[][],System.Byte[][][],System.Boolean,System.Int32)">
+            <summary>
+             [3/19/2007]
+             HK Moon made this for report maker plugin
+             -----------------------------------------
+             Create a directory and store the sequence as a list of planar image inside it. If zLevel is superior or equal to zero
+             it save the zLevel slice at the tLevel time as a single image. 
+            </summary>
+            <param name="sequence">sequence to be saved</param>
+            <param name="path">the (absolute) file name or path</param>
+            <param name="fname">the (absolute) file name or path</param>
+            <param name="type">the format chosen to save the sequence</param>
+            <param name="zLevel">the level on the z axis of the slice to be saved</param>
+            <param name="tLevel">the level on the time axis of the slice to be saved</param>
+            <param name="lut">Lookup color table</param>
+            <param name="rgba">RGB Array values for showing image</param>
+            <param name="signed">Signed value or not</param>
+            <param name="scale">Scale value for thumbnails value</param>
+        </member>
+        <member name="M:IM.IO.FileWriter.WriteReportImages(IM.Imaging.Sequence,IM.Imaging.Painter,System.String,System.String,System.Int32,System.Int32,System.Byte[][],System.Byte[][][],System.Boolean,System.Int32)">
+            <summary>
+             Create a directory and store the sequence as a list of planar image inside it. If zLevel is superior or equal to zero
+             it save the zLevel slice at the tLevel time as a single image. 
+            </summary>
+            <param name="sequence">sequence to be saved</param>
+            <param name="painter">painter to be painted</param>
+            <param name="path">the (absolute) file name or path</param>
+            <param name="fname">the (absolute) file name or path</param>
+            <param name="type">the format chosen to save the sequence</param>
+            <param name="zLevel">the level on the z axis of the slice to be saved</param>
+            <param name="tLevel">the level on the time axis of the slice to be saved</param>
+            <param name="lut">Lookup color table</param>
+            <param name="rgba">RGB Array values for showing image</param>
+            <param name="signed">Signed value or not</param>
+            <param name="scale">Scale value for thumbnails value</param>
+        </member>
+        <member name="T:IM.IO.FileReader">
+            <summary>
+            FileReader offers a set of methods to read 
+            a Sequence or simply an image from files.
+            <p>Author: A. Genovesio</p>
+            </summary>
+        </member>
+        <member name="M:IM.IO.FileReader.ReadSequenceFile(System.String,IM.Imaging.Memory)">
+            <summary>
+            Read a sequence from a single file
+            Throw a FileLoadException if the file cannot be read.
+            </summary>
+            <param name="file">The file to be read</param>
+            <param name="memory">The memory type</param>
+            <returns></returns>
+        </member>
+        <member name="M:IM.IO.FileReader.ReadLeicaSequenceFile(IM.IO.LeicaExperiment,IM.Imaging.Memory)">
+            <summary>
+            Specific Reader for Leica Images
+            Hee Chang Kim (Nov/2007)
+            Will Include .mdb file of LSM in the future
+            </summary>
+            <param name="experiment"></param>
+            <param name="memory"></param>
+            <returns></returns>
+        </member>
+        <member name="M:IM.IO.FileReader.ReadSequenceDirectory(System.String,IM.Imaging.Memory)">
+            <summary>
+            Read a sequence from a set of files in a directory
+            Throw a FileLoadException if an image cannot be read.
+            </summary>
+            <param name="path">The path to the image file</param>
+            <param name="memory">Where the sequence will remain</param>
+            <returns>A Sequence</returns>
+        </member>
+        <member name="M:IM.IO.FileReader.Read3DVolumeSequenceDirectory(System.String,IM.Imaging.Memory)">
+            <summary>
+            Read a sequence from a set of files in a directory
+            Throw a FileLoadException if an image cannot be read.
+            </summary>
+            <param name="path">The path to the image file</param>
+            <param name="memory">Where the sequence will remain</param>
+            <returns>A Sequence</returns>
+        </member>
+        <member name="M:IM.IO.FileReader.ReadImage2D(System.String)">
+            <summary>
+            Read an image from the given file path
+            DO NOT throw any Exception for speed purpose => Return null if the image cannot be read.
+            </summary>
+            <param name="fileName">The file path of the image</param>
+            <returns>An image</returns>
+        </member>
+        <member name="M:IM.IO.FileReader.ReadImage3D(System.String[])">
+            <summary>
+            Read an image from the given stack of file paths. 
+            DO NOT throw any Exception for speed purpose => Return null if the image cannot be read.
+            </summary>
+            <param name="sliceFileNames">An array of file paths</param>
+            <returns>An image</returns>
+        </member>
+        <member name="M:IM.IO.FileReader.ReadMultiPage(System.String,System.Int32)">
+            <summary>
+            Read Multipage tif Files
+            Not so clean yet needs fixing soon
+            </summary>
+            <param name="fileName">File Path</param>
+            <param name="bands">Number Of Bands</param>
+            <returns>Image3D</returns>
+        </member>
+        <member name="M:IM.IO.FileReader.readPalettizedSlice(FreeImageAPI.FIBITMAP,IM.Imaging.Image3D,System.Int32)">
+            <summary>
+            Converts Indexed 8 Bit Image to "RGB Reserved" byte then read into Image3D
+            </summary>
+            <param name="handle">Image Handle</param>
+            <param name="image">Image3D to copy Into</param>
+            <param name="offset">Offset</param>
+            <returns>Returned Offset</returns>
+        </member>
+        <member name="M:IM.IO.FileReader.CreateBuffer(FreeImageAPI.FREE_IMAGE_TYPE,System.Int32,System.Int32,System.Int32)">
+            <summary>
+            From FileWriter - just allocate next time.
+            </summary>
+            <param name="fit"></param>
+            <param name="width"></param>
+            <param name="height"></param>
+            <param name="bpp"></param>
+            <returns></returns>
+        </member>
+        <member name="M:IM.IO.FileReader.GetImage3DFromBitmap(System.Drawing.Bitmap)">
+            <summary>
+            Gets the image3D from bitmap.
+            </summary>
+            <param name="bm">The bm.</param>
+            <returns></returns>
+        </member>
+        <member name="M:IM.IO.FileReader.readRGBByteSliceFromBitmap(System.Drawing.Bitmap,System.Single[][],System.Int32)">
+            <summary>
+            Reads the RGB byte slice from bitmap.
+            </summary>
+            <param name="bm">The bm.</param>
+            <param name="data">The data.</param>
+            <param name="offset">The offset.</param>
+            <returns></returns>
+        </member>
+        <member name="T:IM.IO.IMData.ErrorType">
+            <summary>
+            IMData Database Exception Definitions
+            Author: Heechang
+            Modifier: Hongkee
+            </summary>	
+        </member>
+        <member name="T:IM.IO.IMData.IMDataException">
+            <summary>
+            Handles Exceptions That Occur in DataDB Operations
+            </summary>
+        </member>
+        <member name="T:IM.IO.IMData.ErrorMessage">
+            <summary>
+            Stores Error Messages
+            </summary>
+        </member>
+        <member name="T:IM.IO.DirectorySequenceAccessor">
+            <summary>
+            An implementation of SequenceAccessor for an images directory
+            <p>Author: A. Genovesio</p>
+            </summary>
+        </member>
+        <member name="M:IM.IO.DirectorySequenceAccessor.#ctor(System.String[],System.Int32)">
+            <summary>
+            Constructor
+            </summary>
+            <param name="directoryFileNames">The directory from which the images will be access</param>
+            <param name="depth">The number of images per stack</param>
+        </member>
+        <member name="M:IM.IO.DirectorySequenceAccessor.Dispose(System.Boolean)">
+            <summary>
+            Free ressources
+            </summary>
+            <param name="disposing"></param>
+        </member>
+        <member name="M:IM.IO.DirectorySequenceAccessor.Read(System.Int32)">
+            <summary>
+            Get an image directly from files
+            </summary>
+            <param name="t">The time point</param>
+            <returns>An Image</returns>        
+        </member>
+        <member name="T:IM.IO.LSM">
+            <summary>
+            LSM Class Reads and Writes LSM Files
+            </summary>
+        </member>
+        <member name="M:IM.IO.LSM.ReadSequence(System.String,IM.Imaging.Memory)">
+            <summary>
+            Read LSM file into IM Sequence Structure
+            </summary>
+            <param name="fileName">Name of File</param>
+            <param name="memory">Hard Drive or Memory</param>
+            <returns>Constructed Sequence</returns>
+        </member>
+        <member name="M:IM.IO.LSM.ReadSlice(System.IO.Stream,IM.IO.ImageDirectory,System.Int32,System.Single[][])">
+            <summary>
+            Read LSM slice in byte order
+            </summary>
+            <param name="stream">Stream from File</param>
+            <param name="id">ImageDirectory of the First Slice</param>
+            <param name="offset">Offset of Image3D</param>
+            <param name="data">float[][] from Image returned</param>
+            <returns></returns>
+        </member>
+        <member name="M:IM.IO.LSM.ReadImageDirectoy(System.IO.Stream,System.Int64,System.Boolean)">
+            <summary>
+            Read LSM Tags for each Directory
+            </summary>
+            <param name="stream">Stream from File</param>
+            <param name="startPosition">Offset Position</param>
+            <param name="thumb">Thumb</param>
+            <returns>ImageDirectory</returns>
+        </member>
+        <member name="M:IM.IO.LSM.GetCZ_LSMINFO(System.IO.BinaryReader,System.Int64,System.Boolean)">
+            <summary>
+            Get LSM Info Structure
+            </summary>
+            <param name="br"></param>
+            <param name="position"></param>
+            <param name="thumb"></param>
+            <returns></returns>
+        </member>
+        <member name="T:IM.IO.CZ_LSMInfo">
+            <summary>
+            Private Tag in LSM File
+            </summary>
+        </member>
+        <member name="T:IM.IO.LsmFileInfo">
+            <summary>
+             List of LSM File Info
+            </summary>
+        </member>
+        <member name="T:IM.IO.ImageDirectory">
+            <summary>
+            ImageDirectory of Each Slice
+            </summary>
+        </member>
+        <member name="T:IM.IO.ScanInfo">
+            <summary>
+            Scan Infomation
+            </summary>
+        </member>
+        <member name="T:IM.IO.ChannelNamesAndColors">
+            <summary>
+            Channel Names and Colors: Not usually written in LSM files
+            </summary>
+        </member>
+        <member name="T:IM.IO.LSMSequenceAccessor">
+            <summary>
+            LSM File Descriptor
+            </summary>
+        </member>
+        <member name="M:IM.IO.LSMSequenceAccessor.Read(System.Int32)">
+            <summary>
+            Reads Image3D in LSM file
+            </summary>
+            <param name="t"></param>
+            <returns></returns>
+        </member>
+        <member name="T:IM.IO.LSMDBReader">
+            <summary>
+            LSMDBReader Class
+            </summary>
+        </member>
+        <member name="M:IM.IO.LSMDBReader.#ctor(System.String)">
+            <summary>
+            LSMDBReader
+            </summary>
+            <param name="dbFileName"></param>
+        </member>
+        <member name="P:IM.IO.LSMDBReader.ExperimentList">
+            <summary>
+            Accessor for a List of LSM Files
+            </summary>
+        </member>
+        <member name="P:IM.IO.LSMDBReader.ThumbList">
+            <summary>
+            Accessor for a List of Bitmap Objects from an mdb File
+            </summary>
+        </member>
+        <member name="T:IM.IO.OperaSystemTreeView">
+            <summary>
+            OperaSystemTreeView control handles Opera database tree structure
+            using IPK storage naming system.
+            </summary>
+        </member>
+        <member name="T:IM.IO.AviSequence">
+            <summary>
+            Read and Write Avi File from, to Current Sequence
+            </summary>
+        </member>
+        <member name="M:IM.IO.AviSequence.ReadSequence(System.String,IM.Imaging.Memory)">
+            <summary>
+            Reads an Avi File into a Time Sequence such that depth of each Image3D is always 0
+            </summary>
+            <param name="filePath">File Name</param>
+            <param name="memoryType">Memory Type</param>
+            <returns></returns>
+        </member>
+        <member name="M:IM.IO.AviSequence.WriteSequence(IM.Imaging.Sequence,System.String,IM.Imaging.Axis,System.Int32,System.Byte[][],System.Byte[][][],System.Boolean)">
+            <summary>
+            Writes Currernt Time Sequence Into an Avi File
+            Only Writes Time Sequences with zLevel = 0
+            </summary>
+            <param name="s">Current Sequence</param>
+            <param name="filePath">Destination File Name</param>
+            <param name="axis">Axis to Project Onto</param>
+            <param name="level">Level - Always 0</param>
+            <param name="lutWork">Current LutWork from Current Sequence Display Window</param>
+            <param name="lutView">Current LutView from Current Sequence Display Window</param>
+            <param name="signed">From Current Sequence Display Window</param>
+        </member>
+        <member name="T:IM.IO.AviSequenceAccessor">
+            <summary>
+            SequenceDiscriptor in case Read from Hard Drive
+            </summary>
+        </member>
+        <member name="M:IM.IO.AviSequenceAccessor.Read(System.Int32)">
+            <summary>
+            Reads Avi Frames as Image3D
+            </summary>
+            <param name="page"></param>
+            <returns></returns>
+        </member>
+        <member name="T:IM.IO.Avi.AVICOMPRESSOPTIONS_CLASS">
+            <summary>AviSaveV needs a pointer to a pointer to an AVICOMPRESSOPTIONS structure</summary>
+        </member>
+        <member name="M:IM.IO.AviStream.Close">
+            <summary>Close the stream</summary>
+        </member>
+        <member name="M:IM.IO.AviStream.ExportStream(System.String)">
+            <summary>Export the stream into a new file</summary>
+            <param name="fileName"></param>
+        </member>
+        <member name="P:IM.IO.AviStream.FilePointer">
+            <summary>Pointer to the unmanaged AVI file</summary>
+        </member>
+        <member name="P:IM.IO.AviStream.StreamPointer">
+            <summary>Pointer to the unmanaged AVI Stream</summary>
+        </member>
+        <member name="P:IM.IO.AviStream.WriteCompressed">
+            <summary>Flag: The stream is compressed/uncompressed</summary>
+        </member>
+        <member name="F:IM.IO.VideoStream.getFrameObject">
+            <summary>handle for AVIStreamGetFrame</summary>
+        </member>
+        <member name="F:IM.IO.VideoStream.frameSize">
+            <summary>size of an imge in bytes, stride*height</summary>
+        </member>
+        <member name="F:IM.IO.VideoStream.countFrames">
+            <summary>count of frames in the stream</summary>
+        </member>
+        <member name="F:IM.IO.VideoStream.firstFrame">
+            <summary>initial frame index</summary>
+            <remarks>Added by M. Covington</remarks>
+        </member>
+        <member name="M:IM.IO.VideoStream.#ctor(System.Int32,System.Boolean,System.Double,System.Int32,System.Int32,System.Int32,System.Drawing.Imaging.PixelFormat)">
+            <summary>Initialize an empty VideoStream</summary>
+            <param name="aviFile">The file that contains the stream</param>
+            <param name="writeCompressed">true: Create a compressed stream before adding frames</param>
+            <param name="frameRate">Frames per second</param>
+            <param name="frameSize">Size of one frame in bytes</param>
+            <param name="width">Width of each image</param>
+            <param name="height">Height of each image</param>
+            <param name="format">PixelFormat of the images</param>
+        </member>
+        <member name="M:IM.IO.VideoStream.#ctor(System.Int32,System.Boolean,System.Double,System.Drawing.Bitmap)">
+            <summary>Initialize a new VideoStream and add the first frame</summary>
+            <param name="aviFile">The file that contains the stream</param>
+            <param name="writeCompressed">true: create a compressed stream before adding frames</param>
+            <param name="frameRate">Frames per second</param>
+            <param name="firstFrame">Image to write into the stream as the first frame</param>
+        </member>
+        <member name="M:IM.IO.VideoStream.#ctor(System.Int32,IM.IO.Avi.AVICOMPRESSOPTIONS,System.Double,System.Drawing.Bitmap)">
+            <summary>Initialize a new VideoStream and add the first frame</summary>
+            <param name="aviFile">The file that contains the stream</param>
+            <param name="writeCompressed">true: create a compressed stream before adding frames</param>
+            <param name="frameRate">Frames per second</param>
+            <param name="firstFrame">Image to write into the stream as the first frame</param>
+        </member>
+        <member name="M:IM.IO.VideoStream.#ctor(System.Int32,System.IntPtr)">
+            <summary>Initialize a VideoStream for an existing stream</summary>
+            <param name="aviFile">The file that contains the stream</param>
+            <param name="aviStream">An IAVISTREAM from [aviFile]</param>
+        </member>
+        <member name="M:IM.IO.VideoStream.#ctor(System.Int32,System.Double,System.Int32,System.Int32,System.Int16,System.Int32,IM.IO.Avi.AVICOMPRESSOPTIONS,System.Boolean)">
+            <summary>Copy all properties from one VideoStream to another one</summary>
+            <remarks>Used by EditableVideoStream</remarks>
+            <param name="frameSize"></param><param name="frameRate"></param>
+            <param name="width"></param><param name="height"></param>
+            <param name="countBitsPerPixel"></param>
+            <param name="countFrames"></param><param name="compressOptions"></param>
+        </member>
+        <member name="M:IM.IO.VideoStream.Initialize(System.Int32,System.Boolean,System.Double,System.Drawing.Bitmap)">
+            <summary>Initialize a new VideoStream</summary>
+            <remarks>Used only by constructors</remarks>
+            <param name="aviFile">The file that contains the stream</param>
+            <param name="writeCompressed">true: create a compressed stream before adding frames</param>
+            <param name="frameRate">Frames per second</param>
+            <param name="firstFrame">Image to write into the stream as the first frame</param>
+        </member>
+        <member name="M:IM.IO.VideoStream.ConvertPixelFormatToBitCount(System.Drawing.Imaging.PixelFormat)">
+            <summary>Get the count of bits per pixel from a PixelFormat value</summary>
+            <param name="format">One of the PixelFormat members beginning with "Format..." - all others are not supported</param>
+            <returns>bit count</returns>
+        </member>
+        <member name="M:IM.IO.VideoStream.ConvertBitCountToPixelFormat(System.Int32)">
+            <summary>Returns a PixelFormat value for a specific bit count</summary>
+            <param name="bitCount">count of bits per pixel</param>
+            <returns>A PixelFormat value for [bitCount]</returns>
+        </member>
+        <member name="M:IM.IO.VideoStream.CreateStreamWithoutFormat">
+            <summary>Create a new stream</summary>
+        </member>
+        <member name="M:IM.IO.VideoStream.CreateStream">
+            <summary>Create a new stream</summary>
+        </member>
+        <member name="M:IM.IO.VideoStream.CreateStream(IM.IO.Avi.AVICOMPRESSOPTIONS)">
+            <summary>Create a new stream</summary>
+        </member>
+        <member name="M:IM.IO.VideoStream.CreateCompressedStream">
+            <summary>Create a compressed stream from an uncompressed stream</summary>
+        </member>
+        <member name="M:IM.IO.VideoStream.CreateCompressedStream(IM.IO.Avi.AVICOMPRESSOPTIONS)">
+            <summary>Create a compressed stream from an uncompressed stream</summary>
+        </member>
+        <member name="M:IM.IO.VideoStream.AddFrame(System.Drawing.Bitmap)">
+            <summary>Add one frame to a new stream</summary>
+            <param name="bmp"></param>
+            <remarks>
+            This works only with uncompressed streams,
+            and compressed streams that have not been saved yet.
+            Use DecompressToNewFile to edit saved compressed streams.
+            </remarks>
+        </member>
+        <member name="M:IM.IO.VideoStream.SetFormat(System.IntPtr)">
+            <summary>Apply a format to a new stream</summary>
+            <param name="aviStream">The IAVISTREAM</param>
+            <remarks>
+            The format must be set before the first frame can be written,
+            and it cannot be changed later.
+            </remarks>
+        </member>
+        <member name="M:IM.IO.VideoStream.GetFrameOpen">
+            <summary>Prepare for decompressing frames</summary>
+            <remarks>
+            This method has to be called before GetBitmap and ExportBitmap.
+            Release ressources with GetFrameClose.
+            </remarks>
+        </member>
+        <member name="M:IM.IO.VideoStream.GetBitmap(System.Int32)">
+            <summary>Export a frame into a bitmap</summary>
+            <param name="position">Position of the frame</param>
+        </member>
+        <member name="M:IM.IO.VideoStream.GetFrameClose">
+            <summary>Free ressources that have been used by GetFrameOpen</summary>
+        </member>
+        <member name="M:IM.IO.VideoStream.DecompressToNewFile(System.String,System.Boolean,IM.IO.VideoStream@)">
+            <summary>Copy all frames into a new file</summary>
+            <param name="fileName">Name of the new file</param>
+            <param name="recompress">true: Compress the new stream</param>
+            <returns>AviManager for the new file</returns>
+            <remarks>Use this method if you want to append frames to an existing, compressed stream</remarks>
+        </member>
+        <member name="M:IM.IO.VideoStream.ExportStream(System.String)">
+            <summary>Copy the stream into a new file</summary>
+            <param name="fileName">Name of the new file</param>
+        </member>
+        <member name="M:IM.IO.AviManager.#ctor(System.String,System.Boolean)">
+            <summary>Open or create an AVI file</summary>
+            <param name="fileName">Name of the AVI file</param>
+            <param name="open">true: Open the file; false: Create or overwrite the file</param>
+        </member>
+        <member name="M:IM.IO.AviManager.GetVideoStream">
+            <summary>Get the first video stream - usually there is only one video stream</summary>
+            <returns>VideoStream object for the stream</returns>
+        </member>
+        <member name="M:IM.IO.AviManager.GetOpenStream(System.Int32)">
+            <summary>Get a stream from the internal list of opened streams</summary>
+            <param name="index">Index of the stream. The streams are not sorted, the first stream is the one that was opened first.</param>
+            <returns>VideoStream at position [index]</returns>
+            <remarks>
+            Use this method after DecompressToNewFile,
+            to get the copied stream from the new AVI file
+            </remarks>
+            <example>
+            //streams cannot be edited - copy to a new file
+            AviManager newManager = aviStream.DecompressToNewFile(@"..\..\testdata\temp.avi", true);
+            //there is only one stream in the new file - get it and add a frame
+            VideoStream aviStream = newManager.GetOpenStream(0);
+            aviStream.AddFrame(bitmap);
+            </example>
+        </member>
+        <member name="M:IM.IO.AviManager.AddVideoStream(System.Boolean,System.Double,System.Int32,System.Int32,System.Int32,System.Drawing.Imaging.PixelFormat)">
+            <summary>Add an empty video stream to the file</summary>
+            <param name="isCompressed">true: Create a compressed stream before adding frames</param>
+            <param name="frameRate">Frames per second</param>
+            <param name="frameSize">Size of one frame in bytes</param>
+            <param name="width">Width of each image</param>
+            <param name="height">Height of each image</param>
+            <param name="format">PixelFormat of the images</param>
+            <returns>VideoStream object for the new stream</returns>
+        </member>
+        <member name="M:IM.IO.AviManager.AddVideoStream(IM.IO.Avi.AVICOMPRESSOPTIONS,System.Double,System.Drawing.Bitmap)">
+            <summary>Add an empty video stream to the file</summary>
+            <remarks>Compresses the stream without showing the codecs dialog</remarks>
+            <param name="compressOptions">Compression options</param>
+            <param name="frameRate">Frames per second</param>
+            <param name="firstFrame">Image to write into the stream as the first frame</param>
+            <returns>VideoStream object for the new stream</returns>
+        </member>
+        <member name="M:IM.IO.AviManager.AddVideoStream(System.Boolean,System.Double,System.Drawing.Bitmap)">
+            <summary>Add an empty video stream to the file</summary>
+            <param name="isCompressed">true: Create a compressed stream before adding frames</param>
+            <param name="frameRate">Frames per second</param>
+            <param name="firstFrame">Image to write into the stream as the first frame</param>
+            <returns>VideoStream object for the new stream</returns>
+        </member>
+        <member name="M:IM.IO.AviManager.CopyTo(System.String,System.Single,System.Single)">
+            <summary>Copy a piece of video and wave sound int a new file</summary>
+            <param name="newFileName">File name</param>
+            <param name="startAtSecond">Start copying at second x</param>
+            <param name="stopAtSecond">Stop copying at second y</param>
+            <returns>AviManager for the new video</returns>
+        </member>
+        <member name="M:IM.IO.AviManager.Close">
+            <summary>Release all ressources</summary>
+        </member>
+        <member name="T:IM.IO.LocalDBWriter">
+            <summary>
+            Thread Class that Handles Writing Exported tif files
+            </summary>
+        </member>
+        <member name="M:IM.IO.LocalDBWriter.#ctor">
+            <summary>
+            Initializes a new instance of the <see cref="T:IM.IO.LocalDBWriter"/> class.
+            </summary>
+        </member>
+        <member name="M:IM.IO.LocalDBWriter.#ctor(IM.Imaging.ExperimentGrid,System.String,System.Int32,System.Int32,System.Int32,System.Threading.ManualResetEventSlim)">
+            <summary>
+            Saving Current ExperimentGrid Thread Constructor
+            </summary>
+            <param name="sEG">Current ExperimentGrid</param>
+            <param name="sPath">Directory and XML File Name</param>
+            <param name="sBpp">Bits Per Pixel</param>
+            <param name="sTlevel">Time Level</param>
+            <param name="sZlevel">Z Level</param>
+        </member>
+        <member name="M:IM.IO.LocalDBWriter.Dispose">
+            <summary>
+            Dispose
+            </summary>
+        </member>
+        <member name="M:IM.IO.LocalDBWriter.Dispose(System.Boolean)">
+            <summary>
+            Dispose Called
+            </summary>
+            <param name="disposable"></param>
+        </member>
+        <member name="M:IM.IO.LocalDBWriter.WriteMultiPageTiff(IM.Imaging.Sequence,System.String,System.Int32)">
+            <summary>
+            Write a Sequence into Multi-page tif File 
+            Time Sequence is not taken care of yet. 
+            </summary>
+            <param name="s">Sequence (Current)</param>
+            <param name="sPath">Output File Name</param>
+            <param name="bpp">Bits Per Pixel(8 or 16)</param>
+        </member>
+        <member name="T:IM.IO.OperaDBReader">
+            <summary>
+            A class to read an experiment from an Opera database
+            <p>Author: A. Genovesio</p>
+            </summary>
+        </member>
+        <member name="M:IM.IO.OperaDBReader.PreLoad">
+            <summary>
+            PreLoad the OperaDB
+            </summary>
+        </member>
+        <member name="T:IM.IO.OperaDBReader.MeaParsingResult">
+            <summary>
+            Parsing Result For a mea File
+            </summary>
+        </member>
+        <member name="F:IM.IO.OperaDBReader.MeaParsingResult.Ok">
+            <summary>
+            All is OK
+            </summary>
+        </member>
+        <member name="F:IM.IO.OperaDBReader.MeaParsingResult.Compressed">
+            <summary>
+            Compressed Image
+            </summary>
+        </member>
+        <member name="F:IM.IO.OperaDBReader.MeaParsingResult.BadMeaState">
+            <summary>
+            mea file corrupted
+            </summary>
+        </member>
+        <member name="F:IM.IO.OperaDBReader.MeaParsingResult.BadHost">
+            <summary>
+            bad host name in the mea file
+            </summary>
+        </member>
+        <member name="F:IM.IO.OperaDBReader.MeaParsingResult.MoreThanOneZone">
+            <summary>
+            to be removed
+            </summary>
+        </member>
+        <member name="T:IM.IO.OperaDB">
+            <summary>
+            This class is a serializable representation of an Opera DB
+            </summary>
+        </member>
+        <member name="M:IM.IO.PlatformDB.Update(System.Type,IM.IO.PlatformDB)">
+            <summary>
+            Updates the specified db.
+            </summary>
+            <param name="db">The db.</param>
+            <returns></returns>
+        </member>
+        <member name="M:IM.IO.PlatformDB.Delete(System.Type,System.String)">
+            <summary>
+            Deletes the specified name.
+            </summary>
+            <param name="name">The name.</param>
+            <returns></returns>
+        </member>
+        <member name="M:IM.IO.OperaDB.LoadList">
+            <summary>
+            Loads the OperaDB list from Database.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="T:IM.IO.EMFWriter">
+            <summary>
+            A class to write a Windows Meta File (EMF) on disk
+            </summary>
+        </member>
+        <member name="M:IM.IO.EMFWriter.#ctor">
+            <summary>
+            Constructor
+            </summary>
+        </member>
+        <member name="M:IM.IO.EMFWriter.Write(System.String,System.Int32,System.Int32,IM.Imaging.Painter)">
+            <summary>
+            Write an EMF file on disk with the specified painter painted on it.
+            </summary>
+            <param name="fileName">The (complete path) file name (.emf will be added)</param>
+            <param name="width">The with of the meta file</param>
+            <param name="height">The height of the meta file</param>
+            <param name="painter">the painter to be painted on</param>
+        </member>
+        <member name="T:IM.IO.GridCalendar">
+            <summary>
+            GridCalendar DB table handling class
+            </summary>
+        </member>
+        <member name="M:IM.IO.GridCalendar.Create(System.UInt32,System.DateTime,System.DateTime)">
+            <summary>
+            Creates the specified GridCalendar entry.
+            </summary>
+            <param name="usID">The us ID.</param>
+            <param name="start">The start date.</param>
+            <param name="end">The end date.</param>
+            <returns></returns>
+        </member>
+        <member name="M:IM.IO.GridCalendar.DeleteEvent(System.UInt32)">
+            <summary>
+            Deletes the GridCalendar entry
+            </summary>
+            <param name="ID">The entry ID.</param>
+            <returns></returns>
+        </member>
+        <member name="M:IM.IO.GridCalendar.DeleteEvents(System.UInt32)">
+            <summary>
+            Deletes the GridCalendar entry
+            </summary>
+            <param name="usID">The us ID.</param>
+            <returns></returns>
+        </member>
+        <member name="M:IM.IO.GridCalendar.GetDataTable(System.UInt32)">
+            <summary>
+            Gets the data table of GridCalendar.
+            </summary>
+            <param name="usID">The us ID.</param>
+            <returns></returns>
+        </member>
+        <member name="M:IM.IO.GridCalendar.GetDataTable">
+            <summary>
+            Gets the data table of GridCalendar.
+            </summary>
+            <param name="usID">The us ID.</param>
+            <returns></returns>
+        </member>
+        <member name="M:IM.IO.GridCalendar.GetDataTable(System.DateTime)">
+            <summary>
+            Gets the data table of GridCalendar.
+            </summary>
+            <param name="usID">The us ID.</param>
+            <returns></returns>
+        </member>
+        <member name="M:IM.IO.GridCalendar.GetUserDataTable">
+            <summary>
+            Gets the data table of GridCalendar.
+            </summary>
+            <param name="usID">The us ID.</param>
+            <returns></returns>
+        </member>
+        <member name="T:IM.IO.UltraDBReader">
+            <summary>
+            A class to read an experiment from an Ultra database
+            <p>Author: A. Genovesio</p>
+            </summary>
+        </member>
+        <member name="M:IM.IO.UltraDBReader.#ctor(IM.IO.UltraDB,System.Int32)">
+            <summary>
+            constructor
+            </summary>
+        </member>
+        <member name="M:IM.IO.UltraDBReader.GetScreen(IM.IO.UltraDB,System.Int32[])">
+            <summary>
+            Built a Screen object from a list of plateID
+            </summary>
+            <param name="db"></param>
+            <param name="plateIDs"></param>
+            <returns></returns>
+        </member>
+        <member name="M:IM.IO.UltraDBReader.GetScreen(IM.IO.UltraDB,System.Int32)">
+            <summary>
+            Built a Screen object from a plateID
+            </summary>
+            <param name="db"></param>
+            <param name="plateID"></param>
+            <returns></returns>
+        </member>
+        <member name="M:IM.IO.UltraDBReader.GetExperimentList(IM.IO.UltraDB,IM.IO.PlatformDBReader.ExperimentType)">
+            <summary>
+            Get experiment list using DB, experiment type
+            Hashtable is [id,plate name]
+            </summary>
+            <param name="db"></param>
+            <param name="type"></param>
+            <returns></returns>
+        </member>
+        <member name="M:IM.IO.UltraDBReader.GetExperimentList(IM.IO.UltraDB,IM.IO.PlatformDBReader.ExperimentType,System.Int32)">
+            <summary>
+            KH Lee 2008/07/14
+            Get Experiment List using DB, experiment type, year
+            Hashtable is [id, plateName] save to plate list        
+            </summary>
+            <param name="db">selected DB</param>
+            <param name="type">selected Experiment Type [Wellplate/Microarray] </param>
+            <param name="type">selected Year</param>
+            <returns></returns>
+        </member>
+        <member name="M:IM.IO.UltraDBReader.GetExperimentList(IM.IO.UltraDB,IM.IO.PlatformDBReader.ExperimentType,System.Int32,System.String)">
+            <summary>
+            Get experiment list using DB, experiment type
+            Hashtable is [id,plate name]
+            </summary>
+            <param name="db"></param>
+            <param name="type"></param>
+            <param name="filter">Filter string</param>
+            <returns></returns>
+        </member>
+        <member name="M:IM.IO.UltraDBReader.PreLoad">
+            <summary>
+            PreLoad the UltraDB
+            </summary>
+        </member>
+        <member name="M:IM.IO.UltraDBReader.PlateSettings(System.Byte[])">
+            <summary>
+            PlateProperties, WellShape = WellForm, WellSpacingX = Column Distance, WellSpacingY = Row Distance, Upper_Z_Mark = MaxPlane, Lower_Z_Mark = MinPlane, Well_Diameter = Well Radius are given in a Hashtable
+            These values are taken from a txt file with extension "plt" in a subfoler 
+            </summary>
+            <param name="data"></param>
+            <returns></returns>
+        </member>
+        <member name="T:IM.IO.UltraDB">
+            <summary>
+            This class is a serializable representation of an Ultra DB
+            </summary>
+        </member>
+        <member name="M:IM.IO.UltraDB.LoadList">
+            <summary>
+            Loads the UltraDB list from Database.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="T:IM.IO.UltraDBExperiment">
+            <summary>
+            Ultra DB Experiment
+            Modified KH Lee 2008/07/07
+            </summary>
+        </member>
+        <member name="T:IM.IO.TIFF_Tag">
+            <summary>
+            Enumeration of the TIFF tags
+            </summary>
+        </member>
+        <member name="T:IM.IO.OperetteDBReader">
+            <summary>
+            Class to read Operetta experiment
+            <p>Author: H-K. Moon</p>
+            </summary>
+        </member>
+        <member name="M:IM.IO.OperetteDBReader.#ctor(IM.IO.OperetteDB,System.Int32)">
+            <summary>
+            constructor
+            </summary>
+        </member>
+        <member name="M:IM.IO.OperetteDBReader.GetScreen(IM.IO.OperetteDB,System.Int32[])">
+            <summary>
+            Built a Screen object from a list of plateID
+            </summary>
+            <param name="db"></param>
+            <param name="plateIDs"></param>
+            <returns></returns>
+        </member>
+        <member name="M:IM.IO.OperetteDBReader.GetScreen(IM.IO.OperetteDB,System.Int32)">
+            <summary>
+            Built a Screen object from a plateID
+            </summary>
+            <param name="db"></param>
+            <param name="plateID"></param>
+            <returns></returns>
+        </member>
+        <member name="M:IM.IO.OperetteDBReader.computeResolution(System.String,System.Collections.Hashtable)">
+            <summary>
+            Computes the resolution.
+            Objective Lenses
+            Objective	|Numerical aperture	| Working distance [mm]	| Field of view [μm2]	| Depth of focus [μm]	| Optical resolution xy [μm]
+            2x long WD	| 0.08				| 6.2					| 6754 × 5086			| 145.5					| 3.75
+            10x long WD	| 0.3				| 10					| 1351 × 1017			| 10.3					| 1
+            10x high NA	| 0.4				| 3.1					| 1351 × 1017			| 5.8					| 0.75
+            20x long WD	| 0.45				| 6.6-7.8				| 675 × 509				| 4.6					| 0.67
+            20x high NA	| 0.75				| 0.6					| 675 × 509				| 1.7					| 0.4
+            40x long WD	| 0.6				| 2.7-4.0				| 338 × 254				| 2.6					| 0.5
+            40x high NA	| 0.95				| 0.18					| 338 × 254				| 1.0					| 0.32
+            60x long WD	| 0.7				| 1.5-2.2				| 225 × 170				| 1.9					| 0.43
+            60x high NA	| 0.9				| 0.2					| 225 × 170				| 1.1					| 0.33
+            100x long WD| 0.85				| 1.2-1.9				| 135 × 102				| 1.3					| 0.35
+            </summary>
+            <param name="objectiveName">Name of the objective.</param>
+            <param name="prop">The prop.</param>
+        </member>
+        <member name="M:IM.IO.OperetteDB.LoadList">
+            <summary>
+            Loads the OperetteDB list from Database.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="T:IM.IO.LocalDBReader">
+            <summary>
+            A Class that Reads Imported ExperimentGid
+            </summary>
+        </member>
+        <member name="M:IM.IO.LocalDBReader.#ctor(System.String)">
+            <summary>
+            Ctor. 
+            </summary>
+            <param name="sXmlFile">XmlFile's path</param>
+        </member>
+        <member name="M:IM.IO.LocalDBReader.AddScreen(IM.Imaging.ScreenDescriptor,System.String)">
+            <summary>
+            Add sPath's ExperimentGridDescriptor to ScreenDescriptor
+            </summary>
+            <param name="screen"></param>
+            <param name="sPath"></param>
+            <returns></returns>
+        </member>
+        <member name="M:IM.IO.LocalDBReader.LoadExperimentGrid(System.Boolean)">
+            <summary>
+            Load Local ExperimentGird
+            </summary>
+            <param name="manually"></param>
+            <returns></returns>
+        </member>
+        <member name="T:IM.IO.ZviReader">
+            <summary>
+            Carl Zeiss ZVI file Reader
+            </summary>
+        </member>
+        <member name="T:IM.IO.IMData.ControlSerializer">
+            <summary>
+            Serializer for Controls' properties of winform
+            Author : JB Ryu
+            </summary>
+        </member>
+        <member name="T:IM.IO.IMData.ControlProperties">
+            <summary>
+            Properties of winform's control for serialization
+            Author : JB Ryu
+            </summary>
+        </member>
+        <member name="T:IM.IO.IMData.UniquePluginProperties">
+            <summary>
+            Unique plugin's properties for serialization
+            Author : JB Ryu
+            </summary>
+        </member>
+        <!-- Badly formed XML comment ignored for member "T:IM.IO.IMData.UniquePlugin" -->
+        <member name="M:IM.IO.IMData.UniquePlugin.GetUniquePluginProp(System.String,System.String@,System.String@,System.String@,System.UInt32@,System.Collections.Generic.List{IM.IO.IMData.ControlProperties}@)">
+            <summary>
+            Get plugin's properties from the path
+            </summary>
+            <param name="uniquePluginPropPath">Plugin(dll file)'s path</param>
+            <param name="uniquePluginName">out parameter</param>
+            <param name="uniquePluginIdentifier">out parameter</param>
+            <param name="uniquePluginLastWriteTime">out parameter</param>
+            <param name="uniquePluginId">out parameter</param>
+            <param name="ctrlProps">out parameter</param>
+        </member>
+        <member name="P:IM.IO.IMData.UniquePlugin.GetInstance">
+            <summary>
+            Get instance of UniquePlugin by singlton pattern
+            This is a kind of Deserialization stuff
+            </summary>
+        </member>
+        <member name="T:IM.IO.OperaDBSequenceDescriptor">
+            <summary>
+            An implementation of SequenceAccessor for Tiff multipage file adapted to OperaDB.
+            <p>Author: A. Genovesio</p>
+            </summary>
+        </member>
+        <member name="M:IM.IO.OperaDBSequenceDescriptor.#ctor(System.String,System.Int32,System.Int32,System.Int32,System.Int32)">
+            <summary>
+            Constructor
+            </summary>
+            <param name="fileName">The Tiff multipage file containing the images</param>
+            <param name="startPage">The first page of the Sequence</param>
+            <param name="depth">The depth of an image of this Sequence</param>
+            <param name="bands">The number of bands of an image of this Sequence</param>
+            <param name="sequenceSize">The size of this sequence</param>
+        </member>
+        <member name="M:IM.IO.OperaDBSequenceDescriptor.Dispose(System.Boolean)">
+            <summary>
+            Free ressources
+            </summary>
+        </member>
+        <member name="M:IM.IO.OperaDBSequenceDescriptor.Read(System.Int32)">
+            <summary>
+            Get an image directly from files
+            </summary>
+            <param name="t">The time point</param>
+            <returns>An Image</returns>        
+        </member>
+        <member name="M:IM.IO.OperaDBSequenceDescriptor.ReadImage(System.String,System.Int32,System.Int32,System.Int32)">
+            <summary>
+            Read an Image from a tiff multipages file
+            </summary>
+            <param name="fileName">The multipage file</param>
+            <param name="startPage">The start page</param>
+            <param name="bands">The number of bands</param>
+            <param name="depth">The depth</param>
+            <returns>An image</returns>
+        </member>
+        <member name="T:IM.IO.IMUserLog">
+            <summary>
+            Class for log IM User behavior.
+            Kyungho Lee(20/Oct/09)
+            </summary>
+        </member>
+        <member name="M:IM.IO.IMUserLog.#ctor">
+            <summary>
+            singleton constructor
+            </summary>
+        </member>
+        <member name="M:IM.IO.IMUserLog.InitializeLog(System.UInt32)">
+            <summary>
+            Initialize log
+            </summary>
+            <param name="PLID"></param>
+        </member>
+        <member name="M:IM.IO.IMUserLog.FinalizeLog">
+            <summary>
+            Gathering log data 
+            </summary>
+        </member>
+        <member name="M:IM.IO.IMUserLog.WriteConsoleUserlog(System.String,System.Object[])">
+            <summary>
+            Write user log on console window
+            </summary>
+        </member>
+        <member name="M:IM.IO.IMUserLog.WriteOnDB">
+            <summary>
+            Write log on IMServer(Baobab)
+            </summary>
+        </member>
+        <member name="T:IM.IO.IMLogElements">
+            <summary>
+            Class for IM log elements
+            Kyungho Lee(29/Oct/09)
+            </summary>
+        </member>
+        <member name="M:IM.IO.IMThumbnail.load(IM.IO.IMThumbnail)">
+            <summary>
+            Loads the specified TiffThumbnail object.
+            </summary>
+            <param name="mp">The mp.</param>
+        </member>
+        <member name="M:IM.IO.IMThumbnail.Serialize(IM.IO.IMThumbnail,System.String)">
+            <summary>
+            Serializes this IMThumbnail instance.
+            </summary>
+            <param name="string">The fileName.</param>
+        </member>
+        <member name="M:IM.IO.IMThumbnail.DeserializeAll(System.String)">
+            <summary>
+            Deserializes the IMThumbnail instance.
+            </summary>
+            <param name="string">The fileName.</param>
+        </member>
+        <member name="M:IM.IO.IMThumbnail.DeserializeFast(System.String,IM.IO.IMThumbnail)">
+            <summary>
+            Deserializes the IMThumbnail instance.
+            </summary>
+            <param name="string">The fileName.</param>
+        </member>
+        <member name="M:IM.IO.IMThumbnail.DeserializeExpGrid(System.Object)">
+            <summary>
+            Deserializes the experiment grid with Thread.
+            </summary>
+            <param name="stateInfo">The state info.</param>
+        </member>
+        <member name="T:IM.IO.IMData.IMDB">
+            <summary>
+            Static IMDB Information
+            </summary>
+        </member>
+        <member name="T:IM.IO.IMData.DatabaseManager">
+            <summary>
+            Result Database Handling Class, IMDB connection
+            (Singleton Pattern)
+            </summary>
+        </member>
+        <member name="M:IM.IO.IMData.DatabaseManager.#ctor">
+            <summary>
+            DatabaseManager Setting and constructor
+            If database connection information is changed, please correct here
+            </summary>
+        </member>
+        <member name="M:IM.IO.IMData.DatabaseManager.MakeConnectionString(System.String,System.String,System.String,System.String)">
+            <summary>
+            Make connection string for Data DB
+            </summary>
+            <param name="sServer"></param>
+            <param name="sDataBase"></param>
+            <param name="sUserID"></param>
+            <param name="sPassWord"></param>
+        </member>
+        <member name="M:IM.IO.IMData.DatabaseManager.getInstance">
+            <summary>
+            Return singleton instance of DatabaseManager
+            </summary>
+            <returns>DatabaseManager instance</returns>
+        </member>
+        <member name="M:IM.IO.IMData.DatabaseManager.GetRow(System.Object[],System.String,System.String)">
+            <summary>
+            Return Object Array from specified query and string parameter
+            You should provide one query and one parameter
+            </summary>
+            <param name="values">Object Array of Results</param>
+            <param name="query">Query String</param>
+            <param name="param">Query Parameter</param>
+            <returns></returns>
+        </member>
+        <member name="M:IM.IO.IMData.DatabaseManager.GetRow(System.Object[],System.String,System.UInt32)">
+            <summary>
+            Return Object Array from specified query and integer parameter
+            You should provide one query and one parameter
+            </summary>
+            <param name="values">Object Array of Results</param>
+            <param name="query">Query String</param>
+            <param name="param">Query Parameter</param>
+            <returns></returns>
+        </member>
+        <member name="M:IM.IO.IMData.DatabaseManager.GetTable(System.Data.DataTable,System.String)">
+            <summary>
+            Get the result data in the shape of DataTable
+            </summary>
+            <param name="table">DataTable will be filled with the result of query string</param>
+            <param name="query">SQL Query string</param>
+        </member>
+        <member name="M:IM.IO.IMData.DatabaseManager.UpdateQuery(System.String)">
+            <summary>
+            Update Query
+            </summary>
+            <param name="query">Update query</param>
+            <returns>Number of affected rows</returns>
+        </member>
+        <member name="M:IM.IO.IMData.DatabaseManager.AddRow(System.String)">
+            <summary>
+            Add a Row
+            </summary>
+            <param name="query">Insert Query</param>
+            <returns>Last Inserted Row's Identity</returns>
+        </member>
+        <member name="T:IM.IO.IMData.IMDataType">
+            <summary>
+            There are various DataSetType according to DataSet
+            It could be avi, xml, tif, etc...
+            </summary>
+        </member>
+        <member name="M:IM.IO.IMData.IMDataType.#ctor(System.UInt32,System.String,System.String,System.String,System.String)">
+            <summary>
+            Constructor of IMDataType
+            </summary>
+            <param name="id">Unique ID in Database</param>
+            <param name="sName">IMDataType name</param>
+            <param name="sExt">Extension postfix of IMDataType</param>
+            <param name="sDesc">Description of IMDataType</param>
+            <param name="sType">Type of IMDataType</param>
+        </member>
+        <member name="M:IM.IO.IMData.IMDataType.GetType(IM.IO.IMData.IMDataHandler)">
+            <summary>
+            Return IMDataType regarding IMDataHandler
+            </summary>
+            <param name="handler">IMDataHandler</param>
+            <returns></returns>
+        </member>
+        <member name="M:IM.IO.IMData.IMDataType.GetType(System.UInt32)">
+            <summary>
+            Return IMDataType regarding unique id of IMDataType
+            </summary>
+            <param name="typeID">unique id of IMDataType</param>
+            <returns></returns>
+        </member>
+        <member name="M:IM.IO.IMData.IMDataType.GetHandler(IM.IO.IMData.IMDataType,System.Object)">
+            <summary>
+            Return instance of IMDataHandler of specific IMDataType
+            </summary>
+            <param name="dt">IMDataType object</param>
+            <param name="obj">Object parameter for IMDataHandler</param>
+            <returns>IMDataHandler instance</returns>
+        </member>
+        <member name="M:IM.IO.IMData.IMDataType.GetTypeID(IM.Imaging.LayerType)">
+            <summary>
+            Return Type id regarding LayerType enumeration information
+            </summary>
+            <param name="type">LayerType</param>
+            <returns>The unique id of specific LayerType</returns>
+        </member>
+        <member name="P:IM.IO.IMData.IMDataType.ID">
+            <summary>
+            Unique ID in the Database
+            </summary>
+        </member>
+        <member name="P:IM.IO.IMData.IMDataType.Name">
+            <summary>
+            DataType name
+            </summary>
+        </member>
+        <member name="P:IM.IO.IMData.IMDataType.Ext">
+            <summary>
+            DataType extension postfix (for example, .avi, .xml)
+            </summary>
+        </member>
+        <member name="P:IM.IO.IMData.IMDataType.Desc">
+            <summary>
+            Description of DataType
+            </summary>
+        </member>
+        <member name="P:IM.IO.IMData.IMDataType.TypeInfo">
+            <summary>
+            Type information of handling DataType
+            </summary>
+        </member>
+        <member name="T:IM.IO.IMData.IMDataSet">
+            <summary>
+            Holding IMData instances grouped by IMDataSet
+            </summary>
+        </member>
+        <member name="M:IM.IO.IMData.IMDataSet.#ctor(System.UInt32,System.String,System.UInt32,System.String)">
+            <summary>
+            Constructor of IMDataSet
+            </summary>
+            <param name="id">Unique ID in Database</param>
+            <param name="sName">Name of IMDataSet</param>
+            <param name="sOwner">User ID as owner</param>
+            <param name="sDatetime">Creation time</param>
+        </member>
+        <member name="M:IM.IO.IMData.IMDataSet.AddData(IM.IO.IMData.IMData,System.String,System.String,System.String,System.UInt32)">
+            <summary>
+            Add IMData to IMDataSet
+            </summary>
+            <param name="data">IMData object</param>
+            <param name="sName">Name of IMData</param>
+            <param name="sMD5">MD5 signature of experiment</param>
+            <param name="uniqueID">Unique ID provided from experiment. Just in case of conflicting MD5 signature</param>
+            <param name="pluginID">PluginID for logging</param>
+        </member>
+        <member name="M:IM.IO.IMData.IMDataSet.GetData(System.String,System.Object)">
+            <summary>
+            Retrieve IMData with MD5 signature
+            </summary>
+            <param name="sMD5">String of MD5 signature</param>
+            <param name="obj">Object parameter for IMDataHandler</param>
+            <returns>IMData instance</returns>
+        </member>
+        <member name="M:IM.IO.IMData.IMDataSet.GetData(System.UInt32,System.Object)">
+            <summary>
+            Retrieve IMData with DB unique ID
+            </summary>
+            <param name="dt_id">Int32</param>
+            <param name="obj">Object parameter for IMDataHandler</param>
+            <returns>IMData instance</returns>
+        </member>
+        <member name="M:IM.IO.IMData.IMDataSet.GetRef">
+            <summary>
+            Make Reference String for the location of IMDataSet
+            </summary>
+            <returns>"year\month\datasetID" String</returns>
+        </member>
+        <member name="M:IM.IO.IMData.IMDataSet.Contains(System.String,System.String)">
+            <summary>
+            Ask whether this dataset contains IMData of MD5?
+            Just in case, if conflicts happens, we should check it with LastWriteTime too.
+            </summary>
+            <param name="md5"></param>
+            <param name="lastWriteTime"></param>
+            <returns></returns>
+        </member>
+        <member name="M:IM.IO.IMData.IMDataSet.DeleteData(System.String,System.String)">
+            <summary>
+            Delete IMData for overwriting IMData
+            Be careful, there is no disposing method of resource files.
+            If so, it should be implemented using "File.Delete()"
+            </summary>
+            <param name="md5"></param>
+            <param name="lastWriteTime"></param>
+            <returns></returns>
+        </member>
+        <member name="M:IM.IO.IMData.IMDataSet.DeleteData(System.UInt32)">
+            <summary>
+            Delete IMData for user's decision
+            </summary>
+            <param name="dt_id">IMData ID(32bits Unsigned Integer)</param>
+            <returns></returns>
+        </member>
+        <member name="M:IM.IO.IMData.IMDataSet.GetDataList">
+            <summary>
+            Get all IMData List associated with specific DataSet ID
+            </summary>
+            <param name="dsid">DataSet ID</param>
+            <returns>DataTable of the DataSet List</returns>
+        </member>
+        <member name="M:IM.IO.IMData.IMDataSet.Contains(System.String,System.UInt32)">
+            <summary>
+            Examine whether specific dataset exists in IMDB
+            </summary>
+            <param name="name"></param>
+            <param name="uid"></param>
+            <returns>true or false</returns>
+        </member>
+        <member name="M:IM.IO.IMData.IMDataSet.GetDataSet(System.String,System.UInt32)">
+            <summary>
+            Retrieve IMDataSet with DataSet name and User ID
+            </summary>
+            <param name="name">DataSet name</param>
+            <param name="uid">User ID</param>
+            <returns></returns>
+        </member>
+        <member name="M:IM.IO.IMData.IMDataSet.GetDataSet(System.UInt32)">
+            <summary>
+            Retrieve IMDataSet with DataSet ID
+            </summary>
+            <param name="ds_id">DataSet ID</param>
+            <returns>IMDataSet</returns>
+        </member>
+        <member name="M:IM.IO.IMData.IMDataSet.DeleteDataSet(System.String,System.UInt32)">
+            <summary>
+            Delete Specific DataSet using DataSet name and User ID
+            </summary>
+            <param name="name">DataSet name</param>
+            <param name="uid">User ID</param>
+            <returns>0 is failure, non-zero is success</returns>
+        </member>
+        <member name="M:IM.IO.IMData.IMDataSet.GetDataSetList(System.UInt32)">
+            <summary>
+            Get all DataSet List associated with specific user
+            </summary>
+            <param name="uid">User ID</param>
+            <returns>DataTable of the DataSet List</returns>
+        </member>
+        <member name="M:IM.IO.IMData.IMDataSet.GetDataSetListOfCurrentUser">
+            <summary>
+            Get all DataSet List associated with specific user
+            </summary>
+            <returns>DataTable of the DataSet List</returns>
+        </member>
+        <member name="M:IM.IO.IMData.IMDataSet.GetDataSetList(System.UInt32,System.String,IM.Imaging.LayerType)">
+            <summary>
+            Get all DataSet List associated with specific IMData and specific user
+            </summary>
+            <param name="uid"></param>
+            <param name="sMD5"></param>
+            <returns></returns>
+        </member>
+        <member name="M:IM.IO.IMData.IMDataSet.GetDataSetListByShareMe(IM.IO.IMData.IMUser,System.String,System.UInt32)">
+            <summary>
+            Get DataSet list by other users(Share Me users)
+            in case of other users shared to me their's results
+            <para>Author: Kyungho Lee 2/Feb/2009</para>
+            </summary>
+            <param name="user">The user.</param>
+            <param name="sMD5">The sMd5.</param>
+            <param name="typeId">The Layer type id.</param>
+            <returns></returns>
+        </member>
+        <member name="M:IM.IO.IMData.IMDataSet.GetDataSetListFromAdmin(System.String,IM.Imaging.LayerType)">
+            <summary>
+            Get all DataSet List associated with specific IMData for administrative use
+            </summary>
+            <param name="sMD5"></param>
+            <returns></returns>
+        </member>
+        <member name="P:IM.IO.IMData.IMDataSet.ID">
+            <summary>
+            Unique ID in Database
+            </summary>
+        </member>
+        <member name="P:IM.IO.IMData.IMDataSet.Name">
+            <summary>
+            DataSet Name
+            </summary>
+        </member>
+        <member name="P:IM.IO.IMData.IMDataSet.Owner">
+            <summary>
+            Owner of DataSet
+            </summary>
+        </member>
+        <member name="P:IM.IO.IMData.IMDataSet.DateTime">
+            <summary>
+            DataSet Creation Time
+            </summary>
+        </member>
+        <member name="T:IM.IO.IMData.IMDataHandler">
+            <summary>
+            Resource handler interface. Resource could be Result, Image, Movie file and whatever you want to handle.
+            User can define own resource handler
+            Handler uses only 'DT_REF' Column in the database
+            </summary>
+        </member>
+        <member name="M:IM.IO.IMData.IMDataHandler.getName">
+            <summary>
+            Name of IMDataHandler
+            </summary>
+            <returns>IMDataHandler name</returns>
+        </member>
+        <member name="M:IM.IO.IMData.IMDataHandler.getExt">
+            <summary>
+            Extension postfix of IMDataHandler
+            </summary>
+            <returns>Extension name</returns>
+        </member>
+        <member name="M:IM.IO.IMData.IMDataHandler.getDesc">
+            <summary>
+            Description of IMDataHandler
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:IM.IO.IMData.IMDataHandler.Write(System.String)">
+            <summary>
+            Should be implemented for writing with reference File Name
+            </summary>
+            <param name="refFileName">unicode reference file name stored in DT_REF column</param>
+        </member>
+        <member name="M:IM.IO.IMData.IMDataHandler.Read(System.String)">
+            <summary>
+            Should be implemented for reading with given reference File Name
+            </summary>
+            <param name="refFileName">unicode reference file name stored in DT_REF column</param>
+        </member>
+        <member name="T:IM.IO.IMData.IMData">
+            <summary>
+            Handling IMData
+            </summary>
+        </member>
+        <member name="M:IM.IO.IMData.IMData.#ctor(IM.IO.IMData.IMDataHandler)">
+            <summary>
+            For the creation of IMData
+            </summary>
+            <param name="handler"></param>
+        </member>
+        <member name="M:IM.IO.IMData.IMData.#ctor(System.UInt32,System.String,System.String,System.String,System.String,System.UInt32,System.Object)">
+            <summary>
+            Constructor of IMData
+            </summary>
+            <param name="id">Unique ID of IMData in Database</param>
+            <param name="Name">Name of IMData</param>
+            <param name="sMD5">MD5 signature of experiment</param>
+            <param name="uID">Unique ID of experiment</param>
+            <param name="sRef">Reference Data used in IMDataHandler</param>
+            <param name="typeID">IMDataType ID</param>
+            <param name="obj">Object parameter for IMDataHandler</param>
+        </member>
+        <member name="M:IM.IO.IMData.IMData.AddData(IM.IO.IMData.IMDataSet,System.String,System.String,System.String,System.UInt32)">
+            <summary>
+            Add Data
+            </summary>
+            <param name="ds">DataSet</param>
+            <param name="sName">Name of IMData</param>
+            <param name="sMD5">Data MD5 String</param>
+            <param name="sUniqueID">Data UniqueID String</param>
+            <param name="pluginID">PluginID</param>
+        </member>
+        <member name="M:IM.IO.IMData.IMData.WriteData">
+            <summary>
+            Write Reference Data using IMDataHanlder
+            </summary>
+        </member>
+        <member name="M:IM.IO.IMData.IMData.ReadData">
+            <summary>
+            Read Reference Data using IMDataHanlder
+            </summary>
+        </member>
+        <member name="M:IM.IO.IMData.IMData.GetData(IM.IO.IMData.IMDataSet,System.String,System.Object)">
+            <summary>
+            Retrieve IMData using IMDataSet and MD5 signature
+            </summary>
+            <param name="ds">IMDataSet instance</param>
+            <param name="sMD5">MD5 signature</param>
+            <param name="obj">Object Parameter for IMDataHandler</param>
+            <returns>IMData</returns>
+        </member>
+        <member name="M:IM.IO.IMData.IMData.GetData(IM.IO.IMData.IMDataSet,System.UInt32,System.Object)">
+            <summary>
+            Retrieve IMData using IMDataSet and database unique ID of IMData
+            </summary>
+            <param name="ds">IMDataSet</param>
+            <param name="dt_id">Database Unique ID of IMData</param>
+            <param name="obj">Object Parameter for IMDataHandler</param>
+            <returns></returns>
+        </member>
+        <member name="M:IM.IO.IMData.IMData.Contains(System.String,System.String)">
+            <summary>
+            Ask whether this data contains a data of MD5?
+            Just in case, if conflicts happens, we should check it with LastWriteTime too.
+            </summary>
+            <param name="md5"></param>
+            <param name="lastWriteTime"></param>
+            <returns></returns>
+        </member>
+        <member name="P:IM.IO.IMData.IMData.ID">
+            <summary>
+            Unique ID of IMData in Database
+            </summary>
+        </member>
+        <member name="P:IM.IO.IMData.IMData.DataSet">
+            <summary>
+            IMDataSet associated with this IMData
+            </summary>
+        </member>
+        <member name="P:IM.IO.IMData.IMData.DataType">
+            <summary>
+            IMDataType handling IMData
+            </summary>
+        </member>
+        <member name="P:IM.IO.IMData.IMData.Reference">
+            <summary>
+            Reference String for being used in IMDataHandler
+            </summary>
+        </member>
+        <member name="P:IM.IO.IMData.IMData.Md5">
+            <summary>
+            MD5 signature for identifying experiment
+            </summary>
+        </member>
+        <member name="P:IM.IO.IMData.IMData.UniqueID">
+            <summary>
+            UniqueID provided from experiment for avoiding conflicts in MD5 signature
+            </summary>
+        </member>
+        <member name="P:IM.IO.IMData.IMData.DateTime">
+            <summary>
+            IMData Creation Time
+            </summary>
+        </member>
+        <member name="P:IM.IO.IMData.IMData.DataHandler">
+            <summary>
+            IMDataHandler handling reference data
+            </summary>
+        </member>
+        <member name="P:IM.IO.IMData.IMData.Name">
+            <summary>
+            IMData Name Field
+            </summary>
+        </member>
+        <member name="T:IM.IO.ExpGrid">
+            <summary>
+            ExperimentGrid Database handler 
+            </summary>
+        </member>
+        <member name="M:IM.IO.ExpGrid.Create(IM.IO.PlatformDB,IM.Imaging.ExperimentGrid)">
+            <summary>
+            Creates an ExperimentGrid in the specified db.
+            </summary>
+            <param name="db">The db.</param>
+            <param name="eg">The eg.</param>
+            <returns></returns>
+        </member>
+        <member name="M:IM.IO.ExpGrid.Create(IM.IO.PlatformDB,System.Collections.Hashtable)">
+            <summary>
+            Creates an ExperimentGrid in the specified db with properties.
+            </summary>
+            <param name="db">The db.</param>
+            <param name="properties">The properties.</param>
+            <returns></returns>
+        </member>
+        <member name="M:IM.IO.ExpGrid.Read(System.UInt32)">
+            <summary>
+            Reads the specified experiment grid information from the database
+            </summary>
+            <param name="eg_id">The eg_id.</param>
+            <returns></returns>
+        </member>
+        <member name="T:IM.IO.OperaIPKReader">
+            <summary>
+            OperaIPKReader provides an abstract accessibility way to locate Mea files and Image files
+            regardless of physical locations
+            </summary>
+        </member>
+        <member name="M:IM.IO.OperaIPKReader.#ctor(IM.IO.OperaIPK,IM.IO.OperaInfo)">
+            <summary>
+            Initializes a new instance of the <see cref="T:IM.IO.OperaIPKReader"/> class.
+            </summary>
+            <param name="db">The db.</param>
+            <param name="info">The info.</param>
+        </member>
+        <member name="M:IM.IO.OperaIPKReader.PreLoad">
+            <summary>
+            Preload the <see cref="T:IM.Imaging.ExperimentGrid"/> in order to store it with unique ID.
+            </summary>
+        </member>
+        <member name="M:IM.IO.OperaIPKReader.LoadExperimentGrid(System.Boolean)">
+            <summary>
+            Most of code is same as <see cref="T:IM.IO.OperaDBReader"/>'s <c>LoadExperimentGrid</c> function 
+            except access way to retrieve image path.
+            </summary>
+            <param name="manually">if set to <c>true</c> [manually].</param>
+            <returns><see cref="T:IM.Imaging.ExperimentGrid"/></returns>
+        </member>
+        <member name="M:IM.IO.OperaIPKReader.GetScreen(IM.IO.OperaIPK,System.Collections.Generic.List{System.String})">
+            <summary>
+            Gets the screen instance with <paramref name="db"/> and <paramref name="pathList"/>.
+            </summary>
+            <param name="db">The <see cref="T:IM.IO.OperaIPK"/>.</param>
+            <param name="pathList">The list of <see cref="T:IM.IO.OperaInfo"/>.</param>
+            <returns></returns>
+        </member>
+        <member name="M:IM.IO.OperaIPKReader.GetScreen(IM.IO.OperaIPK,System.Int32)">
+            <summary>
+            Gets the screen instance with <paramref name="db"/> and <paramref name="info"/>.
+            </summary>
+            <param name="db">The <see cref="T:IM.IO.OperaIPK"/>.</param>
+            <param name="info">The <see cref="T:IM.IO.OperaInfo"/>.</param>
+            <returns></returns>
+        </member>
+        <member name="M:IM.IO.OperaIPKReader.GetOperaInfo(System.Int32)">
+            <summary>
+            Gets the <see cref="T:IM.IO.OperaInfo"/> list related to the given <paramref name="path"/>.
+            </summary>
+            <param name="path">The path.</param>
+            <returns></returns>
+        </member>
+        <member name="M:IM.IO.OperaIPKReader.GetOperaInfoList(System.String)">
+            <summary>
+            Gets the <see cref="T:IM.IO.OperaInfo"/> list related to the given <paramref name="path"/>.
+            </summary>
+            <param name="path">The path.</param>
+            <returns></returns>
+        </member>
+        <member name="P:IM.IO.OperaIPKReader.fileName">
+            <summary>
+            Gets the name of the file.
+            </summary>
+            <value>The name of the Mea file.</value>
+        </member>
+        <member name="P:IM.IO.OperaIPKReader.ImagePath">
+            <summary>
+            Gets the <c>CIA</c>-based image path.
+            </summary>
+            <value>The image path.</value>
+        </member>
+        <member name="T:IM.IO.OperaIPKReader.MeaParsingResult">
+            <summary>
+            Parsing Result For a mea File
+            </summary>
+        </member>
+        <member name="F:IM.IO.OperaIPKReader.MeaParsingResult.Ok">
+            <summary>
+            All is OK
+            </summary>
+        </member>
+        <member name="F:IM.IO.OperaIPKReader.MeaParsingResult.Compressed">
+            <summary>
+            Compressed Image
+            </summary>
+        </member>
+        <member name="F:IM.IO.OperaIPKReader.MeaParsingResult.BadMeaState">
+            <summary>
+            mea file corrupted
+            </summary>
+        </member>
+        <member name="F:IM.IO.OperaIPKReader.MeaParsingResult.BadHost">
+            <summary>
+            bad host name in the mea file
+            </summary>
+        </member>
+        <member name="F:IM.IO.OperaIPKReader.MeaParsingResult.MoreThanOneZone">
+            <summary>
+            to be removed
+            </summary>
+        </member>
+        <member name="T:IM.IO.OperaInfo">
+            <summary>
+            OperaInfo class provides the information in order to access Mea file and Image path
+            </summary>
+        </member>
+        <member name="F:IM.IO.OperaInfo.ItemSeq">
+            <summary>
+            Unique ID in IPK opera naming system.
+            </summary>
+        </member>
+        <member name="F:IM.IO.OperaInfo.Barcode">
+            <summary>
+            User-given Barcode
+            </summary>
+        </member>
+        <member name="F:IM.IO.OperaInfo.Mea">
+            <summary>
+            The prefix of URL including hostname
+            </summary>
+        </member>
+        <member name="F:IM.IO.OperaInfo.MeaPath">
+            <summary>
+            MeaPath is following Mea attribute
+            </summary>
+        </member>
+        <member name="F:IM.IO.OperaInfo.MeaFile">
+            <summary>
+            MeaFile is the name of mea file.
+            </summary>
+        </member>
+        <member name="F:IM.IO.OperaInfo.ImagePath">
+            <summary>
+            CIA based ImagePath is stored.
+            </summary>
+        </member>
+        <member name="T:IM.IO.OperaIPK">
+            <summary>
+            This class is a serializable representation of an Opera DB info specialized in Institut-Pasteur Korea
+            IPK provides global naming accessibility for spatially distributed storage systems.
+            </summary>
+        </member>
+        <member name="F:IM.IO.OperaIPK.DBIP">
+            <summary>
+            MSSQL Database IP
+            </summary>
+        </member>
+        <member name="F:IM.IO.OperaIPK.DBName">
+            <summary>
+            Database name
+            </summary>
+        </member>
+        <member name="F:IM.IO.OperaIPK.UserName">
+            <summary>
+            Database login id
+            </summary>
+        </member>
+        <member name="F:IM.IO.OperaIPK.Password">
+            <summary>
+            Database login password
+            </summary>
+        </member>
+        <member name="M:IM.IO.OperaIPK.#ctor">
+            <summary>
+            Initializes a new instance of the <see cref="T:IM.IO.OperaIPK"/> class for the serialization.
+            </summary>
+        </member>
+        <member name="M:IM.IO.OperaIPK.#ctor(System.String,System.String,System.String,System.String,System.String)">
+            <summary>
+            Initializes a new instance of the <see cref="T:IM.IO.OperaIPK"/> class.
+            </summary>
+            <param name="name">The name.</param>
+            <param name="dbIP">The db IP.</param>
+            <param name="dbName">Name of the db.</param>
+            <param name="username">The username.</param>
+            <param name="password">The password.</param>
+        </member>
+        <member name="M:IM.IO.OperaIPK.LoadList">
+            <summary>
+            Loads the OperaDB list from Database.
+            </summary>
+            <returns>
+            The list of <see cref="T:IM.IO.OperaIPK"/>.
+            </returns>
+        </member>
+        <member name="M:IM.IO.OperaIPK.Load(System.String)">
+            <summary>
+            Loads the specified db with name.
+            </summary>
+            <param name="name">The name.</param>
+            <returns></returns>
+        </member>
+        <member name="M:IM.IO.OperaIPK.Create">
+            <summary>
+            Creates this instance in PlatformDB table.
+            </summary>
+        </member>
+        <member name="M:IM.IO.OperaIPK.Update">
+            <summary>
+            Updates this instance in PlatformDB table.
+            </summary>
+        </member>
+        <member name="M:IM.IO.OperaIPK.Delete">
+            <summary>
+            Deletes this instance in PlatformDB table.
+            </summary>
+        </member>
+        <member name="M:IM.IO.OperaIPK.ToString">
+            <summary>
+            Returns a <see cref="T:System.String"/> that represents this instance.
+            </summary>
+            <returns>
+            A <see cref="T:System.String"/> that represents this instance.
+            </returns>
+        </member>
+        <member name="T:IM.IO.IMData.ExperimentGridDataHandler">
+            <summary>
+            There should be current Data Window accessing all the result information
+            This class represents BaseLayer's analysis data
+            </summary>
+        </member>
+        <member name="T:IM.IO.IMData.MicroArrayLayerDataHandler">
+            <summary>
+            There should be current Data Window accessing all the result information
+            </summary>
+        </member>
+        <member name="T:IM.IO.IMData.PanoramaLayerDataHandler">
+            <summary>
+            There should be current Data Window accessing all the result information
+            </summary>
+        </member>
+        <member name="T:IM.IO.IMData.ThumbnailAssembledImage">
+            <summary>
+            IMDataHandler for ExperimentGrid Thumbnail Assembled Image
+            </summary>
+        </member>
+        <member name="T:IM.IO.IMData.BookmarkData">
+            <summary>
+            IMData for user bookmark data
+            </summary>
+        </member>
+        <member name="M:IM.IO.IMData.BookmarkData.Read(System.String)">
+            <summary>
+            Reads the specified bookmark data file.
+            </summary>
+            <param name="refFile">The ref file.</param>
+        </member>
+        <member name="M:IM.IO.IMData.BookmarkData.getName">
+            <summary>
+            Name of IMDataHandler
+            </summary>
+            <returns>IMDataHandler name</returns>
+        </member>
+        <member name="M:IM.IO.IMData.BookmarkData.getExt">
+            <summary>
+            Extension postfix of IMDataHandler
+            </summary>
+            <returns>Extension name</returns>
+        </member>
+        <member name="M:IM.IO.IMData.BookmarkData.getDesc">
+            <summary>
+            Description of IMDataHandler
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:IM.IO.IMData.BookmarkData.addTreeNode(System.Xml.XmlNode,System.Windows.Forms.TreeNode)">
+            <summary>
+            Adds the tree node.
+            This function is called recursively until all nodes are loaded
+            </summary>
+            <param name="xmlNode">The XML node.</param>
+            <param name="treeNode">The tree node.</param>
+        </member>
+        <member name="M:IM.IO.IMData.BookmarkData.checkNode(System.Windows.Forms.TreeNode,System.Xml.XmlNode)">
+            <summary>
+            Checks the node adding the extra information.
+            </summary>
+            <param name="tNode">The t node.</param>
+            <param name="xNode">The x node.</param>
+            <returns></returns>
+        </member>
+        <member name="M:IM.IO.IMData.BookmarkData.exportToXml(System.Windows.Forms.TreeView,System.IO.FileStream)">
+            <summary>
+            Exports to XML of tree view control's nodes collection.
+            </summary>
+            <param name="tv">The tv.</param>
+            <param name="fs">The fs.</param>
+        </member>
+        <member name="M:IM.IO.IMData.BookmarkData.saveNode(System.Xml.XmlTextWriter,System.Windows.Forms.TreeNodeCollection)">
+            <summary>
+            Saves the node object
+            </summary>
+            <param name="xr">The xr.</param>
+            <param name="tnc">The TNC.</param>
+        </member>
+        <!-- Badly formed XML comment ignored for member "T:IM.IO.IMData.UniquePluginAssemblyHandler" -->
+        <member name="P:IM.IO.IMData.UniquePluginAssemblyHandler.CopiedAssemPath">
+            <summary>
+            This is static value, because IMData handler can't support call-by-reference function.
+            </summary>
+        </member>
+        <member name="T:IM.IO.LeicaReader">
+            <summary>
+            Leica Experiment Reader
+            Reads Leica Experiments from Objects Formed in LeiBrowser by parsing a .lei (.txt) file. 
+            </summary>
+        </member>
+        <member name="M:IM.IO.LeicaReader.#ctor">
+            <summary>
+            Empty Constructor for testing
+            </summary>
+        </member>
+        <member name="M:IM.IO.LeicaReader.#ctor(IM.IO.LeicaExperiment)">
+            <summary>
+            LeicaReader Constructor
+            </summary>
+            <param name="sExperiment">Leica Experiment</param>
+        </member>
+        <member name="M:IM.IO.LeicaReader.ReadSequence(IM.IO.LeicaExperiment,IM.Imaging.Memory)">
+            <summary>
+            Reads Leica Experiments and Outputs a Sequence
+            parse experiment type(XY XYT XYZ XYZT XYLambda XYLambdaZ XYLambdaT)
+            </summary>
+            <param name="experiment"></param>
+            <param name="memory"></param>
+            <returns></returns>
+        </member>
+        <member name="M:IM.IO.LeicaReader.read16Tiff(System.Byte[],System.Single[],System.Int32,System.Int32)">
+            <summary>
+            Read 16bit tiff file(contains raw data)
+            </summary>
+            <param name="raw"></param>
+            <param name="data"></param>
+            <param name="dataOffset">offset which is reading start point</param>
+            <param name="size">size of raw image in tiff</param>
+        </member>
+        <member name="T:IM.IO.LeicaExperiment">
+            <summary>
+            Public class to fit Leica Experiments extracted from .lei files
+            </summary>
+        </member>
+        <member name="M:IM.IO.LeicaExperiment.#ctor">
+            <summary>
+            Empty Constructor
+            </summary>
+        </member>
+        <member name="M:IM.IO.LeicaExperiment.#ctor(System.Collections.Hashtable,System.String[],System.Collections.Generic.List{System.String},System.Collections.Generic.List{System.String})">
+            <summary>
+            Constructor
+            </summary>
+            <param name="properties"></param>
+            <param name="sBandNames"></param>
+            <param name="fileList"></param>
+        </member>
+        <member name="P:IM.IO.LeicaExperiment.ScanMode">
+            <summary>
+            Scan Mode (XY, XYZ, etc ...)
+            </summary>
+        </member>
+        <member name="P:IM.IO.LeicaExperiment.Width">
+            <summary>
+            Image Width
+            </summary>
+        </member>
+        <member name="P:IM.IO.LeicaExperiment.Height">
+            <summary>
+            Image Height
+            </summary>
+        </member>
+        <member name="P:IM.IO.LeicaExperiment.Depth">
+            <summary>
+            Image Depth
+            </summary>
+        </member>
+        <member name="P:IM.IO.LeicaExperiment.Bands">
+            <summary>
+            Number of Bands
+            </summary>
+        </member>
+        <member name="P:IM.IO.LeicaExperiment.BandNames">
+            <summary>
+            Band Names
+            </summary>
+        </member>
+        <member name="P:IM.IO.LeicaExperiment.Prefix">
+            <summary>
+            Prefix of the image files
+            </summary>
+        </member>
+        <member name="P:IM.IO.LeicaExperiment.FileName">
+            <summary>
+            File name = Experiment Name
+            </summary>
+        </member>
+        <member name="P:IM.IO.LeicaExperiment.XResolution">
+            <summary>
+            x Resolution
+            </summary>
+        </member>
+        <member name="P:IM.IO.LeicaExperiment.YResolution">
+            <summary>
+            Y Resolution
+            </summary>
+        </member>
+        <member name="P:IM.IO.LeicaExperiment.ZResolution">
+            <summary>
+            Z Resolution
+            </summary>
+        </member>
+        <member name="P:IM.IO.LeicaExperiment.TResolution">
+            <summary>
+            Time Resolution
+            </summary>
+        </member>
+        <member name="P:IM.IO.LeicaExperiment.SequenceLength">
+            <summary>
+            Time Sequence Length
+            </summary>
+        </member>
+        <member name="P:IM.IO.LeicaExperiment.ImageList">
+            <summary>
+            Actual File List
+            </summary>
+        </member>
+        <member name="P:IM.IO.LeicaExperiment.BitsPerBand">
+            <summary>
+            Bits Per Band
+            </summary>
+        </member>
+        <member name="P:IM.IO.LeicaExperiment.ThumbNailList">
+            <summary>
+            Thumbnail Files
+            </summary>
+        </member>
+        <member name="P:IM.IO.LeicaExperiment.PMT">
+            
+            <summary>
+            metadata PMT
+            </summary>
+        </member>
+        <member name="T:IM.IO.IMData.Domain">
+            <summary>
+            Class for hanlding domain information on IMDB Web
+            Author: Kyungho Lee  2008/12/11 
+            </summary>
+        </member>
+        <member name="M:IM.IO.IMData.Domain.#ctor(System.UInt32,System.String,System.String)">
+            <summary>
+            instance domain class(3 parameters)
+            </summary>
+            <param name="id"></param>
+            <param name="dName"></param>
+            <param name="dDesc"></param>
+        </member>
+        <member name="M:IM.IO.IMData.Domain.#ctor(System.String,System.String,System.String,System.String,System.String,System.String,System.String,System.String)">
+            <summary>
+            instance domain class(8 parameters)
+            </summary>
+            <param name="dName"></param>
+            <param name="dDesc"></param>
+            <param name="imDataStorageAddr"></param>
+            <param name="adConnect"></param>
+            <param name="dbServerAddr"></param>
+            <param name="dbName"></param>
+            <param name="dbLoginID"></param>
+            <param name="dbPassword"></param>
+        </member>
+        <member name="M:IM.IO.IMData.Domain.#ctor(System.UInt32,System.String,System.String,System.String,System.String,System.String,System.String,System.String,System.String)">
+            <summary>
+            instance domain class(9 parameters)
+            </summary>
+            <param name="id">The id.</param>
+            <param name="dName">Name of the d.</param>
+            <param name="dDesc">The d desc.</param>
+            <param name="imDataStorageAddr">The im data storage addr.</param>
+            <param name="adConnect">The ad connect.</param>
+            <param name="dbServerAddr">The db server addr.</param>
+            <param name="dbName">Name of the db.</param>
+            <param name="dbLoginID">The db login ID.</param>
+            <param name="dbPassword">The db password.</param>
+        </member>
+        <member name="M:IM.IO.IMData.Domain.GetAllDomainTable">
+            <summary>
+            Get all domain table from DB
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:IM.IO.IMData.Domain.GetOneDomainTable(System.UInt32)">
+            <summary>
+            get one domain table from DB
+            </summary>
+            <param name="dmID">domian id</param>
+            <returns></returns>
+        </member>
+        <member name="M:IM.IO.IMData.Domain.AddDomainToDB(IM.IO.IMData.Domain)">
+            <summary>
+            Add Domain info. on DB
+            </summary>
+            <param name="d"></param>
+        </member>
+        <member name="M:IM.IO.IMData.Domain.CheckingExistDB(IM.IO.IMData.Domain)">
+            <summary>
+            Checking the existance of domain in IMDB.
+            </summary>
+            <param name="d">The Domain item.</param>
+            <returns></returns>
+        </member>
+        <member name="M:IM.IO.IMData.Domain.AddOneDB(IM.IO.IMData.Domain)">
+            <summary>
+            Adds the one domain to IMDB
+            </summary>
+            <param name="d">The domain item.</param>
+        </member>
+        <member name="M:IM.IO.IMData.Domain.UpdateOneDomain(IM.IO.IMData.Domain,IM.IO.IMData.Domain)">
+            <summary>
+            Update domain info on IMDB
+            </summary>
+            <param name="updateD"></param>
+            <param name="existD"></param>
+        </member>
+        <member name="M:IM.IO.IMData.Domain.RemoveOneDomain(IM.IO.IMData.Domain)">
+            <summary>
+            remove one domain from DB
+            </summary>
+            <param name="d"></param>
+        </member>
+        <member name="M:IM.IO.IMData.Domain.CheckUserExistInDomain(IM.IO.IMData.Domain)">
+            <summary>
+            Check users exist in the domain DB or not?
+            </summary>
+            <param name="d"></param>
+            <returns></returns>
+        </member>
+        <member name="T:IM.IO.IMData.DatabaseManagerAdmin">
+            <summary>
+            IMDB Admin Database Handling Class in IPK(Panygyo), IMDB Admin connection in IPK(Panygyo)
+            (Singleton Pattern)
+            </summary>
+        </member>
+        <member name="M:IM.IO.IMData.DatabaseManagerAdmin.#ctor">
+            <summary>
+            IMDB Admin DatabaseManager Setting and constructor
+            If database connection information is changed, please correct here
+            </summary>
+        </member>
+        <member name="M:IM.IO.IMData.DatabaseManagerAdmin.getInstance">
+            <summary>
+            Return singleton instance of DatabaseManager
+            </summary>
+            <returns>DatabaseManager instance</returns>
+        </member>
+        <member name="M:IM.IO.IMData.DatabaseManagerAdmin.GetRow(System.Object[],System.String,System.String)">
+            <summary>
+            Return Object Array from specified query and string parameter
+            You should provide one query and one parameter
+            </summary>
+            <param name="values">Object Array of Results</param>
+            <param name="query">Query String</param>
+            <param name="param">Query Parameter</param>
+            <returns></returns>
+        </member>
+        <member name="M:IM.IO.IMData.DatabaseManagerAdmin.GetRow(System.Object[],System.String,System.UInt32)">
+            <summary>
+            Return Object Array from specified query and integer parameter
+            You should provide one query and one parameter
+            </summary>
+            <param name="values">Object Array of Results</param>
+            <param name="query">Query String</param>
+            <param name="param">Query Parameter</param>
+            <returns></returns>
+        </member>
+        <member name="M:IM.IO.IMData.DatabaseManagerAdmin.GetTable(System.Data.DataTable,System.String)">
+            <summary>
+            Get the result data in the shape of DataTable
+            </summary>
+            <param name="table">DataTable will be filled with the result of query string</param>
+            <param name="query">SQL Query string</param>
+        </member>
+        <member name="M:IM.IO.IMData.DatabaseManagerAdmin.UpdateQuery(System.String)">
+            <summary>
+            Update Query
+            </summary>
+            <param name="query">Update query</param>
+            <returns>Number of affected rows</returns>
+        </member>
+        <member name="M:IM.IO.IMData.DatabaseManagerAdmin.AddRow(System.String)">
+            <summary>
+            Add a Row
+            </summary>
+            <param name="query">Insert Query</param>
+            <returns>Last Inserted Row's Identity</returns>
+        </member>
+        <member name="M:IM.IO.OperetteDBSequenceDescriptor.#ctor(System.Collections.Generic.Dictionary{System.String,System.String},System.Int32,System.Int32,System.Int32)">
+            <summary>
+            should read only one image
+            </summary>
+            <param name="files"></param>
+            <param name="depth"></param>
+            <param name="bands"></param>
+            <param name="sequenceSize"></param>
+        </member>
+        <member name="M:IM.IO.OperetteDBSequenceDescriptor.Dispose(System.Boolean)">
+            <summary>
+            Free ressources
+            </summary>
+        </member>
+        <member name="M:IM.IO.OperetteDBSequenceDescriptor.Read(System.Int32)">
+            <summary>
+            Get an image directly from files
+            </summary>
+            <param name="t">The time point</param>
+            <returns>An Image</returns>        
+        </member>
+        <member name="T:IM.IO.OperetteDBSequenceDescriptor.ImageReader">
+            <summary>
+            Multi-threaded version of image reader
+            HK.Moon [8/8/2008]
+            </summary>
+        </member>
+        <member name="M:IM.IO.OperetteDBSequenceDescriptor.ImageReader.#ctor(System.String,IM.Imaging.Image3D[],System.Int32,System.String)">
+            <summary>
+            Initializes a new instance of the multi thread version of <see cref="T:IM.IO.OperetteDBSequenceDescriptor.ImageReader"/> class.
+            </summary>
+            <param name="file">The file.</param>
+            <param name="images">The images.</param>
+            <param name="band">The band.</param>
+            <param name="bandName">Name of the band.</param>
+        </member>
+        <member name="T:IM.IO.OperetteDBSequenceDescriptor.ImageVolumeReader">
+            <summary>
+            Multi-threaded version of image reader
+            HK.Moon [8/8/2008]
+            </summary>
+        </member>
+        <member name="M:IM.IO.OperetteDBSequenceDescriptor.ImageVolumeReader.#ctor(System.Collections.Generic.Dictionary{System.String,System.String},System.Int32,System.Int32)">
+            <summary>
+            Initializes a new instance of the multi thread version of <see cref="T:IM.IO.OperetteDBSequenceDescriptor.ImageReader"/> class.
+            </summary>
+            <param name="file">The files.</param>
+            <param name="images">The images.</param>
+            <param name="band">The band.</param>
+            <param name="bandName">Name of the band.</param>
+        </member>
+        <member name="T:IM.IO.IMData.IMUser">
+            <summary>
+            Handling User
+            Author: HK. Moon
+            Contributer: Kyungho
+            </summary>
+        </member>
+        <member name="M:IM.IO.IMData.IMUser.#ctor(System.UInt32,System.String,System.String,System.UInt32,System.UInt32)">
+            <summary>
+            Initializes a new instance of the IMUser class.
+            </summary>
+            <param name="id">id.</param>
+            <param name="sName">Name</param>
+            <param name="sPass">password</param>
+            <param name="groupId">group id.</param>
+            <param name="domainID">domain id</param>
+        </member>
+        <member name="M:IM.IO.IMData.IMUser.#ctor(System.UInt32,System.String)">
+            <summary>
+            Initializes a new instance of the IMUser class for UserConfig
+            </summary>
+            <param name="id"></param>
+            <param name="sName"></param>
+        </member>
+        <member name="M:IM.IO.IMData.IMUser.#ctor(System.UInt32,System.String,System.Boolean)">
+            <summary>
+            Initializes a new instance of the IMUser class for UserConfig
+            </summary>
+            <param name="id"></param>
+            <param name="sName"></param>
+            <param name="shared">shared or not</param>
+        </member>
+        <member name="M:IM.IO.IMData.IMUser.ChangePassword(IM.IO.IMData.IMUser,System.String)">
+            <summary>
+            Change password through the IM Web server
+            Kyungho 20/Jan/09
+            </summary>
+            <param name="user">The user.</param>
+            <param name="newPassword">The new password.</param>
+            <returns></returns>
+        </member>
+        <member name="M:IM.IO.IMData.IMUser.RemoveAllUsersInMyGroup">
+            <summary>
+            Remove all users in my group
+            <para>Kyungho 20/Jan/09</para>
+            </summary>
+        </member>
+        <member name="M:IM.IO.IMData.IMUser.AddUserToMyGroup(System.String)">
+            <summary>
+            Add users to my group
+            Kyungho 20/Jan/09
+            </summary>
+            <param name="IDs">The IDs.</param>
+        </member>
+        <member name="M:IM.IO.IMData.IMUser.GetAllUserTable">
+            <summary>
+            Get All users to table
+            kyungho 08/11/17
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:IM.IO.IMData.IMUser.GetAllUserTable(System.UInt32)">
+            <summary>
+            Gets all user table in one domain
+            <para>Author: Kyungho 02/06/2009</para>
+            </summary>
+            <param name="dID">The domain ID.</param>
+            <returns></returns>
+        </member>
+        <member name="M:IM.IO.IMData.IMUser.CheckUserDataResultInDB(System.UInt32)">
+            <summary>
+            Check user data result exist in DB or not 
+            </summary>
+            <para>Kyungho 21/Jul/09</para>
+            <param name="uid"></param>
+            <returns></returns>
+        </member>
+        <member name="M:IM.IO.IMData.IMUser.GetUserFromBAOBABDB(System.String,System.String)">
+            <summary>
+            Get user with ID and password from localDB
+            This is initial running IM with default user(IM_test1) 
+            </summary>
+            <param name="name"></param>
+            <param name="password"></param>
+            <returns></returns>
+        </member>
+        <member name="M:IM.IO.IMData.IMUser.GetUser(System.String,System.String)">
+            <summary>
+            Get user with ID and password from LocalDB, UserConfing, and IMDB Web server
+            Some user ID need to be store on local DB and get(ex) sys_###
+            <para>Kyungho 02/06/2009</para>
+            </summary>
+            <param name="name">The name.</param>
+            <param name="password">The password.</param>
+            <returns></returns>
+        </member>
+        <member name="M:IM.IO.IMData.IMUser.GetUserIMWebServer(System.String,System.String)">
+            <summary>
+            Get user and login through the web server
+            Author: Kyungho 09-01-14
+            </summary>
+            <param name="name">The name.</param>
+            <param name="password">The password.</param>
+            <returns></returns>
+        </member>
+        <member name="T:IM.IO.IMData.IMAdmin">
+            <summary>
+            IMAdmin inherited from IMUser
+            Comment - Kyungho(27/Jul/09) Currently, IMAdmin works with local IMDB(IPK)
+            </summary>
+        </member>
+        <member name="M:IM.IO.IMData.IMAdmin.AddUser(System.String,System.String,System.UInt32)">
+            <summary>
+            Add a User
+            <para>Modifier : Kyungho 08-12-29</para>
+            </summary>
+            <param name="sName">Name</param>
+            <param name="sPass">password</param>
+            <param name="domainID">The domain ID.</param>
+            <returns>User ID</returns>
+        </member>
+        <member name="M:IM.IO.IMData.IMAdmin.DeleteUser(System.UInt32)">
+            <summary>
+            Delete User
+            </summary>
+            <param name="userId"></param>
+        </member>
+        <member name="M:IM.IO.IMData.IMAdmin.RenameUser(System.UInt32,System.String)">
+            <summary>
+            Rename IM User name
+            </summary>
+            <param name="userId"></param>
+            <param name="newName"></param>
+        </member>
+        <member name="M:IM.IO.IMData.IMAdmin.ResetPassword(System.UInt32,System.String)">
+            <summary>
+            Reset Password
+            </summary>
+            <param name="userId"></param>
+            <param name="password"></param>
+        </member>
+        <member name="M:IM.IO.IMData.IMAdmin.UpdateDomain(System.UInt32,System.UInt32)">
+            <summary>
+            Update Domain
+            Kyungho 08-12-29
+            </summary>
+            <param name="userID"></param>
+            <param name="domainID"></param>
+        </member>
+        <member name="M:IM.IO.IMData.IMAdmin.AddUserToAdminGroup(System.UInt32)">
+            <summary>
+            Add User to Admin Group
+            </summary>
+            <param name="userId"></param>
+        </member>
+        <member name="M:IM.IO.IMData.IMAdmin.RemoveUserFromAdminGroup(System.UInt32)">
+            <summary>
+            Remove User from Admin Group
+            </summary>
+            <param name="userId"></param>
+        </member>
+        <member name="M:IM.IO.IMData.IMAdmin.GetAdminGroupUsers">
+            <summary>
+            Get all User list for AdminWindow
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:IM.IO.IMData.IMAdmin.GetAdminGroupUsers(System.UInt32)">
+            <summary>
+            Get all user list associated with the domain for AdminWindow
+            <para>Author: Kyungho </para>
+            </summary>
+            <param name="dmID">The domain ID.</param>
+            <returns></returns>
+        </member>
+        <member name="M:IM.IO.IMData.IMAdmin.GetUser(System.String,System.String)">
+            <summary>
+            Get Admin with ID and password from  IMDB admin(IPK)
+            </summary>
+            <param name="name"></param>
+            <param name="password"></param>
+            <returns></returns>
+        </member>
+        <member name="T:IM.IO.ExperimentGridThumbnail">
+            <summary>
+            I/O class for ExperimentGrid thumbnail using IMData
+            </summary>
+        </member>
+        <member name="M:IM.IO.ExperimentGridThumbnail.storeAssembledImageIMData">
+            <summary>
+            Store ExperimentGrid's Thumbnail Image
+            </summary>
+        </member>
+        <member name="M:IM.IO.ExperimentGridThumbnail.MakeThumbnails">
+            <summary>
+            Makes the thumbnails.
+            </summary>
+        </member>
+        <member name="M:IM.IO.ExperimentGridThumbnail.retrieveAssembledImageIMData">
+            <summary>
+            Retrieve Assembled Thumbnail Image from IMDB
+            </summary>
+            <param name="eg">ExperimentGrid</param>
+        </member>
+        <member name="T:IM.IO.DBManager">
+            <summary>
+            Result Database Handling Class
+            (Singleton Pattern)
+            </summary>
+        </member>
+        <member name="M:IM.IO.DBManager.#ctor">
+            <summary>
+            DatabaseManager Setting and constructor
+            If database connection information is changed, please correct here
+            </summary>
+        </member>
+        <member name="M:IM.IO.DBManager.MakeConnectionString(System.String,System.String,System.String,System.String)">
+            <summary>
+            Make connection string for Data DB
+            </summary>
+            <param name="sServer"></param>
+            <param name="sDataBase"></param>
+            <param name="sUserID"></param>
+            <param name="sPassWord"></param>
+        </member>
+        <member name="M:IM.IO.DBManager.getInstance">
+            <summary>
+            Return singleton instance of DatabaseManager
+            </summary>
+            <returns>DatabaseManager instance</returns>
+        </member>
+        <member name="M:IM.IO.DBManager.GetRow(System.Object[],System.String,System.String)">
+            <summary>
+            Return Object Array from specified query and string parameter
+            You should provide one query and one parameter
+            </summary>
+            <param name="values">Object Array of Results</param>
+            <param name="query">Query String</param>
+            <param name="param">Query Parameter</param>
+            <returns></returns>
+        </member>
+        <member name="M:IM.IO.DBManager.GetRow(System.Object[],System.String,System.UInt32)">
+            <summary>
+            Return Object Array from specified query and integer parameter
+            You should provide one query and one parameter
+            </summary>
+            <param name="values">Object Array of Results</param>
+            <param name="query">Query String</param>
+            <param name="param">Query Parameter</param>
+            <returns></returns>
+        </member>
+        <member name="M:IM.IO.DBManager.GetTable(System.Data.DataTable,System.String)">
+            <summary>
+            Get the result data in the shape of DataTable
+            </summary>
+            <param name="table">DataTable will be filled with the result of query string</param>
+            <param name="query">SQL Query string</param>
+        </member>
+        <member name="M:IM.IO.DBManager.UpdateQuery(System.String)">
+            <summary>
+            Update Query
+            </summary>
+            <param name="query">Update query</param>
+            <returns>Number of affected rows</returns>
+        </member>
+        <member name="M:IM.IO.DBManager.AddRow(System.String)">
+            <summary>
+            Add a Row
+            </summary>
+            <param name="query">Insert Query</param>
+            <returns>Last Inserted Row's Identity</returns>
+        </member>
+        <member name="T:IM.IO.FloatingPointGraphics">
+            <summary> Floating Point 4D multiband image format (FPG) based on TIFF architecture, allowing additional user tags to be stored in the file.
+            <para>Author: Alexandre Dufour</para>
+            <para>Version: FPG 3.0</para>
+            </summary>
+            <remarks>
+            Specification of the FPG format<para/>
+            <para/>
+            - FPG version       -> 1 byte<para/>
+            - Sequence name (length prefixed)<para/>
+            - Number of bands   -> int (4 bytes)<para/>
+            - Image width       -> int (4 bytes)<para/>
+            - Image height      -> int (4 bytes)<para/>
+            - Image depth       -> int (4 bytes)<para/>
+            - Sequence length   -> int (4 bytes)<para/>
+            - X resolution      -> double (8 bytes)<para/>
+            - Y resolution      -> double (8 bytes)<para/>
+            - Z resolution      -> double (8 bytes)<para/>
+            - T resolution      -> double (8 bytes)<para/>
+            <para/>
+            - Number of tags    -> int (4 bytes)<para/>
+            <para/>
+            - Tag type          -> 1 byte, within this choice list:<para/>
+              1  : numeric<para/>
+              2  : string<para/>
+              3  : other (byte array preceeded by an integer (4 bytes) indicating its length)<para/>
+            <para/>
+            - Tag name          -> string<para/>
+            <para/>
+            - Tag value         -> see choice list above<para/>
+            <para/>
+            - Image data -> stored as float (4 bytes), and ordered by: Time / Band / Depth / Height / Width
+            </remarks>
+            
+            <list type="table">
+            <listheader> <term>Version</term> <description>Changes</description> </listheader>
+            <item> <term>3.2</term><description>(AG) added multiple memory type support</description> </item>
+            <item> <term>3.1</term><description>(AD) no more compression to gain speed over memory</description> </item>
+            <item> <term>3.0</term><description>(AD) !! NO BACKWARD COMPATIBILITY !! added 2 static tags : FPG version and sequence name. Resolution now of type double</description> </item>
+            <item> <term>2.1</term><description>(AD) stores resolution tags</description> </item>
+            <item> <term>2.0</term><description>(AD) data is compressed on-the-fly using BZip2</description> </item>
+            <item> <term>1.0</term><description>(AD) first operational build, does not yet store user tags (but ready to read them)</description> </item>
+            </list>
+        </member>
+        <member name="F:IM.IO.FloatingPointGraphics.CurrentVersion">
+            <summary> The current (latest) version of the FPG format
+            </summary>
+        </member>
+        <member name="M:IM.IO.FloatingPointGraphics.ReadSequence(System.String,IM.Imaging.Memory)">
+            <summary> Loads a FPG sequence from disk
+            </summary>
+            <param name="filePath">the filePath to read from</param>
+            <param name="memoryType">the type of memory where the sequence should be loaded</param>
+            <returns>the loaded Sequence</returns>
+            <exception cref="T:System.IO.InvalidDataException">the FPG format is too old</exception>
+        </member>
+        <member name="M:IM.IO.FloatingPointGraphics.WriteSequence(IM.Imaging.Sequence,System.String)">
+            <summary> Saves a Sequence to FPG format. Currently saves no user tags
+            </summary>
+            <param name="s">the Sequence to save</param>
+            <param name="filePath">the file to write to</param>
+        </member>
+        <member name="T:IM.IO.FPGSequenceAccessor">
+            <summary>
+            FPGSequenceAccessor
+            </summary>
+        </member>
+        <member name="T:IM.IO.ImageFormat">
+            <summary>
+            The image file formats
+            </summary>
+        </member>
+        <member name="F:IM.IO.ImageFormat.gif">
+            <summary>
+            Gif file format
+            </summary>
+        </member>
+        <member name="F:IM.IO.ImageFormat.jpg">
+            <summary>
+            Jpeg file format
+            </summary>
+        </member>
+        <member name="F:IM.IO.ImageFormat.tif">
+            <summary>
+            Tiff file format
+            </summary>
+        </member>
+        <member name="F:IM.IO.ImageFormat.hdr">
+            <summary>
+            HDR file format
+            </summary>
+        </member>
+        <member name="F:IM.IO.ImageFormat.bmp">
+            <summary>
+            Bitmap file format
+            </summary>
+        </member>
+        <member name="F:IM.IO.ImageFormat.lsm">
+            <summary>
+            Zeiss LSM file format
+            </summary>
+        </member>
+        <member name="F:IM.IO.ImageFormat.fpg">
+            <summary>
+            Floating Point Graphics
+            </summary>
+        </member>
+        <member name="F:IM.IO.ImageFormat.png">
+            <summary>
+            Floating Point Graphics
+            </summary>
+        </member>
+        <member name="F:IM.IO.ImageFormat.avi">
+            <summary>
+            Avi Loaded as Time Sequence
+            </summary>
+        </member>
+        <member name="F:IM.IO.ImageFormat.lei">
+            <summary>
+            Nikon file format
+            </summary>
+        </member>
+        <member name="F:IM.IO.ImageFormat.zvi">
+            <summary>
+            Zeiss ZVI format
+            </summary>
+        </member>
+        <member name="F:IM.IO.ImageFormat.unknown">
+            <summary>
+            Unknown file format
+            </summary>
+        </member>
+        <member name="T:IM.IO.ColorType">
+            <summary>
+            FreeImage Color Types
+            Add and Designate as needed
+            </summary>
+        </member>
+        <member name="T:IM.IO.IF">
+            <summary>
+            A tool class for loading and saving image files
+            </summary>
+        </member>
+        <member name="M:IM.IO.IF.GetImageFormat(System.String)">
+            <summary>
+            Extract the extension of the given file name and return its equivalent IM ImageFormat
+            </summary>
+            <param name="filename">The file name</param>
+            <returns>The IM ImageFormat of this file name</returns>
+        </member>
+        <member name="M:IM.IO.IF.ConvertToFIF(IM.IO.ImageFormat)">
+            <summary>
+            Convert an IM ImageFormat to a FreeImage type
+            </summary>
+            <param name="type"></param>
+            <returns></returns>
+        </member>
+        <member name="M:IM.IO.IF.GetName(System.String)">
+            <summary>
+            Extract the file name of a path. remove file system path and extension 
+            </summary>
+            <param name="path">The path</param>
+            <returns>The file name</returns>
+        </member>
+        <member name="M:IM.IO.IF.GetPathAndName(System.String)">
+            <summary>
+            Remove extension of a path
+            </summary>
+            <param name="path">The path</param>
+            <returns>The path and file name without extention</returns>
+        </member>
+        <member name="M:IM.IO.IF.GetDirectory(System.String)">
+            <summary>
+            Remove extension and file name of a path
+            </summary>
+            <param name="path">The path</param>
+            <returns>The directory</returns>
+        </member>
+        <member name="T:IM.IO.IMData.IMPluginDB">
+            <summary>
+            Class for Handling User Plugin Mapping tab on administrator window
+            Author: Kyungho Lee  2008/11/10
+            </summary>
+        </member>
+        <member name="M:IM.IO.IMData.IMPluginDB.#ctor(System.UInt32,System.String,System.String,System.String,System.Boolean)">
+            <summary>
+            Initializes a new instance of the IMPluginDB class.
+            </summary>
+            <param name="id">The id.</param>
+            <param name="name">The name.</param>
+            <param name="category">The category.</param>
+            <param name="menuPath">The menu path.</param>
+            <param name="visible">Boolean visible</param>
+        </member>
+        <member name="M:IM.IO.IMData.IMPluginDB.#ctor(System.String,System.String,System.String,System.Boolean,System.String,System.String)">
+            <summary>
+            Initializes a new instance of the IMPluginDB class.      
+            </summary>
+            <param name="name">The name.</param>
+            <param name="category">The category.</param>
+            <param name="menuPath">The menu path.</param>
+            <param name="visible">Boolean visible</param>
+            <param name="fileName">Name of the file.</param>
+        </member>
+        <member name="M:IM.IO.IMData.IMPluginDB.#ctor(System.UInt32,System.String,System.String,System.String,System.Boolean,System.String,System.String)">
+            <summary>
+            Initializes a new instance of the IMPluginDB class.
+            
+            </summary>
+            <param name="name">The name.</param>
+            <param name="category">The category.</param>
+            <param name="menuPath">The menu path.</param>
+            <param name="visible">Boolean visible</param>
+            <param name="fileName">Name of the file.</param>
+        </member>
+        <member name="M:IM.IO.IMData.IMPluginDB.#ctor(System.UInt32,System.String,System.String,System.String,System.Boolean,System.String,System.String,System.String)">
+            <summary>
+            Initializes a new instance of the IMPluginDB class with author for register to DB
+            </summary>
+            <param name="name">The name.</param>
+            <param name="category">The category.</param>
+            <param name="menuPath">The menu path.</param>
+            <param name="visible">Boolean visible</param>
+            <param name="fileName">Name of the file.</param>
+        </member>
+        <member name="M:IM.IO.IMData.IMPluginDB.GetAllPluginTable">
+            <summary>
+            Get plugin list table and return table
+            kyungho 08/10/27
+            </summary>
+            <returns>DataTable table</returns>
+        </member>
+        <member name="M:IM.IO.IMData.IMPluginDB.GetUS_PLTable">
+            <summary>
+            Get US_PL Table and return table
+            <para>Kyungho 08/11/07</para>
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:IM.IO.IMData.IMPluginDB.GetUserMappedPluginTable(System.UInt32)">
+            <summary>
+            Get All plugin table which is already mapped before by selected user 
+            using US_PL table.
+            <para>kyungho 08/11/05</para>
+            </summary>
+            <param name="userID"></param>
+            <returns></returns>
+        </member>
+        <member name="M:IM.IO.IMData.IMPluginDB.GetUserMappedOnlyPluginTable(System.UInt32)">
+            <summary>
+            Get only mapped plugin table which is already mapped before by selected user 
+            using US_PL table.
+            <para>Author: kyungho 08/11/25</para>
+            </summary>
+            <param name="userID"></param>
+            <returns></returns>
+        </member>
+        <member name="M:IM.IO.IMData.IMPluginDB.GetPluginMappedUserTable(System.UInt32)">
+            <summary> 
+            Get all user table which is already mapped before by selected plugin
+            using US_PL table.
+            </summary>
+            <param name="pluginID">The plugin ID.</param>
+            <returns></returns>
+        </member>
+        <member name="M:IM.IO.IMData.IMPluginDB.GetPluginMappedUserTable(System.UInt32,System.UInt32)">
+            <summary>
+            Kyungho 08/12/30
+            Get all user table which is already mapped before by selected plugin in selected Domain
+            using US_PL table.
+            </summary>
+            <param name="pluginID">The plugin ID.</param>
+            <param name="dmID">The domain ID.</param>
+            <returns></returns>
+        </member>
+        <member name="M:IM.IO.IMData.IMPluginDB.buildPluginMD5(System.String)">
+            <summary>
+            build plugin MD5 from path location
+            </summary>
+            <param name="path"></param>
+            <returns></returns>
+        </member>
+        <member name="M:IM.IO.IMData.IMPluginDB.RegisterPluginsToIMDB(System.Collections.Generic.List{IM.IO.IMData.IMPluginDB},System.String)">
+            <summary>
+            Register all Plugins to Plugin table on DB
+            kyungho 08/11/18
+            </summary>
+            <param name="paList">plugin list from BAOBAB SERVER.</param>
+        </member>
+        <member name="M:IM.IO.IMData.IMPluginDB.CheckingExistPlugin(IM.IO.IMData.IMPluginDB)">
+            <summary>
+            Checking plugin already exist?
+            kyungho 08/11/18
+            </summary>
+            <param name="pl">The plugin.</param>
+            <returns></returns>
+        </member>
+        <member name="M:IM.IO.IMData.IMPluginDB.RegisterOnePluginOnDB(IM.IO.IMData.IMPluginDB)">
+            <summary>
+            Register one plugin to Plugin DB table
+            kyungho 08/11/18
+            </summary>
+            <param name="plName">Name of the plugin.</param>
+            <param name="plCategory">The plugin category.</param>
+            <param name="plMenuPath">The plugin menu path.</param>
+            <param name="visible">visible</param>
+            <param name="plFileName">Name of the plugin file name.</param>
+        </member>
+        <member name="M:IM.IO.IMData.IMPluginDB.UpdateOnePluginOnDB(IM.IO.IMData.IMPluginDB)">
+            <summary>
+            Update one plugin to Plugin DB table
+            kyungho 08/11/18
+            </summary>
+        </member>
+        <member name="M:IM.IO.IMData.IMPluginDB.RemovePluginOnPluginDB(System.String,System.String)">
+            <summary>
+            Remove plugin row on Plugin DB
+            In case of deleted plugin files on BAOBAB server
+            </summary>
+            <param name="plName">plugin name</param>
+            <param name="plMD5">plugin md5</param>
+        </member>
+        <member name="M:IM.IO.IMData.IMPluginDB.RemovePluginOnUS_PLDB(System.UInt32)">
+            <summary>
+            Remove plugin row on US_PL DB
+            In case of deleted plugin files on BAOBAB server
+            </summary>
+            <param name="plID">plugin id</param>
+        </member>
+        <member name="M:IM.IO.IMData.IMPluginDB.RemoveAllPluginByOneUserOnDB(System.UInt32)">
+            <summary>
+            Remove all plugins on US_PL table
+            kyungho 08/11/07
+            </summary>
+        </member>
+        <member name="M:IM.IO.IMData.IMPluginDB.RemoveAllUserByOnePluginOnDB(System.UInt32)">
+            <summary>
+            Remove all users on US_PL table
+            kyungho 08/11/07
+            </summary>
+        </member>
+        <member name="M:IM.IO.IMData.IMPluginDB.AddMappingUS_PL(System.UInt32,System.UInt32)">
+            <summary>
+            Add mapping US_PL table on DB
+            </summary>
+            <param name="userID">The user ID.</param>
+            <param name="id">The pl id.</param>
+        </member>
+        <member name="M:IM.IO.IMData.IMPluginDB.DeleteMappingOnUS_PL(System.UInt32,System.UInt32)">
+            <summary>
+            Deletes mapping US_PL table on DB
+            </summary>
+            <param name="userID">The user ID.</param>
+            <param name="plID">The pl id.</param>
+        </member>
+        <member name="M:IM.IO.UltraDBSequenceDescriptor.#ctor(System.Collections.Generic.Dictionary{System.String,System.String},System.Int32,System.Int32)">
+            <summary>
+            should read only one image
+            </summary>
+            <param name="files"></param>
+            <param name="depth"></param>
+            <param name="bands"></param>
+            <param name="sequenceSize"></param>
+        </member>
+        <member name="M:IM.IO.UltraDBSequenceDescriptor.Dispose(System.Boolean)">
+            <summary>
+            Free ressources
+            </summary>
+        </member>
+        <member name="M:IM.IO.UltraDBSequenceDescriptor.Read(System.Int32)">
+            <summary>
+            Get an image directly from files
+            </summary>
+            <param name="t">The time point</param>
+            <returns>An Image</returns>        
+        </member>
+        <member name="T:IM.IO.UltraDBSequenceDescriptor.ImageReader">
+            <summary>
+            Multi-threaded version of image reader
+            HK.Moon [8/8/2008]
+            </summary>
+        </member>
+        <member name="M:IM.IO.UltraDBSequenceDescriptor.ImageReader.#ctor(System.String,IM.Imaging.Image3D[],System.Int32,System.String)">
+            <summary>
+            Initializes a new instance of the multi thread version of <see cref="T:IM.IO.UltraDBSequenceDescriptor.ImageReader"/> class.
+            </summary>
+            <param name="file">The file.</param>
+            <param name="images">The images.</param>
+            <param name="band">The band.</param>
+            <param name="bandName">Name of the band.</param>
+        </member>
+        <member name="T:IM.IO.OperaIPKManager">
+            <summary>
+            Opera IPK Handling Class
+            (Singleton Pattern)
+            </summary>
+        </member>
+        <member name="M:IM.IO.OperaIPKManager.#ctor">
+            <summary>
+            DatabaseManager Setting and constructor
+            If database connection information is changed, please correct here
+            </summary>
+        </member>
+        <member name="M:IM.IO.OperaIPKManager.MakeConnectionString(System.String,System.String,System.String,System.String)">
+            <summary>
+            Make connection string for Data DB
+            </summary>
+            <param name="sServer"></param>
+            <param name="sDataBase"></param>
+            <param name="sUserID"></param>
+            <param name="sPassWord"></param>
+        </member>
+        <member name="M:IM.IO.OperaIPKManager.getInstance">
+            <summary>
+            Return singleton instance of DatabaseManager
+            </summary>
+            <returns>DatabaseManager instance</returns>
+        </member>
+        <member name="M:IM.IO.OperaIPKManager.GetRow(System.Object[],System.String,System.String)">
+            <summary>
+            Return Object Array from specified query and string parameter
+            You should provide one query and one parameter
+            </summary>
+            <param name="values">Object Array of Results</param>
+            <param name="query">Query String</param>
+            <param name="param">Query Parameter</param>
+            <returns></returns>
+        </member>
+        <member name="M:IM.IO.OperaIPKManager.GetRow(System.Object[],System.String,System.UInt32)">
+            <summary>
+            Return Object Array from specified query and integer parameter
+            You should provide one query and one parameter
+            </summary>
+            <param name="values">Object Array of Results</param>
+            <param name="query">Query String</param>
+            <param name="param">Query Parameter</param>
+            <returns></returns>
+        </member>
+        <member name="M:IM.IO.OperaIPKManager.GetTable(System.Data.DataTable,System.String)">
+            <summary>
+            Get the result data in the shape of DataTable
+            </summary>
+            <param name="table">DataTable will be filled with the result of query string</param>
+            <param name="query">SQL Query string</param>
+        </member>
+    </members>
+</doc>

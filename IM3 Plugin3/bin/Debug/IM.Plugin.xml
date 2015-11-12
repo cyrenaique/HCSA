@@ -1,0 +1,240 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>IM.Plugin</name>
+    </assembly>
+    <members>
+        <member name="T:IM.Plugin.Plugin">
+            <summary>
+            An IM plugin
+            Author: A. Genovesio
+            </summary>
+        </member>
+        <member name="F:IM.Plugin.Plugin.name">
+            <summary>
+            Used for automatic naming dataset
+            </summary>
+        </member>
+        <member name="M:IM.Plugin.Plugin.#ctor">
+            <summary>
+            Default constructor
+            </summary>
+        </member>
+        <member name="M:IM.Plugin.Plugin.Init">
+            <summary>
+            This method is called before the process loop starts
+            </summary>
+        </member>
+        <member name="M:IM.Plugin.Plugin.Process(IM.Imaging.Experiment)">
+            <summary>
+            This method is call in a loop in a new thread of execution 
+            </summary>
+            <param name="experiment">The experiment to process</param>
+        </member>
+        <member name="M:IM.Plugin.Plugin.Conclude">
+            <summary>
+            This method is called after the process loop ends
+            </summary>
+        </member>
+        <member name="M:IM.Plugin.Plugin.LoadPlugin(System.Windows.Forms.Form,IM.Plugin.PluginDescriptor)">
+            <summary>
+            Load a plugin
+            </summary>
+            <param name="parent">The form owner of the thread from which the plugin should be instanciated</param>
+            <param name="descriptor">The description of the plugin</param>
+        </member>
+        <member name="M:IM.Plugin.Plugin.CheckDuplicatePlugin(IM.Plugin.PluginDescriptor)">
+            <summary>
+            Check a plugin whether there is already the plugin in pluginList
+            </summary>
+            <param name="descriptor"></param>
+            <returns></returns>
+        </member>
+        <member name="M:IM.Plugin.Plugin.CheckAndGetDuplicatePlugin(IM.Plugin.PluginDescriptor)">
+            <summary>
+            Check a plugin whether there is already the plugin in pluginList
+            If duplicated the Plugin is returned
+            </summary>
+            <param name="descriptor"></param>
+            <returns></returns>
+        </member>
+        <member name="M:IM.Plugin.Plugin.CheckGrantedPlugin(IM.Plugin.PluginDescriptor)">
+            <summary>
+            Check a plugin whether there is already the plugin in pluginList
+            If duplicated the Plugin is returned
+            </summary>
+            <param name="descriptor"></param>
+            <returns></returns>
+        </member>
+        <member name="M:IM.Plugin.Plugin.UnloadPlugin(IM.Plugin.Plugin)">
+            <summary>
+            Unload the specified plugin
+            </summary>
+            <param name="plugin">The instance of a plugin</param>
+        </member>
+        <member name="M:IM.Plugin.Plugin.FocusCurrentPlugin">
+            <summary>
+            Focuses the current plugin.
+            HK.Moon [11/26/2007]
+            </summary>
+        </member>
+        <member name="M:IM.Plugin.Plugin.SaveLastFocusedPlugin">
+            <summary>
+            Saves the last focused plugin.
+            HK.Moon [11/26/2007]
+            </summary>
+        </member>
+        <member name="M:IM.Plugin.Plugin.GetProperty(System.String,System.String)">
+            <summary>
+            Retrieve a persistant property.
+            </summary>
+            <param name="name">The property key</param>
+            <param name="defoult">The default value in case this property does not exist</param>
+            <returns></returns>
+        </member>
+        <member name="M:IM.Plugin.Plugin.SetProperty(System.String,System.String)">
+            <summary>
+            Store a persistant property (i.e. it can be retrieve once the software has been restarted).
+            </summary>
+            <param name="name">A key</param>
+            <param name="value">A string value</param>
+        </member>
+        <member name="M:IM.Plugin.Plugin.AddPainter(IM.Imaging.Sequence,IM.Imaging.Painter)">
+            <summary>
+            Add a painter to a sequence. This action has to be signed by a plugin in order for IM to remove
+            this painter once this plugin has been unload.
+            </summary>
+            <param name="sequence">a sequence</param>
+            <param name="painter">a painter to add to the sequence</param>
+        </member>
+        <member name="M:IM.Plugin.Plugin.RemovePainter(IM.Imaging.Sequence,IM.Imaging.Painter)">
+            <summary>
+            Remove the specified painter from the specified sequence
+            </summary>
+            <param name="sequence"></param>
+            <param name="painter"></param>
+        </member>
+        <member name="M:IM.Plugin.Plugin.RemovePainter(IM.Imaging.Painter)">
+            <summary>
+            Remove the specified painter from any Sequences it was added to by this plugin
+            </summary>
+            <param name="painter">The Painter to be removed</param>
+        </member>
+        <member name="M:IM.Plugin.Plugin.RemoveAllPainters(IM.Imaging.Sequence)">
+            <summary>
+            Remove all painter added by this plugin to the specified sequence
+            </summary>
+            <param name="sequence"></param>
+        </member>
+        <member name="M:IM.Plugin.Plugin.RemoveAllPainters">
+            <summary>
+            Remove any painter added by this plugin
+            </summary>
+        </member>
+        <member name="M:IM.Plugin.Plugin.GetPainters">
+            <summary>
+            Get the list (a copy of references) of all painters associated to this plugin
+            </summary>
+        </member>
+        <member name="M:IM.Plugin.Plugin.GetPaintersSequences">
+            <summary>
+            Get the list of all Sequence associated by this plugin to any of its painter
+            </summary>
+        </member>
+        <member name="F:IM.Plugin.Plugin.components">
+            <summary>
+            Required designer variable.
+            </summary>
+        </member>
+        <member name="M:IM.Plugin.Plugin.Dispose(System.Boolean)">
+            <summary>
+            Clean up any resources being used.
+            </summary>
+            <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
+        </member>
+        <member name="M:IM.Plugin.Plugin.InitializeComponent">
+            <summary>
+            Required method for Designer support - do not modify
+            the contents of this method with the code editor.
+            </summary>
+        </member>
+        <member name="E:IM.Plugin.Plugin.CurrentPluginChangedEvent">
+            <summary>
+            Fired when the Current Plugin changed
+            </summary>
+        </member>
+        <member name="P:IM.Plugin.Plugin.CurrentPlugin">
+            <summary>
+            Get the current plugin
+            </summary>
+        </member>
+        <member name="T:IM.Plugin.PluginDescriptor">
+            <summary>
+            A non instantiated IM plugins
+            </summary>
+        </member>
+        <member name="M:IM.Plugin.PluginDescriptor.#ctor(System.Reflection.Assembly,System.Type,System.String,System.String,System.String,System.String,System.String,System.UInt32)">
+            <summary>
+            Create an object description of a plugin from which it is possible to instanciate it
+            </summary>
+            <param name="assem"></param>
+            <param name="type"></param>
+            <param name="menu"></param>
+            <param name="name"></param>
+        </member>
+        <member name="M:IM.Plugin.PluginDescriptor.Instanciate">
+            <summary>
+            Create an instance of the described plugin
+            </summary>
+            <returns>A plugin instance</returns>
+        </member>
+        <member name="M:IM.Plugin.PluginDescriptor.GetList(System.String)">
+            <summary>
+            Create the list of PluginAccessor 
+            </summary>
+            <param name="pluginDirectory">The plugin directory path</param>
+        </member>
+        <member name="M:IM.Plugin.PluginDescriptor.GetListFromPublishFolder(System.String)">
+            <summary>
+            Create the plugins list of PluginAccessor from publish folder at baobab.
+            </summary>
+            <param name="pluginDirectory">The plugin directory path</param>
+        </member>
+        <!-- Badly formed XML comment ignored for member "M:IM.Plugin.PluginDescriptor.GetPluginDescriptor(System.String,System.String,System.UInt32)" -->
+        <member name="P:IM.Plugin.PluginDescriptor.Name">
+            <summary>
+            The name of the plugin
+            </summary>
+        </member>
+        <member name="P:IM.Plugin.PluginDescriptor.MenuPath">
+            <summary>
+            The menu path of the plugin
+            </summary>
+        </member>
+        <member name="P:IM.Plugin.PluginDescriptor.Category">
+            <summary>
+            The category of the plugin
+            </summary>
+        </member>
+        <member name="P:IM.Plugin.PluginDescriptor.Type">
+            <summary>
+            The type the plugin
+            </summary>
+        </member>
+        <member name="P:IM.Plugin.PluginDescriptor.WasVisible">
+            <summary>
+            Indicate whenever the plugin was visible the last time
+            </summary>
+        </member>
+        <member name="P:IM.Plugin.PluginDescriptor.Assem">
+            <summary>
+            For Unique Plugin. This Assembly can be transfered to MD5 + SHA1 format
+            </summary>
+        </member>
+        <member name="P:IM.Plugin.PluginDescriptor.FileName">
+            <summary>
+            The full plugin file name(****.dll)
+            </summary>
+        </member>
+    </members>
+</doc>

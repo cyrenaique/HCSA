@@ -1,0 +1,13 @@
+I:\HCS-Analyzer\Dlls\SymyxChemSpiderSearchClient\ChemSpiderClientTest(No Draw)\bin\Debug\ChemSpiderClientTest(No Draw).exe.config
+I:\HCS-Analyzer\Dlls\SymyxChemSpiderSearchClient\ChemSpiderClientTest(No Draw)\bin\Debug\ChemSpiderClientTest(No Draw).exe
+I:\HCS-Analyzer\Dlls\SymyxChemSpiderSearchClient\ChemSpiderClientTest(No Draw)\bin\Debug\ChemSpiderClientTest(No Draw).pdb
+I:\HCS-Analyzer\Dlls\SymyxChemSpiderSearchClient\ChemSpiderClientTest(No Draw)\bin\Debug\ChemSpiderClient.dll
+I:\HCS-Analyzer\Dlls\SymyxChemSpiderSearchClient\ChemSpiderClientTest(No Draw)\bin\Debug\Symyx.CustomUIControls.dll
+I:\HCS-Analyzer\Dlls\SymyxChemSpiderSearchClient\ChemSpiderClientTest(No Draw)\bin\Debug\ChemSpiderClient.pdb
+I:\HCS-Analyzer\Dlls\SymyxChemSpiderSearchClient\ChemSpiderClientTest(No Draw)\obj\Debug\ResolveAssemblyReference.cache
+I:\HCS-Analyzer\Dlls\SymyxChemSpiderSearchClient\ChemSpiderClientTest(No Draw)\obj\Debug\ChemSpiderClientTest_No_Draw_.Form1.resources
+I:\HCS-Analyzer\Dlls\SymyxChemSpiderSearchClient\ChemSpiderClientTest(No Draw)\obj\Debug\ChemSpiderClientTest_No_Draw_.Properties.Resources.resources
+I:\HCS-Analyzer\Dlls\SymyxChemSpiderSearchClient\ChemSpiderClientTest(No Draw)\obj\Debug\GenerateResource-ResGen.read.1.tlog
+I:\HCS-Analyzer\Dlls\SymyxChemSpiderSearchClient\ChemSpiderClientTest(No Draw)\obj\Debug\GenerateResource-ResGen.write.1.tlog
+I:\HCS-Analyzer\Dlls\SymyxChemSpiderSearchClient\ChemSpiderClientTest(No Draw)\obj\Debug\ChemSpiderClientTest(No Draw).exe
+I:\HCS-Analyzer\Dlls\SymyxChemSpiderSearchClient\ChemSpiderClientTest(No Draw)\obj\Debug\ChemSpiderClientTest(No Draw).pdb

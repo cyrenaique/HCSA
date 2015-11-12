@@ -1,0 +1,869 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>IM.Utils</name>
+    </assembly>
+    <members>
+        <member name="M:Common.Rule.ExpressionEvaluator.EvaluateToString(System.String)">
+            <summary>
+            Executes the passed JScript Statement and returns the string representation of the result
+            </summary>
+            <param name="statement">A JScript statement to execute</param>
+            <returns>The string representation of the result of evaluating the passed statement</returns>
+        </member>
+        <member name="M:Common.Rule.ExpressionEvaluator.EvaluateToObject(System.String)">
+            <summary>
+            Executes the passed JScript Statement and returns the result
+            </summary>
+            <param name="statement">A JScript statement to execute</param>
+            <returns>The result of evaluating the passed statement</returns>
+        </member>
+        <member name="T:IM.Utils.Log">
+            <summary>
+            Author : HK. Moon
+            Log Application Messages for Debugging process (Thread Safe)
+            Examples : 
+                       Log.WriteLog("{0}, {1}, {2}", 1, 2, "hello?");
+            </summary>
+        </member>
+        <member name="M:IM.Utils.Log.WriteLog(System.String,System.Object[])">
+            <summary>
+            Writes the log.
+            </summary>
+            <param name="format">The format.</param>
+            <param name="parameters">The parameters.</param>
+        </member>
+        <member name="M:IM.Utils.Log.WriteLog">
+            <summary>
+            Writes the log.
+            </summary>
+        </member>
+        <member name="M:IM.Utils.Log.Finalize">
+            <summary>
+            Releases unmanaged resources and performs other cleanup operations before the
+            <see cref="T:IM.Utils.Log"/> is reclaimed by garbage collection.
+            </summary>
+        </member>
+        <member name="P:IM.Utils.Log.Filename">
+            <summary>
+            Gets the filename.
+            </summary>
+            <value>The filename.</value>
+        </member>
+        <member name="T:IM.Utils.Kernel32">
+            <summary>
+            Kernel32 Service class
+            </summary>
+        </member>
+        <member name="M:IM.Utils.Kernel32.GetNumberOfProcessors">
+            <summary>
+            Gets the number of processors.
+            </summary>
+            <returns>(Unsigned Integer) Number of processors</returns>
+        </member>
+        <member name="M:IM.Utils.Kernel32.GetLastError">
+            <summary>
+            Console Prints out last error.
+            </summary>
+        </member>
+        <member name="P:IM.Utils.TaskSlot.AllDone">
+            <summary>
+            Gets or sets all done.
+            </summary>
+            <value>All done.</value>
+        </member>
+        <member name="T:IM.Utils.NameValue">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:IM.Utils.NameValue.#ctor(System.String,System.String)">
+            <summary>
+            Initializes a new instance of the <see cref="T:IM.Utils.NameValue"/> class.
+            </summary>
+            <param name="name">The name.</param>
+            <param name="value">The value.</param>
+        </member>
+        <member name="M:IM.Utils.NameValue.ToString">
+            <summary>
+            Returns a <see cref="T:System.String"/> that represents the current <see cref="T:System.Object"/>.
+            </summary>
+            <returns>
+            A <see cref="T:System.String"/> that represents the current <see cref="T:System.Object"/>.
+            </returns>
+        </member>
+        <member name="P:IM.Utils.NameValue.Name">
+            <summary>
+            Gets the name.
+            </summary>
+            <value>The name.</value>
+        </member>
+        <member name="P:IM.Utils.NameValue.Value">
+            <summary>
+            Gets the value.
+            </summary>
+            <value>The value.</value>
+        </member>
+        <member name="T:IM.Utils.NVString">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:IM.Utils.NVString.ParseQueryString(System.String)">
+            <summary>
+            Parses the query string.
+            </summary>
+            <param name="queryString">The query string.</param>
+            <returns></returns>
+        </member>
+        <member name="M:IM.Utils.NVString.ParseQueryStringToArrayList(System.String)">
+            <summary>
+            Parses the query string to array list.
+            </summary>
+            <param name="queryString">The query string.</param>
+            <returns></returns>
+        </member>
+        <member name="M:IM.Utils.NVString.NameValueCollectionToString(System.Collections.Specialized.NameValueCollection)">
+            <summary>
+            Names the value collection to string.
+            </summary>
+            <param name="col">The col.</param>
+            <returns></returns>
+        </member>
+        <member name="T:IM.Utils.Parameters">
+            <summary>
+            There should be current Plugin Window, Plugin version and Name
+            </summary>
+        </member>
+        <member name="M:IM.Utils.Parameters.SaveControlCollection(System.Windows.Forms.Form)">
+            <summary>
+            Make Control Collection used as parameters necessary for running screen algorithm
+            </summary>
+            <param name="frm">Plugin From Control</param>
+        </member>
+        <member name="M:IM.Utils.Parameters.LoadControlCollection(System.Windows.Forms.Form)">
+            <summary>
+            Load Information of Control collection
+            </summary>
+            <param name="frm">Plugin Form</param>
+        </member>
+        <member name="M:IM.Utils.Parameters.traverseControls(System.Windows.Forms.Control,System.Collections.Specialized.NameValueCollection,System.Boolean)">
+            <summary>
+            Traverses the controls.
+            </summary>
+            <param name="c">The c.</param>
+            <param name="paramList">The param list.</param>
+            <param name="bSave">if set to <c>true</c> [b save].</param>
+        </member>
+        <member name="M:IM.Utils.Parameters.PrintKeysAndValues(System.Collections.Specialized.NameValueCollection)">
+            <summary>
+            Prints the keys and values.
+            </summary>
+            <param name="myCol">My col.</param>
+        </member>
+        <member name="T:IM.Utils.IMException">
+            <summary>
+            IM Exception Class
+            </summary>
+        </member>
+        <member name="M:IM.Utils.IMException.#ctor">
+            <summary>
+            Initializes a new instance of the <see cref="T:IM.Utils.IMException"/> class.
+            </summary>
+        </member>
+        <member name="M:IM.Utils.IMException.#ctor(System.String)">
+            <summary>
+            Initializes a new instance of the <see cref="T:IM.Utils.IMException"/> class.
+            </summary>
+            <param name="mesg">The mesg.</param>
+        </member>
+        <member name="M:IM.Utils.IMException.#ctor(System.String,System.SystemException)">
+            <summary>
+            Initializes a new instance of the <see cref="T:IM.Utils.IMException"/> class.
+            </summary>
+            <param name="mesg">The mesg.</param>
+            <param name="innerException">The inner exception.</param>
+        </member>
+        <member name="M:IM.Utils.IMException.#ctor(System.Runtime.Serialization.SerializationInfo,System.Runtime.Serialization.StreamingContext)">
+            <summary>
+            Initializes a new instance of the <see cref="T:IM.Utils.IMException"/> class.
+            </summary>
+            <param name="info">The object that holds the serialized object data.</param>
+            <param name="context">The contextual information about the source or destination.</param>
+        </member>
+        <member name="M:IM.Utils.IMException.#ctor(System.String,System.String)">
+            <summary>
+            Initializes a new instance of the <see cref="T:IM.Utils.IMException"/> class.
+            </summary>
+            <param name="methodact">The methodact.</param>
+            <param name="mesg">The mesg.</param>
+        </member>
+        <member name="M:IM.Utils.IMException.#ctor(System.String,System.String,System.SystemException)">
+            <summary>
+            Initializes a new instance of the <see cref="T:IM.Utils.IMException"/> class.
+            </summary>
+            <param name="methodact">The methodact.</param>
+            <param name="mesg">The mesg.</param>
+            <param name="innerexp">The innerexp.</param>
+        </member>
+        <member name="M:IM.Utils.IMException.ToString">
+            <summary>
+            Creates and returns a string representation of the current exception.
+            </summary>
+            <returns>
+            A string representation of the current exception.
+            </returns>
+            <PermissionSet>
+            	<IPermission class="System.Security.Permissions.FileIOPermission, mscorlib, Version=2.0.3600.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" version="1" PathDiscovery="*AllFiles*"/>
+            </PermissionSet>
+        </member>
+        <member name="M:IM.Utils.IMException.GetObjectData(System.Runtime.Serialization.SerializationInfo,System.Runtime.Serialization.StreamingContext)">
+            <summary>
+            When overridden in a derived class, sets the <see cref="T:System.Runtime.Serialization.SerializationInfo"/> with information about the exception.
+            </summary>
+            <param name="info">The <see cref="T:System.Runtime.Serialization.SerializationInfo"/> that holds the serialized object data about the exception being thrown.</param>
+            <param name="context">The <see cref="T:System.Runtime.Serialization.StreamingContext"/> that contains contextual information about the source or destination.</param>
+            <exception cref="T:System.ArgumentNullException">The <paramref name="info"/> parameter is a null reference (Nothing in Visual Basic). </exception>
+            <PermissionSet>
+            	<IPermission class="System.Security.Permissions.FileIOPermission, mscorlib, Version=2.0.3600.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" version="1" Read="*AllFiles*" PathDiscovery="*AllFiles*"/>
+            	<IPermission class="System.Security.Permissions.SecurityPermission, mscorlib, Version=2.0.3600.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" version="1" Flags="SerializationFormatter"/>
+            </PermissionSet>
+        </member>
+        <member name="M:IM.Utils.IMException.Clear">
+            <summary>
+            Clears this instance.
+            </summary>
+        </member>
+        <member name="M:IM.Utils.IMException.GetApplicationAttributes">
+            <summary>
+            Gets the application attributes.
+            </summary>
+        </member>
+        <member name="M:IM.Utils.IMException.Save(IM.Utils.IMException.TargetErrorLogs)">
+            <summary>
+            Saves the specified log.
+            </summary>
+            <param name="log">The log.</param>
+        </member>
+        <member name="M:IM.Utils.IMException.SaveToFile">
+            <summary>
+            Saves to file.
+            </summary>
+        </member>
+        <member name="M:IM.Utils.IMException.SaveToMSSQL">
+            <summary>
+            Saves to MSSQL.
+            </summary>
+        </member>
+        <member name="P:IM.Utils.IMException.ApplicationVersion">
+            <summary>
+            Gets the application version.
+            </summary>
+            <value>The application version.</value>
+        </member>
+        <member name="P:IM.Utils.IMException.ApplicationCulture">
+            <summary>
+            Gets the application culture.
+            </summary>
+            <value>The application culture.</value>
+        </member>
+        <member name="P:IM.Utils.IMException.ErrorDateTimeString">
+            <summary>
+            Gets the error date time string.
+            </summary>
+            <value>The error date time string.</value>
+        </member>
+        <member name="P:IM.Utils.IMException.ErrorDateTime">
+            <summary>
+            Gets the error date time.
+            </summary>
+            <value>The error date time.</value>
+        </member>
+        <member name="P:IM.Utils.IMException.MachineName">
+            <summary>
+            Gets the name of the machine.
+            </summary>
+            <value>The name of the machine.</value>
+        </member>
+        <member name="P:IM.Utils.IMException.Method">
+            <summary>
+            Gets the method.
+            </summary>
+            <value>The method.</value>
+        </member>
+        <member name="P:IM.Utils.IMException.MethodAction">
+            <summary>
+            Gets the method action.
+            </summary>
+            <value>The method action.</value>
+        </member>
+        <member name="P:IM.Utils.IMException.OSVersion">
+            <summary>
+            Gets the OS version.
+            </summary>
+            <value>The OS version.</value>
+        </member>
+        <member name="P:IM.Utils.IMException.UserName">
+            <summary>
+            Gets the name of the user.
+            </summary>
+            <value>The name of the user.</value>
+        </member>
+        <member name="T:IM.Utils.IMException.TargetErrorLogs">
+            <summary>
+            Type of logging methods
+            </summary>
+        </member>
+        <member name="F:IM.Utils.IMException.TargetErrorLogs.FlatFile">
+            <summary>
+            Store logs in FlatFile
+            </summary>
+        </member>
+        <member name="F:IM.Utils.IMException.TargetErrorLogs.MSSQL">
+            <summary>
+            Store logs in MSSQL server
+            </summary>
+        </member>
+        <member name="T:IM.Utils.Win7Taskbar">
+            <summary>
+            The primary coordinator of the Windows 7 taskbar-related activities.
+            </summary>
+        </member>
+        <member name="M:IM.Utils.Win7Taskbar.SetProgressState(IM.Utils.TaskbarProgressBarState,System.IntPtr)">
+            <summary>
+            Sets the type and state of the progress indicator displayed on a taskbar button of the main application window.
+            </summary>
+            <param name="state">Progress state of the progress button</param>
+        </member>
+        <member name="M:IM.Utils.Win7Taskbar.SetProgressValue(System.IntPtr,System.Int32,System.Int32)">
+            <summary>
+            Sets the progress value of the specified window's
+            taskbar button.
+            </summary>
+            <param name="hwnd">The window handle.</param>
+            <param name="current">The current value.</param>
+            <param name="maximum">The maximum value.</param>
+        </member>
+        <member name="P:IM.Utils.Win7Taskbar.OwnerHandle">
+            <summary>
+            Sets the handle of the window whose taskbar button will be used
+            to display progress.
+            </summary>
+        </member>
+        <member name="T:IM.Utils.TaskbarProgressBarState">
+            <summary>
+            Represents the thumbnail progress bar state.
+            </summary>
+        </member>
+        <member name="F:IM.Utils.TaskbarProgressBarState.NoProgress">
+            <summary>
+            No progress is displayed.
+            </summary>
+        </member>
+        <member name="F:IM.Utils.TaskbarProgressBarState.Indeterminate">
+            <summary>
+            The progress is indeterminate (marquee).
+            </summary>
+        </member>
+        <member name="F:IM.Utils.TaskbarProgressBarState.Normal">
+            <summary>
+            Normal progress is displayed.
+            </summary>
+        </member>
+        <member name="F:IM.Utils.TaskbarProgressBarState.Error">
+            <summary>
+            An error occurred (red).
+            </summary>
+        </member>
+        <member name="F:IM.Utils.TaskbarProgressBarState.Paused">
+            <summary>
+            The operation is paused (yellow).
+            </summary>
+        </member>
+        <member name="T:IM.Utils.RandomAccessFile">
+            <summary>
+            Provides support functions to create read-write random access files and write functions
+            </summary>
+        </member>
+        <member name="F:IM.Utils.RandomAccessFile.BUFFER_SIZE">
+            <summary>Memory buffer size in bytes, for reading from disk. </summary>
+        </member>
+        <member name="M:IM.Utils.RandomAccessFile.Create(System.String,System.String)">
+            <summary>
+            Creates a new random access stream with read-write or read rights
+            </summary>
+            <param name="fileName">A relative or absolute path for the file to open</param>
+            <param name="mode">Mode to open the file in</param>
+        </member>
+        <member name="M:IM.Utils.RandomAccessFile.Close">
+            <summary>
+            Closes the file stream instance.
+            </summary>
+        </member>
+        <member name="M:IM.Utils.RandomAccessFile.WriteBytes(System.String)">
+            <summary>
+            Writes the data to the specified file stream
+            </summary>
+            <param name="data">Data to write</param>
+            <param name="fileStream">File to write to</param>
+        </member>
+        <member name="M:IM.Utils.RandomAccessFile.WriteRandomFile(System.SByte[])">
+            <summary>
+            Writes the received data to the file stream
+            </summary>
+            <param name="sByteArray">Data to write</param>
+            <param name="fileStream">File to write to</param>
+        </member>
+        <member name="M:IM.Utils.RandomAccessFile.ToByteArray(System.SByte[])">
+            <summary>
+            Converts an array of sbytes to an array of bytes
+            </summary>
+            <param name="sbyteArray">The array of sbytes to be converted</param>
+            <returns>The new array of bytes</returns>
+        </member>
+        <member name="M:IM.Utils.RandomAccessFile.ToByteArray(System.String)">
+            <summary>
+            Converts a string to an array of bytes
+            </summary>
+            <param name="sourceString">The string to be converted</param>
+            <returns>The new array of bytes</returns>
+        </member>
+        <member name="M:IM.Utils.RandomAccessFile.ToByteArray(System.Object[])">
+            <summary>
+            Converts a array of object-type instances to a byte-type array.
+            </summary>
+            <param name="tempObjectArray">Array to convert.</param>
+            <returns>An array of byte type elements.</returns>
+        </member>
+        <member name="M:IM.Utils.RandomAccessFile.Skip(System.Int32)">
+            <summary>
+            Try to skip bytes in the input stream and return the actual number of bytes skipped.
+            </summary>
+            <param name="stream">Input stream that will be used to skip the bytes</param>
+            <param name="skipbytes">Number of bytes to be skipped</param>
+            <returns>Actual number of bytes skipped</returns>
+        </member>
+        <member name="M:IM.Utils.RandomAccessFile.ReadInput(System.SByte[],System.Int32,System.Int32)">
+            <summary>Reads a number of characters from the current source Stream and writes the data to the target array at the specified index.</summary>
+            <param name="sourceStream">The source Stream to read from.</param>
+            <param name="target">Contains the array of characteres read from the source Stream.</param>
+            <param name="start">The starting index of the target array.</param>
+            <param name="count">The maximum number of characters to read from the source Stream.</param>
+            <returns>The number of characters read. The number will be less than or equal to count depending on the data available in the source Stream. Returns -1 if the end of the stream is reached.</returns>
+        </member>
+        <member name="M:IM.Utils.RandomAccessFile.FindBlock(System.SByte[],System.Int64)">
+            <summary> Finds the first occurrence of the given byte block within the file,
+            starting from the given file position.
+            </summary>
+        </member>
+        <member name="M:IM.Utils.RandomAccessFile.batoi(System.SByte[])">
+            <summary>Translates up to the first 4 bytes of a byte array to an integer. </summary>
+        </member>
+        <member name="M:IM.Utils.RandomAccessFile.ReadInt">
+            <summary>Reads a little-endian integer from the given file. </summary>
+        </member>
+        <member name="T:IM.Utils.Crypto">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:IM.Utils.Crypto.ExtractMD5(System.IO.Stream)">
+            <summary>
+            Extracts the Md5 signature.
+            </summary>
+            <param name="strm">The Stream object.</param>
+            <returns></returns>
+        </member>
+        <member name="M:IM.Utils.Crypto.ExtractMD5(System.String)">
+            <summary>
+            Extracts the Md5 signature.
+            </summary>
+            <param name="str">The String object.</param>
+            <returns></returns>
+        </member>
+        <member name="M:IM.Utils.Crypto.ExtractSHA1(System.IO.Stream)">
+            <summary>
+            Extracts the SH a1.
+            </summary>
+            <param name="strm">The STRM.</param>
+            <returns></returns>
+        </member>
+        <member name="T:IM.Utils.Set">
+            <summary>
+            Represents a collection ob objects that contains no duplicate elements.
+            </summary>	
+        </member>
+        <member name="M:IM.Utils.Set.Add(System.Object)">
+            <summary>
+            Adds a new element to the Collection if it is not already present.
+            </summary>
+            <param name="obj">The object to add to the collection.</param>
+            <returns>Returns true if the object was added to the collection, otherwise false.</returns>
+        </member>
+        <member name="M:IM.Utils.Set.AddAll(System.Collections.ICollection)">
+            <summary>
+            Adds all the elements of the specified collection to the Set.
+            </summary>
+            <param name="c">Collection of objects to add.</param>
+            <returns>true</returns>
+        </member>
+        <member name="T:IM.Utils.HashSet">
+            <summary>
+            SupportClass for the HashSet class.
+            </summary>
+        </member>
+        <member name="M:IM.Utils.HashSet.Add(System.Object)">
+            <summary>
+            Adds a new element to the ArrayList if it is not already present.
+            </summary>		
+            <param name="obj">Element to insert to the ArrayList.</param>
+            <returns>Returns true if the new element was inserted, false otherwise.</returns>
+        </member>
+        <member name="M:IM.Utils.HashSet.AddAll(System.Collections.ICollection)">
+            <summary>
+            Adds all the elements of the specified collection that are not present to the list.
+            </summary>
+            <param name="c">Collection where the new elements will be added</param>
+            <returns>Returns true if at least one element was added, false otherwise.</returns>
+        </member>
+        <member name="M:IM.Utils.HashSet.Clone">
+            <summary>
+            Returns a copy of the HashSet instance.
+            </summary>		
+            <returns>Returns a shallow copy of the current HashSet.</returns>
+        </member>
+        <member name="T:IM.Utils.WindowsHelper">
+            <summary>
+            Helper class for calling Windows API from C#
+            </summary>
+        </member>
+        <member name="M:IM.Utils.WindowsHelper.FindWindow(System.String)">
+            <summary>
+            Finds the specified window by its name (or caption). 
+            </summary>
+            <param name="windowName">Name of the window to find and activate.</param>
+            <returns>Window handle or 0 if window not found by that name.</returns>
+        </member>
+        <member name="M:IM.Utils.WindowsHelper.ActivateWindow(System.String)">
+            <summary>
+            Finds the specified window by its name (or caption).  Then brings it to
+            the foreground.
+            </summary>
+            <param name="windowName">Name of the window to find and activate.</param>
+        </member>
+        <member name="T:IM.Utils.WindowsHelper.ManagedPt">
+            <summary>
+            Point struct used for GetWindowPlacement API.
+            </summary>
+        </member>
+        <member name="T:IM.Utils.WindowsHelper.ManagedRect">
+            <summary>
+            Rect struct used for GetWindowPlacement API.
+            </summary>
+        </member>
+        <member name="T:IM.Utils.WindowsHelper.ManagedWindowPlacement">
+            <summary>
+            WindowPlacement struct used for GetWindowPlacement API.
+            </summary>
+        </member>
+        <member name="T:IM.Utils.ClipboardMetafileHelper">
+            <summary>
+            Copy EMF into clipboard
+            </summary>
+        </member>
+        <member name="T:IM.Utils.WaitSlot">
+            <summary>
+            Management of Thread Wait Handles
+            </summary>
+        </member>
+        <member name="M:IM.Utils.WaitSlot.#ctor(System.Int32,System.Threading.AutoResetEvent)">
+            <summary>
+            Initializes a new instance of the <see cref="T:IM.Utils.WaitSlot"/> class.
+            </summary>
+            <param name="_num">The _num.</param>
+            <param name="_allDone">The _all done.</param>
+        </member>
+        <member name="M:IM.Utils.WaitSlot.WaitAllDone">
+            <summary>
+            Waits all done.
+            </summary>
+        </member>
+        <member name="M:IM.Utils.WaitSlot.WaitAny">
+            <summary>
+            Waits any.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:IM.Utils.WaitSlot.Set(System.Int32)">
+            <summary>
+            Sets the specified i.
+            </summary>
+            <param name="i">The i.</param>
+        </member>
+        <member name="P:IM.Utils.WaitSlot.AllDone">
+            <summary>
+            Gets or sets all done.
+            </summary>
+            <value>All done.</value>
+        </member>
+        <member name="F:IM.Utils.THUMBBUTTON.THBN_CLICKED">
+            <summary>
+            WPARAM value for a THUMBBUTTON being clicked.
+            </summary>
+        </member>
+        <member name="T:IM.Utils.ThumbnailProgressState">
+            <summary>
+            Represents the thumbnail progress bar state.
+            </summary>
+        </member>
+        <member name="F:IM.Utils.ThumbnailProgressState.NoProgress">
+            <summary>
+            No progress is displayed.
+            </summary>
+        </member>
+        <member name="F:IM.Utils.ThumbnailProgressState.Indeterminate">
+            <summary>
+            The progress is indeterminate (marquee).
+            </summary>
+        </member>
+        <member name="F:IM.Utils.ThumbnailProgressState.Normal">
+            <summary>
+            Normal progress is displayed.
+            </summary>
+        </member>
+        <member name="F:IM.Utils.ThumbnailProgressState.Error">
+            <summary>
+            An error occurred (red).
+            </summary>
+        </member>
+        <member name="F:IM.Utils.ThumbnailProgressState.Paused">
+            <summary>
+            The operation is paused (yellow).
+            </summary>
+        </member>
+        <member name="T:IM.Utils.HRESULT">
+            <summary>
+            HRESULT Wrapper
+            This is intended for Library Internal use only.
+            </summary>
+        </member>
+        <member name="F:IM.Utils.HRESULT.S_FALSE">
+            <summary>
+            S_FALSE
+            </summary>
+        </member>
+        <member name="F:IM.Utils.HRESULT.S_OK">
+            <summary>
+            S_OK
+            </summary>
+        </member>
+        <member name="F:IM.Utils.HRESULT.E_INVALIDARG">
+            <summary>
+            E_INVALIDARG
+            </summary>
+        </member>
+        <member name="F:IM.Utils.HRESULT.E_OUTOFMEMORY">
+            <summary>
+            E_OUTOFMEMORY
+            </summary>
+        </member>
+        <member name="F:IM.Utils.HRESULT.E_NOINTERFACE">
+            <summary>
+            E_NOINTERFACE
+            </summary>
+        </member>
+        <member name="F:IM.Utils.HRESULT.E_FAIL">
+            <summary>
+            E_FAIL
+            </summary>
+        </member>
+        <member name="F:IM.Utils.HRESULT.E_ELEMENTNOTFOUND">
+            <summary>
+            E_ELEMENTNOTFOUND
+            </summary>
+        </member>
+        <member name="F:IM.Utils.HRESULT.TYPE_E_ELEMENTNOTFOUND">
+            <summary>
+            TYPE_E_ELEMENTNOTFOUND
+            </summary>
+        </member>
+        <member name="F:IM.Utils.HRESULT.NO_OBJECT">
+            <summary>
+            NO_OBJECT
+            </summary>
+        </member>
+        <member name="F:IM.Utils.HRESULT.ERROR_CANCELLED">
+            <summary>
+            Win32 Error code: ERROR_CANCELLED
+            </summary>
+        </member>
+        <member name="F:IM.Utils.HRESULT.E_ERROR_CANCELLED">
+            <summary>
+            ERROR_CANCELLED
+            </summary>
+        </member>
+        <member name="F:IM.Utils.HRESULT.RESOURCE_IN_USE">
+            <summary>
+            The requested resource is in use
+            </summary>
+        </member>
+        <member name="T:IM.Utils.CoreErrorHelper">
+            <summary>
+            Provide Error Message Helper Methods.
+            This is intended for Library Internal use only.
+            </summary>
+        </member>
+        <member name="F:IM.Utils.CoreErrorHelper.FACILITY_WIN32">
+            <summary>
+            This is intended for Library Internal use only.
+            </summary>
+        </member>
+        <member name="F:IM.Utils.CoreErrorHelper.IGNORED">
+            <summary>
+            This is intended for Library Internal use only.
+            </summary>
+        </member>
+        <member name="M:IM.Utils.CoreErrorHelper.HResultFromWin32(System.Int32)">
+            <summary>
+            This is intended for Library Internal use only.
+            </summary>
+            <param name="win32ErrorCode">The Windows API error code.</param>
+            <returns>The equivalent HRESULT.</returns>
+        </member>
+        <member name="M:IM.Utils.CoreErrorHelper.Succeeded(System.Int32)">
+            <summary>
+            This is intended for Library Internal use only.
+            </summary>
+            <param name="hresult">The error code.</param>
+            <returns>True if the error code indicates success.</returns>
+        </member>
+        <member name="M:IM.Utils.CoreErrorHelper.Failed(IM.Utils.HRESULT)">
+            <summary>
+            This is intended for Library Internal use only.
+            </summary>
+            <param name="hResult">The error code.</param>
+            <returns>True if the error code indicates failure.</returns>
+        </member>
+        <member name="M:IM.Utils.CoreErrorHelper.Matches(System.Int32,System.Int32)">
+            <summary>
+            This is intended for Library Internal use only.
+            </summary>
+            <param name="hresult">The COM error code.</param>
+            <param name="win32ErrorCode">The Win32 error code.</param>
+            <returns>Inticates that the Win32 error code corresponds to the COM error code.</returns>
+        </member>
+        <member name="T:IM.Utils.ActiveDirectory">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:IM.Utils.ActiveDirectory.ConnectWNet(System.String,System.String,System.String)">
+            <summary>
+            
+            </summary>
+            <param name="path"></param>
+            <param name="user"></param>
+            <param name="password"></param>
+            <returns></returns>
+        </member>
+        <member name="M:IM.Utils.ActiveDirectory.ConnectWNetPrompt(System.String,System.String,System.String)">
+            <summary>
+            Active directory connection with prompt login box
+            </summary>
+            <param name="path"></param>
+            <param name="user"></param>
+            <param name="password"></param>
+            <returns></returns>      
+        </member>
+        <member name="T:IM.Utils.ActiveDirectory.SystemErrors">
+            <summary>
+            SystemErrors Enum
+            </summary>
+        </member>
+        <member name="F:IM.Utils.ActiveDirectory.SystemErrors.ERROR_SUCCESS">
+            <summary>
+            Success
+            </summary>
+        </member>
+        <member name="F:IM.Utils.ActiveDirectory.SystemErrors.ERROR_ACCESS_DENIED">
+            <summary>
+            Access Denied
+            </summary>
+        </member>
+        <member name="F:IM.Utils.ActiveDirectory.SystemErrors.ERROR_ALREADY_ASSIGNED">
+            <summary>
+            Already Assigned
+            </summary>
+        </member>
+        <member name="F:IM.Utils.ActiveDirectory.SystemErrors.ERROR_BAD_DEV_TYPE">
+            <summary>
+            Bad Device Type
+            </summary>
+        </member>
+        <member name="F:IM.Utils.ActiveDirectory.SystemErrors.ERROR_BAD_DEVICE">
+            <summary>
+            Bad Device
+            </summary>
+        </member>
+        <member name="F:IM.Utils.ActiveDirectory.SystemErrors.ERROR_BAD_NET_NAME">
+            <summary>
+            Bad Network Name
+            </summary>
+        </member>
+        <member name="F:IM.Utils.ActiveDirectory.SystemErrors.ERROR_BAD_PROFILE">
+            <summary>
+            Bad Profile
+            </summary>
+        </member>
+        <member name="F:IM.Utils.ActiveDirectory.SystemErrors.ERROR_BAD_PROVIDER">
+            <summary>
+            Bad Provider
+            </summary>
+        </member>
+        <member name="F:IM.Utils.ActiveDirectory.SystemErrors.ERROR_BUSY">
+            <summary>
+            Busy
+            </summary>
+        </member>
+        <member name="F:IM.Utils.ActiveDirectory.SystemErrors.ERROR_CANCELLED">
+            <summary>
+            Cancelled
+            </summary>
+        </member>
+        <member name="F:IM.Utils.ActiveDirectory.SystemErrors.ERROR_CANNOT_OPEN_PROFILE">
+            <summary>
+            Cannot Open Profile
+            </summary>
+        </member>
+        <member name="F:IM.Utils.ActiveDirectory.SystemErrors.ERROR_DEVICE_ALREADY_REMEMBERED">
+            <summary>
+            Device Already Remebered
+            </summary>
+        </member>
+        <member name="F:IM.Utils.ActiveDirectory.SystemErrors.ERROR_EXTENDED_ERROR">
+            <summary>
+            Extended Error
+            </summary>
+        </member>
+        <member name="F:IM.Utils.ActiveDirectory.SystemErrors.ERROR_INVALID_PASSWORD">
+            <summary>
+            Invalid Password
+            </summary>
+        </member>
+        <member name="F:IM.Utils.ActiveDirectory.SystemErrors.ERROR_NO_NET_OR_BAD_PATH">
+            <summary>
+            No Network or Bad Path
+            </summary>
+        </member>
+        <member name="F:IM.Utils.ActiveDirectory.SystemErrors.ERROR_NO_NETWORK">
+            <summary>
+            No Network
+            </summary>
+        </member>
+        <member name="F:IM.Utils.ActiveDirectory.SystemErrors.ERROR_SESSION_CREDENTIAL_CONFLICT">
+            <summary>
+            Session Credential Conflict
+            </summary>
+        </member>
+    </members>
+</doc>

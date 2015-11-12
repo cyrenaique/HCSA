@@ -1,0 +1,515 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>LibCommon</name>
+    </assembly>
+    <members>
+        <member name="T:IM.Library.Neighborhood">
+            <summary>
+            A class that helps to get several kind of neighbors of a given pixel whose position is given as 1D Data array index and that
+            handles out of bounds values. Neighbors are returned as 1D float arrays, out of bounds values being filled with float.NaN values  
+            </summary>
+            <list type="table">
+            <listheader> <term>Version</term> <description>Changes</description> </listheader>
+             <item> <term>1.1.0</term> <description>(BL) Adding different neighbourhood shapes to neighbourIndex class</description> </item>
+             <item> <term>1.0.3</term> <description>(BL) changed the algorithm for faster implementation</description> </item>
+            <item> <term>1.0.2</term> <description>(BL) removed buggy neighbourIndex interface</description> </item>
+            <item> <term>1.0.2</term> <description>(BL) added 3D neighbourhood functions</description> </item>
+            <item> <term>1.0.1</term> <description>(BL) added pixel index functions</description> </item>
+            <item> <term>1.0.0</term> <description>(BL) first operational build</description> </item>
+            </list>
+        </member>
+        <member name="M:IM.Library.Neighborhood.#ctor">
+            <summary>
+            Empy constructor, does nothing
+            </summary>
+        </member>
+        <member name="M:IM.Library.Neighborhood.indexes(IM.Imaging.Image3D,System.Int32)">
+            <summary>
+            Computes the 3D indexes of the pixel i in an image
+            </summary>
+            <param name="Img">The image to consider</param>
+            <param name="idx">The pixel to consider</param>
+            <returns>A zeoro based [X,Y,Z] array</returns>
+        </member>
+        <member name="M:IM.Library.Neighborhood.Left(System.Single[],System.Int32,System.Int32)">
+            <summary>
+            returns the pixel on the left or NaN it is the first column of the image 
+            </summary>
+            <param name="imageData"> The image pixels array</param>
+            <param name="lineSize"> The lenght of output line in the image </param>
+            <param name="pos"> the index in that array</param>
+            <returns> the value of the pixel</returns>
+        </member>
+        <member name="M:IM.Library.Neighborhood.Right(System.Single[],System.Int32,System.Int32)">
+            <summary>
+            returns the pixel on the right or NaN it is the last column of the image 
+            </summary>
+            <param name="imageData"> The image pixels array</param>
+            /// <param name="lineSize"> The lenght of output line in the image </param>
+            <param name="pos"> the index in that array</param>
+            <returns> the value of the pixel</returns>
+        </member>
+        <member name="M:IM.Library.Neighborhood.Upper(System.Single[],System.Int32,System.Int32,System.Int32)">
+            <summary>
+            returns the pixel on the upper line or NaN it is the first line of the image 
+            </summary>
+            <param name="imageData"> The image pixels array</param>
+            <param name="lineSize"> The lenght of output line in the image </param>
+             <param name="sliceSize"> The the size of output 2D Slice  in the image </param>
+            <param name="pos"> the index in that array</param>
+            <returns> the value of the pixel</returns>
+        </member>
+        <member name="M:IM.Library.Neighborhood.Lower(System.Single[],System.Int32,System.Int32,System.Int32)">
+            <summary>
+            returns the pixel on the lower line or NaN it is the last line of the image 
+            </summary>
+            <param name="imageData"> The image pixels array</param>
+            <param name="lineSize"> The lenght of output line in the image </param>
+             <param name="sliceSize"> The the size of output 2D Slice  in the image </param>
+            <param name="pos"> the index in that array</param>
+            <returns> the value of the pixel</returns>
+        </member>
+        <member name="M:IM.Library.Neighborhood.Neighbors(IM.Imaging.Image3D,System.Int32,System.Int32,System.Int32)">
+            <summary>
+            Returns an array of float containing the values of the  neighbor pixels and NaN for out of bounds 
+            (non existing) values.
+            </summary>
+            <param name="image">The input 3D image</param>
+            <param name="band">The color band to process</param>
+            <param name="halfSize">The half size of the Neighborhood to consider</param>
+            <param name="pos">the position of the current pixel (1D indexing)</param>
+            <returns>An array containing the pixels values</returns>
+        </member>
+        <member name="M:IM.Library.Neighborhood.Neighbors(IM.Imaging.Image3D,System.Single[]@,System.Int32,System.Int32,System.Int32)">
+            <summary>
+            Returns an array of float containing the values of the  neighbor pixels and NaN for out of bounds 
+            (non existing) values. The array is already allocated and passed as a parameter. For performance reasons, output array size is not checked
+            </summary>
+            <param name="image">The input 3D image</param>
+            <param name="kernel">The output array containing the neighbours</param>
+            <param name="band">The color band to process</param>
+            <param name="halfSize">The half size of the Neighborhood to consider</param>
+            <param name="pos">the position of the current pixel (1D indexing)</param>
+        </member>
+        <member name="M:IM.Library.Neighborhood.Neighbors(System.Single[],System.Int32,System.Int32,System.Int32,System.Int32)">
+            <summary>
+            Returns an array of float containing the values of the  Neighborpixels and NaN for out of bounds 
+            (non existing) values.
+            </summary>
+            <param name="image">The input image data array</param>
+            <param name="width">The width of the image</param>
+            <param name="height">The height of the image</param>
+            <param name="halfSize">The half size of the Neighborhood to consider</param>
+            <param name="pos">the position of the current pixel (1D indexing)</param>
+            <returns>An array containing the pixels values</returns>
+        </member>
+        <member name="M:IM.Library.Neighborhood.Neighbors(IM.Imaging.Image3D,System.Single[]@,System.Int32,System.Int32,System.Int32,System.Int32,System.Int32)">
+            <summary>
+            Returns an array of float containing the values of the  2D neighbor pixels and NaN for out of bounds 
+            (non existing) values.The array is already allocated and passed as a parameter. For performance reasons, output array size is not checked
+            </summary>
+            <param name="image">The input image</param>
+            <param name="kernel">The array containing neighbors values (size is not checked)</param>
+            <param name="band">The color band to collect the values in</param>
+            <param name="halfSize">The half size the window</param>
+            <param name="x">x position in the image</param>
+            <param name="y">y position in the image</param>
+            <param name="idx">the real index in data array</param>
+        </member>
+        <member name="M:IM.Library.Neighborhood.Neighbors(System.Single[],System.Single[]@,System.Int32,System.Int32,System.Int32,System.Int32)">
+            <summary>
+            Returns an array of float containing the values of the  Neighborpixels and NaN for out of bounds 
+            (non existing) values.The array is already allocated and passed as a parameter. For performance reasons, output array size is not checked
+            </summary>
+            <param name="image">The input image data array</param>
+            <param name="kernel">The output array containing the neighbours</param>
+            <param name="width">The width of the image</param>
+            <param name="height">The height of the image</param>
+            <param name="halfSize">The half size of the Neighborhood to consider</param>
+            <param name="pos">the position of the current pixel (1D indexing)</param>
+            <returns>An array containing the pixels values</returns>
+        </member>
+        <member name="M:IM.Library.Neighborhood.NeighborsIndex(IM.Imaging.Image3D,System.Int32,System.Int32)">
+            <summary>
+            Returns an array of int containing indexes of the  2D Neighbour pixels in the input image and -1 for out of bounds 
+            (non existing) values. 
+            </summary>
+            <param name="image">The input 3D image</param>
+            <param name="halfSize">The half size of the Neighborhood to consider</param>
+            <param name="pos">the position of the current pixel (1D indexing)</param>
+            <returns>An array containing the pixels indexes</returns>
+        </member>
+        <member name="M:IM.Library.Neighborhood.NeighborsIndex(IM.Imaging.Image3D,System.Int32[]@,System.Int32,System.Int32)">
+            <summary>
+            Returns an array of int containing indexes of the  2D Neighbour pixels in the input image and -1 for out of bounds 
+            (non existing) values. 
+            </summary>
+            <param name="image">The input 3D image</param>
+            <param name="kernel">The output array containing the neighbours indexes</param>
+            <param name="halfSize">The half size of the Neighborhood to consider</param>
+            <param name="pos">the position of the current pixel (1D indexing)</param>
+            <returns>An array containing the pixels indexes</returns>
+        </member>
+        <member name="M:IM.Library.Neighborhood.NeighborsIndex(System.Int32,System.Int32,System.Int32,System.Int32)">
+            <summary>
+            Returns an array of int containing indexes of the  Neighbour pixels in the input image and -1 for out of bounds 
+            (non existing) values. The array is already allocated and passed as a parameter. For performance reasons, output array size is not checked
+            </summary>
+            <param name="width">The width of the image</param>
+            <param name="height">The height of the image</param>
+            <param name="halfSize">The half size of the Neighborhood to consider</param>
+            <param name="pos">the position of the current pixel (1D indexing)</param>
+            <returns>An array containing the pixels values</returns>
+            // public static int[] NeighborsIndex(float[] image, int width, int height, int halfSize, int pos)
+        </member>
+        <member name="M:IM.Library.Neighborhood.NeighborsIndex(System.Int32[]@,System.Int32,System.Int32,System.Int32,System.Int32)">
+            <summary>
+            Returns an array of int containing indexes of the  Neighbour pixels in the input image and -1 for out of bounds 
+            (non existing) values. The array is already allocated and passed as a parameter. For performance reasons, output array size is not checked
+            </summary>
+            <param name="width">The width of the image</param>
+            <param name="height">The height of the image</param>
+            <param name="kernel">The output array containing the neighbours indexes </param>
+            <param name="halfSize">The half size of the Neighborhood to consider</param>
+            <param name="pos">the position of the current pixel (1D indexing)</param>
+            <returns>An array containing the pixels values</returns>
+        </member>
+        <member name="M:IM.Library.Neighborhood.NeighborsIndex(IM.Imaging.Image3D,System.Int32[]@,System.Int32,System.Int32,System.Int32,System.Int32)">
+            <summary>
+            Returns an array of float containing the values of the  2D neighbor pixels and NaN for out of bounds 
+            (non existing) values.The array is already allocated and passed as a parameter. For performance reasons, output array size is not checked
+            </summary>
+            <param name="image">The input image</param>
+            <param name="kernel">The array containing neighbors values (size is not checked)</param>
+            <param name="halfSize">The half size the window</param>
+            <param name="x">x position in the image</param>
+            <param name="y">y position in the image</param>
+            <param name="pos">the real index in data array</param>
+        </member>
+        <member name="M:IM.Library.Neighborhood.Neighbors3(System.Single[],System.Int32,System.Int32,System.Int32,System.Int32)">
+            <summary>
+            3D Neighbourhood. Returns an array of float containing the values of the  Neighborpixels and NaN for out of bounds 
+            (non existing) values.
+            </summary>
+            <param name="image">The input image data array</param>
+            <param name="width">The width of the image</param> 
+            <param name="height">The height of the image</param>
+            <param name="halfSize">The half size of the Neighborhood to consider</param>
+            <param name="pos">the position of the current pixel (1D indexing)</param>
+            <returns>An array containing the pixels values</returns>
+        </member>
+        <member name="M:IM.Library.Neighborhood.Neighbors3(IM.Imaging.Image3D,System.Int32,System.Int32,System.Int32)">
+            <summary>
+             BUGGY BUGGY .... 3D Neighbourhood. Returns an array of float containing the values of the  Neighborpixels and NaN for out of bounds 
+            (non existing) values. BUGGY BUGGY .... 
+            </summary>
+            <param name="image">The input image data array</param>
+            <param name="band">The colorband to consider</param>
+            <param name="halfSize">The half size of the Neighborhood to consider</param>
+            <param name="pos">the position of the current pixel (1D indexing)</param>
+            <returns>An array containing the pixels values</returns>
+        </member>
+        <member name="M:IM.Library.Neighborhood.Neighbors3Index(System.Int32,System.Int32,System.Int32,System.Int32)">
+            <summary>
+            3D Neighbourhood. Returns an array of int containing the indexes of the  neighbour pixels and -1 for out of bounds 
+            (non existing) values.
+            </summary>
+            <param name="width">The width of the image</param>
+            <param name="height">The height of the image</param>
+            <param name="halfSize">The half size of the Neighborhood to consider</param>
+            <param name="pos">the position of the current pixel (1D indexing)</param>
+            <returns>An array containing the pixels values</returns>
+        </member>
+        <member name="T:IM.Library.NeighboorIndexes">
+            <summary>
+            A Class that allows quick search of the neighboors of a given pixel by precalculating all the corresponding indexes for an image of a given size
+            Only works in 2D for now ...
+            </summary>
+        </member>
+        <member name="F:IM.Library.NeighboorIndexes.indexes">
+            <summary>
+            The array containing the indexes of the pixels within the window. altough this array is public, 
+            direct acces is deprecated unless you're sure that winw and image size match your desires.
+            </summary>
+        </member>
+        <member name="F:IM.Library.NeighboorIndexes.sliceOffset">
+            <summary>
+            Index offset for multislice images
+            </summary>
+        </member>
+        <member name="M:IM.Library.NeighboorIndexes.#ctor(IM.Imaging.Image3D,System.Int32,System.Int32)">
+            <summary>
+            Constructor for a 2D rectangular neighboorhood
+            </summary>
+            <param name="img">the image whose neighboorhood are considered</param>
+            <param name="width">width of the window</param>
+            <param name="height">heigh of the window</param>
+        </member>
+        <member name="M:IM.Library.NeighboorIndexes.#ctor(IM.Imaging.Image3D,System.Int32,System.Int32,System.Boolean)">
+            <summary>
+            Constructor for a 2D rectangular neighboorhood
+            </summary>
+            <param name="img">the image whose neighboorhood are considered</param>
+            <param name="width">width of the window</param>
+            <param name="height">heigh of the window</param>
+            <param name="trim">if true, out of bound indexes are removed from arrays, if false they are set to -1</param>
+        </member>
+        <member name="M:IM.Library.NeighboorIndexes.#ctor(IM.Imaging.Image3D,System.Int32,IM.Library.NeighboorIndexes.NeighbourhoodShape)">
+            <summary>
+            Constructor for a 2D neighboorhood of a specified shape. Only one dimension is provided 
+            (width of the cross / diameter of the disk)
+            and non rectangular neighbourhood are supposed to be symmetric.
+            For crosses neighbourhood, indexes are ordered in clockwise spiral:
+            {(x,y),(x+1,y),(x,y-1),(x-1,y),(x,y+1),(x+2,y),(x,y-2),...}
+            </summary>
+            <param name="img">the image whose neighboorhood are considered</param>
+            <param name="width">width of the window</param>
+            <param name="shape">the shape of the neighbouhood (see NeighbourhoodShape enum)</param>
+        </member>
+        <member name="M:IM.Library.NeighboorIndexes.#ctor(IM.Imaging.Image3D,System.Int32,IM.Library.NeighboorIndexes.NeighbourhoodShape,System.Boolean)">
+            <summary>
+            Constructor for a 2D neighboorhood of a specified shape. Only one dimension is provided 
+            (width of the cross / diameter of the disk)
+            and non rectangular neighbourhood are supposed to be symmetric.
+            For crosses neighbourhood, indexes are ordered in clockwise spiral:
+            {(x,y),(x+1,y),(x,y-1),(x-1,y),(x,y+1),(x+2,y),(x,y-2),...}
+            </summary>
+            <param name="img">the image whose neighboorhood are considered</param>
+            <param name="width">width of the window</param>
+            <param name="shape">the shape of the neighbouhood (see NeighbourhoodShape enum)</param> 
+            <param name="trim">if true, out of bound indexes are removed from arrays, if false they are set to -1</param>
+        </member>
+        <member name="M:IM.Library.NeighboorIndexes.init(IM.Imaging.Image3D,System.Int32,System.Int32,System.Boolean)">
+            <summary>
+            Initialisation for a 2D rectangular neighboorhood
+            </summary>
+            <param name="img">the image whose neighboorhood are considered</param>
+            <param name="width">width of the window</param>
+            <param name="height">heigh of the window</param>
+            <param name="trim">if true, out of bound indexes are removed from arrays, if false they are set to -1</param>
+        </member>
+        <member name="M:IM.Library.NeighboorIndexes.init(IM.Imaging.Image3D,System.Int32,IM.Library.NeighboorIndexes.NeighbourhoodShape,System.Boolean)">
+            <summary>
+            Initialisation for a 2D neighboorhood of a specified shape. Only one dimension is provided 
+            (width of the cross / diameter of the disk)
+            and non rectangular neighbourhood are supposed to be symmetric.
+            For crosses neighbourhood, indexes are ordered in clockwise spiral:
+            {(x,y),(x+1,y),(x,y-1),(x-1,y),(x,y+1),(x+2,y),(x,y-2),...}
+            </summary>
+            <param name="img">the image whose neighboorhood are considered</param>
+            <param name="width">width of the window</param>
+            <param name="shape">the shape of the neighbouhood (see NeighbourhoodShape enum)</param>
+            <param name="trim">if true, out of bound indexes are removed from arrays, if false they are set to -1</param>
+        </member>
+        <member name="M:IM.Library.NeighboorIndexes.getWindow(System.Int32)">
+            <summary>
+            Returns a 1D array containing the indexes of neighboord of a given pixel. No check on window or image size is performed.
+            Out of bound values are indexed with -1.
+            </summary>
+            <param name="index">the index int he 1D image data array</param>
+            <returns>The neighboor indexes array</returns>
+        </member>
+        <member name="M:IM.Library.NeighboorIndexes.getWindow(System.Int32,IM.Imaging.Image3D,System.Int32,System.Int32)">
+            <summary>
+             Returns a 1D array containing the indexes of neighboord of a given pixel.Checks for image and window size
+            </summary>
+            <param name="index">the index inthe 1D image data array</param>
+            <param name="img">the image (for size checking)</param>
+            <param name="wWidth">the width of the window (for size checking)</param>
+            <param name="wHeight">the height of the window (for size checking)</param>
+            <returns>The neighboor indexes array, null if size doesn't match</returns>
+        </member>
+        <member name="M:IM.Library.NeighboorIndexes.getValues(IM.Imaging.Image3D,System.Int32,System.Int32,System.Boolean)">
+            <summary>
+            Returns the values of the pixels in hte neighboorhood of a given pixel
+            </summary>
+            <param name="img">The image</param>
+            <param name="band">The colorband to consider</param>
+            <param name="index">the pixel to consider</param>
+            <param name="fillWithNaN">Shall the array be filled with NaNs ?</param>
+            <returns>an array containing pixel values</returns>
+        </member>
+        <member name="P:IM.Library.NeighboorIndexes.width">
+            <summary>
+            widht of the neighboorhood 
+            </summary>
+        </member>
+        <member name="P:IM.Library.NeighboorIndexes.height">
+            <summary>
+             height of the neighbourhood
+            </summary>
+        </member>
+        <member name="P:IM.Library.NeighboorIndexes.depth">
+            <summary>
+            depth of the neighbourhood
+            </summary>
+        </member>
+        <member name="T:IM.Library.NeighboorIndexes.NeighbourhoodShape">
+            <summary>
+            Describe the shape of the neighbourhood to consider
+            </summary>
+        </member>
+        <member name="T:IM.Library.BoundaryConditions">
+            <summary> Enumeration of various boundary conditions applied in image processing
+            </summary>
+        </member>
+        <member name="F:IM.Library.BoundaryConditions.Zero">
+            <summary> Zero (Lipschitz) boundary condition: f(x&lt;0)=f(x&gt;N)=0
+            </summary>
+        </member>
+        <member name="F:IM.Library.BoundaryConditions.Mirror">
+            <summary> Mirror (Neumann) boundary condition: f(x&lt;0)=f(-x), f(x&gt;N)=f(N-(x-N))
+            </summary>
+        </member>
+        <member name="T:IM.Library.InterpolationScheme">
+            <summary> Enumerates the different interpolation schemes available
+            </summary>
+        </member>
+        <member name="F:IM.Library.InterpolationScheme.NearestNeighbor">
+            <summary> Rounds of a point's coordinates value to its closest neighbor
+            </summary>
+        </member>
+        <member name="F:IM.Library.InterpolationScheme.Linear">
+            <summary> Computes a linear interpolation of all point's neighbors
+            </summary>
+        </member>
+        <member name="F:IM.Library.InterpolationScheme.Polynomial">
+            <summary> Computes a polynomial interpolation
+            </summary>
+        </member>
+        <member name="F:IM.Library.InterpolationScheme.Spline">
+            <summary> Computes a spline interpolation
+            </summary>
+        </member>
+        <member name="T:IM.Library.GradientDirections">
+            <summary> Available directions for the gradient computation
+            </summary>
+        </member>
+        <member name="F:IM.Library.GradientDirections.Backward">
+            <summary> Backward gradient calculation : g(x)=f(x)-f(x-1) 
+            </summary>
+        </member>
+        <member name="F:IM.Library.GradientDirections.Forward">
+            <summary> Backward gradient calculation : g(x)=f(x+1)-f(x)
+            </summary>
+        </member>
+        <member name="F:IM.Library.GradientDirections.Centered">
+            <summary> Backward gradient calculation : g(x)=[f(x+1)-f(x-1)]/2
+            </summary>
+        </member>
+        <member name="T:IM.Library.Task">
+            <summary> Abstract class describing a task runable in a multi-thread context
+            </summary>
+        </member>
+        <member name="M:IM.Library.Task.#ctor">
+            <summary> Creates a new task
+            </summary>
+        </member>
+        <member name="M:IM.Library.Task.Start">
+            <summary> Starts the task by sending it to the thread pool
+            </summary>
+            <returns>a handle that can be used to detect the end of the task</returns>
+        </member>
+        <member name="M:IM.Library.Task.Main">
+            <summary>The main task to perform
+            <para/> Parameters (input and output) should be passed as global parameters
+            </summary>
+        </member>
+        <member name="M:IM.Library.Task.Dispose">
+            <summary>Dispose of all resources used by this task
+            </summary>
+        </member>
+        <member name="T:IM.Library.TaskManager">
+            <summary> Utility class facilitating the use of multi-threaded tasks
+            </summary>
+            <list type="table">
+            <listheader> <term>Version</term> <description>Changes</description> </listheader>
+            <item> <term>1.1</term> <description>(AD) Limited the task list to the CLR maximum capacity of 64 threads</description> </item>
+            <item> <term>1.0</term> <description>(AD) first operational build</description> </item>
+            </list>
+        </member>
+        <member name="M:IM.Library.TaskManager.#ctor">
+            <summary> Creates a new instance of the task manager utility
+            </summary>
+        </member>
+        <member name="M:IM.Library.TaskManager.AddTask(IM.Library.Task)">
+            <summary> Adds a new task to the pending tasks list
+            </summary>
+            <param name="task"></param>
+        </member>
+        <member name="M:IM.Library.TaskManager.RunAndWaitAllTasks">
+            <summary> Runs all pending tasks and returns when all tasks are done
+            </summary>
+        </member>
+        <member name="T:IM.Library.LibraryException">
+            <summary> Exception to be thrown by the library components in case an error occurs.
+            </summary>
+            <list type="table">
+            <listheader> <term>Version</term> <description>Changes</description> </listheader>
+            <item> <term>1.1</term> <description>(AD) Constructor shows an error window instead of storing the error message</description> </item>
+            <item> <term>1.0</term> <description>(AD) first operational build, calling method and error message must be provided</description> </item>
+            </list>
+        </member>
+        <member name="M:IM.Library.LibraryException.#ctor(System.String)">
+            <summary>
+            Generates an exception from output Library component
+            </summary>
+            <param name="errorMessage">the Error message</param>
+        </member>
+        <member name="T:IM.Library.ColorArray">
+            <summary> Defines an array of visually distant colors easily retrievable
+            </summary>
+        </member>
+        <member name="F:IM.Library.ColorArray.colorArray">
+            <summary> The color array. This array can be extended without updating the methods of this class
+            </summary>
+        </member>
+        <member name="M:IM.Library.ColorArray.ColorNameFromInt(System.Int32)">
+            <summary> Gets the name of the color at the given index in the color array
+            </summary>
+            <param name="index">the color index</param>
+            <returns></returns>
+        </member>
+        <member name="M:IM.Library.ColorArray.ColorFromInt(System.Int32)">
+            <summary> Gets a color corresponding to the given index in the color array
+            </summary>
+            <param name="index">an index corresponding to a color</param>
+            <returns></returns>
+        </member>
+        <member name="M:IM.Library.ColorArray.ColorFromName(System.String)">
+            <summary> Gets a color corresponding to the given name (must be a known name in System.Drawing.Color class)
+            </summary>
+            <param name="name">the color name to retrieve</param>
+            <returns></returns>
+        </member>
+        <member name="T:IM.Library.Delegates.Floats_to_Void">
+            <summary> Pointer to a function taking a float array and returning a float array
+            </summary>
+        </member>
+        <member name="T:IM.Library.Delegates.FunctionFAtoF">
+            <summary> Pointer to a function taking a float array and returning a float array
+            </summary>
+        </member>
+        <member name="T:IM.Library.Delegates.FunctionDtoD">
+            <summary> Pointer to a function taking a double and returning a double
+            </summary>
+        </member>
+        <member name="T:IM.Library.Delegates.FunctionDAtoD">
+            <summary> Pointer to a function taking a double array and returning a double
+            </summary>
+        </member>
+        <member name="T:IM.Library.Delegates.FunctionDAtoDA">
+            <summary> Pointer to a function taking a double array and returning a double array
+            </summary>
+        </member>
+        <member name="T:IM.Library.Delegates.FunctionVtoV">
+            <summary> Pointer to a function with no parameters and no return value
+            </summary>
+        </member>
+        <member name="T:IM.Library.Delegates.FunctionOtoV">
+            <summary> Pointer to a function with an object parameter and no return value
+            </summary>
+        </member>
+    </members>
+</doc>

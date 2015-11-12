@@ -1,0 +1,72 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Microsoft.Research.Science.Data.Shapefile</name>
+    </assembly>
+    <members>
+        <member name="T:Microsoft.Research.Science.Data.Shapefile.ShapefileDataSet">
+            <summary>
+            Scientific DataSet provider for reading ESRI Shapefile formatted data
+            </summary>
+            <remarks>
+            <para>See ESRI Shapefile Technical Description 
+            http://www.esri.com/library/whitepapers/pdfs/shapefile.pdf
+            for the details of data in shape files.</para>
+            <para>Null shapes are excluded from the data.</para>
+            <para>Other shape types are represented as a table of point coordinates (2, 3 or 4 columns),
+            a table of shape features and pointers that link features to points.</para>
+            <para>For 'Point' shape type (ShapeTypeCode global metadata value 1, 11, or 21)
+            the points coordiantes and shape features share the same dimension 'shape'.</para>
+            <para>For 'Multipoint' shape type (ShapeTypeCode global metadata value 8, 18, or 28)
+            the points coordinates are in a separate dimention 'point'. 
+            Shape table contains 'ShapePointer' column with indices into point index space.</para>
+            <para>For 'Polyline' and 'Polygon' shape types (ShapeTypeCode global metadata value 3, 5, 13, 15, 23 or 25)
+            each shape can include several paths or rings. 
+            The start of each path or ring can be taken from the 'PartPointer' table, an pointer into point space.
+            'ShapePointer' here contains indices into 'PartPointer' variable.</para>
+            <para>For 'Multipatch' shape type (ShapeTypeCode global metadata value 31)
+            the structure is the same as for 'Polygon' shape type (see above). 
+            In addition, 'PartType' variable shares 'part' dimension with 'PartPointer'.</para>
+            <para>We have limited dBase file support. Only columns with type codes 'C', 'N', 'L', 'D' and 'F' can be read. 
+            See, e.g. http://www.clicketyclick.dk/databases/xbase/format/dbf.html for details.</para>
+            </remarks>
+        </member>
+        <member name="M:Microsoft.Research.Science.Data.Shapefile.ShapefileDataSet.#ctor(System.String)">
+            <summary>
+            Initialize DataSet from string
+            </summary>
+            <param name="uri">.shp file path or msds: URI</param>
+        </member>
+        <member name="M:Microsoft.Research.Science.Data.Shapefile.ShapefileDataSet.CreateVariable``1(System.String,System.String[])">
+            <summary>
+            Not supported in Shapefile provider.
+            </summary>
+            <typeparam name="DataType">Not supported in Shapefile provider.</typeparam>
+            <param name="varName">Not supported in Shapefile provider.</param>
+            <param name="dims">Not supported in Shapefile provider.</param>
+            <returns>Nothing</returns>
+            <remarks>This method always throws InvalidOperationException.</remarks>
+        </member>
+        <member name="T:Microsoft.Research.Science.Data.Shapefile.ShapefileUri">
+            <summary>
+            Allows to customize a URI with parameters specific for the ShapefileDataSet provider.
+            </summary>
+        </member>
+        <member name="M:Microsoft.Research.Science.Data.Shapefile.ShapefileUri.#ctor">
+            <summary>
+            Initializes the class with the msds:shapfile URI.
+            </summary>
+        </member>
+        <member name="M:Microsoft.Research.Science.Data.Shapefile.ShapefileUri.#ctor(System.String)">
+            <summary>
+            Initializes the class with the specified URI.
+            </summary>
+            <param name="uri">Initial URI.</param>
+        </member>
+        <member name="P:Microsoft.Research.Science.Data.Shapefile.ShapefileUri.FileName">
+            <summary>
+            Specifies the file to open.
+            </summary>
+        </member>
+    </members>
+</doc>

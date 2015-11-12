@@ -1,0 +1,3799 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>IM.Imaging</name>
+    </assembly>
+    <members>
+        <member name="T:IM.Imaging.Convolution">
+            <summary> Class defining convolution operations.
+            Uses a temporary buffer for some routines</summary>
+            <list type="table">
+            <listheader> <term>Version</term> <description>Changes</description> </listheader>
+            <item> <term>3.4</term> <description>(AD) Just faster n faster !! (from -25 to -77%)</description> </item>
+            <item> <term>3.3</term> <description>(AD) Bug correction for 2D and 3D point-wise convolution</description> </item>
+            <item> <term>3.2</term> <description>(AD) Extended 2D routines to process all slices for 3D stacks</description> </item>
+            <item> <term>3.1</term> <description>(AG) Added fast convolution methods for separable kernels</description> </item>
+            <item> <term>3.0</term> <description>(AD) Class not static anymore (for threading purposes)</description> </item>
+            <item> <term>2.5</term> <description>(ED) Added point-wise convolution routines</description> </item>
+            <item> <term>2.4</term> <description>(AD) Boundary conditions are each treated in a specific method, reducing complexity</description> </item>
+            <item> <term>2.3</term> <description>(AD) Fixed a calulcation error in the gradient convolution</description> </item>
+            <item> <term>2.2</term> <description>(AD) Added multiple boundary conditions support</description> </item>
+            <item> <term>2.1</term> <description>(AD) Fixed a bug on the index calculations on the image boundary for reflecting conditions</description> </item>
+            <item> <term>2.0</term> <description>(AD) Redesigned class, entry points and internal methods. Should be much simpler to use</description> </item>
+            <item> <term>1.2</term> <description>(AD) overloaded methods to support various types of input</description> </item>
+            <item> <term>1.1</term> <description>(AD) added "Gradient*" kernels to support "Kernel" class v1.1.0</description> </item>
+            <item> <term>1.0</term> <description>(AD) first operational build, supports "Kernel" class v1.0.0</description> </item>
+            </list>
+        </member>
+        <member name="F:IM.Imaging.Convolution.bufferImage">
+            <summary> Temporary buffer used by some routines
+            </summary>
+        </member>
+        <member name="M:IM.Imaging.Convolution.#ctor">
+            <summary> Builds a new instance of the Convolution Toolbox
+            </summary>
+        </member>
+        <member name="M:IM.Imaging.Convolution.convolveLineMirror(System.Single[],System.Single[],System.Single[],System.Int32,System.Int32,System.Int32,System.Int32)">
+            <summary> Utility function that convolves a whole line using the specified offsets
+            </summary>
+            <param name="input">the data array to convolve (the image data)</param>
+            <param name="output">the convolution output</param>
+            <param name="kernel">the kernel</param>
+            <param name="halfKernelLengthPixelStride">the kernel radius in pixels</param>
+            <param name="offset">the starting offset of the convolution</param>
+            <param name="pixelStride">the distance in pixels between two points of the line to convolve</param>
+            <param name="nbElements">the number of points to convolve in the line</param>
+        </member>
+        <member name="M:IM.Imaging.Convolution.convolveLineZero(System.Single[],System.Single[],System.Single[],System.Int32,System.Int32,System.Int32,System.Int32)">
+            <summary> Utility function that convolves a whole line using the specified offsets
+            </summary>
+            <param name="input">the data array to convolve (the image data)</param>
+            <param name="output">the convolution output</param>
+            <param name="kernel">the kernel</param>
+            <param name="halfKernelLengthPixelStride">the kernel radius in pixels</param>
+            <param name="offset">the starting offset of the convolution</param>
+            <param name="pixelStride">the distance in pixels between two points of the line to convolve</param>
+            <param name="nbElements">the number of points to convolve in the line</param>
+        </member>
+        <member name="M:IM.Imaging.Convolution.Convolve1D_X(IM.Imaging.Image3D,System.Int32,IM.Imaging.Image3D,System.Int32,IM.Imaging.Image3D,IM.Imaging.BoundaryConditions)">
+            <summary> 1D convolution along the X axis </summary>
+            <param name="inputImage">The input image</param>
+            <param name="inputBand">The input band</param>
+            <param name="outputImage">The output image</param>
+            <param name="outputBand">The output band</param>
+            <param name="kernel1D">The kernel to convolve the image with</param>
+            <param name="condition">The boundary conditions to use</param>
+        </member>
+        <member name="M:IM.Imaging.Convolution.Convolve1D_Y(IM.Imaging.Image3D,System.Int32,IM.Imaging.Image3D,System.Int32,IM.Imaging.Image3D,IM.Imaging.BoundaryConditions)">
+            <summary> 1D convolution along the Y axis </summary>
+            <param name="inputImage">The input image</param>
+            <param name="inputBand">The input band</param>
+            <param name="outputImage">The output image</param>
+            <param name="outputBand">The output band</param>
+            <param name="kernel1D">The kernel to convolve the image with</param>
+            <param name="condition">The boundary conditions to use</param>
+        </member>
+        <member name="M:IM.Imaging.Convolution.Convolve1D_Z(IM.Imaging.Image3D,System.Int32,IM.Imaging.Image3D,System.Int32,IM.Imaging.Image3D,IM.Imaging.BoundaryConditions)">
+            <summary> 1D convolution along the Z axis </summary>
+            <param name="inputImage">The input image</param>
+            <param name="inputBand">The input band</param>
+            <param name="outputImage">The output image</param>
+            <param name="outputBand">The output band</param>
+            <param name="kernel1D">The kernel to convolve the image with</param>
+            <param name="condition">The boundary conditions to use</param>
+        </member>
+        <member name="M:IM.Imaging.Convolution.Convolve2D(IM.Imaging.Image3D,System.Int32,IM.Imaging.Image3D,System.Int32,IM.Imaging.Image3D,IM.Imaging.BoundaryConditions)">
+            <summary> Convolve an image with a 2D kernel
+            </summary>
+            <param name="input">The input image</param>
+            <param name="inputBand">The input band</param>
+            <param name="output">The output image</param>
+            <param name="outputBand">The output band</param>
+            <param name="kernel2D">The kernel to convolve the image with</param>
+            <param name="condition">The boundary conditions to use</param>
+        </member>
+        <member name="M:IM.Imaging.Convolution.ConvolveZeroBoundary2D(IM.Imaging.Image3D,System.Int32,IM.Imaging.Image3D,System.Int32,IM.Imaging.Image3D)">
+            <summary> Convolve an image with a 2D kernel with zero boundary condition
+            </summary>
+            <param name="inputImage">The input image</param>
+            <param name="inputBand">The input band</param>
+            <param name="outputImage">The output image</param>
+            <param name="outputBand">The output band</param>
+            <param name="kernel2D">The kernel to convolve the image with</param>
+        </member>
+        <member name="M:IM.Imaging.Convolution.ConvolveMirrorBoundary2D(IM.Imaging.Image3D,System.Int32,IM.Imaging.Image3D,System.Int32,IM.Imaging.Image3D)">
+            <summary> Convolve an image with a 2D kernel with reflecting boundary condition
+            </summary>
+            <param name="inputImage">The input image</param>
+            <param name="inputBand">The input band</param>
+            <param name="outputImage">The output image</param>
+            <param name="outputBand">The output band</param>
+            <param name="kernel2D">The kernel to convolve the image with</param>
+        </member>
+        <member name="M:IM.Imaging.Convolution.Convolve3D(IM.Imaging.Image3D,System.Int32,IM.Imaging.Image3D,System.Int32,IM.Imaging.Image3D,IM.Imaging.BoundaryConditions)">
+            <summary> Convolve an image with a 3D kernel
+            </summary>
+            <param name="input">The input image</param>
+            <param name="inputBand">The input band</param>
+            <param name="output">The output image</param>
+            <param name="outputBand">The output band</param>
+            <param name="kernel3D">The kernel to convolve the image with</param>
+            <param name="condition">The boundary conditions to use</param>
+        </member>
+        <member name="M:IM.Imaging.Convolution.ConvolveZeroBoundary3D(IM.Imaging.Image3D,System.Int32,IM.Imaging.Image3D,System.Int32,IM.Imaging.Image3D)">
+            <summary> Convolve an image with a 3D kernel with zero boundary condition
+            </summary>
+            <param name="inputImage">The input image</param>
+            <param name="inputBand">The input band</param>
+            <param name="outputImage">The output image</param>
+            <param name="outputBand">The output band</param>
+            <param name="kernel3D">The kernel to convolve the image with</param>
+        </member>
+        <member name="M:IM.Imaging.Convolution.ConvolveMirrorBoundary3D(IM.Imaging.Image3D,System.Int32,IM.Imaging.Image3D,System.Int32,IM.Imaging.Image3D)">
+            <summary> Convolve an image with a 3D kernel with reflecting boundary condition
+            </summary>
+            <param name="inputImage">The input image</param>
+            <param name="inputBand">The input band</param>
+            <param name="outputImage">The output image</param>
+            <param name="outputBand">The output band</param>
+            <param name="kernel3D">The kernel to convolve the image with</param>
+        </member>
+        <member name="M:IM.Imaging.Convolution.Convolve1D_X(IM.Imaging.Image3D,System.Int32,System.Int32[],System.Single[],IM.Imaging.Image3D,IM.Imaging.BoundaryConditions)">
+            <summary> Convolve some points of an image with a given kernel
+            </summary>
+            <param name="inputImage">The input image</param>
+            <param name="inputBand">the input image band</param>
+            <param name="pointsList"> The indices of points to convolve</param>
+            <param name="output"> The output vector of convolved points</param>
+            <param name="kernel1D">The kernel to convolve the image with</param>
+            <param name="condition">The boundary conditions to use</param>
+        </member>
+        <member name="M:IM.Imaging.Convolution.Convolve1D_Y(IM.Imaging.Image3D,System.Int32,System.Int32[],System.Single[],IM.Imaging.Image3D,IM.Imaging.BoundaryConditions)">
+            <summary> Convolve some points of an image with a given kernel
+            </summary>
+            <param name="inputImage">The input image</param>
+            <param name="inputBand">the input image band</param>
+            <param name="pointsList"> The indices of points to convolve</param>
+            <param name="output"> The output vector of convolved points</param>
+            <param name="kernel1D">The kernel to convolve the image with</param>
+            <param name="condition">The boundary conditions to use</param>
+        </member>
+        <member name="M:IM.Imaging.Convolution.Convolve1D_Z(IM.Imaging.Image3D,System.Int32,System.Int32[],System.Single[],IM.Imaging.Image3D,IM.Imaging.BoundaryConditions)">
+            <summary> Convolve some points of an image with a given kernel
+            </summary>
+            <param name="inputImage">The input image</param>
+            <param name="inputBand">the input image band</param>
+            <param name="pointsList"> The indices of points to convolve</param>
+            <param name="output"> The output vector of convolved points</param>
+            <param name="kernel1D">The kernel to convolve the image with</param>
+            <param name="condition">The boundary conditions to use</param>
+        </member>
+        <member name="M:IM.Imaging.Convolution.Convolve2D(IM.Imaging.Image3D,System.Int32,System.Int32[],System.Single[],IM.Imaging.Image3D,IM.Imaging.BoundaryConditions)">
+            <summary> Convolve an image at some points with a 2D kernel
+            </summary>
+            <param name="input">The input image</param>
+            <param name="inputBand">The input image</param>
+            <param name="listPoints"> The list of points</param>
+            <param name="output">The output image</param>
+            <param name="kernel2D">The kernel to convolve the image with</param>
+            <param name="condition">The boundary conditions to use</param>
+        </member>
+        <member name="M:IM.Imaging.Convolution.ConvolveZeroBoundaryPoints2D(IM.Imaging.Image3D,System.Int32,System.Int32[],System.Single[],IM.Imaging.Image3D)">
+            <summary> Convolve an image at some points with a 2D kernel with zero boundary condition
+            </summary>
+            <param name="input">The input image</param>
+            <param name="inputBand">The input image</param>
+            <param name="listPoints"> The list of points </param>
+            <param name="output">The output for each of listPoints </param>
+            <param name="kernel2D">The kernel to convolve the image with</param>
+        </member>
+        <member name="M:IM.Imaging.Convolution.ConvolveMirrorBoundaryPoints2D(IM.Imaging.Image3D,System.Int32,System.Int32[],System.Single[],IM.Imaging.Image3D)">
+            <summary> Convolve an image at some points with a 2D kernel with reflecting boundary condition
+            </summary>
+            <param name="input">The input image</param>
+            <param name="inputBand">The input image</param>
+            <param name="listPoints"> The list of points</param>
+            <param name="output">The output for each of listPoints</param>
+            <param name="kernel2D">The kernel to convolve the image with</param>
+        </member>
+        <member name="M:IM.Imaging.Convolution.ConvolveMirrorBoundaryPointWiseGaussian2D(IM.Imaging.Image3D,System.Int32,IM.Imaging.Image3D,System.Int32,IM.Imaging.Image3D)">
+            <summary> Convolve each pixel of an image by a specific Gaussian Kernel
+            </summary>
+            <param name="input">the input image</param>
+            <param name="inputBand">the input band</param>
+            <param name="output">the output image</param>
+            <param name="outputBand">the output band</param>
+            <param name="sigmas">an image of same size as input containing the gaussian variance for each pixel</param>
+        </member>
+        <member name="M:IM.Imaging.Convolution.Convolve3D(IM.Imaging.Image3D,System.Int32,System.Single[],System.Int32[],IM.Imaging.Image3D,IM.Imaging.BoundaryConditions)">
+            <summary> Convolve an image at some points with a 3D kernel
+            </summary>
+            <param name="input">The input image</param>
+            <param name="inputBand">The input image</param>
+            <param name="pointsList"> The list of points </param>
+            <param name="output">The output for each of listPoints </param>
+            <param name="kernel3D">The kernel to convolve the image with</param>
+            <param name="condition">The boundary conditions to use</param>
+        </member>
+        <member name="M:IM.Imaging.Convolution.ConvolveZeroBoundaryPoints3D(IM.Imaging.Image3D,System.Int32,System.Int32[],System.Single[],IM.Imaging.Image3D)">
+            <summary> Convolve an image at some points with a 3D kernel with zero boundary condition
+            </summary>
+            <param name="input">The input image</param>
+            <param name="inputBand">The input image</param>
+            <param name="pointsList"> The list of points </param>
+            <param name="output">The output for each of listPoints </param>
+            <param name="kernel3D">The kernel to convolve the image with</param>
+        </member>
+        <member name="M:IM.Imaging.Convolution.ConvolveMirrorBoundaryPoints3D(IM.Imaging.Image3D,System.Int32,System.Int32[],System.Single[],IM.Imaging.Image3D)">
+            <summary> Convolve an image at some points with a 3D kernel with reflecting boundary condition
+            </summary>
+            <param name="input">The input image</param>
+            <param name="inputBand">The input image</param>
+            <param name="pointsList"> The list of points </param>
+            <param name="output">The output for each of listPoints </param>
+            <param name="kernel3D">The kernel to convolve the image with</param>
+        </member>
+        <member name="M:IM.Imaging.Convolution.ConvolveFast(IM.Imaging.Image3D,System.Int32,IM.Imaging.Image3D,System.Int32,IM.Imaging.Image3D)">
+            <summary> Fast separable convolution with a unique 1D kernel
+            </summary>
+            <param name="input">The input image to convolve</param>
+            <param name="inputBand">The input band receiving the result</param>
+            <param name="output">The image receiving the result</param>
+            <param name="outputBand">The output band receiving the result</param>
+            <param name="kernel1D">The one dimensional kernel for all directions</param>
+        </member>
+        <member name="M:IM.Imaging.Convolution.ConvolveFast(IM.Imaging.Image3D,System.Int32,IM.Imaging.Image3D,System.Int32,IM.Imaging.Image3D,IM.Imaging.Image3D)">
+            <summary> Fast 2D separable convolution. If the input is 3D, each slice is processed separately
+            </summary>
+            <param name="inputImage">The input image to convolve</param>
+            <param name="inputBand">The input image to convolve</param>
+            <param name="outputImage">The image into wich storing the result (can be the input image)</param>
+            <param name="outputBand">The image into wich storing the result</param>
+            <param name="kernel1DX">The one dimensional kernel in X direction</param>
+            <param name="kernel1DY">The one dimensional kernel in Y direction</param>
+        </member>
+        <member name="M:IM.Imaging.Convolution.ConvolveFast(IM.Imaging.Image3D,System.Int32,IM.Imaging.Image3D,System.Int32,IM.Imaging.Image3D,IM.Imaging.Image3D,IM.Imaging.Image3D)">
+            <summary> Fast 3D separable convolution
+            </summary>
+            <param name="inputImage">The input image to convolve</param>
+            <param name="inputBand">The input image to convolve</param>
+            <param name="outputImage">The image into wich storing the result</param>
+            <param name="outputBand">The image into wich storing the result</param>
+            <param name="kernel1DX">The one dimensional kernel in X direction</param>
+            <param name="kernel1DY">The one dimensional kernel in Y direction</param>
+            <param name="kernel1DZ">The one dimensional kernel in Z direction</param>
+        </member>
+        <member name="M:IM.Imaging.Convolution.ConvolveFast(IM.Imaging.Image3D,System.Int32,IM.Imaging.Image3D,System.Int32,IM.Imaging.Image3D,IM.Imaging.BoundaryConditions)">
+            <summary> Fast separable convolution with a unique 1D kernel
+            </summary>
+            <param name="input">The input image to convolve</param>
+            <param name="inputBand">The input band receiving the result</param>
+            <param name="output">The image receiving the result (may be the input image)</param>
+            <param name="outputBand">The output band receiving the result</param>
+            <param name="kernel1D">The one dimensional kernel for all directions</param>
+            <param name="condition">The boundary condition to use</param>
+        </member>
+        <member name="M:IM.Imaging.Convolution.ConvolveFast(IM.Imaging.Image3D,System.Int32,IM.Imaging.Image3D,System.Int32,IM.Imaging.Image3D,IM.Imaging.Image3D,IM.Imaging.BoundaryConditions)">
+            <summary> Fast 2D separable convolution. If the input is 3D, each slice is processed separately
+            </summary>
+            <param name="inputImage">The input image to convolve</param>
+            <param name="inputBand">The input image to convolve</param>
+            <param name="outputImage">The image into wich storing the result (can be the input image)</param>
+            <param name="outputBand">The image into wich storing the result</param>
+            <param name="kernel1DX">The one dimensional kernel in X direction</param>
+            <param name="kernel1DY">The one dimensional kernel in Y direction</param>
+            <param name="condition">The boundary condition to use</param>
+        </member>
+        <member name="M:IM.Imaging.Convolution.ConvolveFast(IM.Imaging.Image3D,System.Int32,IM.Imaging.Image3D,System.Int32,IM.Imaging.Image3D,IM.Imaging.Image3D,IM.Imaging.Image3D,IM.Imaging.BoundaryConditions)">
+            <summary> Fast 3D separable convolution
+            </summary>
+            <param name="inputImage">The input image to convolve</param>
+            <param name="inputBand">The input image to convolve</param>
+            <param name="outputImage">The image into wich storing the result</param>
+            <param name="outputBand">The image into wich storing the result</param>
+            <param name="kernel1DX">The one dimensional kernel in X direction</param>
+            <param name="kernel1DY">The one dimensional kernel in Y direction</param>
+            <param name="kernel1DZ">The one dimensional kernel in Z direction</param>
+            <param name="condition">The boundary condition to use</param>
+        </member>
+        <member name="M:IM.Imaging.Convolution.Dispose">
+            <summary> Clears the temporary buffer used by the convolution routines
+            </summary>
+        </member>
+        <member name="P:IM.Imaging.Convolution.BufferImage">
+            <summary> Gets the convolver's temporary buffer
+            </summary>
+        </member>
+        <member name="T:IM.Imaging.Painter">
+            <summary>
+            Painter on a sequence view
+            <p>Author: A. Genovesio</p>
+            </summary>
+        </member>
+        <member name="M:IM.Imaging.Painter.Paint2D(System.Drawing.Graphics,System.Int32,System.Int32)">
+            <summary>
+            Painter on sequence view 2D
+            </summary>
+            <param name="g">graphics used to paint</param>
+            <param name="z">z plan to paint</param>
+            <param name="t">time to paint</param>
+        </member>
+        <member name="M:IM.Imaging.Painter.Paint3D(IM.Imaging.Graphics3D,System.Int32)">
+            <summary>
+            Paint 3D Object on dedicated view
+            </summary>
+            <param name="t">Time to paint</param>
+        </member>
+        <member name="T:IM.Imaging.Axis">
+            <summary>
+            An enumeration of threedimensional axis
+            <p>Author: A. Genovesio</p>
+            </summary>
+        </member>
+        <member name="F:IM.Imaging.Axis.X">
+            <summary>
+            X axis
+            </summary>
+        </member>
+        <member name="F:IM.Imaging.Axis.Y">
+            <summary>
+            Y axis
+            </summary>
+        </member>
+        <member name="F:IM.Imaging.Axis.Z">
+            <summary>
+            Z axis
+            </summary>
+        </member>
+        <member name="M:IM.Imaging.Node.ComputeMeanIntensity(IM.Imaging.Image3D)">
+            <summary>
+            The mean gray level on this band
+            </summary>
+            <param name="image"></param>
+            <param name="band"></param>
+            <returns></returns>
+        </member>
+        <member name="M:IM.Imaging.Node.ComputeOutInSpotRatio(IM.Imaging.Image3D,System.Int32)">
+            <summary>
+            The mean gray level on this band
+            </summary>
+            <param name="image"></param>
+            <param name="band"></param>
+            <returns></returns>
+        </member>
+        <member name="T:Triangulator.Geometry.Point">
+            <summary>
+            2D Point with double precision
+            </summary>
+        </member>
+        <member name="F:Triangulator.Geometry.Point._X">
+            <summary>
+            X component of point
+            </summary>
+        </member>
+        <member name="F:Triangulator.Geometry.Point._Y">
+            <summary>
+            Y component of point
+            </summary>
+        </member>
+        <member name="M:Triangulator.Geometry.Point.#ctor(System.Double,System.Double)">
+            <summary>
+            Initializes a new instance of a point
+            </summary>
+            <param name="x"></param>
+            <param name="y"></param>
+        </member>
+        <member name="M:Triangulator.Geometry.Point.Equals2D(Triangulator.Geometry.Point)">
+            <summary>
+            Makes a planar checks for if the points is spatially equal to another point.
+            </summary>
+            <param name="other">Point to check against</param>
+            <returns>True if X and Y values are the same</returns>
+        </member>
+        <member name="P:Triangulator.Geometry.Point.X">
+            <summary>
+            Gets or sets the X component of the point
+            </summary>
+        </member>
+        <member name="P:Triangulator.Geometry.Point.Y">
+            <summary>
+            Gets or sets the Y component of the point
+            </summary>
+        </member>
+        <member name="T:IM.Imaging.BaseLayer">
+            <summary>
+            Simple representation layer of ExperimentGrid
+            </summary>
+        </member>
+        <member name="T:IM.Imaging.Image3DCollection">
+            <summary>
+            Base class for all image collection. An ImageCollection is a collection
+            of Image3D having the same Image3DLayout and common image resolution.
+            <p>Author: A. Genovesio</p>
+            </summary>
+        </member>
+        <member name="T:IM.Imaging.Image3DLayout">
+            <summary>
+            Image3DLayout is the base class of all data representing one or more 3D image(s) with common layout
+            <p>Author: A. Genovesio</p>
+            </summary>
+        </member>
+        <member name="M:IM.Imaging.Image3DLayout.#ctor">
+            <summary> Default constructor
+            </summary>
+        </member>
+        <member name="M:IM.Imaging.Image3DLayout.#ctor(System.Int32,System.Int32,System.Int32,System.Int32)">
+            <summary> Constructor
+            </summary>
+            <param name="width">The image width</param>
+            <param name="height">The image height</param>
+            <param name="depth">The image depth</param>
+            <param name="numBands">The number of bands</param>
+        </member>
+        <member name="M:IM.Imaging.Image3DLayout.SetLayout(IM.Imaging.Image3DLayout)">
+            <summary>Set the current layout to the layout of the image parameter
+            </summary>
+            <param name="image">The layout model</param>
+        </member>
+        <member name="M:IM.Imaging.Image3DLayout.SetLayout(System.Int32,System.Int32,System.Int32,System.Int32)">
+            <summary> Set the current layout to the specified layout properties.  
+            </summary>
+            <param name="width">The image width</param>
+            <param name="height">The image height</param>
+            <param name="depth">The image depth</param>
+            <param name="numBands">The image number of bands</param>
+        </member>
+        <member name="M:IM.Imaging.Image3DLayout.CompatibleLayout(IM.Imaging.Image3DLayout)">
+            <summary>Check if the specified ImageLayout is compatible with the current ImageLayout
+            </summary>
+            <param name="imageLayout">The ImageLayout</param>
+            <returns>true if the specified ImageLayout is compatible with the current ImageLayout, otherwise false</returns>
+        </member>
+        <member name="M:IM.Imaging.Image3DLayout.SetSpecialProperties(IM.Imaging.Image3DLayout)">
+            <summary>
+            Replace the special properties of this Image3DLayout by the special properties of the given Image3DLayout argument
+            </summary>
+            <param name="layout"></param>
+        </member>
+        <member name="M:IM.Imaging.Image3DLayout.SetProperties(System.Collections.Generic.Dictionary{System.String,System.Object})">
+            <summary>
+            Replace the properties of this Image3DLayout by the properties of the given Image3DLayout argument
+            </summary>
+            <param name="properties"></param>
+        </member>
+        <member name="M:IM.Imaging.Image3DLayout.ToString">
+            <summary>
+            Get a string representation of this ImageLayout
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:IM.Imaging.Image3DLayout.IsInside(System.Int32,System.Int32,System.Int32)">
+            <summary>
+            Check whether or not a point lies inside the layout
+            </summary>
+            <param name="x">x</param>
+            <param name="y">y</param>
+            <param name="z">z</param>
+            <returns></returns>
+        </member>
+        <member name="M:IM.Imaging.Image3DLayout.SetBandNames(System.String[])">
+            <summary>
+            Sets the band names.
+            </summary>
+            <param name="bandName">Name of the band.</param>
+        </member>
+        <member name="M:IM.Imaging.Image3DLayout.Dispose">
+            <summary>
+            Free Ressources
+            </summary>
+        </member>
+        <member name="M:IM.Imaging.Image3DLayout.Dispose(System.Boolean)">
+            <summary>
+            free ressources
+            </summary>
+            <param name="disposing"></param>
+        </member>
+        <member name="M:IM.Imaging.Image3DLayout.Finalize">
+            <summary>
+            Destructor of Image3DLayout
+            </summary>
+        </member>
+        <member name="P:IM.Imaging.Image3DLayout.Width">
+            <summary> The image width in pixels/voxels
+            </summary>
+        </member>
+        <member name="P:IM.Imaging.Image3DLayout.Height">
+            <summary> The image height in pixels/voxels
+            </summary>
+        </member>
+        <member name="P:IM.Imaging.Image3DLayout.Depth">
+            <summary> The image depth in pixels/voxels
+            </summary>
+        </member>
+        <member name="P:IM.Imaging.Image3DLayout.ScanLineSize">
+            <summary> The size of a scan line of the image (=width)
+            </summary>
+        </member>
+        <member name="P:IM.Imaging.Image3DLayout.ScanSliceSize">
+            <summary> The size of the scan slice of the image (=width*height) 
+            </summary>
+        </member>
+        <member name="P:IM.Imaging.Image3DLayout.ImageSize">
+            <summary> The total number of voxels of the image (=width*height*depth)
+            </summary>
+        </member>
+        <member name="P:IM.Imaging.Image3DLayout.NumBands">
+            <summary> The number of bands of the image
+            </summary>
+        </member>
+        <member name="P:IM.Imaging.Image3DLayout.BandName">
+            <summary> An array to set the initial name of each band
+            </summary>
+        </member>
+        <member name="P:IM.Imaging.Image3DLayout.BandVisible">
+            <summary> An array to set the initial visibility of each band
+            </summary>
+        </member>
+        <member name="P:IM.Imaging.Image3DLayout.Properties">
+            <summary>
+            The additional properties of the image
+            </summary>
+        </member>
+        <member name="P:IM.Imaging.Image3DLayout.XResolution">
+            <summary> The resolution along the X direction i.e. the distance between two voxels on X axis
+            </summary>
+        </member>
+        <member name="P:IM.Imaging.Image3DLayout.YResolution">
+            <summary> The resolution along the Y direction i.e. the distance between two voxels on Y axis
+            </summary>
+        </member>
+        <member name="P:IM.Imaging.Image3DLayout.ZResolution">
+            <summary> The resolution along the Z direction i.e. the distance between two voxels on Z axis
+            </summary>
+        </member>
+        <member name="P:IM.Imaging.Image3DLayout.TResolution">
+            <summary> Gets or sets the time resolution i.e. the time between two images of a sequence (in seconds)
+            </summary>
+        </member>
+        <member name="P:IM.Imaging.Image3DLayout.Magnification">
+            <summary>
+            Gets or sets the magnification
+            </summary>
+        </member>
+        <member name="P:IM.Imaging.Image3DLayout.RealWidth">
+            <summary> The real image width in micrometers
+            </summary>
+        </member>
+        <member name="P:IM.Imaging.Image3DLayout.RealHeight">
+            <summary>The real image height in micrometers
+            </summary>
+        </member>
+        <member name="P:IM.Imaging.Image3DLayout.RealDepth">
+            <summary>The real image depth in micrometers
+            </summary>
+        </member>
+        <member name="P:IM.Imaging.Image3DLayout.LayoutInitialized">
+            <summary>
+            Indicate if this Image3DLayout has been initialized yet. A Image3DLayout can be initialized only once.
+            </summary>
+        </member>
+        <member name="M:IM.Imaging.Image3DCollection.#ctor">
+            <summary>
+            Default constructor
+            </summary>
+        </member>
+        <member name="P:IM.Imaging.Image3DCollection.Name">
+            <summary> The name
+            </summary>
+        </member>
+        <member name="M:IM.Imaging.ExperimentGridLayer.InvokeGridImageRefreshed">
+            <summary>
+            Fires the refresh base image.
+            </summary>
+        </member>
+        <member name="M:IM.Imaging.ExperimentGridLayer.InvokeBandControlRefreshed">
+            <summary>
+            Fires the refresh band control.
+            </summary>
+        </member>
+        <member name="M:IM.Imaging.ExperimentGridLayer.InvokeGridImageLoaded">
+            <summary>
+            Fires the load grid image end.
+            </summary>
+        </member>
+        <member name="M:IM.Imaging.ExperimentGridLayer.InvokeExperimentGridCurrentSequenceChanged">
+            <summary>
+            Fires the experiment grid current sequence changed.
+            </summary>
+        </member>
+        <member name="M:IM.Imaging.ExperimentGridLayer.InvokeExperimentGridPanelInvalidated">
+            <summary>
+            Fires the experiment grid panel invalidate.
+            </summary>
+        </member>
+        <member name="M:IM.Imaging.ExperimentGridLayer.#ctor(IM.Imaging.ExperimentGrid)">
+            <summary>
+            Initializes a new instance of the <see cref="T:IM.Imaging.ExperimentGridLayer"/> class.
+            </summary>
+            <param name="eg">The eg.</param>
+        </member>
+        <member name="M:IM.Imaging.ExperimentGridLayer.#ctor(System.String,System.Int32,System.Int32,System.Double)">
+            <summary>
+            Initializes a new instance of the <see cref="T:IM.Imaging.ExperimentGridLayer"/> class.
+            </summary>
+            <param name="name">The name.</param>
+            <param name="rows">The rows.</param>
+            <param name="columns">The columns.</param>
+            <param name="mag">The mag.</param>
+        </member>
+        <member name="M:IM.Imaging.ExperimentGridLayer.#ctor(IM.Imaging.ExperimentGridLayer)">
+            <summary>
+            Initializes a new instance of the <see cref="T:IM.Imaging.ExperimentGridLayer"/> class.
+            This is for switching layers
+            </summary>
+            <param name="layer">The layer.</param>
+        </member>
+        <member name="M:IM.Imaging.ExperimentGridLayer.Get80x(System.Drawing.Rectangle,System.Int32,System.Int32,IM.Imaging.Image3D,IM.Imaging.RefreshInvoker)">
+            <summary>
+            Get80x pictures with the specified roi(region of interest) zoom.
+            It should be implemented in inherited classes
+            </summary>
+            <param name="roiZoom">The roi(region of interest) zoom.</param>
+            <param name="time">The time.</param>
+            <param name="part">The part.</param>
+            <param name="actualImg">The actual image for view.</param>
+            <param name="invoker">The refresh invoker.</param>
+        </member>
+        <member name="M:IM.Imaging.ExperimentGridLayer.GetFull(System.Drawing.Rectangle,System.Int32,System.Int32,IM.Imaging.Image3D,IM.Imaging.RefreshInvoker)">
+            <summary>
+            Gets the full resolution pictures.
+            It should be implemented in inherited classes
+            </summary>
+            <param name="roiZoom">The roi(region of interest) zoom.</param>
+            <param name="time">The time.</param>
+            <param name="part">The part.</param>
+            <param name="actualImg">The actual image for view.</param>
+            <param name="invoker">The refresh invoker.</param>
+        </member>
+        <member name="M:IM.Imaging.ExperimentGridLayer.Add(IM.Imaging.Experiment)">
+            <summary>
+            Adds the specified experiment.
+            </summary>
+            <param name="e">The experiment.</param>
+        </member>
+        <member name="M:IM.Imaging.ExperimentGridLayer.Load">
+            <summary>
+            Loads a base experimentGrid picture
+            </summary>
+        </member>
+        <member name="M:IM.Imaging.ExperimentGridLayer.GetNumberOfWell(System.Drawing.Rectangle)">
+            <summary>
+            Gets the number of well.
+            </summary>
+            <param name="roiZoom">The roi zoom.</param>
+            <returns></returns>
+        </member>
+        <member name="M:IM.Imaging.ExperimentGridLayer.Make80xImage(System.Drawing.Rectangle)">
+            <summary>
+            Make80xes the image.
+            </summary>
+            <param name="roiZoom">The roi zoom.</param>
+            <returns></returns>
+        </member>
+        <member name="M:IM.Imaging.ExperimentGridLayer.MakeFullImage(System.Drawing.Rectangle)">
+            <summary>
+            Makes the full image.
+            </summary>
+            <param name="roiZoom">The roi zoom.</param>
+            <returns></returns>
+        </member>
+        <member name="M:IM.Imaging.ExperimentGridLayer.isAnExperiment(System.Int32,System.Int32)">
+            <summary>
+            Determines whether the specified row and column has an experiment.
+            </summary>
+            <param name="row">The row.</param>
+            <param name="column">The column.</param>
+            <returns>
+            	<c>true</c> if the specified row and column has an experiment; otherwise, <c>false</c>.
+            </returns>
+        </member>
+        <member name="M:IM.Imaging.ExperimentGridLayer.ContainsWell(System.Drawing.Point)">
+            <summary>
+            If ExperimentGrid contains well, return true. Otherwise it returns false;
+            </summary>
+            <param name="well">Point location of well</param>
+            <returns></returns>
+        </member>
+        <member name="M:IM.Imaging.ExperimentGridLayer.ResetResultColors">
+            <summary>
+            Reset all result colors
+            </summary>
+        </member>
+        <member name="M:IM.Imaging.ExperimentGridLayer.UpdateResultColor">
+            <summary>
+            Update result colors
+            </summary>
+        </member>
+        <member name="M:IM.Imaging.ExperimentGridLayer.MouseClick(System.Int32,System.Int32)">
+            <summary>
+            CurrentExperimentLocation is set as user makes a click.
+            </summary>
+            <param name="x">The mouse x.</param>
+            <param name="y">The mouse y.</param>
+        </member>
+        <member name="M:IM.Imaging.ExperimentGridLayer.MouseDown(System.Int32,System.Int32)">
+            <summary>
+            Mouses the down.
+            </summary>
+            <param name="x">The x.</param>
+            <param name="y">The y.</param>
+            <returns></returns>
+        </member>
+        <member name="M:IM.Imaging.ExperimentGridLayer.MouseMove(IM.Imaging.Sequence,System.Windows.Forms.MouseEventArgs)">
+            <summary>
+            Mouses the move.
+            </summary>
+            <param name="source">The source.</param>
+            <param name="e">The <see cref="T:System.Windows.Forms.MouseEventArgs"/> instance containing the event data.</param>
+        </member>
+        <member name="M:IM.Imaging.ExperimentGridLayer.MouseClick(IM.Imaging.Sequence,System.Windows.Forms.MouseEventArgs)">
+            <summary>
+            Mouses the click.
+            </summary>
+            <param name="source">The source.</param>
+            <param name="e">The <see cref="T:System.Windows.Forms.MouseEventArgs"/> instance containing the event data.</param>
+        </member>
+        <member name="M:IM.Imaging.ExperimentGridLayer.MouseMoveSelect(System.Int32,System.Int32,IM.Imaging.ExperimentSelection)">
+            <summary>
+            Mouses the move.
+            </summary>
+            <param name="x">The x.</param>
+            <param name="y">The y.</param>
+            <param name="currentES">The current ES.</param>
+        </member>
+        <member name="M:IM.Imaging.ExperimentGridLayer.PaintSelection(System.Drawing.Graphics,System.Drawing.Pen,System.Drawing.Rectangle,System.Single,System.Drawing.Rectangle)">
+            <summary>
+            Paints the selection.
+            </summary>
+            <param name="g">The g.</param>
+            <param name="pen">The pen.</param>
+            <param name="roiZoom">The roi zoom.</param>
+            <param name="factor">The factor.</param>
+            <param name="region">The region.</param>
+        </member>
+        <member name="M:IM.Imaging.ExperimentGridLayer.PaintNonExperiment(System.Int32,System.Int32,System.Drawing.Graphics,System.Drawing.Brush,System.Drawing.Pen,System.Drawing.Rectangle,System.Single)">
+            <summary>
+            Paints the non experiment.
+            </summary>
+            <param name="row">The row.</param>
+            <param name="col">The col.</param>
+            <param name="g">The g.</param>
+            <param name="fillBrush">The fill brush.</param>
+            <param name="pen">The pen.</param>
+            <param name="roiZoom">The roi zoom.</param>
+            <param name="factor">The factor.</param>
+        </member>
+        <member name="M:IM.Imaging.ExperimentGridLayer.PaintExperiment(System.Int32,System.Int32,System.Drawing.Graphics,System.Drawing.Brush,System.Drawing.Pen,System.Drawing.Rectangle,System.Single)">
+            <summary>
+            Paints the experiment with row and column.
+            </summary>
+            <param name="row">The row.</param>
+            <param name="col">The col.</param>
+            <param name="g">The g.</param>
+            <param name="fillBrush">The fill brush.</param>
+            <param name="pen">The pen.</param>
+            <param name="roiZoom">The roi zoom.</param>
+            <param name="factor">The factor.</param>
+        </member>
+        <member name="M:IM.Imaging.ExperimentGridLayer.PaintExperiment(System.Drawing.Point,System.Drawing.Graphics,System.Drawing.Brush,System.Drawing.Pen,System.Drawing.Rectangle,System.Single)">
+            <summary>
+            Paints the experiment with Point.
+            </summary>
+            <param name="point">The point.</param>
+            <param name="g">The g.</param>
+            <param name="fillBrush">The fill brush.</param>
+            <param name="pen">The pen.</param>
+            <param name="roiZoom">The roi zoom.</param>
+            <param name="factor">The factor.</param>
+        </member>
+        <member name="M:IM.Imaging.ExperimentGridLayer.PaintCurrentExperiment(System.Drawing.Graphics,System.Drawing.Brush,System.Drawing.Pen,System.Drawing.Rectangle,System.Single)">
+            <summary>
+            Paints the current experiment.
+            </summary>
+            <param name="g">The g.</param>
+            <param name="fillBrush">The fill brush.</param>
+            <param name="pen">The pen.</param>
+            <param name="roiZoom">The roi zoom.</param>
+            <param name="factor">The factor.</param>
+        </member>
+        <member name="M:IM.Imaging.ExperimentGridLayer.getConvertedPoint(System.Drawing.Point,System.Drawing.Rectangle,System.Single)">
+            <summary>
+            Coordinate conversion function for Point
+            </summary>
+            <param name="p">The p.</param>
+            <param name="roi">The roi.</param>
+            <param name="factor">The factor.</param>
+            <returns></returns>
+        </member>
+        <member name="M:IM.Imaging.ExperimentGridLayer.getConvertedRect(System.Drawing.Rectangle,System.Drawing.Rectangle,System.Single)">
+            <summary>
+            Coordinate conversion fucntion for rectangle
+            </summary>
+            <param name="rec">The rec.</param>
+            <param name="roi">The roi.</param>
+            <param name="factor">The factor.</param>
+            <returns></returns>
+        </member>
+        <member name="M:IM.Imaging.ExperimentGridLayer.PaintString(System.Drawing.Graphics,System.Drawing.Rectangle,System.Drawing.Rectangle,System.Single,System.String)">
+            <summary>
+            Paints the string above the current experiment.
+            </summary>
+            <param name="g">The graphics.</param>
+            <param name="bounds">The bounds.</param>
+            <param name="str">The STR.</param>
+        </member>
+        <member name="M:IM.Imaging.ExperimentGridLayer.ContainsWell(System.String)">
+            <summary>
+            If ExperimentGrid contains well, return true. Otherwise it returns false;
+            </summary>
+            <param name="well"></param>
+            <returns></returns>
+        </member>
+        <member name="M:IM.Imaging.ExperimentGridLayer.GetIMDataSets(System.String)">
+            <summary>
+            Gets the data sets.
+            </summary>
+            <param name="wellID">The well ID.</param>
+            <returns>Array of DataSet names</returns>
+        </member>
+        <member name="M:IM.Imaging.ExperimentGridLayer.GetIMData(System.String,IM.Imaging.DataSetInfo,IM.Imaging.ColumnInfo)">
+            <summary>
+            Get IMData From IMDB
+            </summary>
+            <param name="dsName">DataSet Name</param>
+            <param name="wellID">Well ID (eg. A10)</param>
+            <param name="columnName">Column Name (eg. Mean Intensity)</param>
+            <returns>corresponding value</returns>
+        </member>
+        <member name="M:IM.Imaging.ExperimentGridLayer.GetTabData(System.String,System.String)">
+            <summary>
+            Get Data From Tab
+            </summary>
+            <param name="tabName">Tab Name</param>
+            <param name="wellID">Well ID (eg. A10)</param>
+            <returns>corresponding value</returns>
+        </member>
+        <member name="M:IM.Imaging.ExperimentGridLayer.AddSelection(IM.Imaging.ExperimentSelection)">
+            <summary>
+            Give the label and name of the selection argument to the Experiments corresponding to the selection argument.
+            </summary>
+            <param name="es">An array of ExperimentSelection objects</param>
+        </member>
+        <member name="M:IM.Imaging.ExperimentGridLayer.ClearSelection">
+            <summary>
+            Delete all previously made selections
+            </summary>
+        </member>
+        <member name="M:IM.Imaging.ExperimentGridLayer.IsSelected(System.Int32,System.Int32)">
+            <summary>
+            Test if an Experiment is selected
+            </summary>
+        </member>
+        <member name="M:IM.Imaging.ExperimentGridLayer.GetEnumerator">
+            <summary>
+            Enables the use of the foreach statement on the selected experiments
+            </summary>
+            <returns>An enumerator on the list of experiments</returns>
+        </member>
+        <member name="P:IM.Imaging.ExperimentGridLayer.CurrentSequenceIndex">
+            <summary>
+            Get or set the current sequence index
+            </summary>
+        </member>
+        <member name="P:IM.Imaging.ExperimentGridLayer.CurrentExperimentLocation">
+            <summary>
+            Get or set the current experiment location
+            </summary>
+        </member>
+        <member name="P:IM.Imaging.ExperimentGridLayer.CurrentSequence">
+            <summary>
+            Get the current sequence
+            </summary>
+        </member>
+        <member name="P:IM.Imaging.ExperimentGridLayer.CurrentExperiment">
+            <summary>
+            Get the current Experiment
+            </summary>
+        </member>
+        <member name="P:IM.Imaging.ExperimentGridLayer.Item(System.Int32,System.Int32)">
+            <summary>
+            Get the Experiment located at the specified coordinate. Coordinates of experiments go from (1,1) to (Rows,Columns)
+            </summary>
+            <param name="row">The selected row</param>
+            <param name="col">The selected column</param>
+            <returns>The experiment at coordinates (row,column)</returns>
+        </member>
+        <member name="P:IM.Imaging.ExperimentGridLayer.Item(System.Int32,System.Int32,System.Int32)">
+            <summary>
+            Get a Sequence from the Experiment located at the specified coordinate. Coordinates of experiments go from (1,1) to (Rows,Columns)
+            </summary>
+            <param name="row">The selected row</param>
+            <param name="col">The selected column</param>
+            <param name="part">The selected Sequence index (from 0 to this[row,column].Sequences)</param>
+            <returns>The Sequence at (row,column,s)</returns>
+        </member>
+        <member name="P:IM.Imaging.ExperimentGridLayer.Sequences">
+            <summary>
+            Get the number of Sequences of the CurrentExperiment of this ExperimentGrid
+            </summary>
+        </member>
+        <member name="P:IM.Imaging.ExperimentGridLayer.BaseFile">
+            <summary>
+            Gets the base file information of experiment grid.
+            </summary>
+            <value>The base file.</value>
+        </member>
+        <member name="P:IM.Imaging.ExperimentGridLayer.Events">
+            <summary>
+            Gets or sets the all the events of ExperimentGridLayer.
+            </summary>
+            <value>The events.</value>
+        </member>
+        <member name="E:IM.Imaging.ExperimentGridLayer.ExperimentGridPanelInvalidateEventFired">
+            <summary>
+            Occurs when [experiment grid panel invalidate event fired].
+            </summary>
+        </member>
+        <member name="E:IM.Imaging.ExperimentGridLayer.ExperimentGridCurrentSequenceChanged">
+            <summary>
+            Occurs when [experiment grid current sequence changed].
+            </summary>
+        </member>
+        <member name="E:IM.Imaging.ExperimentGridLayer.GetIMDataEvent">
+            <summary>
+            Occurs when [IM data event is received].
+            </summary>
+        </member>
+        <member name="E:IM.Imaging.ExperimentGridLayer.BaseImageRefreshed">
+            <summary>
+            Occurs when [base image refreshed].
+            </summary>
+        </member>
+        <member name="E:IM.Imaging.ExperimentGridLayer.BandControlRefreshed">
+            <summary>
+            Occurs when [band control refreshed].
+            </summary>
+        </member>
+        <member name="E:IM.Imaging.ExperimentGridLayer.GridImageLoaded">
+            <summary>
+            Occurs when [base image is loaded].
+            </summary>
+        </member>
+        <member name="E:IM.Imaging.ExperimentGridLayer.LayerLoaded">
+            <summary>
+            Occurs when [layer load completed handler].
+            </summary>
+        </member>
+        <member name="P:IM.Imaging.ExperimentGridLayer.Selection">
+            <summary>
+            Get the array of experiment selections
+            </summary>
+        </member>
+        <member name="M:IM.Imaging.BaseLayer.#ctor(System.String,System.Int32,System.Int32,System.Double)">
+            <summary>
+            Initializes a new instance of the <see cref="T:IM.Imaging.BaseLayer"/> class.
+            </summary>
+            <param name="name">The name.</param>
+            <param name="rows">The rows.</param>
+            <param name="columns">The columns.</param>
+            <param name="mag">The mag.</param>
+        </member>
+        <member name="M:IM.Imaging.BaseLayer.#ctor(IM.Imaging.ExperimentGridLayer)">
+            <summary>
+            Initializes a new instance of the <see cref="T:IM.Imaging.BaseLayer"/> class.
+            </summary>
+            <param name="layer">The layer.</param>
+        </member>
+        <member name="M:IM.Imaging.BaseLayer.#ctor(System.String,IM.Imaging.ExperimentGrid)">
+            <summary>
+            Initializes a new instance of the <see cref="T:IM.Imaging.BaseLayer"/> class.
+            </summary>
+            <param name="name">The name.</param>
+            <param name="eg">The eg.</param>
+        </member>
+        <member name="M:IM.Imaging.BaseLayer.Get80x(System.Drawing.Rectangle,System.Int32,System.Int32,IM.Imaging.Image3D,IM.Imaging.RefreshInvoker)">
+            <summary>
+            Get80x pictures with the specified roi(region of interest) zoom.
+            It should be implemented in inherited classes
+            </summary>
+            <param name="roiZoom">The roi(region of interest) zoom.</param>
+            <param name="time">The time.</param>
+            <param name="part">The part.</param>
+            <param name="actualImg">The actual image for view.</param>
+            <param name="invoker">The refresh invoker.</param>
+        </member>
+        <member name="M:IM.Imaging.BaseLayer.GetFull(System.Drawing.Rectangle,System.Int32,System.Int32,IM.Imaging.Image3D,IM.Imaging.RefreshInvoker)">
+            <summary>
+            Get Full resolution images the specified roi zoom.
+            </summary>
+            <param name="roiZoom">The roi zoom.</param>
+            <param name="time">The time.</param>
+            <param name="part">The part.</param>
+            <param name="actualImg">The actual img.</param>
+            <param name="invoker">The refresh invoker delegate.</param>
+        </member>
+        <member name="M:IM.Imaging.BaseLayer.PaintInfo(System.Drawing.Graphics,System.Drawing.Rectangle,System.Single)">
+            <summary>
+            Paints the information of the layer
+            </summary>
+            <param name="g">The g.</param>
+            <param name="roiZoom">The roi zoom.</param>
+            <param name="factor">The factor.</param>
+        </member>
+        <member name="M:IM.Imaging.BaseLayer.MouseMove(IM.Imaging.Sequence,System.Windows.Forms.MouseEventArgs)">
+            <summary>
+            Mouses the move.
+            </summary>
+            <param name="source">The source.</param>
+            <param name="e">The <see cref="T:System.Windows.Forms.MouseEventArgs"/> instance containing the event data.</param>
+        </member>
+        <member name="T:IM.Imaging.Graphics3D">
+            <summary>
+            Graphics3D specifications
+            </summary>
+        </member>
+        <member name="T:Triangulator.Geometry.Edge">
+            <summary>
+            Edge made from two point indexes
+            </summary>
+        </member>
+        <member name="F:Triangulator.Geometry.Edge.p1">
+            <summary>
+            Start of edge index
+            </summary>
+        </member>
+        <member name="F:Triangulator.Geometry.Edge.p2">
+            <summary>
+            End of edge index
+            </summary>
+        </member>
+        <member name="M:Triangulator.Geometry.Edge.#ctor(System.Int32,System.Int32)">
+            <summary>
+            Initializes a new edge instance
+            </summary>
+            <param name="point1">Start edge vertex index</param>
+            <param name="point2">End edge vertex index</param>
+        </member>
+        <member name="M:Triangulator.Geometry.Edge.#ctor">
+            <summary>
+            Initializes a new edge instance with start/end indexes of '0'
+            </summary>
+        </member>
+        <member name="M:Triangulator.Geometry.Edge.Equals(Triangulator.Geometry.Edge)">
+            <summary>
+            Checks whether two edges are equal disregarding the direction of the edges
+            </summary>
+            <param name="other"></param>
+            <returns></returns>
+        </member>
+        <member name="T:IM.Imaging.GridInitializer">
+            <summary>
+            Fully automated grid fitting
+            Author: A. Genovesio
+            </summary>
+        </member>
+        <member name="M:IM.Imaging.GridInitializer.Estimate(IM.Imaging.Layers.ArrayTemplate)">
+            <summary>
+            
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="T:Triangulator.Geometry.Triangle">
+            <summary>
+            Triangle made from three point indexes
+            </summary>
+        </member>
+        <member name="F:Triangulator.Geometry.Triangle.p1">
+            <summary>
+            First vertex index in triangle
+            </summary>
+        </member>
+        <member name="F:Triangulator.Geometry.Triangle.p2">
+            <summary>
+            Second vertex index in triangle
+            </summary>
+        </member>
+        <member name="F:Triangulator.Geometry.Triangle.p3">
+            <summary>
+            Third vertex index in triangle
+            </summary>
+        </member>
+        <member name="M:Triangulator.Geometry.Triangle.#ctor(System.Int32,System.Int32,System.Int32)">
+            <summary>
+            Initializes a new instance of a triangle
+            </summary>
+            <param name="point1">Vertex 1</param>
+            <param name="point2">Vertex 2</param>
+            <param name="point3">Vertex 3</param>
+        </member>
+        <member name="M:IM.Imaging.Tool.FlatOpen(IM.Imaging.Image3D,System.Int32,IM.Imaging.Image3D,System.Int32,IM.Imaging.Image3D)">
+            <summary>
+            Opening
+            </summary>
+            <param name="inputImage"></param>
+            <param name="inputBand"></param>
+            <param name="outputImage"></param>
+            <param name="outputBand"></param>
+            <param name="structuralElement"></param>
+        </member>
+        <member name="M:IM.Imaging.Tool.FlatClose(IM.Imaging.Image3D,System.Int32,IM.Imaging.Image3D,System.Int32,IM.Imaging.Image3D)">
+            <summary>
+            Closing
+            </summary>
+            <param name="inputImage"></param>
+            <param name="inputBand"></param>
+            <param name="outputImage"></param>
+            <param name="outputBand"></param>
+            <param name="structuralElement"></param>
+        </member>
+        <member name="M:IM.Imaging.Tool.FlatErosion(IM.Imaging.Image3D,System.Int32,IM.Imaging.Image3D,System.Int32,IM.Imaging.Image3D)">
+            <summary>
+            Flat structuring element gray level Erosion
+            </summary>
+            <param name="inputImage"></param>
+            <param name="inputBand"></param>
+            <param name="outputImage"></param>
+            <param name="outputBand"></param>
+            <param name="structuralElement"></param>
+        </member>
+        <member name="M:IM.Imaging.Tool.FlatDilation(IM.Imaging.Image3D,System.Int32,IM.Imaging.Image3D,System.Int32,IM.Imaging.Image3D)">
+            <summary>
+            Flat structuring element gray level Dilation
+            </summary>
+            <param name="inputImage"></param>
+            <param name="inputBand"></param>
+            <param name="outputImage"></param>
+            <param name="outputBand"></param>
+            <param name="structuralElement"></param>
+        </member>
+        <member name="T:IM.Imaging.PredefinedKernel">
+            <summary> Enumeration of default kernels available</summary>
+        </member>
+        <member name="F:IM.Imaging.PredefinedKernel.Gradient">
+            <summary>A 3x1 gradient kernel using central differences</summary>
+        </member>
+        <member name="F:IM.Imaging.PredefinedKernel.Laplacian2D">
+            <summary>A 3x3 Laplacian kernel</summary>
+        </member>
+        <member name="F:IM.Imaging.PredefinedKernel.Prewitt2D_X">
+            <summary>A 3x3 horizontal Prewitt kernel</summary>
+        </member>
+        <member name="F:IM.Imaging.PredefinedKernel.Prewitt2D_Y">
+            <summary>A 3x3 vertical Prewitt kernel</summary>
+        </member>
+        <member name="F:IM.Imaging.PredefinedKernel.Sobel2D_X">
+            <summary>A 3x3 horizontal Sobel kernel</summary>
+        </member>
+        <member name="F:IM.Imaging.PredefinedKernel.Sobel2D_Y">
+            <summary>A 3x3 vertical Sobel kernel</summary>
+        </member>
+        <member name="F:IM.Imaging.PredefinedKernel.Gaussian">
+            <summary>A 3x1 gaussian kernel (mean 0, std 0.5)</summary>
+        </member>
+        <member name="F:IM.Imaging.PredefinedKernel.NorthKirsch">
+            <summary>A 3x3 oriented north Kirsh kernel</summary>
+        </member>
+        <member name="F:IM.Imaging.PredefinedKernel.NorthEastKirsch">
+            <summary>A 3x3 oriented north-east Kirsh kernel</summary>
+        </member>
+        <member name="F:IM.Imaging.PredefinedKernel.EastKirsch">
+            <summary>A 3x3 oriented east Kirsh kernel</summary>
+        </member>
+        <member name="F:IM.Imaging.PredefinedKernel.SouthEastKirsch">
+            <summary>A 3x3 oriented south-east Kirsh kernel</summary>
+        </member>
+        <member name="F:IM.Imaging.PredefinedKernel.SouthKirsch">
+            <summary>A 3x3 oriented south Kirsh kernel</summary>
+        </member>
+        <member name="F:IM.Imaging.PredefinedKernel.SouthWestKirsch">
+            <summary>A 3x3 oriented south-west Kirsh kernel</summary>
+        </member>
+        <member name="F:IM.Imaging.PredefinedKernel.WestKirsch">
+            <summary>A 3x3 oriented west Kirsh kernel</summary>
+        </member>
+        <member name="F:IM.Imaging.PredefinedKernel.NorthWestKirsch">
+            <summary>A 3x3 oriented north-west Kirsh kernel</summary>
+        </member>
+        <member name="T:IM.Imaging.KernelMaker">
+            <summary> Utility class to create kernels (compatible with the convolution class)</summary>
+            <list type="table">
+            <listheader> <term>Version</term> <description>Changes</description> </listheader>
+            <item> <term>3.0</term> <description>(AG,AD) Redesigned class again, a kernel is now an Image3D, convolution methods redesigned accordingly</description> </item>
+            <item> <term>2.0</term> <description>(AD) Redesigned class, kernel types and calling methods. Should be much simpler to use</description> </item>
+            <item> <term>1.1</term> <description>(AD) added "Gradient*" kernels</description> </item>
+            <item> <term>1.0</term> <description>(AD) first operational build, creates "Custom*", "GaussianDefault*" and "GaussianBySigmas*" kernels</description> </item>
+            </list>
+        </member>
+        <member name="M:IM.Imaging.KernelMaker.#ctor">
+            <summary> Creates a new instance of the KernelMaker utility
+            </summary>
+        </member>
+        <member name="M:IM.Imaging.KernelMaker.MakePredefinedKernel(IM.Imaging.PredefinedKernel)">
+            <summary> Creates a predefined kernel of chosen type
+            </summary>
+            <param name="type">the kernel to create</param>
+            <seealso cref="!:IM.Library.Filtering.PredefinedKernel"/>
+            <returns></returns>
+        </member>
+        <member name="M:IM.Imaging.KernelMaker.MakeGradientKernel">
+            <summary> Build a gradient kernel using central differences
+            </summary>
+            <returns>a 1x3 gradient kernel</returns>
+        </member>
+        <member name="M:IM.Imaging.KernelMaker.Make2DLaplacianKernel">
+            <summary> Build a 2D Lapacian kernel
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:IM.Imaging.KernelMaker.Make2DVerticalPrewittKernel">
+            <summary> Build a 2D Horizontal Prewitt kernel
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:IM.Imaging.KernelMaker.Make2DHorizontalPrewittKernel">
+            <summary> Build a 2D Vertical Prewitt kernel
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:IM.Imaging.KernelMaker.Make2DVerticalSobelKernel">
+            <summary> Build a 2D Horizontal Sobel kernel
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:IM.Imaging.KernelMaker.Make2DHorizontalSobelKernel">
+            <summary> Build a 2D Vertical Sobel kernel
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:IM.Imaging.KernelMaker.MakeGaussianKernel">
+            <summary> Creates a normalized 1D Gaussian kernel with default values (variance 0.5)
+            </summary>
+            <returns>The newly constructed kernel</returns>
+        </member>
+        <member name="M:IM.Imaging.KernelMaker.MakeGaussianKernel(System.Single)">
+            <summary> Creates a 1D Gaussian kernel with given standard deviation (kernel size is automatically computed)
+            </summary>
+            <param name="sigma">The standard deviation</param>
+            <returns>The newly constructed kernel</returns>
+            <remarks>The kernel size in automatically computing knowing that a Gaussian distribution 
+            is almost zero more than about three standard deviation from the mean</remarks>
+        </member>
+        <member name="M:IM.Imaging.KernelMaker.Make2DGaborKernel(System.Single,System.Single,System.Single,System.Boolean)">
+            <summary>Creates a 2D Gaussian kernel with given standard deviations (kernel size is automatically computed)</summary>
+            <param name="sigma">The standard deviation</param>
+            <param name="k_x">kx</param>
+            <param name="k_y">ky</param>
+            <param name="IsSymmetric">symetric or antisymmetric component</param>
+            <returns>The newly constructed kernel</returns>
+            <remarks>The kernel size in automatically computing knowing that output Gaussian distribution 
+            is almost zero more than about three standard deviation from the mean</remarks>
+        </member>
+        <member name="M:IM.Imaging.KernelMaker.Make2DGaborKernel(System.Single,System.Single,System.Single,System.Single,System.Boolean)">
+            <summary>Creates a 2D Gabor kernel with given standard deviations (kernel size is automatically computed)</summary>
+            <param name="sigma_x">Variance along x-axis</param>
+            <param name="sigma_y">Variance along y-axis</param>
+            <param name="f">frequency of the sinusoidal function</param>
+            <param name="Teta">Orientation of the gabor filter</param>
+            <param name="IsSymmetric">Symmetric or Anti-symmetric filter</param>
+            <returns>The newly constructed kernel</returns>
+            <remarks>The kernel size in automatically computing knowing that output Gaussian distribution 
+            is almost zero more than about three standard deviation from the mean</remarks>
+        </member>
+        <member name="M:IM.Imaging.KernelMaker.Make2DGaborKernel(IM.Imaging.Image3D@,System.Single,System.Single,System.Single,System.Single,System.Boolean)">
+            <summary>Creates a 2D Gabor kernel with given standard deviations</summary>
+            <param name="output">Output Image</param>
+            <param name="sigma_x">Variance along x-axis</param>
+            <param name="sigma_y">Variance along y-axis</param>
+            <param name="f">frequency of the sinusoidal function</param>
+            <param name="Teta">Orientation of the gabor filter</param>
+            <param name="IsSymmetric">Symmetric or Anti-symmetric filter</param>
+            <returns>The newly constructed kernel</returns>
+            <remarks>The kernel size in automatically computing knowing that output Gaussian distribution 
+            is almost zero more than about three standard deviation from the mean</remarks>
+        </member>
+        <member name="M:IM.Imaging.KernelMaker.Make2DGaussianKernel(System.Single,System.Single,System.Single)">
+            <summary>Creates a 2D Gaussian kernel with given standard deviations (kernel size is automatically computed)</summary>
+            <param name="sigma_x">Variance along x-axis</param>
+            <param name="sigma_y">Variance along y-axis</param>
+            <param name="Teta">Orientation of the Gaussian filter</param>
+            <returns>The newly constructed kernel</returns>
+            <remarks>The kernel size in automatically computing knowing that output Gaussian distribution 
+            is almost zero more than about three standard deviation from the mean</remarks>
+        </member>
+        <member name="M:IM.Imaging.KernelMaker.MakeLaplacianOfGaussianKernel2D(System.Single)">
+            <summary> Creates a 2D Laplacian of Gaussian (LOG) kernel with given standard deviation (kernel size is automatically computed)
+            </summary>
+            <param name="sigma">The standard deviation</param>
+            <returns>The newly constructed kernel</returns>
+            <remarks>The kernel size in automatically computing knowing that a Gaussian distribution 
+            is almost zero more than about three standard deviation from the mean</remarks>
+        </member>
+        <member name="M:IM.Imaging.KernelMaker.MakeGaussianKernel(System.Int32,System.Single)">
+            <summary> Creates a 1D Gaussian kernel with given standard deviation and radius
+            </summary>
+            <param name="radius">the kernel radius</param>
+            <param name="sigma">the standard deviation of the gaussian</param>
+            <returns>a 1D kernel of size (2*radius+1)</returns>
+        </member>
+        <member name="M:IM.Imaging.KernelMaker.Normalize(IM.Imaging.Image3D)">
+            <summary> Normalize a kernel to 1
+            </summary>
+            <param name="kernel">the kernel to normalize</param>
+        </member>
+        <member name="T:IM.Imaging.SequenceDescriptor">
+            <summary>
+            An abstract class that enable to access images directly from files
+            <p>Author: A. Genovesio</p>
+            </summary>
+        </member>
+        <member name="F:IM.Imaging.SequenceDescriptor.sequenceSize">
+            <summary>
+            sequence size
+            </summary>
+        </member>
+        <member name="M:IM.Imaging.SequenceDescriptor.#ctor(System.Int32)">
+            <summary>
+            sequence 
+            Accessor
+            </summary>
+            <param name="sequenceSize">new sequence size to set</param>
+        </member>
+        <member name="M:IM.Imaging.SequenceDescriptor.Read(System.Int32)">
+            <summary>
+            Get an image directly from files.
+            </summary>
+            <param name="t">The time point</param>
+            /// <returns>An Image</returns>        
+        </member>
+        <member name="M:IM.Imaging.SequenceDescriptor.Dispose">
+            <summary>
+            Free ressources
+            </summary>
+        </member>
+        <member name="M:IM.Imaging.SequenceDescriptor.Dispose(System.Boolean)">
+            <summary>
+            FRee ressources
+            </summary>
+        </member>
+        <member name="M:IM.Imaging.SequenceDescriptor.Finalize">
+            <summary>
+            Destructor
+            </summary>
+        </member>
+        <member name="P:IM.Imaging.SequenceDescriptor.SequenceSize">
+            <summary>
+            The size of the sequence
+            </summary>
+        </member>
+        <member name="T:IM.Imaging.LibraryException">
+            <summary> Exception to be thrown by the library components in case an error occurs.
+            </summary>
+            <list type="table">
+            <listheader> <term>Version</term> <description>Changes</description> </listheader>
+            <item> <term>1.1</term> <description>(AD) Constructor shows an error window instead of storing the error message</description> </item>
+            <item> <term>1.0</term> <description>(AD) first operational build, calling method and error message must be provided</description> </item>
+            </list>
+        </member>
+        <member name="M:IM.Imaging.LibraryException.#ctor(System.String)">
+            <summary>
+            Generates an exception from output Library component
+            </summary>
+            <param name="errorMessage">the Error message</param>
+        </member>
+        <member name="T:Triangulator.Delauney">
+            <summary>
+            Performs the Delauney triangulation on a set of vertices.
+            </summary>
+            <remarks>
+            Based on Paul Bourke's "An Algorithm for Interpolating Irregularly-Spaced Data
+            with Applications in Terrain Modelling"
+            http://astronomy.swin.edu.au/~pbourke/modelling/triangulate/
+            </remarks>
+        </member>
+        <member name="M:Triangulator.Delauney.Triangulate(System.Collections.Generic.List{Triangulator.Geometry.Point})">
+            <summary>
+            Performs Delauney triangulation on a set of points.
+            </summary>
+            <remarks>
+            <para>
+            The triangulation doesn't support multiple points with the same planar location.
+            Vertex-lists with duplicate points may result in strange triangulation with intersecting edges.
+            To avoid adding multiple points to your vertex-list you can use the following anonymous predicate
+            method:
+            <code>
+            if(!Vertices.Exists(delegate(Triangulator.Geometry.Point p) { return pNew.Equals2D(p); }))
+            	Vertices.Add(pNew);
+            </code>
+            </para>
+            <para>The triangulation algorithm may be described in pseudo-code as follows:
+            <code>
+            subroutine Triangulate
+            input : vertex list
+            output : triangle list
+               initialize the triangle list
+               determine the supertriangle
+               add supertriangle vertices to the end of the vertex list
+               add the supertriangle to the triangle list
+               for each sample point in the vertex list
+                  initialize the edge buffer
+                  for each triangle currently in the triangle list
+                     calculate the triangle circumcircle center and radius
+                     if the point lies in the triangle circumcircle then
+                        add the three triangle edges to the edge buffer
+                        remove the triangle from the triangle list
+                     endif
+                  endfor
+                  delete all doubly specified edges from the edge buffer
+                     this leaves the edges of the enclosing polygon only
+                  add to the triangle list all triangles formed between the point 
+                     and the edges of the enclosing polygon
+               endfor
+               remove any triangles from the triangle list that use the supertriangle vertices
+               remove the supertriangle vertices from the vertex list
+            end
+            </code>
+            </para>
+            </remarks>
+            <param name="Vertex">List of vertices to triangulate.</param>
+            <returns>Triangles referencing vertex indices arranged in clockwise order</returns>
+        </member>
+        <member name="M:Triangulator.Delauney.InCircle(Triangulator.Geometry.Point,Triangulator.Geometry.Point,Triangulator.Geometry.Point,Triangulator.Geometry.Point)">
+            <summary>
+            Returns true if the point (p) lies inside the circumcircle made up by points (p1,p2,p3)
+            </summary>
+            <remarks>
+            NOTE: A point on the edge is inside the circumcircle
+            </remarks>
+            <param name="p">Point to check</param>
+            <param name="p1">First point on circle</param>
+            <param name="p2">Second point on circle</param>
+            <param name="p3">Third point on circle</param>
+            <returns>true if p is inside circle</returns>
+        </member>
+        <member name="T:IM.Imaging.MicroarrayState">
+            <summary>
+            MicroArray state
+            </summary>
+        </member>
+        <member name="F:IM.Imaging.MicroarrayState.UNFITTED">
+            <summary>
+            Unfitted
+            </summary>
+        </member>
+        <member name="F:IM.Imaging.MicroarrayState.FITTING">
+            <summary>
+            Fitting
+            </summary>
+        </member>
+        <member name="F:IM.Imaging.MicroarrayState.FITTED">
+            <summary>
+            Fitted
+            </summary>
+        </member>
+        <member name="F:IM.Imaging.MicroarrayState.UNFITTABLE">
+            <summary>
+            Fitting is impossible
+            </summary>
+        </member>
+        <member name="T:IM.Imaging.MicroArrayLayer">
+            <summary>
+            MicroArrayLayer class provides how to deal with creating a microarray from baselayer
+            </summary>
+        </member>
+        <member name="M:IM.Imaging.MicroArrayLayer.#ctor">
+            <summary>
+            Initializes a new instance of the <see cref="T:IM.Imaging.MicroArrayLayer"/> class.
+            </summary>
+        </member>
+        <member name="M:IM.Imaging.MicroArrayLayer.#ctor(System.String,IM.Imaging.ExperimentGrid)">
+            <summary>
+            Initializes a new instance of the <see cref="T:IM.Imaging.MicroArrayLayer"/> class.
+            </summary>
+            <param name="name">The name.</param>
+            <param name="eg">The eg.</param>
+        </member>
+        <member name="M:IM.Imaging.MicroArrayLayer.#ctor(System.String,IM.Imaging.ExperimentGrid,IM.Imaging.ExperimentGridLayer)">
+            <summary>
+            Initializes a new instance of the <see cref="T:IM.Imaging.MicroArrayLayer"/> class.
+            to preserve layer's base grid sequence list and thumbnailer already created.
+            </summary>
+            <param name="name">The name.</param>
+            <param name="eg">The eg.</param>
+            <param name="layer">The layer.</param>
+        </member>
+        <member name="M:IM.Imaging.MicroArrayLayer.ThreadFit">
+            <summary>
+            Threads the fit.
+            </summary>
+        </member>
+        <member name="M:IM.Imaging.MicroArrayLayer.Shown(System.Object,System.EventArgs)">
+            <summary>
+            Showns event handler
+            </summary>
+            <param name="sender">The sender.</param>
+            <param name="e">The <see cref="T:System.EventArgs"/> instance containing the event data.</param>
+        </member>
+        <member name="M:IM.Imaging.MicroArrayLayer.FitAndRedefineExperiments">
+            <summary>
+            Fits the and redefine experiments.
+            </summary>
+        </member>
+        <member name="M:IM.Imaging.MicroArrayLayer.Fit">
+            <summary>
+            Fits this instance.
+            </summary>
+        </member>
+        <member name="M:IM.Imaging.MicroArrayLayer.ReadAnnotationFile(System.String)">
+            <summary>
+            Reads the annotation file.
+            </summary>
+            <param name="fileName">Name of the file.</param>
+            <returns></returns>
+        </member>
+        <member name="M:IM.Imaging.MicroArrayLayer.Crop(System.Drawing.Rectangle)">
+            <summary>
+            The reference is the gridImage
+            </summary>
+            <param name="r"></param>
+            <returns></returns>
+        </member>
+        <member name="M:IM.Imaging.MicroArrayLayer.GetCoordinate(System.Int32,System.Int32)">
+            <summary>
+            Gets specific node x,y from mouse coordinate
+            </summary>
+            <param name="x">The x.</param>
+            <param name="y">The y.</param>
+            <returns></returns>
+        </member>
+        <member name="M:IM.Imaging.MicroArrayLayer.PaintExperiment(System.Int32,System.Int32,System.Drawing.Graphics,System.Drawing.Brush,System.Drawing.Pen,System.Drawing.Rectangle,System.Single)">
+            <summary>
+            Paints the experiment with row and column.
+            </summary>
+            <param name="row">The row.</param>
+            <param name="col">The col.</param>
+            <param name="g">The g.</param>
+            <param name="fillBrush">The fill brush.</param>
+            <param name="pen">The pen.</param>
+            <param name="roiZoom">The roi zoom.</param>
+            <param name="factor">The factor.</param>
+        </member>
+        <member name="M:IM.Imaging.MicroArrayLayer.PaintSelection(System.Drawing.Graphics,System.Drawing.Pen,System.Drawing.Rectangle,System.Single,System.Drawing.Rectangle)">
+            <summary>
+            Paints the selection.
+            </summary>
+            <param name="g">The g.</param>
+            <param name="pen">The pen.</param>
+            <param name="roiZoom">The roi zoom.</param>
+            <param name="factor">The factor.</param>
+            <param name="region">The region.</param>
+        </member>
+        <member name="M:IM.Imaging.MicroArrayLayer.PaintInfo(System.Drawing.Graphics,System.Drawing.Rectangle,System.Single)">
+            <summary>
+            Paints the information of the layer
+            </summary>
+            <param name="g">The g.</param>
+            <param name="roiZoom">The roi zoom.</param>
+            <param name="factor">The factor.</param>
+        </member>
+        <member name="M:IM.Imaging.MicroArrayLayer.PaintNonExperiment(System.Int32,System.Int32,System.Drawing.Graphics,System.Drawing.Brush,System.Drawing.Pen,System.Drawing.Rectangle,System.Single)">
+            <summary>
+            Paints the non experiment.
+            </summary>
+            <param name="row">The row.</param>
+            <param name="col">The col.</param>
+            <param name="g">The g.</param>
+            <param name="fillBrush">The fill brush.</param>
+            <param name="pen">The pen.</param>
+            <param name="roiZoom">The roi zoom.</param>
+            <param name="factor">The factor.</param>
+        </member>
+        <member name="P:IM.Imaging.MicroArrayLayer.CurrentExperimentLocation">
+            <summary>
+            Get or set the current experiment location
+            </summary>
+        </member>
+        <member name="P:IM.Imaging.MicroArrayLayer.CurrentSequence">
+            <summary>
+            Get the current sequence
+            </summary>
+        </member>
+        <member name="P:IM.Imaging.MicroArrayLayer.CurrentExperiment">
+            <summary>
+            Get the current Experiment
+            </summary>
+        </member>
+        <member name="P:IM.Imaging.MicroArrayLayer.Item(System.Int32,System.Int32)">
+            <summary>
+            Get the Experiment located at the specified coordinate. Coordinates of experiments go from (1,1) to (Rows,Columns)
+            </summary>
+            <param name="row">The selected row</param>
+            <param name="col">The selected column</param>
+            <returns>The experiment at coordinates (row,column)</returns>
+        </member>
+        <member name="T:IM.Imaging.Image3D">
+            <summary>
+            Image3D class is the image type of IM. It consists of a multi band 3D float image
+            <p>Author: A. Genovesio</p>
+            </summary>
+        </member>
+        <member name="F:IM.Imaging.Image3D.data">
+            <summary>
+            Image's data
+            </summary>
+        </member>
+        <member name="M:IM.Imaging.Image3D.#ctor(System.Int32,System.Int32,System.Int32,System.Int32)">
+            <summary>
+            Constructor
+            </summary>
+            <param name="width">The image width</param>
+            <param name="height">The image height</param>
+            <param name="depth">The image depth</param>
+            <param name="numBands">The number of bands in the image</param>
+        </member>
+        <member name="M:IM.Imaging.Image3D.#ctor(System.Int32,System.Int32,System.Int32,System.Single[][])">
+            <summary>
+            Constructor
+            </summary>
+            <param name="width">The image width</param>
+            <param name="height">The image height</param>
+            <param name="depth">The image depth</param>
+            <param name="data">The data values (the data[dim][] must have a size width*height*depth for all dim)</param>
+        </member>
+        <member name="M:IM.Imaging.Image3D.#ctor(IM.Imaging.Image3D[])">
+            <summary>
+            This constructor joins buffers of n SingleBandImage 
+            to form a new MultibandImage. Buffers remind the same.
+            Properties are merged in the resulting image in the table order. 
+            If a property appear twice, it won't be taken into account the second time.
+            </summary>
+            <param name="images"></param>
+        </member>
+        <member name="M:IM.Imaging.Image3D.Dispose">
+            <summary>
+            Free ressources
+            </summary>
+            <param name="disposing">free managed ressources if true</param>
+        </member>
+        <member name="M:IM.Imaging.Image3D.Clear">
+            <summary>
+            Set all band of all voxels o
+            </summary>
+        </member>
+        <member name="M:IM.Imaging.Image3D.GetAsString(System.Int32,System.Int32,System.Int32)">
+            <summary>
+            Get the value of the specified voxel in a string format
+            </summary>
+            <param name="x">x</param>
+            <param name="y">y</param>
+            <param name="z">z</param>
+            <returns>The voxel value as a string</returns>
+        </member>
+        <member name="M:IM.Imaging.Image3D.ToString">
+            <summary>
+            A string representation of this image
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:IM.Imaging.Image3D.ComputeMinMax(System.Single[],System.Single[])">
+            <summary>
+            Compute min and max. Warning : 
+            min and max are clamp to -32768 and 65535 for displaying reasons
+            </summary>
+            <param name="min">A float array of length NumBands</param>
+            <param name="max">A float array of length NumBands</param>
+        </member>
+        <member name="M:IM.Imaging.Image3D.ComputeMinMax(System.Single[],System.Single[],System.Int32)">
+            <summary>
+            Compute min and max of a given band. Warning : 
+            min and max are clamp to -32768 and 65535 for displaying reasons
+            </summary>
+            <param name="min">A float array of length NumBands</param>
+            <param name="max">A float array of length NumBands</param>
+            <param name="bandIndex">Band Index</param>
+        </member>
+        <member name="M:IM.Imaging.Image3D.ComputeMinMaxWithRemovedPercents(System.Single[],System.Single[],System.Int32,System.Int32)">
+            <summary>
+            Compute min and max after having removed a given percentage at from each side of the histogram. Warning : 
+            min and max are clamp to -32768 and 65535 for displaying reasons
+            </summary>
+            <param name="min">A float array of length NumBands</param>
+            <param name="max">A float array of length NumBands</param>
+            <param name="percentLeft">The percentage to be removed on the left side</param>
+            <param name="percentRight">The percentage to be removed on the right side</param>
+        </member>
+        <member name="M:IM.Imaging.Image3D.ComputeMinMaxWithRemovedPercents(System.Single[],System.Single[],System.Int32,System.Int32,System.Int32)">
+            <summary>
+            Compute min and max of a given band after having removed a given percentage at from each side of the histogram. Warning : 
+            min and max are clamp to -32768 and 65535 for displaying reasons
+            </summary>
+            <param name="min">A float array of length NumBands</param>
+            <param name="max">A float array of length NumBands</param>
+            <param name="percentLeft">The percentage to be removed on the left side</param>
+            <param name="percentRight">The percentage to be removed on the right side</param>
+            <param name="bandIndex">Band Index</param>
+        </member>
+        <member name="M:IM.Imaging.Image3D.Get(System.Int32,System.Int32,System.Int32,System.Int32)">
+            <summary>
+            Return the specified band value of the specified voxel 
+            </summary>
+            <param name="x">x</param>
+            <param name="y">y</param>
+            <param name="z">z</param>
+            <param name="b">band</param>
+            <returns>The band's voxel's value</returns>
+        </member>
+        <member name="M:IM.Imaging.Image3D.Set(System.Int32,System.Int32,System.Int32,System.Int32,System.Single)">
+            <summary>
+            Set the specified value to the specified voxel of the 
+            specified band.
+            </summary>
+            <param name="x">x</param>
+            <param name="y">y</param>
+            <param name="z">z</param>
+            <param name="b">band</param>
+            <param name="value">value</param>
+        </member>
+        <member name="M:IM.Imaging.Image3D.Get(System.Int32,System.Int32,System.Int32,System.Single[])">
+            <summary>
+            Get the value of the specified voxel. 
+            </summary>
+            <param name="x">x</param>
+            <param name="y">y</param>
+            <param name="z">z</param>
+            <param name="value">The array into wich the voxel's value should be store</param>
+        </member>
+        <member name="M:IM.Imaging.Image3D.Set(System.Int32,System.Int32,System.Int32,System.Single[])">
+            <summary>
+            Set the specified voxel to value. 
+            </summary>
+            <param name="x">x</param>
+            <param name="y">y</param>
+            <param name="z">z</param>
+            <param name="value">The new voxel value</param>
+        </member>
+        <member name="M:IM.Imaging.Image3D.CopySubImageInto(System.Int32,System.Int32,System.Int32,IM.Imaging.Image3D)">
+            <summary>
+            Copy a sub image into the specified image parameter
+            </summary>
+            <param name="x0">Start x value</param>
+            <param name="y0">Start y value</param>
+            <param name="z0">Start z value</param>
+            <param name="image">image receiving the data into</param>
+        </member>
+        <member name="M:IM.Imaging.Image3D.CopyImageInto(IM.Imaging.Image3D,System.Int32,System.Int32,System.Int32)">
+            <summary>
+            Copy the image into the specified image parameter at the specified location
+            </summary>
+            <param name="x0">Start x value</param>
+            <param name="y0">Start y value</param>
+            <param name="z0">Start z value</param>
+            <param name="image">image receiving the data into</param>
+        </member>
+        <member name="M:IM.Imaging.Image3D.CopyImageIntoBand(System.Int32,IM.Imaging.Image3D,System.Int32,System.Int32,System.Int32,System.Int32)">
+            <summary>
+            Copy the image into the specified image parameter at the specified location
+            </summary>
+            <param name="sourceBand">Source Band Index</param>
+            <param name="image">image receiving the data into</param>
+            <param name="targetBand">Target band receiving the data into</param>
+            <param name="x0">Start x value</param>
+            <param name="y0">Start y value</param>
+            <param name="z0">Start z value</param>
+        </member>
+        <member name="M:IM.Imaging.Image3D.GetBandCopy(System.Int32)">
+            <summary>
+            Get a deep copy of the specified band of this image
+            </summary>
+            <param name="band">The specified band</param>
+            <returns></returns>
+        </member>
+        <member name="M:IM.Imaging.Image3D.GetCopy">
+            <summary>
+            Get a deep copy of this image
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:IM.Imaging.Image3D.CopyIntoARGBArray(System.Byte[],IM.Imaging.Axis,System.Int32,System.Byte[][],System.Byte[][][],System.Boolean)">
+            <summary>
+            Copy a slice of this image into a 32bits ARGB System.Drawing.Bitmap image
+            </summary>
+            <param name="argbArray">An ARGB array</param>
+            <param name="axis">The axis on which the level is selected</param>
+            <param name="level">The selected level</param>
+            <param name="lutWork">A nx16bits lut</param>
+            <param name="lutView">A nx3x8bits lut</param>
+        </member>
+        <member name="M:IM.Imaging.Image3D.CopyIntoARGBBitmap(System.Drawing.Bitmap,IM.Imaging.Axis,System.Int32,System.Byte[][],System.Byte[][][],System.Boolean)">
+            <summary>
+            Copy a slice of this image into a 32bits ARGB System.Drawing.Bitmap image
+            </summary>
+            <param name="bitmapargb">A ARGB 32bits System.Drawing.Bitmap image</param>
+            <param name="axis">The axis on which the level is selected</param>
+            <param name="level">The selected level</param>
+            <param name="lutWork">A nx16bits lut</param>
+            <param name="lutView">A nx3x8bits lut</param>
+        </member>
+        <member name="M:IM.Imaging.Image3D.CopyIntoARGBPointer(System.Byte*,IM.Imaging.Axis,System.Int32,System.Byte[][],System.Byte[][][],System.Boolean)">
+            <summary> Copy a slice of this image into a 32bits ARGB System.Drawing.Bitmap image
+            </summary>
+            <param name="p">A byte pointer on wich copying the output</param>
+            <param name="axis">The axis on which the level is selected</param>
+            <param name="level">The selected level</param>
+            <param name="lutWork">A nx16bits lut</param>
+            <param name="lutView">A nx3x8bits lut</param>
+        </member>
+        <member name="M:IM.Imaging.Image3D.CopyIntoARGBPointer(System.Byte*,IM.Imaging.Axis,System.Int32,System.Byte[][],System.Byte[][][],System.Byte,System.Boolean)">
+            <summary> Copy a slice of this image into a 32bits ARGB System.Drawing.Bitmap image
+            </summary>
+            <param name="p">A byte pointer on wich copying the output</param>
+            <param name="axis">The axis on which the level is selected</param>
+            <param name="level">The selected level</param>
+            <param name="lutWork">A nx16bits lut</param>
+            <param name="lutView">A nx3x8bits lut</param>
+            <param name="alpha">Transparency value</param>
+        </member>
+        <member name="M:IM.Imaging.Image3D.CopyIntoARGBPointer(System.Byte*,System.Byte[][],System.Byte[][][],System.Byte,System.Boolean)">
+            <summary> Copy while image into a 32bits ARGB array for volume rendering
+            R mask: 255, G mask: B mask:
+            </summary>
+            <param name="p">A byte pointer on wich copying the output</param>
+            <param name="axis">The axis on which the level is selected</param>
+            <param name="level">The selected level</param>
+            <param name="lutWork">A nx16bits lut</param>
+            <param name="lutView">A nx3x8bits lut</param>
+            <param name="alpha">Transparency value</param>
+        </member>
+        <member name="P:IM.Imaging.Image3D.Data">
+            <summary>
+            Get the data buffer
+            </summary>
+            <returns>data buffer</returns>
+        </member>
+        <member name="T:IM.Imaging.BoundaryConditions">
+            <summary> Enumeration of various boundary conditions applied in image processing
+            </summary>
+        </member>
+        <member name="F:IM.Imaging.BoundaryConditions.Zero">
+            <summary> Zero (Lipschitz) boundary condition: f(x&lt;0)=f(x&gt;N)=0
+            </summary>
+        </member>
+        <member name="F:IM.Imaging.BoundaryConditions.Mirror">
+            <summary> Mirror (Neumann) boundary condition: f(x&lt;0)=f(-x), f(x&gt;N)=f(N-(x-N))
+            </summary>
+        </member>
+        <member name="T:IM.Imaging.InterpolationScheme">
+            <summary> Enumerates the different interpolation schemes available
+            </summary>
+        </member>
+        <member name="F:IM.Imaging.InterpolationScheme.NearestNeighbor">
+            <summary> Rounds of a point's coordinates value to its closest neighbor
+            </summary>
+        </member>
+        <member name="F:IM.Imaging.InterpolationScheme.Linear">
+            <summary> Computes a linear interpolation of all point's neighbors
+            </summary>
+        </member>
+        <member name="F:IM.Imaging.InterpolationScheme.Polynomial">
+            <summary> Computes a polynomial interpolation
+            </summary>
+        </member>
+        <member name="F:IM.Imaging.InterpolationScheme.Spline">
+            <summary> Computes a spline interpolation
+            </summary>
+        </member>
+        <member name="T:IM.Imaging.GradientDirections">
+            <summary> Available directions for the gradient computation
+            </summary>
+        </member>
+        <member name="F:IM.Imaging.GradientDirections.Backward">
+            <summary> Backward gradient calculation : g(x)=f(x)-f(x-1) 
+            </summary>
+        </member>
+        <member name="F:IM.Imaging.GradientDirections.Forward">
+            <summary> Backward gradient calculation : g(x)=f(x+1)-f(x)
+            </summary>
+        </member>
+        <member name="F:IM.Imaging.GradientDirections.Centered">
+            <summary> Backward gradient calculation : g(x)=[f(x+1)-f(x-1)]/2
+            </summary>
+        </member>
+        <member name="T:IM.Imaging.ExperimentGrid">
+            <summary>
+            A ExperimentGrid is a grid of Experiment
+            </summary>
+        </member>
+        <member name="M:IM.Imaging.ExperimentGrid.#ctor(System.Collections.Hashtable)">
+            <summary>
+            Constructor. Create an ExperimentGrid from information contained in the provided properties.
+            </summary>
+            <param name="properties">properties</param>
+        </member>
+        <member name="M:IM.Imaging.ExperimentGrid.InvokeGridImageRefreshed">
+            <summary>
+            Fires the refresh base image.
+            </summary>
+        </member>
+        <member name="M:IM.Imaging.ExperimentGrid.InvokeGridImageLoaded">
+            <summary>
+            Fires when the load grid image is loaded.
+            </summary>
+        </member>
+        <member name="M:IM.Imaging.ExperimentGrid.Add(IM.Imaging.ExperimentBase)">
+            <summary>
+            Add an Experiment to this ExperimentGrid plate. Throw an ArgumentException if the location is outside the ExperimentGrid or if the Experiment location is already busy 
+            </summary>
+            <param name="e">the experiment to add</param>
+        </member>
+        <member name="M:IM.Imaging.ExperimentGrid.isAnExperiment(System.Int32,System.Int32)">
+            <summary>
+            Determines whether [is an experiment] [the specified row].
+            </summary>
+            <param name="row">The row.</param>
+            <param name="column">The column.</param>
+            <returns>
+            	<c>true</c> if [is an experiment] [the specified row]; otherwise, <c>false</c>.
+            </returns>
+        </member>
+        <member name="M:IM.Imaging.ExperimentGrid.ContainsWell(System.String)">
+            <summary>
+            If ExperimentGrid contains well, return true. Otherwise it returns false;
+            </summary>
+            <param name="well"></param>
+            <returns></returns>
+        </member>
+        <member name="M:IM.Imaging.ExperimentGrid.ContainsWell(System.Drawing.Point)">
+            <summary>
+            If ExperimentGrid contains well, return true. Otherwise it returns false;
+            </summary>
+            <param name="well">Point location of well</param>
+            <returns></returns>
+        </member>
+        <member name="M:IM.Imaging.ExperimentGrid.InitThumbnailer">
+            <summary>
+            Initialize the thumbnailer.
+            </summary>
+        </member>
+        <member name="M:IM.Imaging.ExperimentGrid.PopulateThumbnailImages">
+            <summary>
+            Populates the thumbnail images.
+            </summary>
+        </member>
+        <member name="M:IM.Imaging.ExperimentGrid.MakeThumbs(System.Object)">
+            <summary>
+            Makes the thumbs.
+            Specify magnification factor 80x and 20x
+            </summary>
+            <param name="p">The p.</param>
+        </member>
+        <member name="M:IM.Imaging.ExperimentGrid.ReadThumbnailImages">
+            <summary>
+            Reads the thumbnail images.
+            </summary>
+        </member>
+        <member name="M:IM.Imaging.ExperimentGrid.GaussianSubsampler(IM.Imaging.Image3D,System.Single,System.Single)">
+            <summary>
+            Gaussian Sampler.
+            </summary>
+            <param name="img">The img.</param>
+            <param name="scale">The scale.</param>
+            <param name="sigmaScale">The sigma scale.</param>
+            <returns>Image3D instance</returns>
+        </member>
+        <member name="M:IM.Imaging.ExperimentGrid.MakeGaussianKernel(IM.Imaging.Image3D,System.Single,System.Single)">
+            <summary>
+            Makes the gaussian kernel.
+            </summary>
+            <param name="kernel">The kernel.</param>
+            <param name="sigma">The sigma.</param>
+            <param name="offset">The offset.</param>
+        </member>
+        <member name="M:IM.Imaging.ExperimentGrid.BiLinearSubsampler(IM.Imaging.Image3D,System.Int32,System.Int32)">
+            <summary>
+            Bi-linear subsampler.
+            </summary>
+            <param name="input">The input.</param>
+            <param name="width">The width.</param>
+            <param name="height">The height.</param>
+            <returns></returns>
+        </member>
+        <member name="M:IM.Imaging.ExperimentGrid.Resize(IM.Imaging.Image3D,System.Int32,IM.Imaging.Image3D,System.Int32,System.Boolean)">
+            <summary>
+            Resizes the specified Image3d.
+            </summary>
+            <param name="imageSrc">The image SRC.</param>
+            <param name="srcBand">The SRC band.</param>
+            <param name="imageDst">The image DST.</param>
+            <param name="dstBand">The DST band.</param>
+            <param name="interpolate">if set to <c>true</c> [interpolate].</param>
+        </member>
+        <member name="M:IM.Imaging.ExperimentGrid.getInterpolatedPixel(IM.Imaging.Image3D,System.Int32,System.Single,System.Single,System.Int32)">
+            <summary>
+            Gets the interpolated pixel.
+            Uses bilinear interpolation to find the pixel value at real coordinates (x,y).
+            </summary>
+            <param name="image">The image.</param>
+            <param name="band">The band.</param>
+            <param name="x">The x.</param>
+            <param name="y">The y.</param>
+            <returns></returns>
+        </member>
+        <member name="M:IM.Imaging.ExperimentGrid.GetEnumerator">
+            <summary>Enables the use of the foreach statement on the selected experiments
+            </summary>
+            <returns>An enumerator on the list of experiments</returns>
+        </member>
+        <member name="M:IM.Imaging.ExperimentGrid.AZToInt(System.String)">
+            <summary>
+            AZ coordinate to Integer value.
+            </summary>
+            <param name="az">The az.</param>
+            <returns></returns>
+        </member>
+        <member name="M:IM.Imaging.ExperimentGrid.IntToAZ(System.Int32)">
+            <summary>
+            Integer value to AZ coordinates.
+            </summary>
+            <param name="val">The val.</param>
+            <returns></returns>
+        </member>
+        <member name="M:IM.Imaging.ExperimentGrid.GetXY(System.String)">
+            <summary>
+            Gets the XY point from AZ coordinate.
+            </summary>
+            <param name="a1">The a1.</param>
+            <returns></returns>
+        </member>
+        <member name="M:IM.Imaging.ExperimentGrid.GetAZ(System.Drawing.Point)">
+            <summary>
+            Gets the AZ coordinate from point.
+            </summary>
+            <param name="point">The point.</param>
+            <returns></returns>
+        </member>
+        <member name="M:IM.Imaging.ExperimentGrid.GetFormatedExperimentCoordinate(System.Drawing.Point)">
+            <summary>
+            Transfer Experiment coordinates to a formated alphanumeric string
+            </summary>
+            <param name="originalCoord"></param>
+            <returns>A formated alphanumeric string</returns>
+        </member>
+        <member name="M:IM.Imaging.ExperimentGrid.GetCoordinateFromFormatedString(System.String)">
+            <summary>
+            Transfer an alphanumeric string to coordinates
+            </summary>
+            <param name="formatedCoords"></param>
+            <returns></returns>
+        </member>
+        <member name="P:IM.Imaging.ExperimentGrid.Barcode">
+            <summary>
+            Get the code identifying this ExperimentGrid
+            </summary>
+        </member>
+        <member name="P:IM.Imaging.ExperimentGrid.GID">
+            <summary>
+            Global Identifier
+            </summary>
+        </member>
+        <member name="P:IM.Imaging.ExperimentGrid.LastWriteTime">
+            <summary>
+            Returns the date and time, in coordinated universal time (UTC), that the specified file or directory was last written to. 
+            </summary>
+        </member>
+        <member name="P:IM.Imaging.ExperimentGrid.Name">
+            <summary>
+            Get the Name of this ExperimentGrid
+            </summary>
+        </member>
+        <member name="P:IM.Imaging.ExperimentGrid.Rows">
+            <summary>
+            Get the number of rows of this ExperimentGrid
+            </summary>
+        </member>
+        <member name="P:IM.Imaging.ExperimentGrid.Columns">
+            <summary>
+            Get the number of columns of this ExperimentGrid
+            </summary>
+        </member>
+        <!-- Badly formed XML comment ignored for member "P:IM.Imaging.ExperimentGrid.Item(System.Int32,System.Int32)" -->
+        <member name="P:IM.Imaging.ExperimentGrid.Item(System.Int32,System.Int32,System.Int32)">
+            <summary>
+            Get a Sequence from the Experiment located at the specified coordinate. Coordinates of experiments go from (1,1) to (Rows,Columns)
+            </summary>
+            <param name="row">The selected row</param>
+            <param name="col">The selected column</param>
+            <param name="part">The selected Sequence index (from 0 to this[row,column].Sequences)</param>
+            <returns>The Sequence at (row,column,s)</returns>
+        </member>
+        <!-- Badly formed XML comment ignored for member "P:IM.Imaging.ExperimentGrid.BaseFile" -->
+        <member name="T:IM.Imaging.PanoramaLayer">
+            <summary>
+            PanoramaLayer provides a view of merged parts according to user-defined shape
+            </summary>
+        </member>
+        <member name="M:IM.Imaging.PanoramaLayer.#ctor(System.String,System.Int32,System.Int32,System.Double)">
+            <summary>
+            Initializes a new instance of the <see cref="T:IM.Imaging.PanoramaLayer"/> class.
+            </summary>
+            <param name="name">The name.</param>
+            <param name="rows">The rows.</param>
+            <param name="columns">The columns.</param>
+            <param name="mag">The mag.</param>
+        </member>
+        <member name="M:IM.Imaging.PanoramaLayer.#ctor(IM.Imaging.ExperimentGridLayer)">
+            <summary>
+            Initializes a new instance of the <see cref="T:IM.Imaging.PanoramaLayer"/> class.
+            </summary>
+            <param name="layer">The layer.</param>
+        </member>
+        <member name="M:IM.Imaging.PanoramaLayer.#ctor(System.String,System.String,IM.Imaging.ExperimentGrid)">
+            <summary>
+            Initializes a new instance of the <see cref="T:IM.Imaging.PanoramaLayer"/> class.
+            </summary>
+            <param name="name">The name.</param>
+            <param name="shapeString">The shape string.</param>
+            <param name="eg">The eg.</param>
+        </member>
+        <member name="M:IM.Imaging.PanoramaLayer.#ctor(System.String,System.String,IM.Imaging.ExperimentGrid,IM.Imaging.ExperimentGridLayer)">
+            <summary>
+            Initializes a new instance of the <see cref="T:IM.Imaging.PanoramaLayer"/> class.
+            to preserve layer's base grid sequence list and thumbnailer already created.
+            </summary>
+            <param name="name">The name.</param>
+            <param name="shapeString">The shape string.</param>
+            <param name="eg">The eg.</param>
+            <param name="layer">The layer.</param>
+        </member>
+        <member name="M:IM.Imaging.PanoramaLayer.setShape(System.String)">
+            <summary>
+            Sets the merged part shape from multi line string.
+            </summary>
+            <param name="partsDesign">The parts design.</param>
+        </member>
+        <member name="M:IM.Imaging.PanoramaLayer.Load">
+            <summary>
+            Loads the specified band name.
+            </summary>
+        </member>
+        <member name="M:IM.Imaging.PanoramaLayer.assembleThumbs(IM.Imaging.Image3D,System.Int32)">
+            <summary>
+            Assembles the thumbnails regarding the shape which is custom-defined.
+            </summary>
+            <param name="img">The experimentGrid image.</param>
+            <param name="time">The time index.</param>
+        </member>
+        <member name="M:IM.Imaging.PanoramaLayer.GetNumberOfWell(System.Drawing.Rectangle)">
+            <summary>
+            Gets the number of well.
+            </summary>
+            <param name="roiZoom">The roi zoom.</param>
+            <returns></returns>
+        </member>
+        <member name="M:IM.Imaging.PanoramaLayer.Get80x(System.Drawing.Rectangle,System.Int32,System.Int32,IM.Imaging.Image3D,IM.Imaging.RefreshInvoker)">
+            <summary>
+            Get80x pictures with the specified roi(region of interest) zoom.
+            It should be implemented in inherited classes
+            </summary>
+            <param name="roiZoom">The roi(region of interest) zoom.</param>
+            <param name="time">The time.</param>
+            <param name="part">The part.</param>
+            <param name="actualImg">The actual image for view.</param>
+            <param name="invoker">The refresh invoker.</param>
+        </member>
+        <member name="M:IM.Imaging.PanoramaLayer.GetFull(System.Drawing.Rectangle,System.Int32,System.Int32,IM.Imaging.Image3D,IM.Imaging.RefreshInvoker)">
+            <summary>
+            Gets the full resolution pictures.
+            It should be implemented in inherited classes
+            </summary>
+            <param name="roiZoom">The roi(region of interest) zoom.</param>
+            <param name="time">The time.</param>
+            <param name="part">The part.</param>
+            <param name="actualImg">The actual image for view.</param>
+            <param name="invoker">The refresh invoker.</param>
+        </member>
+        <member name="M:IM.Imaging.PanoramaLayer.PaintSelection(System.Drawing.Graphics,System.Drawing.Pen,System.Drawing.Rectangle,System.Single,System.Drawing.Rectangle)">
+            <summary>
+            Paints the selection.
+            </summary>
+            <param name="g">The g.</param>
+            <param name="pen">The pen.</param>
+            <param name="roiZoom">The roi zoom.</param>
+            <param name="factor">The factor.</param>
+            <param name="region">The region.</param>
+        </member>
+        <member name="M:IM.Imaging.PanoramaLayer.PaintInfo(System.Drawing.Graphics,System.Drawing.Rectangle,System.Single)">
+            <summary>
+            Paints the information of the layer
+            </summary>
+            <param name="g">The g.</param>
+            <param name="roiZoom">The roi zoom.</param>
+            <param name="factor">The factor.</param>
+        </member>
+        <member name="M:IM.Imaging.PanoramaLayer.getFullResPicture(System.Int32,System.Int32)">
+            <summary>
+            Gets the full Resolution picture.
+            </summary>
+            <param name="row">The row.</param>
+            <param name="col">The col.</param>
+            <returns></returns>
+        </member>
+        <member name="P:IM.Imaging.PanoramaLayer.MergedThumbWidth">
+            <summary>
+            Gets the width of the merged thumb.
+            </summary>
+            <value>The width of the merged thumb.</value>
+        </member>
+        <member name="P:IM.Imaging.PanoramaLayer.MergedThumbHeight">
+            <summary>
+            Gets the height of the merged thumb.
+            </summary>
+            <value>The height of the merged thumb.</value>
+        </member>
+        <member name="T:IM.Imaging.SpotSequenceDescriptor">
+            <summary>
+            An implementation of SequenceAccessor for MergedLayers
+            <p>Author: HK. Moon</p>
+            </summary>
+        </member>
+        <member name="M:IM.Imaging.SpotSequenceDescriptor.#ctor(System.Drawing.Rectangle,System.Int32,System.Int32,System.Int32,IM.Imaging.ExperimentGrid,System.Int32)">
+            <summary>
+            Constructor for LayerSequenceDescriptor
+            </summary>
+        </member>
+        <member name="M:IM.Imaging.SpotSequenceDescriptor.Dispose(System.Boolean)">
+            <summary>
+            Free resources
+            </summary>
+        </member>
+        <member name="M:IM.Imaging.SpotSequenceDescriptor.Read(System.Int32)">
+            <summary>
+            Get an image directly from layer entity
+            </summary>
+            <param name="t">The time point</param>
+            <returns>An Image</returns>        
+        </member>
+        <member name="M:IM.Imaging.SpotSequenceDescriptor.readFullResImage(System.Int32)">
+            <summary>
+            MODIFIED by auguste to correct the picture shift
+            </summary>
+            <param name="t"></param>
+            <returns></returns>
+        </member>
+        <member name="M:IM.Imaging.ExperimentBase.#ctor(System.Int32,System.Int32)">
+            <summary>
+            Create an Experiment object
+            </summary>
+        </member>
+        <member name="M:IM.Imaging.ExperimentBase.#ctor">
+            <summary>
+            Create an Experiment object
+            </summary>
+        </member>
+        <member name="M:IM.Imaging.ExperimentBase.Add(IM.Imaging.Sequence)">
+            <summary>
+            Add a Sequence to this Experiment
+            </summary>
+            <param name="s">The sequence to be added</param>
+        </member>
+        <member name="M:IM.Imaging.ExperimentBase.GetEnumerator">
+            <summary>Enables the use of the foreach statement on the Experiment sequence
+            </summary>
+            <returns>An enumerator on the list of sequence</returns>
+        </member>
+        <member name="P:IM.Imaging.ExperimentBase.Row">
+            <summary>
+            Get the row index of this Experiment
+            </summary>
+        </member>
+        <member name="P:IM.Imaging.ExperimentBase.Column">
+            <summary>
+            Get the column index of this Experiment
+            </summary>
+        </member>
+        <member name="P:IM.Imaging.ExperimentBase.Item(System.Int32)">
+            <summary>
+            Get a Sequence from this Experiment per index
+            </summary>
+            <param name="index">index of the sequence to retreive</param>
+            <returns>a Sequence</returns>
+        </member>
+        <member name="P:IM.Imaging.ExperimentBase.Item(System.Drawing.PointF)">
+            <summary>
+            Get a Sequence of this Experiment per location
+            </summary>
+            <param name="point">point</param>
+            <returns>a Sequence</returns>
+        </member>
+        <member name="P:IM.Imaging.ExperimentBase.Sequences">
+            <summary>
+            Get the number of Sequence of this Experiment
+            </summary>
+        </member>
+        <member name="P:IM.Imaging.ExperimentBase.SequenceList">
+            <summary>
+            Gets the sequence list for Grid processing.
+            </summary>
+            <value>The sequence list.</value>
+        </member>
+        <member name="M:IM.Imaging.Experiment.#ctor(System.Int32,System.Int32)">
+            <summary>
+            Create an Experiment object
+            </summary>
+        </member>
+        <member name="M:IM.Imaging.Experiment.#ctor">
+            <summary>
+            Create an Experiment object
+            </summary>
+        </member>
+        <member name="M:IM.Imaging.Experiment.#ctor(IM.Imaging.ExperimentBase)">
+            <summary>
+            Create an Experiment object
+            </summary>
+        </member>
+        <member name="M:IM.Imaging.Experiment.AddData(System.String,System.Object)">
+            <summary>
+            Add result for showing in DataWindow
+            </summary>
+            <param name="name"></param>
+            <param name="value"></param>
+        </member>
+        <member name="M:IM.Imaging.Experiment.GetTabData(System.String)">
+            <summary>
+            Get data from imported tab data
+            </summary>
+            <param name="tabName">Tab Name</param>
+            <param name="columnName"></param>
+            <returns>Result value as object</returns>
+        </member>
+        <member name="M:IM.Imaging.Experiment.GetData(IM.Imaging.DataSetInfo,IM.Imaging.ColumnInfo)">
+            <summary>
+            Get result from IMData
+            </summary>
+            <param name="dsName"></param>
+            <param name="columnName"></param>
+            <returns>Result value as object</returns>
+        </member>
+        <member name="M:IM.Imaging.Experiment.GetDataSets">
+            <summary>
+            Gets the data sets.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:IM.Imaging.Experiment.GetColumns(IM.Imaging.DataSetInfo)">
+            <summary>
+            Gets the Fields.
+            </summary>
+            <param name="dsName">Name of the DataSet</param>
+            <returns></returns>
+        </member>
+        <member name="P:IM.Imaging.Experiment.Layer">
+            <summary>
+            Gets or sets the ExperimentGrid.
+            </summary>
+            <value>The ExperimentGrid.</value>
+        </member>
+        <member name="P:IM.Imaging.Experiment.EgName">
+            <summary>
+            Gets the name of the ExperimentGrid.
+            </summary>
+            <value>The name of the experiment grid.</value>
+        </member>
+        <member name="P:IM.Imaging.Experiment.EgBarcode">
+            <summary>
+            Gets the name of the ExperimentGrid.
+            </summary>
+            <value>The name of the experiment grid.</value>
+        </member>
+        <member name="P:IM.Imaging.Experiment.BaseFileName">
+            <summary>
+            Gets the name of the base file.
+            </summary>
+            <value>The name of the base file.</value>
+        </member>
+        <member name="P:IM.Imaging.Experiment.NLoop">
+            <summary>
+            Gets/Sets the number of loop
+            </summary>
+        </member>
+        <member name="T:IM.Imaging.ExpData">
+            <summary>
+            To Store bulk Experiment Analyzed Data in a batch mode
+            It reduces the time to store IMData compared with one-by-one storing way.
+            </summary>
+        </member>
+        <member name="T:IM.Imaging.MathTools">
+            <remarks> Various Math tools for float arrays or images
+            </remarks>
+            <list type="table">
+            <listheader> <term>Version</term> <description>Changes</description> </listheader>
+            <item> <term>2.2</term> <description>(AD) added rescale routines with both min and max bounds</description> </item>
+            <item> <term>2.1</term> <description>(TD) added harmonic mean</description> </item>
+            <item> <term>2.0</term> <description>(AD) migrated to object framework</description> </item>
+            <item> <term>1.8</term> <description>(AD) overloaded routines to restrict the computation according to binary masks</description> </item>
+            <item> <term>1.7</term> <description>(AD) added "Skewness" and "Kurtosis" routines</description> </item>
+            <item> <term>1.6</term> <description>(AD) added basic "in-place" operators (Add,Subtract,Multiply,Divide)</description> </item>
+            <item> <term>1.5R1</term> <description>(AD) overloaded routines to handle start and end offsets</description> </item>
+            <item> <term>1.5</term> <description>(TD) added "Std", "Abs" and "MAD" routines</description> </item>
+            <item> <term>1.4R1</term> <description>(TD) removed useless overloads</description> </item>
+            <item> <term>1.4</term> <description>(AD) added "Median" routines</description> </item>
+            <item> <term>1.3</term> <description>(AD) added "Variance" routines</description> </item>
+            <item> <term>1.2R1</term> <description>(AD) reordered cross-calls between methods</description> </item>
+            <item> <term>1.2</term> <description>(AD) added "Rescale" routines</description> </item>
+            <item> <term>1.1R1</term> <description>(AD) overloaded all routines for various types of input</description> </item>
+            <item> <term>1.1</term> <description>(AD) added "Min" and "Max" routines</description> </item>
+            <item> <term>1.0</term> <description>(AD) first operational build, contains "Mean" routines</description> </item>
+            </list>
+        </member>
+        <member name="M:IM.Imaging.MathTools.#ctor">
+            <summary> Creates a new instance of the Math Toolbox
+            </summary>
+        </member>
+        <member name="M:IM.Imaging.MathTools.Add(System.Single[]@,System.Single[],System.Single)">
+            <summary> Adds a scalar to a float array
+            </summary>
+            <param name="result">the (initialized) return array (can be a reference to the input array)</param>
+            <param name="array">a float array</param>
+            <param name="scalar">a scalar to add to each array element</param>
+            <returns>the modified array</returns>
+        </member>
+        <member name="M:IM.Imaging.MathTools.Add(System.Single[]@,System.Single[],System.Single[])">
+            <summary> Adds 2 float arrays
+            </summary>
+            <param name="result">the (initialized) return array (can be a reference to the input array)</param>
+            <param name="array1">a float array</param>
+            <param name="array2">a float array</param>
+            <returns>the modified array</returns>
+        </member>
+        <member name="M:IM.Imaging.MathTools.Add(IM.Imaging.Image3D@,IM.Imaging.Image3D,System.Single)">
+            <summary> Adds a scalar to an image
+            </summary>
+            <param name="result">the (initialized) return image (can be a reference to the input image)</param>
+            <param name="image">an image</param>
+            <param name="scalar">a scalar value</param>
+            <returns>image + scalar</returns>
+        </member>
+        <member name="M:IM.Imaging.MathTools.Add(IM.Imaging.Image3D@,IM.Imaging.Image3D,IM.Imaging.Image3D)">
+            <summary> Adds 2 images
+            </summary>
+            <param name="result">the (initialized) return image (can be a reference to the input image)</param>
+            <param name="image1">an image</param>
+            <param name="image2">an image</param>
+            <returns>image1 + image2</returns>
+        </member>
+        <member name="M:IM.Imaging.MathTools.Subtract(System.Single[]@,System.Single[],System.Single)">
+            <summary> Subtracts a scalar from all the values of a float array
+            </summary>
+            <param name="result">the (initialized) return array (can be a reference to the input array)</param>
+            <param name="array">a float array</param>
+            <param name="scalar">a scalar to subtract from each array element</param>
+            <returns>the modified array</returns>
+        </member>
+        <member name="M:IM.Imaging.MathTools.Subtract(System.Single[]@,System.Single,System.Single[])">
+            <summary> Subtracts a scalar from all the values of a float array
+            </summary>
+            <param name="result">the (initialized) return array (can be a reference to the input array)</param>
+            <param name="array">a float array</param>
+            <param name="scalar">a scalar to subtract from each array element</param>
+            <returns>the modified array</returns>
+        </member>
+        <member name="M:IM.Imaging.MathTools.Subtract(System.Single[]@,System.Single[],System.Single[])">
+            <summary> Subtracts 2 float arrays
+            </summary>
+            <param name="result">the (initialized) return array (can be a reference to the input array)</param>
+            <param name="array1">a float array</param>
+            <param name="array2">a float array</param>
+            <returns>the modified array</returns>
+        </member>
+        <member name="M:IM.Imaging.MathTools.Subtract(IM.Imaging.Image3D@,IM.Imaging.Image3D,System.Single)">
+            <summary> Subtracts a scalar value from an image
+            </summary>
+            <param name="result">the (initialized) return image (can be a reference to the input image)</param>
+            <param name="image">an image</param>
+            <param name="scalar">a scalar value</param>
+            <returns>image - scalar</returns>
+        </member>
+        <member name="M:IM.Imaging.MathTools.Subtract(IM.Imaging.Image3D@,System.Single,IM.Imaging.Image3D)">
+            <summary> Subtracts an image from a scalar value (i.e. from an image filled with a scalar value)
+            </summary>
+            <param name="result">the (initialized) return image (can be a reference to the input image)</param>
+            <param name="image">an image</param>
+            <param name="scalar">a scalar value</param>
+            <returns>scalar - image</returns>
+        </member>
+        <member name="M:IM.Imaging.MathTools.Subtract(IM.Imaging.Image3D@,IM.Imaging.Image3D,IM.Imaging.Image3D)">
+            <summary> Subtracts 2 images
+            </summary>
+            <param name="result">the (initialized) return image (can be a reference to the input image)</param>
+            <param name="image1">an image</param>
+            <param name="image2">an image</param>
+            <returns>image1 - image2</returns>
+        </member>
+        <member name="M:IM.Imaging.MathTools.Multiply(System.Single[]@,System.Single[],System.Single)">
+            <summary> Multiplies a scalar to all the values of a float array
+            </summary>
+            <param name="result">the (initialized) return array (can be a reference to the input array)</param>
+            <param name="array">a float array</param>
+            <param name="scalar">a scalar to multiply to each array element</param>
+            <returns>the modified array</returns>
+        </member>
+        <member name="M:IM.Imaging.MathTools.Multiply(System.Single[]@,System.Single[],System.Single[])">
+            <summary> Multiplies 2 float arrays
+            </summary>
+            <param name="result">the (initialized) return array (can be a reference to the input array)</param>
+            <param name="array1">a float array</param>
+            <param name="array2">a float array</param>
+            <returns>the modified array</returns>
+        </member>
+        <member name="M:IM.Imaging.MathTools.Multiply(IM.Imaging.Image3D@,IM.Imaging.Image3D,System.Single)">
+            <summary> Multiplies a scalar and an image
+            </summary>
+            <param name="result">the (initialized) return image (can be a reference to the input image)</param>
+            <param name="image">an image</param>
+            <param name="scalar">a scalar value</param>
+            <returns>image * scalar</returns>
+        </member>
+        <member name="M:IM.Imaging.MathTools.Multiply(IM.Imaging.Image3D@,IM.Imaging.Image3D,IM.Imaging.Image3D)">
+            <summary> Multiplies point-to-point 2 images
+            </summary>
+            <param name="result">the (initialized) return image (can be a reference to the input image)</param>
+            <param name="image1">an image</param>
+            <param name="image2">an image</param>
+            <returns>image1 * image2</returns>
+        </member>
+        <member name="M:IM.Imaging.MathTools.Divide(System.Single[]@,System.Single[],System.Single)">
+            <summary> Divides all the values of a float array by a scalar
+            </summary>
+            <param name="result">the (initialized) return array (can be a reference to the input array)</param>
+            <param name="array">a float array</param>
+            <param name="scalar">a scalar to divide each array element by</param>
+            <returns>the modified array</returns>
+        </member>
+        <member name="M:IM.Imaging.MathTools.Divide(System.Single[]@,System.Single[],System.Single[])">
+            <summary> Divides 2 float arrays
+            </summary>
+            <param name="result">the (initialized) return array (can be a reference to the input array)</param>
+            <param name="array1">a float array</param>
+            <param name="array2">a float array</param>
+            <returns>the modified array</returns>
+        </member>
+        <member name="M:IM.Imaging.MathTools.Divide(IM.Imaging.Image3D@,IM.Imaging.Image3D,System.Single)">
+            <summary> Divides an image by a scalar
+            </summary>
+            <param name="result">the (initialized) return image (can be a reference to the input image)</param>
+            <param name="image">an image</param>
+            <param name="scalar">a scalar value</param>
+            <returns>image / scalar</returns>
+        </member>
+        <member name="M:IM.Imaging.MathTools.Divide(IM.Imaging.Image3D@,IM.Imaging.Image3D,IM.Imaging.Image3D)">
+            <summary> Divides 2 images
+            </summary>
+            <param name="result">the (initialized) return image (can be a reference to the input image)</param>
+            <param name="image1">an image</param>
+            <param name="image2">an image</param>
+            <returns>image1 / image2</returns>
+        </member>
+        <member name="M:IM.Imaging.MathTools.Pow(System.Single,System.Single)">
+            <summary> Calculates the power of two scalar values
+            </summary>
+            <param name="scalar1">a scalar value</param>
+            <param name="scalar2">a scalar value</param>
+            <returns>scalar1 ^ scalar2</returns>
+        </member>
+        <member name="M:IM.Imaging.MathTools.Pow(System.Single[]@,System.Single[],System.Single)">
+            <summary> Elevates a float array to a given power
+            </summary>
+            <param name="result">the (initialized) return array (can be a reference to the input array)</param>
+            <param name="array">a float array</param>
+            <param name="scalar">a scalar</param>
+            <returns>array ^ scalar</returns>
+        </member>
+        <member name="M:IM.Imaging.MathTools.Pow(System.Single[]@,System.Single,System.Single[])">
+            <summary> Elevates a scalar to each array-value power
+            </summary>
+            <param name="result">the (initialized) return array (can be a reference to the input array)</param>
+            <param name="array">a float array</param>
+            <param name="scalar">a scalar</param>
+            <returns>scalar ^ array</returns>
+        </member>
+        <member name="M:IM.Imaging.MathTools.Pow(System.Single[]@,System.Single[],System.Single[])">
+            <summary> Elevates a float array to a given power
+            </summary>
+            <param name="result">the (initialized) return array (can be a reference to the input array)</param>
+            <param name="array1">a float array</param>
+            <param name="array2">a float array</param>
+            <returns>array1 ^ array2</returns>
+        </member>
+        <member name="M:IM.Imaging.MathTools.Pow(IM.Imaging.Image3D@,IM.Imaging.Image3D,System.Single)">
+            <summary> Elevates a float array to a given power
+            </summary>
+            <param name="result">the (initialized) return image (can be a reference to the input image)</param>
+            <param name="image">an image</param>
+            <param name="scalar">a scalar value</param>
+            <returns>image ^ scalar</returns>
+        </member>
+        <member name="M:IM.Imaging.MathTools.Pow(IM.Imaging.Image3D@,IM.Imaging.Image3D,IM.Imaging.Image3D)">
+            <summary> Multiplies point-to-point 2 images
+            </summary>
+            <param name="result">the (initialized) return image (can be a reference to the input image)</param>
+            <param name="image1">an image</param>
+            <param name="image2">an image</param>
+            <returns>image1 ^ image2</returns>
+        </member>
+        <member name="M:IM.Imaging.MathTools.Exp(System.Single)">
+            <summary> Calculates the exponential power of a scalar
+            </summary>
+            <param name="scalar">the input value</param>
+            <returns>e^scalar</returns>
+        </member>
+        <member name="M:IM.Imaging.MathTools.Log(System.Single)">
+            <summary> Calculates the logarithm of a scalar
+            </summary>
+            <param name="scalar">the input value</param>
+            <returns>log(scalar)</returns>
+        </member>
+        <member name="M:IM.Imaging.MathTools.Log(System.Single[]@,System.Single[])">
+            <summary> Calculates the Logartihm of a float array
+            </summary>
+            <param name="result">the (initialized) return array (can be a reference to the input array)</param>
+            <param name="array">a float array</param>
+            <returns>log(array)</returns>
+        </member>
+        <member name="M:IM.Imaging.MathTools.Log(IM.Imaging.Image3D@,IM.Imaging.Image3D)">
+            <summary> Calculates the Logartihm of an image
+            </summary>
+            <param name="result">the (initialized) return image (can be a reference to the input image)</param>
+            <param name="image">an image</param>
+            <returns>log(image)</returns>
+        </member>
+        <member name="M:IM.Imaging.MathTools.Abs(System.Single[],System.Single[])">
+            <summary> Computes the absolute value of a float array
+            </summary>
+            <param name="input">the input array</param>
+            <param name="output">the output array (can be a reference to the input)</param>
+        </member>
+        <member name="M:IM.Imaging.MathTools.Abs(IM.Imaging.Image3D,IM.Imaging.Image3D)">
+            <summary> Computes the absolute value of an image
+            </summary>
+            <param name="input">the input image</param>
+            <param name="output">the output image (can be the input)</param>
+        </member>
+        <member name="M:IM.Imaging.MathTools.CutLow(System.Single[],System.Single[],System.Single,System.Single)">
+            <summary> Return the array with new constant value for the input values lower than the threshold 
+            </summary>
+            <param name="input">the input array</param>
+            <param name="threshold">the low threshold</param>
+            <param name="newValue">the new value</param>
+            <param name="output">the output array (can be a reference to the input)</param>
+        </member>
+        <member name="M:IM.Imaging.MathTools.CutHigh(System.Single[],System.Single[],System.Single,System.Single)">
+            <summary> Return the array with new constant value for the input values higher than the threshold 
+            </summary>
+            <param name="input">the input array</param>
+            <param name="threshold">the high threshold</param>
+            <param name="newValue">the new value</param>
+            <param name="output">the output array (can be a reference to the input)</param>
+        </member>
+        <member name="M:IM.Imaging.MathTools.ConvertToFloat(System.Int32[])">
+            <summary> Converts an integer array into a float array
+            </summary>
+            <param name="array">an integer array</param>
+            <returns>a float array</returns>
+        </member>
+        <member name="M:IM.Imaging.MathTools.Mean(System.Single[],System.Int32,System.Int32)">
+            <summary> Computes the mean value in a range of a float array 
+            </summary>
+            <param name="input">input values</param>
+            <param name="start">Index of the first value in the range, inclusive</param>
+            <param name="end">Index of the first value in the range, exclusive</param>
+            <returns>the mean value of the input array</returns>
+        </member>
+        <member name="M:IM.Imaging.MathTools.Mean(System.Single[])">
+            <summary> Computes the mean value of a given float array 
+            </summary>
+            <param name="input">input values</param>
+            <returns>the mean value of the input array</returns>
+        </member>
+        <member name="M:IM.Imaging.MathTools.HMean(System.Single[])">
+            <summary> Computes the harmonic mean value of a given float array 
+            </summary>
+            <param name="input">input values</param>
+            <returns>the harmonic mean value of the input array</returns>
+        </member>
+        <member name="M:IM.Imaging.MathTools.Mean(System.Single[],System.Single[])">
+            <summary> Computes the mean value on a specific region of a float array 
+            </summary>
+            <param name="input">input values</param>
+            <param name="mask">binary mask indicating which values to pick</param>
+            <returns>the mean value of the input array</returns>
+        </member>
+        <member name="M:IM.Imaging.MathTools.Mean(System.Single[]@,IM.Imaging.Image3D)">
+            <summary> Computes the mean value on each band of a 3D image 
+            </summary>
+            <param name="input">input image</param>
+            <param name="output">output array that will contain the mean of each image band</param>
+        </member>
+        <member name="M:IM.Imaging.MathTools.Median(System.Single[],System.Int32,System.Int32)">
+            <summary> Computes the median value in a range of a float array 
+            </summary>
+            <param name="input">input values</param>
+            <param name="start">Index of the first value in the range, inclusive</param>
+            <param name="end">Index of the first value in the range, exclusive</param>
+            <returns>the mean value of the input array</returns>
+        </member>
+        <member name="M:IM.Imaging.MathTools.Median(System.Single[],System.Boolean)">
+            <summary> Computes the median value of a float array
+            </summary>
+            <param name="input">the input array</param>
+            <param name="preserveData">Set to true if the input data should not be modified (slower)</param>
+            <returns>The median value of the array</returns>
+        </member>
+        <member name="M:IM.Imaging.MathTools.Median(System.Single[],System.Single[])">
+            <summary> Computes the median value on a specific region of a float array
+            </summary>
+            <param name="input">the input array</param>
+            <param name="mask">binary mask indicating which values to pick</param>
+            <returns>The median value of the array</returns>
+        </member>
+        <member name="M:IM.Imaging.MathTools.Median(System.Single[]@,IM.Imaging.Image3D)">
+            <summary> Computes the median value on each band of an image
+            </summary>
+            <param name="input">the input array</param>
+            <param name="output">output array that will contain the median of each image band</param>
+        </member>
+        <member name="M:IM.Imaging.MathTools.MAD(System.Single[],System.Int32,System.Int32,System.Boolean)">
+            <summary> Computes the median absolute deviation value of a float array
+            </summary>
+            <param name="input">the input array</param>
+            <param name="start">Index of the first value in the range, inclusive</param>
+            <param name="end">Index of the first value in the range, exclusive</param>
+            <param name="normalPopulation">multiply the result by 1.4826 for a normal population</param>
+            <returns>The median absolute value of the array</returns>
+        </member>
+        <member name="M:IM.Imaging.MathTools.MAD(System.Single[],System.Boolean)">
+            <summary> Computes the median absolute deviation value of a float array
+            </summary>
+            <param name="input">the input array</param>
+            <param name="normalPopulation">multiply the result by 1.4826 for a normal population</param>
+            <returns>The median absolute value of the array</returns>
+        </member>
+        <member name="M:IM.Imaging.MathTools.MAD(System.Single[],System.Single[],System.Boolean)">
+            <summary> Computes the median absolute deviation value on a specific region of a float array
+            </summary>
+            <param name="input">the input array</param>
+            <param name="mask">binary mask indicating which values to pick</param>
+            <param name="normalPopulation">multiply the result by 1.4826 for a normal population</param>
+            <returns>The median absolute value of the array</returns>
+        </member>
+        <member name="M:IM.Imaging.MathTools.MAD(System.Single[]@,IM.Imaging.Image3D,System.Boolean)">
+            <summary> Computes the median absolute deivation value on each band of an image
+            </summary>
+            <param name="input">the input array</param>
+            <param name="normalPopulation">multiply the result by 1.4826 for a normal population</param>
+            <param name="output">output array that will contain the median absolute deviation of each image band</param>
+        </member>
+        <member name="M:IM.Imaging.MathTools.Min(System.Single[],System.Int32,System.Int32)">
+            <summary> Computes the minimum value in a range of a float array 
+            </summary>
+            <param name="input">input values</param>
+            <param name="start">Index of the first value in the range, inclusive</param>
+            <param name="end">Index of the first value in the range, exclusive</param>
+            <returns>the minimum value of the input array</returns>
+        </member>
+        <member name="M:IM.Imaging.MathTools.Min(System.Single[])">
+            <summary> Computes the minimum value of a given float array 
+            </summary>
+            <param name="input">input values</param>
+            <returns>the minimum value of the input array</returns>
+        </member>
+        <member name="M:IM.Imaging.MathTools.Min(System.Single[],System.Int32@)">
+            <summary> Computes the minimum value of a given float array 
+            </summary>
+            <param name="input">input values</param>
+            <param name="Pos">output position</param>
+            <returns>the minimum value of the input array, and the position of the minimum</returns>
+        </member>
+        <member name="M:IM.Imaging.MathTools.Min(System.Single[],System.Single[])">
+            <summary> Computes the minimum value on a specific region of a given float array 
+            </summary>
+            <param name="input">input values</param>
+            <param name="mask">binary mask indicating which values to pick</param>
+            <returns>the minimum value of the input array</returns>
+        </member>
+        <member name="M:IM.Imaging.MathTools.Min(IM.Imaging.Image3D)">
+            <summary> Computes the minimum value on each band of a 3D image 
+            </summary>
+            <param name="input">input image</param>
+            <param name="output">output array that will contain the minimum value of each image band</param>
+        </member>
+        <member name="M:IM.Imaging.MathTools.Max(System.Single[],System.Int32,System.Int32)">
+            <summary> Computes the maximum value in a range of a float array 
+            </summary>
+            <param name="input">input values</param>
+            <param name="start">Index of the first value in the range, inclusive</param>
+            <param name="end">Index of the first value in the range, exclusive</param>
+            <returns>the maximum value of the input array</returns>
+        </member>
+        <member name="M:IM.Imaging.MathTools.Max(System.Single[])">
+            <summary> Computes the maximum value of a given float array 
+            </summary>
+            <param name="input">input values</param>
+            <returns>the maximum value of the input array</returns>
+        </member>
+        <member name="M:IM.Imaging.MathTools.Max(System.Single[],System.Int32@)">
+            <summary> Computes the maximum value of a given float array 
+            </summary>
+            <param name="input">input values</param>
+            <param name="Pos">output position</param>
+            <returns>the maximum value of the input array, and the position of the maximum</returns>
+        </member>
+        <member name="M:IM.Imaging.MathTools.Max(System.Single[],System.Single[],System.Int32@)">
+            <summary> Computes the maximum value on a specific region of a given float array 
+            </summary>
+            <param name="input">input values</param>
+            <param name="mask">binary mask indicating which values to pick</param>
+            <param name="Pos">output position</param>
+            <returns>the maximum value of the input array, and the position of the maximum</returns>
+        </member>
+        <member name="M:IM.Imaging.MathTools.Max(System.Single[],System.Single[])">
+            <summary> Computes the maximum value on a specific region of a given float array 
+            </summary>
+            <param name="input">input values</param>
+            <param name="mask">binary mask indicating which values to pick</param>
+            <returns>the maximum value of the input array</returns>
+        </member>
+        <member name="M:IM.Imaging.MathTools.Max(IM.Imaging.Image3D)">
+            <summary> Computes the maximum value on each band of a 3D image 
+            </summary>
+            <param name="input">input image</param>
+            <param name="output">output array that will contain the maximum value of each image band</param>
+        </member>
+        <member name="M:IM.Imaging.MathTools.Rescale(System.Single[],System.Single[],System.Single,System.Single)">
+            <summary> Rescales the given float array to [minBound,maxBound] 
+            </summary>
+            <param name="input">the input array</param>
+            <param name="output">the output array</param>
+            <param name="minBound">the final minimum value</param>
+            <param name="maxBound">the final maximum value</param>
+        </member>
+        <member name="M:IM.Imaging.MathTools.Rescale(System.Single[],System.Single[],System.Single)">
+            <summary> Rescales the given float array to [0,maxBound] 
+            </summary>
+            <param name="input">the input array</param>
+            <param name="output">the output array</param>
+            <param name="maxBound">the final maximum value</param>
+        </member>
+        <member name="M:IM.Imaging.MathTools.Rescale(IM.Imaging.Image3D,IM.Imaging.Image3D,System.Single)">
+            <summary> Rescales each band of the given image to [0,maxBound] 
+            </summary>
+            <param name="input">the input image</param>
+            <param name="output">the output image</param>
+            <param name="maxBound">the final maximum value</param>
+        </member>
+        <member name="M:IM.Imaging.MathTools.Rescale(IM.Imaging.Image3D,IM.Imaging.Image3D,System.Single,System.Single)">
+            <summary> Rescales each band of the given image to [minBound,maxBound] 
+            </summary>
+            <param name="input">the input image</param>
+            <param name="output">the output image</param>
+            <param name="minBound">the final minimum value</param>
+            <param name="maxBound">the final maximum value</param>
+        </member>
+        <!-- Badly formed XML comment ignored for member "M:IM.Imaging.MathTools.Rescale(IM.Imaging.Image3D,System.Int32,System.Int32,IM.Imaging.Image3D,System.Int32,System.Int32,System.Single,System.Single)" -->
+        <member name="M:IM.Imaging.MathTools.Rescale(IM.Imaging.Image3D,System.Int32,IM.Imaging.Image3D,System.Int32,System.Single,System.Single)">
+            <summary>
+            Rescale a specific band of an image 3D
+            </summary>
+            <param name="input">input image</param>
+            <param name="inputChannel">input channel</param>
+            <param name="output">output image</param>
+            <param name="outputChannel">output channel</param>
+            <param name="minBound">minimum boundary</param>
+            <param name="maxBound">maximum boundary</param>
+            <returns></returns>
+        </member>
+        <member name="M:IM.Imaging.MathTools.MeanCenteringStdStandarization(IM.Imaging.Image3D,System.Int32,IM.Imaging.Image3D,System.Int32)">
+            <summary>
+            Process the mean centering and the unit variance standardization
+            </summary>
+            <param name="input">Input Image</param>
+            <param name="InputChannel">Input Channel</param>
+            <param name="output">Output Image</param>
+            <param name="OutputChannel">Output Channel</param>
+            <returns></returns>
+        </member>
+        <member name="M:IM.Imaging.MathTools.MeanCentering(IM.Imaging.Image3D,System.Int32,IM.Imaging.Image3D,System.Int32)">
+            <summary>
+            Process the mean centering of the image
+            </summary>
+            <param name="input">Input Image</param>
+            <param name="InputChannel">Input Channel</param>
+            <param name="output">Output Image</param>
+            <param name="OutputChannel">Output Channel</param>
+            <returns></returns>
+        </member>
+        <member name="M:IM.Imaging.MathTools.Sum(System.Single[])">
+            <summary> Calculates the sum of all values in an array
+            </summary>
+            <param name="input">the array to sum up</param>
+            <returns>the sum</returns>
+        </member>
+        <member name="M:IM.Imaging.MathTools.Var(System.Single[],System.Int32,System.Int32)">
+            <summary> Computes the unbiased variance on a range of a float array 
+            </summary>
+            <param name="input">input values</param>
+            <param name="start">Index of the first value in the range, inclusive</param>
+            <param name="end">Index of the first value in the range, exclusive</param>
+            <returns>the variance of the input array</returns>
+        </member>
+        <member name="M:IM.Imaging.MathTools.Var(System.Single[])">
+            <summary> Computes the unbiased variance of a given float array 
+            </summary>
+            <param name="input">input values</param>
+            <returns>the variance of the input array</returns>
+        </member>
+        <member name="M:IM.Imaging.MathTools.Var(System.Single[],System.Single[])">
+            <summary> Computes the unbiased variance on a specific region of a float array 
+            </summary>
+            <param name="input">input values</param>
+            <param name="mask">binary mask indicating which values to pick</param>
+            <returns>the variance of the input array</returns>
+        </member>
+        <member name="M:IM.Imaging.MathTools.Var(System.Single[]@,IM.Imaging.Image3D)">
+            <summary> Computes the unbiased variance on each band of a 3D image 
+            </summary>
+            <param name="input">input image</param>
+            <param name="output">output array that will contain the variance of each image band</param>
+        </member>
+        <member name="M:IM.Imaging.MathTools.Skew(System.Single[],System.Int32,System.Int32)">
+            <summary> Computes the skewness on a range of a float array 
+            </summary>
+            <param name="input">input values</param>
+            <param name="start">Index of the first value in the range, inclusive</param>
+            <param name="end">Index of the first value in the range, exclusive</param>
+            <returns>the skewness of the input array</returns>
+        </member>
+        <member name="M:IM.Imaging.MathTools.Skew(System.Single[])">
+            <summary> Computes the skewness of a float array 
+            </summary>
+            <param name="input">input values</param>
+            <returns>the skewness of the input array</returns>
+        </member>
+        <member name="M:IM.Imaging.MathTools.Skew(System.Single[],System.Single[])">
+            <summary> Computes the skewness on a specific region of a float array 
+            </summary>
+            <param name="input">input values</param>
+            <param name="mask">binary mask indicating which values to pick</param>
+            <returns>the skewness of the input array</returns>
+        </member>
+        <member name="M:IM.Imaging.MathTools.Skew(System.Single[]@,IM.Imaging.Image3D)">
+            <summary> Computes the skewness of a float array 
+            </summary>
+            <param name="input">input values</param>
+            <param name="output">output array that will contain the skewness of each image band</param>
+        </member>
+        <member name="M:IM.Imaging.MathTools.Kurt(System.Single[],System.Int32,System.Int32)">
+            <summary> Computes the kurtosis on a range of a float array 
+            </summary>
+            <param name="input">input values</param>
+            <param name="start">Index of the first value in the range, inclusive</param>
+            <param name="end">Index of the first value in the range, exclusive</param>
+            <returns>the kurtosis of the input array</returns>
+        </member>
+        <member name="M:IM.Imaging.MathTools.Kurt(System.Single[])">
+            <summary> Computes the kurtosis of a float array 
+            </summary>
+            <param name="input">input values</param>
+            <returns>the kurtosis of the input array</returns>
+        </member>
+        <member name="M:IM.Imaging.MathTools.Kurt(System.Single[],System.Single[])">
+            <summary> Computes the kurtosis on a specific region of a float array 
+            </summary>
+            <param name="input">input values</param>
+            <param name="mask">binary mask indicating which values to pick</param>
+            <returns>the kurtosis of the input array</returns>
+        </member>
+        <member name="M:IM.Imaging.MathTools.Kurt(System.Single[]@,IM.Imaging.Image3D)">
+            <summary> Computes the kurtosis of a float array 
+            </summary>
+            <param name="input">input values</param>
+            <param name="output">output array that will contain the kurtosis of each image band</param>
+        </member>
+        <member name="M:IM.Imaging.MathTools.Std(System.Single[],System.Int32,System.Int32)">
+            <summary> Computes the unbiased standard deviation on a range of a float array 
+            </summary>
+            <param name="input">input values</param>
+            <param name="start">Index of the first value in the range, inclusive</param>
+            <param name="end">Index of the first value in the range, exclusive</param>
+            <returns>the mean value of the input array</returns>
+        </member>
+        <member name="M:IM.Imaging.MathTools.Std(System.Single[])">
+            <summary> Computes the unbiased standard deviation of a given float array 
+            </summary>
+            <param name="input">input values</param>
+            <returns>the standard deviation value of the input array</returns>
+        </member>
+        <member name="M:IM.Imaging.MathTools.Std(System.Single[],System.Single[])">
+            <summary> Computes the unbiased standard deviation on a specific region of a float array 
+            </summary>
+            <param name="input">input values</param>
+            <param name="mask">binary mask indicating which values to pick</param>
+            <returns>the standard deviation value of the input array</returns>
+        </member>
+        <member name="M:IM.Imaging.MathTools.Std(System.Single[]@,IM.Imaging.Image3D)">
+            <summary> Computes the unbiased standard deviation on each band of a 3D image 
+            </summary>
+            <param name="input">input image</param>
+            <param name="output">output array that will contain the variance of each image band</param>
+        </member>
+        <member name="M:IM.Imaging.MathTools.applyMask(System.Single[],System.Single[])">
+            <summary>
+            Creates an array containing only values corresponding to a "1" value in the mask
+            </summary>
+            <param name="input">the input array</param>
+            <param name="mask">the binary mask to apply</param>
+            <returns>the array with the "mask=1" values</returns>
+        </member>
+        <member name="M:IM.Imaging.MathTools.Entropy(System.Single[])">
+            <summary>
+            Calculates the array entropy
+            </summary>
+            <param name="array"></param>
+            <returns></returns>
+        </member>
+        <member name="M:IM.Imaging.MathTools.SlidingMean2D(IM.Imaging.Image3D,System.Int32,System.Int32)">
+            <summary>
+            Return an array of the local means over the image
+            </summary>
+            <param name="input">input image</param>
+            <param name="inputChannel">input channel</param>
+            <param name="HalfSizeSize">Half size of the sliding window</param>
+            <returns></returns>
+        </member>
+        <member name="M:IM.Imaging.MathTools.SlidingVar2D(IM.Imaging.Image3D,System.Int32,System.Int32)">
+            <summary>
+            Return an array of the local variance over the image
+            </summary>
+            <param name="input">input image</param>
+            <param name="inputChannel">input channel</param>
+            <param name="HalfSizeSize">Half size of the sliding window</param>
+            <returns></returns>
+        </member>
+        <member name="M:IM.Imaging.MathTools.Select(System.Int32,System.Single[])">
+            <summary> Returns the k-th smallest value in the input array
+            The input array will be rearranged such that the wanted value is located at data[k-1],
+            Lower values will be stored in arbitrary order in data[0 .. k-2]
+            Higher values will be stored in arbitrary order in data[k .. end]
+            </summary>
+            <param name="k">rank of the value to find</param>
+            <param name="data">the input data</param>
+            <returns>The k-th smallest value in the input array</returns>
+        </member>
+        <member name="T:IM.Imaging.LutType">
+            <summary>
+            Different type of LUT
+            <p>Author: A. Genovesio</p>
+            </summary>
+        </member>
+        <member name="F:IM.Imaging.LutType.None">
+            <summary>
+            None
+            </summary>
+        </member>
+        <member name="F:IM.Imaging.LutType.Fire">
+            <summary>
+            Fire
+            </summary>
+        </member>
+        <member name="F:IM.Imaging.LutType.Ice">
+            <summary>
+            Ice
+            </summary>
+        </member>
+        <member name="F:IM.Imaging.LutType.FourColors">
+            <summary>
+            FourColors
+            </summary>
+        </member>
+        <member name="F:IM.Imaging.LutType.Random">
+            <summary>
+            Random
+            </summary>
+        </member>
+        <member name="F:IM.Imaging.LutType.Inverted">
+            <summary>
+            Inverted
+            </summary>
+        </member>
+        <member name="F:IM.Imaging.LutType.Jet">
+            <summary>
+            Jet
+            </summary>
+        </member>
+        <member name="F:IM.Imaging.LutType.Hsv">
+            <summary>
+            Hsv
+            </summary>
+        </member>
+        <member name="F:IM.Imaging.LutType.Hot">
+            <summary>
+            Hot
+            </summary>
+        </member>
+        <member name="F:IM.Imaging.LutType.Cool">
+            <summary>
+            Cool
+            </summary>
+        </member>
+        <member name="F:IM.Imaging.LutType.Spring">
+            <summary>
+            Spring
+            </summary>
+        </member>
+        <member name="F:IM.Imaging.LutType.Summer">
+            <summary>
+            Summer
+            </summary>
+        </member>
+        <member name="F:IM.Imaging.LutType.Autumn">
+            <summary>
+            Autumn
+            </summary>
+        </member>
+        <member name="F:IM.Imaging.LutType.Winter">
+            <summary>
+            Winter
+            </summary>
+        </member>
+        <member name="F:IM.Imaging.LutType.Bone">
+            <summary>
+            Bone
+            </summary>
+        </member>
+        <member name="F:IM.Imaging.LutType.Copper">
+            <summary>
+            Copper
+            </summary>
+        </member>
+        <member name="F:IM.Imaging.LutType.Pink">
+            <summary>
+            Pink
+            </summary>
+        </member>
+        <member name="F:IM.Imaging.LutType.Lines">
+            <summary>
+            Lines
+            </summary>
+        </member>
+        <member name="T:IM.Imaging.LutMaker">
+            <summary>
+            LutMaker offers static methods to create and manipulate lookup tables
+            </summary>
+        </member>
+        <member name="M:IM.Imaging.LutMaker.CreateLutNx3x8(System.Int32)">
+            <summary>
+            Create a multi bands nx3x8 bits lookup table
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:IM.Imaging.LutMaker.CreateLut3x8">
+            <summary>
+            Create a 3x8 bits lookup table
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:IM.Imaging.LutMaker.CreateLutNx16(System.Int32)">
+            <summary>
+            Create a multi bands nx16 bits lookup table
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:IM.Imaging.LutMaker.Set(System.Byte[][],IM.Imaging.LutType)">
+            <summary>
+            Set the given l3x8bits lut to the specified Lut type argument. If LutType.None is given as argument then the Lut is not modified.
+            </summary>
+            <param name="lut3x8"></param>
+            <param name="type"></param>
+        </member>
+        <member name="M:IM.Imaging.LutMaker.Hsv(System.Byte[][])">
+            <summary>
+            Hsv lookup table
+            </summary>
+            <param name="lut">The 3x256 Lookup table to be populated</param>
+        </member>
+        <member name="M:IM.Imaging.LutMaker.Fire(System.Byte[][])">
+            <summary>
+            Fire lookup table
+            </summary>
+            <param name="lut">The 3x256 Lookup table to be populated</param>
+        </member>
+        <member name="M:IM.Imaging.LutMaker.Ice(System.Byte[][])">
+            <summary>
+            Ice lookup table
+            </summary>
+            <param name="lut">The 3x256 Lookup table to be populated</param>
+        </member>
+        <member name="M:IM.Imaging.LutMaker.Inverted(System.Byte[][])">
+            <summary>
+            Inverted lookup table
+            </summary>
+            <param name="lut">The 3x256 Lookup table to be populated</param>
+        </member>
+        <member name="M:IM.Imaging.LutMaker.Random(System.Byte[][])">
+            <summary>
+            Random Lookup table
+            </summary>
+            <param name="lut">The 3x256 Lookup table to be populated</param>
+        </member>
+        <member name="M:IM.Imaging.LutMaker.FourColors(System.Byte[][])">
+            <summary>
+            Four colors Lookup table
+            </summary>
+            <param name="lut">The 3x256 Lookup table to be populated</param>
+        </member>
+        <member name="M:IM.Imaging.LutMaker.Jet(System.Byte[][])">
+            <summary>
+            Jet lookup table
+            </summary>
+            <param name="lut">The 3x256 Lookup table to be populated</param>
+        </member>
+        <member name="M:IM.Imaging.LutMaker.Hot(System.Byte[][])">
+            <summary>
+            Hot lookup table
+            </summary>
+            <param name="lut">The 3x256 Lookup table to be populated</param>
+        </member>
+        <member name="M:IM.Imaging.LutMaker.Cool(System.Byte[][])">
+            <summary>
+            Cool lookup table
+            </summary>
+            <param name="lut">The 3x256 Lookup table to be populated</param>
+        </member>
+        <member name="M:IM.Imaging.LutMaker.Spring(System.Byte[][])">
+            <summary>
+            Spring lookup table
+            </summary>
+            <param name="lut">The 3x256 Lookup table to be populated</param>
+        </member>
+        <member name="M:IM.Imaging.LutMaker.Summer(System.Byte[][])">
+            <summary>
+            Summer lookup table
+            </summary>
+            <param name="lut">The 3x256 Lookup table to be populated</param>
+        </member>
+        <member name="M:IM.Imaging.LutMaker.Autumn(System.Byte[][])">
+            <summary>
+            Autumn lookup table
+            </summary>
+            <param name="lut">The 3x256 Lookup table to be populated</param>
+        </member>
+        <member name="M:IM.Imaging.LutMaker.Winter(System.Byte[][])">
+            <summary>
+            Winter lookup table
+            </summary>
+            <param name="lut">The 3x256 Lookup table to be populated</param>
+        </member>
+        <member name="M:IM.Imaging.LutMaker.Bone(System.Byte[][])">
+            <summary>
+            Bone lookup table
+            </summary>
+            <param name="lut">The 3x256 Lookup table to be populated</param>
+        </member>
+        <member name="M:IM.Imaging.LutMaker.Copper(System.Byte[][])">
+            <summary>
+            Copper lookup table
+            </summary>
+            <param name="lut">The 3x256 Lookup table to be populated</param>
+        </member>
+        <member name="M:IM.Imaging.LutMaker.Pink(System.Byte[][])">
+            <summary>
+            Pink lookup table
+            </summary>
+            <param name="lut">The 3x256 Lookup table to be populated</param>
+        </member>
+        <member name="M:IM.Imaging.LutMaker.Lines(System.Byte[][])">
+            <summary>
+            Lines lookup table
+            </summary>
+            <param name="lut">The 3x256 Lookup table to be populated</param>
+        </member>
+        <member name="M:IM.Imaging.LutMaker.SetLutColor(System.Byte[][],System.Drawing.Color)">
+            <summary>
+            Set the transfer function of this lut to be a linear scale betwween black and the specified color argument
+            </summary>
+            <param name="lut3x8">The lut to be populated</param>
+            <param name="color">The color</param>
+        </member>
+        <member name="M:IM.Imaging.LutMaker.SetLutColor(System.Byte[][],System.Drawing.Color[])">
+            <summary>
+            Set the transfer function of this lut to be a linear scale betwween black and the specified color argument
+            </summary>
+            <param name="lut3x8">The lut to be populated</param>
+            <param name="color">The color</param>
+        </member>
+        <member name="M:IM.Imaging.LutMaker.SetLutColorFromWhite(System.Byte[][],System.Drawing.Color)">
+            <summary>
+            Set the transfer function of this lut to be a linear scale between white and the specified color argument
+            </summary>
+            <param name="lut3x8">The lut to be populated</param>
+            <param name="color">The color</param>
+        </member>
+        <member name="M:IM.Imaging.LutMaker.SetLutColor(System.Byte[][],System.Drawing.Color,System.Drawing.Color)">
+            <summary>
+            Set the transfer function of this lut to be a linear scale between color1 and color2
+            </summary>
+            <param name="lut3x8">The lut to be populated</param>
+            <param name="startColor">The start color</param>
+            <param name="endColor">The end color</param>
+        </member>
+        <member name="M:IM.Imaging.LutMaker.LinearScale(System.Byte[][],System.Single[],System.Single[],System.Boolean)">
+            <summary>
+            Scale a multiband lookup table linearly from min and max to 0-255
+            </summary>
+            <param name="lut">The Lookup table to be populated</param>
+            <param name="min">min value</param>
+            <param name="max">max value</param>
+        </member>
+        <member name="M:IM.Imaging.LutMaker.LinearScale(System.Byte[][],System.Single[],System.Single[],System.Single[],System.Single[],System.Boolean)">
+            <summary>
+            Scale a multiband lookup table linearly from min and max to 0-255
+            </summary>
+            <param name="lut">The Lookup table to be populated</param>
+            <param name="min">min value</param>
+            <param name="max">max value</param>
+        </member>
+        <member name="M:IM.Imaging.LutMaker.LinearScale(System.Byte[],System.Single,System.Single,System.Boolean)">
+            <summary>
+            Scale lookup table linearly from min and max to 0-255
+            </summary>
+            <param name="lut">The Lookup table to be populated</param>
+            <param name="min">min value</param>
+            <param name="max">max value</param>
+        </member>
+        <!-- Badly formed XML comment ignored for member "M:IM.Imaging.LutMaker.LinearScale(System.Byte[],System.Single,System.Single,System.Single,System.Single,System.Boolean)" -->
+        <member name="M:IM.Imaging.LutMaker.DrawLut(System.Drawing.Bitmap,System.Byte[][])">
+            <summary>
+            Draw the given lut on the given Bitmap image which must be 256 width, an arbitrary height and of PixelFormat.Format32bppArgb type.
+            </summary>
+            <param name="image"></param>
+            <param name="lut3x8"></param>
+        </member>
+        <member name="M:IM.Imaging.LutMaker.DrawLut(System.Drawing.Bitmap,System.Drawing.Color)">
+            <summary>
+            Draw the given lut on the given Bitmap image of PixelFormat.Format32bppArgb type and Color.
+            </summary>
+            <param name="image">Bitmap Image</param>
+            <param name="color">Static Color</param>
+        </member>
+        <member name="M:IM.Imaging.ExperimentGridEvents.invokeGridImageRefreshed">
+            <summary>
+            Invokes the grid image refreshed.
+            </summary>
+        </member>
+        <member name="M:IM.Imaging.ExperimentGridEvents.invokeBandControlRefreshed">
+            <summary>
+            Invokes the band control refreshed.
+            </summary>
+        </member>
+        <member name="M:IM.Imaging.ExperimentGridEvents.invokeGridImageLoaded">
+            <summary>
+            Invokes the grid image loaded.
+            </summary>
+        </member>
+        <member name="M:IM.Imaging.ExperimentGridEvents.invokeLayerLoaded">
+            <summary>
+            Invokes the layer loaded.
+            </summary>
+        </member>
+        <member name="M:IM.Imaging.ExperimentGridEvents.invokeExperimentGridCurrentSequenceChanged">
+            <summary>
+            Fires the experiment grid current sequence changed.
+            </summary>
+        </member>
+        <member name="M:IM.Imaging.ExperimentGridEvents.invokeExperimentGridPanelInvalidated">
+            <summary>
+            Invokes the experiment grid panel invalidate.
+            </summary>
+        </member>
+        <member name="M:IM.Imaging.ExperimentGridEvents.invokeGetIMDataEvent(System.Object,IM.Imaging.GetIMDataEventArgs)">
+            <summary>
+            Invokes the get IM data event.
+            </summary>
+            <param name="sender">The sender.</param>
+            <param name="arg">The <see cref="T:IM.Imaging.GetIMDataEventArgs"/> instance containing the event data.</param>
+            <returns></returns>
+        </member>
+        <member name="E:IM.Imaging.ExperimentGridEvents.ExperimentGridPanelInvalidated">
+            <summary>
+            Occurs when [experiment grid panel invalidate event fired].
+            </summary>
+        </member>
+        <member name="E:IM.Imaging.ExperimentGridEvents.ExperimentGridCurrentSequenceChanged">
+            <summary>
+            Fired when a new Well or a new Part is selected 
+            </summary>
+        </member>
+        <member name="E:IM.Imaging.ExperimentGridEvents.GetIMDataEvent">
+            <summary>
+            Occurs when [get IM data event].
+            </summary>
+        </member>
+        <member name="E:IM.Imaging.ExperimentGridEvents.GridImageRefreshed">
+            <summary>
+            Occurs when [grid image refreshed].
+            </summary>
+        </member>
+        <member name="E:IM.Imaging.ExperimentGridEvents.BandControlRefreshed">
+            <summary>
+            Occurs when [band control refreshed].
+            </summary>
+        </member>
+        <member name="E:IM.Imaging.ExperimentGridEvents.GridImageLoaded">
+            <summary>
+            Occurs when [grid image loaded].
+            </summary>
+        </member>
+        <member name="E:IM.Imaging.ExperimentGridEvents.LayerLoaded">
+            <summary>
+            Occurs when [layer loaded].
+            </summary>
+        </member>
+        <member name="T:IM.Imaging.DataSetInfo">
+            <summary>
+            An Experiment is a collection of Sequence. A optional [row,column] location enables to attach it to an
+            ExperimentGrid
+            <p>Author: A. Genovesio</p>
+            </summary>
+        </member>
+        <member name="T:Triangulator.Geometry.Point`1">
+            <summary>
+            A point with an attribute value of type 'T'
+            </summary>
+        </member>
+        <member name="M:Triangulator.Geometry.Point`1.#ctor(System.Double,System.Double,`0)">
+            <summary>
+            Initializes a new instance of the point
+            </summary>
+            <param name="x">X component</param>
+            <param name="y">Y component</param>
+            <param name="attribute">Attribute</param>
+        </member>
+        <member name="M:Triangulator.Geometry.Point`1.#ctor(System.Double,System.Double)">
+            <summary>
+            Initializes a new instance of the point and sets the attribute to its default value
+            </summary>
+            <param name="x">X component</param>
+            <param name="y">Y component</param>
+        </member>
+        <member name="P:Triangulator.Geometry.Point`1.Attribute">
+            <summary>
+            Gets or sets the attribute component of the point
+            </summary>
+        </member>
+        <member name="T:IM.Imaging.Median">
+            <summary> Class providing median filtering
+            </summary>
+            <item> <term>2.0.0</term> <description>(AD) migrated to object framework, accelerated and extended to 3D</description> </item>
+            <item> <term>1.0.0</term> <description>(BL) first operational build, 2D only</description> </item>
+        </member>
+        <member name="M:IM.Imaging.Median.#ctor">
+            <summary> Creates a new instance of the Median filtering tool
+            </summary>
+        </member>
+        <member name="M:IM.Imaging.Median.Filter(IM.Imaging.Image3D,System.Int32,IM.Imaging.Image3D,System.Int32,System.Int32)">
+            <summary> Filters the given image using a Median filter of given size
+            Complexity C=O(r^2*log r)
+            </summary>
+            <param name="input">The input image</param>
+            <param name="inputBand">The input image band to process</param>
+            <param name="output">The output image</param>
+            <param name="outputBand">The output image band to store the result in</param>
+            <param name="radius">The radius of the filtering window (e.g. a 3x3 window has radius 1)</param>
+        </member>
+        <member name="M:IM.Imaging.Median.Median2D(IM.Imaging.Image3D,System.Int32,IM.Imaging.Image3D,System.Int32,System.Int32)">
+            <summary>
+            Window is mirrored on the borders
+            </summary>
+            <param name="input"></param>
+            <param name="inputBand"></param>
+            <param name="output"></param>
+            <param name="outputBand"></param>
+            <param name="radius"></param>
+        </member>
+        <member name="M:IM.Imaging.Median.Median2D_Huang(IM.Imaging.Image3D,System.Int32,IM.Imaging.Image3D,System.Int32,System.Int32,System.Int32,System.Boolean)">
+            <summary>
+            Median filter by Huang's method (C=O(r))
+            !!! the image will be discretized according to HistoSize !!!
+            </summary>
+            <param name="input">input image</param>
+            <param name="inputBand">input channel</param>
+            <param name="output">output image</param>
+            <param name="outputBand">output channel</param>
+            <param name="radius">filter radius</param>
+            <param name="HistoSize">Histogram number of bins</param>
+            <param name="IsSliceBySliceRescaling">false : 3D rescaling; true : slice by slice rescaling</param>
+        </member>
+        <member name="M:IM.Imaging.Median.Median2D_Perreault(IM.Imaging.Image3D,System.Int32,IM.Imaging.Image3D,System.Int32,System.Int32,System.Int32)">
+            <summary>
+            Median filter by Perreault's method (C=O(1))
+            !!! the image will be discretized according to HistoSize !!!
+            </summary>
+            <param name="input">input image</param>
+            <param name="inputBand">input channel</param>
+            <param name="output">output image</param>
+            <param name="outputBand">output channel</param>
+            <param name="radius">filter radius</param>
+            <param name="HistoSize">Histogram number of bins</param>
+        </member>
+        <member name="M:IM.Imaging.Median.Median3D(IM.Imaging.Image3D,System.Int32,IM.Imaging.Image3D,System.Int32,System.Int32)">
+            <summary>
+            Warning : this function doesn't work properly for the borders
+            </summary>
+            <param name="input"></param>
+            <param name="inputBand"></param>
+            <param name="output"></param>
+            <param name="outputBand"></param>
+            <param name="radius"></param>
+        </member>
+        <member name="T:IM.Imaging.Memory">
+            <summary>The type of memory
+            <p>Author: A. Genovesio </p>
+            </summary>
+        </member>
+        <member name="F:IM.Imaging.Memory.HD">
+            <summary> Hard drive
+            </summary>
+        </member>
+        <member name="F:IM.Imaging.Memory.RAM">
+            <summary> RAM
+            </summary>
+        </member>
+        <member name="T:IM.Imaging.Sequence">
+            <summary> A sequence of images.
+            <p>Author: A. Genovesio</p>
+            </summary>
+        </member>
+        <member name="M:IM.Imaging.Sequence.IsLocatedAt(System.Drawing.PointF)">
+            <summary>
+            Answer the question if this part is located on a given point
+            </summary>
+            <param name="p">the given point</param>
+            <returns>true if this part is located on p , false in other case</returns>
+        </member>
+        <member name="M:IM.Imaging.Sequence.#ctor(IM.Imaging.SequenceDescriptor)">
+            <summary>
+            Constructor for a MEMORY.HD Sequence. This sequence is linked to a file or directory path
+            under the form of a SequenceAccessor in order to retreive 3D images directly from Hard Disk.
+            Its layout will be initialized with the first picture
+            </summary>
+            <param name="sequenceAccessor">The sequence accessor</param>
+        </member>
+        <member name="M:IM.Imaging.Sequence.#ctor(IM.Imaging.SequenceDescriptor,IM.Imaging.Image3DLayout)">
+            <summary>
+            Constructor for a MEMORY.HD Sequence. This sequence is linked to a file or directory path
+            under the form of a SequenceAccessor in order to retreive 3D images directly from Hard Disk.
+            Its layout will be initialized with the provided layout without loading the first image.
+            </summary>
+            <param name="sequenceAccessor">The sequence accessor</param>
+            <param name="layout">The layout model</param>
+        </member>
+        <member name="M:IM.Imaging.Sequence.#ctor">
+            <summary>
+            Constructor for a MEMORY.RAM Sequence. The layout will be set when the first image is added
+            </summary>
+        </member>
+        <member name="M:IM.Imaging.Sequence.Dispose(System.Boolean)">
+            <summary>
+            Free ressources
+            </summary>
+        </member>
+        <member name="M:IM.Imaging.Sequence.ToString">
+            <summary>
+            Get a string representation of this Sequence
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:IM.Imaging.Sequence.FreeBufferedImage">
+            <summary>
+            Free the internal reference to the current image in case of HD access mode
+            </summary>
+        </member>
+        <member name="M:IM.Imaging.Sequence.GetLutWorkCopy">
+            <summary>
+            Get a copy of the last displayed Lutwork 
+            </summary>
+        </member>
+        <member name="M:IM.Imaging.Sequence.GetLutViewCopy">
+            <summary>
+            Get a copy of the last displayed Lutview
+            </summary>
+        </member>
+        <member name="M:IM.Imaging.Sequence.ComputeDisplayedMinMax(System.Single[],System.Single[])">
+            <summary>
+            Compute and store min max of all bands at the displayedT time step. 
+            </summary>
+            <param name="min"></param>
+            <param name="max"></param>
+        </member>
+        <member name="M:IM.Imaging.Sequence.ComputeDisplayedMinMax(System.Single[],System.Single[],System.Int32)">
+            <summary>
+            Compute and store min max of of a single band at the displayedT time step. 
+            </summary>
+            <param name="min"></param>
+            <param name="max"></param>
+            <param name="index">Band index</param>
+        </member>
+        <member name="M:IM.Imaging.Sequence.ComputeMinMaxWithRemovedPercents(System.Single[],System.Single[],System.Int32,System.Int32)">
+            <summary>
+            Compute min and max after having removed a given percentage at from each side of the histogram. Warning : 
+            min and max are clamp to -32768 and 65535 for displaying reasons
+            </summary>
+            <param name="min">A float array of length NumBands</param>
+            <param name="max">A float array of length NumBands</param>
+            <param name="percentLeft">The percentage to be removed on the left side</param>
+            <param name="percentRight">The percentage to be removed on the right side</param>
+            <param name="bandIndex">Band Index</param>
+        </member>
+        <member name="M:IM.Imaging.Sequence.Add(IM.Imaging.Image3D)">
+            <summary>
+            Add an image to this Sequence. Throw an Exception if the Sequence memory type is MEMORY.HD
+            </summary>
+            <param name="image"></param>
+        </member>
+        <member name="M:IM.Imaging.Sequence.RemoveLast">
+            <summary>
+            Remove the last image from this Sequence. Throw an Exception if the Sequence memory type is MEMORY.HD
+            </summary>
+            <param name="image"></param>
+        </member>
+        <member name="M:IM.Imaging.Sequence.CopyIntoARGBBitmap(System.Drawing.Bitmap,IM.Imaging.Axis,System.Int32,System.Int32,System.Boolean)">
+            <summary> Copy the content of the specified level on on the specified axis at 
+            time point t to an ARGB formated System.Drawing.Bitmap image with the current luts
+            </summary>
+            <param name="bitmapargb">The image to be copied in</param>
+            <param name="axis">The selected axis</param>
+            <param name="level">The selected level</param>
+            <param name="t">The selected time point</param>
+            <param name="signed">0 to 2^16-1 or -2^8 to 2^8-1</param>
+        </member>
+        <member name="M:IM.Imaging.Sequence.CopyIntoARGBBitmap(System.Drawing.Bitmap,IM.Imaging.Axis,System.Int32,System.Int32,System.Byte[][],System.Byte[][][],System.Boolean)">
+            <summary> Copy the content of the specified level on on the specified axis at 
+            time point t to an ARGB formated System.Drawing.Bitmap image with the specified luts
+            </summary>
+            <param name="bitmapargb">The image to be copied in</param>
+            <param name="axis">The selected axis</param>
+            <param name="level">The selected level</param>
+            <param name="t">The selected time point</param>
+            <param name="lutWork">A nx16bits lut</param>
+            <param name="lutView">A nx3x8bits lut</param>
+            <param name="signed">0 to 2^16-1 or -2^8 to 2^8-1</param>
+        </member>
+        <member name="M:IM.Imaging.Sequence.CopyIntoARGBArray(System.Byte[],IM.Imaging.Axis,System.Int32,System.Int32,System.Byte[][],System.Byte[][][],System.Boolean)">
+            <summary> Copy the content of the specified level on on the specified axis at 
+            time point t to an ARGB formated byte[] array with the specified luts
+            </summary>
+            <param name="argbArray">The byte[4*imageSize] array to be copied in</param>
+            <param name="axis">The selected axis</param>
+            <param name="level">The selected level</param>
+            <param name="t">The selected time point</param>
+            <param name="lutWork">A nx16bits lut</param>
+            <param name="lutView">A nx3x8bits lut</param>
+            <param name="signed">0 to 2^16-1 or -2^8 to 2^8-1</param>
+        </member>
+        <member name="M:IM.Imaging.Sequence.InvokeRefresh">
+            <summary> refresh this sequence display
+            </summary>
+        </member>
+        <member name="M:IM.Imaging.Sequence.InvokePaintersRefresh">
+            <summary> refresh this sequence display
+            </summary>
+        </member>
+        <member name="M:IM.Imaging.Sequence.GetEnumerator">
+            <summary>Enables the use of the foreach statement on the sequence images
+            </summary>
+            <returns>An enumerator on the list of images</returns>
+        </member>
+        <member name="M:IM.Imaging.Sequence.Clone">
+            <summary>
+            Clones this instance removing the redundant data such as event handler, view2d, and so on.
+            For the sake of Grid computing
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="P:IM.Imaging.Sequence.Disposed">
+            <summary>
+            Gets or sets a value indicating whether this <see cref="T:IM.Imaging.Sequence"/> is disposed.
+            </summary>
+            <value><c>true</c> if disposed; otherwise, <c>false</c>.</value>
+        </member>
+        <member name="E:IM.Imaging.Sequence.SizeChanged">
+            <summary> Event Fired when the size of the sequence is changed
+            </summary>
+        </member>
+        <member name="E:IM.Imaging.Sequence.TChanged">
+            <summary> Event Fired when the current displayed T of the sequence is changed
+            </summary>
+        </member>
+        <member name="E:IM.Imaging.Sequence.ZChanged">
+            <summary> Event Fired when the current displayed Z of the sequence is changed
+            </summary>
+        </member>
+        <member name="E:IM.Imaging.Sequence.Refreshed">
+            <summary> Event fire when the Sequence view needs to berefreshed
+            </summary>
+        </member>
+        <member name="E:IM.Imaging.Sequence.PaintersRefreshed">
+            <summary> Event fire when the Painters of the Sequence view need to berefreshed
+            </summary>
+        </member>
+        <member name="P:IM.Imaging.Sequence.DisplayedT">
+            <summary> Gets or sets the time point displayed
+            </summary>
+        </member>
+        <member name="P:IM.Imaging.Sequence.DisplayedZ">
+            <summary> Gets or Sets the depth level displayed
+            </summary>
+        </member>
+        <member name="P:IM.Imaging.Sequence.LutWork">
+            <summary>
+             Internaly set the LutWork for extracting a view
+            </summary>
+        </member>
+        <member name="P:IM.Imaging.Sequence.LutView">
+            <summary>
+             Internaly set the LutView for extracting a view
+            </summary>
+        </member>
+        <member name="P:IM.Imaging.Sequence.Location">
+            <summary>
+            get the location on the part
+            </summary>
+        </member>
+        <member name="P:IM.Imaging.Sequence.SequenceSize">
+            <summary>
+            Get the size of the Sequence
+            </summary>
+        </member>
+        <member name="P:IM.Imaging.Sequence.Item(System.Int32)">
+            <summary>
+            Get an image from the Sequence. If the memory type is HD, the image is buffered on order
+            not to reload it when access next.
+            </summary>
+            <param name="t">The time point</param>
+            <returns>The image at t</returns>
+        </member>
+        <member name="T:IM.Imaging.LayerSequenceDescriptor">
+            <summary>
+            An implementation of SequenceAccessor for MergedLayers
+            <p>Author: HK. Moon</p>
+            </summary>
+        </member>
+        <member name="M:IM.Imaging.LayerSequenceDescriptor.#ctor(System.Int32,System.Int32,System.Int32,System.Int32,System.Int32,System.Int32,System.Int32[][],System.Int32,System.Int32,IM.Imaging.ExperimentGrid,System.Int32)">
+            <summary>
+            Constructor for LayerSequenceDescriptor
+            </summary>
+            <param name="row">Row index</param>
+            <param name="col">Column index</param>
+            <param name="sequenceSize">The size of this sequence</param>
+        </member>
+        <member name="M:IM.Imaging.LayerSequenceDescriptor.Dispose(System.Boolean)">
+            <summary>
+            Free resources
+            </summary>
+        </member>
+        <member name="M:IM.Imaging.LayerSequenceDescriptor.Read(System.Int32)">
+            <summary>
+            Get an image directly from layer entity
+            </summary>
+            <param name="t">The time point</param>
+            <returns>An Image</returns>        
+        </member>
+    </members>
+</doc>

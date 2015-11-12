@@ -1,0 +1,28 @@
+C:\SymyxChemSpiderSearchClient\ChemSpiderClientTest(No Draw)\bin\Release\ChemSpiderClientTest(No Draw).exe.config
+C:\SymyxChemSpiderSearchClient\ChemSpiderClientTest(No Draw)\bin\Release\ChemSpiderClientTest(No Draw).exe
+C:\SymyxChemSpiderSearchClient\ChemSpiderClientTest(No Draw)\bin\Release\ChemSpiderClientTest(No Draw).pdb
+C:\SymyxChemSpiderSearchClient\ChemSpiderClientTest(No Draw)\bin\Release\ChemSpiderClient.dll
+C:\SymyxChemSpiderSearchClient\ChemSpiderClientTest(No Draw)\bin\Release\Symyx.CustomUIControls.dll
+C:\SymyxChemSpiderSearchClient\ChemSpiderClientTest(No Draw)\bin\Release\ChemSpiderClient.pdb
+C:\SymyxChemSpiderSearchClient\ChemSpiderClientTest(No Draw)\bin\Release\ChemSpiderClient.XmlSerializers.dll
+C:\SymyxChemSpiderSearchClient\ChemSpiderClientTest(No Draw)\obj\Release\ResolveAssemblyReference.cache
+C:\SymyxChemSpiderSearchClient\ChemSpiderClientTest(No Draw)\obj\Release\ChemSpiderClientTest_No_Draw_.Form1.resources
+C:\SymyxChemSpiderSearchClient\ChemSpiderClientTest(No Draw)\obj\Release\ChemSpiderClientTest_No_Draw_.Properties.Resources.resources
+C:\SymyxChemSpiderSearchClient\ChemSpiderClientTest(No Draw)\obj\Release\GenerateResource-ResGen.read.1.tlog
+C:\SymyxChemSpiderSearchClient\ChemSpiderClientTest(No Draw)\obj\Release\GenerateResource-ResGen.write.1.tlog
+C:\SymyxChemSpiderSearchClient\ChemSpiderClientTest(No Draw)\obj\Release\ChemSpiderClientTest(No Draw).exe
+C:\SymyxChemSpiderSearchClient\ChemSpiderClientTest(No Draw)\obj\Release\ChemSpiderClientTest(No Draw).pdb
+I:\HCS-Analyzer\Dlls\SymyxChemSpiderSearchClient\ChemSpiderClientTest(No Draw)\bin\Release\ChemSpiderClientTest(No Draw).exe.config
+I:\HCS-Analyzer\Dlls\SymyxChemSpiderSearchClient\ChemSpiderClientTest(No Draw)\obj\Release\ChemSpiderClientTest(No Draw).exe
+I:\HCS-Analyzer\Dlls\SymyxChemSpiderSearchClient\ChemSpiderClientTest(No Draw)\obj\Release\ChemSpiderClientTest(No Draw).pdb
+I:\HCS-Analyzer\Dlls\SymyxChemSpiderSearchClient\ChemSpiderClientTest(No Draw)\bin\Release\ChemSpiderClientTest(No Draw).exe
+I:\HCS-Analyzer\Dlls\SymyxChemSpiderSearchClient\ChemSpiderClientTest(No Draw)\bin\Release\ChemSpiderClientTest(No Draw).pdb
+I:\HCS-Analyzer\Dlls\SymyxChemSpiderSearchClient\ChemSpiderClientTest(No Draw)\bin\Release\ChemSpiderClient.dll
+I:\HCS-Analyzer\Dlls\SymyxChemSpiderSearchClient\ChemSpiderClientTest(No Draw)\bin\Release\Symyx.CustomUIControls.dll
+I:\HCS-Analyzer\Dlls\SymyxChemSpiderSearchClient\ChemSpiderClientTest(No Draw)\bin\Release\ChemSpiderClient.pdb
+I:\HCS-Analyzer\Dlls\SymyxChemSpiderSearchClient\ChemSpiderClientTest(No Draw)\bin\Release\ChemSpiderClient.XmlSerializers.dll
+I:\HCS-Analyzer\Dlls\SymyxChemSpiderSearchClient\ChemSpiderClientTest(No Draw)\obj\Release\ResolveAssemblyReference.cache
+I:\HCS-Analyzer\Dlls\SymyxChemSpiderSearchClient\ChemSpiderClientTest(No Draw)\obj\Release\ChemSpiderClientTest_No_Draw_.Form1.resources
+I:\HCS-Analyzer\Dlls\SymyxChemSpiderSearchClient\ChemSpiderClientTest(No Draw)\obj\Release\ChemSpiderClientTest_No_Draw_.Properties.Resources.resources
+I:\HCS-Analyzer\Dlls\SymyxChemSpiderSearchClient\ChemSpiderClientTest(No Draw)\obj\Release\GenerateResource-ResGen.read.1.tlog
+I:\HCS-Analyzer\Dlls\SymyxChemSpiderSearchClient\ChemSpiderClientTest(No Draw)\obj\Release\GenerateResource-ResGen.write.1.tlog

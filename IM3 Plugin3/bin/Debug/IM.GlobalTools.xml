@@ -1,0 +1,105 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>IM.GlobalTools</name>
+    </assembly>
+    <members>
+        <member name="T:IM.GlobalTools.MicroArrayLoadedEventHandler">
+            <summary>
+            TEMPORARY 
+            </summary>
+        </member>
+        <member name="T:IM.GlobalTools.IMGlobal">
+            <summary>
+            A set of public static global services
+            </summary>
+        </member>
+        <member name="F:IM.GlobalTools.IMGlobal.IMGui">
+            <summary>
+            A private pointer to IM GUI (the only one..) 
+            </summary>
+        </member>
+        <member name="M:IM.GlobalTools.IMGlobal.AddSequence(IM.Imaging.Sequence)">
+            <summary>
+            Display a Sequence and set it as the CurrentSequence.
+            </summary>
+            <param name="sequence">the sequence to add</param>
+        </member>
+        <member name="M:IM.GlobalTools.IMGlobal.AddSequence(IM.Imaging.Sequence,System.String)">
+            <summary>
+            Display a Sequence and set it as the CurrentSequence.
+            </summary>
+            <param name="sequence">the sequence to add</param>
+            <param name="name">the sequence is set to the specified name before being displayed</param>
+        </member>
+        <member name="M:IM.GlobalTools.IMGlobal.RemoveSequence(IM.Imaging.Sequence)">
+            <summary>
+            Remove a sequence from the screen.
+            </summary>
+            <param name="sequence">the sequence to remove</param>
+        </member>
+        <member name="M:IM.GlobalTools.IMGlobal.SetProgress(System.Double)">
+            <summary>
+            Set a value to the IM progress bar.
+            </summary>
+            <param name="value">a value indicating the progress status beween 0.0 and 1.0</param>
+        </member>
+        <member name="M:IM.GlobalTools.IMGlobal.SetStatus(System.String)">
+            <summary>
+            Display a text in the IM status bar
+            </summary>
+            <param name="text">the text to display</param>
+        </member>
+        <member name="M:IM.GlobalTools.IMGlobal.Zoom(System.Drawing.Rectangle)">
+            <summary>
+            Zooms the specified rect.
+            </summary>
+            <param name="rect">The rect.</param>
+        </member>
+        <member name="M:IM.GlobalTools.IMGlobal.GetCurrentBitmapView">
+            <summary>
+            Gets the current bitmap view.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:IM.GlobalTools.IMGlobal.Paint2D(System.Drawing.Graphics,IM.Imaging.Sequence,System.Int32,System.Int32)">
+            <summary>
+            Paint all registred painter of a given Sequence to the given Graphics
+            </summary>
+            <param name="g"></param>
+            <param name="sequence"></param>
+            <param name="z"></param>
+            <param name="t"></param>
+        </member>
+        <member name="M:IM.GlobalTools.IMGlobal.Paint3D(IM.Imaging.Graphics3D,IM.Imaging.Sequence,System.Int32)">
+            <summary>
+            Paint all registred painter of a given Sequence to the given Graphics3D
+            </summary>
+            <param name="g"></param>
+            <param name="sequence"></param>
+            <param name="t"></param>
+        </member>
+        <member name="P:IM.GlobalTools.IMGlobal.CurrentSequence">
+            <summary>
+            Get the last focused sequence.
+            </summary>
+        </member>
+        <member name="P:IM.GlobalTools.IMGlobal.CurrentResult">
+            <summary>
+            Get the last focused sequence.
+            </summary>
+        </member>
+        <member name="P:IM.GlobalTools.IMGlobal.CurrentIMUser">
+            <summary>
+            Gets the current IM user.
+            </summary>
+            <value>The current IM user.</value>
+        </member>
+        <member name="T:IM.GlobalTools.IMGui">
+            <summary>
+            IM GUI services interface definition
+            Author: A. Genovesio
+            </summary>
+        </member>
+    </members>
+</doc>

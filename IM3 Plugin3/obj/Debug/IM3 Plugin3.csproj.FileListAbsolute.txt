@@ -1,0 +1,25 @@
+C:\Workspace\IM3\IM3 Plugin3\obj\Debug\ResolveAssemblyReference.cache
+C:\Workspace\IM3\IM3 Plugin3\obj\Debug\UserControl1.baml
+C:\Workspace\IM3\IM3 Plugin3\obj\Debug\UserControl1.g.cs
+C:\Workspace\IM3\IM3 Plugin3\obj\Debug\IM3 Plugin3_MarkupCompile.cache
+C:\Workspace\IM3\IM3 Plugin3\obj\Debug\IM3 Plugin3.g.resources
+C:\Workspace\IM3\IM3 Plugin3\obj\Debug\IM3_Plugin3.Properties.Resources.resources
+C:\Workspace\IM3\IM3 Plugin3\obj\Debug\GenerateResource.read.1.tlog
+C:\Workspace\IM3\IM3 Plugin3\obj\Debug\GenerateResource.write.1.tlog
+C:\Workspace\IM3\IM3 Plugin3\bin\Debug\IM3 Plugin3.dll
+C:\Workspace\IM3\IM3 Plugin3\bin\Debug\IM3 Plugin3.pdb
+C:\Workspace\IM3\IM3 Plugin3\bin\Debug\IM.GlobalTools.dll
+C:\Workspace\IM3\IM3 Plugin3\bin\Debug\IM.Imaging.dll
+C:\Workspace\IM3\IM3 Plugin3\bin\Debug\IM.IO.dll
+C:\Workspace\IM3\IM3 Plugin3\bin\Debug\IM.Plugin.dll
+C:\Workspace\IM3\IM3 Plugin3\bin\Debug\FreeImage.NET.dll
+C:\Workspace\IM3\IM3 Plugin3\bin\Debug\IM.Utils.dll
+C:\Workspace\IM3\IM3 Plugin3\bin\Debug\ICSharpCode.SharpZipLib.dll
+C:\Workspace\IM3\IM3 Plugin3\bin\Debug\IM.GlobalTools.xml
+C:\Workspace\IM3\IM3 Plugin3\bin\Debug\IM.Imaging.xml
+C:\Workspace\IM3\IM3 Plugin3\bin\Debug\IM.IO.xml
+C:\Workspace\IM3\IM3 Plugin3\bin\Debug\IM.Plugin.xml
+C:\Workspace\IM3\IM3 Plugin3\bin\Debug\IM.Utils.xml
+C:\Workspace\IM3\IM3 Plugin3\obj\Debug\IM3 Plugin3.dll
+C:\Workspace\IM3\IM3 Plugin3\obj\Debug\IM3 Plugin3.pdb
+C:\Workspace\IM3\IM3 Plugin3\obj\Debug\New_3D_analysis.IM3_Plugin3.resources

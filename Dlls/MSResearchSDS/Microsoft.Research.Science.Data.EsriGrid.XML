@@ -1,0 +1,107 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Microsoft.Research.Science.Data.EsriGrid</name>
+    </assembly>
+    <members>
+        <member name="T:Microsoft.Research.Science.Data.EsriGrid.EsriGridDataSet">
+             <summary>
+             DataSet provider for ESRI ASCII Grid data file format.
+             </summary>
+             <remarks>
+             <para>The dataset can only be empty or contain a single 2-d variable.
+             The file is overwritten each time new data is committed.</para>
+             
+             <para>The ESRI ASCII Grid data file is a plain ASCII text with a short header and data.
+            The header contains a set of keywords. The data contains cell values in row-major order. 
+            Cell values should be delimited by spaces. No carriage returns are necessary at the end of each row in the grid. 
+            The number of columns (NCOLS) in the header is used to determine when a new row of data values begins. 
+            The number of data values (cell values) must be equal to the number of rows (NROWS) times the number of columns (NCOLS).
+            Row 1 of the data is at the top of the grid, row 2 is just under row 1, and so on. 
+            The keyword NODATA_VALUE is optional and defaults to -9999.
+            The NODATA_VALUE is to be assigned to those cells whose true value is unknown. In the imported grid they will be assigned the keyword NODATA. 
+            The file format is:xxx (Where xxx is a number.)</para>
+            <code>
+            NCOLS xxx
+            NROWS xxx
+            XLLCENTER xxx | XLLCORNER xxx
+            YLLCENTER xxx | YLLCORNER xxx
+            CELLSIZE xxx
+            {NODATA_VALUE xxx}
+            row 1
+            row 2
+            .
+            .
+            .
+            row n
+            </code>
+             </remarks>
+        </member>
+        <member name="M:Microsoft.Research.Science.Data.EsriGrid.EsriGridDataSet.#ctor(System.String)">
+            <summary>
+            Creates an instance of <see cref="T:Microsoft.Research.Science.Data.EsriGrid.EsriGridDataSet"/> object.
+            </summary>
+            <param name="uri">DataSet URI or file path.</param>
+            <exception cref="T:System.ArgumentException"><paramref name="uri"/> is <code>null</code> or empty.</exception>
+            <exception cref="T:System.IO.FileNotFoundException">The required file doesn't exist.</exception>
+            <exception cref="T:System.UnauthorizedAccessException">No permissions to read or write the file.</exception>
+        </member>
+        <member name="M:Microsoft.Research.Science.Data.EsriGrid.EsriGridDataSet.CreateVariable``1(System.String,System.String[])">
+            <summary>
+            Implements <see cref="M:Microsoft.Research.Science.Data.DataSet.CreateVariable``1(System.String,System.String[])"/> method.
+            </summary>
+            <typeparam name="DataType">Type of data for the variable. Must be <see cref="T:System.Double"/></typeparam>
+            <param name="varName">Path of a file for variable values.</param>
+            <param name="dims">List of names of the variable's dimensions. If null, dimensions are auto-named. Must be of length 2.</param>
+            <returns>EsriGridVariable object</returns>
+        </member>
+        <member name="M:Microsoft.Research.Science.Data.EsriGrid.EsriGridDataSet.OnPrecommit(Microsoft.Research.Science.Data.DataSet.Changes)">
+            <summary>
+            A reversible part of a DataSet Commit operation.
+            </summary>
+            <param name="changes"></param>
+        </member>
+        <member name="M:Microsoft.Research.Science.Data.EsriGrid.EsriGridDataSet.OnCommit">
+            <summary>
+            Unreversible part of a DataSet Commit operaation
+            </summary>
+        </member>
+        <member name="M:Microsoft.Research.Science.Data.EsriGrid.EsriGridDataSet.Dispose(System.Boolean)">
+            <summary>
+            Disposes the instance.
+            </summary>
+            <param name="disposing"></param>
+        </member>
+        <member name="T:Microsoft.Research.Science.Data.EsriGrid.EsriGridUri">
+            <summary>
+            Encapsulates parameters necessary to create an instance of <see cref="T:Microsoft.Research.Science.Data.EsriGrid.EsriGridDataSet"/>
+            </summary>
+        </member>
+        <member name="M:Microsoft.Research.Science.Data.EsriGrid.EsriGridUri.#ctor">
+            <summary>
+            Creates the default instance.
+            </summary>
+        </member>
+        <member name="M:Microsoft.Research.Science.Data.EsriGrid.EsriGridUri.#ctor(System.String)">
+            <summary>
+            Creates EsriGridUri instance from URI
+            </summary>
+            <param name="uri">The URI to be parsed.</param>
+        </member>
+        <member name="M:Microsoft.Research.Science.Data.EsriGrid.EsriGridUri.FromFileName(System.String)">
+            <summary>
+            Creates EsriGridUri instance from file path.
+            </summary>
+            <param name="fileName">A path of an existing file or a file to be created.</param>
+            <returns>An initialized instance of <see cref="T:Microsoft.Research.Science.Data.EsriGrid.EsriGridUri"/> object.</returns>
+            <exception cref="T:System.ArgumentException"><paramref name="fileName"/> is <code>null</code> or an empty string.</exception>
+        </member>
+        <member name="P:Microsoft.Research.Science.Data.EsriGrid.EsriGridUri.FileName">
+            <summary>
+            Specifies the file to open or create.
+            </summary>
+            <remarks>This value is encoded by the 'file' provider parameter. If the URI doesn't have such parameter the property returns empty string.</remarks>
+            <exception cref="T:System.ArgumentNullException">An attempt to assign <code>null</code> value</exception>
+        </member>
+    </members>
+</doc>
