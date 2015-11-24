@@ -837,7 +837,7 @@ namespace ImageAnalysis
                                         FI16RGB565[] rgbtBottom = scanline.Data;
                                         for (int IdxPix = 0; IdxPix < rgbtBottom.Length; IdxPix++)
                                         {
-                                            this.SingleChannelImage[IdxChannel + ChannelStart].Data[IdxPix + (this.Height - i - 1) * this.Width] = (rgbtBottom[IdxPix].Red << 10) + (rgbtBottom[IdxPix].Green << 5) + rgbtBottom[IdxPix].Blue;
+                                            this.SingleChannelImage[IdxChannel + ChannelStart].Data[IdxPix + (this.Height - i - 1) * this.Width] = ((rgbtBottom[IdxPix].Red * 31) / 255 << 11) + ((rgbtBottom[IdxPix].Green * 63) / 255 << 5) + (rgbtBottom[IdxPix].Blue * 31) / 255;
 
                                         }
                                     }
