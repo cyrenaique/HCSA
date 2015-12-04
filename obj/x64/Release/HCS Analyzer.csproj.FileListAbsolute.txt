@@ -267,8 +267,6 @@ F:\GitHCSA\HCSA\bin\x64\Release\Kitware.VTK.vtkRendering.Unmanaged.dll
 F:\GitHCSA\HCSA\bin\x64\Release\Kitware.VTK.vtkWidgets.Unmanaged.dll
 F:\GitHCSA\HCSA\bin\x64\Release\WhatsNew.docx
 F:\GitHCSA\HCSA\bin\x64\Release\FreeImage.dll
-F:\GitHCSA\HCSA\bin\x64\Release\opencv_core231.dll
-F:\GitHCSA\HCSA\bin\x64\Release\opencv_imgproc231.dll
 F:\GitHCSA\HCSA\bin\x64\Release\SQLite.Interop.dll
 F:\GitHCSA\HCSA\bin\x64\Release\HCSAnalyzer.exe.config
 F:\GitHCSA\HCSA\bin\x64\Release\HCSAnalyzer.exe
@@ -531,3 +529,7 @@ F:\GitHCSA\HCSA\obj\x64\Release\HCS Analyzer.csproj.GenerateResource.Cache
 F:\GitHCSA\HCSA\obj\x64\Release\HCSAnalyzer.exe
 F:\GitHCSA\HCSA\obj\x64\Release\HCSAnalyzer.pdb
 F:\GitHCSA\HCSA\obj\x64\Release\HCS Analyzer.csprojResolveAssemblyReference.cache
+F:\GitHCSA\HCSA\bin\x64\Release\opencv_core2410.dll
+F:\GitHCSA\HCSA\bin\x64\Release\opencv_imgproc2410.dll
+F:\GitHCSA\HCSA\bin\x64\Release\Emgu.CV.xml
+F:\GitHCSA\HCSA\bin\x64\Release\Emgu.Util.xml
