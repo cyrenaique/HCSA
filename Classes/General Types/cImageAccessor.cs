@@ -625,11 +625,19 @@ namespace HCSAnalyzer.Classes.General_Types
                 {
                     WellObject = (cWell)Sender;
                 }
-
-                IEnumerable<string> ListDir = null;
+                
+                List<string> ListDir = new List<string>();
+                string ListDir2 = "";
                 try
                 {
-                    ListDir = Directory.EnumerateDirectories(InitialPath, WellObject.AssociatedPlate.GetName(), SearchOption.AllDirectories);
+                    //ListDir.Add(Directory.GetDirectories(InitialPath+"\\"+WellObject.GetShortInfo().Split('[')[1].Split(']')[0])[0]);
+                    //for (int item=0; item<ListDir.Count;item++)
+                    //{
+
+                    //    ListDir2.Add(Directory.GetDirectories(ListDir[item]).ToList());
+                    //}
+                    ListDir2 = InitialPath + "\\" + WellObject.GetShortInfo().Split('[')[1].Split(']')[0];
+
                 }
                 catch (Exception e)
                 {
@@ -637,10 +645,11 @@ namespace HCSAnalyzer.Classes.General_Types
                     return null;
                 }
 
-                string NewDir;
+                string NewDir2;
                 try
                 {
-                    NewDir = ListDir.ElementAt(0);
+                    //NewDir = ListDir.ElementAt(0);
+                    NewDir2 = ListDir2;
                 }
                 catch (Exception)
                 {
@@ -661,8 +670,8 @@ namespace HCSAnalyzer.Classes.General_Types
                 string Name = Prefix;
 
                 Name += "*Z01C*.tif";
-
-                string[] ListChannels = Directory.GetFiles(NewDir, Name, SearchOption.TopDirectoryOnly);
+                //string NewDir2 = NewDir + "\\DMD plate 5\\";
+                string[] ListChannels = Directory.GetFiles(NewDir2, Name, SearchOption.AllDirectories);
                 //  if(NumberOfChannels>ListChannels.Count()) NumberOfChannels = ListChannels.Count();
                 NumberOfChannels = ListChannels.Count();
 
@@ -682,10 +691,10 @@ namespace HCSAnalyzer.Classes.General_Types
                 }
 
                
-                string XMLFile = NewDir + "\\MeasurementDetail.mrf";
+                string XMLFile = NewDir2 + "\\MeasurementDetail.mrf";
 
                 if (File.Exists(XMLFile))
-                { 
+                {
                     XmlDocument xmlDoc = new XmlDocument();
                     xmlDoc.Load(XMLFile);
                     for (int Channel = 0; Channel < NumberOfChannels; Channel++)
@@ -715,8 +724,8 @@ namespace HCSAnalyzer.Classes.General_Types
                         TmpMetaInfo.ResolutionZ = 1;
                         ListImageMetaInfo.Add(TmpMetaInfo);
                     }
-                
-                
+
+
                 }
                 return ListImageMetaInfo;
 

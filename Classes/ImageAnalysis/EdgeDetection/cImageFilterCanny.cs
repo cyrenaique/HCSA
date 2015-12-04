@@ -39,8 +39,8 @@ namespace ImageAnalysisFiltering
                     for (int i = 0; i < Input.Width; i++)
                         inputImage.Data[j, i, 0] = Input.SingleChannelImage[CurrentChannel].Data[i + j * Input.Width];
 
-                Image<Gray, float> ProcessedImage = new Image<Gray, float>(inputImage.Width, inputImage.Height);
-                ProcessedImage = inputImage.Canny(new Gray(GreyThreshold), new Gray(GreyThresholdLinkin));
+                Image<Gray, byte> ProcessedImage = new Image<Gray, byte>(inputImage.Width, inputImage.Height);
+                ProcessedImage = inputImage.Canny(GreyThreshold, GreyThresholdLinkin);
 
                 this.Output.SingleChannelImage[IdxChannel].SetNewDataFromOpenCV(ProcessedImage);
             }

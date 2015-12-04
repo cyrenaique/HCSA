@@ -156,6 +156,7 @@ namespace HCSAnalyzer.Classes.ImageAnalysis.FormsForImages
                     {
                         string TmpImName = FirstListImages[j];
                         if (TmpImName.Contains("_thumb")) continue;
+                       
 
                         string[] ForSplit = TmpImName.Split('\\');
                         string ImageName = ForSplit[ForSplit.Length - 1];
@@ -198,6 +199,69 @@ namespace HCSAnalyzer.Classes.ImageAnalysis.FormsForImages
             }
             #endregion
 
+            #region CV7000
+            else if (cGlobalInfo.ImageAccessor.ImagingPlatformType == eImagingPlatformType.CV7000)
+            {
+                for (int i = 0; i < PlateDirectories.Length; i++)
+                {
+                    string PlateName = PlateDirectories[i].Remove(0, this.textBoxImageRoot.Text.Length + 1);
+                    TreeNode TmpNode = new TreeNode("[Plate " + i.ToString() + "] - " + PlateName);
+                    TmpNode.Checked = true;
+                    TmpNode.Tag = PlateDirectories[i];
+                    // now parse the images...
+                    string[] FirstListImages = Directory.GetFiles(PlateDirectories[i], "*.tif", SearchOption.AllDirectories);
+
+                    Dictionary<string, int> CurrentPlateDico = new Dictionary<string, int>();
+
+                    List<string> ListTrueFiles = new List<string>();
+
+                    for (int j = 0; j < FirstListImages.Length; j++)
+                    {
+                        string TmpImName = FirstListImages[j];
+                        if (TmpImName.Contains("_thumb")) continue;
+                        if (TmpImName.Contains("BP")) continue;
+                        if (TmpImName.Contains("CMOS")) continue;
+
+                        string[] ForSplit = TmpImName.Split('\\');
+                        string ImageName = ForSplit[ForSplit.Length - 1];
+
+                        ListTrueFiles.Add(ImageName);
+                    }
+
+                    for (int j = 0; j < ListTrueFiles.Count; j++)
+                    {
+                        string TmpName = ListTrueFiles[j];
+                        string[] ForSplit = TmpName.Split('_');
+                        string WellPos = ForSplit[1];
+                        int NumAssociatedImages = 1;
+                        ListTrueFiles.RemoveAt(j--);
+
+                        // now parse the rest of the files to merge the channels
+                        for (int k = j + 1; k < ListTrueFiles.Count; k++)
+                        {
+                            if (ListTrueFiles[k].Contains("_" + WellPos))
+                            {
+
+                                NumAssociatedImages++;
+                                ListTrueFiles.RemoveAt(k);
+                                k--;
+                            }
+                        }
+
+                        TreeNode WellNode = new TreeNode(WellPos + " : " + NumAssociatedImages + " images");
+                        WellNode.Checked = true;
+                        WellNode.Tag = null;
+                        TmpNode.Nodes.Add(WellNode);
+
+                        CurrentPlateDico.Add(WellPos, NumAssociatedImages);
+
+                    }
+
+                    this.treeViewForScreenInspection.Nodes.Add(TmpNode);
+                    MainScreenDico.Add(PlateName, CurrentPlateDico);
+                }
+            }
+            #endregion
 
             this.richTextBoxReport.Clear();
             this.richTextBoxReport.AppendText(this.treeViewForScreenInspection.Nodes.Count + " plates.\n");
@@ -241,7 +305,7 @@ namespace HCSAnalyzer.Classes.ImageAnalysis.FormsForImages
             //  return;
 
             //  if (this.CurrentScreening == null)
-
+            
             string[] ForNames = this.textBoxImageRoot.Text.Split('\\');
             cGlobalInfo.CurrentScreening = new cScreening(ForNames[ForNames.Length - 1]);
             cGlobalInfo.CurrentScreening.Columns = 24;
@@ -305,7 +369,7 @@ namespace HCSAnalyzer.Classes.ImageAnalysis.FormsForImages
             // now Image Analysis   
 
             // first create a descriptor for each readout
-            cDescriptorType TmpDescType = new cDescriptorType("Totlal_Intensity_0", true, 1);
+            cDescriptorType TmpDescType = new cDescriptorType("Total_Intensity_0", true, 1);
             cGlobalInfo.CurrentScreening.ListDescriptors.AddNew(TmpDescType);
 
 
@@ -359,11 +423,11 @@ namespace HCSAnalyzer.Classes.ImageAnalysis.FormsForImages
                         }
                         else
                         {
-                            AverageValue += TmpImage.SingleChannelImage[0].Data.Sum();
+                            AverageValue = 25; //TmpImage.SingleChannelImage[0].Data.Sum();
                         }
 
                         IFW.GetOutPut().Dispose();
-                        GC.Collect();
+                        //GC.Collect();
                         NumberOfFieldProcessed++;
 
                     }

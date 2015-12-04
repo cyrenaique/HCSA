@@ -176,6 +176,25 @@ namespace ImageAnalysis
             return true;
         }
 
+        public bool SetNewDataFromOpenCV(Image<Gray, byte> CVImage)
+        {
+            if (CVImage.Width * CVImage.Height != this.Data.Length) return false;
+
+            for (int j = 0; j < CVImage.Height; j++)
+                for (int i = 0; i < CVImage.Width; i++)
+                    this.Data[i + j * this.Width] = CVImage.Data[j, i, 0];
+            return true;
+        }
+        public bool SetNewDataFromOpenCV(Image<Gray, Int16> CVImage)
+        {
+            if (CVImage.Width * CVImage.Height != this.Data.Length) return false;
+
+            for (int j = 0; j < CVImage.Height; j++)
+                for (int i = 0; i < CVImage.Width; i++)
+                    this.Data[i + j * this.Width] = CVImage.Data[j, i, 0];
+            return true;
+        }
+
         public ToolStripMenuItem GetContextMenu(cImagePanel CurrentImageViewer)
         {
             CurrentAssociatedImageViewer = CurrentImageViewer;

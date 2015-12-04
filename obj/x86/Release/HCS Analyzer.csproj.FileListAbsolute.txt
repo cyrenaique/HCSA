@@ -1250,3 +1250,5 @@ D:\HCS-Analyzer\obj\x86\Release\HCS Analyzer.csproj.GenerateResource.Cache
 D:\HCS-Analyzer\obj\x86\Release\HCSAnalyzer.exe
 D:\HCS-Analyzer\obj\x86\Release\HCSAnalyzer.pdb
 D:\HCS-Analyzer\obj\x86\Release\HCS Analyzer.csprojResolveAssemblyReference.cache
+F:\GitHCSA\HCSA\bin\x86\Release\HCSAnalyzer.exe.config
+F:\GitHCSA\HCSA\obj\x86\Release\HCS Analyzer.csproj.ResolveComReference.cache
