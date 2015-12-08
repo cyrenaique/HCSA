@@ -533,3 +533,4 @@ F:\GitHCSA\HCSA\bin\x64\Release\opencv_core2410.dll
 F:\GitHCSA\HCSA\bin\x64\Release\opencv_imgproc2410.dll
 F:\GitHCSA\HCSA\bin\x64\Release\Emgu.CV.xml
 F:\GitHCSA\HCSA\bin\x64\Release\Emgu.Util.xml
+F:\GitHCSA\HCSA\bin\x64\Release\cvextern.dll

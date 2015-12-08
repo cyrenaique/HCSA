@@ -176,6 +176,16 @@ namespace ImageAnalysis
             return true;
         }
 
+        //public bool SetNewDataFromOpenCV(Mat CVImage)
+        //{
+        //    if (CVImage.Width * CVImage.Height != this.Data.Length) return false;
+
+        //    for (int j = 0; j < CVImage.Height; j++)
+        //        for (int i = 0; i < CVImage.Width; i++)
+        //            this.Data[i + j * this.Width] = CVImage[j, i, 0];
+        //    return true;
+        //}
+
         public bool SetNewDataFromOpenCV(Image<Gray, byte> CVImage)
         {
             if (CVImage.Width * CVImage.Height != this.Data.Length) return false;
@@ -185,7 +195,7 @@ namespace ImageAnalysis
                     this.Data[i + j * this.Width] = CVImage.Data[j, i, 0];
             return true;
         }
-        public bool SetNewDataFromOpenCV(Image<Gray, Int16> CVImage)
+        public bool SetNewDataFromOpenCV(Image<Gray, UInt16> CVImage)
         {
             if (CVImage.Width * CVImage.Height != this.Data.Length) return false;
 

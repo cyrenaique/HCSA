@@ -52,10 +52,10 @@ namespace ImageAnalysisFiltering
                             // IntPtr contour1 = new IntPtr();
                             //  IntPtr storage = CvInvoke.cvCreateMemStorage(0);
 
-                            Emgu.CV.CvInvoke.cvMinMaxLoc(inputImage.Ptr, ref MinVal, ref MaxVal, ref MinPtLoc, ref MaxPtLoc, IntPtr.Zero);
+                            Emgu.CV.CvInvoke.MinMaxLoc(inputImage, ref MinVal, ref MaxVal, ref MinPtLoc, ref MaxPtLoc, null);
 
                             //    Emgu.CV.CvInvoke.cvGetSubRect(
-                            Emgu.CV.CvInvoke.cvDFT(inputImage.Ptr, ProcessedImage.Ptr, CV_DXT.CV_DXT_FORWARD, 0);
+                            Emgu.CV.CvInvoke.Dft(inputImage, ProcessedImage, DxtType.Forward, 0);
                         }
             //IntPtr contour1 = new IntPtr();
             //IntPtr storage = CvInvoke.cvCreateMemStorage(0);

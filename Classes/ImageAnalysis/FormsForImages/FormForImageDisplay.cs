@@ -377,7 +377,7 @@ namespace HCSAnalyzer.Forms.FormsForImages
             cImageGeometricResize GR = new cImageGeometricResize();
             GR.SetInputData(this.AssociatedImage);
             GR.SliceIndex = (int)ZNavigator.numericUpDownZPos.Value;
-            GR.InterpolationType = Emgu.CV.CvEnum.INTER.CV_INTER_LINEAR;
+            GR.InterpolationType = Emgu.CV.CvEnum.Inter.Linear;
 
             GR.ListProperties.FindByName("Scale").SetNewValue((double)0.5);
             GR.ListProperties.FindByName("Scale").IsGUIforValue = true;
@@ -570,7 +570,7 @@ namespace HCSAnalyzer.Forms.FormsForImages
 
             cImageDistanceMap DM = new cImageDistanceMap();
             DM.SetInputData(this.AssociatedImage);
-            DM.DistanceType = Emgu.CV.CvEnum.DIST_TYPE.CV_DIST_L2;
+            DM.DistanceType = Emgu.CV.CvEnum.DistType.L2;
             DM.Run();
             NewView.SetInputData(DM.GetOutPut());
 

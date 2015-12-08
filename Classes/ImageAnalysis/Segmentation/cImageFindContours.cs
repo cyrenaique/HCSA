@@ -44,22 +44,25 @@ namespace ImageAnalysisFiltering
 
                      //Image<Gray, float> smoothedImage = new Image<Gray, float>(inputImage.Width, inputImage.Height);
 
-                     IntPtr contour1 = new IntPtr();
-                     IntPtr storage = CvInvoke.cvCreateMemStorage(0);
+                     //TODO: Fix the code below with EMGU 3.0
 
-                     Emgu.CV.CvInvoke.cvFindContours(inputImage, storage, ref contour1, StructSize.MCvContour, Emgu.CV.CvEnum.RETR_TYPE.CV_RETR_CCOMP, Emgu.CV.CvEnum.CHAIN_APPROX_METHOD.CV_CHAIN_APPROX_SIMPLE, new Point(0, 0));
+                     //IntPtr contour1 = new IntPtr();
 
-                     Seq<Point> contour = new Seq<Point>(contour1, null);
+                     //IntPtr storage = CvInvoke.cvCreateMemStorage(0);
+
+                     //Emgu.CV.CvInvoke.FindContours(inputImage, storage, ref contour1, StructSize.MCvContour, Emgu.CV.CvEnum.RetrType.Ccomp, Emgu.CV.CvEnum.ChainApproxMethod.ChainApproxSimple, new Point(0, 0));
+
+                     //seq<Point> contour = new seq<Point>(contour1, null);
 
 
-                     //this.Output = new cImage(this.Input);
+                     ////this.Output = new cImage(this.Input);
 
-                     int IdxContour = 0;
-                     for (; contour != null && contour.Ptr.ToInt32() != 0; contour = contour.HNext)
-                     {
-                         Rectangle TmpBB = contour.BoundingRectangle;
-                         this.Output.SingleChannelImage[IdxChannel].DrawRectange(TmpBB, IdxContour++);
-                     }
+                     //int IdxContour = 0;
+                     //for (; contour != null && contour.Ptr.ToInt32() != 0; contour = contour.HNext)
+                     //{
+                     //    Rectangle TmpBB = contour.BoundingRectangle;
+                     //    this.Output.SingleChannelImage[IdxChannel].DrawRectange(TmpBB, IdxContour++);
+                     //}
 
                  }
             //this.output = new cImage(smoothedImage);
