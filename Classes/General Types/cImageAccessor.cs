@@ -671,8 +671,8 @@ namespace HCSAnalyzer.Classes.General_Types
 
                 Name += "*Z01C*.tif";
                 //string NewDir2 = NewDir + "\\DMD plate 5\\";
-                string[] ListChannels = Directory.GetFiles(NewDir2, Name, SearchOption.AllDirectories);
-
+                List<string> ListChannels = Directory.GetFiles(NewDir2, Name, SearchOption.AllDirectories).ToList();
+                ListChannels.Sort(); //OrderBy(q=>q).ToList();
                 //  if(NumberOfChannels>ListChannels.Count()) NumberOfChannels = ListChannels.Count();
                 NumberOfChannels = ListChannels.Count();
 

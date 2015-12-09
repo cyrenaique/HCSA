@@ -14,6 +14,7 @@ using ImageAnalysis;
 using HCSAnalyzer.Classes.MetaComponents;
 using HCSAnalyzer.Forms.IO;
 using System.Data.OleDb;
+using System.Xml;
 
 namespace HCSAnalyzer.Classes.ImageAnalysis.FormsForImages
 {
@@ -395,6 +396,54 @@ namespace HCSAnalyzer.Classes.ImageAnalysis.FormsForImages
                 WindowProgress.progressBarWell.Value = 0;
                 WindowProgress.progressBarWell.Maximum = TmpPlate.ListWells.Count;
 
+                #region modif
+
+                //List<cImageMetaInfo> ListImageMetaInfo = new List<cImageMetaInfo>();
+                //string Pathds = this.textBoxImageRoot.Text;
+                
+                //string XMLFile = Pathds+"\\"+ TmpPlate.GetName()+"\\MeasurementDetail.mrf";
+                //int NumberOfChannels = (int)this.numericUpDownChannelNumber.Value;
+                //List<string> ListFiles = Directory.GetFiles(Pathds + "\\" + TmpPlate.GetName(), "*C0*.tif", SearchOption.AllDirectories).ToList();
+                //ListFiles.Sort(); //OrderBy(q=>q).ToList();
+                //if (File.Exists(XMLFile))
+                //{
+                //    XmlDocument xmlDoc = new XmlDocument();
+                //    xmlDoc.Load(XMLFile);
+                //    for (int Channel = 0; Channel < NumberOfChannels; Channel++)
+                //    {
+                //        //string FinalName = ListChannels[Channel];
+
+                //        cImageMetaInfo TmpMetaInfo = new cImageMetaInfo();
+                //        //TmpMetaInfo.FileName = FinalName;
+                //        TmpMetaInfo.Name = xmlDoc.ChildNodes[1].ChildNodes[1].Attributes["bts:Ch"].Value;//ListChannelNames[Channel];
+                //        TmpMetaInfo.ResolutionX = double.Parse(xmlDoc.ChildNodes[1].ChildNodes[1].Attributes["bts:HorizontalPixelDimension"].Value);//1;
+                //        TmpMetaInfo.ResolutionY = double.Parse(xmlDoc.ChildNodes[1].ChildNodes[1].Attributes["bts:VerticalPixelDimension"].Value);//1;
+                //        TmpMetaInfo.ResolutionZ = 1;
+                //        ListImageMetaInfo.Add(TmpMetaInfo);
+                //    }
+                //}
+                //else
+                //{
+                //    for (int Channel = 0; Channel < NumberOfChannels; Channel++)
+                //    {
+                //        //string FinalName = ListChannels[Channel];
+
+                //        cImageMetaInfo TmpMetaInfo = new cImageMetaInfo();
+                //        //TmpMetaInfo.FileName = FinalName;
+                //       // TmpMetaInfo.Name = ListChannelNames[Channel];
+                //        TmpMetaInfo.ResolutionX = 1;
+                //        TmpMetaInfo.ResolutionY = 1;
+                //        TmpMetaInfo.ResolutionZ = 1;
+                //        ListImageMetaInfo.Add(TmpMetaInfo);
+                //    }
+
+
+                //}
+
+                #endregion
+
+
+
                 int IdxWell = 0;
                 foreach (cWell TmpWell in TmpPlate.ListWells)
                 {
@@ -409,13 +458,15 @@ namespace HCSAnalyzer.Classes.ImageAnalysis.FormsForImages
 
                     for (int IdxField = 0; IdxField < this.numericUpDownFieldNumber.Value; IdxField++)
                     {
+                        //var watch = Stopwatch.StartNew();
                         cGetImageFromWells IFW = new cGetImageFromWells();
                         IFW.SetInputData(new cListWells(TmpWell));
                         IFW.ListProperties.FindByName("Field").SetNewValue(IdxField);
                         IFW.Run();
 
                         cImage TmpImage = IFW.GetOutPut();
-
+                        //watch.Stop();
+                        //cGlobalInfo.WindowHCSAnalyzer.richTextBoxConsole.AppendText("IFW = "+watch.ElapsedMilliseconds + "\n");
                         if ((TmpImage == null) || (TmpImage.GetNumChannels() == 0))
                         {
                             cGlobalInfo.WindowHCSAnalyzer.richTextBoxConsole.AppendText("Error while loading [Plate] " + TmpPlate.GetName() + " [Well] " + TmpWell.GetPos() + " [Field] " + IdxField + "\n");

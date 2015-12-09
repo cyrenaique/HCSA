@@ -23,6 +23,7 @@ using System.Net;
 using HCSAnalyzer.Classes.ImageAnalysis.FormsForImages;
 using HCSAnalyzer.Classes.General_Types;
 using System.Threading;
+using System.Diagnostics;
 
 namespace ImageAnalysis
 {
@@ -760,16 +761,19 @@ namespace ImageAnalysis
 
 
                         //Image<Gray, Single> myImage = new Image<Gray, Single>(@CurrentName);
-
+                        //var watch = Stopwatch.StartNew();
 
                         int PageCount = 1;
                         this.Depth = PageCount;
                         NumChannels = 1;
                         
                         Mat myImage = new Mat(CurrentName, Emgu.CV.CvEnum.LoadImageType.AnyDepth);
+                        //watch.Stop();
+                        //cGlobalInfo.WindowHCSAnalyzer.richTextBoxConsole.AppendText("Opencv = " + watch.ElapsedMilliseconds + "\n");
+
                         for (int IDxPlane = 0; IDxPlane < PageCount; IDxPlane++)
                         {
-
+                            
                             if (IDxPlane == 0)
                             {
                                 this.Width = myImage.Width;
@@ -786,12 +790,16 @@ namespace ImageAnalysis
                                     if (ListImageMetaInfo[IdxChannel].ResolutionY != -1) this.Resolution.Y = ListImageMetaInfo[IdxChannel].ResolutionY;
                                     if (ListImageMetaInfo[IdxChannel].ResolutionZ != -1) this.Resolution.Z = ListImageMetaInfo[IdxChannel].ResolutionZ;
                                     Image<Gray, float> myImage2 = myImage.ToImage<Gray, float>();
+                                    //var watch2 = Stopwatch.StartNew();
+                                    
                                     TmpChannelImage.SetNewDataFromOpenCV(myImage2);
-
+                                    //watch2.Stop();
+                                    //cGlobalInfo.WindowHCSAnalyzer.richTextBoxConsole.AppendText("Convert = " + watch2.ElapsedMilliseconds + "\n");
                                     this.SingleChannelImage.Add(TmpChannelImage);
                                 }
                             }
-
+                           
+                            
 
                         }
 
@@ -801,8 +809,7 @@ namespace ImageAnalysis
 
                         //goto NEXTLOOP;                      
 
-
-
+                       
                         break;
                        
                 }
