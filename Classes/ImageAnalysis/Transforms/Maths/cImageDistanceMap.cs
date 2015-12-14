@@ -14,7 +14,7 @@ namespace ImageAnalysisFiltering
 {
     public partial class cImageDistanceMap : c2DImageFilter
     {
-        public Emgu.CV.CvEnum.DIST_TYPE DistanceType = DIST_TYPE.CV_DIST_L2;
+        public Emgu.CV.CvEnum.DistType DistanceType = DistType.L2;
         public int MaskSize = 5;
 
         public cImageDistanceMap()
@@ -39,8 +39,8 @@ namespace ImageAnalysisFiltering
 
 
                 Emgu.CV.Image<Gray, byte> gray = inputImage.Convert<Gray, byte>();//convert to grayscale
-                IntPtr dsti = Emgu.CV.CvInvoke.cvCreateImage(Emgu.CV.CvInvoke.cvGetSize(gray), Emgu.CV.CvEnum.IPL_DEPTH.IPL_DEPTH_32F, 1);
-                Emgu.CV.CvInvoke.cvDistTransform(gray, ProcessedImage, DistanceType, MaskSize, null, IntPtr.Zero);
+                IntPtr dsti = Emgu.CV.CvInvoke.cvCreateImage(Emgu.CV.CvInvoke.cvGetSize(gray), Emgu.CV.CvEnum.IplDepth.IplDepth32F, 1);
+                Emgu.CV.CvInvoke.DistanceTransform(gray, ProcessedImage,null, DistanceType, MaskSize);
 
                 this.Output.SingleChannelImage[IdxChannel].SetNewDataFromOpenCV(ProcessedImage);
             }
