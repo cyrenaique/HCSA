@@ -458,15 +458,15 @@ namespace HCSAnalyzer.Classes.ImageAnalysis.FormsForImages
 
                     for (int IdxField = 0; IdxField < this.numericUpDownFieldNumber.Value; IdxField++)
                     {
-                        //var watch = Stopwatch.StartNew();
+                        var watch = Stopwatch.StartNew();
                         cGetImageFromWells IFW = new cGetImageFromWells();
                         IFW.SetInputData(new cListWells(TmpWell));
                         IFW.ListProperties.FindByName("Field").SetNewValue(IdxField);
                         IFW.Run();
 
                         cImage TmpImage = IFW.GetOutPut();
-                        //watch.Stop();
-                        //cGlobalInfo.WindowHCSAnalyzer.richTextBoxConsole.AppendText("IFW = "+watch.ElapsedMilliseconds + "\n");
+                        watch.Stop();
+                        cGlobalInfo.WindowHCSAnalyzer.richTextBoxConsole.AppendText("IFW = "+watch.ElapsedMilliseconds + "\n");
                         if ((TmpImage == null) || (TmpImage.GetNumChannels() == 0))
                         {
                             cGlobalInfo.WindowHCSAnalyzer.richTextBoxConsole.AppendText("Error while loading [Plate] " + TmpPlate.GetName() + " [Well] " + TmpWell.GetPos() + " [Field] " + IdxField + "\n");

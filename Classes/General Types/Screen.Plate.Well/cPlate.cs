@@ -1017,7 +1017,12 @@ namespace LibPlateAnalysis
                 //System.Threading.Thread thread = new System.Threading.Thread(new System.Threading.ThreadStart(delegate()    {  ParentScreening.PanelForPlate.BeginInvoke(new Action(delegate() {            })); }));
                 //thread.Start();
                 if (cGlobalInfo.ViewMode != eViewMode.IMAGE)
-                    cGlobalInfo.panelForPlate.Controls.AddRange(LChart.ToArray());
+                {
+                    cGlobalInfo.panelForPlate.Controls.Clear();
+                    var toto = LChart.ToArray();
+                    cGlobalInfo.panelForPlate.Controls.AddRange(toto);
+                }
+                    
 
                 //cGlobalInfo.panelForPlate.HorizontalScroll.Value = PosScrollX;
                 //cGlobalInfo.panelForPlate.VerticalScroll.Value = PosScrollY;
