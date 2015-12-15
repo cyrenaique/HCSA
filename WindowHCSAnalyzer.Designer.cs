@@ -305,7 +305,6 @@ namespace HCSAnalyzer
             this.ProcessModeEntireScreeningToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.statusStripMain = new System.Windows.Forms.StatusStrip();
             this.toolStripDropDownButtonDisplayMode = new System.Windows.Forms.ToolStripDropDownButton();
-            this.pythonToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.tabControlMain.SuspendLayout();
             this.tabPageDImRed.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDownNewDimension)).BeginInit();
@@ -2302,8 +2301,7 @@ namespace HCSAnalyzer
             this.newOptionMenuToolStripMenuItem,
             this.testDisplayToolStripMenuItem,
             this.wellsMergingToolStripMenuItem,
-            this.dRC3DToolStripMenuItem,
-            this.pythonToolStripMenuItem});
+            this.dRC3DToolStripMenuItem});
             this.betaToolStripMenuItem.Name = "betaToolStripMenuItem";
             this.betaToolStripMenuItem.Size = new System.Drawing.Size(42, 23);
             this.betaToolStripMenuItem.Text = "Beta";
@@ -3076,7 +3074,6 @@ namespace HCSAnalyzer
             this.toolStripDropDownButtonDisplayMode.Size = new System.Drawing.Size(92, 20);
             this.toolStripDropDownButtonDisplayMode.Text = "Display Mode";
             this.toolStripDropDownButtonDisplayMode.MouseDown += new System.Windows.Forms.MouseEventHandler(this.toolStripDropDownButtonDisplayMode_MouseDown);
-      
             // 
             // HCSAnalyzer
             // 
@@ -3431,7 +3428,6 @@ namespace HCSAnalyzer
         private ToolStripMenuItem buildDatabaseToolStripMenuItem;
         private ToolStripMenuItem cSVDBToolStripMenuItem;
         private ToolStripMenuItem harmonyDBToolStripMenuItem;
-        private ToolStripMenuItem pythonToolStripMenuItem;
     }
 }
 

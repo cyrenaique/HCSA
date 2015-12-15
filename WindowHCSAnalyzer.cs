@@ -79,7 +79,6 @@ using HCSAnalyzer.Classes.ImageAnalysis.FormsForImages;
 using System.Data.OleDb;
 using Kitware.VTK;
 using HCSAnalyzer.Cell_by_Cell_and_DB.Simulator.Classes;
-
 //using FolderBrowser;
 
 //using HCSAnalyzer.Classes._3D;
@@ -7951,10 +7950,8 @@ namespace HCSAnalyzer
             #endregion
         }
 
-     
 
-
-
+ 
 
         //void UpDateColorSampleImage()
         //{
