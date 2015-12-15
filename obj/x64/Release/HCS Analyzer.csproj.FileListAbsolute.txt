@@ -528,9 +528,14 @@ F:\GitHCSA\HCSA\obj\x64\Release\HCSAnalyzer.Properties.Resources.resources
 F:\GitHCSA\HCSA\obj\x64\Release\HCS Analyzer.csproj.GenerateResource.Cache
 F:\GitHCSA\HCSA\obj\x64\Release\HCSAnalyzer.exe
 F:\GitHCSA\HCSA\obj\x64\Release\HCSAnalyzer.pdb
-F:\GitHCSA\HCSA\obj\x64\Release\HCS Analyzer.csprojResolveAssemblyReference.cache
 F:\GitHCSA\HCSA\bin\x64\Release\opencv_core2410.dll
 F:\GitHCSA\HCSA\bin\x64\Release\opencv_imgproc2410.dll
 F:\GitHCSA\HCSA\bin\x64\Release\Emgu.CV.xml
 F:\GitHCSA\HCSA\bin\x64\Release\Emgu.Util.xml
 F:\GitHCSA\HCSA\bin\x64\Release\cvextern.dll
+F:\GitHCSA\HCSA\bin\x64\Release\Microsoft.VisualStudio.Shell.Interop.dll
+F:\GitHCSA\HCSA\bin\x64\Release\Microsoft.VisualStudio.OLE.Interop.dll
+F:\GitHCSA\HCSA\bin\x64\Release\Microsoft.VisualStudio.TextManager.Interop.dll
+F:\GitHCSA\HCSA\bin\x64\Release\Microsoft.VisualStudio.Shell.Interop.xml
+F:\GitHCSA\HCSA\bin\x64\Release\Microsoft.VisualStudio.OLE.Interop.xml
+F:\GitHCSA\HCSA\bin\x64\Release\Microsoft.VisualStudio.TextManager.Interop.xml

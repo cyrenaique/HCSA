@@ -535,3 +535,9 @@ F:\GitHCSA\HCSA\bin\x64\Debug\opencv_imgproc2410.dll
 F:\GitHCSA\HCSA\bin\x64\Debug\Emgu.CV.xml
 F:\GitHCSA\HCSA\bin\x64\Debug\Emgu.Util.xml
 F:\GitHCSA\HCSA\bin\x64\Debug\cvextern.dll
+F:\GitHCSA\HCSA\bin\x64\Debug\Microsoft.VisualStudio.Shell.Interop.dll
+F:\GitHCSA\HCSA\bin\x64\Debug\Microsoft.VisualStudio.OLE.Interop.dll
+F:\GitHCSA\HCSA\bin\x64\Debug\Microsoft.VisualStudio.TextManager.Interop.dll
+F:\GitHCSA\HCSA\bin\x64\Debug\Microsoft.VisualStudio.Shell.Interop.xml
+F:\GitHCSA\HCSA\bin\x64\Debug\Microsoft.VisualStudio.OLE.Interop.xml
+F:\GitHCSA\HCSA\bin\x64\Debug\Microsoft.VisualStudio.TextManager.Interop.xml
