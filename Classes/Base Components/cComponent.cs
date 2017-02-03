@@ -159,7 +159,7 @@ namespace HCSAnalyzer.Classes
             watch = new Stopwatch();
             watch.Start();
 
-            cGlobalInfo.WindowHCSAnalyzer.richTextBoxConsole.AppendText(this.Title + ": Start...\n");
+            //cGlobalInfo.WindowHCSAnalyzer.richTextBoxConsole.AppendText(this.Title + ": Start...\n");
 
             return true;
 
@@ -169,7 +169,7 @@ namespace HCSAnalyzer.Classes
         {
             watch.Stop();
             FeedBackMessage.ExecutionTime = watch.Elapsed.Milliseconds;
-            cGlobalInfo.WindowHCSAnalyzer.richTextBoxConsole.AppendText(this.Title + ": End (" + FeedBackMessage.ExecutionTime + " ms)\n");
+            //cGlobalInfo.WindowHCSAnalyzer.richTextBoxConsole.AppendText(this.Title + ": End (" + FeedBackMessage.ExecutionTime + " ms)\n");
 
         }
 

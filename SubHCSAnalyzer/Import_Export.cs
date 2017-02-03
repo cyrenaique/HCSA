@@ -651,28 +651,44 @@ namespace HCSAnalyzer
                 else if ((i == 2) && ((FromExcel.ModeWell == 1) || (FromExcel.ModeWell == 3))) FromExcel.dataGridViewForImport.Rows[i].Cells[IdxRow++].Value = true;
                 else FromExcel.dataGridViewForImport.Rows[i].Cells[IdxRow++].Value = false;
 
-                if (i == 0)
+                if (Names[i].Contains("Plate"))
                 {
                     FromExcel.dataGridViewForImport.Rows[i].Cells[IdxRow++].Value = "Plate name";
                 }
-                else if (i == 1)
+                else if (Names[i].Contains("Well") & !Names[i].Contains("Class") )
                 {
-                    if ((FromExcel.ModeWell == 1) || (FromExcel.ModeWell == 3))
-                        FromExcel.dataGridViewForImport.Rows[i].Cells[IdxRow++].Value = "Column";
-                    else
-                        FromExcel.dataGridViewForImport.Rows[i].Cells[IdxRow++].Value = "Well position";
+                    FromExcel.dataGridViewForImport.Rows[i].Cells[IdxRow++].Value = "Well position";
                 }
-                else if (i == 2)
+                else if (Names[i].Contains("Class"))
                 {
-                    if ((FromExcel.ModeWell == 1) || (FromExcel.ModeWell == 3))
-                        FromExcel.dataGridViewForImport.Rows[i].Cells[IdxRow++].Value = "Row";
-                    else
-                        FromExcel.dataGridViewForImport.Rows[i].Cells[IdxRow++].Value = "Descriptor";
+                    FromExcel.dataGridViewForImport.Rows[i].Cells[IdxRow++].Value = "Class";
                 }
                 else
                 {
                     FromExcel.dataGridViewForImport.Rows[i].Cells[IdxRow++].Value = "Descriptor";
                 }
+                //if (i == 0)
+                //{
+                //    FromExcel.dataGridViewForImport.Rows[i].Cells[IdxRow++].Value = "Plate name";
+                //}
+                //else if (i == 1)
+                //{
+                //    if ((FromExcel.ModeWell == 1) || (FromExcel.ModeWell == 3))
+                //        FromExcel.dataGridViewForImport.Rows[i].Cells[IdxRow++].Value = "Column";
+                //    else
+                //        FromExcel.dataGridViewForImport.Rows[i].Cells[IdxRow++].Value = "Well position";
+                //}
+                //else if (i == 2)
+                //{
+                //    if ((FromExcel.ModeWell == 1) || (FromExcel.ModeWell == 3))
+                //        FromExcel.dataGridViewForImport.Rows[i].Cells[IdxRow++].Value = "Row";
+                //    else
+                //        FromExcel.dataGridViewForImport.Rows[i].Cells[IdxRow++].Value = "Descriptor";
+                //}
+                //else
+                //{
+                //    FromExcel.dataGridViewForImport.Rows[i].Cells[IdxRow++].Value = "Descriptor";
+                //}
 
                 for (int j = 0; j < LCSVRow.Count; j++)
                 {

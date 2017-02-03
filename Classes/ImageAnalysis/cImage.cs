@@ -596,7 +596,7 @@ namespace ImageAnalysis
         {
             if (ListImageMetaInfo == null) return;
             int ChannelStart = 0;
-
+           
             for (int IdxName = 0; IdxName < ListImageMetaInfo.Count; IdxName++)
             {
                 string CurrentName = ListImageMetaInfo[IdxName].FileName;

@@ -218,6 +218,7 @@
             this.groupBoxManual = new System.Windows.Forms.GroupBox();
             this.label6 = new System.Windows.Forms.Label();
             this.groupBoxDefined = new System.Windows.Forms.GroupBox();
+            this.radioButtonImageAccessBuiltIn = new System.Windows.Forms.RadioButton();
             this.radioButtonImageAccessCV7000 = new System.Windows.Forms.RadioButton();
             this.radioButtonImageAccessINCell = new System.Windows.Forms.RadioButton();
             this.radioButtonImageAccessCellomics = new System.Windows.Forms.RadioButton();
@@ -246,7 +247,6 @@
             this.saveToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.saveAsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.saveDefaultToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.radioButtonImageAccessBuiltIn = new System.Windows.Forms.RadioButton();
             this.tabControlWindowOption.SuspendLayout();
             this.tabPageImport.SuspendLayout();
             this.groupBox2.SuspendLayout();
@@ -2055,8 +2055,8 @@
             // 
             // comboBoxDescForBoundingMaxX
             // 
-            this.comboBoxDescForBoundingMaxX.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
-                        | System.Windows.Forms.AnchorStyles.Right)));
+            this.comboBoxDescForBoundingMaxX.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.comboBoxDescForBoundingMaxX.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
             this.comboBoxDescForBoundingMaxX.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
             this.comboBoxDescForBoundingMaxX.FormattingEnabled = true;
@@ -2085,8 +2085,8 @@
             // 
             // comboBoxDescForBoundingMaxY
             // 
-            this.comboBoxDescForBoundingMaxY.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
-                        | System.Windows.Forms.AnchorStyles.Right)));
+            this.comboBoxDescForBoundingMaxY.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.comboBoxDescForBoundingMaxY.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
             this.comboBoxDescForBoundingMaxY.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
             this.comboBoxDescForBoundingMaxY.FormattingEnabled = true;
@@ -2097,8 +2097,8 @@
             // 
             // comboBoxDescForBoundingMinX
             // 
-            this.comboBoxDescForBoundingMinX.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
-                        | System.Windows.Forms.AnchorStyles.Right)));
+            this.comboBoxDescForBoundingMinX.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.comboBoxDescForBoundingMinX.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
             this.comboBoxDescForBoundingMinX.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
             this.comboBoxDescForBoundingMinX.FormattingEnabled = true;
@@ -2127,8 +2127,8 @@
             // 
             // comboBoxDescForBoundingMinY
             // 
-            this.comboBoxDescForBoundingMinY.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
-                        | System.Windows.Forms.AnchorStyles.Right)));
+            this.comboBoxDescForBoundingMinY.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.comboBoxDescForBoundingMinY.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
             this.comboBoxDescForBoundingMinY.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
             this.comboBoxDescForBoundingMinY.FormattingEnabled = true;
@@ -2151,8 +2151,8 @@
             // 
             // comboBoxDescriptorForPosX
             // 
-            this.comboBoxDescriptorForPosX.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
-                        | System.Windows.Forms.AnchorStyles.Right)));
+            this.comboBoxDescriptorForPosX.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.comboBoxDescriptorForPosX.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
             this.comboBoxDescriptorForPosX.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
             this.comboBoxDescriptorForPosX.FormattingEnabled = true;
@@ -2181,8 +2181,8 @@
             // 
             // comboBoxDescriptorForPosY
             // 
-            this.comboBoxDescriptorForPosY.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
-                        | System.Windows.Forms.AnchorStyles.Right)));
+            this.comboBoxDescriptorForPosY.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.comboBoxDescriptorForPosY.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
             this.comboBoxDescriptorForPosY.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
             this.comboBoxDescriptorForPosY.FormattingEnabled = true;
@@ -2217,8 +2217,8 @@
             // 
             // comboBoxDescriptorForField
             // 
-            this.comboBoxDescriptorForField.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
-                        | System.Windows.Forms.AnchorStyles.Right)));
+            this.comboBoxDescriptorForField.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.comboBoxDescriptorForField.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
             this.comboBoxDescriptorForField.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
             this.comboBoxDescriptorForField.FormattingEnabled = true;
@@ -2239,12 +2239,10 @@
             // radioButtonImageAccessManual
             // 
             this.radioButtonImageAccessManual.AutoSize = true;
-            this.radioButtonImageAccessManual.Checked = true;
             this.radioButtonImageAccessManual.Location = new System.Drawing.Point(18, 6);
             this.radioButtonImageAccessManual.Name = "radioButtonImageAccessManual";
             this.radioButtonImageAccessManual.Size = new System.Drawing.Size(60, 17);
             this.radioButtonImageAccessManual.TabIndex = 1;
-            this.radioButtonImageAccessManual.TabStop = true;
             this.radioButtonImageAccessManual.Text = "Manual";
             this.radioButtonImageAccessManual.UseVisualStyleBackColor = true;
             this.radioButtonImageAccessManual.CheckedChanged += new System.EventHandler(this.radioButtonImageAccessManual_CheckedChanged);
@@ -2252,6 +2250,7 @@
             // radioButtonImageAccessDefined
             // 
             this.radioButtonImageAccessDefined.AutoSize = true;
+            this.radioButtonImageAccessDefined.Checked = true;
             this.radioButtonImageAccessDefined.Location = new System.Drawing.Point(17, 60);
             this.radioButtonImageAccessDefined.Name = "radioButtonImageAccessDefined";
             this.radioButtonImageAccessDefined.Size = new System.Drawing.Size(81, 17);
@@ -2306,13 +2305,26 @@
             this.groupBoxDefined.TabStop = false;
             this.groupBoxDefined.Text = "                       ";
             // 
+            // radioButtonImageAccessBuiltIn
+            // 
+            this.radioButtonImageAccessBuiltIn.AutoSize = true;
+            this.radioButtonImageAccessBuiltIn.Location = new System.Drawing.Point(180, 44);
+            this.radioButtonImageAccessBuiltIn.Name = "radioButtonImageAccessBuiltIn";
+            this.radioButtonImageAccessBuiltIn.Size = new System.Drawing.Size(56, 17);
+            this.radioButtonImageAccessBuiltIn.TabIndex = 14;
+            this.radioButtonImageAccessBuiltIn.Text = "Built in";
+            this.radioButtonImageAccessBuiltIn.UseVisualStyleBackColor = true;
+            this.radioButtonImageAccessBuiltIn.CheckedChanged += new System.EventHandler(this.radioButtonImageAccessBuiltIn_CheckedChanged);
+            // 
             // radioButtonImageAccessCV7000
             // 
             this.radioButtonImageAccessCV7000.AutoSize = true;
+            this.radioButtonImageAccessCV7000.Checked = true;
             this.radioButtonImageAccessCV7000.Location = new System.Drawing.Point(83, 44);
             this.radioButtonImageAccessCV7000.Name = "radioButtonImageAccessCV7000";
             this.radioButtonImageAccessCV7000.Size = new System.Drawing.Size(63, 17);
             this.radioButtonImageAccessCV7000.TabIndex = 13;
+            this.radioButtonImageAccessCV7000.TabStop = true;
             this.radioButtonImageAccessCV7000.Text = "CV7000";
             this.radioButtonImageAccessCV7000.UseVisualStyleBackColor = true;
             this.radioButtonImageAccessCV7000.CheckedChanged += new System.EventHandler(this.radioButtonImageAccessCV7000_CheckedChanged);
@@ -2422,16 +2434,15 @@
             this.textBoxImageAccesImagePath.ScrollBars = System.Windows.Forms.ScrollBars.Horizontal;
             this.textBoxImageAccesImagePath.Size = new System.Drawing.Size(310, 20);
             this.textBoxImageAccesImagePath.TabIndex = 3;
+            this.textBoxImageAccesImagePath.Text = "W:\\BTSData\\MeasurementData\\L\\lecture 1point_L-00019_20150807_154229";
             // 
             // radioButtonImageAccessHarmony
             // 
             this.radioButtonImageAccessHarmony.AutoSize = true;
-            this.radioButtonImageAccessHarmony.Checked = true;
             this.radioButtonImageAccessHarmony.Location = new System.Drawing.Point(13, 21);
             this.radioButtonImageAccessHarmony.Name = "radioButtonImageAccessHarmony";
             this.radioButtonImageAccessHarmony.Size = new System.Drawing.Size(67, 17);
             this.radioButtonImageAccessHarmony.TabIndex = 1;
-            this.radioButtonImageAccessHarmony.TabStop = true;
             this.radioButtonImageAccessHarmony.Text = "Harmony";
             this.radioButtonImageAccessHarmony.UseVisualStyleBackColor = true;
             this.radioButtonImageAccessHarmony.CheckedChanged += new System.EventHandler(this.radioButtonImageAccessOperetta_CheckedChanged);
@@ -2484,9 +2495,9 @@
             // 
             // panelForCurrentLUTList
             // 
-            this.panelForCurrentLUTList.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
-                        | System.Windows.Forms.AnchorStyles.Left)
-                        | System.Windows.Forms.AnchorStyles.Right)));
+            this.panelForCurrentLUTList.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.panelForCurrentLUTList.AutoScroll = true;
             this.panelForCurrentLUTList.ContextMenuStrip = this.contextMenuStripForImageDisplay;
             this.panelForCurrentLUTList.Location = new System.Drawing.Point(6, 6);
@@ -2576,17 +2587,6 @@
             this.saveDefaultToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             this.saveDefaultToolStripMenuItem.Text = "Save as default";
             this.saveDefaultToolStripMenuItem.Click += new System.EventHandler(this.saveDefaultToolStripMenuItem_Click);
-            // 
-            // radioButtonImageAccessBuiltIn
-            // 
-            this.radioButtonImageAccessBuiltIn.AutoSize = true;
-            this.radioButtonImageAccessBuiltIn.Location = new System.Drawing.Point(180, 44);
-            this.radioButtonImageAccessBuiltIn.Name = "radioButtonImageAccessBuiltIn";
-            this.radioButtonImageAccessBuiltIn.Size = new System.Drawing.Size(56, 17);
-            this.radioButtonImageAccessBuiltIn.TabIndex = 14;
-            this.radioButtonImageAccessBuiltIn.Text = "Built in";
-            this.radioButtonImageAccessBuiltIn.UseVisualStyleBackColor = true;
-            this.radioButtonImageAccessBuiltIn.CheckedChanged += new System.EventHandler(this.radioButtonImageAccessBuiltIn_CheckedChanged);
             // 
             // FormForOptionsWindow
             // 

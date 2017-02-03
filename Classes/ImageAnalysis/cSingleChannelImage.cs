@@ -17,6 +17,8 @@ using HCSAnalyzer.Classes._3D;
 using IM3_Plugin3;
 using HCSAnalyzer.Classes.Base_Classes.Viewers._3D.ComplexObjects;
 using HCSAnalyzer.Classes;
+using System.Threading;
+using System.Threading.Tasks;
 
 namespace ImageAnalysis
 {
@@ -169,24 +171,24 @@ namespace ImageAnalysis
         public bool SetNewDataFromOpenCV(Image<Gray, float> CVImage)
         {
             if (CVImage.Width * CVImage.Height != this.Data.Length) return false;
-            
+
             unsafe
             {
-                MIplImage ss = CVImage.MIplImage;                
+                MIplImage ss = CVImage.MIplImage;
 
-                for (int j = 0; j < ss.Height; j++)
+                Parallel.For(0, ss.Height, j =>
                 {
                     IntPtr ptr = ss.ImageData + j * ss.WidthStep;
                     for (int i = 0; i < ss.Width; i++)
                     {
                         this.Data[i + j * this.Width] = ((float*)(ptr))[i];
                     }
-                }
-              
+                });
+
 
 
             }
-          
+
 
             return true;
         }
