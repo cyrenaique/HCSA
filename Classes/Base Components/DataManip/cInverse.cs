@@ -30,7 +30,7 @@ namespace HCSAnalyzer.Classes.Base_Classes.DataAnalysis
 
         public cFeedBackMessage Run()
         {
-            if (this.Input == null)
+            if (this.Input == null | this.Input.Count==0)
             {
                 FeedBackMessage.IsSucceed = false;
                 FeedBackMessage.Message = "No input data defined.";

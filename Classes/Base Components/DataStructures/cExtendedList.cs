@@ -805,10 +805,8 @@ namespace HCSAnalyzer.Classes.Base_Classes.DataStructures
                 Signature2[Idx, 1] = Idx;
             }
 
-            double ResutatEMD=0.0;
-            
-
-            //ResutatEMD = CvInvoke.EMD(Signature1, Signature2, DistType.L1, null, Ptr.Zero, IntPtr.Zero);
+            double ResutatEMD;
+            ResutatEMD = CvInvoke.EMD(Signature1, Signature2, DistType.L1, null, null, null);
 
             //Emgu.CV.Structure.MCvPoint2D64f
 

@@ -14,6 +14,13 @@ using ImageAnalysis;
 using HCSAnalyzer.Classes.MetaComponents;
 using HCSAnalyzer.Forms.IO;
 using System.Data.OleDb;
+using System.Xml;
+using System.Threading;
+using System.Threading.Tasks;
+using Emgu.CV;
+using Emgu.CV.Structure;
+using Emgu.CV.Features2D;
+
 
 namespace HCSAnalyzer.Classes.ImageAnalysis.FormsForImages
 {
@@ -63,7 +70,7 @@ namespace HCSAnalyzer.Classes.ImageAnalysis.FormsForImages
                         da.Fill(ds);
 
                         DataTable dt = ds.Tables[0];
-                     //   string PlateName = dt.Rows[0]["Name"].ToString();
+                        //   string PlateName = dt.Rows[0]["Name"].ToString();
 
                         string PlateName = TmpPlateName;
 
@@ -81,7 +88,7 @@ namespace HCSAnalyzer.Classes.ImageAnalysis.FormsForImages
                         for (int j = 0; j < FirstListImages.Length; j++)
                         {
                             string TmpImName = FirstListImages[j];
-                           
+
                             string[] ForSplit = TmpImName.Split('\\');
                             string ImageName = ForSplit[ForSplit.Length - 1];
 
@@ -93,11 +100,11 @@ namespace HCSAnalyzer.Classes.ImageAnalysis.FormsForImages
                         {
                             string TmpName = ListTrueFiles[j];
                             string[] ForSplit = TmpName.Split('_');
-                            string WellPos = ForSplit[ForSplit.Length-1].Remove(ForSplit[ForSplit.Length-1].Length-9);
+                            string WellPos = ForSplit[ForSplit.Length - 1].Remove(ForSplit[ForSplit.Length - 1].Length - 9);
                             int NumAssociatedImages = 1;
                             ListTrueFiles.RemoveAt(j--);
 
-                             // now parse the rest of the files to merge the channels
+                            // now parse the rest of the files to merge the channels
                             for (int k = j + 1; k < ListTrueFiles.Count; k++)
                             {
                                 if (ListTrueFiles[k].Contains("_" + WellPos))
@@ -156,7 +163,7 @@ namespace HCSAnalyzer.Classes.ImageAnalysis.FormsForImages
                     {
                         string TmpImName = FirstListImages[j];
                         if (TmpImName.Contains("_thumb")) continue;
-                       
+
 
                         string[] ForSplit = TmpImName.Split('\\');
                         string ImageName = ForSplit[ForSplit.Length - 1];
@@ -204,80 +211,111 @@ namespace HCSAnalyzer.Classes.ImageAnalysis.FormsForImages
             {
                 for (int i = 0; i < PlateDirectories.Length; i++)
                 {
-                    string PlateName = PlateDirectories[i].Remove(0, this.textBoxImageRoot.Text.Length + 1);
+                    string PlateName = PlateDirectories[i].Remove(0, cGlobalInfo.OptionsWindow.textBoxImageAccesImagePath.Text.Length + 1);
                     TreeNode TmpNode = new TreeNode("[Plate " + i.ToString() + "] - " + PlateName);
                     TmpNode.Checked = true;
                     TmpNode.Tag = PlateDirectories[i];
                     // now parse the images...
-                    string[] FirstListImages = Directory.GetFiles(PlateDirectories[i], "*.tif", SearchOption.AllDirectories);
+                    List<string> FirstListImages = Directory.GetFiles(PlateDirectories[i], "*.tif", SearchOption.AllDirectories).ToList();
+                    List<string> Tmpname = Directory.GetFiles(PlateDirectories[i], "*.wpi", SearchOption.AllDirectories).ToList();
+                    string Tmpname2 = Tmpname[0].Remove(Tmpname[0].Count() - 4, 4);
+                    List<string> ListTrueFiles = FirstListImages.FindAll(ele => ele.Contains(Tmpname2));
+
+                    List<string> List_Well = new List<string>();
+
+                    for (int ix = 0; ix < ListTrueFiles.Count; ix++)
+                    {
+                        string WellPos = ListTrueFiles[ix].Substring(Tmpname2.Count() + 1);
+                        WellPos = WellPos.Substring(0, 3);
+                        List_Well.Add(WellPos);
+                    }
+                    List<string> Uniq_Well = List_Well.Distinct().ToList();
 
                     Dictionary<string, int> CurrentPlateDico = new Dictionary<string, int>();
-
-                    List<string> ListTrueFiles = new List<string>();
-
-                    for (int j = 0; j < FirstListImages.Length; j++)
+                    int nbr_img = ListTrueFiles.Count / Uniq_Well.Count();
+                    for (int ix = 0; ix < Uniq_Well.Count; ix++)
                     {
-                        string TmpImName = FirstListImages[j];
-                        if (TmpImName.Contains("_thumb")) continue;
-                        if (TmpImName.Contains("BP")) continue;
-                        if (TmpImName.Contains("CMOS")) continue;
-
-                        string[] ForSplit = TmpImName.Split('\\');
-                        string ImageName = ForSplit[ForSplit.Length - 1];
-
-                        ListTrueFiles.Add(ImageName);
+                        CurrentPlateDico.Add(Uniq_Well[ix], nbr_img);
                     }
 
-                    for (int j = 0; j < ListTrueFiles.Count; j++)
-                    {
-                        string TmpName = ListTrueFiles[j];
-                        string[] ForSplit = TmpName.Split('_');
-                        string WellPos = ForSplit[1];
-                        int NumAssociatedImages = 1;
-                        ListTrueFiles.RemoveAt(j--);
-
-                        // now parse the rest of the files to merge the channels
-                        for (int k = j + 1; k < ListTrueFiles.Count; k++)
-                        {
-                            if (ListTrueFiles[k].Contains("_" + WellPos))
-                            {
-
-                                NumAssociatedImages++;
-                                ListTrueFiles.RemoveAt(k);
-                                k--;
-                            }
-                        }
-
-                        TreeNode WellNode = new TreeNode(WellPos + " : " + NumAssociatedImages + " images");
-                        WellNode.Checked = true;
-                        WellNode.Tag = null;
-                        TmpNode.Nodes.Add(WellNode);
-
-                        CurrentPlateDico.Add(WellPos, NumAssociatedImages);
-
-                    }
-
-                    this.treeViewForScreenInspection.Nodes.Add(TmpNode);
                     MainScreenDico.Add(PlateName, CurrentPlateDico);
                 }
-            }
-            #endregion
+                //    for (int i = 0; i < PlateDirectories.Length; i++)
+                //    {
+                //        string PlateName = PlateDirectories[i].Remove(0, this.textBoxImageRoot.Text.Length + 1);
+                //        TreeNode TmpNode = new TreeNode("[Plate " + i.ToString() + "] - " + PlateName);
+                //        TmpNode.Checked = true;
+                //        TmpNode.Tag = PlateDirectories[i];
+                //        // now parse the images...
+                //        string[] FirstListImages = Directory.GetFiles(PlateDirectories[i], "*.tif", SearchOption.AllDirectories);
 
-            this.richTextBoxReport.Clear();
-            this.richTextBoxReport.AppendText(this.treeViewForScreenInspection.Nodes.Count + " plates.\n");
-            foreach (var item in this.treeViewForScreenInspection.Nodes)
-            {
-                this.richTextBoxReport.AppendText("\n" + item.ToString() + "\n");
-                int IdxWell = 0;
-                foreach (var Subitem in ((TreeNode)item).Nodes)
+                //        Dictionary<string, int> CurrentPlateDico = new Dictionary<string, int>();
+
+                //        List<string> ListTrueFiles = new List<string>();
+
+                //        for (int j = 0; j < FirstListImages.Length; j++)
+                //        {
+                //            string TmpImName = FirstListImages[j];
+                //            if (TmpImName.Contains("_thumb")) continue;
+                //            if (TmpImName.Contains("BP")) continue;
+                //            if (TmpImName.Contains("CMOS")) continue;
+
+                //            string[] ForSplit = TmpImName.Split('\\');
+                //            string ImageName = ForSplit[ForSplit.Length - 1];
+
+                //            ListTrueFiles.Add(ImageName);
+                //        }
+
+                //        for (int j = 0; j < ListTrueFiles.Count; j++)
+                //        {
+                //            string TmpName = ListTrueFiles[j];
+                //            string[] ForSplit = TmpName.Split('_');
+                //            string WellPos = ForSplit[1];
+                //            int NumAssociatedImages = 1;
+                //            ListTrueFiles.RemoveAt(j--);
+
+                //            // now parse the rest of the files to merge the channels
+                //            for (int k = j + 1; k < ListTrueFiles.Count; k++)
+                //            {
+                //                if (ListTrueFiles[k].Contains("_" + WellPos))
+                //                {
+
+                //                    NumAssociatedImages++;
+                //                    ListTrueFiles.RemoveAt(k);
+                //                    k--;
+                //                }
+                //            }
+
+                //            TreeNode WellNode = new TreeNode(WellPos + " : " + NumAssociatedImages + " images");
+                //            WellNode.Checked = true;
+                //            WellNode.Tag = null;
+                //            TmpNode.Nodes.Add(WellNode);
+
+                //            CurrentPlateDico.Add(WellPos, NumAssociatedImages);
+
+                //        }
+
+                //        this.treeViewForScreenInspection.Nodes.Add(TmpNode);
+                //        MainScreenDico.Add(PlateName, CurrentPlateDico);
+                //    }
+                //}
+                #endregion
+
+                this.richTextBoxReport.Clear();
+                this.richTextBoxReport.AppendText(this.treeViewForScreenInspection.Nodes.Count + " plates.\n");
+                foreach (var item in this.treeViewForScreenInspection.Nodes)
                 {
-                    this.richTextBoxReport.AppendText("\t[Well] " + IdxWell++ + " : " + ((TreeNode)Subitem).Text + "\n");
+                    this.richTextBoxReport.AppendText("\n" + item.ToString() + "\n");
+                    int IdxWell = 0;
+                    foreach (var Subitem in ((TreeNode)item).Nodes)
+                    {
+                        this.richTextBoxReport.AppendText("\t[Well] " + IdxWell++ + " : " + ((TreeNode)Subitem).Text + "\n");
 
+                    }
                 }
+
             }
-
         }
-
         private void buttonGenerate_Click(object sender, EventArgs e)
         {
             if (MessageBox.Show("This process will generate a new screening and delete the current one. Are you sure?", "Warning", MessageBoxButtons.OKCancel, MessageBoxIcon.Warning) != System.Windows.Forms.DialogResult.OK)
@@ -386,44 +424,97 @@ namespace HCSAnalyzer.Classes.ImageAnalysis.FormsForImages
             WindowProgress.progressBarPlate.Refresh();
 
             int IdxPlateProg = 0;
-            foreach (cPlate TmpPlate in cGlobalInfo.CurrentScreening.ListPlatesAvailable)
+            Parallel.ForEach(cGlobalInfo.CurrentScreening.ListPlatesAvailable, (TmpPlate) =>
             {
-                WindowProgress.progressBarPlate.Value++;
-                WindowProgress.progressBarPlate.Refresh();
-                WindowProgress.labelPlateIdx.Text = (IdxPlateProg + 1) + " / " + cGlobalInfo.CurrentScreening.ListPlatesAvailable.Count;
+                //WindowProgress.progressBarPlate.Value++;
+                //WindowProgress.progressBarPlate.Refresh();
+                //WindowProgress.labelPlateIdx.Text = (IdxPlateProg + 1) + " / " + cGlobalInfo.CurrentScreening.ListPlatesAvailable.Count;
 
-                WindowProgress.progressBarWell.Value = 0;
-                WindowProgress.progressBarWell.Maximum = TmpPlate.ListWells.Count;
+                //WindowProgress.progressBarWell.Value = 0;
+                //WindowProgress.progressBarWell.Maximum = TmpPlate.ListWells.Count;
+
+                #region modif
+
+                //List<cImageMetaInfo> ListImageMetaInfo = new List<cImageMetaInfo>();
+                //string Pathds = this.textBoxImageRoot.Text;
+
+                //string XMLFile = Pathds+"\\"+ TmpPlate.GetName()+"\\MeasurementDetail.mrf";
+                //int NumberOfChannels = (int)this.numericUpDownChannelNumber.Value;
+                //List<string> ListFiles = Directory.GetFiles(Pathds + "\\" + TmpPlate.GetName(), "*C0*.tif", SearchOption.AllDirectories).ToList();
+                //ListFiles.Sort(); //OrderBy(q=>q).ToList();
+                //if (File.Exists(XMLFile))
+                //{
+                //    XmlDocument xmlDoc = new XmlDocument();
+                //    xmlDoc.Load(XMLFile);
+                //    for (int Channel = 0; Channel < NumberOfChannels; Channel++)
+                //    {
+                //        //string FinalName = ListChannels[Channel];
+
+                //        cImageMetaInfo TmpMetaInfo = new cImageMetaInfo();
+                //        //TmpMetaInfo.FileName = FinalName;
+                //        TmpMetaInfo.Name = xmlDoc.ChildNodes[1].ChildNodes[1].Attributes["bts:Ch"].Value;//ListChannelNames[Channel];
+                //        TmpMetaInfo.ResolutionX = double.Parse(xmlDoc.ChildNodes[1].ChildNodes[1].Attributes["bts:HorizontalPixelDimension"].Value);//1;
+                //        TmpMetaInfo.ResolutionY = double.Parse(xmlDoc.ChildNodes[1].ChildNodes[1].Attributes["bts:VerticalPixelDimension"].Value);//1;
+                //        TmpMetaInfo.ResolutionZ = 1;
+                //        ListImageMetaInfo.Add(TmpMetaInfo);
+                //    }
+                //}
+                //else
+                //{
+                //    for (int Channel = 0; Channel < NumberOfChannels; Channel++)
+                //    {
+                //        //string FinalName = ListChannels[Channel];
+
+                //        cImageMetaInfo TmpMetaInfo = new cImageMetaInfo();
+                //        //TmpMetaInfo.FileName = FinalName;
+                //       // TmpMetaInfo.Name = ListChannelNames[Channel];
+                //        TmpMetaInfo.ResolutionX = 1;
+                //        TmpMetaInfo.ResolutionY = 1;
+                //        TmpMetaInfo.ResolutionZ = 1;
+                //        ListImageMetaInfo.Add(TmpMetaInfo);
+                //    }
+
+
+                //}
+
+                #endregion
+
+
 
                 int IdxWell = 0;
-                foreach (cWell TmpWell in TmpPlate.ListWells)
+                Parallel.ForEach(TmpPlate.ListWells, (TmpWell) =>
                 {
-                    WindowProgress.labelWellIdx.Text = (IdxWell + 1) + " / " + TmpPlate.ListWells.Count;
-                    WindowProgress.progressBarWell.Value = IdxWell + 1;
-                    WindowProgress.progressBarWell.Refresh();
-                    WindowProgress.Refresh();
+                    //WindowProgress.labelWellIdx.Text = (IdxWell + 1) + " / " + TmpPlate.ListWells.Count;
+                    //WindowProgress.progressBarWell.Value = IdxWell + 1;
+                    //WindowProgress.progressBarWell.Refresh();
+                    //WindowProgress.Refresh();
 
 
                     int NumberOfFieldProcessed = 0;
                     double AverageValue = 0;
 
-                    for (int IdxField = 0; IdxField < this.numericUpDownFieldNumber.Value; IdxField++)
+                    //Parallel.For(0, (int)this.numericUpDownFieldNumber.Value, IdxField =>
+                    for(int IdxField=0;IdxField< this.numericUpDownFieldNumber.Value;IdxField++ )
                     {
+                        //var watch = Stopwatch.StartNew();
                         cGetImageFromWells IFW = new cGetImageFromWells();
                         IFW.SetInputData(new cListWells(TmpWell));
                         IFW.ListProperties.FindByName("Field").SetNewValue(IdxField);
                         IFW.Run();
 
                         cImage TmpImage = IFW.GetOutPut();
-
+                        //watch.Stop();
+                        //cGlobalInfo.WindowHCSAnalyzer.richTextBoxConsole.AppendText("IFW = "+watch.ElapsedMilliseconds + "\n");
                         if ((TmpImage == null) || (TmpImage.GetNumChannels() == 0))
                         {
-                            cGlobalInfo.WindowHCSAnalyzer.richTextBoxConsole.AppendText("Error while loading [Plate] " + TmpPlate.GetName() + " [Well] " + TmpWell.GetPos() + " [Field] " + IdxField + "\n");
-                            continue;
+                            //cGlobalInfo.WindowHCSAnalyzer.richTextBoxConsole.AppendText("Error while loading [Plate] " + TmpPlate.GetName() + " [Well] " + TmpWell.GetPos() + " [Field] " + IdxField + "\n");
+                            //continue;
                         }
                         else
                         {
-                            AverageValue = 25; //TmpImage.SingleChannelImage[0].Data.Sum();
+                            AverageValue = TmpImage.SingleChannelImage[0].Data.Max() * TmpImage.SingleChannelImage[0].Data.Min();
+                            Image<Gray, float> ImageToBeReturned = TmpImage.SingleChannelImage[0].ConvertToCVImage(0);
+                            Image<Gray, float> Results = ImageToBeReturned.SmoothGaussian(4);
                         }
 
                         IFW.GetOutPut().Dispose();
@@ -445,11 +536,11 @@ namespace HCSAnalyzer.Classes.ImageAnalysis.FormsForImages
 
 
                     IdxWell++;
-                }
+                });
 
                 IdxPlateProg++;
 
-            }
+            });
 
             WindowProgress.Dispose();
 

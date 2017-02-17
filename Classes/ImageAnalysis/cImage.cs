@@ -23,6 +23,7 @@ using System.Net;
 using HCSAnalyzer.Classes.ImageAnalysis.FormsForImages;
 using HCSAnalyzer.Classes.General_Types;
 using System.Threading;
+using System.Diagnostics;
 
 namespace ImageAnalysis
 {
@@ -595,7 +596,7 @@ namespace ImageAnalysis
         {
             if (ListImageMetaInfo == null) return;
             int ChannelStart = 0;
-
+           
             for (int IdxName = 0; IdxName < ListImageMetaInfo.Count; IdxName++)
             {
                 string CurrentName = ListImageMetaInfo[IdxName].FileName;
@@ -757,54 +758,58 @@ namespace ImageAnalysis
                     #endregion
                     #region tif - FreeImage
                     case "tif":
-                        if (!FreeImage.IsAvailable())
-                        {
-                            Console.WriteLine("FreeImage.dll seems to be missing. Aborting.");
-                            return;
-                        }                  
 
-                        Image<Gray, float> myImage = new Image<Gray, float>(@CurrentName);   
-                          
+
+                        //Image<Gray, Single> myImage = new Image<Gray, Single>(@CurrentName);
+                        //var watch = Stopwatch.StartNew();
+
                         int PageCount = 1;
                         this.Depth = PageCount;
                         NumChannels = 1;
-                       
+                        
+                        Mat myImage = new Mat(CurrentName, Emgu.CV.CvEnum.LoadImageType.AnyDepth);
+                        //watch.Stop();
+                        //cGlobalInfo.WindowHCSAnalyzer.richTextBoxConsole.AppendText("Opencv = " + watch.ElapsedMilliseconds + "\n");
+
                         for (int IDxPlane = 0; IDxPlane < PageCount; IDxPlane++)
                         {
-                           
+                            
                             if (IDxPlane == 0)
                             {
                                 this.Width = myImage.Width;
-                                this.Height = myImage.Height; 
-                                this.Resolution.X = 1; 
-                                this.Resolution.Y = 1; 
-                                NumBitsPerPixel = 16; 
-                               
+                                this.Height = myImage.Height;
+                                this.Resolution.X = 1;
+                                this.Resolution.Y = 1;
+                                NumBitsPerPixel = 16;
+
                                 for (int IdxChannel = 0; IdxChannel < NumChannels; IdxChannel++)
                                 {
-                                    cSingleChannelImage TmpChannelImage = new cSingleChannelImage(this.Width, this.Height, this.Depth, new cPoint3D(1, 1, 1));                                 
+                                    cSingleChannelImage TmpChannelImage = new cSingleChannelImage(this.Width, this.Height, this.Depth, new cPoint3D(1, 1, 1));
                                     if (ListImageMetaInfo[IdxName].Name != "") TmpChannelImage.Name = ListImageMetaInfo[IdxName].Name;
                                     if (ListImageMetaInfo[IdxChannel].ResolutionX != -1) this.Resolution.X = ListImageMetaInfo[IdxChannel].ResolutionX;
                                     if (ListImageMetaInfo[IdxChannel].ResolutionY != -1) this.Resolution.Y = ListImageMetaInfo[IdxChannel].ResolutionY;
-                                    if (ListImageMetaInfo[IdxChannel].ResolutionZ != -1) this.Resolution.Z = ListImageMetaInfo[IdxChannel].ResolutionZ;                 
+                                    if (ListImageMetaInfo[IdxChannel].ResolutionZ != -1) this.Resolution.Z = ListImageMetaInfo[IdxChannel].ResolutionZ;
+                                    Image<Gray, float> myImage2 = myImage.ToImage<Gray, float>();
+                                    //var watch2 = Stopwatch.StartNew();
                                     
-                                    TmpChannelImage.SetNewDataFromOpenCV(myImage);
-                                   
+                                    TmpChannelImage.SetNewDataFromOpenCV(myImage2);
+                                    //watch2.Stop();
+                                    //cGlobalInfo.WindowHCSAnalyzer.richTextBoxConsole.AppendText("Convert = " + watch2.ElapsedMilliseconds + "\n");
                                     this.SingleChannelImage.Add(TmpChannelImage);
                                 }
                             }
+                           
+                            
 
-                      
                         }
-                        
+
                         this.Name = CurrentName;
                         this.SliceSize = this.Width * this.Height;
                         this.ImageSize = SliceSize * Depth;
 
-                        goto NEXTLOOP;                      
+                        //goto NEXTLOOP;                      
 
-
-
+                       
                         break;
                        
                 }

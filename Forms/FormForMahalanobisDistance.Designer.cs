@@ -128,7 +128,7 @@
             // 
             // numericUpDownPValue
             // 
-            this.numericUpDownPValue.DecimalPlaces = 4;
+            this.numericUpDownPValue.DecimalPlaces = 9;
             this.numericUpDownPValue.Increment = new decimal(new int[] {
             1,
             0,
@@ -144,7 +144,7 @@
             1,
             0,
             0,
-            262144});
+            524288});
             this.numericUpDownPValue.Name = "numericUpDownPValue";
             this.numericUpDownPValue.Size = new System.Drawing.Size(80, 20);
             this.numericUpDownPValue.TabIndex = 7;

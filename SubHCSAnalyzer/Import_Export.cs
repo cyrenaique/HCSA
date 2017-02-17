@@ -590,7 +590,7 @@ namespace HCSAnalyzer
                 CSVsr.Close();
                 return null;
             }
-
+            //Names.Sort();
             int NumPreview = (int)InfoForFileImporter.numericUpDownPreviewSize.Value;
             List<CsvRow> LCSVRow = new List<CsvRow>();
             for (int Idx = 0; Idx < NumPreview; Idx++)
@@ -604,7 +604,7 @@ namespace HCSAnalyzer
                 }
                 LCSVRow.Add(TNames);
             }
-
+            //LCSVRow.Sort();
             // FromExcel.dataGridViewForImport.RowsDefaultCellStyle.BackColor = Color.Bisque;
             FromExcel.dataGridViewForImport.AlternatingRowsDefaultCellStyle.BackColor = Color.Beige;
 
@@ -651,28 +651,44 @@ namespace HCSAnalyzer
                 else if ((i == 2) && ((FromExcel.ModeWell == 1) || (FromExcel.ModeWell == 3))) FromExcel.dataGridViewForImport.Rows[i].Cells[IdxRow++].Value = true;
                 else FromExcel.dataGridViewForImport.Rows[i].Cells[IdxRow++].Value = false;
 
-                if (i == 0)
+                if (Names[i].Contains("Plate"))
                 {
                     FromExcel.dataGridViewForImport.Rows[i].Cells[IdxRow++].Value = "Plate name";
                 }
-                else if (i == 1)
+                else if (Names[i].Contains("Well") & !Names[i].Contains("Class") )
                 {
-                    if ((FromExcel.ModeWell == 1) || (FromExcel.ModeWell == 3))
-                        FromExcel.dataGridViewForImport.Rows[i].Cells[IdxRow++].Value = "Column";
-                    else
-                        FromExcel.dataGridViewForImport.Rows[i].Cells[IdxRow++].Value = "Well position";
+                    FromExcel.dataGridViewForImport.Rows[i].Cells[IdxRow++].Value = "Well position";
                 }
-                else if (i == 2)
+                else if (Names[i].Contains("Class"))
                 {
-                    if ((FromExcel.ModeWell == 1) || (FromExcel.ModeWell == 3))
-                        FromExcel.dataGridViewForImport.Rows[i].Cells[IdxRow++].Value = "Row";
-                    else
-                        FromExcel.dataGridViewForImport.Rows[i].Cells[IdxRow++].Value = "Descriptor";
+                    FromExcel.dataGridViewForImport.Rows[i].Cells[IdxRow++].Value = "Class";
                 }
                 else
                 {
                     FromExcel.dataGridViewForImport.Rows[i].Cells[IdxRow++].Value = "Descriptor";
                 }
+                //if (i == 0)
+                //{
+                //    FromExcel.dataGridViewForImport.Rows[i].Cells[IdxRow++].Value = "Plate name";
+                //}
+                //else if (i == 1)
+                //{
+                //    if ((FromExcel.ModeWell == 1) || (FromExcel.ModeWell == 3))
+                //        FromExcel.dataGridViewForImport.Rows[i].Cells[IdxRow++].Value = "Column";
+                //    else
+                //        FromExcel.dataGridViewForImport.Rows[i].Cells[IdxRow++].Value = "Well position";
+                //}
+                //else if (i == 2)
+                //{
+                //    if ((FromExcel.ModeWell == 1) || (FromExcel.ModeWell == 3))
+                //        FromExcel.dataGridViewForImport.Rows[i].Cells[IdxRow++].Value = "Row";
+                //    else
+                //        FromExcel.dataGridViewForImport.Rows[i].Cells[IdxRow++].Value = "Descriptor";
+                //}
+                //else
+                //{
+                //    FromExcel.dataGridViewForImport.Rows[i].Cells[IdxRow++].Value = "Descriptor";
+                //}
 
                 for (int j = 0; j < LCSVRow.Count; j++)
                 {
@@ -717,6 +733,7 @@ namespace HCSAnalyzer
                 return;
             }
 
+            //OriginalNames.Sort();
             int ColSelectedForName = GetColIdxFor("name", FromExcel);
             int ColLocusID = GetColIdxFor("Locus ID", FromExcel);
             int ColConcentration = GetColIdxFor("Concentration", FromExcel);
@@ -747,7 +764,7 @@ namespace HCSAnalyzer
                 CSVsr = new CsvFileReader(CurrentFileName);
                 CSVsr.Separator = FromExcel.Separator;
                 CsvRow Names = new CsvRow();
-
+               // 
                 for (int i = 0; i < FromExcel.HeaderSize; i++)
                 {
                     CsvRow TNames = new CsvRow();
@@ -768,12 +785,14 @@ namespace HCSAnalyzer
                     cGlobalInfo.ConsoleWriteLine(CurrentFileName + ": Header inconsistent.");
                     goto NEXTFILE;
                 }
+                
                 for (int IdxName = 0; IdxName < Names.Count; IdxName++)
                 {
 
                     if (Names[IdxName] != OriginalNames[IdxName])
                     {
                         CSVsr.Close();
+                        //Names.Sort();
                         cGlobalInfo.ConsoleWriteLine(CurrentFileName + ": Header inconsistent.");
                         goto NEXTFILE;
                     }

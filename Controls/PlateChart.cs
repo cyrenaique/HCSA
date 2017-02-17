@@ -11,6 +11,8 @@ namespace HCSAnalyzer
         public PlateChart()
         {
             SetStyle(System.Windows.Forms.ControlStyles.OptimizedDoubleBuffer, true);
+            SetStyle(System.Windows.Forms.ControlStyles.AllPaintingInWmPaint, true);
+            SetStyle(System.Windows.Forms.ControlStyles.UserPaint, true);
         }
     }
 }

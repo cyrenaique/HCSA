@@ -630,13 +630,13 @@ namespace HCSAnalyzer.Classes.General_Types
                 string ListDir2 = "";
                 try
                 {
-                    //ListDir.Add(Directory.GetDirectories(InitialPath+"\\"+WellObject.GetShortInfo().Split('[')[1].Split(']')[0])[0]);
-                    //for (int item=0; item<ListDir.Count;item++)
+                    //ListDir.Add(Directory.GetDirectories(InitialPath + "\\" + WellObject.GetShortInfo().Split('[')[1].Split(']')[0])[0]);
+                    //for (int item = 0; item < ListDir.Count; item++)
                     //{
 
-                    //    ListDir2.Add(Directory.GetDirectories(ListDir[item]).ToList());
+                    //    ListDir.Add(Directory.GetDirectories(ListDir[item]).ToList());
                     //}
-                    ListDir2 = InitialPath + "\\" + WellObject.GetShortInfo().Split('[')[1].Split(']')[0];
+                    ListDir2 = InitialPath; //+ "\\" + WellObject.GetShortInfo().Split('[')[1].Split(']')[0];
 
                 }
                 catch (Exception e)
@@ -661,9 +661,9 @@ namespace HCSAnalyzer.Classes.General_Types
                 string Pos = WellObject.GetPos();
 
                 List<cImageMetaInfo> ListImageMetaInfo = new List<cImageMetaInfo>();
-                
-                
-                string FinalPos = "*_" +Pos + "_T0001F" +  (this.Field + 1).ToString("D3")+ "L01A";
+
+                string Platef = WellObject.AssociatedPlate.GetName();
+                string FinalPos = Platef+"*_" +Pos + "_T0001F" +  (this.Field + 1).ToString("D3")+ "L01A";
 
                 // find the channels Names
                 string Prefix = FinalPos;
@@ -671,7 +671,8 @@ namespace HCSAnalyzer.Classes.General_Types
 
                 Name += "*Z01C*.tif";
                 //string NewDir2 = NewDir + "\\DMD plate 5\\";
-                string[] ListChannels = Directory.GetFiles(NewDir2, Name, SearchOption.AllDirectories);
+                List<string> ListChannels = Directory.GetFiles(NewDir2, Name, SearchOption.AllDirectories).ToList();
+                ListChannels.Sort(); //OrderBy(q=>q).ToList();
                 //  if(NumberOfChannels>ListChannels.Count()) NumberOfChannels = ListChannels.Count();
                 NumberOfChannels = ListChannels.Count();
 

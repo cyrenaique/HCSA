@@ -17,12 +17,14 @@ using HCSAnalyzer.Classes._3D;
 using IM3_Plugin3;
 using HCSAnalyzer.Classes.Base_Classes.Viewers._3D.ComplexObjects;
 using HCSAnalyzer.Classes;
+using System.Threading;
+using System.Threading.Tasks;
 
 namespace ImageAnalysis
 {
     public partial class cSingleChannelImage : IDisposable
     {
-        public float[] Data;
+        public float[] Data;       
         public int Width { get; private set; }
         public int Height { get; private set; }
         public int Depth { get; private set; }
@@ -170,22 +172,43 @@ namespace ImageAnalysis
         {
             if (CVImage.Width * CVImage.Height != this.Data.Length) return false;
 
-            for (int j = 0; j < CVImage.Height; j++)
-                for (int i = 0; i < CVImage.Width; i++)
-                    this.Data[i + j * this.Width] = CVImage.Data[j, i, 0];
+            unsafe
+            {
+                MIplImage ss = CVImage.MIplImage;
+
+                Parallel.For(0, ss.Height, j =>
+                {
+                    IntPtr ptr = ss.ImageData + j * ss.WidthStep;
+                    for (int i = 0; i < ss.Width; i++)
+                    {
+                        this.Data[i + j * this.Width] = ((float*)(ptr))[i];
+                    }
+                });
+
+
+
+            }
+
+
             return true;
         }
 
+    
         public bool SetNewDataFromOpenCV(Image<Gray, byte> CVImage)
         {
             if (CVImage.Width * CVImage.Height != this.Data.Length) return false;
 
+            //for (int j = 0; j < CVImage.Height; j++)
+            //    for (int i = 0; i < CVImage.Width; i++)
+            //        this.Data[i + j * this.Width] = CVImage.Data[j, i, 0];
+            // byte[,,] data = CVImage.Data;
+
             for (int j = 0; j < CVImage.Height; j++)
                 for (int i = 0; i < CVImage.Width; i++)
                     this.Data[i + j * this.Width] = CVImage.Data[j, i, 0];
             return true;
         }
-        public bool SetNewDataFromOpenCV(Image<Gray, Int16> CVImage)
+        public bool SetNewDataFromOpenCV(Image<Gray, UInt16> CVImage)
         {
             if (CVImage.Width * CVImage.Height != this.Data.Length) return false;
 
@@ -263,15 +286,15 @@ namespace ImageAnalysis
             //cListGeometric3DObject TmpListMesh = new cListGeometric3DObject();
             //c3DObjectMeshFromImage MyMesh = new c3DObjectMeshFromImage();
             //MyMesh.SetInputData(this);
-            
+
             //MyMesh.ListProperties.FindByName("Thresold").SetNewValue((double)150.0);
             //MyMesh.ListProperties.FindByName("Thresold").PropertyType.Max = (double)this.Max;
             //MyMesh.ListProperties.FindByName("Thresold").IsGUIforValue = true;
             //MyMesh.Run(MyWorld);
-            
+
 
             //GlobalList.Add(MyMesh.GetOutPut());
-         
+
 
 
 
@@ -296,7 +319,7 @@ namespace ImageAnalysis
             }
             UserControlSingleLUT SingleLUT = (UserControlSingleLUT)this.CurrentAssociatedImageViewer.LUTManager.panelForLUTS.Controls[CurrentIdx];
 
-            
+
             HCSAnalyzer.Classes.ImageAnalysis._3D_Engine.cVolumeRendering3D VRD3D = new HCSAnalyzer.Classes.ImageAnalysis._3D_Engine.cVolumeRendering3D(this, new cPoint3D(0, 0, 0), SingleLUT.SelectedLUT, MyWorld);
             VRD3D.AssociatedImage = this;
             MyWorld.AddVolume3D(VRD3D);
@@ -306,13 +329,13 @@ namespace ImageAnalysis
             V3D.Run();
 
             cDisplayToWindow DTW = new cDisplayToWindow();
-            V3D.GetOutPut().Name = "3D Volume ["+  this.Name+ "]"; 
-            DTW.SetInputData(V3D.GetOutPut()); 
-            DTW.Title = "3D Volume [" + this.Name + "]"; 
+            V3D.GetOutPut().Name = "3D Volume [" + this.Name + "]";
+            DTW.SetInputData(V3D.GetOutPut());
+            DTW.Title = "3D Volume [" + this.Name + "]";
             DTW.Run();
 
 
-            
+
 
 
             DTW.Display();
@@ -365,7 +388,7 @@ namespace ImageAnalysis
 
         private void ToolStripMenuItem_ExtractChannel(object sender, EventArgs e)
         {
-            cImage ExtractedImage = new cImage(this,true);
+            cImage ExtractedImage = new cImage(this, true);
 
             cDisplaySingleImage IV = new cDisplaySingleImage();
             IV.SetInputData(ExtractedImage);

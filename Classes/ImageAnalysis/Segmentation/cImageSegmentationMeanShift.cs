@@ -46,7 +46,7 @@ namespace ImageAnalysisFiltering
 
                     Image<Emgu.CV.Structure.Rgb, byte> ProcessedImage = new Image<Rgb, byte>(inputImage.Width, inputImage.Height);
 
-                    Emgu.CV.CvInvoke.cvPyrMeanShiftFiltering(inputImage, ProcessedImage, SpatialRadius, 9, 1, new MCvTermCriteria(5, 1));
+                    Emgu.CV.CvInvoke.PyrMeanShiftFiltering(inputImage, ProcessedImage, SpatialRadius, 9, 1, new MCvTermCriteria(5, 1));
 
                     for (int j = 0; j < Input.Height; j++)
                         for (int i = 0; i < Input.Width; i++)

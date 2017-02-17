@@ -40,29 +40,29 @@ namespace ImageAnalysisFiltering
                          for (int i = 0; i < Input.Width; i++)
                              inputImage.Data[j, i, 0] = (byte)Input.SingleChannelImage[CurrentChannel].Data[i + j * Input.Width];
 
-                //MCvConnectedComp CCFromMeanShift = new MCvConnectedComp();
+                     //MCvConnectedComp CCFromMeanShift = new MCvConnectedComp();
 
-                //Image<Gray, float> smoothedImage = new Image<Gray, float>(inputImage.Width, inputImage.Height);
+                     //Image<Gray, float> smoothedImage = new Image<Gray, float>(inputImage.Width, inputImage.Height);
 
-                VectorOfVectorOfPoint contour1 = new VectorOfVectorOfPoint();
-                //IntPtr storage = CvInvoke.CreateMemStorage(0);
-                Mat hierachy = new Mat();
+                     //TODO: Fix the code below with EMGU 3.0
 
-                Emgu.CV.CvInvoke.FindContours(inputImage, contour1,
-                         hierachy, Emgu.CV.CvEnum.RetrType.Ccomp, Emgu.CV.CvEnum.ChainApproxMethod.ChainApproxSimple, 
-                         new Point(0, 0));
+                     //IntPtr contour1 = new IntPtr();
 
-                     Seq<Point> contour = new Seq<Point>(contour1, null);
+                     //IntPtr storage = CvInvoke.cvCreateMemStorage(0);
+
+                     //Emgu.CV.CvInvoke.FindContours(inputImage, storage, ref contour1, StructSize.MCvContour, Emgu.CV.CvEnum.RetrType.Ccomp, Emgu.CV.CvEnum.ChainApproxMethod.ChainApproxSimple, new Point(0, 0));
+
+                     //seq<Point> contour = new seq<Point>(contour1, null);
 
 
-                     //this.Output = new cImage(this.Input);
+                     ////this.Output = new cImage(this.Input);
 
-                     int IdxContour = 0;
-                     for (; contour != null && contour.Ptr.ToInt32() != 0; contour = contour.HNext)
-                     {
-                         Rectangle TmpBB = contour.BoundingRectangle;
-                         this.Output.SingleChannelImage[IdxChannel].DrawRectange(TmpBB, IdxContour++);
-                     }
+                     //int IdxContour = 0;
+                     //for (; contour != null && contour.Ptr.ToInt32() != 0; contour = contour.HNext)
+                     //{
+                     //    Rectangle TmpBB = contour.BoundingRectangle;
+                     //    this.Output.SingleChannelImage[IdxChannel].DrawRectange(TmpBB, IdxContour++);
+                     //}
 
                  }
             //this.output = new cImage(smoothedImage);

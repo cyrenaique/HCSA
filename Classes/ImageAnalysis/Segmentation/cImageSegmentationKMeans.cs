@@ -87,10 +87,10 @@ namespace ImageAnalysisFiltering
                 }
 
                 MCvTermCriteria term = new MCvTermCriteria(MaxIterations, Eps);
-                term.type = TERMCRIT.CV_TERMCRIT_ITER | TERMCRIT.CV_TERMCRIT_EPS;
+                term.Type = TermCritType.Iter | TermCritType.Eps;
 
                 Matrix<Single> centers = new Matrix<Single>(ClusterCount, Input.Width * Input.Height);
-                CvInvoke.cvKMeans2(samples, ClusterCount, finalClusters, term, Attempts, IntPtr.Zero, 0, IntPtr.Zero, IntPtr.Zero);
+                CvInvoke.Kmeans(samples, ClusterCount, finalClusters, term, Attempts,0, null);
 
                 for (int j = 0; j < Input.Height; j++)
                     for (int i = 0; i < Input.Width; i++)

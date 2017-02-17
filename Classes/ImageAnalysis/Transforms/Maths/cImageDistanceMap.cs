@@ -40,7 +40,9 @@ namespace ImageAnalysisFiltering
 
                 Emgu.CV.Image<Gray, byte> gray = inputImage.Convert<Gray, byte>();//convert to grayscale
                 IntPtr dsti = Emgu.CV.CvInvoke.cvCreateImage(Emgu.CV.CvInvoke.cvGetSize(gray), Emgu.CV.CvEnum.IplDepth.IplDepth32F, 1);
-                Emgu.CV.CvInvoke.DistanceTransform(gray, ProcessedImage,null, DistanceType, MaskSize);
+                //TODO: Has to be checked!!!!
+
+                Emgu.CV.CvInvoke.DistanceTransform(gray, ProcessedImage,null, DistanceType, MaskSize, DistLabelType.CComp);
 
                 this.Output.SingleChannelImage[IdxChannel].SetNewDataFromOpenCV(ProcessedImage);
             }

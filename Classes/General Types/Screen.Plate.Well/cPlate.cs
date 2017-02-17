@@ -1004,12 +1004,13 @@ namespace LibPlateAnalysis
                     }
                     else
                     {
-
+                       
+                       
                         for (int j = 0; j < ParentScreening.Rows; j++)
                             for (int i = 0; i < ParentScreening.Columns; i++)
                             {
                                 cWell TempWell = GetWell(i, j, false);
-                                if (TempWell == null) continue;
+                                if (TempWell == null) continue;                               
                                 LChart.Add(TempWell.BuildChart(IdxDescriptor, MinMax));
                             }
                     }
@@ -1017,7 +1018,13 @@ namespace LibPlateAnalysis
                 //System.Threading.Thread thread = new System.Threading.Thread(new System.Threading.ThreadStart(delegate()    {  ParentScreening.PanelForPlate.BeginInvoke(new Action(delegate() {            })); }));
                 //thread.Start();
                 if (cGlobalInfo.ViewMode != eViewMode.IMAGE)
-                    cGlobalInfo.panelForPlate.Controls.AddRange(LChart.ToArray());
+                {
+                   
+                        cGlobalInfo.panelForPlate.Controls.AddRange(LChart.ToArray());
+                   
+                    
+                }
+                    
 
                 //cGlobalInfo.panelForPlate.HorizontalScroll.Value = PosScrollX;
                 //cGlobalInfo.panelForPlate.VerticalScroll.Value = PosScrollY;

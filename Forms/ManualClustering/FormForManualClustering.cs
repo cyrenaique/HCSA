@@ -159,7 +159,7 @@ namespace HCSAnalyzer.Forms
                         }
                         else if (this.ListFormForPanelFilterDescHits[IDxPanel].comboBoxComparison.Text == "<")
                         {
-                            if (Value > ValueTobeComparedTo) IsHit = true;
+                            if (Value < ValueTobeComparedTo) IsHit = true;
                             else
                             {
                                 IsHit = false;
