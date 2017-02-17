@@ -30,7 +30,7 @@ namespace HCSAnalyzer
         {
             try
             {
-                using (FileStream fs = new FileStream(file, FileMode.OpenOrCreate))
+                using (FileStream fs = new FileStream(file, FileMode.Open,FileAccess.Read))
                 {
                     //fs.CanWrite;
                 }

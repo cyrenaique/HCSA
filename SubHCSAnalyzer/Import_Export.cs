@@ -590,7 +590,7 @@ namespace HCSAnalyzer
                 CSVsr.Close();
                 return null;
             }
-
+            //Names.Sort();
             int NumPreview = (int)InfoForFileImporter.numericUpDownPreviewSize.Value;
             List<CsvRow> LCSVRow = new List<CsvRow>();
             for (int Idx = 0; Idx < NumPreview; Idx++)
@@ -604,7 +604,7 @@ namespace HCSAnalyzer
                 }
                 LCSVRow.Add(TNames);
             }
-
+            //LCSVRow.Sort();
             // FromExcel.dataGridViewForImport.RowsDefaultCellStyle.BackColor = Color.Bisque;
             FromExcel.dataGridViewForImport.AlternatingRowsDefaultCellStyle.BackColor = Color.Beige;
 
@@ -733,6 +733,7 @@ namespace HCSAnalyzer
                 return;
             }
 
+            //OriginalNames.Sort();
             int ColSelectedForName = GetColIdxFor("name", FromExcel);
             int ColLocusID = GetColIdxFor("Locus ID", FromExcel);
             int ColConcentration = GetColIdxFor("Concentration", FromExcel);
@@ -763,7 +764,7 @@ namespace HCSAnalyzer
                 CSVsr = new CsvFileReader(CurrentFileName);
                 CSVsr.Separator = FromExcel.Separator;
                 CsvRow Names = new CsvRow();
-
+               // 
                 for (int i = 0; i < FromExcel.HeaderSize; i++)
                 {
                     CsvRow TNames = new CsvRow();
@@ -784,12 +785,14 @@ namespace HCSAnalyzer
                     cGlobalInfo.ConsoleWriteLine(CurrentFileName + ": Header inconsistent.");
                     goto NEXTFILE;
                 }
+                
                 for (int IdxName = 0; IdxName < Names.Count; IdxName++)
                 {
 
                     if (Names[IdxName] != OriginalNames[IdxName])
                     {
                         CSVsr.Close();
+                        //Names.Sort();
                         cGlobalInfo.ConsoleWriteLine(CurrentFileName + ": Header inconsistent.");
                         goto NEXTFILE;
                     }
