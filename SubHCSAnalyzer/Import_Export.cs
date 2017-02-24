@@ -983,10 +983,10 @@ namespace HCSAnalyzer
 
                     if (ColClass != -1)
                     {
-                        int CurrentValue;
-                        if (!int.TryParse(CurrentDesc[ColClass], out CurrentValue))
+                        float CurrentValue;
+                        if (!float.TryParse(CurrentDesc[ColClass], out CurrentValue))
                             goto NEXTLOOP;
-                        CurrentWell.SetClass(CurrentValue);
+                        CurrentWell.SetClass((int)CurrentValue);
                     }
 
                 NEXTLOOP: ;
@@ -1506,14 +1506,14 @@ namespace HCSAnalyzer
 
             int RowIdx = 0;
             FormToSave.dataGridView.Rows.Add();
-            FormToSave.dataGridView.Rows[RowIdx].Cells[0].Value = "Plate Name";
+            FormToSave.dataGridView.Rows[RowIdx].Cells[0].Value = "Plate";
             FormToSave.dataGridView.Rows[RowIdx].Cells[1].Value = true;
             FormToSave.dataGridView.Rows[RowIdx++].DefaultCellStyle = style;
 
             if (Mode == 1)
             {
                 FormToSave.dataGridView.Rows.Add();
-                FormToSave.dataGridView.Rows[RowIdx].Cells[0].Value = "Well Position";
+                FormToSave.dataGridView.Rows[RowIdx].Cells[0].Value = "Well";
                 FormToSave.dataGridView.Rows[RowIdx].Cells[1].Value = true;
                 FormToSave.dataGridView.Rows[RowIdx++].DefaultCellStyle = style;
             }

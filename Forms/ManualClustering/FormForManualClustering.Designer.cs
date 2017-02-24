@@ -171,7 +171,7 @@
             this.tabPageWellClasses.Padding = new System.Windows.Forms.Padding(3);
             this.tabPageWellClasses.Size = new System.Drawing.Size(570, 287);
             this.tabPageWellClasses.TabIndex = 1;
-            this.tabPageWellClasses.Text = "Well Classes";
+            this.tabPageWellClasses.Text = "Classes";
             this.tabPageWellClasses.UseVisualStyleBackColor = true;
             // 
             // TabPagePlates

@@ -15,7 +15,7 @@ namespace HCSAnalyzer.Forms.FormsForOptions.ClassForOptions
         {
             this.Add(new cOption3D("3D"));
             this.Add(new cOptionDisplayPlatesandWells("Plates and Wells"));
-            this.Add(new cOptionWellClassesColor("Well Classes", GlobalInfo));
+            this.Add(new cOptionWellClassesColor("Classes", GlobalInfo));
             this.Add(new cOptionCellularPhenotypesColor("Cellular Phenotypes", GlobalInfo));
         }
 
