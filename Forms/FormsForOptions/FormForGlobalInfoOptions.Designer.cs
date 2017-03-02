@@ -31,7 +31,7 @@
             this.components = new System.ComponentModel.Container();
             System.Windows.Forms.TreeNode treeNode1 = new System.Windows.Forms.TreeNode("Plates and Wells");
             System.Windows.Forms.TreeNode treeNode2 = new System.Windows.Forms.TreeNode("Cellular Phenotypes");
-            System.Windows.Forms.TreeNode treeNode3 = new System.Windows.Forms.TreeNode("Well Classes");
+            System.Windows.Forms.TreeNode treeNode3 = new System.Windows.Forms.TreeNode("Classes");
             System.Windows.Forms.TreeNode treeNode4 = new System.Windows.Forms.TreeNode("Colors", new System.Windows.Forms.TreeNode[] {
             treeNode2,
             treeNode3});
@@ -86,8 +86,8 @@
             treeNode2.Tag = "Cellular Phenotypes";
             treeNode2.Text = "Cellular Phenotypes";
             treeNode3.Name = "Node2";
-            treeNode3.Tag = "Well Classes";
-            treeNode3.Text = "Well Classes";
+            treeNode3.Tag = "Classes";
+            treeNode3.Text = "Classes";
             treeNode4.Name = "Node0";
             treeNode4.Text = "Colors";
             treeNode5.Name = "Node0";

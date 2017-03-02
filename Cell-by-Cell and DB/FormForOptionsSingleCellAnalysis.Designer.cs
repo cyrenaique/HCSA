@@ -80,7 +80,7 @@
             this.radioButtonInitPhenoClassWell.Size = new System.Drawing.Size(74, 17);
             this.radioButtonInitPhenoClassWell.TabIndex = 1;
             this.radioButtonInitPhenoClassWell.TabStop = true;
-            this.radioButtonInitPhenoClassWell.Text = "Well Class";
+            this.radioButtonInitPhenoClassWell.Text = "Class";
             this.radioButtonInitPhenoClassWell.UseVisualStyleBackColor = true;
             // 
             // radioButtonInitPhenoClassDB

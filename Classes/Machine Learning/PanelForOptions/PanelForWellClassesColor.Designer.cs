@@ -51,7 +51,7 @@
             this.groupBox28.Size = new System.Drawing.Size(263, 288);
             this.groupBox28.TabIndex = 2;
             this.groupBox28.TabStop = false;
-            this.groupBox28.Text = "Well Classes";
+            this.groupBox28.Text = "Classes";
             // 
             // panelForWellClasses
             // 

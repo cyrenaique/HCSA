@@ -106,7 +106,7 @@ namespace HCSAnalyzer.Classes.Base_Classes.DataAnalysis
                             {
                                 if (item.GetValue() != null)
                                 {
-                                    if (P.Name == "Well Class")
+                                    if (P.Name == "Class")
                                     {
                                         int Value = (int)item.GetValue();
                                         LW.Name += "[" + item.PropertyType.Name + "] = " + cGlobalInfo.ListWellClasses[Value].Name + "\n";

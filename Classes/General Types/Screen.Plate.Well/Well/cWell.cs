@@ -136,7 +136,7 @@ namespace LibPlateAnalysis
         {
             //this.CurrentClass = Class;
 
-            this.ListProperties.UpdateValueByName("Well Class", Class);
+            this.ListProperties.UpdateValueByName("Class", Class);
 
             //this.ClassificationConfidence = ConfidenceValue;
             this.ListProperties.UpdateValueByName("Classification Confidence", ConfidenceValue);
@@ -154,7 +154,7 @@ namespace LibPlateAnalysis
 
         public void SaveCurrentClassStatus()
         {
-            object O = this.ListProperties.FindValueByName("Well Class");
+            object O = this.ListProperties.FindValueByName("Class");
             if (O == null) return;
 
             object Oc = this.ListProperties.FindValueByName("Classification Confidence");
@@ -180,7 +180,7 @@ namespace LibPlateAnalysis
             //if (cGlobalInfo.CurrentScreening.CurrentHistoryClassStatusIndex >= this.ListClass.Count)
             //    cGlobalInfo.CurrentScreening.CurrentHistoryClassStatusIndex = this.ListClass.Count - 1;
             //return this.ListClass[cGlobalInfo.CurrentScreening.CurrentHistoryClassStatusIndex];
-            object O = this.ListProperties.FindValueByName("Well Class");
+            object O = this.ListProperties.FindValueByName("Class");
             if (O == null) return -1;
             return (int)O;
 
@@ -202,7 +202,7 @@ namespace LibPlateAnalysis
                 this.ListClass[cGlobalInfo.CurrentScreening.CurrentHistoryClassStatusIndex] = new cxWellClass(-1, 1);
             this.AssociatedPlate.ListActiveWells.Remove(this);
 
-            this.ListProperties.UpdateValueByName("Well Class", null);
+            this.ListProperties.UpdateValueByName("Class", null);
 
             // StateForClassif = "Unselected (-1)";
             //CurrentColor = cGlobalInfo.panelForPlate.BackColor;
@@ -880,7 +880,7 @@ namespace LibPlateAnalysis
                     if (CurrentValue != null)
                     {
 
-                        if (WellPropertyType.Name == "Well Class")
+                        if (WellPropertyType.Name == "Class")
                         {
                             if((int)CurrentValue==-1)
                             MainLegend.Text = "n.a.";
@@ -1056,7 +1056,7 @@ namespace LibPlateAnalysis
                     {
 
 
-                        if (WellPropertyType.Name == "Well Class")
+                        if (WellPropertyType.Name == "Class")
                         {
                            if (((int)CurrentValue<cGlobalInfo.ListWellClasses.Count) && ((int)CurrentValue >= 0))
                                 MainLegend.Text = cGlobalInfo.ListWellClasses[(int)CurrentValue].Name;

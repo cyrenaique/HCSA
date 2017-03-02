@@ -1959,7 +1959,7 @@
             this.groupBox28.Size = new System.Drawing.Size(190, 375);
             this.groupBox28.TabIndex = 1;
             this.groupBox28.TabStop = false;
-            this.groupBox28.Text = "Well Classes";
+            this.groupBox28.Text = "Classes";
             // 
             // panelForWellClasses
             // 
