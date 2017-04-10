@@ -53,7 +53,7 @@ namespace HCSAnalyzer.Classes.Base_Classes.DataAnalysis
             double[,] DataForLDA = Input.CopyToArray();
 
             double[,] Basis;
-            //double[] s2;
+            double[] Base2;
             int Info;
 
             /*************************************************************************
@@ -91,30 +91,61 @@ namespace HCSAnalyzer.Classes.Base_Classes.DataAnalysis
               -- ALGLIB --
                  Copyright 31.05.2008 by Bochkanov Sergey
             *************************************************************************/
-           // alglib.pcabuildbasis(DataForLDA, MyData[0].Count, MyData.Count, out Info, out s2, out Basis);
-            alglib.fisherldan(DataForLDA, this.Input[0].Count, this.Input.Count-1, (int)this.Input[this.Input.Count-1].Max()+1, out Info, out Basis);
+            // alglib.pcabuildbasis(DataForLDA, MyData[0].Count, MyData.Count, out Info, out s2, out Basis);
 
-
-            base.NewBasis = new cExtendedTable(Basis);
-            base.NewBasis.Name = "LDA coeff. values of (" + this.Input.Name + ")";
-
-            
-            foreach (var item in base.NewBasis)
+            if ((int)this.Input[this.Input.Count - 1].Max() + 1==2)
             {
-                item.ListTags = new List<object>();
+                alglib.fisherlda(DataForLDA, this.Input[0].Count, this.Input.Count - 1, (int)this.Input[this.Input.Count - 1].Max() + 1, out Info, out Base2);
+                base.NewBasis = new cExtendedTable(Base2);
+                base.NewBasis.Name = "LDA coeff. values of (" + this.Input.Name + ")";
 
-                for (int i = 0; i < base.NewBasis[0].Count; i++)
+
+                foreach (var item in base.NewBasis)
                 {
-                   item.ListTags.Add(this.Input[i].Tag);
+                    item.ListTags = new List<object>();
+
+                    for (int i = 0; i < base.NewBasis[0].Count; i++)
+                    {
+                        item.ListTags.Add(this.Input[i].Tag);
+                    }
+                }
+
+                NewBasis[0].Name = "LDA_" + (0 + 1);
+                for (int IdxLDA = 0; IdxLDA < base.NewBasis[0].Count; IdxLDA++)
+                {
+                    
+                    NewBasis.ListRowNames.Add(this.Input[IdxLDA].Name);
+                }
+
+            }
+            else
+            {
+                alglib.fisherldan(DataForLDA, this.Input[0].Count, this.Input.Count - 1, (int)this.Input[this.Input.Count - 1].Max() + 1, out Info, out Basis);
+                base.NewBasis = new cExtendedTable(Basis);
+                base.NewBasis.Name = "LDA coeff. values of (" + this.Input.Name + ")";
+
+
+                foreach (var item in base.NewBasis)
+                {
+                    item.ListTags = new List<object>();
+
+                    for (int i = 0; i < base.NewBasis[0].Count; i++)
+                    {
+                        item.ListTags.Add(this.Input[i].Tag);
+                    }
+                }
+
+
+                for (int IdxLDA = 0; IdxLDA < base.NewBasis.Count; IdxLDA++)
+                {
+                    NewBasis[IdxLDA].Name = "LDA_" + (IdxLDA + 1);
+                    NewBasis.ListRowNames.Add(this.Input[IdxLDA].Name);
                 }
             }
+           
 
 
-            for (int IdxLDA = 0; IdxLDA < base.NewBasis.Count; IdxLDA++)
-            {
-                NewBasis[IdxLDA].Name = "LDA_" + (IdxLDA + 1);
-                NewBasis.ListRowNames.Add(this.Input[IdxLDA].Name);
-            }
+            
 
 
         }

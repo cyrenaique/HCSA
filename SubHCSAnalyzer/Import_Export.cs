@@ -738,7 +738,7 @@ namespace HCSAnalyzer
             int ColLocusID = GetColIdxFor("Locus ID", FromExcel);
             int ColConcentration = GetColIdxFor("Concentration", FromExcel);
             int ColInfo = GetColIdxFor("Info", FromExcel);
-            int ColClass = GetColIdxFor("Class", FromExcel);
+            int ColClass = GetColIdxFor("Class", FromExcel);            
             int ColPlateName = GetColIdxFor("Plate name", FromExcel);
             int ColCol = GetColIdxFor("Column", FromExcel);
             int ColRow = GetColIdxFor("Row", FromExcel);
@@ -987,6 +987,10 @@ namespace HCSAnalyzer
                         if (!float.TryParse(CurrentDesc[ColClass], out CurrentValue))
                             goto NEXTLOOP;
                         CurrentWell.SetClass((int)CurrentValue);
+                    }
+                    else
+                    {
+                        CurrentWell.SetClass(2);
                     }
 
                 NEXTLOOP: ;
