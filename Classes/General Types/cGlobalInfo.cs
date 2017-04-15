@@ -156,9 +156,9 @@ namespace HCSAnalyzer.Classes
 
     public class cListWellClasses : List<cWellClassType>
     {
-        private Color[] ColorForClass = new Color[] { 
-            Color.FromArgb(136,17,17),
+        private Color[] ColorForClass = new Color[] {             
             Color.FromArgb(21,88,140),
+            Color.FromArgb(136,17,17),
             Color.FromArgb(51,102,68),
             Color.FromArgb(221,204,170),
             Color.FromArgb(204,85,17),
@@ -167,6 +167,7 @@ namespace HCSAnalyzer.Classes
             Color.FromArgb(59,51,126),
             Color.FromArgb(82,122,140),
              Color.FromArgb(102,160,37),
+             Color.FromArgb(255,105,180),
         };
 
         //private Color[] ColorForClass = new Color[] { Color.LightGreen, Color.Tomato, Color.Olive, Color.Orange, Color.Yellow, Color.Violet, Color.Pink, Color.Purple, Color.Salmon, Color.RoyalBlue };
@@ -459,7 +460,7 @@ namespace HCSAnalyzer.Classes
 
             cGlobalInfo.ListDefaultPropertyTypes.Add(new cPropertyType("Plate Name", eDataType.STRING));
 
-            cPropertyType WellClassProperty = new cPropertyType("Well Class", eDataType.INTEGER);
+            cPropertyType WellClassProperty = new cPropertyType("Class", eDataType.INTEGER);
             WellClassProperty.Min = -1;
             WellClassProperty.Max = cGlobalInfo.ListWellClasses.Count - 1;// ListCellularPhenotypes.Count;
             WellClassProperty.IsLocked = true;

@@ -91,12 +91,12 @@ namespace HCSAnalyzer.Forms
                     double Value = 0;
                     if ((j % 2) == 0)
                     {
-                        Value = i * 50;
+                        Value = i * 20;
                         dataGridViewForCompounds.Rows[i].Cells[j+1].Style.Font = new Font(dataGridViewForCompounds.Font, FontStyle.Bold);
                     }
                     else
                     {
-                        Value = 20;
+                        Value = 5;
                     }
                     dataGridViewForCompounds.Rows[i].Cells[j+1].Value = Value.ToString();
 

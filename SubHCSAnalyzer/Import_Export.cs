@@ -738,7 +738,7 @@ namespace HCSAnalyzer
             int ColLocusID = GetColIdxFor("Locus ID", FromExcel);
             int ColConcentration = GetColIdxFor("Concentration", FromExcel);
             int ColInfo = GetColIdxFor("Info", FromExcel);
-            int ColClass = GetColIdxFor("Class", FromExcel);
+            int ColClass = GetColIdxFor("Class", FromExcel);            
             int ColPlateName = GetColIdxFor("Plate name", FromExcel);
             int ColCol = GetColIdxFor("Column", FromExcel);
             int ColRow = GetColIdxFor("Row", FromExcel);
@@ -983,10 +983,14 @@ namespace HCSAnalyzer
 
                     if (ColClass != -1)
                     {
-                        int CurrentValue;
-                        if (!int.TryParse(CurrentDesc[ColClass], out CurrentValue))
+                        float CurrentValue;
+                        if (!float.TryParse(CurrentDesc[ColClass], out CurrentValue))
                             goto NEXTLOOP;
-                        CurrentWell.SetClass(CurrentValue);
+                        CurrentWell.SetClass((int)CurrentValue);
+                    }
+                    else
+                    {
+                        CurrentWell.SetClass(2);
                     }
 
                 NEXTLOOP: ;
@@ -1506,14 +1510,14 @@ namespace HCSAnalyzer
 
             int RowIdx = 0;
             FormToSave.dataGridView.Rows.Add();
-            FormToSave.dataGridView.Rows[RowIdx].Cells[0].Value = "Plate Name";
+            FormToSave.dataGridView.Rows[RowIdx].Cells[0].Value = "Plate";
             FormToSave.dataGridView.Rows[RowIdx].Cells[1].Value = true;
             FormToSave.dataGridView.Rows[RowIdx++].DefaultCellStyle = style;
 
             if (Mode == 1)
             {
                 FormToSave.dataGridView.Rows.Add();
-                FormToSave.dataGridView.Rows[RowIdx].Cells[0].Value = "Well Position";
+                FormToSave.dataGridView.Rows[RowIdx].Cells[0].Value = "Well";
                 FormToSave.dataGridView.Rows[RowIdx].Cells[1].Value = true;
                 FormToSave.dataGridView.Rows[RowIdx++].DefaultCellStyle = style;
             }
