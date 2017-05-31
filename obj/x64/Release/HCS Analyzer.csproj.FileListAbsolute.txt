@@ -616,8 +616,6 @@ D:\GitHCSA\HCSA\bin\x64\Release\Accord.Statistics.dll
 D:\GitHCSA\HCSA\bin\x64\Release\AForge.dll
 D:\GitHCSA\HCSA\bin\x64\Release\AForge.Math.dll
 D:\GitHCSA\HCSA\bin\x64\Release\AlgLib.dll
-D:\GitHCSA\HCSA\bin\x64\Release\Emgu.CV.dll
-D:\GitHCSA\HCSA\bin\x64\Release\Emgu.Util.dll
 D:\GitHCSA\HCSA\bin\x64\Release\FreeImageNET.dll
 D:\GitHCSA\HCSA\bin\x64\Release\HCSPlugin.dll
 D:\GitHCSA\HCSA\bin\x64\Release\ICSharpCode.SharpZipLib.dll

@@ -51,29 +51,50 @@ namespace HCSAnalyzer
 
         private void comboBoxNormalizationNegativeCtrl_DrawItem(object sender, DrawItemEventArgs e)
         {
+
             e.DrawBackground();
-            SolidBrush BrushForColor = new SolidBrush(cGlobalInfo.ListWellClasses[e.Index].ColourForDisplay);
-            e.Graphics.FillRectangle(BrushForColor, e.Bounds.X + 1, e.Bounds.Y + 1, 10, 10);
-            if (e.Index == 0)
-                e.Graphics.DrawString("Inactive", comboBoxClass.Font,
-                                   System.Drawing.Brushes.Black, new RectangleF(e.Bounds.X + 15, e.Bounds.Y, e.Bounds.Width, e.Bounds.Height));
-            else
-                e.Graphics.DrawString(cGlobalInfo.ListWellClasses[e.Index - 1].Name, comboBoxClass.Font,
-                                        System.Drawing.Brushes.Black, new RectangleF(e.Bounds.X + 15, e.Bounds.Y, e.Bounds.Width, e.Bounds.Height));
+            //if (e.Index == 0)
+            //    e.Graphics.DrawString("Inactive", comboBoxClass.Font,
+            //                       System.Drawing.Brushes.Black, new RectangleF(e.Bounds.X + 15, e.Bounds.Y, e.Bounds.Width, e.Bounds.Height));
+
+            if (e.Index >= 0)
+            {
+                SolidBrush BrushForColor = new SolidBrush(cGlobalInfo.ListWellClasses[e.Index].ColourForDisplay);
+                e.Graphics.FillRectangle(BrushForColor, e.Bounds.X + 1, e.Bounds.Y + 1, 10, 10);
+                e.Graphics.DrawString(cGlobalInfo.ListWellClasses[e.Index].Name, comboBoxClass.Font,
+                                      System.Drawing.Brushes.Black, new RectangleF(e.Bounds.X + 15, e.Bounds.Y, e.Bounds.Width, e.Bounds.Height));
+
+            }
             e.DrawFocusRectangle();
+
+            //e.DrawBackground();
+            //SolidBrush BrushForColor = new SolidBrush(cGlobalInfo.ListWellClasses[e.Index].ColourForDisplay);
+            //e.Graphics.FillRectangle(BrushForColor, e.Bounds.X + 1, e.Bounds.Y + 1, 10, 10);
+            //if (e.Index == 0)
+            //    e.Graphics.DrawString("Inactive", comboBoxClass.Font,
+            //                       System.Drawing.Brushes.Black, new RectangleF(e.Bounds.X + 15, e.Bounds.Y, e.Bounds.Width, e.Bounds.Height));
+            //else
+            //    e.Graphics.DrawString(cGlobalInfo.ListWellClasses[e.Index - 1].Name, comboBoxClass.Font,
+            //                            System.Drawing.Brushes.Black, new RectangleF(e.Bounds.X + 15, e.Bounds.Y, e.Bounds.Width, e.Bounds.Height));
+            //e.DrawFocusRectangle();
         }
 
         private void comboBoxNormalizationPositiveCtrl_DrawItem(object sender, DrawItemEventArgs e)
         {
+
             e.DrawBackground();
-            SolidBrush BrushForColor = new SolidBrush(cGlobalInfo.ListWellClasses[e.Index].ColourForDisplay);
-            e.Graphics.FillRectangle(BrushForColor, e.Bounds.X + 1, e.Bounds.Y + 1, 10, 10);
-            if (e.Index == 0)
-                e.Graphics.DrawString("Inactive", comboBoxClass.Font,
-                                   System.Drawing.Brushes.Black, new RectangleF(e.Bounds.X + 15, e.Bounds.Y, e.Bounds.Width, e.Bounds.Height));
-            else
-                e.Graphics.DrawString(cGlobalInfo.ListWellClasses[e.Index - 1].Name, comboBoxClass.Font,
-                                        System.Drawing.Brushes.Black, new RectangleF(e.Bounds.X + 15, e.Bounds.Y, e.Bounds.Width, e.Bounds.Height));
+            //if (e.Index == 0)
+            //    e.Graphics.DrawString("Inactive", comboBoxClass.Font,
+            //                       System.Drawing.Brushes.Black, new RectangleF(e.Bounds.X + 15, e.Bounds.Y, e.Bounds.Width, e.Bounds.Height));
+
+            if (e.Index >= 0)
+            {
+                SolidBrush BrushForColor = new SolidBrush(cGlobalInfo.ListWellClasses[e.Index].ColourForDisplay);
+                e.Graphics.FillRectangle(BrushForColor, e.Bounds.X + 1, e.Bounds.Y + 1, 10, 10);
+                e.Graphics.DrawString(cGlobalInfo.ListWellClasses[e.Index].Name, comboBoxClass.Font,
+                                      System.Drawing.Brushes.Black, new RectangleF(e.Bounds.X + 15, e.Bounds.Y, e.Bounds.Width, e.Bounds.Height));
+
+            }
             e.DrawFocusRectangle();
         }
 
@@ -97,7 +118,7 @@ namespace HCSAnalyzer
                     break;
             }
 
-            MessageBox.Show("Process finished !", "Operation sucessfull", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+            //
         }
         #endregion
 
@@ -191,6 +212,12 @@ namespace HCSAnalyzer
             NEXTPLATE: ;
             }
             richTextBoxInfoForNormalization.AppendText("\n" + NumberOfProcessedPlates + " / " + NumberOfPlates + " successfully normalized.");
+            if (NumberOfProcessedPlates == 0)
+                MessageBox.Show(NumberOfProcessedPlates + "! Plates Processed", "Check Classes !", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+            else
+            {
+                MessageBox.Show(NumberOfProcessedPlates + "! Plates Processed", "Process Done", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+            }
         }
 
         private void NegativeBasedNormalization()
@@ -281,6 +308,13 @@ namespace HCSAnalyzer
                 NumberOfProcessedPlates++;
             }
             richTextBoxInfoForNormalization.AppendText("\n" + NumberOfProcessedPlates + " / " + NumberOfPlates + " successfully normalized.");
+            if (NumberOfProcessedPlates==0)
+                MessageBox.Show(NumberOfProcessedPlates + "! Plates Processed", "Check Classes !", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+            else
+            {
+                MessageBox.Show(NumberOfProcessedPlates + "! Plates Processed", "Process Done", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+            }
+
         }
 
         private void NegativePositiveBasedNormalization()
@@ -361,7 +395,12 @@ namespace HCSAnalyzer
                 NumberOfProcessedPlates++;
             }
             richTextBoxInfoForNormalization.AppendText("\n" + NumberOfProcessedPlates + " / " + NumberOfPlates + " successfully normalized.");
-
+            if (NumberOfProcessedPlates == 0)
+                MessageBox.Show(NumberOfProcessedPlates + "! Plates Processed", "Check Classes !", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+            else
+            {
+                MessageBox.Show(NumberOfProcessedPlates + "! Plates Processed", "Process Done", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+            }
         }
         #endregion
     }
