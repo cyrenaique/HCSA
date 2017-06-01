@@ -859,3 +859,7 @@ D:\GitHCSA\HCSA\obj\x64\Debug\HCSAnalyzer.Properties.Resources.resources
 D:\GitHCSA\HCSA\obj\x64\Debug\HCS Analyzer.csproj.GenerateResource.Cache
 D:\GitHCSA\HCSA\obj\x64\Debug\HCSAnalyzer.exe
 D:\GitHCSA\HCSA\obj\x64\Debug\HCSAnalyzer.pdb
+E:\HCSA\bin\x64\Debug\HCSAnalyzer.exe.config
+E:\HCSA\obj\x64\Debug\HCS Analyzer.csproj.ResolveComReference.cache
+E:\HCSA\obj\x64\Debug\HCSAnalyzer.exe
+E:\HCSA\obj\x64\Debug\HCSAnalyzer.pdb
