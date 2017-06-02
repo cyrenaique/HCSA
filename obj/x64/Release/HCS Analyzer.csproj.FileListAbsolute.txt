@@ -971,8 +971,6 @@ E:\GitHCSA\HCSA\bin\x64\Release\System.Data.SQLite.Linq.dll
 E:\GitHCSA\HCSA\bin\x64\Release\weka.dll
 E:\GitHCSA\HCSA\bin\x64\Release\EnvDTE.dll
 E:\GitHCSA\HCSA\bin\x64\Release\stdole.dll
-E:\GitHCSA\HCSA\bin\x64\Release\Emgu.CV.xml
-E:\GitHCSA\HCSA\bin\x64\Release\Emgu.Util.xml
 E:\GitHCSA\HCSA\bin\x64\Release\Microsoft.Research.Science.Data.xml
 E:\GitHCSA\HCSA\bin\x64\Release\EnvDTE.xml
 E:\GitHCSA\HCSA\bin\x64\Release\Kitware.mummy.Runtime.Unmanaged.dll
@@ -1029,7 +1027,6 @@ E:\GitHCSA\HCSA\bin\x64\Release\Microsoft.VC90.CRT.manifest
 E:\GitHCSA\HCSA\bin\x64\Release\msvcm90.dll
 E:\GitHCSA\HCSA\bin\x64\Release\msvcp90.dll
 E:\GitHCSA\HCSA\bin\x64\Release\msvcr90.dll
-E:\GitHCSA\HCSA\obj\x64\Release\HCS Analyzer.csprojResolveAssemblyReference.cache
 E:\GitHCSA\HCSA\obj\x64\Release\HCS Analyzer.csproj.ResolveComReference.cache
 E:\GitHCSA\HCSA\obj\x64\Release\HCSAnalyzer.Cell_by_Cell_and_DB.Simulator.Forms.FormForModelsHistory.resources
 E:\GitHCSA\HCSA\obj\x64\Release\HCSAnalyzer.Cell_by_Cell_and_DB.FormForSingleCellClassifOptions.resources
@@ -1181,3 +1178,4 @@ E:\GitHCSA\HCSA\obj\x64\Release\HCSAnalyzer.Properties.Resources.resources
 E:\GitHCSA\HCSA\obj\x64\Release\HCS Analyzer.csproj.GenerateResource.Cache
 E:\GitHCSA\HCSA\obj\x64\Release\HCSAnalyzer.exe
 E:\GitHCSA\HCSA\obj\x64\Release\HCSAnalyzer.pdb
+E:\GitHCSA\HCSA\obj\x64\Release\HCS Analyzer.csprojResolveAssemblyReference.cache
