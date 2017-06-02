@@ -516,6 +516,8 @@ namespace HCSAnalyzer
                     double X_min2 = 0;
                     double X_max2 = 0;
 
+                    // Exclude the outliers
+
                     if (CurrentMeanNeg < CurrentMeanPos)
                     {
 
