@@ -64,11 +64,11 @@ namespace HCSAnalyzer.Forms
                 if (TemplateRegion.IsConcentrationHorizontal)
                 {
                     SizeX = TemplateRegion.NumConcentrations;
-                    SizeY = TemplateRegion.NumReplicate;
+                    SizeY = (int)this.numericUpDownReplication.Value;//TemplateRegion.NumReplicate;
                 }
                 else
                 {
-                    SizeX = TemplateRegion.NumReplicate;
+                    SizeX = (int)this.numericUpDownReplication.Value;//TemplateRegion.NumReplicate;
                     SizeY = TemplateRegion.NumConcentrations;
                 }
 

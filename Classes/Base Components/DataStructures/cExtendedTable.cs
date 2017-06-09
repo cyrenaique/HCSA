@@ -392,6 +392,22 @@ namespace HCSAnalyzer.Classes.Base_Classes.DataStructures
             }
         }
 
+        public cExtendedTable(double[] Table)
+        {
+            //int NumCol = Table.GetLength(0);
+            int NumRow = Table.GetLength(0);
+
+            for (int Col = 0; Col < 1; Col++)
+            {
+                cExtendedList NewCol = new cExtendedList();
+                for (int Row = 0; Row < NumRow; Row++)
+                {
+                    NewCol.Add(Table[Row]);
+                }
+                this.Add(NewCol);
+            }
+        }
+
         public cExtendedTable(double[][] Table)
         {
             int NumCol = Table.Length;

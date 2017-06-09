@@ -830,8 +830,10 @@ namespace HCSAnalyzer
             "6",
             "7",
             "8",
-            "9"});
+            "9",
+            "10"});
             this.comboBoxNormalizationPositiveCtrl.Location = new System.Drawing.Point(335, 56);
+            this.comboBoxNormalizationPositiveCtrl.MaxDropDownItems = 11;
             this.comboBoxNormalizationPositiveCtrl.Name = "comboBoxNormalizationPositiveCtrl";
             this.comboBoxNormalizationPositiveCtrl.Size = new System.Drawing.Size(120, 21);
             this.comboBoxNormalizationPositiveCtrl.TabIndex = 3;
@@ -860,8 +862,10 @@ namespace HCSAnalyzer
             "6",
             "7",
             "8",
-            "9"});
+            "9",
+            "10"});
             this.comboBoxNormalizationNegativeCtrl.Location = new System.Drawing.Point(100, 56);
+            this.comboBoxNormalizationNegativeCtrl.MaxDropDownItems = 11;
             this.comboBoxNormalizationNegativeCtrl.Name = "comboBoxNormalizationNegativeCtrl";
             this.comboBoxNormalizationNegativeCtrl.Size = new System.Drawing.Size(120, 21);
             this.comboBoxNormalizationNegativeCtrl.TabIndex = 2;

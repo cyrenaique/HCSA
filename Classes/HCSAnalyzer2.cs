@@ -4085,6 +4085,9 @@ namespace HCSAnalyzer
             FormForNameRequest FormForRequest = new FormForNameRequest();
             if (FormForRequest.ShowDialog() != System.Windows.Forms.DialogResult.OK) return;
             int NumberOfPlates = cGlobalInfo.CurrentScreening.ListPlatesActive.Count;
+            //NEVER LOOK HERE!!!!
+            string[] titi = { "A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P" };
+
 
             // loop on all the plate
             for (int PlateIdx = 0; PlateIdx < NumberOfPlates; PlateIdx++)
@@ -4102,8 +4105,8 @@ namespace HCSAnalyzer
 
                             CurrentPlateToProcess.DisplayDistribution(cGlobalInfo.CurrentScreening.ListDescriptors.GetActiveDescriptor(), false);
                             int Col = IdxValue + 1;
-                            int row = IdxValue0 + 1;
-                            MessageBox.Show("Column " + Col + " x Row " + row, TmpWell.GetCpdName(), MessageBoxButtons.OK, MessageBoxIcon.Information);
+                            int row = IdxValue0;
+                            MessageBox.Show(CurrentPlateToProcess.GetName() + " " + titi[row] + Col, TmpWell.GetLocusID().ToString(), MessageBoxButtons.OK, MessageBoxIcon.Information);
                             return;
                         }
                     }

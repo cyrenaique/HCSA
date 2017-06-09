@@ -462,7 +462,7 @@ namespace HCSAnalyzer.Classes
 
             cPropertyType WellClassProperty = new cPropertyType("Class", eDataType.INTEGER);
             WellClassProperty.Min = -1;
-            WellClassProperty.Max = cGlobalInfo.ListWellClasses.Count - 1;// ListCellularPhenotypes.Count;
+            WellClassProperty.Max = cGlobalInfo.ListWellClasses.Count;// ListCellularPhenotypes.Count;
             WellClassProperty.IsLocked = true;
             cGlobalInfo.ListDefaultPropertyTypes.Add(WellClassProperty);
 
