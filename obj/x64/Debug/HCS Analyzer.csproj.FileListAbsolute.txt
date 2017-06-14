@@ -859,6 +859,7 @@ D:\GitHCSA\HCSA\obj\x64\Debug\HCSAnalyzer.Properties.Resources.resources
 D:\GitHCSA\HCSA\obj\x64\Debug\HCS Analyzer.csproj.GenerateResource.Cache
 D:\GitHCSA\HCSA\obj\x64\Debug\HCSAnalyzer.exe
 D:\GitHCSA\HCSA\obj\x64\Debug\HCSAnalyzer.pdb
+<<<<<<< HEAD
 C:\Users\arno\Desktop\HCSA\HCSA\bin\x64\Debug\HCSAnalyzer.exe.config
 C:\Users\arno\Desktop\HCSA\HCSA\obj\x64\Debug\HCS Analyzer.csproj.ResolveComReference.cache
 C:\Users\arno\Desktop\HCSA\HCSA\obj\x64\Debug\HCSAnalyzer.exe
@@ -1157,3 +1158,9 @@ C:\Users\arno\Desktop\HCSA\HCSA\obj\x64\Debug\HCSAnalyzer.Simulator.Forms.Panels
 C:\Users\arno\Desktop\HCSA\HCSA\obj\x64\Debug\HCSAnalyzer.HCSAnalyzer.resources
 C:\Users\arno\Desktop\HCSA\HCSA\obj\x64\Debug\HCSAnalyzer.Properties.Resources.resources
 C:\Users\arno\Desktop\HCSA\HCSA\obj\x64\Debug\HCS Analyzer.csproj.GenerateResource.Cache
+=======
+E:\HCSA\bin\x64\Debug\HCSAnalyzer.exe.config
+E:\HCSA\obj\x64\Debug\HCS Analyzer.csproj.ResolveComReference.cache
+E:\HCSA\obj\x64\Debug\HCSAnalyzer.exe
+E:\HCSA\obj\x64\Debug\HCSAnalyzer.pdb
+>>>>>>> cfd6d02cc64adee85bf88a5673afaa54dbfca264

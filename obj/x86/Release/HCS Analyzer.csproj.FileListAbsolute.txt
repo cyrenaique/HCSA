@@ -1252,5 +1252,8 @@ D:\HCS-Analyzer\obj\x86\Release\HCSAnalyzer.pdb
 D:\HCS-Analyzer\obj\x86\Release\HCS Analyzer.csprojResolveAssemblyReference.cache
 F:\GitHCSA\HCSA\bin\x86\Release\HCSAnalyzer.exe.config
 F:\GitHCSA\HCSA\obj\x86\Release\HCS Analyzer.csproj.ResolveComReference.cache
+<<<<<<< HEAD
 C:\Users\arno\Desktop\HCSA\HCSA\bin\x86\Release\HCSAnalyzer.exe.config
 C:\Users\arno\Desktop\HCSA\HCSA\obj\x86\Release\HCS Analyzer.csproj.ResolveComReference.cache
+=======
+>>>>>>> cfd6d02cc64adee85bf88a5673afaa54dbfca264
