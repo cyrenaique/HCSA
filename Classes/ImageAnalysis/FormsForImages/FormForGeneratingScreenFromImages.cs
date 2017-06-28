@@ -514,7 +514,7 @@ namespace HCSAnalyzer.Classes.ImageAnalysis.FormsForImages
                         {
                             AverageValue = TmpImage.SingleChannelImage[0].Data.Max() * TmpImage.SingleChannelImage[0].Data.Min();
                             Image<Gray, float> ImageToBeReturned = TmpImage.SingleChannelImage[0].ConvertToCVImage(0);
-                            Image<Gray, float> Results = ImageToBeReturned.SmoothGaussian(4);
+                            //Image<Gray, float> Results = ImageToBeReturned.SmoothGaussian(4);
                         }
 
                         IFW.GetOutPut().Dispose();

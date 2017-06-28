@@ -572,7 +572,8 @@ namespace HCSAnalyzer.Classes.Base_Classes.Viewers
                 DS.SetInputData(VS1.GetOutPut());
                 DS.SetInputData(VT.GetOutPut());
                 DS.Orientation = Orientation.Horizontal;
-                DS.Title = TV.Nodes[IdxNode++].Text; //TmpListWells.ti;// ListSelectedDesc[0].GetName();
+                DS.Title = TV.Nodes[IdxNode].Text; //TmpListWells.ti;// ListSelectedDesc[0].GetName();
+                IdxNode += 1;
                 DS.Run();
                 DT.SetInputData(DS.GetOutPut());
             }
@@ -617,7 +618,7 @@ namespace HCSAnalyzer.Classes.Base_Classes.Viewers
                     break;
 
             }
-
+            IdxColSorting = -1;
             if (IdxColSorting != -1)
             {
                 cSort S = new cSort();
