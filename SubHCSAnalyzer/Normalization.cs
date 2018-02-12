@@ -181,12 +181,12 @@ namespace HCSAnalyzer
 
                         }
 
-                    double CurrentMean = Neg.Mean();
-                    cGlobalInfo.ConsoleWriteLine(cGlobalInfo.CurrentScreening.ListDescriptors[Desc].GetName() + ", average = " + CurrentMean);
+                    double CurrentMedian = Neg.Median();
+                    cGlobalInfo.ConsoleWriteLine(cGlobalInfo.CurrentScreening.ListDescriptors[Desc].GetName() + ", Median = " + CurrentMedian);
 
-                    if (CurrentMean == 0)
+                    if (CurrentMedian == 0)
                     {
-                        richTextBoxInfoForNormalization.AppendText("\n" + CurrentPlateToProcess.GetName() + " / " + cGlobalInfo.CurrentScreening.ListDescriptors[Desc].GetName() + " average is null!\n");
+                        richTextBoxInfoForNormalization.AppendText("\n" + CurrentPlateToProcess.GetName() + " / " + cGlobalInfo.CurrentScreening.ListDescriptors[Desc].GetName() + " Median is null!\n");
                         richTextBoxInfoForNormalization.AppendText("\nNormalization skipped.");
                         continue;
                     }
@@ -199,7 +199,7 @@ namespace HCSAnalyzer
                             //   for (int i = 0; i < TempWell.ListDescriptors[Desc].GetAssociatedType().GetBinNumber(); i++)
                             {
                                 double Val = TempWell.ListSignatures[Desc].GetValue();
-                                Val /= CurrentMean;
+                                Val /= CurrentMedian;
 
                                 TempWell.ListSignatures[Desc].SetHistoValues(Val * 100);
 
@@ -399,7 +399,7 @@ namespace HCSAnalyzer
                                 double Value = TempWell.ListSignatures[Desc].GetValue() - CurrentMean;
 
                                 TempWell.ListSignatures[Desc].SetHistoValues(Value / CurrentStd);
-                            }
+                            }   
 
                             TempWell.ListSignatures[Desc].UpDateDescriptorStatistics();
                         }
@@ -507,9 +507,9 @@ namespace HCSAnalyzer
 
 
 
-                    double CurrentMeanNeg = Neg.Mean();
+                    double CurrentMeanNeg = Neg.Median();
                     double CurrentStdNeg = Neg.Std();
-                    double CurrentMeanPos = Pos.Mean();
+                    double CurrentMeanPos = Pos.Median();
                     double CurrentStdPos = Pos.Std();
                     double X_min = 0;
                     double X_max = 0;
@@ -521,8 +521,8 @@ namespace HCSAnalyzer
                     if (CurrentMeanNeg < CurrentMeanPos)
                     {
 
-                        X_min = CurrentMeanNeg - 5 * CurrentStdNeg;
-                        X_max = CurrentMeanPos + 5 * CurrentStdPos;
+                        X_min = CurrentMeanNeg;// - 5 * CurrentStdNeg;
+                        X_max = CurrentMeanPos;// + 5 * CurrentStdPos;
                         X_min2 = Neg.Min();
                         X_max2 = Pos.Max();
                         if (X_min < X_min2)
@@ -538,9 +538,9 @@ namespace HCSAnalyzer
                     else
                     {
 
-                        X_min = CurrentMeanPos - 5 * CurrentStdPos;
+                        X_min = CurrentMeanPos;// - 5 * CurrentStdPos;
 
-                        X_max = CurrentMeanNeg + 5 * CurrentStdNeg;
+                        X_max = CurrentMeanNeg;// + 5 * CurrentStdNeg;
                         X_min2 = Pos.Min();
                         X_max2 = Neg.Max();
 

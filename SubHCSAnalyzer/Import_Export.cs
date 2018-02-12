@@ -734,7 +734,7 @@ namespace HCSAnalyzer
             }
 
             //OriginalNames.Sort();
-            int ColSelectedForName = GetColIdxFor("name", FromExcel);
+            int ColSelectedForName = GetColIdxFor("Name", FromExcel);
             int ColLocusID = GetColIdxFor("Locus ID", FromExcel);
             int ColConcentration = GetColIdxFor("Concentration", FromExcel);
             int ColInfo = GetColIdxFor("Info", FromExcel);
@@ -964,7 +964,7 @@ namespace HCSAnalyzer
                         if (!double.TryParse(CurrentDesc[ColLocusID], out CurrentValue))
                             goto NEXTSTEP;
 
-                        CurrentWell.ListProperties.UpdateValueByName("Locus ID",(int)CurrentValue);
+                        CurrentWell.ListProperties.UpdateValueByName("Locus ID", CurrentValue);
 
                     }
                     if (ColConcentration != -1)
@@ -1086,6 +1086,7 @@ namespace HCSAnalyzer
 
                 string WellPos = (string)(ET[0].ListTags[i]);
                 string CpdName = (string)(ET[1].ListTags[i]);
+                string Concentration = (string)(ET[2].ListTags[i]);
 
                 // first retrieve the plate
                 foreach (cPlate TmpPlate in cGlobalInfo.CurrentScreening.ListPlatesActive)
@@ -1097,6 +1098,7 @@ namespace HCSAnalyzer
                         if (TmpWell.GetPos() != WellPos) continue;
 
                         TmpWell.ListProperties.UpdateValueByName("Compound Name", CpdName);
+                        TmpWell.ListProperties.UpdateValueByName("Concentration", Concentration);
                         NumWellUpdated++;
                     }
                 }

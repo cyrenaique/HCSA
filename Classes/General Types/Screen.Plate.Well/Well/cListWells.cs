@@ -1897,11 +1897,13 @@ namespace HCSAnalyzer.Classes.General_Types
             ToolStripMenuItem ToolStripMenuItem_ChangeClass = new ToolStripMenuItem("Swap Classes");
             SpecificContextMenu.DropDownItems.Add(ToolStripMenuItem_ChangeClass);
 
+
             for (int i = 0; i < cGlobalInfo.ListWellClasses.Count; i++)
             {
                 ToolStripMenuItem ToolStripMenuItem_NewClass = new ToolStripMenuItem(cGlobalInfo.ListWellClasses[i].Name);
                 ToolStripMenuItem_NewClass.Click += new System.EventHandler(this.ToolStripMenuItem_NewClass);
                 ToolStripMenuItem_NewClass.Tag = i;// this[0].cGlobalInfo.ListWellClasses[i];
+
                 ToolStripMenuItem_ChangeClass.DropDownItems.Add(ToolStripMenuItem_NewClass);
             }
 

@@ -18,22 +18,22 @@ namespace HCSAnalyzer
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.Windows.Forms.TreeNode treeNode1 = new System.Windows.Forms.TreeNode("Classification Tree");
-            System.Windows.Forms.TreeNode treeNode2 = new System.Windows.Forms.TreeNode("Classification", new System.Windows.Forms.TreeNode[] {
-            treeNode1});
-            System.Windows.Forms.TreeNode treeNode3 = new System.Windows.Forms.TreeNode("Correlation Matrix and Ranking");
-            System.Windows.Forms.TreeNode treeNode4 = new System.Windows.Forms.TreeNode("Systematic Errors Table");
-            System.Windows.Forms.TreeNode treeNode5 = new System.Windows.Forms.TreeNode("Z-Factors");
-            System.Windows.Forms.TreeNode treeNode6 = new System.Windows.Forms.TreeNode("Quality Control", new System.Windows.Forms.TreeNode[] {
-            treeNode3,
-            treeNode4,
-            treeNode5});
-            System.Windows.Forms.TreeNode treeNode7 = new System.Windows.Forms.TreeNode("Pathway Analysis");
-            System.Windows.Forms.TreeNode treeNode8 = new System.Windows.Forms.TreeNode("siRNA screening", new System.Windows.Forms.TreeNode[] {
-            treeNode7});
-            System.Windows.Forms.TreeNode treeNode9 = new System.Windows.Forms.TreeNode("Weka .Arff File");
-            System.Windows.Forms.TreeNode treeNode10 = new System.Windows.Forms.TreeNode("Misc", new System.Windows.Forms.TreeNode[] {
-            treeNode9});
+            System.Windows.Forms.TreeNode treeNode31 = new System.Windows.Forms.TreeNode("Classification Tree");
+            System.Windows.Forms.TreeNode treeNode32 = new System.Windows.Forms.TreeNode("Classification", new System.Windows.Forms.TreeNode[] {
+            treeNode31});
+            System.Windows.Forms.TreeNode treeNode33 = new System.Windows.Forms.TreeNode("Correlation Matrix and Ranking");
+            System.Windows.Forms.TreeNode treeNode34 = new System.Windows.Forms.TreeNode("Systematic Errors Table");
+            System.Windows.Forms.TreeNode treeNode35 = new System.Windows.Forms.TreeNode("Z-Factors");
+            System.Windows.Forms.TreeNode treeNode36 = new System.Windows.Forms.TreeNode("Quality Control", new System.Windows.Forms.TreeNode[] {
+            treeNode33,
+            treeNode34,
+            treeNode35});
+            System.Windows.Forms.TreeNode treeNode37 = new System.Windows.Forms.TreeNode("Pathway Analysis");
+            System.Windows.Forms.TreeNode treeNode38 = new System.Windows.Forms.TreeNode("siRNA screening", new System.Windows.Forms.TreeNode[] {
+            treeNode37});
+            System.Windows.Forms.TreeNode treeNode39 = new System.Windows.Forms.TreeNode("Weka .Arff File");
+            System.Windows.Forms.TreeNode treeNode40 = new System.Windows.Forms.TreeNode("Misc", new System.Windows.Forms.TreeNode[] {
+            treeNode39});
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(HCSAnalyzer));
             this.tabControlMain = new System.Windows.Forms.TabControl();
             this.tabPageDImRed = new System.Windows.Forms.TabPage();
@@ -1084,37 +1084,37 @@ namespace HCSAnalyzer
             this.treeViewSelectionForExport.FullRowSelect = true;
             this.treeViewSelectionForExport.Location = new System.Drawing.Point(9, 56);
             this.treeViewSelectionForExport.Name = "treeViewSelectionForExport";
-            treeNode1.Name = "NodeClassifTree";
-            treeNode1.Text = "Classification Tree";
-            treeNode2.Name = "NodeClassification";
-            treeNode2.NodeFont = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            treeNode2.Text = "Classification";
-            treeNode3.Checked = true;
-            treeNode3.Name = "NodeCorrelationMatRank";
-            treeNode3.Text = "Correlation Matrix and Ranking";
-            treeNode4.Checked = true;
-            treeNode4.Name = "NodeSystematicError";
-            treeNode4.Text = "Systematic Errors Table";
-            treeNode5.Checked = true;
-            treeNode5.Name = "NodeZfactor";
-            treeNode5.Text = "Z-Factors";
-            treeNode6.Checked = true;
-            treeNode6.Name = "NodeQualityControl";
-            treeNode6.NodeFont = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            treeNode6.Text = "Quality Control";
-            treeNode7.Name = "NodePathwayAnalysis";
-            treeNode7.Text = "Pathway Analysis";
-            treeNode8.Name = "NodesiRNA";
-            treeNode8.Text = "siRNA screening";
-            treeNode9.Name = "NodeWekaArff";
-            treeNode9.Text = "Weka .Arff File";
-            treeNode10.Name = "NodeMisc";
-            treeNode10.Text = "Misc";
+            treeNode31.Name = "NodeClassifTree";
+            treeNode31.Text = "Classification Tree";
+            treeNode32.Name = "NodeClassification";
+            treeNode32.NodeFont = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            treeNode32.Text = "Classification";
+            treeNode33.Checked = true;
+            treeNode33.Name = "NodeCorrelationMatRank";
+            treeNode33.Text = "Correlation Matrix and Ranking";
+            treeNode34.Checked = true;
+            treeNode34.Name = "NodeSystematicError";
+            treeNode34.Text = "Systematic Errors Table";
+            treeNode35.Checked = true;
+            treeNode35.Name = "NodeZfactor";
+            treeNode35.Text = "Z-Factors";
+            treeNode36.Checked = true;
+            treeNode36.Name = "NodeQualityControl";
+            treeNode36.NodeFont = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            treeNode36.Text = "Quality Control";
+            treeNode37.Name = "NodePathwayAnalysis";
+            treeNode37.Text = "Pathway Analysis";
+            treeNode38.Name = "NodesiRNA";
+            treeNode38.Text = "siRNA screening";
+            treeNode39.Name = "NodeWekaArff";
+            treeNode39.Text = "Weka .Arff File";
+            treeNode40.Name = "NodeMisc";
+            treeNode40.Text = "Misc";
             this.treeViewSelectionForExport.Nodes.AddRange(new System.Windows.Forms.TreeNode[] {
-            treeNode2,
-            treeNode6,
-            treeNode8,
-            treeNode10});
+            treeNode32,
+            treeNode36,
+            treeNode38,
+            treeNode40});
             this.treeViewSelectionForExport.Size = new System.Drawing.Size(322, 153);
             this.treeViewSelectionForExport.TabIndex = 16;
             // 
@@ -3018,22 +3018,20 @@ namespace HCSAnalyzer
             // 
             this.toolStripDropDownButtonProcessMode.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
             this.toolStripDropDownButtonProcessMode.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.ProcessModeCurrentPlateOnlyToolStripMenuItem,
+            this.ProcessModeEntireScreeningToolStripMenuItem,
             this.ProcessModeplateByPlateToolStripMenuItem,
-            this.ProcessModeEntireScreeningToolStripMenuItem});
+            this.ProcessModeCurrentPlateOnlyToolStripMenuItem});
             this.toolStripDropDownButtonProcessMode.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.toolStripDropDownButtonProcessMode.Image = ((System.Drawing.Image)(resources.GetObject("toolStripDropDownButtonProcessMode.Image")));
             this.toolStripDropDownButtonProcessMode.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.toolStripDropDownButtonProcessMode.Name = "toolStripDropDownButtonProcessMode";
-            this.toolStripDropDownButtonProcessMode.Size = new System.Drawing.Size(89, 22);
-            this.toolStripDropDownButtonProcessMode.Text = "Current Plate";
+            this.toolStripDropDownButtonProcessMode.Size = new System.Drawing.Size(105, 22);
+            this.toolStripDropDownButtonProcessMode.Text = "Entire Screening";
             // 
             // ProcessModeCurrentPlateOnlyToolStripMenuItem
             // 
             this.ProcessModeCurrentPlateOnlyToolStripMenuItem.AutoToolTip = true;
-            this.ProcessModeCurrentPlateOnlyToolStripMenuItem.Checked = true;
             this.ProcessModeCurrentPlateOnlyToolStripMenuItem.CheckOnClick = true;
-            this.ProcessModeCurrentPlateOnlyToolStripMenuItem.CheckState = System.Windows.Forms.CheckState.Checked;
             this.ProcessModeCurrentPlateOnlyToolStripMenuItem.Name = "ProcessModeCurrentPlateOnlyToolStripMenuItem";
             this.ProcessModeCurrentPlateOnlyToolStripMenuItem.Size = new System.Drawing.Size(159, 22);
             this.ProcessModeCurrentPlateOnlyToolStripMenuItem.Text = "Current Plate";
@@ -3053,7 +3051,9 @@ namespace HCSAnalyzer
             // ProcessModeEntireScreeningToolStripMenuItem
             // 
             this.ProcessModeEntireScreeningToolStripMenuItem.AutoToolTip = true;
+            this.ProcessModeEntireScreeningToolStripMenuItem.Checked = true;
             this.ProcessModeEntireScreeningToolStripMenuItem.CheckOnClick = true;
+            this.ProcessModeEntireScreeningToolStripMenuItem.CheckState = System.Windows.Forms.CheckState.Checked;
             this.ProcessModeEntireScreeningToolStripMenuItem.Name = "ProcessModeEntireScreeningToolStripMenuItem";
             this.ProcessModeEntireScreeningToolStripMenuItem.Size = new System.Drawing.Size(159, 22);
             this.ProcessModeEntireScreeningToolStripMenuItem.Text = "Entire Screening";
@@ -3094,7 +3094,7 @@ namespace HCSAnalyzer
             this.KeyPreview = true;
             this.MainMenuStrip = this.menuStripFile;
             this.Name = "HCSAnalyzer";
-            this.Text = "HCS analyzer v2.0";
+            this.Text = "HCS analyzer v2.0 MINMAX_G SELECT_G LDA_G";
             this.Load += new System.EventHandler(this.HCSAnalyzer_Load);
             this.Shown += new System.EventHandler(this.HCSAnalyzer_Shown);
             this.DragDrop += new System.Windows.Forms.DragEventHandler(this.HCSAnalyzer_DragDrop);

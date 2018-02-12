@@ -80,6 +80,12 @@ namespace LibPlateAnalysis
 
             cDescriptorType NewType = new cDescriptorType(NewName, true, 1, Description);
             cGlobalInfo.CurrentScreening.ListDescriptors.AddNew(NewType);
+            List<cDescriptorType> active = cGlobalInfo.CurrentScreening.ListPlatesActive[0].ParentScreening.ListDescriptors.GetActiveDescriptors();
+            List<int> index = new List<int>();
+            for (int i = 0; i < active.Count(); i++)
+            {
+                index.Add(cGlobalInfo.CurrentScreening.ListPlatesActive[0].ParentScreening.ListDescriptors.GetDescriptorIndex(active[i]));
+            }
 
             foreach (cPlate TmpPlate in cGlobalInfo.CurrentScreening.ListPlatesAvailable)
             {
@@ -88,8 +94,11 @@ namespace LibPlateAnalysis
                     cListSignature LDesc = new cListSignature();
                     double NewValue = 0;
 
-                    for (int IdxActiveDesc = 0; IdxActiveDesc < this.Count; IdxActiveDesc++)
-                        NewValue += this.ListWeights[IdxActiveDesc] * Tmpwell.ListSignatures[IdxActiveDesc].GetValue();
+                    for (int IdxActiveDesc = 0; IdxActiveDesc < this.Count; IdxActiveDesc++)                    
+
+                            NewValue += this.ListWeights[IdxActiveDesc] * Tmpwell.ListSignatures[index[IdxActiveDesc]].GetValue();
+                        
+                        
 
                     cSignature NewDesc = new cSignature(NewValue, NewType, cGlobalInfo.CurrentScreening);
                     LDesc.Add(NewDesc);

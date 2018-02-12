@@ -81,7 +81,7 @@ namespace HCSAnalyzer.Classes.General_Types
             }
             else if (this.PropertyType.Type == eDataType.DOUBLE)
             {
-                double MyNewValue = (double)NewValue;
+                double MyNewValue = double.Parse(NewValue.ToString());
                 if ((MyNewValue > this.PropertyType.Max) || (MyNewValue < this.PropertyType.Min))
                     this.Value = null;
                 else
