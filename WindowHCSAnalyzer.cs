@@ -148,11 +148,11 @@ namespace HCSAnalyzer
             comboBoxDimReductionNeutralClass.SelectedIndex = 2;
 
             comboBoxMethodForNormalization.SelectedIndex = 1;
-            comboBoxNormalizationNegativeCtrl.SelectedIndex = 1;
-            comboBoxNormalizationPositiveCtrl.SelectedIndex = 0;
+            comboBoxNormalizationNegativeCtrl.SelectedIndex = 0;
+            comboBoxNormalizationPositiveCtrl.SelectedIndex = 1;
 
-            comboBoxRejectionNegativeCtrl.SelectedIndex = 1;
-            comboBoxRejectionPositiveCtrl.SelectedIndex = 0;
+            comboBoxRejectionNegativeCtrl.SelectedIndex = 0;
+            comboBoxRejectionPositiveCtrl.SelectedIndex = 1;
 
             comboBoxRejection.SelectedIndex = 0;
 
@@ -7950,8 +7950,9 @@ namespace HCSAnalyzer
             #endregion
         }
 
+        
 
- 
+
 
         //void UpDateColorSampleImage()
         //{

@@ -177,6 +177,7 @@ namespace HCSAnalyzer.Classes
             for (int Idx = 0; Idx < ColorForClass.Length; Idx++)
                 this.Add(new cWellClassType(ColorForClass[Idx], "Class " + Idx, GlobalInfo));
 
+            
 
 
 
