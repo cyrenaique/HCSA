@@ -182,11 +182,11 @@ namespace HCSAnalyzer
                         }
 
                     double CurrentMedian = Neg.Median();
-                    cGlobalInfo.ConsoleWriteLine(cGlobalInfo.CurrentScreening.ListDescriptors[Desc].GetName() + ", median = " + CurrentMedian);
+                    cGlobalInfo.ConsoleWriteLine(cGlobalInfo.CurrentScreening.ListDescriptors[Desc].GetName() + ", Median = " + CurrentMedian);
 
-                    if (CurrentMedian== 0)
+                    if (CurrentMedian == 0)
                     {
-                        richTextBoxInfoForNormalization.AppendText("\n" + CurrentPlateToProcess.GetName() + " / " + cGlobalInfo.CurrentScreening.ListDescriptors[Desc].GetName() + " average is null!\n");
+                        richTextBoxInfoForNormalization.AppendText("\n" + CurrentPlateToProcess.GetName() + " / " + cGlobalInfo.CurrentScreening.ListDescriptors[Desc].GetName() + " Median is null!\n");
                         richTextBoxInfoForNormalization.AppendText("\nNormalization skipped.");
                         continue;
                     }
