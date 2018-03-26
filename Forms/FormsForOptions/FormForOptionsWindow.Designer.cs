@@ -2434,7 +2434,7 @@
             this.textBoxImageAccesImagePath.ScrollBars = System.Windows.Forms.ScrollBars.Horizontal;
             this.textBoxImageAccesImagePath.Size = new System.Drawing.Size(310, 20);
             this.textBoxImageAccesImagePath.TabIndex = 3;
-            this.textBoxImageAccesImagePath.Text = "W:\\BTSData\\MeasurementData\\L\\lecture 1point_L-00019_20150807_154229";
+            this.textBoxImageAccesImagePath.Text = "Z:\\BTSData\\MeasurementData\\DMD-IC50-VL";
             // 
             // radioButtonImageAccessHarmony
             // 

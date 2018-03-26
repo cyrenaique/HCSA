@@ -11,6 +11,7 @@ using HCSAnalyzer.Classes.General_Types;
 using ImageAnalysis;
 using HCSAnalyzer.Classes.ImageAnalysis.FormsForImages;
 
+
 namespace HCSAnalyzer.Classes.MetaComponents
 {
     class cGetListWellValues : cComponent
@@ -88,11 +89,29 @@ namespace HCSAnalyzer.Classes.MetaComponents
 
                 foreach (cWell item in Input)
                 {
+                    int Field = (int)cGlobalInfo.OptionsWindow.numericUpDownDefaultField.Value;
+
+                    cDisplaySingleImage IV = new cDisplaySingleImage();
+
                     cGetImageFromWells GIFW = new cGetImageFromWells();
-                    GIFW.SetInputData(new cListWells(this));
+                    GIFW.SetInputData(new cListWells(item));
                     if (!GIFW.Run().IsSucceed) continue;
-                    cImage AccessedImage = GIFW.GetOutPut();
                 
+
+                    IV.SetInputData(GIFW.GetOutPut());
+                    IV.Title = " - Field: " + ((int)(GIFW.ListProperties.FindByName("Field").GetValue()));
+                    IV.Title = (string)item.ListProperties.FindByName("Compound Name").GetValue();
+                    IV.Title += " - C: "+ item.ListProperties.FindByName("Concentration").GetValue().ToString();
+                    IV.IsDisplayScale = true;
+                    //IV.ListLinearMaxColor.Add(System.Drawing.Color.FromArgb(255,200,200,200));
+                    
+                    
+                    IV.IsUseSavedDefaultDisplayProperties = true;
+                    IV.Run();
+
+
+                    cImage AccessedImage = GIFW.GetOutPut();
+
                     List<byte[][]> ListLUTs = new List<byte[][]>();
                     cLUT LUT = new cLUT();
                     ListLUTs.Add(LUT.LUT_LINEAR_RED);
@@ -112,8 +131,8 @@ namespace HCSAnalyzer.Classes.MetaComponents
                     cImageDisplayProperties IP = new cImageDisplayProperties();
                     IP.ListMax = ListMax;
                     IP.ListMin = ListMin;
-
-                    this.Output.ListTags.Add(AccessedImage.GetBitmap(0.2f, IP, ListLUTs));
+                    System.Drawing.Bitmap titi = AccessedImage.GetBitmap(0.2f, IP, ListLUTs);
+                    this.Output.ListTags.Add(titi);
                 }
             
             

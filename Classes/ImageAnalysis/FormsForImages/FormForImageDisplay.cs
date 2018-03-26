@@ -1940,7 +1940,22 @@ namespace HCSAnalyzer.Forms.FormsForImages
             if (ToolStripMenuItem_UIModeSelection.Checked == false)
             {
                 ChangeZoomValue(100);
+                for (int i = 0; i < this.AssociatedImage.GetNumChannels(); i++)
+                {
+                    for (int j = 0; j < AssociatedImage.ImageSize; j++)
+                    {
+                        if (AssociatedImage.SingleChannelImage[i].Data[j]>200)
+                        {
+                            AssociatedImage.SingleChannelImage[i].Data[j] = 65535;
 
+                        }
+                        
+                    }
+                    
+                }
+                ZoomToFit(2);
+                RefreshBMP();
+                ReDrawPic();
             }
             else
             {
