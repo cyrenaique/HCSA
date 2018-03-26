@@ -855,3 +855,4 @@ D:\GitHCSA\HCSA\obj\x64\Debug\HCSAnalyzer.Properties.Resources.resources
 D:\GitHCSA\HCSA\obj\x64\Debug\HCS Analyzer.csproj.GenerateResource.Cache
 D:\GitHCSA\HCSA\obj\x64\Debug\HCSAnalyzer.exe
 D:\GitHCSA\HCSA\obj\x64\Debug\HCSAnalyzer.pdb
+D:\GitHCSA\HCSA\obj\x64\Debug\HCS Analyzer.csproj.CoreCompileInputs.cache
