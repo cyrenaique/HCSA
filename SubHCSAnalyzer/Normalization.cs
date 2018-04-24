@@ -513,8 +513,8 @@ namespace HCSAnalyzer
                     double CurrentStdPos = Pos.Std();
                     double X_min = 0;
                     double X_max = 0;
-                    double X_min2 = 0;
-                    double X_max2 = 0;
+                    //double X_min2 = 0;
+                    //double X_max2 = 0;
 
                     // Exclude the outliers
 
@@ -523,16 +523,16 @@ namespace HCSAnalyzer
 
                         X_min = CurrentMeanNeg;// - 5 * CurrentStdNeg;
                         X_max = CurrentMeanPos;// + 5 * CurrentStdPos;
-                        X_min2 = Neg.Min();
-                        X_max2 = Pos.Max();
-                        if (X_min < X_min2)
-                        {
-                            X_min = X_min2;
-                        }
-                        if (X_max > X_max2)
-                        {
-                            X_max = X_max2;
-                        }
+                        //X_min2 = Neg.Min();
+                        //X_max2 = Pos.Max();
+                        //if (X_min < X_min2)
+                        //{
+                        //    X_min = X_min2;
+                        //}
+                        //if (X_max > X_max2)
+                        //{
+                        //    X_max = X_max2;
+                        //}
 
                     }
                     else
@@ -541,17 +541,17 @@ namespace HCSAnalyzer
                         X_min = CurrentMeanPos;// - 5 * CurrentStdPos;
 
                         X_max = CurrentMeanNeg;// + 5 * CurrentStdNeg;
-                        X_min2 = Pos.Min();
-                        X_max2 = Neg.Max();
+                        //X_min2 = Pos.Min();
+                        //X_max2 = Neg.Max();
 
-                        if (X_min < X_min2)
-                        {
-                            X_min = X_min2;
-                        }
-                        if (X_max > X_max2)
-                        {
-                            X_max = X_max2;
-                        }
+                        //if (X_min < X_min2)
+                        //{
+                        //    X_min = X_min2;
+                        //}
+                        //if (X_max > X_max2)
+                        //{
+                        //    X_max = X_max2;
+                        //}
                     }
 
 
