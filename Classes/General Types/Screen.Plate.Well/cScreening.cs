@@ -1097,7 +1097,8 @@ namespace LibPlateAnalysis
         public void UpDatePlateListWithFullAvailablePlate()
         {
             this.ListPlatesActive = new cListPlates();
-            foreach (cPlate Plate in ListPlatesAvailable) this.ListPlatesActive.Add(Plate);
+            List<cPlate> ListPlatesAvailab = ListPlatesAvailable.OrderBy( o => o.Name).ToList();
+            foreach (cPlate Plate in ListPlatesAvailab) this.ListPlatesActive.Add(Plate);
 
             // this.ListPlatesAvailable = new cListPlates();
             //  foreach (cPlate Plate in ListPlatesAvailable) this.ListPlatesAvailable.Add(Plate);

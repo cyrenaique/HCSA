@@ -38,7 +38,7 @@ namespace LibPlateAnalysis
         // string PlateType;
         cWell[,] ListWell = null;
 
-        string Name;
+        public string Name;
         public string GetName()
         {
             //TmpList[IdxConc].ListProperties.UpdateValueByName("Concentration", (double)Convert.ToDouble(dataGridViewForConcentration.Rows[IdxConc].Cells[1].Value.ToString()));

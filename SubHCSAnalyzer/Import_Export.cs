@@ -1006,15 +1006,24 @@ namespace HCSAnalyzer
             MessageBox.Show("CSV file loaded:\n" + WellLoaded + " well(s) loaded\n" + FailToLoad + " well(s) rejected.", "Process finished !", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
             this.toolStripcomboBoxPlateList.Items.Clear();
+            //List<string> Name_plate = new List<string>();
             for (int IdxPlate = 0; IdxPlate < cGlobalInfo.CurrentScreening.GetNumberOfOriginalPlates(); IdxPlate++)
             {
+                //Name_plate.Add(cGlobalInfo.CurrentScreening.ListPlatesActive.GetPlate(IdxPlate).GetName());
                 string Name = cGlobalInfo.CurrentScreening.ListPlatesActive.GetPlate(IdxPlate).GetName();
                 this.toolStripcomboBoxPlateList.Items.Add(Name);
                 PlateListWindow.listBoxPlateNameToProcess.Items.Add(Name);
                 PlateListWindow.listBoxAvaliableListPlates.Items.Add(Name);
             }
+            //Name_plate.Sort();
+            //foreach (string item in Name_plate)
+            //{
+            //    this.toolStripcomboBoxPlateList.Items.Add(item);
+            //    PlateListWindow.listBoxPlateNameToProcess.Items.Add(item);
+            //    PlateListWindow.listBoxAvaliableListPlates.Items.Add(item);
+            //}
 
-
+            
             UpdateUIAfterLoading();
             //    CompleteScreening.CurrentDisplayPlateIdx = 0;
             cGlobalInfo.CurrentScreening.SetSelectionType(comboBoxClass.SelectedIndex - 1);
