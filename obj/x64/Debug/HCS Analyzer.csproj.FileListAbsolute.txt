@@ -703,7 +703,6 @@ D:\GitHCSA\HCSA\bin\x64\Debug\Microsoft.VC90.CRT.manifest
 D:\GitHCSA\HCSA\bin\x64\Debug\msvcm90.dll
 D:\GitHCSA\HCSA\bin\x64\Debug\msvcp90.dll
 D:\GitHCSA\HCSA\bin\x64\Debug\msvcr90.dll
-D:\GitHCSA\HCSA\obj\x64\Debug\HCS Analyzer.csprojResolveAssemblyReference.cache
 D:\GitHCSA\HCSA\obj\x64\Debug\HCS Analyzer.csproj.ResolveComReference.cache
 D:\GitHCSA\HCSA\obj\x64\Debug\HCSAnalyzer.Cell_by_Cell_and_DB.Simulator.Forms.FormForModelsHistory.resources
 D:\GitHCSA\HCSA\obj\x64\Debug\HCSAnalyzer.Cell_by_Cell_and_DB.FormForSingleCellClassifOptions.resources
@@ -856,3 +855,5 @@ D:\GitHCSA\HCSA\obj\x64\Debug\HCS Analyzer.csproj.GenerateResource.Cache
 D:\GitHCSA\HCSA\obj\x64\Debug\HCSAnalyzer.exe
 D:\GitHCSA\HCSA\obj\x64\Debug\HCSAnalyzer.pdb
 D:\GitHCSA\HCSA\obj\x64\Debug\HCS Analyzer.csproj.CoreCompileInputs.cache
+D:\GitHCSA\HCSA\obj\x64\Debug\HCS Analyzer.csprojAssemblyReference.cache
+D:\GitHCSA\HCSA\obj\x64\Debug\HCS Analyzer.csproj.CopyComplete

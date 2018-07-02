@@ -100,8 +100,8 @@ namespace HCSAnalyzer.Classes.MetaComponents
 
                     IV.SetInputData(GIFW.GetOutPut());
                     IV.Title = " - Field: " + ((int)(GIFW.ListProperties.FindByName("Field").GetValue()));
-                    IV.Title = (string)item.ListProperties.FindByName("Compound Name").GetValue();
-                    IV.Title += " - C: "+ item.ListProperties.FindByName("Concentration").GetValue().ToString();
+                    //IV.Title = (string)item.ListProperties.FindByName("Compound Name").GetValue();
+                    //IV.Title += " - C: "+ item.ListProperties.FindByName("Concentration").GetValue().ToString();
                     IV.IsDisplayScale = true;
                     //IV.ListLinearMaxColor.Add(System.Drawing.Color.FromArgb(255,200,200,200));
                     

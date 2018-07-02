@@ -2360,3 +2360,5 @@ D:\HCSA_new\obj\x64\Release\HCS Analyzer.csproj.GenerateResource.Cache
 D:\HCSA_new\obj\x64\Release\HCSAnalyzer.exe
 D:\HCSA_new\obj\x64\Release\HCSAnalyzer.pdb
 D:\GitHCSA\HCSA\obj\x64\Release\HCS Analyzer.csproj.CoreCompileInputs.cache
+D:\GitHCSA\HCSA\obj\x64\Release\HCS Analyzer.csprojAssemblyReference.cache
+D:\GitHCSA\HCSA\obj\x64\Release\HCS Analyzer.csproj.CopyComplete

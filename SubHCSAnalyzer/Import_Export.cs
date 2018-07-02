@@ -1452,14 +1452,37 @@ namespace HCSAnalyzer
             {
                 // Export titles:  
                 string sHeaders = "";
-                for (int j = 0; j < dGV.Columns.Count; j++) { sHeaders = sHeaders.ToString() + dGV.Columns[j].HeaderText + ","; }
+                for (int j = 0; j < dGV.Columns.Count; j++)
+                {
+                    if (j < dGV.Columns.Count - 1)
+                    {
+                        sHeaders = sHeaders.ToString() + dGV.Columns[j].HeaderText + ",";
+
+                    }
+                    else
+                    {
+                        sHeaders = sHeaders.ToString() + dGV.Columns[j].HeaderText;
+                    }
+                }
+                
                 myFile.WriteLine(sHeaders);
 
                 // Export data.  
                 for (int i = 0; i < dGV.RowCount - 1; i++)
                 {
                     string stLine = "";
-                    for (int j = 0; j < dGV.Rows[i].Cells.Count; j++) { stLine = stLine.ToString() + dGV.Rows[i].Cells[j].Value + ","; }
+                    for (int j = 0; j < dGV.Rows[i].Cells.Count; j++)
+                    {
+                        if (j < dGV.Rows[i].Cells.Count - 1)
+                        {
+                            stLine = stLine.ToString() + dGV.Rows[i].Cells[j].Value + ",";
+                        }
+                        else
+                        {
+                            stLine = stLine.ToString() + dGV.Rows[i].Cells[j].Value;
+                        }
+                    }
+                     
                     myFile.WriteLine(stLine);
                 }
                 myFile.Close();
