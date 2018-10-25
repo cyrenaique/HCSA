@@ -25,7 +25,7 @@ namespace HCSAnalyzer.Forms.FormsForGraphsDisplay
             {
                 this.TableValues.Columns.Add(new DataColumn(Name, typeof(string)));
             }
-            //this.TableValues.Columns.Add(new DataColumn("", typeof(string)));
+//this.TableValues.Columns.Add(new DataColumn("", typeof(string)));
             //double[] Mins = new double[IsDisplayColorMap.Count];
             //double[] Maxs = new double[IsDisplayColorMap.Count];
 

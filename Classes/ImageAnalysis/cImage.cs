@@ -592,7 +592,7 @@ namespace ImageAnalysis
             }
         }
 
-        void LoadFromPath(/*string Path, string FileName*/List<cImageMetaInfo> ListImageMetaInfo)
+       public  void LoadFromPath(/*string Path, string FileName*/List<cImageMetaInfo> ListImageMetaInfo)
         {
             if (ListImageMetaInfo == null) return;
             int ChannelStart = 0;

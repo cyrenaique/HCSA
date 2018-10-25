@@ -28,6 +28,7 @@
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "FormForDisplay";
             this.ResumeLayout(false);
+           
 
         }
 

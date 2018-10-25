@@ -57,7 +57,7 @@ namespace HCSAnalyzer.Classes.MetaComponents
             MyImageViewer.IsDisplayScale = this.IsDisplayScale;
             MyImageViewer.IsUseSavedDefaultDisplayProperties = this.IsUseSavedDefaultDisplayProperties;
             MyImageViewer.DefaultZoom = this.DefaultZoom;
-            this.Title = this.Input.Name;
+            //this.Title = this.Title;
 
             MyImageViewer.Run();
 
@@ -68,7 +68,7 @@ namespace HCSAnalyzer.Classes.MetaComponents
             cDisplayToWindow MyDisplay = new cDisplayToWindow();
             MyDisplay.SetInputData(MyImageViewer.GetOutPut());
             MyDisplay.Title = this.Title;
-
+            
 
             MyImageViewer.IP.Resize-= new EventHandler(MyImageViewer.IP.panelForImage_Resize);
             MyDisplay.Run();
