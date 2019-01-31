@@ -206,7 +206,7 @@ namespace HCSAnalyzer
             ContextMenuStripQCOptions.Items.Add(_QCZRegularItem);
 
             _QCZRobustItem = new ToolStripMenuItem("Robust");
-            _QCZRobustItem.CheckOnClick = true;
+            _QCZRobustItem.CheckOnClick = true;            
             _QCZRobustItem.Click += new System.EventHandler(this.QCZRobustItem);
             ContextMenuStripQCOptions.Items.Add(_QCZRobustItem);
 
@@ -2492,7 +2492,7 @@ namespace HCSAnalyzer
 
                     VG1.Title = TmpPlate.GetName();
 
-                    Classes.Base_Classes.General.cLineHorizontalForGraph VLZ05 = new Classes.Base_Classes.General.cLineHorizontalForGraph(.5);
+                    Classes.Base_Classes.General.cLineHorizontalForGraph VLZ05 = new Classes.Base_Classes.General.cLineHorizontalForGraph(.3);
                     VLZ05.IsAllowMoving = true;
                     VG1.Chart.ListHorizontalLines.Add(VLZ05);
 
@@ -2637,7 +2637,7 @@ namespace HCSAnalyzer
 
                     VG1.Title = TmpPlate.GetName();
 
-                    Classes.Base_Classes.General.cLineHorizontalForGraph VLZ05 = new Classes.Base_Classes.General.cLineHorizontalForGraph(.5);
+                    Classes.Base_Classes.General.cLineHorizontalForGraph VLZ05 = new Classes.Base_Classes.General.cLineHorizontalForGraph(.3);
                     VLZ05.IsAllowMoving = true;
                     VG1.Chart.ListHorizontalLines.Add(VLZ05);
 
@@ -2765,7 +2765,7 @@ namespace HCSAnalyzer
                 }
 
 
-                Classes.Base_Classes.General.cLineHorizontalForGraph VLZ05 = new Classes.Base_Classes.General.cLineHorizontalForGraph(.5);
+                Classes.Base_Classes.General.cLineHorizontalForGraph VLZ05 = new Classes.Base_Classes.General.cLineHorizontalForGraph(.3);
                 VLZ05.IsAllowMoving = true;
                 VG1.Chart.ListHorizontalLines.Add(VLZ05);
 

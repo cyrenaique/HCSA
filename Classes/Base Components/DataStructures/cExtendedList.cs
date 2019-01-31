@@ -278,11 +278,24 @@ namespace HCSAnalyzer.Classes.Base_Classes.DataStructures
 
             cExtendedList SortedList = new cExtendedList(this, 1);
             SortedList.Sort();
+            int Idx = 0;
+            if (N % 2 == 0)
+            {
+                int idx2 = (int)(SortedList.Count / N);
+                int idx1 = (int)(SortedList.Count / N) - 1;
+                ToBeReturned = (SortedList[idx1] + SortedList[idx2]) / 2;
 
-            int Idx = (int)(SortedList.Count / N);
-            ToBeReturned = SortedList[Idx];
+            }
+            else
+            {
+                Idx = (int)(SortedList.Count / N);
+                ToBeReturned = SortedList[Idx];
+            }
+            //int Idx = (int)(SortedList.Count / N);
+
 
             return ToBeReturned;
+
         }
 
         public double Median()
