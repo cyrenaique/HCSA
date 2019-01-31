@@ -39,7 +39,7 @@ namespace HCSAnalyzer.Forms.FormsForGraphsDisplay
             
             for (int Row = 0; Row < Values.Count; Row++)
             {
-                this.TableValues.Rows.Add();
+                this.TableValues.Rows.Add( );
 
                 for (int idxString = 0; idxString < Values[Row].Length; idxString++)
                 {
