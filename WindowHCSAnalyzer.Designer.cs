@@ -2462,7 +2462,7 @@ namespace HCSAnalyzer
             this.testPubMedSOAPToolStripMenuItem.Name = "testPubMedSOAPToolStripMenuItem";
             this.testPubMedSOAPToolStripMenuItem.Size = new System.Drawing.Size(191, 22);
             this.testPubMedSOAPToolStripMenuItem.Text = "TestPubMed SOAP";
-            this.testPubMedSOAPToolStripMenuItem.Click += new System.EventHandler(this.testPubMedSOAPToolStripMenuItem_Click);
+            //this.testPubMedSOAPToolStripMenuItem.Click += new System.EventHandler(this.testPubMedSOAPToolStripMenuItem_Click);
             // 
             // sigmoidFittToolStripMenuItem
             // 

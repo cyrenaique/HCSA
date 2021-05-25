@@ -1,24 +1,21 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Drawing;
-using LibPlateAnalysis;
-using System.Windows.Forms;
-using HCSAnalyzer.Forms;
-using HCSAnalyzer.Forms.FormsForImages;
-using HCSAnalyzer.Forms.FormsForGraphsDisplay;
-using HCSAnalyzer.Classes.General_Types;
+﻿using FreeImageAPI;
+using HCSAnalyzer.Classes._3D;
+using HCSAnalyzer.Classes.Base_Classes.DataStructures;
 using HCSAnalyzer.Classes.Base_Classes.General;
+using HCSAnalyzer.Classes.Base_Classes.GUI;
+using HCSAnalyzer.Classes.General_Types;
 using HCSAnalyzer.Classes.ImageAnalysis.FormsForImages;
 using HCSAnalyzer.Classes.MetaComponents;
+using HCSAnalyzer.Forms;
+using HCSAnalyzer.Forms.FormsForGraphsDisplay;
+using LibPlateAnalysis;
+using System;
+using System.Collections.Generic;
+using System.Drawing;
 //using RDotNet;
 using System.IO;
 using System.Reflection;
-using FreeImageAPI;
-using HCSAnalyzer.Classes._3D;
-using HCSAnalyzer.Classes.Base_Classes.GUI;
-using HCSAnalyzer.Classes.Base_Classes.DataStructures;
+using System.Windows.Forms;
 
 namespace HCSAnalyzer.Classes
 {
@@ -131,7 +128,7 @@ namespace HCSAnalyzer.Classes
 
         #endregion
     }
-   
+
     public class cListGroupInfo
     {
         Random RND = new Random();
@@ -142,7 +139,7 @@ namespace HCSAnalyzer.Classes
         {
             if (IdxGroup >= ListColors.Count)
             {
-                int MissingColors = IdxGroup-ListColors.Count+1;
+                int MissingColors = IdxGroup - ListColors.Count + 1;
                 for (int i = 0; i < MissingColors; i++)
                 {
                     ListColors.Add(Color.FromArgb((int)(RND.NextDouble() * 255), (int)(RND.NextDouble() * 255), (int)(RND.NextDouble() * 255)));
@@ -156,7 +153,7 @@ namespace HCSAnalyzer.Classes
 
     public class cListWellClasses : List<cWellClassType>
     {
-        private Color[] ColorForClass = new Color[] {             
+        private Color[] ColorForClass = new Color[] {
             Color.FromArgb(21,88,140),
             Color.FromArgb(136,17,17),
             Color.FromArgb(51,102,68),
@@ -168,6 +165,26 @@ namespace HCSAnalyzer.Classes
             Color.FromArgb(82,122,140),
              Color.FromArgb(102,160,37),
              Color.FromArgb(255,105,180),
+             Color.AliceBlue,
+            Color.PaleGreen,
+            Color.DarkMagenta,
+            Color.DarkGray,
+            Color.Crimson,
+            Color.Cornsilk,
+            Color.Chocolate,
+            Color.CadetBlue,
+            Color.DarkKhaki,
+            Color.DarkSalmon,
+            Color.DarkSeaGreen,
+            Color.DarkSlateBlue,
+            Color.DarkSlateGray,
+            Color.DarkTurquoise,
+            Color.DarkViolet,
+            Color.DeepPink,
+            Color.DeepSkyBlue,
+            Color.DimGray,
+            Color.DodgerBlue,
+            Color.Chartreuse
         };
 
         //private Color[] ColorForClass = new Color[] { Color.LightGreen, Color.Tomato, Color.Olive, Color.Orange, Color.Yellow, Color.Violet, Color.Pink, Color.Purple, Color.Salmon, Color.RoyalBlue };
@@ -177,7 +194,7 @@ namespace HCSAnalyzer.Classes
             for (int Idx = 0; Idx < ColorForClass.Length; Idx++)
                 this.Add(new cWellClassType(ColorForClass[Idx], "Class " + Idx, GlobalInfo));
 
-            
+
 
 
 
@@ -195,7 +212,7 @@ namespace HCSAnalyzer.Classes
                 LUTToReturn[i] = new byte[ColorForClass.Length];
                 for (int j = 0; j < LUTToReturn[i].Length; j++)
                 {
-                    if(i==0)
+                    if (i == 0)
                         LUTToReturn[i][j] = ColorForClass[j].R;
                     else if (i == 1)
                         LUTToReturn[i][j] = ColorForClass[j].G;
@@ -204,9 +221,9 @@ namespace HCSAnalyzer.Classes
 
                 }
             }
-                    //public byte[][] LUT_JET = {new byte[]{0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,16,32,48,64,80,96,112,128,143,159,175,191,207,223,239,255,255,255,255,255,255,255,255,255,255,255,255,255,255,255,255,255,239,223,207,191,175,159,143,128},
-        //                        new byte[]{0,0,0,0,0,0,0,0,16,32,48,64,80,96,112,128,143,159,175,191,207,223,239,255,255,255,255,255,255,255,255,255,255,255,255,255,255,255,255,255,239,223,207,191,175,159,143,128,112,96,80,64,48,32,16,0,0,0,0,0,0,0,0,0},
-        //                        new byte[]{143,159,175,191,207,223,239,255,255,255,255,255,255,255,255,255,255,255,255,255,255,255,255,255,239,223,207,191,175,159,143,128,112,96,80,64,48,32,16,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0}};
+            //public byte[][] LUT_JET = {new byte[]{0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,16,32,48,64,80,96,112,128,143,159,175,191,207,223,239,255,255,255,255,255,255,255,255,255,255,255,255,255,255,255,255,255,239,223,207,191,175,159,143,128},
+            //                        new byte[]{0,0,0,0,0,0,0,0,16,32,48,64,80,96,112,128,143,159,175,191,207,223,239,255,255,255,255,255,255,255,255,255,255,255,255,255,255,255,255,255,239,223,207,191,175,159,143,128,112,96,80,64,48,32,16,0,0,0,0,0,0,0,0,0},
+            //                        new byte[]{143,159,175,191,207,223,239,255,255,255,255,255,255,255,255,255,255,255,255,255,255,255,255,255,239,223,207,191,175,159,143,128,112,96,80,64,48,32,16,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0}};
 
             return LUTToReturn;
         }
@@ -216,12 +233,12 @@ namespace HCSAnalyzer.Classes
 
     public class cListCellularPhenotypes : List<cCellularPhenotype>
     {
-        private Color[] ColorForClass = new Color[] { 
-            Color.FromArgb(57,40,57), 
+        private Color[] ColorForClass = new Color[] {
+            Color.FromArgb(57,40,57),
             Color.FromArgb(204,85,17),
             Color.FromArgb(102,160,37),
             Color.FromArgb(255,140,173),
-            Color.FromArgb(94,79,22), 
+            Color.FromArgb(94,79,22),
             Color.FromArgb(182,166,137),
             Color.FromArgb(210,199,184),
             Color.FromArgb(108,136,144),
@@ -247,7 +264,7 @@ namespace HCSAnalyzer.Classes
         }
     }
 
-    public class  cLUTProcess
+    public class cLUTProcess
     {
         byte[][] CurrentLUT;
 
@@ -258,7 +275,7 @@ namespace HCSAnalyzer.Classes
 
         public Color GetColor(int IdxColor)
         {
-            return Color.FromArgb(this.CurrentLUT[0][IdxColor],this.CurrentLUT[1][IdxColor],this.CurrentLUT[2][IdxColor]);
+            return Color.FromArgb(this.CurrentLUT[0][IdxColor], this.CurrentLUT[1][IdxColor], this.CurrentLUT[2][IdxColor]);
         }
 
         public int GetNumberOfColors()
@@ -277,7 +294,7 @@ namespace HCSAnalyzer.Classes
         {
             public cSystemInfo()
             {
-                this.ApplicationFolder =  Directory.GetCurrentDirectory();
+                this.ApplicationFolder = Directory.GetCurrentDirectory();
 
             }
 
@@ -288,10 +305,10 @@ namespace HCSAnalyzer.Classes
                 string ToReturn = "";
 
                 #region General info
-                ToReturn += "Application Directory: " + this.ApplicationFolder+"\n";
-                
+                ToReturn += "Application Directory: " + this.ApplicationFolder + "\n";
+
                 ToReturn += "System: ";
-                if(IntPtr.Size==4)
+                if (IntPtr.Size == 4)
                     ToReturn += "32 bits\n";
                 else if (IntPtr.Size == 8)
                     ToReturn += "64 bits\n";
@@ -318,7 +335,7 @@ namespace HCSAnalyzer.Classes
 
                 #region VTK engine
                 ToReturn += PropSeparator + "VTK engine:\n\n";
-                ToReturn += " Version: " + Kitware.VTK.vtkVersion.GetVTKVersion() +"\n";
+                ToReturn += " Version: " + Kitware.VTK.vtkVersion.GetVTKVersion() + "\n";
                 #endregion
 
                 #region Accord engine
@@ -371,9 +388,9 @@ namespace HCSAnalyzer.Classes
                 //#endregion
 
                 return ToReturn;
-            
+
             }
-            
+
             string ApplicationFolder;
 
 
@@ -432,7 +449,7 @@ namespace HCSAnalyzer.Classes
         /// <param name="WindowHCSAnalyzer">Parent Form</param>
         public cGlobalInfo(HCSAnalyzer WindowHCSAnalyzer)
         {
-           // cComponent.GlobalInfo = this;
+            // cComponent.GlobalInfo = this;
 
             ListWellClasses = new cListWellClasses(this);
             ListCellularPhenotypes = new cListCellularPhenotypes();
@@ -453,10 +470,10 @@ namespace HCSAnalyzer.Classes
 
             cGlobalInfo.ListDefaultPropertyTypes.Add(new cPropertyType("Cell Line", eDataType.STRING));
 
-            cPropertyType LocusProperty = new cPropertyType("Locus ID", eDataType.INTEGER);
+            cPropertyType LocusProperty = new cPropertyType("Locus ID", eDataType.STRING);
             LocusProperty.Min = 0;
             cGlobalInfo.ListDefaultPropertyTypes.Add(LocusProperty);
-
+            cGlobalInfo.ListDefaultPropertyTypes.Add(new cPropertyType("tags", eDataType.STRING));
             //   this.ListWellPropertyType.AddNewType(new cPropertyType("Time Point", eDataType.TIME));
 
             cGlobalInfo.ListDefaultPropertyTypes.Add(new cPropertyType("Plate Name", eDataType.STRING));
@@ -520,8 +537,8 @@ namespace HCSAnalyzer.Classes
                 cGlobalInfo.GUIPlateLUT = new cGUIPlateLUT();
 
 
-          //  REngine.SetEnvironmentVariables();
-           // RStat_engine = REngine.GetInstance();
+            //  REngine.SetEnvironmentVariables();
+            // RStat_engine = REngine.GetInstance();
 
 
             cGlobalInfo.CtrlNeg = cGlobalInfo.ListWellClasses[0];
@@ -530,7 +547,7 @@ namespace HCSAnalyzer.Classes
         }
         #endregion
 
-       // static List<c3DNewWorld> List3DWorlds = new List<c3DNewWorld>();
+        // static List<c3DNewWorld> List3DWorlds = new List<c3DNewWorld>();
         public static void AddNewWorld(c3DNewWorld ToBeAdded)
         {
             if (ToBeAdded.Name == null)
@@ -545,7 +562,7 @@ namespace HCSAnalyzer.Classes
 
             NewItem.Tag = ToBeAdded;
             cGlobalInfo.WindowHCSAnalyzer.listView3DWorld.Items.Add(NewItem);
-            
+
 
         }
 
@@ -566,10 +583,10 @@ namespace HCSAnalyzer.Classes
 
             return ToBeReturned;
         }
-            
 
 
-      //  public static REngine RStat_engine;
+
+        //  public static REngine RStat_engine;
 
         public void DisplayViewer(cDisplaySingleImage ImageViewer)
         {
@@ -630,15 +647,15 @@ namespace HCSAnalyzer.Classes
                         cGlobalInfo.CurrentScreening.Reference.Add(WellForRef);
 
                     }
-                        //Ref.Add(WellForRef);
+                    //Ref.Add(WellForRef);
                 }
 
                 // Ref.Add(CurrentScreen.GetCurrentDisplayPlate().ListActiveWells[0]);
                 //if (Ref.Count == 0) cGlobalInfo.CurrentScreening.Reference = null;
                 //else
-               // {
-               //     cGlobalInfo.CurrentScreening.Reference = new cReference();
-               // }
+                // {
+                //     cGlobalInfo.CurrentScreening.Reference = new cReference();
+                // }
 
             }
 
@@ -753,10 +770,10 @@ namespace HCSAnalyzer.Classes
                     CurrentPlateLUT = LUTs.LUT_JET;
                     break;
             }
-            
+
         }
 
-     //   public Color[] ColorForDRCCurves = new Color[] { Color.Blue, Color.Red, Color.Black, Color.Orange, Color.Yellow, Color.LightGreen, Color.Pink, Color.Purple, Color.Cyan };
+        //   public Color[] ColorForDRCCurves = new Color[] { Color.Blue, Color.Red, Color.Black, Color.Orange, Color.Yellow, Color.LightGreen, Color.Pink, Color.Purple, Color.Cyan };
 
         public static string[] ListArtifacts = new string[] { "edge effect", "column artifact", "row artifact", "bowl effect" };
 
@@ -778,7 +795,7 @@ namespace HCSAnalyzer.Classes
         {
             if ((CurrentRichTextBox == null) || (CurrentRichTextBox.IsDisposed)) CurrentRichTextBox = new RichTextBox();
             cGlobalInfo.WindowHCSAnalyzer.richTextBoxConsole.AppendText(DispText + "\n");
-            
+
         }
 
         public static string ConvertIntPosToStringPos(int Pos)

@@ -619,7 +619,7 @@ namespace HCSAnalyzer
             if ((FromExcel.ModeWell == 1) || (FromExcel.ModeWell == 3))
                 columnType.DataSource = new string[] { "Plate name", "Column", "Row", "Class", "Name", "Locus ID", "Concentration", "Info", "Descriptor" };
             else
-                columnType.DataSource = new string[] { "Plate name", "Well position", "Class", "Name", "Locus ID", "Concentration", "Info", "Descriptor" };
+                columnType.DataSource = new string[] { "Plate name", "Well position", "Class", "Name", "Locus ID", "Concentration", "Info", "Descriptor", "tags" };
             columnType.Name = "Type";
             FromExcel.dataGridViewForImport.Columns.Add(columnType);
 
@@ -662,6 +662,11 @@ namespace HCSAnalyzer
                 else if (Names[i].Contains("Class"))
                 {
                     FromExcel.dataGridViewForImport.Rows[i].Cells[IdxRow++].Value = "Class";
+                }
+
+                else if (Names[i].Contains("tags"))
+                {
+                    FromExcel.dataGridViewForImport.Rows[i].Cells[IdxRow++].Value = "tags";
                 }
                 else
                 {
@@ -744,6 +749,7 @@ namespace HCSAnalyzer
             int ColRow = GetColIdxFor("Row", FromExcel);
             int ColWellPos = GetColIdxFor("Well position", FromExcel);
             int[] ColsForDescriptors = GetColsIdxFor("Descriptor", FromExcel);
+            int Coltags = GetColIdxFor("tags", FromExcel);
 
             int WellLoaded = 0;
             int FailToLoad = 0;
@@ -756,7 +762,8 @@ namespace HCSAnalyzer
             }
             int ShiftIdx = cGlobalInfo.CurrentScreening.ListDescriptors.Count;
 
-
+            int class_to_string = 0;
+            List<string> class_string = new List<string>();
             for (int IdxFile = 0; IdxFile < PathNames.Length; IdxFile++)
             {
                 string CurrentFileName = PathNames[IdxFile];
@@ -809,6 +816,7 @@ namespace HCSAnalyzer
                 }
 
                 int ConvertedNaNValue = 0;
+                
                 while (CSVsr.EndOfStream != true)
                 {
                 NEXT: ;
@@ -954,17 +962,48 @@ namespace HCSAnalyzer
 
                     if ((ColSelectedForName != -1) && (ColSelectedForName < CurrentDesc.Count))
                     {
-                        CurrentWell.ListProperties.UpdateValueByName("Compound Name", CurrentDesc[ColSelectedForName]);
+                        CurrentWell.ListProperties.UpdateValueByName("tags", CurrentDesc[ColSelectedForName]);
                     }
 
                     if (ColLocusID != -1)
                     {
                         double CurrentValue;
 
-                        if (!double.TryParse(CurrentDesc[ColLocusID], out CurrentValue))
-                            goto NEXTSTEP;
+                        //if (!double.TryParse(CurrentDesc[ColLocusID], out CurrentValue))
+                        //    goto NEXTSTEP;
 
-                        CurrentWell.ListProperties.UpdateValueByName("Locus ID", CurrentValue);
+                        CurrentWell.ListProperties.UpdateValueByName("Locus ID", CurrentDesc[ColLocusID]);
+
+                    }
+
+                    if (Coltags != -1)
+                    {
+                        //double CurrentValue;
+
+                        //if (!double.TryParse(CurrentDesc[ColLocusID], out CurrentValue))
+                        //    goto NEXTSTEP;
+
+                        CurrentWell.ListProperties.UpdateValueByName("tags", CurrentDesc[Coltags]);
+                        float CurrentValue = 0;
+                        if (!float.TryParse(CurrentDesc[Coltags], out CurrentValue))
+                        {
+                            if (!class_string.Contains(CurrentDesc[Coltags]))
+                            {
+                                class_string.Add(CurrentDesc[Coltags]);
+                                CurrentWell.SetClass(class_string.Count - 1);
+
+                            }
+                            else
+                            {
+                                int idx_str = class_string.IndexOf(CurrentDesc[Coltags]);
+                                CurrentWell.SetClass(idx_str);
+                            }
+
+
+                            goto NEXTLOOP;
+                        }
+
+                        CurrentWell.SetClass((int)CurrentValue);
 
                     }
                     if (ColConcentration != -1)
@@ -983,15 +1022,31 @@ namespace HCSAnalyzer
 
                     if (ColClass != -1)
                     {
-                        float CurrentValue;
+                        float CurrentValue = 0;
                         if (!float.TryParse(CurrentDesc[ColClass], out CurrentValue))
+                        {
+                            if (!class_string.Contains(CurrentDesc[ColClass]))
+                            {
+                                class_string.Add(CurrentDesc[ColClass]);
+                                CurrentWell.SetClass(class_string.Count - 1);
+
+                            }
+                            else
+                            {
+                                int idx_str = class_string.IndexOf(CurrentDesc[ColClass]);
+                                CurrentWell.SetClass(idx_str);
+                            }
+
+
                             goto NEXTLOOP;
+                        }
+
                         CurrentWell.SetClass((int)CurrentValue);
                     }
-                    else
-                    {
-                        CurrentWell.SetClass(2);
-                    }
+                    //else
+                    //{
+                    //    CurrentWell.SetClass(2);
+                    //}
 
                 NEXTLOOP: ;
 
@@ -1106,7 +1161,7 @@ namespace HCSAnalyzer
                     {
                         if (TmpWell.GetPos() != WellPos) continue;
 
-                        TmpWell.ListProperties.UpdateValueByName("Compound Name", CpdName);
+                        TmpWell.ListProperties.UpdateValueByName("tags", CpdName);
                         TmpWell.ListProperties.UpdateValueByName("Concentration", Concentration);
                         NumWellUpdated++;
                     }

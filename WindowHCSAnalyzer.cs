@@ -71,7 +71,7 @@ using HCSAnalyzer.Classes._3D;
 using HCSAnalyzer.Classes.ImageAnalysis._3D_Engine.Detection;
 using IM3_Plugin3;
 using HCSAnalyzer.Classes.Base_Classes.Viewers._3D.ComplexObjects;
-using eUtils;
+
 using HCSAnalyzer.Classes.Base_Components.GUI;
 using HCSAnalyzer.Forms.ComplexForms;
 using System.Globalization;
@@ -4787,29 +4787,29 @@ namespace HCSAnalyzer
             DTW.Display();
         }
 
-        private void testPubMedSOAPToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            try
-            {
-                eUtilsServiceSoapClient serv = new eUtilsServiceSoapClient();
-                // call NCBI EInfo utility
-                eInfoResult res = serv.run_eInfo(new eInfoRequest());
-                // results output
+        //private void testPubMedSOAPToolStripMenuItem_Click(object sender, EventArgs e)
+        //{
+        //    try
+        //    {
+        //        eUtilsServiceSoapClient serv = new eUtilsServiceSoapClient();
+        //        // call NCBI EInfo utility
+        //        eInfoResult res = serv.run_eInfo(new eInfoRequest());
+        //        // results output
 
-                string a = "";
-                for (int i = 0; i < res.DbList.Items.Length; i++)
-                {
-                    a += res.DbList.Items[i] + "\r\n";
-                }
+        //        string a = "";
+        //        for (int i = 0; i < res.DbList.Items.Length; i++)
+        //        {
+        //            a += res.DbList.Items[i] + "\r\n";
+        //        }
 
-                richTextBoxConsole.AppendText(a + "\n");
+        //        richTextBoxConsole.AppendText(a + "\n");
 
-            }
-            catch (Exception eee)
-            {
-                //textBox1.Text = eee.ToString();
-            }
-        }
+        //    }
+        //    catch (Exception eee)
+        //    {
+        //        //textBox1.Text = eee.ToString();
+        //    }
+        //}
 
 
 

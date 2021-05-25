@@ -291,6 +291,7 @@ namespace LibPlateAnalysis
         {
             cInfoForHierarchical InfoForHierarchical = new cInfoForHierarchical();
             weka.core.FastVector atts = new FastVector();
+            
 
             int columnNo = 0;
 

@@ -351,7 +351,7 @@ namespace HCSAnalyzer.Classes.Base_Classes.Viewers
             IsBar = !IsBar;
             for (int IdxSerie = 0; IdxSerie < base.CurrentSeries.Count; IdxSerie++)
             {
-                // Series NewSerie = new System.Windows.Forms.DataVisualization.Charting.Series(base.input[IdxSerie].Name);
+                //Series NewSerie = new System.Windows.Forms.DataVisualization.Charting.Series(base.input[IdxSerie].Name);
                 base.CurrentSeries[IdxSerie].ChartType = SeriesChartType.Column;
             }
             base.Update();

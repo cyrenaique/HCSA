@@ -2052,7 +2052,6 @@ D:\HCSA_new\obj\x64\Release\HCSAnalyzer.Properties.Resources.resources
 D:\HCSA_new\obj\x64\Release\HCS Analyzer.csproj.GenerateResource.Cache
 D:\HCSA_new\obj\x64\Release\HCSAnalyzer.exe
 D:\HCSA_new\obj\x64\Release\HCSAnalyzer.pdb
-D:\GitHCSA\HCSA\obj\x64\Release\HCS Analyzer.csproj.ResolveComReference.cache
 D:\GitHCSA\HCSA\bin\x64\Release\WhatsNew.docx
 D:\GitHCSA\HCSA\bin\x64\Release\cvextern.dll
 D:\GitHCSA\HCSA\bin\x64\Release\FreeImage.dll
@@ -2087,6 +2086,8 @@ D:\GitHCSA\HCSA\bin\x64\Release\opencv_videoio300.dll
 D:\GitHCSA\HCSA\bin\x64\Release\opencv_videostab300.dll
 D:\GitHCSA\HCSA\bin\x64\Release\SQLite.Interop.dll
 D:\GitHCSA\HCSA\bin\x64\Release\HCSAnalyzer.exe.config
+D:\GitHCSA\HCSA\bin\x64\Release\HCSAnalyzer.exe.manifest
+D:\GitHCSA\HCSA\bin\x64\Release\HCSAnalyzer.application
 D:\GitHCSA\HCSA\bin\x64\Release\HCSAnalyzer.exe
 D:\GitHCSA\HCSA\bin\x64\Release\HCSAnalyzer.pdb
 D:\GitHCSA\HCSA\bin\x64\Release\Accord.dll
@@ -2148,12 +2149,6 @@ D:\GitHCSA\HCSA\bin\x64\Release\stdole.dll
 D:\GitHCSA\HCSA\bin\x64\Release\Microsoft.VisualStudio.TextManager.Interop.8.0.dll
 D:\GitHCSA\HCSA\bin\x64\Release\Microsoft.MSXML.dll
 D:\GitHCSA\HCSA\bin\x64\Release\Microsoft.Research.Science.Data.xml
-D:\GitHCSA\HCSA\bin\x64\Release\Microsoft.VisualStudio.Shell.Interop.xml
-D:\GitHCSA\HCSA\bin\x64\Release\Microsoft.VisualStudio.OLE.Interop.xml
-D:\GitHCSA\HCSA\bin\x64\Release\Microsoft.VisualStudio.TextManager.Interop.xml
-D:\GitHCSA\HCSA\bin\x64\Release\Microsoft.VisualStudio.Shell.Interop.8.0.xml
-D:\GitHCSA\HCSA\bin\x64\Release\Microsoft.VisualStudio.ProjectAggregator.xml
-D:\GitHCSA\HCSA\bin\x64\Release\Microsoft.VisualStudio.TextManager.Interop.8.0.xml
 D:\GitHCSA\HCSA\bin\x64\Release\Kitware.mummy.Runtime.Unmanaged.dll
 D:\GitHCSA\HCSA\bin\x64\Release\Kitware.VTK.vtkCharts.Unmanaged.dll
 D:\GitHCSA\HCSA\bin\x64\Release\Kitware.VTK.vtkCommon.Unmanaged.dll
@@ -2208,6 +2203,7 @@ D:\GitHCSA\HCSA\bin\x64\Release\Microsoft.VC90.CRT.manifest
 D:\GitHCSA\HCSA\bin\x64\Release\msvcm90.dll
 D:\GitHCSA\HCSA\bin\x64\Release\msvcp90.dll
 D:\GitHCSA\HCSA\bin\x64\Release\msvcr90.dll
+D:\GitHCSA\HCSA\obj\x64\Release\HCS Analyzer.csproj.ResolveComReference.cache
 D:\GitHCSA\HCSA\obj\x64\Release\HCSAnalyzer.Cell_by_Cell_and_DB.Simulator.Forms.FormForModelsHistory.resources
 D:\GitHCSA\HCSA\obj\x64\Release\HCSAnalyzer.Cell_by_Cell_and_DB.FormForSingleCellClassifOptions.resources
 D:\GitHCSA\HCSA\obj\x64\Release\HCSAnalyzer.Cell_by_Cell_and_DB.FormForDescOperations.resources
@@ -2357,6 +2353,9 @@ D:\GitHCSA\HCSA\obj\x64\Release\HCSAnalyzer.HCSAnalyzer.resources
 D:\GitHCSA\HCSA\obj\x64\Release\HCSAnalyzer.Properties.Resources.resources
 D:\GitHCSA\HCSA\obj\x64\Release\HCS Analyzer.csproj.GenerateResource.cache
 D:\GitHCSA\HCSA\obj\x64\Release\HCS Analyzer.csproj.CoreCompileInputs.cache
+D:\GitHCSA\HCSA\obj\x64\Release\HCSAnalyzer.TrustInfo.xml
+D:\GitHCSA\HCSA\obj\x64\Release\HCSAnalyzer.exe.manifest
+D:\GitHCSA\HCSA\obj\x64\Release\HCSAnalyzer.application
 D:\GitHCSA\HCSA\obj\x64\Release\HCS Analyzer.csproj.CopyComplete
 D:\GitHCSA\HCSA\obj\x64\Release\HCSAnalyzer.exe
 D:\GitHCSA\HCSA\obj\x64\Release\HCSAnalyzer.pdb
