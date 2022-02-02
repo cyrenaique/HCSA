@@ -18,22 +18,22 @@ namespace HCSAnalyzer
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.Windows.Forms.TreeNode treeNode31 = new System.Windows.Forms.TreeNode("Classification Tree");
-            System.Windows.Forms.TreeNode treeNode32 = new System.Windows.Forms.TreeNode("Classification", new System.Windows.Forms.TreeNode[] {
-            treeNode31});
-            System.Windows.Forms.TreeNode treeNode33 = new System.Windows.Forms.TreeNode("Correlation Matrix and Ranking");
-            System.Windows.Forms.TreeNode treeNode34 = new System.Windows.Forms.TreeNode("Systematic Errors Table");
-            System.Windows.Forms.TreeNode treeNode35 = new System.Windows.Forms.TreeNode("Z-Factors");
-            System.Windows.Forms.TreeNode treeNode36 = new System.Windows.Forms.TreeNode("Quality Control", new System.Windows.Forms.TreeNode[] {
-            treeNode33,
-            treeNode34,
-            treeNode35});
-            System.Windows.Forms.TreeNode treeNode37 = new System.Windows.Forms.TreeNode("Pathway Analysis");
-            System.Windows.Forms.TreeNode treeNode38 = new System.Windows.Forms.TreeNode("siRNA screening", new System.Windows.Forms.TreeNode[] {
-            treeNode37});
-            System.Windows.Forms.TreeNode treeNode39 = new System.Windows.Forms.TreeNode("Weka .Arff File");
-            System.Windows.Forms.TreeNode treeNode40 = new System.Windows.Forms.TreeNode("Misc", new System.Windows.Forms.TreeNode[] {
-            treeNode39});
+            System.Windows.Forms.TreeNode treeNode1 = new System.Windows.Forms.TreeNode("Classification Tree");
+            System.Windows.Forms.TreeNode treeNode2 = new System.Windows.Forms.TreeNode("Classification", new System.Windows.Forms.TreeNode[] {
+            treeNode1});
+            System.Windows.Forms.TreeNode treeNode3 = new System.Windows.Forms.TreeNode("Correlation Matrix and Ranking");
+            System.Windows.Forms.TreeNode treeNode4 = new System.Windows.Forms.TreeNode("Systematic Errors Table");
+            System.Windows.Forms.TreeNode treeNode5 = new System.Windows.Forms.TreeNode("Z-Factors");
+            System.Windows.Forms.TreeNode treeNode6 = new System.Windows.Forms.TreeNode("Quality Control", new System.Windows.Forms.TreeNode[] {
+            treeNode3,
+            treeNode4,
+            treeNode5});
+            System.Windows.Forms.TreeNode treeNode7 = new System.Windows.Forms.TreeNode("Pathway Analysis");
+            System.Windows.Forms.TreeNode treeNode8 = new System.Windows.Forms.TreeNode("siRNA screening", new System.Windows.Forms.TreeNode[] {
+            treeNode7});
+            System.Windows.Forms.TreeNode treeNode9 = new System.Windows.Forms.TreeNode("Weka .Arff File");
+            System.Windows.Forms.TreeNode treeNode10 = new System.Windows.Forms.TreeNode("Misc", new System.Windows.Forms.TreeNode[] {
+            treeNode9});
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(HCSAnalyzer));
             this.tabControlMain = new System.Windows.Forms.TabControl();
             this.tabPageDImRed = new System.Windows.Forms.TabPage();
@@ -300,9 +300,9 @@ namespace HCSAnalyzer
             this.globalToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.globalIfOnlyActiveToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripDropDownButtonProcessMode = new System.Windows.Forms.ToolStripDropDownButton();
-            this.ProcessModeCurrentPlateOnlyToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.ProcessModeplateByPlateToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.ProcessModeEntireScreeningToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.ProcessModeplateByPlateToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.ProcessModeCurrentPlateOnlyToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.statusStripMain = new System.Windows.Forms.StatusStrip();
             this.toolStripDropDownButtonDisplayMode = new System.Windows.Forms.ToolStripDropDownButton();
             this.tabControlMain.SuspendLayout();
@@ -1084,37 +1084,37 @@ namespace HCSAnalyzer
             this.treeViewSelectionForExport.FullRowSelect = true;
             this.treeViewSelectionForExport.Location = new System.Drawing.Point(9, 56);
             this.treeViewSelectionForExport.Name = "treeViewSelectionForExport";
-            treeNode31.Name = "NodeClassifTree";
-            treeNode31.Text = "Classification Tree";
-            treeNode32.Name = "NodeClassification";
-            treeNode32.NodeFont = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            treeNode32.Text = "Classification";
-            treeNode33.Checked = true;
-            treeNode33.Name = "NodeCorrelationMatRank";
-            treeNode33.Text = "Correlation Matrix and Ranking";
-            treeNode34.Checked = true;
-            treeNode34.Name = "NodeSystematicError";
-            treeNode34.Text = "Systematic Errors Table";
-            treeNode35.Checked = true;
-            treeNode35.Name = "NodeZfactor";
-            treeNode35.Text = "Z-Factors";
-            treeNode36.Checked = true;
-            treeNode36.Name = "NodeQualityControl";
-            treeNode36.NodeFont = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            treeNode36.Text = "Quality Control";
-            treeNode37.Name = "NodePathwayAnalysis";
-            treeNode37.Text = "Pathway Analysis";
-            treeNode38.Name = "NodesiRNA";
-            treeNode38.Text = "siRNA screening";
-            treeNode39.Name = "NodeWekaArff";
-            treeNode39.Text = "Weka .Arff File";
-            treeNode40.Name = "NodeMisc";
-            treeNode40.Text = "Misc";
+            treeNode1.Name = "NodeClassifTree";
+            treeNode1.Text = "Classification Tree";
+            treeNode2.Name = "NodeClassification";
+            treeNode2.NodeFont = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            treeNode2.Text = "Classification";
+            treeNode3.Checked = true;
+            treeNode3.Name = "NodeCorrelationMatRank";
+            treeNode3.Text = "Correlation Matrix and Ranking";
+            treeNode4.Checked = true;
+            treeNode4.Name = "NodeSystematicError";
+            treeNode4.Text = "Systematic Errors Table";
+            treeNode5.Checked = true;
+            treeNode5.Name = "NodeZfactor";
+            treeNode5.Text = "Z-Factors";
+            treeNode6.Checked = true;
+            treeNode6.Name = "NodeQualityControl";
+            treeNode6.NodeFont = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            treeNode6.Text = "Quality Control";
+            treeNode7.Name = "NodePathwayAnalysis";
+            treeNode7.Text = "Pathway Analysis";
+            treeNode8.Name = "NodesiRNA";
+            treeNode8.Text = "siRNA screening";
+            treeNode9.Name = "NodeWekaArff";
+            treeNode9.Text = "Weka .Arff File";
+            treeNode10.Name = "NodeMisc";
+            treeNode10.Text = "Misc";
             this.treeViewSelectionForExport.Nodes.AddRange(new System.Windows.Forms.TreeNode[] {
-            treeNode32,
-            treeNode36,
-            treeNode38,
-            treeNode40});
+            treeNode2,
+            treeNode6,
+            treeNode8,
+            treeNode10});
             this.treeViewSelectionForExport.Size = new System.Drawing.Size(322, 153);
             this.treeViewSelectionForExport.TabIndex = 16;
             // 
@@ -1491,14 +1491,14 @@ namespace HCSAnalyzer
             // SaveScreentoCSVToolStripMenuItem
             // 
             this.SaveScreentoCSVToolStripMenuItem.Name = "SaveScreentoCSVToolStripMenuItem";
-            this.SaveScreentoCSVToolStripMenuItem.Size = new System.Drawing.Size(118, 22);
+            this.SaveScreentoCSVToolStripMenuItem.Size = new System.Drawing.Size(116, 22);
             this.SaveScreentoCSVToolStripMenuItem.Text = "To CSV";
             this.SaveScreentoCSVToolStripMenuItem.Click += new System.EventHandler(this.toExcelToolStripMenuItem_Click);
             // 
             // currentPlateTomtrToolStripMenuItem
             // 
             this.currentPlateTomtrToolStripMenuItem.Name = "currentPlateTomtrToolStripMenuItem";
-            this.currentPlateTomtrToolStripMenuItem.Size = new System.Drawing.Size(118, 22);
+            this.currentPlateTomtrToolStripMenuItem.Size = new System.Drawing.Size(116, 22);
             this.currentPlateTomtrToolStripMenuItem.Text = "To MTR";
             this.currentPlateTomtrToolStripMenuItem.ToolTipText = "Warning: only the selected descriptor will be saved in this format";
             this.currentPlateTomtrToolStripMenuItem.Click += new System.EventHandler(this.currentPlateTomtrToolStripMenuItem_Click);
@@ -1506,7 +1506,7 @@ namespace HCSAnalyzer
             // toARFFToolStripMenuItem
             // 
             this.toARFFToolStripMenuItem.Name = "toARFFToolStripMenuItem";
-            this.toARFFToolStripMenuItem.Size = new System.Drawing.Size(118, 22);
+            this.toARFFToolStripMenuItem.Size = new System.Drawing.Size(116, 22);
             this.toARFFToolStripMenuItem.Text = "To ARFF";
             this.toARFFToolStripMenuItem.Click += new System.EventHandler(this.toARFFToolStripMenuItem_Click);
             // 
@@ -1951,7 +1951,7 @@ namespace HCSAnalyzer
             // zScoreToolStripMenuItem
             // 
             this.zScoreToolStripMenuItem.Name = "zScoreToolStripMenuItem";
-            this.zScoreToolStripMenuItem.Size = new System.Drawing.Size(253, 22);
+            this.zScoreToolStripMenuItem.Size = new System.Drawing.Size(252, 22);
             this.zScoreToolStripMenuItem.Text = "Z\' (Regular)";
             this.zScoreToolStripMenuItem.Click += new System.EventHandler(this.zScoreToolStripMenuItem_Click);
             this.zScoreToolStripMenuItem.MouseDown += new System.Windows.Forms.MouseEventHandler(this.zScoreToolStripMenuItem_MouseDown);
@@ -1959,47 +1959,47 @@ namespace HCSAnalyzer
             // tTestToolStripMenuItem
             // 
             this.tTestToolStripMenuItem.Name = "tTestToolStripMenuItem";
-            this.tTestToolStripMenuItem.Size = new System.Drawing.Size(253, 22);
+            this.tTestToolStripMenuItem.Size = new System.Drawing.Size(252, 22);
             this.tTestToolStripMenuItem.Text = "t-Test";
             this.tTestToolStripMenuItem.Click += new System.EventHandler(this.tTestToolStripMenuItem_Click);
             // 
             // mannWithneyTestToolStripMenuItem
             // 
             this.mannWithneyTestToolStripMenuItem.Name = "mannWithneyTestToolStripMenuItem";
-            this.mannWithneyTestToolStripMenuItem.Size = new System.Drawing.Size(253, 22);
+            this.mannWithneyTestToolStripMenuItem.Size = new System.Drawing.Size(252, 22);
             this.mannWithneyTestToolStripMenuItem.Text = "Mann-Withney Test";
             this.mannWithneyTestToolStripMenuItem.Click += new System.EventHandler(this.mannWithneyTestToolStripMenuItem_Click);
             // 
             // aNOVAToolStripMenuItem1
             // 
             this.aNOVAToolStripMenuItem1.Name = "aNOVAToolStripMenuItem1";
-            this.aNOVAToolStripMenuItem1.Size = new System.Drawing.Size(253, 22);
+            this.aNOVAToolStripMenuItem1.Size = new System.Drawing.Size(252, 22);
             this.aNOVAToolStripMenuItem1.Text = "ANOVA";
             this.aNOVAToolStripMenuItem1.Click += new System.EventHandler(this.aNOVAToolStripMenuItem1_Click);
             // 
             // toolStripSeparator8
             // 
             this.toolStripSeparator8.Name = "toolStripSeparator8";
-            this.toolStripSeparator8.Size = new System.Drawing.Size(250, 6);
+            this.toolStripSeparator8.Size = new System.Drawing.Size(249, 6);
             // 
             // normalProbabilityPlotToolStripMenuItem2
             // 
             this.normalProbabilityPlotToolStripMenuItem2.Name = "normalProbabilityPlotToolStripMenuItem2";
-            this.normalProbabilityPlotToolStripMenuItem2.Size = new System.Drawing.Size(253, 22);
+            this.normalProbabilityPlotToolStripMenuItem2.Size = new System.Drawing.Size(252, 22);
             this.normalProbabilityPlotToolStripMenuItem2.Text = "Normal Probability Plot";
             this.normalProbabilityPlotToolStripMenuItem2.Click += new System.EventHandler(this.normalProbabilityPlotToolStripMenuItem2_Click);
             // 
             // ftestdescBasedToolStripMenuItem
             // 
             this.ftestdescBasedToolStripMenuItem.Name = "ftestdescBasedToolStripMenuItem";
-            this.ftestdescBasedToolStripMenuItem.Size = new System.Drawing.Size(253, 22);
+            this.ftestdescBasedToolStripMenuItem.Size = new System.Drawing.Size(252, 22);
             this.ftestdescBasedToolStripMenuItem.Text = "F-test (desc. based)";
             this.ftestdescBasedToolStripMenuItem.Click += new System.EventHandler(this.ftestdescBasedToolStripMenuItem_Click);
             // 
             // statisticsToolStripMenuItem1
             // 
             this.statisticsToolStripMenuItem1.Name = "statisticsToolStripMenuItem1";
-            this.statisticsToolStripMenuItem1.Size = new System.Drawing.Size(253, 22);
+            this.statisticsToolStripMenuItem1.Size = new System.Drawing.Size(252, 22);
             this.statisticsToolStripMenuItem1.Text = "Statistics (Coefficient of Variation)";
             this.statisticsToolStripMenuItem1.Click += new System.EventHandler(this.statisticsToolStripMenuItem1_Click_1);
             this.statisticsToolStripMenuItem1.MouseDown += new System.Windows.Forms.MouseEventHandler(this.statisticsToolStripMenuItem1_MouseDown);
@@ -2007,12 +2007,12 @@ namespace HCSAnalyzer
             // toolStripSeparator22
             // 
             this.toolStripSeparator22.Name = "toolStripSeparator22";
-            this.toolStripSeparator22.Size = new System.Drawing.Size(250, 6);
+            this.toolStripSeparator22.Size = new System.Drawing.Size(249, 6);
             // 
             // systematicErrorsToolStripMenuItem
             // 
             this.systematicErrorsToolStripMenuItem.Name = "systematicErrorsToolStripMenuItem";
-            this.systematicErrorsToolStripMenuItem.Size = new System.Drawing.Size(253, 22);
+            this.systematicErrorsToolStripMenuItem.Size = new System.Drawing.Size(252, 22);
             this.systematicErrorsToolStripMenuItem.Text = "Systematic Errors Identification";
             this.systematicErrorsToolStripMenuItem.Click += new System.EventHandler(this.systematicErrorsToolStripMenuItem_Click);
             // 
@@ -2029,21 +2029,21 @@ namespace HCSAnalyzer
             // aToolStripMenuItem
             // 
             this.aToolStripMenuItem.Name = "aToolStripMenuItem";
-            this.aToolStripMenuItem.Size = new System.Drawing.Size(169, 22);
+            this.aToolStripMenuItem.Size = new System.Drawing.Size(170, 22);
             this.aToolStripMenuItem.Text = "MINE analysis";
             this.aToolStripMenuItem.Click += new System.EventHandler(this.aToolStripMenuItem_Click_1);
             // 
             // correlationMatrixToolStripMenuItem1
             // 
             this.correlationMatrixToolStripMenuItem1.Name = "correlationMatrixToolStripMenuItem1";
-            this.correlationMatrixToolStripMenuItem1.Size = new System.Drawing.Size(169, 22);
+            this.correlationMatrixToolStripMenuItem1.Size = new System.Drawing.Size(170, 22);
             this.correlationMatrixToolStripMenuItem1.Text = "Correlation matrix";
             this.correlationMatrixToolStripMenuItem1.Click += new System.EventHandler(this.correlationMatrixToolStripMenuItem1_Click);
             // 
             // covarianceMatrixToolStripMenuItem
             // 
             this.covarianceMatrixToolStripMenuItem.Name = "covarianceMatrixToolStripMenuItem";
-            this.covarianceMatrixToolStripMenuItem.Size = new System.Drawing.Size(169, 22);
+            this.covarianceMatrixToolStripMenuItem.Size = new System.Drawing.Size(170, 22);
             this.covarianceMatrixToolStripMenuItem.Text = "Covariance matrix";
             this.covarianceMatrixToolStripMenuItem.Click += new System.EventHandler(this.covarianceMatrixToolStripMenuItem_Click);
             // 
@@ -2062,7 +2062,7 @@ namespace HCSAnalyzer
             // sSMDToolStripMenuItem
             // 
             this.sSMDToolStripMenuItem.Name = "sSMDToolStripMenuItem";
-            this.sSMDToolStripMenuItem.Size = new System.Drawing.Size(246, 22);
+            this.sSMDToolStripMenuItem.Size = new System.Drawing.Size(247, 22);
             this.sSMDToolStripMenuItem.Text = "SSMD*";
             // 
             // correlationMatrixToolStripMenuItem
@@ -2070,14 +2070,14 @@ namespace HCSAnalyzer
             this.correlationMatrixToolStripMenuItem.Name = "correlationMatrixToolStripMenuItem";
             this.correlationMatrixToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)(((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.Shift) 
             | System.Windows.Forms.Keys.M)));
-            this.correlationMatrixToolStripMenuItem.Size = new System.Drawing.Size(246, 22);
+            this.correlationMatrixToolStripMenuItem.Size = new System.Drawing.Size(247, 22);
             this.correlationMatrixToolStripMenuItem.Text = "Correlation Matrix";
             this.correlationMatrixToolStripMenuItem.Click += new System.EventHandler(this.correlationMatrixToolStripMenuItem_Click);
             // 
             // descriptorEvolutionToolStripMenuItem
             // 
             this.descriptorEvolutionToolStripMenuItem.Name = "descriptorEvolutionToolStripMenuItem";
-            this.descriptorEvolutionToolStripMenuItem.Size = new System.Drawing.Size(246, 22);
+            this.descriptorEvolutionToolStripMenuItem.Size = new System.Drawing.Size(247, 22);
             this.descriptorEvolutionToolStripMenuItem.Text = "Descriptor Evolutions (Global)";
             this.descriptorEvolutionToolStripMenuItem.Click += new System.EventHandler(this.descriptorEvolutionToolStripMenuItem_Click);
             this.descriptorEvolutionToolStripMenuItem.MouseDown += new System.Windows.Forms.MouseEventHandler(this.descriptorEvolutionToolStripMenuItem_MouseDown);
@@ -2085,14 +2085,14 @@ namespace HCSAnalyzer
             // classesDistributionToolStripMenuItem
             // 
             this.classesDistributionToolStripMenuItem.Name = "classesDistributionToolStripMenuItem";
-            this.classesDistributionToolStripMenuItem.Size = new System.Drawing.Size(246, 22);
+            this.classesDistributionToolStripMenuItem.Size = new System.Drawing.Size(247, 22);
             this.classesDistributionToolStripMenuItem.Text = "Classes Distribution*";
             this.classesDistributionToolStripMenuItem.Click += new System.EventHandler(this.classesDistributionToolStripMenuItem_Click);
             // 
             // createAveragePlateToolStripMenuItem
             // 
             this.createAveragePlateToolStripMenuItem.Name = "createAveragePlateToolStripMenuItem";
-            this.createAveragePlateToolStripMenuItem.Size = new System.Drawing.Size(246, 22);
+            this.createAveragePlateToolStripMenuItem.Size = new System.Drawing.Size(247, 22);
             this.createAveragePlateToolStripMenuItem.Text = "Create Average Plate";
             this.createAveragePlateToolStripMenuItem.Click += new System.EventHandler(this.createAveragePlateToolStripMenuItem_Click);
             // 
@@ -2173,21 +2173,21 @@ namespace HCSAnalyzer
             // fTestToolStripMenuItem1
             // 
             this.fTestToolStripMenuItem1.Name = "fTestToolStripMenuItem1";
-            this.fTestToolStripMenuItem1.Size = new System.Drawing.Size(164, 22);
+            this.fTestToolStripMenuItem1.Size = new System.Drawing.Size(161, 22);
             this.fTestToolStripMenuItem1.Text = "F-Test";
             this.fTestToolStripMenuItem1.Click += new System.EventHandler(this.fTestToolStripMenuItem1_Click);
             // 
             // aNOVAToolStripMenuItem2
             // 
             this.aNOVAToolStripMenuItem2.Name = "aNOVAToolStripMenuItem2";
-            this.aNOVAToolStripMenuItem2.Size = new System.Drawing.Size(164, 22);
+            this.aNOVAToolStripMenuItem2.Size = new System.Drawing.Size(161, 22);
             this.aNOVAToolStripMenuItem2.Text = "ANOVA";
             this.aNOVAToolStripMenuItem2.Click += new System.EventHandler(this.aNOVAToolStripMenuItem2_Click);
             // 
             // samplesTTestToolStripMenuItem1
             // 
             this.samplesTTestToolStripMenuItem1.Name = "samplesTTestToolStripMenuItem1";
-            this.samplesTTestToolStripMenuItem1.Size = new System.Drawing.Size(164, 22);
+            this.samplesTTestToolStripMenuItem1.Size = new System.Drawing.Size(161, 22);
             this.samplesTTestToolStripMenuItem1.Text = "2 Samples T-Test";
             this.samplesTTestToolStripMenuItem1.Click += new System.EventHandler(this.samplesTTestToolStripMenuItem1_Click);
             // 
@@ -2195,7 +2195,7 @@ namespace HCSAnalyzer
             // 
             this.studentTTestToolStripMenuItem.Enabled = false;
             this.studentTTestToolStripMenuItem.Name = "studentTTestToolStripMenuItem";
-            this.studentTTestToolStripMenuItem.Size = new System.Drawing.Size(164, 22);
+            this.studentTTestToolStripMenuItem.Size = new System.Drawing.Size(161, 22);
             this.studentTTestToolStripMenuItem.Text = "Student T-Test";
             this.studentTTestToolStripMenuItem.Click += new System.EventHandler(this.studentTTestToolStripMenuItem_Click);
             // 
@@ -2404,112 +2404,111 @@ namespace HCSAnalyzer
             // heatMapToolStripMenuItem
             // 
             this.heatMapToolStripMenuItem.Name = "heatMapToolStripMenuItem";
-            this.heatMapToolStripMenuItem.Size = new System.Drawing.Size(191, 22);
+            this.heatMapToolStripMenuItem.Size = new System.Drawing.Size(189, 22);
             this.heatMapToolStripMenuItem.Text = "Heat Map";
             this.heatMapToolStripMenuItem.Click += new System.EventHandler(this.heatMapToolStripMenuItem_Click);
             // 
             // testRStatsToolStripMenuItem
             // 
             this.testRStatsToolStripMenuItem.Name = "testRStatsToolStripMenuItem";
-            this.testRStatsToolStripMenuItem.Size = new System.Drawing.Size(191, 22);
+            this.testRStatsToolStripMenuItem.Size = new System.Drawing.Size(189, 22);
             this.testRStatsToolStripMenuItem.Text = "Test-R-Stats";
             this.testRStatsToolStripMenuItem.Click += new System.EventHandler(this.testRStatsToolStripMenuItem_Click);
             // 
             // testBoxPlotToolStripMenuItem
             // 
             this.testBoxPlotToolStripMenuItem.Name = "testBoxPlotToolStripMenuItem";
-            this.testBoxPlotToolStripMenuItem.Size = new System.Drawing.Size(191, 22);
+            this.testBoxPlotToolStripMenuItem.Size = new System.Drawing.Size(189, 22);
             this.testBoxPlotToolStripMenuItem.Text = "Test BoxPlot";
             this.testBoxPlotToolStripMenuItem.Click += new System.EventHandler(this.testBoxPlotToolStripMenuItem_Click);
             // 
             // testLinearRegressionToolStripMenuItem
             // 
             this.testLinearRegressionToolStripMenuItem.Name = "testLinearRegressionToolStripMenuItem";
-            this.testLinearRegressionToolStripMenuItem.Size = new System.Drawing.Size(191, 22);
+            this.testLinearRegressionToolStripMenuItem.Size = new System.Drawing.Size(189, 22);
             this.testLinearRegressionToolStripMenuItem.Text = "Test Linear Regression";
             this.testLinearRegressionToolStripMenuItem.Click += new System.EventHandler(this.testLinearRegressionToolStripMenuItem_Click);
             // 
             // testMultiScatterToolStripMenuItem
             // 
             this.testMultiScatterToolStripMenuItem.Name = "testMultiScatterToolStripMenuItem";
-            this.testMultiScatterToolStripMenuItem.Size = new System.Drawing.Size(191, 22);
+            this.testMultiScatterToolStripMenuItem.Size = new System.Drawing.Size(189, 22);
             this.testMultiScatterToolStripMenuItem.Text = "Test Multi Scatter";
             this.testMultiScatterToolStripMenuItem.Click += new System.EventHandler(this.testMultiScatterToolStripMenuItem_Click);
             // 
             // testPieChartToolStripMenuItem
             // 
             this.testPieChartToolStripMenuItem.Name = "testPieChartToolStripMenuItem";
-            this.testPieChartToolStripMenuItem.Size = new System.Drawing.Size(191, 22);
+            this.testPieChartToolStripMenuItem.Size = new System.Drawing.Size(189, 22);
             this.testPieChartToolStripMenuItem.Text = "Test PieChart";
             this.testPieChartToolStripMenuItem.Click += new System.EventHandler(this.testPieChartToolStripMenuItem_Click);
             // 
             // testPPTToolStripMenuItem
             // 
             this.testPPTToolStripMenuItem.Name = "testPPTToolStripMenuItem";
-            this.testPPTToolStripMenuItem.Size = new System.Drawing.Size(191, 22);
+            this.testPPTToolStripMenuItem.Size = new System.Drawing.Size(189, 22);
             this.testPPTToolStripMenuItem.Text = "TestPPT";
             this.testPPTToolStripMenuItem.Click += new System.EventHandler(this.testPPTToolStripMenuItem_Click);
             // 
             // testReplicateToolStripMenuItem
             // 
             this.testReplicateToolStripMenuItem.Name = "testReplicateToolStripMenuItem";
-            this.testReplicateToolStripMenuItem.Size = new System.Drawing.Size(191, 22);
+            this.testReplicateToolStripMenuItem.Size = new System.Drawing.Size(189, 22);
             this.testReplicateToolStripMenuItem.Text = "TestReplicate";
             this.testReplicateToolStripMenuItem.Click += new System.EventHandler(this.testReplicateToolStripMenuItem_Click);
             // 
             // testPubMedSOAPToolStripMenuItem
             // 
             this.testPubMedSOAPToolStripMenuItem.Name = "testPubMedSOAPToolStripMenuItem";
-            this.testPubMedSOAPToolStripMenuItem.Size = new System.Drawing.Size(191, 22);
+            this.testPubMedSOAPToolStripMenuItem.Size = new System.Drawing.Size(189, 22);
             this.testPubMedSOAPToolStripMenuItem.Text = "TestPubMed SOAP";
-            //this.testPubMedSOAPToolStripMenuItem.Click += new System.EventHandler(this.testPubMedSOAPToolStripMenuItem_Click);
             // 
             // sigmoidFittToolStripMenuItem
             // 
             this.sigmoidFittToolStripMenuItem.Name = "sigmoidFittToolStripMenuItem";
-            this.sigmoidFittToolStripMenuItem.Size = new System.Drawing.Size(191, 22);
+            this.sigmoidFittToolStripMenuItem.Size = new System.Drawing.Size(189, 22);
             this.sigmoidFittToolStripMenuItem.Text = "SigmoidFitt";
             this.sigmoidFittToolStripMenuItem.Click += new System.EventHandler(this.sigmoidFittToolStripMenuItem_Click);
             // 
             // memoryTestToolStripMenuItem
             // 
             this.memoryTestToolStripMenuItem.Name = "memoryTestToolStripMenuItem";
-            this.memoryTestToolStripMenuItem.Size = new System.Drawing.Size(191, 22);
+            this.memoryTestToolStripMenuItem.Size = new System.Drawing.Size(189, 22);
             this.memoryTestToolStripMenuItem.Text = "Memory Test";
             this.memoryTestToolStripMenuItem.Click += new System.EventHandler(this.memoryTestToolStripMenuItem_Click);
             // 
             // mDBTestToolStripMenuItem
             // 
             this.mDBTestToolStripMenuItem.Name = "mDBTestToolStripMenuItem";
-            this.mDBTestToolStripMenuItem.Size = new System.Drawing.Size(191, 22);
+            this.mDBTestToolStripMenuItem.Size = new System.Drawing.Size(189, 22);
             this.mDBTestToolStripMenuItem.Text = "MDB test";
             this.mDBTestToolStripMenuItem.Click += new System.EventHandler(this.mDBTestToolStripMenuItem_Click);
             // 
             // drawSingleDRCToolStripMenuItem
             // 
             this.drawSingleDRCToolStripMenuItem.Name = "drawSingleDRCToolStripMenuItem";
-            this.drawSingleDRCToolStripMenuItem.Size = new System.Drawing.Size(191, 22);
+            this.drawSingleDRCToolStripMenuItem.Size = new System.Drawing.Size(189, 22);
             this.drawSingleDRCToolStripMenuItem.Text = "DrawSingleDRC";
             this.drawSingleDRCToolStripMenuItem.Click += new System.EventHandler(this.drawSingleDRCToolStripMenuItem_Click);
             // 
             // spiralToolStripMenuItem
             // 
             this.spiralToolStripMenuItem.Name = "spiralToolStripMenuItem";
-            this.spiralToolStripMenuItem.Size = new System.Drawing.Size(191, 22);
+            this.spiralToolStripMenuItem.Size = new System.Drawing.Size(189, 22);
             this.spiralToolStripMenuItem.Text = "Test New Agents";
             this.spiralToolStripMenuItem.Click += new System.EventHandler(this.spiralToolStripMenuItem_Click);
             // 
             // simpleTestToolStripMenuItem
             // 
             this.simpleTestToolStripMenuItem.Name = "simpleTestToolStripMenuItem";
-            this.simpleTestToolStripMenuItem.Size = new System.Drawing.Size(191, 22);
+            this.simpleTestToolStripMenuItem.Size = new System.Drawing.Size(189, 22);
             this.simpleTestToolStripMenuItem.Text = "Simple Test";
             this.simpleTestToolStripMenuItem.Click += new System.EventHandler(this.simpleTestToolStripMenuItem_Click);
             // 
             // basic3DToolStripMenuItem
             // 
             this.basic3DToolStripMenuItem.Name = "basic3DToolStripMenuItem";
-            this.basic3DToolStripMenuItem.Size = new System.Drawing.Size(191, 22);
+            this.basic3DToolStripMenuItem.Size = new System.Drawing.Size(189, 22);
             this.basic3DToolStripMenuItem.Text = "Basic3D";
             this.basic3DToolStripMenuItem.Click += new System.EventHandler(this.basic3DToolStripMenuItem_Click);
             // 
@@ -2822,6 +2821,7 @@ namespace HCSAnalyzer
             this.columnHeaderObjNumber});
             this.listViewForListWell.Font = new System.Drawing.Font("Microsoft Sans Serif", 6.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.listViewForListWell.HeaderStyle = System.Windows.Forms.ColumnHeaderStyle.Nonclickable;
+            this.listViewForListWell.HideSelection = false;
             this.listViewForListWell.Location = new System.Drawing.Point(4, 4);
             this.listViewForListWell.MultiSelect = false;
             this.listViewForListWell.Name = "listViewForListWell";
@@ -2878,6 +2878,7 @@ namespace HCSAnalyzer
             this.columnHeaderHistoryDate});
             this.listViewClassHistory.Font = new System.Drawing.Font("Microsoft Sans Serif", 6.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.listViewClassHistory.HeaderStyle = System.Windows.Forms.ColumnHeaderStyle.Nonclickable;
+            this.listViewClassHistory.HideSelection = false;
             this.listViewClassHistory.Location = new System.Drawing.Point(4, 4);
             this.listViewClassHistory.MultiSelect = false;
             this.listViewClassHistory.Name = "listViewClassHistory";
@@ -2953,6 +2954,7 @@ namespace HCSAnalyzer
             this.listView3DWorld.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
             this.columnHeader3DWorldName,
             this.columnHeader3DWorldInfo});
+            this.listView3DWorld.HideSelection = false;
             this.listView3DWorld.Location = new System.Drawing.Point(6, 3);
             this.listView3DWorld.MultiSelect = false;
             this.listView3DWorld.Name = "listView3DWorld";
@@ -3028,26 +3030,6 @@ namespace HCSAnalyzer
             this.toolStripDropDownButtonProcessMode.Size = new System.Drawing.Size(105, 22);
             this.toolStripDropDownButtonProcessMode.Text = "Entire Screening";
             // 
-            // ProcessModeCurrentPlateOnlyToolStripMenuItem
-            // 
-            this.ProcessModeCurrentPlateOnlyToolStripMenuItem.AutoToolTip = true;
-            this.ProcessModeCurrentPlateOnlyToolStripMenuItem.CheckOnClick = true;
-            this.ProcessModeCurrentPlateOnlyToolStripMenuItem.Name = "ProcessModeCurrentPlateOnlyToolStripMenuItem";
-            this.ProcessModeCurrentPlateOnlyToolStripMenuItem.Size = new System.Drawing.Size(159, 22);
-            this.ProcessModeCurrentPlateOnlyToolStripMenuItem.Text = "Current Plate";
-            this.ProcessModeCurrentPlateOnlyToolStripMenuItem.ToolTipText = "Processes will by performed on the current plate only";
-            this.ProcessModeCurrentPlateOnlyToolStripMenuItem.Click += new System.EventHandler(this.processModeToolStripMenuItem_Click);
-            // 
-            // ProcessModeplateByPlateToolStripMenuItem
-            // 
-            this.ProcessModeplateByPlateToolStripMenuItem.AutoToolTip = true;
-            this.ProcessModeplateByPlateToolStripMenuItem.CheckOnClick = true;
-            this.ProcessModeplateByPlateToolStripMenuItem.Name = "ProcessModeplateByPlateToolStripMenuItem";
-            this.ProcessModeplateByPlateToolStripMenuItem.Size = new System.Drawing.Size(159, 22);
-            this.ProcessModeplateByPlateToolStripMenuItem.Text = "Plate by Plate";
-            this.ProcessModeplateByPlateToolStripMenuItem.ToolTipText = "Processes will be performed plate by plate";
-            this.ProcessModeplateByPlateToolStripMenuItem.Click += new System.EventHandler(this.plateByPlateToolStripMenuItem_Click);
-            // 
             // ProcessModeEntireScreeningToolStripMenuItem
             // 
             this.ProcessModeEntireScreeningToolStripMenuItem.AutoToolTip = true;
@@ -3059,6 +3041,26 @@ namespace HCSAnalyzer
             this.ProcessModeEntireScreeningToolStripMenuItem.Text = "Entire Screening";
             this.ProcessModeEntireScreeningToolStripMenuItem.ToolTipText = "Processes will be performed on the overvall screening";
             this.ProcessModeEntireScreeningToolStripMenuItem.Click += new System.EventHandler(this.entireScreeningToolStripMenuItem_Click);
+            // 
+            // ProcessModeplateByPlateToolStripMenuItem
+            // 
+            this.ProcessModeplateByPlateToolStripMenuItem.AutoToolTip = true;
+            this.ProcessModeplateByPlateToolStripMenuItem.CheckOnClick = true;
+            this.ProcessModeplateByPlateToolStripMenuItem.Name = "ProcessModeplateByPlateToolStripMenuItem";
+            this.ProcessModeplateByPlateToolStripMenuItem.Size = new System.Drawing.Size(159, 22);
+            this.ProcessModeplateByPlateToolStripMenuItem.Text = "Plate by Plate";
+            this.ProcessModeplateByPlateToolStripMenuItem.ToolTipText = "Processes will be performed plate by plate";
+            this.ProcessModeplateByPlateToolStripMenuItem.Click += new System.EventHandler(this.plateByPlateToolStripMenuItem_Click);
+            // 
+            // ProcessModeCurrentPlateOnlyToolStripMenuItem
+            // 
+            this.ProcessModeCurrentPlateOnlyToolStripMenuItem.AutoToolTip = true;
+            this.ProcessModeCurrentPlateOnlyToolStripMenuItem.CheckOnClick = true;
+            this.ProcessModeCurrentPlateOnlyToolStripMenuItem.Name = "ProcessModeCurrentPlateOnlyToolStripMenuItem";
+            this.ProcessModeCurrentPlateOnlyToolStripMenuItem.Size = new System.Drawing.Size(159, 22);
+            this.ProcessModeCurrentPlateOnlyToolStripMenuItem.Text = "Current Plate";
+            this.ProcessModeCurrentPlateOnlyToolStripMenuItem.ToolTipText = "Processes will by performed on the current plate only";
+            this.ProcessModeCurrentPlateOnlyToolStripMenuItem.Click += new System.EventHandler(this.processModeToolStripMenuItem_Click);
             // 
             // statusStripMain
             // 
@@ -3094,7 +3096,7 @@ namespace HCSAnalyzer
             this.KeyPreview = true;
             this.MainMenuStrip = this.menuStripFile;
             this.Name = "HCSAnalyzer";
-            this.Text = "HCS analyzer v2.0 MINMAX_G SELECT_G LDA_G";
+            this.Text = "HCS analyzer v2022";
             this.Load += new System.EventHandler(this.HCSAnalyzer_Load);
             this.Shown += new System.EventHandler(this.HCSAnalyzer_Shown);
             this.DragDrop += new System.Windows.Forms.DragEventHandler(this.HCSAnalyzer_DragDrop);
