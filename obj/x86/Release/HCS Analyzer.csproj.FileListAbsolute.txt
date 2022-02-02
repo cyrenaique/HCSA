@@ -1488,7 +1488,6 @@ D:\HCSA\bin\x86\Release\Kitware.mummy.Runtime.dll
 D:\HCSA\bin\x86\Release\Kitware.VTK.dll
 D:\HCSA\bin\x86\Release\loci_tools.dll
 D:\HCSA\bin\x86\Release\MIConvexHullPlugin.dll
-D:\HCSA\bin\x86\Release\Microsoft.Ccr.Core.dll
 D:\HCSA\bin\x86\Release\Microsoft.Msagl.dll
 D:\HCSA\bin\x86\Release\Microsoft.Msagl.Drawing.dll
 D:\HCSA\bin\x86\Release\Microsoft.Msagl.GraphViewerGDI.dll

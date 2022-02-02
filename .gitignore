@@ -1,4 +1,4 @@
-﻿################################################################################
+################################################################################
 # This .gitignore file was automatically created by Microsoft(R) Visual Studio.
 ################################################################################
 
@@ -17,4 +17,5 @@ obj/
 *.exe
 *.config
 obj/
-packages/
+**/packages/**
+packages/Microsoft.NETCore.Platforms.1.1.0/.signature.p7s
