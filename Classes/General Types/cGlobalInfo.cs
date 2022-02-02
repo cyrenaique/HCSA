@@ -168,6 +168,25 @@ namespace HCSAnalyzer.Classes
             Color.FromArgb(82,122,140),
              Color.FromArgb(102,160,37),
              Color.FromArgb(255,105,180),
+             Color.AliceBlue,
+            Color.PaleGreen,
+            Color.DarkMagenta,
+            Color.DarkGray,
+            Color.Crimson,
+            Color.Cornsilk,
+            Color.Chocolate,
+            Color.CadetBlue,
+            Color.DarkKhaki,
+            Color.DarkSalmon,
+            Color.DarkSeaGreen,
+            Color.DarkSlateBlue,
+            Color.DarkSlateGray,
+            Color.DarkTurquoise,
+            Color.DarkViolet,
+            Color.DeepPink,
+            Color.DeepSkyBlue,
+            Color.DimGray,
+            Color.DodgerBlue
         };
 
         //private Color[] ColorForClass = new Color[] { Color.LightGreen, Color.Tomato, Color.Olive, Color.Orange, Color.Yellow, Color.Violet, Color.Pink, Color.Purple, Color.Salmon, Color.RoyalBlue };
@@ -453,10 +472,10 @@ namespace HCSAnalyzer.Classes
 
             cGlobalInfo.ListDefaultPropertyTypes.Add(new cPropertyType("Cell Line", eDataType.STRING));
 
-            cPropertyType LocusProperty = new cPropertyType("Locus ID", eDataType.INTEGER);
+            cPropertyType LocusProperty = new cPropertyType("Locus ID", eDataType.STRING);
             LocusProperty.Min = 0;
             cGlobalInfo.ListDefaultPropertyTypes.Add(LocusProperty);
-
+            cGlobalInfo.ListDefaultPropertyTypes.Add(new cPropertyType("tags", eDataType.STRING));
             //   this.ListWellPropertyType.AddNewType(new cPropertyType("Time Point", eDataType.TIME));
 
             cGlobalInfo.ListDefaultPropertyTypes.Add(new cPropertyType("Plate Name", eDataType.STRING));

@@ -49,7 +49,7 @@
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.panelForPlates.AutoScroll = true;
-            this.panelForPlates.BackColor = System.Drawing.SystemColors.ControlDark;
+            this.panelForPlates.BackColor = System.Drawing.SystemColors.ActiveCaptionText;
             this.panelForPlates.Location = new System.Drawing.Point(9, 27);
             this.panelForPlates.Name = "panelForPlates";
             this.panelForPlates.Size = new System.Drawing.Size(851, 417);
