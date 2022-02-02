@@ -1,8 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using ImageAnalysis;
 using System.Windows.Forms;
 
 namespace HCSAnalyzer.Classes.Base_Classes.Viewers
@@ -11,7 +8,7 @@ namespace HCSAnalyzer.Classes.Base_Classes.Viewers
     {
         public cViewertext()
         {
-            Title = "Rich Text Viewer";   
+            Title = "Rich Text Viewer";
         }
 
         List<string> InputData = new List<string>();
@@ -24,7 +21,7 @@ namespace HCSAnalyzer.Classes.Base_Classes.Viewers
 
         public cFeedBackMessage Run()
         {
-            
+
 
             foreach (var item in this.InputData)
             {
@@ -32,7 +29,7 @@ namespace HCSAnalyzer.Classes.Base_Classes.Viewers
             }
 
             TextPanel.MouseDown += new System.Windows.Forms.MouseEventHandler(this.chart_MouseDown);
-  
+
             TextPanel.Anchor = (System.Windows.Forms.AnchorStyles)(System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom
                                         | System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right);
             TextPanel.Width = 0;// base.CurrentPanel.Width;

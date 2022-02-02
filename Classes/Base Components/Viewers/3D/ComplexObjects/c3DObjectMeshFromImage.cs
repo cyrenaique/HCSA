@@ -1,30 +1,26 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using HCSAnalyzer.Classes.Base_Classes.DataStructures;
-using HCSAnalyzer.Classes._3D;
-using LibPlateAnalysis;
-using System.Drawing;
-using Kitware.VTK;
+﻿using HCSAnalyzer.Classes._3D;
 using HCSAnalyzer.Classes.Base_Components.Viewers._3D.ComplexObjects;
 using HCSAnalyzer.Classes.General_Types;
+using HCSAnalyzer.Classes.ImageAnalysis._3D_Engine.Detection;
 using ImageAnalysis;
 using ImageAnalysisFiltering;
-using HCSAnalyzer.Classes.ImageAnalysis._3D_Engine.Detection;
+using Kitware.VTK;
+using System;
+using System.Collections.Generic;
+using System.Drawing;
 
 namespace HCSAnalyzer.Classes.Base_Classes.Viewers._3D.ComplexObjects
 {
     class c3DObjectMeshFromImage : cComplexObject
     {
-        
-       // public bool IsLinked = false;
-       // public bool DrawAxis = true;
+
+        // public bool IsLinked = false;
+        // public bool DrawAxis = true;
         public int ValueToBeDisplayed = -1;
         public int IndexColumnForSphereRadius = -1;
-      //  public cGlobalInfo GlobalInfo = null;
-      //  public bool IsNormalized = false;
-      
+        //  public cGlobalInfo GlobalInfo = null;
+        //  public bool IsNormalized = false;
+
         cSingleChannelImage Input;
         vtkExtractVOI VTKInput;
         cPoint3D Pos;
@@ -128,7 +124,7 @@ namespace HCSAnalyzer.Classes.Base_Classes.Viewers._3D.ComplexObjects
                     MyMesh = new c3DMeshObject(this.VTKInput, (int)Thresold);
 
                 }
-                MyMesh.Create(Color.Aqua, this.Pos );
+                MyMesh.Create(Color.Aqua, this.Pos);
                 ListObjects.Name = MyMesh.GetName() + " metaobject";
                 ListObjects.Add(MyMesh);
 
@@ -146,7 +142,7 @@ namespace HCSAnalyzer.Classes.Base_Classes.Viewers._3D.ComplexObjects
                 // now perform image labeling
                 cImage BinImage = IST.GetOutPut();
                 cImage LabeledImage = new cImage(BinImage, false);
-                ConnectedComponentSet CCS = new ConnectedComponentSet(BinImage,LabeledImage,SourceImage,  0, eConnectivity.THREED_6, 0, float.MaxValue);
+                ConnectedComponentSet CCS = new ConnectedComponentSet(BinImage, LabeledImage, SourceImage, 0, eConnectivity.THREED_6, 0, float.MaxValue);
 
                 Random RD = new Random();
 
@@ -156,16 +152,16 @@ namespace HCSAnalyzer.Classes.Base_Classes.Viewers._3D.ComplexObjects
 
                 ListObjects.Name = "T_" + Thresold + " [" + SourceImage.Name + " Metaobject";
 
-                for(int i = 0;i<NumObj;i++)
+                for (int i = 0; i < NumObj; i++)
                 {
                     ConnectedVoxels item = CCS[i];
 
-                 //   if (item.Volume <= 1) continue;
+                    //   if (item.Volume <= 1) continue;
 
                     List<cPoint3D> ExtremePts = item.GetExtremaPoints();
                     // crop the labeled image
                     cImage TmpIm = LabeledImage.Crop(ExtremePts[0], ExtremePts[1]);
-                    
+
                     // we have to clean the cropped image to prevent any overlapping object to be segmented
                     for (int Pix = 0; Pix < TmpIm.ImageSize; Pix++)
                     {
@@ -173,12 +169,12 @@ namespace HCSAnalyzer.Classes.Base_Classes.Viewers._3D.ComplexObjects
                     }
 
                     // update the position of the object
-                    cPoint3D NewPos = ExtremePts[0]*SourceImage.Resolution;
+                    cPoint3D NewPos = ExtremePts[0] * SourceImage.Resolution;
 
 
                     c3DMeshObject MyMesh = new c3DMeshObject(TmpIm.SingleChannelImage[0], 0.5);
                     MyMesh.Create(Color.FromArgb(RD.Next(255), RD.Next(255), RD.Next(255)), NewPos);
-                    
+
                     MyMesh.SetName(MyMesh.GetName() + "_" + IdxObj);
                     MyMesh.AssociatedConnectedComponent = item;
                     ListObjects.AddObject(MyMesh);

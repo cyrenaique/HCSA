@@ -1,8 +1,5 @@
-﻿using System;
+﻿using HCSAnalyzer.Classes.Base_Classes.DataStructures;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using HCSAnalyzer.Classes.Base_Classes.DataStructures;
 
 namespace HCSAnalyzer.Classes.Base_Classes.DataAnalysis
 {
@@ -15,7 +12,7 @@ namespace HCSAnalyzer.Classes.Base_Classes.DataAnalysis
         public cZFactor()
         {
             this.Title = "Z-Factor";
-            FeedBackMessage.Message = "\n" + this.Title + ": "; 
+            FeedBackMessage.Message = "\n" + this.Title + ": ";
         }
 
         public void SetInputData(cExtendedTable Input)
@@ -31,7 +28,7 @@ namespace HCSAnalyzer.Classes.Base_Classes.DataAnalysis
 
             this.OutPut.Name = "Z-Factor(s)";
 
-           
+
 
             for (int IdxCol = 0; IdxCol < this.Input.Count; IdxCol++)
             {
@@ -53,7 +50,7 @@ namespace HCSAnalyzer.Classes.Base_Classes.DataAnalysis
             }
 
             base.Info = "Z-Factor (";
-            if (IsRobust) base.Info +=  "Robust) - ";
+            if (IsRobust) base.Info += "Robust) - ";
             else
                 base.Info += "Regular) - ";
 
@@ -69,7 +66,7 @@ namespace HCSAnalyzer.Classes.Base_Classes.DataAnalysis
         {
 
 
-            if ((this.Input == null)||(this.Input.Count==0))
+            if ((this.Input == null) || (this.Input.Count == 0))
             {
                 FeedBackMessage.IsSucceed = false;
 
@@ -81,7 +78,7 @@ namespace HCSAnalyzer.Classes.Base_Classes.DataAnalysis
             Process();
 
             FeedBackMessage.IsSucceed = true;
-            FeedBackMessage.Message += "Succeed"; 
+            FeedBackMessage.Message += "Succeed";
             return FeedBackMessage;
         }
 

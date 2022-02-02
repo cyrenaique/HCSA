@@ -1,25 +1,16 @@
-﻿using System.Windows.Forms;
+﻿using HCSAnalyzer.Classes;
+using HCSAnalyzer.Classes.Base_Classes.DataStructures;
+using HCSAnalyzer.Classes.Base_Classes.Viewers;
+using HCSAnalyzer.Classes.General_Types;
+using HCSAnalyzer.GUI.FormsForGraphsDisplay.Generic;
+using HCSPlugin;
+using LibPlateAnalysis;
 //using Microsoft.Office.Interop.PowerPoint;
 
 using System;
-using System.Drawing;
-using HCSAnalyzer.Classes;
-using HCSAnalyzer.Forms.FormsForOptions;
-using HCSAnalyzer.Forms.FormsForDRCAnalysis;
 using System.Collections.Generic;
-using HCSAnalyzer.Forms;
-using HCSAnalyzer.Classes.Base_Classes.Viewers;
-using LibPlateAnalysis;
-using HCSAnalyzer.Classes.General_Types;
-using HCSAnalyzer.Classes.Base_Classes.DataStructures;
-using HCSAnalyzer.Classes.Base_Classes.GUI;
-using HCSPlugin;
-using HCSAnalyzer.GUI.FormsForGraphsDisplay.Generic;
-using HCSAnalyzer.Classes.Base_Classes;
 using System.IO;
-using HCSAnalyzer.Classes._3D;
-using HCSAnalyzer.Classes.Base_Classes.DataAnalysis;
-using HCSAnalyzer.Classes.Base_Classes.Viewers._3D.ComplexObjects;
+using System.Windows.Forms;
 //using Microsoft.Office.Core;
 namespace HCSAnalyzer
 {
@@ -229,8 +220,8 @@ namespace HCSAnalyzer
                         LDesc.Add(Desc_Slope);
                     }
                     cWell NewWell = new cWell(LDesc, CurrentRegion.PosXMin + 1, CurrentRegion.PosYMin + 1, MergedScreening, NewPlate);
-                    NewWell.ListProperties.UpdateValueByName("Compound Name","DRC [" + CurrentRegion.PosXMin + ":" + CurrentRegion.PosYMin + "]");
-                 
+                    NewWell.ListProperties.UpdateValueByName("Compound Name", "DRC [" + CurrentRegion.PosXMin + ":" + CurrentRegion.PosYMin + "]");
+
                     NewPlate.AddWell(NewWell);
                 }
             }

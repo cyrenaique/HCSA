@@ -1,19 +1,17 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using LibPlateAnalysis;
-using System.Windows.Forms.DataVisualization.Charting;
-using System.Drawing;
-using HCSAnalyzer.Classes;
+﻿using HCSAnalyzer.Classes;
 using HCSAnalyzer.Classes.Base_Classes.DataStructures;
+using LibPlateAnalysis;
+using System;
+using System.Collections.Generic;
+using System.Drawing;
+using System.Windows.Forms.DataVisualization.Charting;
 
 namespace HCSAnalyzer.Forms.FormsForGraphsDisplay
 {
     class cWindowToDisplayHisto : SimpleForm
     {
         public ChartArea CurrentChartArea;
-       // double BinValue;
+        // double BinValue;
         cScreening CompleteScreening;
         cExtendedList RawValues;
         Series SerieForHisto;
@@ -24,7 +22,7 @@ namespace HCSAnalyzer.Forms.FormsForGraphsDisplay
             this.CompleteScreening = CompleteScreening0;
 
             this.parametersToolStripMenuItem.Click += new System.EventHandler(this.parametersToolStripMenuItem_Click);
-            
+
             RequestWindow.label3.Text = "Bin Number";
 
             this.RawValues = RawValues0;
@@ -34,13 +32,13 @@ namespace HCSAnalyzer.Forms.FormsForGraphsDisplay
 
             this.chartForSimpleForm.ChartAreas.Add(CurrentChartArea);
             CurrentChartArea.Axes[0].MajorGrid.Enabled = false;
-            if(CompleteScreening!=null)
+            if (CompleteScreening != null)
                 CurrentChartArea.Axes[0].Title = CompleteScreening.ListDescriptors[CompleteScreening.ListDescriptors.CurrentSelectedDescriptorIdx].GetName();
             CurrentChartArea.Axes[1].Title = "Sum";
             CurrentChartArea.AxisX.LabelStyle.Format = "N2";
 
             this.chartForSimpleForm.TextAntiAliasingQuality = TextAntiAliasingQuality.High;
-            
+
             if (CompleteScreening != null)
                 CurrentChartArea.BackColor = Color.White;
 
@@ -71,7 +69,7 @@ namespace HCSAnalyzer.Forms.FormsForGraphsDisplay
             SerieForHisto.ShadowOffset = 1;
             SerieForHisto.ChartType = SeriesChartType.Column;
             if (CompleteScreening != null)
-            SerieForHisto.Color = cGlobalInfo.ListWellClasses[1].ColourForDisplay;
+                SerieForHisto.Color = cGlobalInfo.ListWellClasses[1].ColourForDisplay;
 
             List<double[]> HistoPos = RawValues.CreateHistogram(this.BinNumber, false);
             if (HistoPos.Count == 0) return;
@@ -129,7 +127,7 @@ namespace HCSAnalyzer.Forms.FormsForGraphsDisplay
                 else
                     SerieForHisto.Points[IdxValue].Color = cGlobalInfo.ListWellClasses[CompleteScreening.SelectedClass].ColourForDisplay;
             }
-        
+
         }
 
         private void InitializeComponent()

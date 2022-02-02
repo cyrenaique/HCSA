@@ -1,17 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using HCSAnalyzer.Classes.Base_Classes;
+﻿using HCSAnalyzer.Classes.Base_Classes;
+using HCSAnalyzer.Classes.Base_Classes.DataAnalysis;
+using HCSAnalyzer.Classes.Base_Classes.DataProcessing;
 using HCSAnalyzer.Classes.Base_Classes.DataStructures;
 using HCSAnalyzer.Classes.Base_Classes.Viewers;
-using HCSAnalyzer.Classes.Base_Classes.DataAnalysis;
-using HCSAnalyzer.Classes.Base_Classes.Viewers._1D;
-using System.Windows.Forms.DataVisualization.Charting;
-using System.Windows.Forms;
 using HCSAnalyzer.Classes.General_Types;
-using HCSAnalyzer.Classes.Base_Classes.DataProcessing;
-using LibPlateAnalysis;
+using System.Windows.Forms;
 
 namespace HCSAnalyzer.Classes.MetaComponents
 {
@@ -39,7 +32,7 @@ namespace HCSAnalyzer.Classes.MetaComponents
 
         public cFeedBackMessage Run()
         {
-            if ((this.InputWells == null)&&(this.InputTable==null))
+            if ((this.InputWells == null) && (this.InputTable == null))
             {
                 FeedBackMessage.IsSucceed = false;
                 FeedBackMessage.Message = "No input data defined.";
@@ -105,9 +98,9 @@ namespace HCSAnalyzer.Classes.MetaComponents
             cExtendedControl JarqueCtrl = VT.GetOutPut();
             JarqueCtrl.Title = TmpTest[0].Name;
 
-            NormalityTestTabs.SetInputData(JarqueCtrl);  
+            NormalityTestTabs.SetInputData(JarqueCtrl);
             NormalityTestTabs.SetInputData(AndersonCtrl);
-            
+
             NormalityTestTabs.Run();
 
 

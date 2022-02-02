@@ -1,32 +1,28 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using weka.clusterers;
-using weka.core;
+﻿using HCSAnalyzer.Cell_by_Cell_and_DB;
+using HCSAnalyzer.Classes.Base_Classes.DataStructures;
+using HCSAnalyzer.Classes.Base_Classes.GUI;
+using HCSAnalyzer.Classes.Base_Classes.Viewers;
+using HCSAnalyzer.Classes.General_Types;
+using HCSAnalyzer.Forms;
+using HCSAnalyzer.Forms.FormsForGraphsDisplay;
 using HCSAnalyzer.Forms.FormsForOptions;
 using HCSAnalyzer.Forms.FormsForOptions.ClassForOptions.Children;
-using System.Windows;
-using System.Windows.Forms;
-using System.Data;
-using weka.classifiers;
 using HCSAnalyzer.Forms.FormsForOptions.ClassificationInfo;
-using weka.classifiers.trees;
-using Microsoft.Msagl.GraphViewerGdi;
-using HCSAnalyzer.Forms;
-using weka.classifiers.functions;
-using weka.classifiers.rules;
-using weka.classifiers.bayes;
-using weka.classifiers.lazy;
-using LibPlateAnalysis;
 using HCSAnalyzer.Forms.IO;
-using HCSAnalyzer.Classes.Base_Classes.DataStructures;
-using HCSAnalyzer.Classes.General_Types;
-using HCSAnalyzer.Classes.Base_Classes.Viewers;
-using HCSAnalyzer.Classes.MetaComponents;
-using HCSAnalyzer.Cell_by_Cell_and_DB;
-using HCSAnalyzer.Classes.Base_Classes.GUI;
-using HCSAnalyzer.Forms.FormsForGraphsDisplay;
+using LibPlateAnalysis;
+using Microsoft.Msagl.GraphViewerGdi;
+using System;
+using System.Collections.Generic;
+using System.Data;
+using System.Windows.Forms;
+using weka.classifiers;
+using weka.classifiers.bayes;
+using weka.classifiers.functions;
+using weka.classifiers.lazy;
+using weka.classifiers.rules;
+using weka.classifiers.trees;
+using weka.clusterers;
+using weka.core;
 
 namespace HCSAnalyzer.Classes.Machine_Learning
 {
@@ -654,16 +650,16 @@ namespace HCSAnalyzer.Classes.Machine_Learning
             //GLC.IsSelectAll = true;
             //GLC.Run(GlobalInfo);
 
-            PanelForClassSelection PhenotypeSelectionPanel = new PanelForClassSelection( true, eClassType.PHENOTYPE);
+            PanelForClassSelection PhenotypeSelectionPanel = new PanelForClassSelection(true, eClassType.PHENOTYPE);
             PhenotypeSelectionPanel.Height = FFSC.panelPhenoToBeClassified.Height;
             FFSC.panelPhenoToBeClassified.Controls.Add(PhenotypeSelectionPanel);
 
-            PanelForClassSelection WellClassSelectionPanel = new PanelForClassSelection( true, eClassType.WELL);
+            PanelForClassSelection WellClassSelectionPanel = new PanelForClassSelection(true, eClassType.WELL);
             WellClassSelectionPanel.Height = FFSC.panelWellToBeClassified.Height;
             FFSC.panelWellToBeClassified.Controls.Add(WellClassSelectionPanel);
 
 
-            PanelForPlatesSelection PlatesSelectionPanel = new PanelForPlatesSelection( true, null, true);
+            PanelForPlatesSelection PlatesSelectionPanel = new PanelForPlatesSelection(true, null, true);
             PlatesSelectionPanel.Height = FFSC.panelWellToBeClassified.Height;
             FFSC.tabPagePlates.Controls.Add(PlatesSelectionPanel);
 
@@ -711,7 +707,7 @@ namespace HCSAnalyzer.Classes.Machine_Learning
                 for (int j = 0; j < cGlobalInfo.ListCellularPhenotypes.Count; j++)
                 {
                     ConfusionMatrixTmp.ListRowNames.Add(cGlobalInfo.ListCellularPhenotypes[j].Name + "*");
-                    ConfusionMatrixTmp[j].Name =cGlobalInfo.ListCellularPhenotypes[j].Name;
+                    ConfusionMatrixTmp[j].Name = cGlobalInfo.ListCellularPhenotypes[j].Name;
                 }
                 LT.Add(ConfusionMatrixTmp);
             }
@@ -859,7 +855,7 @@ namespace HCSAnalyzer.Classes.Machine_Learning
 
         private void ClickToDisplayHierarchicalTree(object sender, EventArgs e)
         {
-            cDendoGram Dendogram = new cDendoGram(((HierarchicalClusterer)SelectedClusterer),null, null);
+            cDendoGram Dendogram = new cDendoGram(((HierarchicalClusterer)SelectedClusterer), null, null);
 
             FormDendogram WindowForDendoGram = new FormDendogram(GlobalInfo);
             WindowForDendoGram.CurrentDendo = Dendogram;

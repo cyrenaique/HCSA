@@ -1,8 +1,6 @@
-﻿using System;
+﻿using LibPlateAnalysis;
+using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using LibPlateAnalysis;
 using System.Windows.Forms;
 
 namespace HCSAnalyzer.Classes.General_Types.Screen
@@ -28,7 +26,7 @@ namespace HCSAnalyzer.Classes.General_Types.Screen
         public cListWellPropertyType(cScreening AssociatedScreening)
         {
             base.AssociatedScreening = AssociatedScreening;
-            
+
             cGlobalInfo.WindowHCSAnalyzer.toolStripDropDownButtonDisplayMode.DropDownItems.Clear();
         }
 
@@ -48,7 +46,7 @@ namespace HCSAnalyzer.Classes.General_Types.Screen
             //NewItem.DropDownItemClicked += new ToolStripItemClickedEventHandler(NewItem_DropDownItemClicked);
             NewItem.CheckedChanged += new EventHandler(NewItem_CheckedChanged);
 
-            cGlobalInfo.WindowHCSAnalyzer.toolStripDropDownButtonDisplayMode.DropDownItems.Insert(0,NewItem);
+            cGlobalInfo.WindowHCSAnalyzer.toolStripDropDownButtonDisplayMode.DropDownItems.Insert(0, NewItem);
         }
 
         public void NewItem_CheckedChanged(object sender, EventArgs e)

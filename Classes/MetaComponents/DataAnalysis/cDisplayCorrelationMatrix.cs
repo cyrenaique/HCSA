@@ -1,10 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using HCSAnalyzer.Classes.Base_Classes.DataStructures;
-using HCSAnalyzer.Classes.Base_Classes;
+﻿using HCSAnalyzer.Classes.Base_Classes;
 using HCSAnalyzer.Classes.Base_Classes.DataAnalysis;
+using HCSAnalyzer.Classes.Base_Classes.DataStructures;
 using HCSAnalyzer.Classes.Base_Classes.Viewers;
 
 namespace HCSAnalyzer.Classes.MetaComponents
@@ -21,7 +17,7 @@ namespace HCSAnalyzer.Classes.MetaComponents
 
         public cFeedBackMessage Run()
         {
-            
+
             if (this.Input == null)
             {
                 FeedBackMessage.IsSucceed = false;
@@ -52,7 +48,7 @@ namespace HCSAnalyzer.Classes.MetaComponents
 
             cDisplayToWindow MyDisplay = new cDisplayToWindow();
             MyDisplay.SetInputData(MyDesigner.GetOutPut());
-            MyDisplay.Title = this.Title;      
+            MyDisplay.Title = this.Title;
             MyDisplay.Run();
             MyDisplay.Display();
         }

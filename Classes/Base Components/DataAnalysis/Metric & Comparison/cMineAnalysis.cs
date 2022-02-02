@@ -1,10 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using analysis;
+﻿using analysis;
 using HCSAnalyzer.Classes.Base_Classes.DataStructures;
 using LibPlateAnalysis;
+using System;
+using System.Collections.Generic;
 
 namespace HCSAnalyzer.Classes.DataAnalysis
 {
@@ -20,7 +18,7 @@ namespace HCSAnalyzer.Classes.DataAnalysis
         public cScreening CurrentScreening = null;
         #endregion
 
-        
+
 
 
         public cMineAnalysis()
@@ -43,7 +41,7 @@ namespace HCSAnalyzer.Classes.DataAnalysis
             // define names
             string[] VarNames = new string[Input.Count];
             double[][] dataset = new double[Input.Count][];
-            
+
             int Idx = 0;
             foreach (var item in Input)
             {
@@ -56,9 +54,9 @@ namespace HCSAnalyzer.Classes.DataAnalysis
             data.Dataset data_Set = new data.Dataset(dataset, VarNames, 0);
             analysis.VarPairQueue Qu = new analysis.VarPairQueue(data_Set);
 
-            for(int Idx_0=0;Idx_0<this.Input.Count;Idx_0++)
+            for (int Idx_0 = 0; Idx_0 < this.Input.Count; Idx_0++)
                 for (int Idx_1 = 0; Idx_1 <= Idx_0; Idx_1++)
-                    Qu.addPair(Idx_1,Idx_0);
+                    Qu.addPair(Idx_1, Idx_0);
 
             Analysis ana = new Analysis(data_Set, Qu);
             AnalysisParameters param = new AnalysisParameters();
@@ -66,7 +64,7 @@ namespace HCSAnalyzer.Classes.DataAnalysis
 
             java.lang.Class t = java.lang.Class.forName("analysis.results.FullResult");
 
-            if(this.Is_BriefReport)
+            if (this.Is_BriefReport)
                 t = java.lang.Class.forName("analysis.results.BriefResult");
 
             ana.analyzePairs(t, param);
@@ -103,14 +101,14 @@ namespace HCSAnalyzer.Classes.DataAnalysis
                     int Idx_var1 = 0;
 
                     for (Idx_var0 = 0; Idx_var0 < VarNames.Length; Idx_var0++)
-                        if(VarNames[Idx_var0]==TmpName0)
+                        if (VarNames[Idx_var0] == TmpName0)
                             break;
 
                     for (Idx_var1 = 0; Idx_var1 < VarNames.Length; Idx_var1++)
                         if (VarNames[Idx_var1] == TmpName1)
                             break;
 
-                    double Value=0;
+                    double Value = 0;
                     double.TryParse(res[i].toString().Split(',')[IdxTest], out Value);
                     TmpTable[Idx_var0, Idx_var1] = TmpTable[Idx_var1, Idx_var0] = Value;
                 }

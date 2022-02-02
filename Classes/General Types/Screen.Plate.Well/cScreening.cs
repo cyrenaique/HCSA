@@ -1,27 +1,24 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.IO;
-using System.Windows.Forms;
-using System.Data;
-using System.Drawing;
-using HCSAnalyzer.Forms;
-using HCSAnalyzer;
-using weka.core;
-using HCSAnalyzer.Classes;
+﻿using HCSAnalyzer.Classes;
 using HCSAnalyzer.Classes._3D;
-using System.Data.SQLite;
-using weka.classifiers;
-using weka.classifiers.trees;
-using HCSAnalyzer.Classes.General_Types;
+using HCSAnalyzer.Classes.Base_Classes;
 using HCSAnalyzer.Classes.Base_Classes.DataStructures;
+using HCSAnalyzer.Classes.Base_Classes.GUI;
+using HCSAnalyzer.Classes.Base_Classes.Viewers;
 using HCSAnalyzer.Classes.General_Types;
 using HCSAnalyzer.Classes.General_Types.Screen;
-using HCSAnalyzer.Classes.Base_Classes.GUI;
-using HCSAnalyzer.Classes.Base_Classes;
 using HCSAnalyzer.Classes.MetaComponents;
-using HCSAnalyzer.Classes.Base_Classes.Viewers;
+using HCSAnalyzer.Forms;
+using System;
+using System.Collections.Generic;
+using System.Data;
+using System.Drawing;
+using System.IO;
+using System.Linq;
+using System.Text;
+using System.Windows.Forms;
+using weka.classifiers;
+using weka.classifiers.trees;
+using weka.core;
 
 namespace LibPlateAnalysis
 {
@@ -240,7 +237,7 @@ namespace LibPlateAnalysis
         public bool IsSelectionApplyToAllPlates = false;
         public int CurrentDisplayPlateIdx = 0;
 
-       // public cGlobalInfo GlobalInfo;
+        // public cGlobalInfo GlobalInfo;
         public cListDescriptorTypes ListDescriptors;
 
         public cListWellPropertyType ListWellPropertyTypes = null;
@@ -256,12 +253,12 @@ namespace LibPlateAnalysis
         #region Constructors
         public cScreening()
         {
-           
+
         }
 
         public cScreening(string Name)
         {
-          //  if (cGlobalInfo != null)
+            //  if (cGlobalInfo != null)
             {
                 //this.GlobalInfo = GlobalInfo;
                 this.ListDescriptors = new cListDescriptorTypes(cGlobalInfo.CheckedListBoxForDescActive, cGlobalInfo.ComboForSelectedDesc);
@@ -278,8 +275,8 @@ namespace LibPlateAnalysis
             this.ListPlateBaseddescriptorNames.Add("Dist_To_Center");
 
             #region Well properies initialization
-            
-            
+
+
             this.ListWellPropertyTypes = new cListWellPropertyType(this);
 
             foreach (var item in cGlobalInfo.ListDefaultPropertyTypes)
@@ -990,7 +987,7 @@ namespace LibPlateAnalysis
         public int GetNumberOfClasses()
         {
             int NumberOfPlates = this.ListPlatesActive.Count;
-            int[] CompleteListClasses = new int[11];
+            int[] CompleteListClasses = new int[31];
 
             foreach (cPlate CurrentPlateToProcess in this.ListPlatesActive)
             {
@@ -1097,7 +1094,7 @@ namespace LibPlateAnalysis
         public void UpDatePlateListWithFullAvailablePlate()
         {
             this.ListPlatesActive = new cListPlates();
-            List<cPlate> ListPlatesAvailab = ListPlatesAvailable.OrderBy( o => o.Name).ToList();
+            List<cPlate> ListPlatesAvailab = ListPlatesAvailable.OrderBy(o => o.Name).ToList();
             foreach (cPlate Plate in ListPlatesAvailab) this.ListPlatesActive.Add(Plate);
 
             // this.ListPlatesAvailable = new cListPlates();
@@ -1290,8 +1287,8 @@ namespace LibPlateAnalysis
 
                 for (int IdxPlate = 0; IdxPlate < NumberOfPlate; IdxPlate++)
                 {
-                    string[] SplittedName = FileNames[i].Split(Sep, StringSplitOptions.None );
-                    string SafeFileName = SplittedName[SplittedName.Length - 1]; 
+                    string[] SplittedName = FileNames[i].Split(Sep, StringSplitOptions.None);
+                    string SafeFileName = SplittedName[SplittedName.Length - 1];
 
                     cPlate CurrentPlate = new cPlate(SafeFileName.Remove(SafeFileName.Length - 4, 4) + "_Plate_" + IdxPlate, this);
                     this.AddPlate(CurrentPlate);
@@ -1310,7 +1307,7 @@ namespace LibPlateAnalysis
                     {
                         for (int IdxPlate = 0; IdxPlate < NumberOfPlate; IdxPlate++)
                         {
-                        NEXT: ;
+                        NEXT:;
 
                             Idx = line.IndexOf("\t");
                             if (Idx != -1) NewLine = line.Remove(Idx);
@@ -1412,7 +1409,7 @@ namespace LibPlateAnalysis
 
                 while (CSVsr.EndOfStream != true)
                 {
-                NEXT: ;
+                NEXT:;
 
                     if (CSVsr.ReadRow(CurrentDesc) == false) break;
 
@@ -1476,7 +1473,7 @@ namespace LibPlateAnalysis
             return ProcessedWell;
         }
 
-        public void ImportFromTXT(string[] FileNames,int NumCol, int NumRow)
+        public void ImportFromTXT(string[] FileNames, int NumCol, int NumRow)
         {
             int RejectedWells = 0;
             int WellLoaded = 0;
@@ -1528,7 +1525,7 @@ namespace LibPlateAnalysis
                 Sep[0] = "\\";
 
                 string[] SplittedName = FileNames[IdxPlate].Split(Sep, StringSplitOptions.None);
-                    string SafeFileName = SplittedName[SplittedName.Length - 1];
+                string SafeFileName = SplittedName[SplittedName.Length - 1];
 
                 string PlateName = SafeFileName.Remove(SafeFileName.Length - 4);
                 cPlate CurrentPlate = new cPlate(PlateName, this);
@@ -1618,7 +1615,7 @@ namespace LibPlateAnalysis
         public string GetInfo()
         {
 
-            string TmpText = "Name: " + this.Name+"\n\n";
+            string TmpText = "Name: " + this.Name + "\n\n";
 
 
 
@@ -1632,8 +1629,8 @@ namespace LibPlateAnalysis
                 cPlate CurrentPlateToProcess = this.ListPlatesActive.GetPlate(PlateIdx - 1);
                 TmpText += "Plate " + PlateIdx + " :\t" + CurrentPlateToProcess.GetName() + "\n";
 
-                if(CurrentPlateToProcess.DBConnection!=null)
-                TmpText += "DB Name: " + CurrentPlateToProcess.DBConnection.SQLFileDBName+"\n";
+                if (CurrentPlateToProcess.DBConnection != null)
+                    TmpText += "DB Name: " + CurrentPlateToProcess.DBConnection.SQLFileDBName + "\n";
 
                 TmpText += "\t" + CurrentPlateToProcess.GetNumberOfActiveWells() + " active wells / " + CurrentPlateToProcess.GetNumberOfClasses() + " classes.\n";
                 TotalWells += CurrentPlateToProcess.GetNumberOfActiveWells();
@@ -1641,7 +1638,7 @@ namespace LibPlateAnalysis
             TmpText += "\n";
             //richTextBoxForScreeningInformation.AppendText(TmpText + "\n");
 
-            TmpText += "Number of active wells: " + TotalWells+ "\n\n";
+            TmpText += "Number of active wells: " + TotalWells + "\n\n";
             //richTextBoxForScreeningInformation.AppendText(TmpText + "\n\n");
 
             TmpText += "Number of active descriptors: " + this.GetNumberOfActiveDescriptor() + " (/ " + this.ListDescriptors.Count + ")\n\n";

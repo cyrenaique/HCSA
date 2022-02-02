@@ -1,15 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using HCSAnalyzer.Classes.Base_Classes.DataStructures;
-using HCSAnalyzer.Classes.Base_Classes;
-using HCSAnalyzer.Classes.Base_Classes.DataAnalysis;
-using HCSAnalyzer.Classes.Base_Classes.Viewers;
-using LibPlateAnalysis;
+﻿using HCSAnalyzer.Classes.Base_Classes;
 using HCSAnalyzer.Classes.General_Types;
 using ImageAnalysis;
-using HCSAnalyzer.Classes.ImageAnalysis.FormsForImages;
+using System;
+using System.Collections.Generic;
 
 namespace HCSAnalyzer.Classes.MetaComponents
 {
@@ -76,9 +69,9 @@ namespace HCSAnalyzer.Classes.MetaComponents
 
             //this.Output = this.Input[0].GetImage(Field);
             cGlobalInfo.ImageAccessor.Field = Field;// (int)this.numericUpDownField.Value;
-            
+
             List<cImageMetaInfo> ImageMetaInfo = cGlobalInfo.ImageAccessor.GetImageInfo(this.Input[0]);
-            if(ImageMetaInfo==null) 
+            if (ImageMetaInfo == null)
             {
                 FeedBackMessage.IsSucceed = false;
                 base.End();

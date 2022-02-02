@@ -1,8 +1,5 @@
-﻿using System;
+﻿using HCSAnalyzer.Classes.Base_Classes.DataStructures;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using HCSAnalyzer.Classes.Base_Classes.DataStructures;
 
 namespace HCSAnalyzer.Classes.Base_Classes.DataProcessing
 {
@@ -37,7 +34,7 @@ namespace HCSAnalyzer.Classes.Base_Classes.DataProcessing
             }
             Process();
 
-           // this.Output[0].Name = "Statistics";
+            // this.Output[0].Name = "Statistics";
             return FeedBackMessage;
         }
 
@@ -87,7 +84,11 @@ namespace HCSAnalyzer.Classes.Base_Classes.DataProcessing
                 this.Output.ListRowNames.Add("Max");
             if (IsMean)
                 this.Output.ListRowNames.Add("Mean");
+<<<<<<< HEAD
                 
+=======
+
+>>>>>>> ad245feb18ca6e2863ab0613857417b16a9b8ec9
             if (IsMedian)
                 this.Output.ListRowNames.Add("Median");
             if (IsStdDev)
@@ -113,17 +114,17 @@ namespace HCSAnalyzer.Classes.Base_Classes.DataProcessing
                 if (IsNumberOfData)
                     this.Output[Col].Add(this.Input1[Col].Count);
                 if (IsSum)
-                    this.Output[Col].Add(this.Input1[Col].Sum()); 
+                    this.Output[Col].Add(this.Input1[Col].Sum());
                 if (IsMin)
                     this.Output[Col].Add(this.Input1[Col].Min());
                 if (IsMax)
                     this.Output[Col].Add(this.Input1[Col].Max());
                 if (IsMean)
-                    this.Output[Col].Add(this.Input1[Col].Mean()); 
+                    this.Output[Col].Add(this.Input1[Col].Mean());
                 if (IsMedian)
                     this.Output[Col].Add(this.Input1[Col].Median());
                 if (IsStdDev)
-                    this.Output[Col].Add(this.Input1[Col].Std());             
+                    this.Output[Col].Add(this.Input1[Col].Std());
                 if (IsMAD)
                     this.Output[Col].Add(this.Input1[Col].MAD(false));
                 if (IsCV)

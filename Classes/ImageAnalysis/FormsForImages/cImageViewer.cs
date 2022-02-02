@@ -1,14 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using HCSAnalyzer.Forms.FormsForImages;
+﻿using HCSAnalyzer.Classes._3D;
 using System.Drawing;
-using System.Windows.Forms;
-using HCSAnalyzer.ObjectForNotations;
-using ImageAnalysis;
-using HCSAnalyzer.Classes;
-using HCSAnalyzer.Classes._3D;
 
 namespace HCSAnalyzer
 {
@@ -49,16 +40,16 @@ namespace HCSAnalyzer
     //            //this.panelForImage.Width = AssociatedImage.Width;
     //            //this.panelForImage.Height = AssociatedImage.Height;
     //        }
-            
-            
+
+
     //        this.ViewDimX = AssociatedImage.Width;
     //        this.ViewDimY = AssociatedImage.Height;
-           
+
     //        this.Show();   
-            
+
 
     //    }
-            
+
     //    public void Display()
     //    {
     //    //    this.Paint += new System.Windows.Forms.PaintEventHandler(this.panelForImage_Paint);
@@ -71,7 +62,7 @@ namespace HCSAnalyzer
     //        //this.timerForDisplay.Start();                              // Start the timer
     //       // base.panelForImage.Width = AssociatedImage.Width;
     //       // base.panelForImage.Height = AssociatedImage.Height;
-           
+
     //        //this.Width = AssociatedImage.Width + 40;
     //        //this.Height = AssociatedImage.Height + statusStripForImageViewer.Height + 60;
     //        //this.panelForImage.Width = AssociatedImage.Width;
@@ -97,16 +88,16 @@ namespace HCSAnalyzer
 
     //        this.ViewDimX = AssociatedImage.Width;
     //        this.ViewDimY = AssociatedImage.Height;
-           
-            
 
-            
+
+
+
     //        //base.numericUpDownStripItem1.Text = "100";
     //        this.Show();   
-            
+
 
     //    }
-       
+
     //    public void SetImage(cImage Image)
     //    {
     //        Image.AssociatedImageViewer = this;
@@ -146,7 +137,7 @@ namespace HCSAnalyzer
     //         //           ListLUTs.Add(LUT.LUT_LINEAR);
     //         //       }
     //         //   }
-           
+
 
 
 
@@ -169,7 +160,7 @@ namespace HCSAnalyzer
     //    public void AddNotation(cObjectForAnnotation ObjectForNotation, string Name)
     //    {
     //        //this.ListObjectForNotations.Add(ObjectForNotation);
-            
+
     //      //  this.DictionaryForNotations.
     //        this.DictionaryForNotations.Add(Name,ObjectForNotation);
 
@@ -215,7 +206,7 @@ namespace HCSAnalyzer
     //    //    //        //ThisGraph.FillEllipse(new SolidBrush(((cDisk)TmpObj).ObjectColor), ((cDisk)TmpObj).PosX, ((cDisk)TmpObj).PosY, ((cDisk)TmpObj).Size / 2, ((cDisk)TmpObj).Size / 2);
     //    //    //    }
     //    //    //}
-        
+
     //    //    DrawLayers();
 
 
@@ -252,7 +243,7 @@ namespace HCSAnalyzer.ObjectForNotations
         public bool OnlyOnImage = true;
         public cPoint3D Size;
         public Color ObjectColor;
-        
+
     }
 
     public class cString : cObjectForAnnotation
@@ -273,9 +264,9 @@ namespace HCSAnalyzer.ObjectForNotations
         public cDisk(Point Position, Color Color, float Radius)
         {
             this.ObjectColor = Color;
-            this.Pos = new cPoint3D(Position.X,Position.Y,0);
+            this.Pos = new cPoint3D(Position.X, Position.Y, 0);
             this.Size = new cPoint3D(Radius, Radius, 0);
-            
+
         }
     }
 
@@ -286,7 +277,7 @@ namespace HCSAnalyzer.ObjectForNotations
         {
             this.ObjectColor = Color;
             this.Pos = new cPoint3D(PositionMin.X, PositionMin.Y, 0);
-            this.Size = new cPoint3D(PositionMax.X - PositionMin.X, PositionMax.Y - PositionMin.Y,0);
+            this.Size = new cPoint3D(PositionMax.X - PositionMin.X, PositionMax.Y - PositionMin.Y, 0);
         }
     }
 

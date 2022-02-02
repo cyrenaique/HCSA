@@ -1,9 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.Drawing;
-using System.Windows.Controls;
 
 namespace HCSAnalyzer.Forms.FormsForOptions.ClassForOptions.Children
 {
@@ -64,8 +60,8 @@ namespace HCSAnalyzer.Forms.FormsForOptions.ClassForOptions.Children
         {
             this.Value = Value;
         }
-    }  
-    
+    }
+
     public class cListViewValue : cGeneralValue
     {
         public System.Windows.Controls.ListView Value;

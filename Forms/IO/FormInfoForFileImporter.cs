@@ -1,10 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
 using System.Windows.Forms;
 
 namespace HCSAnalyzer.Forms.IO
@@ -39,7 +33,7 @@ namespace HCSAnalyzer.Forms.IO
         {
             string line;
 
-            System.IO.StreamReader file =  new System.IO.StreamReader(FileName);
+            System.IO.StreamReader file = new System.IO.StreamReader(FileName);
             this.richTextBoxTextHeader.Clear();
 
             for (int i = 0; i < this.numericUpDownHeaderSize.Value; i++)
@@ -51,12 +45,12 @@ namespace HCSAnalyzer.Forms.IO
                     this.numericUpDownHeaderSize.Maximum = (decimal)(i - 1);
                     break;
                 }
-                this.richTextBoxTextHeader.AppendText(line+"\n");
+                this.richTextBoxTextHeader.AppendText(line + "\n");
             }
 
             file.Close();
 
-          
+
         }
     }
 }

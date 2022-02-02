@@ -1,64 +1,33 @@
-﻿using System.Windows.Forms;
-
-using System;
-using System.ComponentModel;
-using System.Windows.Forms;
-using System.Data;
-using System.Text;
-using System.Collections.Generic;
-using System.Drawing;
-using System.Windows.Forms.DataVisualization.Charting;
-using LibPlateAnalysis;
-using weka.core;
-using System.IO;
-using HCSAnalyzer.Forms;
-using HCSAnalyzer.Controls;
-using System.Reflection;
-using System.Collections;
+﻿using analysis;
+using HCSAnalyzer.Cell_by_Cell_and_DB;
 using HCSAnalyzer.Classes;
-using System.Resources;
-using HCSPlugin;
-using HCSAnalyzer.Forms.FormsForOptions;
-using HCSAnalyzer.Forms.FormsForDRCAnalysis;
-using analysis;
+using HCSAnalyzer.Classes.Base_Classes;
+//using RDotNet;
+using HCSAnalyzer.Classes.Base_Classes.DataAnalysis;
+using HCSAnalyzer.Classes.Base_Classes.DataProcessing;
+using HCSAnalyzer.Classes.Base_Classes.DataStructures;
+using HCSAnalyzer.Classes.Base_Classes.GUI;
+using HCSAnalyzer.Classes.Base_Classes.Viewers;
+using HCSAnalyzer.Classes.General_Types;
+using HCSAnalyzer.Classes.Machine_Learning;
+using HCSAnalyzer.Classes.MetaComponents;
+using HCSAnalyzer.Controls;
+using HCSAnalyzer.Forms;
 using HCSAnalyzer.Forms.FormsForGraphsDisplay;
-using System.Linq;
 //using Emgu.CV;
 //using Emgu.CV.Structure;
 //using Emgu.CV.CvEnum;
-using System.Runtime.InteropServices;
-using System.Data.SqlClient;
-using System.Data.SQLite;
-using HCSAnalyzer.Forms.ClusteringForms;
-using System.Diagnostics;
-using System.Threading.Tasks;
 using HCSAnalyzer.Forms.IO;
-using ImageAnalysis;
-using HCSAnalyzer.Forms.FormsForGraphsDisplay.ForClassSelection;
-using HCSAnalyzer.Simulator.Classes;
-using HCSAnalyzer.Simulator.Forms;
-using HCSAnalyzer.Forms.FormsForOptions.ClassForOptions;
-using System.Runtime.Serialization;
-using System.Runtime.Serialization.Formatters.Binary;
-using HCSAnalyzer.Classes.Machine_Learning;
-using HCSAnalyzer.Forms.FormsForOptions.ClassForOptions.Children;
-using HCSAnalyzer.GUI.FormsForGraphsDisplay.Generic;
-using HCSAnalyzer.Classes.Base_Classes.DataStructures;
-using HCSAnalyzer.Classes.Base_Classes.Viewers;
-using HCSAnalyzer.Classes.Base_Classes.Data;
-//using RDotNet;
-using HCSAnalyzer.Classes.Base_Classes.DataAnalysis;
-using HCSAnalyzer.Classes.Base_Classes;
-using HCSAnalyzer.Classes.Base_Classes.DataProcessing;
-using HCSAnalyzer.Classes.MetaComponents;
-using HCSAnalyzer.Classes.Base_Classes.GUI;
-using HCSAnalyzer.Classes.DataAnalysis;
-using HCSAnalyzer.Classes.General_Types;
-using HCSAnalyzer.Classes.Base_Classes.Viewers._1D;
+using LibPlateAnalysis;
+using System;
+using System.Collections.Generic;
+using System.Drawing;
+using System.IO;
+using System.Linq;
 using System.Net;
-using HCSAnalyzer.Cell_by_Cell_and_DB;
-using ImageAnalysisFiltering;
-using HCSAnalyzer.Classes.ImageAnalysis._3D_Engine;
+using System.Windows.Forms;
+using System.Windows.Forms.DataVisualization.Charting;
+using weka.core;
 
 namespace HCSAnalyzer
 {
@@ -3637,7 +3606,7 @@ namespace HCSAnalyzer
 
             MachineLearningForClassif.PerformTraining(MachineLearningForClassif.AskAndGetClassifAlgo(),
                                                         ListInstances,
-                //InfoClass.NumberOfClass,
+                                                        //InfoClass.NumberOfClass,
                                                         richTextBoxInfoClustering,
                                                         panelTMPForFeedBack,
                                                         out EvalClassif,
@@ -4100,7 +4069,7 @@ namespace HCSAnalyzer
                         cWell TmpWell = CurrentPlateToProcess.GetWell(IdxValue, IdxValue0, true);
                         if (TmpWell == null) continue;
 
-                        if (TmpWell.GetCpdName() == FormForRequest.textBoxForName.Text)
+                        if (TmpWell.GetLocusID().ToString() == FormForRequest.textBoxForName.Text)
                         {
 
                             CurrentPlateToProcess.DisplayDistribution(cGlobalInfo.CurrentScreening.ListDescriptors.GetActiveDescriptor(), false);
@@ -4185,14 +4154,14 @@ namespace HCSAnalyzer
                         cWell TmpWell = CurrentPlateToProcess.GetWell(IdxValue, IdxValue0, true);
 
 
-                        object TmpID = TmpWell.ListProperties.FindValueByName("Locus ID");
-                        if ((TmpWell == null) || (TmpWell.GetCurrentClassIdx() != Class) || (TmpID == null)) continue;
-
+                        
+                        if ((TmpWell == null) || (TmpWell.GetCurrentClassIdx() != Class)) continue;
+                        string TmpID = (string)TmpWell.ListProperties.FindValueByName("Locus ID");
 
                         //string[] intersection_gene_pathways = new string[1];
                         //intersection_gene_pathways[0] = "hsa:" + TmpWell.LocusID;
                         //string[] Pathways = ServKegg.get_pathways_by_genes(intersection_gene_pathways);
-                        string[] Pathways = Find_Pathways((double)((int)TmpID)).ToArray();
+                        string[] Pathways = Find_Pathways((double)(int.Parse(TmpID))).ToArray();
 
                         if ((Pathways == null) || (Pathways.Length == 0)) continue;
 
@@ -4295,127 +4264,7 @@ namespace HCSAnalyzer
         }
         #endregion
 
-        //private FormForPie PathWayAnalysis(int Class)
-        //{
-        //    //int Idx = 0;
-        //    int NumberOfPlates = CompleteScreening.ListPlatesActive.Count;
-
-        //    KEGG ServKegg = new KEGG();
-
-        //    List<cPathWay> ListPathway = new List<cPathWay>();
-
-        //    // loop on all the plate
-        //    for (int PlateIdx = 0; PlateIdx < NumberOfPlates; PlateIdx++)
-        //    {
-        //        cPlate CurrentPlateToProcess = CompleteScreening.ListPlatesActive.GetPlate(CompleteScreening.ListPlatesActive[PlateIdx].Name);
-
-        //        for (int IdxValue = 0; IdxValue < CompleteScreening.Columns; IdxValue++)
-        //            for (int IdxValue0 = 0; IdxValue0 < CompleteScreening.Rows; IdxValue0++)
-        //            {
-        //                cWell TmpWell = CurrentPlateToProcess.GetWell(IdxValue, IdxValue0, true);
-        //                if ((TmpWell == null) || (TmpWell.GetClassIdx() != Class) || (TmpWell.LocusID == -1)) continue;
-
-
-        //                string[] intersection_gene_pathways = new string[1];
-        //                intersection_gene_pathways[0] = "hsa:" + TmpWell.LocusID;
-        //                string[] Pathways = ServKegg.get_pathways_by_genes(intersection_gene_pathways);
-        //                if ((Pathways == null) || (Pathways.Length == 0)) continue;
-
-        //                for (int Idx = 0; Idx < Pathways.Length; Idx++)
-        //                {
-        //                    //  string PathName = Pathways[Idx].Remove(0, 8);
-        //                    string GenInfo = ServKegg.bget(Pathways[Idx]);
-        //                    string[] Genes = GenInfo.Split(new char[] { '\n' });
-        //                    string PathName = "";
-        //                    foreach (string item in Genes)
-        //                    {
-        //                        string[] fre = item.Split(' ');
-        //                        string[] STRsection = fre[0].Split('_');
-
-        //                        if (STRsection[0] == "NAME")
-        //                        {
-        //                            for (int i = 1; i < fre.Length; i++)
-        //                            {
-        //                                if (fre[i] == "") continue;
-        //                                PathName += fre[i] + " ";
-        //                            }
-        //                            break;
-        //                        }
-        //                    }
-
-        //                    if (ListPathway.Count == 0)
-        //                    {
-        //                        cPathWay CurrPath = new cPathWay();
-        //                        CurrPath.Name = PathName;
-        //                        CurrPath.Occurence = 1;
-        //                        ListPathway.Add(CurrPath);
-        //                        continue;
-        //                    }
-
-        //                    bool DidIt = false;
-        //                    for (int i = 0; i < ListPathway.Count; i++)
-        //                    {
-        //                        if (PathName == ListPathway[i].Name)
-        //                        {
-        //                            ListPathway[i].Occurence++;
-        //                            DidIt = true;
-        //                            break;
-        //                        }
-        //                    }
-
-        //                    if (DidIt == false)
-        //                    {
-        //                        cPathWay CurrPath1 = new cPathWay();
-        //                        CurrPath1.Name = PathName;
-        //                        CurrPath1.Occurence = 1;
-        //                        ListPathway.Add(CurrPath1);
-        //                    }
-        //                }
-        //            }
-        //    }
-
-        //    // now draw the pie
-        //    if (ListPathway.Count == 0)
-        //    {
-        //        MessageBox.Show("No pathway identified !", "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
-        //        return null;
-
-        //    }
-        //    FormForPie Pie = new FormForPie();
-
-        //    Series CurrentSeries = Pie.chartForPie.Series[0];
-
-        //    // loop on all the plate
-        //    int MaxOccurence = int.MinValue;
-        //    int MaxIdx = 0;
-        //    int TotalOcurrence = 0;
-        //    for (int Idx = 0; Idx < ListPathway.Count; Idx++)
-        //    {
-        //        if (ListPathway[Idx].Occurence > MaxOccurence)
-        //        {
-        //            MaxOccurence = ListPathway[Idx].Occurence;
-        //            MaxIdx = Idx;
-        //        }
-        //        TotalOcurrence += ListPathway[Idx].Occurence;
-        //    }
-
-
-
-        //    //CurrentSeries.CustomProperties = "PieLabelStyle=Outside";
-        //    for (int Idx = 0; Idx < ListPathway.Count; Idx++)
-        //    {
-        //        CurrentSeries.Points.Add(ListPathway[Idx].Occurence);
-        //        CurrentSeries.Points[Idx].Label = String.Format("{0:0.###}", ((100.0 * ListPathway[Idx].Occurence) / TotalOcurrence)) + " %";
-
-        //        CurrentSeries.Points[Idx].LegendText = ListPathway[Idx].Name;
-        //        CurrentSeries.Points[Idx].ToolTip = ListPathway[Idx].Name;
-        //        if (Idx == MaxIdx)
-        //            CurrentSeries.Points[Idx].SetCustomProperty("Exploded", "True");
-        //    }
-
-        //    return Pie;
-        //}
-
+       
         private void pahtwaysAnalysisToolStripMenuItem_Click(object sender, EventArgs e)
         {
             if (cGlobalInfo.CurrentScreening == null) return;

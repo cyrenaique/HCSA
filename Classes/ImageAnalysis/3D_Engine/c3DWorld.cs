@@ -1,13 +1,12 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Windows.Forms;
-using System.Drawing;
-using Kitware.VTK;
-using System.Data;
-using System.Windows.Forms.DataVisualization.Charting;
-using System.IO;
+﻿using Kitware.VTK;
 using LibPlateAnalysis;
+using System;
+using System.Collections.Generic;
+using System.Data;
+using System.Drawing;
+using System.IO;
+using System.Windows.Forms;
+using System.Windows.Forms.DataVisualization.Charting;
 
 namespace HCSAnalyzer.Classes._3D
 {
@@ -90,8 +89,8 @@ namespace HCSAnalyzer.Classes._3D
                 renWin.SetWindowName("3D World");
                 renWin.BordersOn();
                 renWin.DoubleBufferOn();
-                if(WinPos!=null)
-                renWin.SetSize(WinPos[0], WinPos[1]);
+                if (WinPos != null)
+                    renWin.SetSize(WinPos[0], WinPos[1]);
 
                 this.ren1 = vtkRenderer.New();
                 //   if(WinPos!=null)            renWin.SetPosition(WinPos[0], WinPos[1]);
@@ -144,7 +143,7 @@ namespace HCSAnalyzer.Classes._3D
             ListObject = new List<cObject3D>();
 
 
-            
+
             //     Vtk_CameraViewOrientation = ren1.GetActiveCamera();
         }
         #endregion
@@ -600,28 +599,28 @@ namespace HCSAnalyzer.Classes._3D
 
         void CutSliceItemClicking(object sender, EventArgs e)
         {
-//            vtkImageReslice reslice1  = vtkImageReslice.New();
-//            reslice1.SetInputConnection(this.);
-////reslice1.SetOutputSpacing(0.25,0.25,1);
-//reslice1.SetResliceAxesOrigin(1, 1, 1);
-//reslice1.Update();
+            //            vtkImageReslice reslice1  = vtkImageReslice.New();
+            //            reslice1.SetInputConnection(this.);
+            ////reslice1.SetOutputSpacing(0.25,0.25,1);
+            //reslice1.SetResliceAxesOrigin(1, 1, 1);
+            //reslice1.Update();
 
-  /*           vtkImageReslice 
+            /*           vtkImageReslice 
 
-            vtkImagePlaneWidget planeWidget = vtkImagePlaneWidget.New();
-            planeWidget.SetInteractor(this.renWin.GetInteractor());
+                      vtkImagePlaneWidget planeWidget = vtkImagePlaneWidget.New();
+                      planeWidget.SetInteractor(this.renWin.GetInteractor());
 
 
-            planeWidget.SetOrigin(0, 1, 0);
-            planeWidget.UpdatePlacement();
+                      planeWidget.SetOrigin(0, 1, 0);
+                      planeWidget.UpdatePlacement();
 
-            // Render
-            this.renWin.Render();
+                      // Render
+                      this.renWin.Render();
 
-            this.renWin.GetInteractor().Initialize();
-            this.renWin.Render();
-            planeWidget.On();
-   * */
+                      this.renWin.GetInteractor().Initialize();
+                      this.renWin.Render();
+                      planeWidget.On();
+             * */
         }
 
         void SaveViewClicking(object sender, EventArgs e)
@@ -931,7 +930,7 @@ namespace HCSAnalyzer.Classes._3D
         public int KeepOnlyObjectsInsideTheOthers(List<cInteractive3DObject> ListContent, List<cInteractive3DObject> ListContainer)
         {
             int RemovedObjects = 0;
-            for (int IdxContent = 0; IdxContent < ListContent.Count; )
+            for (int IdxContent = 0; IdxContent < ListContent.Count;)
             {
                 cInteractive3DObject CurrentContent = ListContent[IdxContent];
                 cPoint3D TestCentriolPt = new cPoint3D(CurrentContent.GetCentroid().X, CurrentContent.GetCentroid().Y, CurrentContent.GetCentroid().Z);

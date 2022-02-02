@@ -1,17 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using weka.core;
-using System.Data;
-using weka.clusterers;
+﻿using HCSAnalyzer.Classes;
 using LibPlateAnalysis;
-using System.Windows.Forms.DataVisualization.Charting;
-using System.Drawing;
+using System;
+using System.Collections.Generic;
 using System.Windows.Forms;
-using weka.classifiers;
 using weka.attributeSelection;
-using HCSAnalyzer.Classes;
 
 namespace HCSAnalyzer
 {
@@ -52,7 +44,7 @@ namespace HCSAnalyzer
 
         private void richTextBoxSupervisedDimRec_LinkClicked(object sender, LinkClickedEventArgs e)
         {
-             ClickOnLink(e.LinkText);
+            ClickOnLink(e.LinkText);
         }
 
         private void richTextBoxUnsupervisedDimRec_LinkClicked(object sender, LinkClickedEventArgs e)
@@ -75,7 +67,7 @@ namespace HCSAnalyzer
                     numericUpDownNewDimension.Enabled = false;
                     break;
                 case 2:
-                   
+
                     break;
             }
         }
@@ -117,13 +109,13 @@ namespace HCSAnalyzer
             //{
             int NumberOfPlates = cGlobalInfo.CurrentScreening.ListPlatesActive.Count;
 
-                for (int PlateIdx = 0; PlateIdx < NumberOfPlates; PlateIdx++)
-                {
-                    cPlate CurrentPlateToProcess = cGlobalInfo.CurrentScreening.ListPlatesActive.GetPlate(cGlobalInfo.CurrentScreening.ListPlatesActive[PlateIdx].GetName());
-                    ListPlate.Add(CurrentPlateToProcess);
-                }
+            for (int PlateIdx = 0; PlateIdx < NumberOfPlates; PlateIdx++)
+            {
+                cPlate CurrentPlateToProcess = cGlobalInfo.CurrentScreening.ListPlatesActive.GetPlate(cGlobalInfo.CurrentScreening.ListPlatesActive[PlateIdx].GetName());
+                ListPlate.Add(CurrentPlateToProcess);
+            }
 
-         //   }
+            //   }
 
 
             if (radioButtonDimRedUnsupervised.Checked)
@@ -179,7 +171,7 @@ namespace HCSAnalyzer
         {
             List<int> Rank = new List<int>();
             List<cScoreAndClass> ListScoreAndClass = new List<cScoreAndClass>();
-      
+
 
             weka.attributeSelection.OneRAttributeEval Attrib = new OneRAttributeEval();
             Attrib.buildEvaluator(insts);
@@ -190,11 +182,11 @@ namespace HCSAnalyzer
                 if (cGlobalInfo.CurrentScreening.ListDescriptors[i].IsActive() == false) continue;
                 double TmpScore = Attrib.evaluateAttribute(realIdx++);
                 richTextBoxSupervisedDimRec.AppendText("\n " + cGlobalInfo.CurrentScreening.ListDescriptors[i].GetName() + "\t: " + TmpScore);
-                ListScoreAndClass.Add(new cScoreAndClass(realIdx-1, TmpScore));
+                ListScoreAndClass.Add(new cScoreAndClass(realIdx - 1, TmpScore));
             }
 
-            ListScoreAndClass.Sort(delegate(cScoreAndClass p1, cScoreAndClass p2) { return p1.Score.CompareTo(p2.Score); });
-            for(int i=ListScoreAndClass.Count-1;i>=0;i--)
+            ListScoreAndClass.Sort(delegate (cScoreAndClass p1, cScoreAndClass p2) { return p1.Score.CompareTo(p2.Score); });
+            for (int i = ListScoreAndClass.Count - 1; i >= 0; i--)
             {
                 Rank.Add(ListScoreAndClass[i].Class);
             }
@@ -209,10 +201,10 @@ namespace HCSAnalyzer
             filter.buildEvaluator(insts);
 
             Ranker search2 = new Ranker();
-         //   search2.setNumToSelect(2);
+            //   search2.setNumToSelect(2);
             search2.setGenerateRanking(true);
             rang = search2.search(filter, insts);
-           
+
             return rang;
         }
         #endregion
@@ -258,7 +250,7 @@ namespace HCSAnalyzer
                             //CompleteScreening.ListDescriptors.SetItemState(i, true);
 
                             //checkedListBoxActiveDescriptors.SetItemCheckState(i, CheckState.Checked);
-                            cGlobalInfo.CurrentScreening.ListDescriptors.SetItemState(i,true);
+                            cGlobalInfo.CurrentScreening.ListDescriptors.SetItemState(i, true);
                         }
                         else
                         {
@@ -270,7 +262,7 @@ namespace HCSAnalyzer
                     }
                     break;
                 case 1:
-                   // return;
+                    // return;
                     rang = ReduceByOneR(insts);
                     for (int i = 0; i < cGlobalInfo.CurrentScreening.ListDescriptors.Count; i++)
                     {
@@ -278,7 +270,7 @@ namespace HCSAnalyzer
 
                         if (rang[RealIdx] < New_Dim)
                         {
-                           // CompleteScreening.ListDescriptors.SetItemState(i, true);
+                            // CompleteScreening.ListDescriptors.SetItemState(i, true);
                             //checkedListBoxActiveDescriptors.SetItemCheckState(i, CheckState.Checked);
                             cGlobalInfo.CurrentScreening.ListDescriptors.SetItemState(i, true);
                         }
@@ -296,12 +288,12 @@ namespace HCSAnalyzer
 
                     for (int i = 0; i < cGlobalInfo.CurrentScreening.ListDescriptors.Count; i++)
                     {
-                      //  CompleteScreening.ListDescriptors.SetItemState(i, false);
+                        //  CompleteScreening.ListDescriptors.SetItemState(i, false);
                         //checkedListBoxActiveDescriptors.SetItemCheckState(i, CheckState.Unchecked);
                         cGlobalInfo.CurrentScreening.ListDescriptors.SetItemState(i, false);
                     }
 
-                    for (int i = 0; i < rang.Length-1; i++)
+                    for (int i = 0; i < rang.Length - 1; i++)
                     {
                         //checkedListBoxActiveDescriptors.SetItemCheckState(rang[i], CheckState.Checked);
                         //CompleteScreening.ListDescriptors.SetItemState(rang[i], true);
@@ -319,7 +311,7 @@ namespace HCSAnalyzer
         {
             weka.core.Instances insts = null;
 
-            if(ListPlate.Count==1)
+            if (ListPlate.Count == 1)
                 insts = cGlobalInfo.CurrentScreening.GetCurrentDisplayPlate().CreateInstancesWithoutClass();// CreateInstanceWithoutClass(CurrentTable);
             else
                 insts = cGlobalInfo.CurrentScreening.CreateInstancesWithoutClass();
@@ -328,7 +320,7 @@ namespace HCSAnalyzer
 
             int RealIdx = 0;
             cGlobalInfo.ConsoleWriteLine("Feature selection results: \n");
-            
+
             switch (Algo)
             {
                 case 0:
@@ -339,12 +331,12 @@ namespace HCSAnalyzer
                         if (rang[RealIdx] < New_Dim)
                         {
                             //checkedListBoxActiveDescriptors.SetItemCheckState(i, CheckState.Checked);
-                            cGlobalInfo.CurrentScreening.ListDescriptors.SetItemState(i,true);
+                            cGlobalInfo.CurrentScreening.ListDescriptors.SetItemState(i, true);
                         }
                         else
                         {
                             //checkedListBoxActiveDescriptors.SetItemCheckState(i, CheckState.Unchecked);
-                            cGlobalInfo.CurrentScreening.ListDescriptors.SetItemState(i,false);
+                            cGlobalInfo.CurrentScreening.ListDescriptors.SetItemState(i, false);
                         }
                         RealIdx++;
                     }
@@ -353,14 +345,14 @@ namespace HCSAnalyzer
                     rang = ReduceByGreedy(insts);
                     for (int i = 0; i < cGlobalInfo.CurrentScreening.ListDescriptors.Count; i++)
                     {
-                       // checkedListBoxActiveDescriptors.SetItemCheckState(i, CheckState.Unchecked);
-                        cGlobalInfo.CurrentScreening.ListDescriptors.SetItemState(i,false);
+                        // checkedListBoxActiveDescriptors.SetItemCheckState(i, CheckState.Unchecked);
+                        cGlobalInfo.CurrentScreening.ListDescriptors.SetItemState(i, false);
                     }
 
-                    for (int i = 0; i < rang.Length-1; i++)
+                    for (int i = 0; i < rang.Length - 1; i++)
                     {
-                      //  checkedListBoxActiveDescriptors.SetItemCheckState(rang[i], CheckState.Checked);
-                        cGlobalInfo.CurrentScreening.ListDescriptors.SetItemState(rang[i],true);
+                        //  checkedListBoxActiveDescriptors.SetItemCheckState(rang[i], CheckState.Checked);
+                        cGlobalInfo.CurrentScreening.ListDescriptors.SetItemState(rang[i], true);
                     }
                     break;
 

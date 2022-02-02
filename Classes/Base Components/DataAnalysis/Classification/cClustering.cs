@@ -1,12 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
+﻿using HCSAnalyzer.Classes.Base_Classes.DataAnalysis;
 using HCSAnalyzer.Classes.Base_Classes.DataStructures;
-using HCSAnalyzer.Classes.Base_Classes.DataAnalysis;
 using HCSAnalyzer.Classes.General_Types;
 using HCSAnalyzer.Classes.Machine_Learning;
-using LibPlateAnalysis;
 using HCSAnalyzer.Forms.FormsForOptions.ClassForOptions.Children;
 using weka.clusterers;
 
@@ -64,10 +59,10 @@ namespace HCSAnalyzer.Classes.Base_Classes.DataProcessing
             #endregion
 
             cMachineLearning MachineLearning = new cMachineLearning(/*cWell.GlobalInfo*/null);
-            
+
             if (ParamAlgoForClustering == null)
                 ParamAlgoForClustering = MachineLearning.AskAndGetClusteringAlgo();
-            
+
             if (ParamAlgoForClustering == null)
             {
                 FeedBackMessage.IsSucceed = false;
@@ -88,7 +83,7 @@ namespace HCSAnalyzer.Classes.Base_Classes.DataProcessing
                 ClusterEvaluation CE = MachineLearning.EvaluteAndDisplayClusterer(/*richTextBoxInfoClustering*/null,
                                                          null,
                                                          MachineLearning.CreateInstancesWithoutClass(this.Input));
-                
+
                 double[] Assign = CE.getClusterAssignments();
 
                 base.Output = new cExtendedTable(this.Input);
@@ -97,7 +92,7 @@ namespace HCSAnalyzer.Classes.Base_Classes.DataProcessing
                 base.Output.Add(CL);
 
                 for (int i = 0; i < Assign.Length; i++)
-                    base.Output[base.Output.Count-1].Add(Assign[i]);
+                    base.Output[base.Output.Count - 1].Add(Assign[i]);
             }
 
 

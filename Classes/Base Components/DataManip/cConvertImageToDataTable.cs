@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using HCSAnalyzer.Classes.Base_Classes.DataStructures;
+﻿using HCSAnalyzer.Classes.Base_Classes.DataStructures;
 using ImageAnalysis;
 
 namespace HCSAnalyzer.Classes.Base_Classes.DataManip
@@ -31,7 +27,7 @@ namespace HCSAnalyzer.Classes.Base_Classes.DataManip
 
         public cFeedBackMessage Run()
         {
-         
+
             if (this.Input == null)
             {
                 FeedBackMessage.IsSucceed = false;

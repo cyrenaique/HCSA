@@ -1,17 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using weka.core;
-using System.Data;
-using weka.clusterers;
+﻿using HCSAnalyzer.Classes;
+using HCSAnalyzer.Classes.Base_Classes.DataStructures;
 using LibPlateAnalysis;
-using System.Windows.Forms.DataVisualization.Charting;
+using System;
 using System.Drawing;
 using System.Windows.Forms;
-using weka.classifiers;
-using HCSAnalyzer.Classes;
-using HCSAnalyzer.Classes.Base_Classes.DataStructures;
 
 namespace HCSAnalyzer
 {
@@ -399,7 +391,7 @@ namespace HCSAnalyzer
                                 double Value = TempWell.ListSignatures[Desc].GetValue() - CurrentMean;
 
                                 TempWell.ListSignatures[Desc].SetHistoValues(Value / CurrentStd);
-                            }   
+                            }
 
                             TempWell.ListSignatures[Desc].UpDateDescriptorStatistics();
                         }
@@ -410,7 +402,7 @@ namespace HCSAnalyzer
                 }
                 richTextBoxInfoForNormalization.AppendText("\n" + CurrentPlateToProcess.GetName() + " was normalized.");
                 NumberOfProcessedPlates++;
-                NEXTPLATE:;
+            NEXTPLATE:;
             }
 
             if (NumberOfProcessedPlates > 1)

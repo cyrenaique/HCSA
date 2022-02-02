@@ -1,13 +1,10 @@
 ﻿
+using HCSAnalyzer.Classes;
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Windows.Controls;
-using HCSAnalyzer.Classes;
-using System.Windows.Forms;
 using System.Drawing;
 using System.IO;
+using System.Windows.Forms;
 
 namespace HCSAnalyzer.Forms.FormsForGraphsDisplay
 {
@@ -40,23 +37,23 @@ namespace HCSAnalyzer.Forms.FormsForGraphsDisplay
                 PanelForColor.Height = 13;
                 PanelForColor.BackColor = cGlobalInfo.ListCellularPhenotypes[IdxClass].ColourForDisplay;
                 PanelForColor.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-                PanelForColor.Location = new System.Drawing.Point(5, PanelForColor.Height * IdxClass-2);
+                PanelForColor.Location = new System.Drawing.Point(5, PanelForColor.Height * IdxClass - 2);
                 PanelForColor.Tag = IdxClass;
                 PanelForColor.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.MouseDoubleClick);
                 ListPanelColor.Add(PanelForColor);
-                 
+
                 System.Windows.Forms.TextBox CurrentTextBox = new System.Windows.Forms.TextBox();
                 CurrentTextBox.Text = cGlobalInfo.ListCellularPhenotypes[IdxClass].Name;// "Phenotype " + IdxClass;
-                CurrentTextBox.Location = new System.Drawing.Point(PanelForColor.Width+15, (CurrentTextBox.Height+5) * IdxClass);
+                CurrentTextBox.Location = new System.Drawing.Point(PanelForColor.Width + 15, (CurrentTextBox.Height + 5) * IdxClass);
 
                 ListToolTips.Add(new System.Windows.Forms.ToolTip());
                 ListToolTips[IdxClass].SetToolTip(CurrentTextBox, CurrentTextBox.Text);
-                
+
                 CurrentTextBox.TextChanged += new EventHandler(CurrentTextBox_TextChanged);
                 CurrentTextBox.Tag = IdxClass;
                 ListTextBoxes.Add(CurrentTextBox);
 
-                PanelForColor.Location = new System.Drawing.Point(5, CurrentTextBox.Location.Y+5);
+                PanelForColor.Location = new System.Drawing.Point(5, CurrentTextBox.Location.Y + 5);
             }
             this.Controls.AddRange(ListPanelColor.ToArray());
             this.Controls.AddRange(ListTextBoxes.ToArray());
@@ -87,12 +84,12 @@ namespace HCSAnalyzer.Forms.FormsForGraphsDisplay
             //Drawing control to the bitmap
             this.DrawToBitmap(bmp, new Rectangle(0, 0, this.Width, this.Height));
             MemoryStream ms = new MemoryStream();
-            System.Windows.Forms.Clipboard.SetImage(bmp);            
+            System.Windows.Forms.Clipboard.SetImage(bmp);
         }
 
         void PanelForPhenotypeEditing_Changed(object sender, EventArgs e)
         {
-        // //   throw new NotImplementedException();
+            // //   throw new NotImplementedException();
         }
 
         List<System.Windows.Forms.ToolTip> ListToolTips = new List<System.Windows.Forms.ToolTip>();

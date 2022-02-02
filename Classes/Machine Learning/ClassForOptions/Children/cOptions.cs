@@ -1,10 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
+﻿using HCSAnalyzer.Classes;
 using HCSAnalyzer.Forms.FormsForOptions.PanelForOptions;
+using System;
+using System.Collections.Generic;
 using System.Windows.Forms;
-using HCSAnalyzer.Classes;
 
 namespace HCSAnalyzer.Forms.FormsForOptions.ClassForOptions.Children
 {
@@ -87,7 +85,7 @@ namespace HCSAnalyzer.Forms.FormsForOptions.ClassForOptions.Children
     [Serializable]
     public class cOptionDisplayPlatesandWells : cOptionGeneral
     {
-        public cOptionDisplayPlatesandWells (string Name)
+        public cOptionDisplayPlatesandWells(string Name)
             : base(Name)
         {
             PanelForPlatesandWells PanelForOption = new PanelForPlatesandWells();

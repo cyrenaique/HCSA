@@ -1,16 +1,12 @@
-﻿using System;
+﻿using HCSAnalyzer.Classes._3D;
+using System;
 using System.Collections.Generic;
-using System.ComponentModel;
 using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Windows.Forms;
-using System.Windows.Forms.Integration;
 using System.IO;
+using System.Reflection;
 using System.Runtime.Serialization;
 using System.Runtime.Serialization.Formatters.Binary;
-using System.Reflection;
-using HCSAnalyzer.Classes._3D;
+using System.Windows.Forms;
 
 namespace IM3_Plugin3
 {
@@ -390,7 +386,7 @@ namespace IM3_Plugin3
             }
             //panelForInfo.Controls.AddRange(LChart.ToArray());
 
-            if(this.AssociatedThumbnail!=null)  this.AssociatedThumbnail.UpdateAppearance();
+            if (this.AssociatedThumbnail != null) this.AssociatedThumbnail.UpdateAppearance();
 
             this.Parent.UpDateContainers();
             this.Parent.UpDateSpotList();
@@ -586,7 +582,7 @@ namespace IM3_Plugin3
 
         private void checkBoxPreProcessings_CheckedChanged(object sender, EventArgs e)
         {
-            if(checkBoxPreProcessings.Checked) WindowForPreProcessing.ShowDialog();
+            if (checkBoxPreProcessings.Checked) WindowForPreProcessing.ShowDialog();
         }
 
         private void radioButtonIsVolume_MouseClick(object sender, MouseEventArgs e)

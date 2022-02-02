@@ -1,7 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using HCSAnalyzer.Classes.Base_Classes.DataStructures;
+﻿using HCSAnalyzer.Classes.Base_Classes.DataStructures;
 using HCSAnalyzer.Classes.General_Types;
+using System;
 
 // once implemented, you can then call it like this:
 // 

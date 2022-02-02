@@ -1,9 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
+﻿using Accord.Statistics.Testing;
 using HCSAnalyzer.Classes.Base_Classes.DataStructures;
-using Accord.Statistics.Testing;
+using System.Collections.Generic;
 
 namespace HCSAnalyzer.Classes.Base_Classes.DataAnalysis
 {
@@ -13,7 +10,7 @@ namespace HCSAnalyzer.Classes.Base_Classes.DataAnalysis
     {
         cExtendedTable Input;
         cExtendedTable OutPut;
-        
+
         /// <summary>
         /// Eta^2 (Sum_Of_Squares Between groups / Sum_Of_Squares Total)
         /// measure of the strength of a curvilinear relationship between the independent and dependent variable is given by a quantity known as as eta-square
@@ -90,7 +87,7 @@ Typically, however, the one-way ANOVA is used to test for differences among at l
 
             double[][] Table = this.Input.CopyToArray2();
             OneWayAnova MyOneWayAnova = new OneWayAnova(Table);
-            
+
 
 
             cExtendedList NewList = new cExtendedList(MyOneWayAnova.Table[0].Source); // between-groups
@@ -104,7 +101,7 @@ Typically, however, the one-way ANOVA is used to test for differences among at l
 
             this.OutPut.ListRowNames.Add("P-Value");
             this.OutPut.ListRowNames.Add("Significant?");
-           // this.OutPut.ListRowNames.Add("F-Statistic");
+            // this.OutPut.ListRowNames.Add("F-Statistic");
 
             this.OutPut.Add(NewList);
             this.OutPut[this.OutPut.Count - 1].Add(MyOneWayAnova.Table[0].Significance.PValue);
@@ -115,7 +112,7 @@ Typically, however, the one-way ANOVA is used to test for differences among at l
                 this.OutPut[this.OutPut.Count - 1].Add(0);
 
 
-            
+
             this.Eta_2 = MyOneWayAnova.Table[0].SumOfSquares / MyOneWayAnova.Table[2].SumOfSquares;
 
 

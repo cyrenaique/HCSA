@@ -1,18 +1,15 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Windows.Forms.DataVisualization.Charting;
-using System.Windows.Forms;
+﻿using HCSAnalyzer.Classes.Base_Classes.DataProcessing;
 using HCSAnalyzer.Classes.Base_Classes.DataStructures;
-using System.Drawing;
-using LibPlateAnalysis;
-using System.IO;
-using HCSAnalyzer.Classes.MetaComponents;
-using HCSAnalyzer.Classes.General_Types;
 using HCSAnalyzer.Classes.Base_Classes.GUI;
-using HCSAnalyzer.Classes.Base_Classes.DataProcessing;
 using HCSAnalyzer.Classes.Base_Components.GUI;
+using HCSAnalyzer.Classes.General_Types;
+using HCSAnalyzer.Classes.MetaComponents;
+using LibPlateAnalysis;
+using System;
+using System.Collections.Generic;
+using System.Drawing;
+using System.Windows.Forms;
+using System.Windows.Forms.DataVisualization.Charting;
 
 namespace HCSAnalyzer.Classes.Base_Classes.Viewers
 {
@@ -41,19 +38,19 @@ namespace HCSAnalyzer.Classes.Base_Classes.Viewers
             base.MouseClick += new System.Windows.Forms.MouseEventHandler(this.AssociatedChart_MouseClick);
             base.IsZoomableX = true;
             base.IsZoomableY = false;
-          
+
         }
-        
+
         double FinalMin = 0;
         double FinalMax = 0;
-        
+
         void Refresh()
         {
             base.CurrentSeries.Clear();
             double MaxY = 0;
 
             FinalMin = InputSimpleData.Min();
-            FinalMax =  InputSimpleData.Max();
+            FinalMax = InputSimpleData.Max();
             for (int IdxSerie = 0; IdxSerie < InputSimpleData.Count; IdxSerie++)
             {
                 Series NewSerie = new System.Windows.Forms.DataVisualization.Charting.Series(base.InputSimpleData[IdxSerie].Name);
@@ -69,10 +66,10 @@ namespace HCSAnalyzer.Classes.Base_Classes.Viewers
                 HB.Min = FinalMin;
                 HB.Max = FinalMax;
                 if (this.BinNumber == -1)
-                    HB.BinNumber = HB.Max - HB.Min +1 ;
+                    HB.BinNumber = HB.Max - HB.Min + 1;
                 else
                     HB.BinNumber = this.BinNumber;
-                
+
                 HB.IsNormalized = this.IsHistoNormalized;
                 if (this.IsHistoNormalized)
                 {
@@ -120,8 +117,8 @@ namespace HCSAnalyzer.Classes.Base_Classes.Viewers
                     {
                         DP.MarkerBorderColor = Color.Black;
                         DP.MarkerBorderWidth = 1;
-                      //  DP.BorderColor = Color.Black;
-                      //  DP.BorderWidth = 1;
+                        //  DP.BorderColor = Color.Black;
+                        //  DP.BorderWidth = 1;
                     }
                     else
                     {
@@ -131,22 +128,22 @@ namespace HCSAnalyzer.Classes.Base_Classes.Viewers
 
 
                     DP.Color = Color.FromArgb(this.Opacity, NewSerie.Color);
-                        //    DP.MarkerStyle = MarkerStyle.Circle;
-                        //    DP.MarkerSize = this.MarkerSize;
-                       // }
+                    //    DP.MarkerStyle = MarkerStyle.Circle;
+                    //    DP.MarkerSize = this.MarkerSize;
+                    // }
 
                     DP.BorderWidth = 3;// this.LineWidth;
 
 
                     if (InputSimpleData[IdxSerie].Tag != null)
                     {
-                         //if (j >= this.input[0].ListTags.Count) continue;
+                        //if (j >= this.input[0].ListTags.Count) continue;
 
                         if (InputSimpleData[IdxSerie].Tag.GetType() == typeof(cWellClassType))
-                         {
-                             DP.Color = ((cWellClassType)(InputSimpleData[IdxSerie].Tag)).ColourForDisplay;
-                             DP.ToolTip = ((cWellClassType)(InputSimpleData[IdxSerie].Tag)).Name + "\n";
-                         }
+                        {
+                            DP.Color = ((cWellClassType)(InputSimpleData[IdxSerie].Tag)).ColourForDisplay;
+                            DP.ToolTip = ((cWellClassType)(InputSimpleData[IdxSerie].Tag)).Name + "\n";
+                        }
 
                         //DP.Tag = this.input[0].ListTags[j];
 
@@ -173,9 +170,9 @@ namespace HCSAnalyzer.Classes.Base_Classes.Viewers
                         //}
 
                     }
-                   
-                    DP.ToolTip += NewSerie.Name +"\n" + DP.XValue.ToString("N2") + " : " + DP.YValues[0];
-                    
+
+                    DP.ToolTip += NewSerie.Name + "\n" + DP.XValue.ToString("N2") + " : " + DP.YValues[0];
+
                     NewSerie.Points.Add(DP);
                     //  if (Input[idxCol].ListTags != null)
                     //NewSerie.Points[IdxValue].Tag = Input[idxCol].ListTags[idxRow];
@@ -189,7 +186,7 @@ namespace HCSAnalyzer.Classes.Base_Classes.Viewers
 
             base.Update();
 
-        
+
         }
 
 
@@ -203,7 +200,7 @@ namespace HCSAnalyzer.Classes.Base_Classes.Viewers
             this.SliderForOpacity.numericUpDown.Value = this.Opacity;
 
             this.SliderForMarkerSizeBinSize.numericUpDown.Maximum = this.SliderForMarkerSizeBinSize.trackBar.Maximum = 5000;
-           // this.SliderForMarkerSizeBinSize.trackBar.Value = this.BinNumber;
+            // this.SliderForMarkerSizeBinSize.trackBar.Value = this.BinNumber;
 
             this.SliderForMarkerSizeBinSize.numericUpDown.Minimum = -1;
 
@@ -214,11 +211,11 @@ namespace HCSAnalyzer.Classes.Base_Classes.Viewers
 
             this.SliderForMarkerSizeBinSize.numericUpDown.Value = this.BinNumber;
 
-           // base.IsYGrid = true;
+            // base.IsYGrid = true;
             base.IsBorder = true;
-            
+
             this.Refresh();
-          
+
             base.Run();
             base.CurrentTitle.Text = "Histogram(" + base.CurrentTitle.Text + ")";
         }
@@ -318,10 +315,10 @@ namespace HCSAnalyzer.Classes.Base_Classes.Viewers
             //if (this.SliderForMarkerSizeBinSize.ShowDialog() != DialogResult.OK) return;
             this.IsHistoNormalized = !this.IsHistoNormalized;
             //this.BinNumber = (int)this.SliderForMarkerSizeBinSize.numericUpDown.Value;
-           // this.Run();
+            // this.Run();
             //base.Run();
             this.Refresh();
-           // this.Run();
+            // this.Run();
             base.Run();
         }
 
@@ -425,7 +422,7 @@ namespace HCSAnalyzer.Classes.Base_Classes.Viewers
             ContextMenuStrip NewMenu = new ContextMenuStrip();
             foreach (var item in base.GetContextMenu(e))
             {
-                if(item!=null) NewMenu.Items.Add(item);
+                if (item != null) NewMenu.Items.Add(item);
             }
             NewMenu.Items.Add(this.GetContextMenu());
 
@@ -570,7 +567,7 @@ namespace HCSAnalyzer.Classes.Base_Classes.Viewers
 
 
 
-     
+
     }
 
 }

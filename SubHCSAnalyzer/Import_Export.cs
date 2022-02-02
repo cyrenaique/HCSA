@@ -1,30 +1,26 @@
-﻿using System;
-using System.ComponentModel;
-using System.Windows.Forms;
-using System.Data;
-using System.Text;
-using System.Collections.Generic;
-using System.Drawing;
-using System.Windows.Forms.DataVisualization.Charting;
-using LibPlateAnalysis;
-using weka.core;
-using System.IO;
-
-using System.Data.OleDb;
-using System.Linq;
-using System.Drawing.Imaging;
-using HCSAnalyzer.Forms;
-using HCSAnalyzer.Classes;
-using weka.core.converters;
-using System.Diagnostics;
-using HCSAnalyzer.Forms.IO;
-using HCSAnalyzer.Forms.FormsForGraphsDisplay;
-using System.Data.SQLite;
+﻿using HCSAnalyzer.Classes;
+using HCSAnalyzer.Classes.Base_Classes.Data;
 using HCSAnalyzer.Classes.Base_Classes.DataStructures;
 using HCSAnalyzer.Classes.General_Types;
-using System.Globalization;
+using HCSAnalyzer.Forms;
 using HCSAnalyzer.Forms.FormsForOptions;
-using HCSAnalyzer.Classes.Base_Classes.Data;
+using HCSAnalyzer.Forms.IO;
+using LibPlateAnalysis;
+using System;
+using System.Collections.Generic;
+using System.Diagnostics;
+using System.Drawing;
+using System.Drawing.Imaging;
+using System.Globalization;
+using System.IO;
+using System.Linq;
+using System.Text;
+using System.Windows.Forms;
+using System.Windows.Forms.DataVisualization.Charting;
+using weka.core;
+using weka.core.converters;
+using Apache.Arrow;
+using Apache.Arrow.Ipc;
 
 namespace HCSAnalyzer
 {
@@ -223,9 +219,9 @@ namespace HCSAnalyzer
 
             if (CurrOpenFileDialog.FileNames == null) return;
 
-          //  if (CurrOpenFileDialog.FileNames[0].Remove(0, CurrOpenFileDialog.FileNames[0].Length - 4) == ".mtr") LoadMTRAssay(CurrOpenFileDialog);
-          //  if (CurrOpenFileDialog.FileNames[0].Remove(0, CurrOpenFileDialog.FileNames[0].Length - 4) == ".txt") LoadTXTAssay(CurrOpenFileDialog);
-          //  if (CurrOpenFileDialog.FileNames[0].Remove(0, CurrOpenFileDialog.FileNames[0].Length - 4) == ".csv")
+            //  if (CurrOpenFileDialog.FileNames[0].Remove(0, CurrOpenFileDialog.FileNames[0].Length - 4) == ".mtr") LoadMTRAssay(CurrOpenFileDialog);
+            //  if (CurrOpenFileDialog.FileNames[0].Remove(0, CurrOpenFileDialog.FileNames[0].Length - 4) == ".txt") LoadTXTAssay(CurrOpenFileDialog);
+            //  if (CurrOpenFileDialog.FileNames[0].Remove(0, CurrOpenFileDialog.FileNames[0].Length - 4) == ".csv")
             {
                 FormForImportExcel CSVFeedBackWindow = LoadCSVAssay(CurrOpenFileDialog.FileNames, false);
                 if (CSVFeedBackWindow == null) return;
@@ -266,7 +262,7 @@ namespace HCSAnalyzer
                 if (CSVFeedBackWindow.ShowDialog() != System.Windows.Forms.DialogResult.OK) return;
                 ProcessOK(CSVFeedBackWindow);
             }
-            
+
             UpdateUIAfterLoading();
         }
 
@@ -322,7 +318,7 @@ namespace HCSAnalyzer
                 CSVFeedBackWindow.IsParentFolder = FormForPlateName.radioButtonNameFromFolder.Checked;
 
             }
-            if ((NumRow != 1) && ((CSVFeedBackWindow.ModeWell == 1)||(CSVFeedBackWindow.ModeWell == 3) ))
+            if ((NumRow != 1) && ((CSVFeedBackWindow.ModeWell == 1) || (CSVFeedBackWindow.ModeWell == 3)))
             {
                 MessageBox.Show("One and only one \"Row\" has to be selected", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
@@ -505,7 +501,7 @@ namespace HCSAnalyzer
             int[] Pos = new int[2];
 
             Pos[1] = Convert.ToInt16(ResList[0].ToUpper()[0]) - 64;
-           // string PosY = PosString.Remove(0, 1);
+            // string PosY = PosString.Remove(0, 1);
             bool IsTrue = int.TryParse(ResList[1], out Pos[0]);
 
             if (!IsTrue) return null;
@@ -522,16 +518,16 @@ namespace HCSAnalyzer
 
         private FormForImportExcel LoadCSVAssay(string[] FileNames, bool IsAppend)
         {
-           
+
             if (cGlobalInfo.CurrentScreening == null) IsAppend = false;
 
             FormInfoForFileImporter InfoForFileImporter = new FormInfoForFileImporter(FileNames[0]);
             if (InfoForFileImporter.ShowDialog() != System.Windows.Forms.DialogResult.OK) return null;
 
             FormForImportExcel FromExcel = new FormForImportExcel();
-           
 
-        //    char Separator = ',';
+
+            //    char Separator = ',';
             if (InfoForFileImporter.radioButtonSemiColon.Checked) FromExcel.Separator = ';';
             else if (InfoForFileImporter.radioButtonSpace.Checked) FromExcel.Separator = ' ';
             else if (InfoForFileImporter.radioButtonTab.Checked) FromExcel.Separator = '\t';
@@ -549,7 +545,7 @@ namespace HCSAnalyzer
 
             if (PathNames == null) return null;
             // Window form creation
-            
+
             FromExcel.Text += " - " + PathNames[0];
             if (IsAppend)
             {
@@ -561,7 +557,7 @@ namespace HCSAnalyzer
 
             FromExcel.IsImportCSV = true;
 
-           
+
             //int Mode = 2;
             FromExcel.ModeWell = 2;
 
@@ -569,7 +565,7 @@ namespace HCSAnalyzer
             if (InfoForFileImporter.radioButtonWellPosModeA02.Checked)
                 FromExcel.ModeWell = 2;
             else if (InfoForFileImporter.radioButtonWellPosModeA_02.Checked)
-                FromExcel.ModeWell = 1;      
+                FromExcel.ModeWell = 1;
             else if (InfoForFileImporter.radioButtonWellPosModeA_2.Checked)
                 FromExcel.ModeWell = 4; // GE
             else FromExcel.ModeWell = 3; //(InfoForFileImporter.radioButtonWellPosMode1_2.Checked)
@@ -577,8 +573,14 @@ namespace HCSAnalyzer
             //if (cGlobalInfo.OptionsWindow.radioButtonWellPosModeSingle.Checked) Mode = 1;
             CsvFileReader CSVsr = new CsvFileReader(PathNames[0]);
             CSVsr.Separator = FromExcel.Separator;
-
-            for (int i = 0; i < InfoForFileImporter.numericUpDownHeaderSize.Value; i++)
+            using (var stream = File.OpenRead(PathNames[0]))
+            using (var reader = new ArrowFileReader(stream))
+            {
+                var data_S = reader.ReadNextRecordBatch();
+                
+                MessageBox.Show("Nmbr of cols.", data_S.ColumnCount.ToString(), MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
+                for (int i = 0; i < InfoForFileImporter.numericUpDownHeaderSize.Value; i++)
             {
                 CsvRow TNames = new CsvRow();
                 CSVsr.ReadRow(TNames);
@@ -655,7 +657,7 @@ namespace HCSAnalyzer
                 {
                     FromExcel.dataGridViewForImport.Rows[i].Cells[IdxRow++].Value = "Plate name";
                 }
-                else if (Names[i].Contains("Well") & !Names[i].Contains("Class") )
+                else if (Names[i].Contains("Well") & !Names[i].Contains("Class"))
                 {
                     FromExcel.dataGridViewForImport.Rows[i].Cells[IdxRow++].Value = "Well position";
                 }
@@ -705,7 +707,7 @@ namespace HCSAnalyzer
 
             }
 
-           
+
 
             FromExcel.dataGridViewForImport.Update();
             //   FromExcel.dataGridViewForImport.MouseClick += new System.Windows.Forms.MouseEventHandler(this.dataGridViewForImport_MouseClick);
@@ -743,7 +745,7 @@ namespace HCSAnalyzer
             int ColLocusID = GetColIdxFor("Locus ID", FromExcel);
             int ColConcentration = GetColIdxFor("Concentration", FromExcel);
             int ColInfo = GetColIdxFor("Info", FromExcel);
-            int ColClass = GetColIdxFor("Class", FromExcel);            
+            int ColClass = GetColIdxFor("Class", FromExcel);
             int ColPlateName = GetColIdxFor("Plate name", FromExcel);
             int ColCol = GetColIdxFor("Column", FromExcel);
             int ColRow = GetColIdxFor("Row", FromExcel);
@@ -771,7 +773,7 @@ namespace HCSAnalyzer
                 CSVsr = new CsvFileReader(CurrentFileName);
                 CSVsr.Separator = FromExcel.Separator;
                 CsvRow Names = new CsvRow();
-               // 
+                // 
                 for (int i = 0; i < FromExcel.HeaderSize; i++)
                 {
                     CsvRow TNames = new CsvRow();
@@ -792,7 +794,7 @@ namespace HCSAnalyzer
                     cGlobalInfo.ConsoleWriteLine(CurrentFileName + ": Header inconsistent.");
                     goto NEXTFILE;
                 }
-                
+
                 for (int IdxName = 0; IdxName < Names.Count; IdxName++)
                 {
 
@@ -816,10 +818,14 @@ namespace HCSAnalyzer
                 }
 
                 int ConvertedNaNValue = 0;
+<<<<<<< HEAD
                 
+=======
+
+>>>>>>> ad245feb18ca6e2863ab0613857417b16a9b8ec9
                 while (CSVsr.EndOfStream != true)
                 {
-                NEXT: ;
+                NEXT:;
                     CsvRow CurrentDesc = new CsvRow();
                     if (CSVsr.ReadRow(CurrentDesc) == false) break;
 
@@ -832,7 +838,7 @@ namespace HCSAnalyzer
                             Sep[0] = "\\";
                             string[] SplittedStrings = CurrentFileName.Split(Sep, StringSplitOptions.None);
 
-                            PlateName = SplittedStrings[SplittedStrings.Length-2];
+                            PlateName = SplittedStrings[SplittedStrings.Length - 2];
                         }
                         else
                         {
@@ -848,7 +854,7 @@ namespace HCSAnalyzer
                     cPlate CurrentPlate = cGlobalInfo.CurrentScreening.GetPlateIfNameIsContainIn(PlateName);
                     if (CurrentPlate == null)
                     {
-                        CurrentPlate = new cPlate( PlateName, cGlobalInfo.CurrentScreening);
+                        CurrentPlate = new cPlate(PlateName, cGlobalInfo.CurrentScreening);
                         cGlobalInfo.CurrentScreening.AddPlate(CurrentPlate);
                     }
 
@@ -888,7 +894,7 @@ namespace HCSAnalyzer
                         if (int.TryParse(CurrentDesc[ColCol], out Pos[0]) == false)
                             goto NEXTLOOP;
 
-                        Pos[1]= Convert.ToInt32(CurrentDesc[ColRow].ToUpper()[0])-64;
+                        Pos[1] = Convert.ToInt32(CurrentDesc[ColRow].ToUpper()[0]) - 64;
                     }
                     else
                     {
@@ -914,13 +920,13 @@ namespace HCSAnalyzer
                         if (double.TryParse(CurrentDesc[ColsForDescriptors[idxDesc]], NumberStyles.Any, CultureInfo.InvariantCulture/*.CreateSpecificCulture("en-US")*/, out Value))
                         {
                             //if(double.IsNaN(Value))
-                           // {
-                           //     else
-                                //{
-                                //    FailToLoad++;
-                                //    goto NEXTLOOP;   
-                                //}
-                           // }
+                            // {
+                            //     else
+                            //{
+                            //    FailToLoad++;
+                            //    goto NEXTLOOP;   
+                            //}
+                            // }
                             CurrentDescriptor = new cSignature(Value, cGlobalInfo.CurrentScreening.ListDescriptors[idxDesc/* + ShiftIdx*/], cGlobalInfo.CurrentScreening);
                             LDesc.Add(CurrentDescriptor);
                         }
@@ -967,21 +973,30 @@ namespace HCSAnalyzer
 
                     if (ColLocusID != -1)
                     {
-                        double CurrentValue;
 
                         //if (!double.TryParse(CurrentDesc[ColLocusID], out CurrentValue))
                         //    goto NEXTSTEP;
+<<<<<<< HEAD
 
                         CurrentWell.ListProperties.UpdateValueByName("Locus ID", CurrentDesc[ColLocusID]);
 
                     }
 
                     if (Coltags != -1)
+=======
+
+                        CurrentWell.ListProperties.UpdateValueByName("Locus ID", CurrentDesc[ColLocusID]);
+
+                    }
+                    CurrentWell.SetClass(2);
+                    if (Coltags != -1 || ColClass !=-1)
+>>>>>>> ad245feb18ca6e2863ab0613857417b16a9b8ec9
                     {
                         //double CurrentValue;
 
                         //if (!double.TryParse(CurrentDesc[ColLocusID], out CurrentValue))
                         //    goto NEXTSTEP;
+<<<<<<< HEAD
 
                         CurrentWell.ListProperties.UpdateValueByName("tags", CurrentDesc[Coltags]);
                         float CurrentValue = 0;
@@ -992,11 +1007,43 @@ namespace HCSAnalyzer
                                 class_string.Add(CurrentDesc[Coltags]);
                                 CurrentWell.SetClass(class_string.Count - 1);
 
+=======
+                        if (Coltags==-1)
+                        {
+                            Coltags = ColClass;
+                        }
+
+                        //CurrentDesc[Coltags] = new string(CurrentDesc[Coltags].OrderBy(c => c).ToArray());
+                        CurrentWell.ListProperties.UpdateValueByName("tags", CurrentDesc[Coltags]);
+                        float CurrentValue = 0;
+                        
+                        if (!float.TryParse(CurrentDesc[Coltags], out CurrentValue))
+                        {
+                            
+                            if (!class_string.Contains(CurrentDesc[Coltags]))
+                            {
+                                class_string.Add(CurrentDesc[Coltags]);
+                                if (class_string.Count - 1 > 30)
+                                {
+                                    CurrentWell.SetClass((class_string.Count - 1) % 31);
+                                    CurrentWell.ListProperties.UpdateValueByName("Class", (class_string.Count - 1) % 31);
+                                }
+                                else
+                                {
+                                    CurrentWell.SetClass(class_string.Count - 1);
+                                    CurrentWell.ListProperties.UpdateValueByName("Class", class_string.Count - 1);
+                                }
+>>>>>>> ad245feb18ca6e2863ab0613857417b16a9b8ec9
                             }
                             else
                             {
                                 int idx_str = class_string.IndexOf(CurrentDesc[Coltags]);
+<<<<<<< HEAD
                                 CurrentWell.SetClass(idx_str);
+=======
+                                CurrentWell.SetClass(idx_str%31);
+                                CurrentWell.ListProperties.UpdateValueByName("Class", idx_str%31);
+>>>>>>> ad245feb18ca6e2863ab0613857417b16a9b8ec9
                             }
 
 
@@ -1015,11 +1062,12 @@ namespace HCSAnalyzer
                         CurrentWell.ListProperties.UpdateValueByName("Concentration", CurrentValue);
                         //CurrentWell.Concentration = CurrentValue;
                     }
-                NEXTSTEP: ;
+                NEXTSTEP:;
 
                     if ((ColInfo != -1) && (ColInfo < CurrentDesc.Count))
                         CurrentWell.Info = CurrentDesc[ColInfo];
 
+<<<<<<< HEAD
                     if (ColClass != -1)
                     {
                         float CurrentValue = 0;
@@ -1047,11 +1095,40 @@ namespace HCSAnalyzer
                     //{
                     //    CurrentWell.SetClass(2);
                     //}
+=======
+                    //if (ColClass != -1)
+                    //{
+                    //    float CurrentValue = 0;
+                    //    if (!float.TryParse(CurrentDesc[ColClass], out CurrentValue))
+                    //    {
+                    //        if (!class_string.Contains(CurrentDesc[ColClass]))
+                    //        {
+                    //            class_string.Add(CurrentDesc[ColClass]);
+                    //            CurrentWell.SetClass(class_string.Count - 1);
 
-                NEXTLOOP: ;
+                    //        }
+                    //        else
+                    //        {
+                    //            int idx_str = class_string.IndexOf(CurrentDesc[ColClass]);
+                    //            CurrentWell.SetClass(idx_str);
+                    //        }
+
+
+                    //        goto NEXTLOOP;
+                    //    }
+
+                    //    CurrentWell.SetClass((int)CurrentValue);
+                    //}
+                //else
+                //{
+                //    CurrentWell.SetClass(2);
+                //}
+>>>>>>> ad245feb18ca6e2863ab0613857417b16a9b8ec9
+
+                NEXTLOOP:;
 
                 }
-            NEXTFILE: ;
+            NEXTFILE:;
                 CSVsr.Close();
             }
             cGlobalInfo.CurrentScreening.UpDatePlateListWithFullAvailablePlate();
@@ -1078,7 +1155,7 @@ namespace HCSAnalyzer
             //    PlateListWindow.listBoxAvaliableListPlates.Items.Add(item);
             //}
 
-            
+
             UpdateUIAfterLoading();
             //    CompleteScreening.CurrentDisplayPlateIdx = 0;
             cGlobalInfo.CurrentScreening.SetSelectionType(comboBoxClass.SelectedIndex - 1);
@@ -1130,7 +1207,7 @@ namespace HCSAnalyzer
         //}
 
         private void linkToolStripMenuItem_Click(object sender, EventArgs e)
-        {      
+        {
             if (PathNames == null) return;
 
             cCSVToTable CSVT = new cCSVToTable();
@@ -1169,8 +1246,8 @@ namespace HCSAnalyzer
             }
 
             cGlobalInfo.CurrentScreening.GetCurrentDisplayPlate().DisplayDistribution(cGlobalInfo.CurrentScreening.ListDescriptors.GetActiveDescriptor(), false);
-            MessageBox.Show(NumWellUpdated + " over "+ cGlobalInfo.CurrentScreening.ListPlatesActive.GetListActiveWells().Count +" wells have been updated !", "Process over !", MessageBoxButtons.OK, MessageBoxIcon.Information);
-  
+            MessageBox.Show(NumWellUpdated + " over " + cGlobalInfo.CurrentScreening.ListPlatesActive.GetListActiveWells().Count + " wells have been updated !", "Process over !", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
             return;
 
             //if (CompleteScreening == null) return;
@@ -1360,7 +1437,7 @@ namespace HCSAnalyzer
 
             while (CSVsr.EndOfStream != true)
             {
-            NEXT: ;
+            NEXT:;
                 CsvRow CurrentDesc = new CsvRow();
                 if (CSVsr.ReadRow(CurrentDesc) == false) break;
 
@@ -1410,7 +1487,7 @@ namespace HCSAnalyzer
                     if (!double.TryParse(CurrentDesc[ColLocusID], out CurrentValue))
                         goto NEXTSTEP;
 
-                    CurrentWell.ListProperties.UpdateValueByName("Locus ID",(int)CurrentValue);
+                    CurrentWell.ListProperties.UpdateValueByName("Locus ID", (int)CurrentValue);
 
                 }
                 if (ColConcentration != -1)
@@ -1421,10 +1498,10 @@ namespace HCSAnalyzer
                         goto NEXTSTEP;
 
 
-                    CurrentWell.ListProperties.UpdateValueByName("Concentration",CurrentValue);
+                    CurrentWell.ListProperties.UpdateValueByName("Concentration", CurrentValue);
 
                 }
-            NEXTSTEP: ;
+            NEXTSTEP:;
 
                 if (ColInfo != -1)
                     CurrentWell.Info = CurrentDesc[ColInfo];
@@ -1437,7 +1514,7 @@ namespace HCSAnalyzer
                     CurrentWell.SetClass(CurrentValue);
                 }
 
-            NEXTLOOP: ;
+            NEXTLOOP:;
 
             }
 
@@ -1519,7 +1596,7 @@ namespace HCSAnalyzer
                         sHeaders = sHeaders.ToString() + dGV.Columns[j].HeaderText;
                     }
                 }
-                
+
                 myFile.WriteLine(sHeaders);
 
                 // Export data.  
@@ -1537,7 +1614,7 @@ namespace HCSAnalyzer
                             stLine = stLine.ToString() + dGV.Rows[i].Cells[j].Value;
                         }
                     }
-                     
+
                     myFile.WriteLine(stLine);
                 }
                 myFile.Close();
@@ -1701,7 +1778,7 @@ namespace HCSAnalyzer
                     }
             }
 
-        NEXTSTEP: ;
+        NEXTSTEP:;
             FormToSave.dataGridView.Update();
 
             if (FormToSave.ShowDialog() != System.Windows.Forms.DialogResult.OK) return false;
@@ -1789,7 +1866,7 @@ namespace HCSAnalyzer
                         //    GridToSave.Rows[RowPos].Cells[ColPos++].Value = (double)TmpWell.ListProperties.FindValueByName("Concentration");
 
 
-                       // int IdxProperty = 0;
+                        // int IdxProperty = 0;
                         foreach (var item in cGlobalInfo.CurrentScreening.ListWellPropertyTypes)
                         {
                             if ((bool)GridView.Rows[RealPos++].Cells[1].Value)
@@ -2204,7 +2281,7 @@ namespace HCSAnalyzer
                         {
                             CurrentWell = new cWell(LDesc, X, Y, cGlobalInfo.CurrentScreening, CurrentPlate);
                             //CurrentWell.SetCpdName("Cpd X";
-                          //  CurrentWell.SetClass(2);
+                            //  CurrentWell.SetClass(2);
                             CurrentPlate.AddWell(CurrentWell);
                         }
                         else
@@ -2437,12 +2514,12 @@ namespace HCSAnalyzer
             for (int IdxPlate = 0; IdxPlate < NumPlate; IdxPlate++)
             {
                 string PlateName = "Plate_" + IdxPlate;
-                cPlate CurrentPlate = new cPlate( PlateName, cGlobalInfo.CurrentScreening);
+                cPlate CurrentPlate = new cPlate(PlateName, cGlobalInfo.CurrentScreening);
                 cGlobalInfo.CurrentScreening.AddPlate(CurrentPlate);
             }
 
             FormForProgress FFP = new FormForProgress();
-            FFP.progressBar.Maximum = NumPlate * (ListDistributions.Count+1);
+            FFP.progressBar.Maximum = NumPlate * (ListDistributions.Count + 1);
             FFP.progressBar.Value = 0;
             FFP.Show();
 
@@ -2477,15 +2554,15 @@ namespace HCSAnalyzer
                                 CurrentWell = new cWell(LDesc, X, Y, cGlobalInfo.CurrentScreening, CurrentPlate);
                                 CurrentPlate.AddWell(CurrentWell);
                             }
-                           // CurrentWell.Name = "Cpds";
+                            // CurrentWell.Name = "Cpds";
                             CurrentWell.SetClass(ListDistributions[IdxDistri].IdxClass);
                         }
-                    
-                    FFP.progressBar.Value = IdxPlate*ListDistributions.Count + IdxPlate;
+
+                    FFP.progressBar.Value = IdxPlate * ListDistributions.Count + IdxPlate;
                     FFP.Refresh();
                 }
 
-                
+
 
             }
 
@@ -2527,7 +2604,7 @@ namespace HCSAnalyzer
                                 }
 
                             }
-                           // CurrentWell.Name = "Cpds";
+                            // CurrentWell.Name = "Cpds";
                             CurrentWell.SetClass(ListDistributions[IdxDistri].IdxClass);
                         }
                     }
@@ -2581,7 +2658,7 @@ namespace HCSAnalyzer
                 return;
             }
 
-          
+
             if (ListFilesForPlates.Length == 0)
             {
                 MessageBox.Show("The selected directory do not contain any .db file !", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
@@ -2633,7 +2710,7 @@ namespace HCSAnalyzer
 
             string PlateName = ListFilesForPlates[0];
 
-            CurrentPlate = new cPlate( SafePlateName, cGlobalInfo.CurrentScreening);
+            CurrentPlate = new cPlate(SafePlateName, cGlobalInfo.CurrentScreening);
 
             CurrentPlate.DBConnection = new cDBConnection(CurrentPlate, PlateName);
             List<string> ListWells = CurrentPlate.DBConnection.GetListTableNames();
@@ -2665,12 +2742,12 @@ namespace HCSAnalyzer
             for (int IdxDesc = StartColumn; IdxDesc < ListDescNames.Count; IdxDesc++)
             {
                 if ((ListDescNames[IdxDesc] == "Phenotype_Class" || (ListDescNames[IdxDesc] == "Phenotype_Confidence"))) continue;
-              //  if (PlateDim.checkBoxIsOmitFirstColumn.Checked)&&(ListDescNames[IdxDesc
+                //  if (PlateDim.checkBoxIsOmitFirstColumn.Checked)&&(ListDescNames[IdxDesc
                 NewDescType = new cDescriptorType(ListDescNames[IdxDesc], true, HistoSize, true);
                 cGlobalInfo.CurrentScreening.ListDescriptors.AddNew(NewDescType);
                 TmpNumDesc++;
             }
-        
+
             int NumDesc = cGlobalInfo.CurrentScreening.ListDescriptors.Count;
 
             cDescriptorType DescTypeCellCount = null;
@@ -2678,10 +2755,10 @@ namespace HCSAnalyzer
             {
                 DescTypeCellCount = new cDescriptorType("Cell Count", true, 1, false);
                 cGlobalInfo.CurrentScreening.ListDescriptors.AddNew(DescTypeCellCount);
-            
+
             }
-            
-        
+
+
             CurrentPlate.DBConnection.CloseConnection();
 
             FormForDoubleProgress WindowProgress = new FormForDoubleProgress();
@@ -2703,7 +2780,7 @@ namespace HCSAnalyzer
                 SafePlateName = SafePlateName.Remove(SafePlateName.LastIndexOf(".db"));
 
                 PlateName = ListFilesForPlates[IdxPlate];
-                CurrentPlate = new cPlate( SafePlateName, cGlobalInfo.CurrentScreening);
+                CurrentPlate = new cPlate(SafePlateName, cGlobalInfo.CurrentScreening);
 
                 CurrentPlate.DBConnection = new cDBConnection(CurrentPlate, PlateName);
 
@@ -3021,7 +3098,7 @@ namespace HCSAnalyzer
                     }
 
                     cWell CurrentWell = new cWell(LDesc, 1, 1, cGlobalInfo.CurrentScreening, CurrentPlate);
-                  //  CurrentWell.Name = "Cpds";
+                    //  CurrentWell.Name = "Cpds";
                     //CurrentWell.SQLTableName = ListWells[IdxWell];
                     CurrentPlate.AddWell(CurrentWell);
 

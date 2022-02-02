@@ -1,11 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
+﻿using HCSAnalyzer.Classes.Base_Classes.DataProcessing;
 using HCSAnalyzer.Classes.Base_Classes.DataStructures;
-using HCSAnalyzer.GUI.FormsForGraphsDisplay.Generic;
+using System.Collections.Generic;
 using System.Windows.Forms.DataVisualization.Charting;
-using HCSAnalyzer.Classes.Base_Classes.DataProcessing;
 
 namespace HCSAnalyzer.Classes.Base_Classes.Viewers
 {
@@ -20,13 +16,13 @@ namespace HCSAnalyzer.Classes.Base_Classes.Viewers
         public void Run()
         {
             ChartArea NewArea = new ChartArea();
-          //  this.Series = new SeriesCollection();
+            //  this.Series = new SeriesCollection();
 
             this.Histogram = Input[0].CreateHistogram(1, false);
 
             RedrawPie();
-            
-            
+
+
             base.ChartAreas.Add(NewArea);
         }
 
@@ -72,9 +68,9 @@ namespace HCSAnalyzer.Classes.Base_Classes.Viewers
             this.Series.Add(NewSerie);
 
         }
-            
 
-    
+
+
     }
 
 
@@ -98,7 +94,7 @@ namespace HCSAnalyzer.Classes.Base_Classes.Viewers
 
         public cFeedBackMessage Run()
         {
-           
+
             if (MyChart.Input == null)
             {
                 base.FeedBackMessage.IsSucceed = false;

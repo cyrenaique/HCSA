@@ -1,15 +1,12 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Windows.Forms;
-using System.Drawing;
-using Kitware.VTK;
-using HCSAnalyzer.Classes.Base_Classes.DataStructures;
-using HCSAnalyzer.Classes.ImageAnalysis._3D_Engine;
+﻿using HCSAnalyzer.Classes.Base_Classes.DataStructures;
 using HCSAnalyzer.Classes.Base_Classes.GUI;
-using HCSAnalyzer.Classes.MetaComponents;
 using HCSAnalyzer.Classes.Base_Components.Viewers._3D;
-using ImageAnalysis;
+using HCSAnalyzer.Classes.MetaComponents;
+using Kitware.VTK;
+using System;
+using System.Collections.Generic;
+using System.Drawing;
+using System.Windows.Forms;
 
 namespace HCSAnalyzer.Classes._3D
 {
@@ -135,7 +132,7 @@ namespace HCSAnalyzer.Classes._3D
 
         public void Redraw()
         {
-            if(this.AssociatedWorld!=null)
+            if (this.AssociatedWorld != null)
                 this.AssociatedWorld.Redraw();
         }
 
@@ -155,7 +152,7 @@ namespace HCSAnalyzer.Classes._3D
 
         public void SetName(string Name)
         {
-           
+
             this.Name = Name;
         }
 
@@ -257,7 +254,7 @@ namespace HCSAnalyzer.Classes._3D
         public void SetOpacity(double Opacity)
         {
             vtk_Actor.GetProperty().SetOpacity(Opacity);
-          //  Redraw();
+            //  Redraw();
         }
 
         public void SetScale(double Scale)
@@ -272,10 +269,10 @@ namespace HCSAnalyzer.Classes._3D
             {
                 //vtk_Actor.GetProperty().SetPointSize((float)Scale * 10.0f);
                 c3DElevationMap TmpMap = (c3DElevationMap)(this);
-                
-                    int NumPts = (int)TmpMap.points.GetNumberOfPoints();
-             
-                
+
+                int NumPts = (int)TmpMap.points.GetNumberOfPoints();
+
+
                 for (int i = 0; i < NumPts; i++)
                 {
                     double[] CurrentValue = TmpMap.points.GetPoint(i);
@@ -299,13 +296,13 @@ namespace HCSAnalyzer.Classes._3D
         }
 
         public eMesh3DMode GetMode()
-    {
-        if (vtk_Actor.GetProperty().GetRepresentation() == 0)
-            return eMesh3DMode.POINT;
-        else if (vtk_Actor.GetProperty().GetRepresentation() == 1)
-            return eMesh3DMode.WIREFRAME;
-        else return eMesh3DMode.SOLID;
-    }
+        {
+            if (vtk_Actor.GetProperty().GetRepresentation() == 0)
+                return eMesh3DMode.POINT;
+            else if (vtk_Actor.GetProperty().GetRepresentation() == 1)
+                return eMesh3DMode.WIREFRAME;
+            else return eMesh3DMode.SOLID;
+        }
 
         public double GetOpacity()
         {
@@ -503,17 +500,17 @@ namespace HCSAnalyzer.Classes._3D
             if (SliderForOpacity.ShowDialog() != DialogResult.OK) return;
 
             this.SetScale((double)SliderForOpacity.numericUpDown.Value / 100.0);
-           // this.AssociatedWorld.AssociatedVTKRenderer.GetRenderWindow().GetInteractor().Render();
+            // this.AssociatedWorld.AssociatedVTKRenderer.GetRenderWindow().GetInteractor().Render();
         }
 
         FormFor3DObjectParam MyFormFor3DObjectParam;
 
         private void ToolStripMenuItem_Position(object sender, EventArgs e)
         {
-           
+
             MyFormFor3DObjectParam = new FormFor3DObjectParam(this);
             MyFormFor3DObjectParam.Show();
-           // MyFormFor3DObjectParam.ShowDialog();
+            // MyFormFor3DObjectParam.ShowDialog();
         }
 
 

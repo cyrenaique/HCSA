@@ -1,12 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using LibPlateAnalysis;
-using System.Data;
+﻿using HCSAnalyzer.Classes.Base_Classes.DataAnalysis;
 using HCSAnalyzer.Classes.General_Types;
 using ImageAnalysis;
-using HCSAnalyzer.Classes.Base_Classes.DataAnalysis;
+using LibPlateAnalysis;
+using System;
+using System.Collections.Generic;
+using System.Data;
 using weka.core;
 //using RDotNet;
 
@@ -63,7 +61,7 @@ namespace HCSAnalyzer.Classes.Base_Classes.DataStructures
 
             return MatrixToBeReturned;
         }
-        
+
         /// <summary>
         ///  Create an instances structure with classes for WEKA supervised methods
         ///  Warning: the last column should contain the class index
@@ -75,15 +73,15 @@ namespace HCSAnalyzer.Classes.Base_Classes.DataStructures
 
             int columnNo = 0;
 
-            for (int i = 0; i < /*ParentScreening.ListPlateBaseddescriptorNames.Count*/ this.Count-1; i++)
+            for (int i = 0; i < /*ParentScreening.ListPlateBaseddescriptorNames.Count*/ this.Count - 1; i++)
             {
                 atts.addElement(new weka.core.Attribute(/*ParentScreening.ListPlateBaseddescriptorNames[i]*/this[i].Name));
                 columnNo++;
             }
 
             weka.core.FastVector attVals = new FastVector();
-            
-            int NumberOfClass = (int)this[this.Count - 1].Max()+1;
+
+            int NumberOfClass = (int)this[this.Count - 1].Max() + 1;
             for (int i = 0; i < NumberOfClass; i++)
                 attVals.addElement("Class" + (i).ToString());
 
@@ -94,10 +92,10 @@ namespace HCSAnalyzer.Classes.Base_Classes.DataStructures
 
             for (int IdxRow = 0; IdxRow < this[0].Count; IdxRow++)
             {
-                
-            //}
-            //foreach (cWell CurrentWell in this[0].ListActiveWells)
-            //{
+
+                //}
+                //foreach (cWell CurrentWell in this[0].ListActiveWells)
+                //{
                 //if (CurrentWell.GetCurrentClassIdx() == -1) continue;
                 double[] vals = new double[data1.numAttributes()];
                 int IdxCol = 0;
@@ -105,7 +103,7 @@ namespace HCSAnalyzer.Classes.Base_Classes.DataStructures
                 {
                     vals[IdxCol++] = this[Col][IdxRow];// CurrentWell.ListPlateBasedDescriptors[Col].GetValue();
                 }
-                vals[columnNo] = this[this.Count-1][IdxRow];// CurrentWell.GetCurrentClassIdx();
+                vals[columnNo] = this[this.Count - 1][IdxRow];// CurrentWell.GetCurrentClassIdx();
                 data1.add(new DenseInstance(1.0, vals));
                 IdxWell++;
             }
@@ -145,11 +143,11 @@ namespace HCSAnalyzer.Classes.Base_Classes.DataStructures
                 {
                     vals[IdxCol++] = this[Col][IdxRow];
                 }
-               
+
                 data1.add(new DenseInstance(1.0, vals));
                 IdxWell++;
             }
-          //  data1.setClassIndex((data1.numAttributes() - 1));
+            //  data1.setClassIndex((data1.numAttributes() - 1));
 
             return data1;
         }

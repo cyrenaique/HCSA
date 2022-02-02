@@ -1,17 +1,13 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Windows.Forms.DataVisualization.Charting;
-using System.Windows.Forms;
-using HCSAnalyzer.Classes.Base_Classes.DataStructures;
-using System.Drawing;
-using LibPlateAnalysis;
-using System.IO;
-using HCSAnalyzer.Classes.MetaComponents;
-using HCSAnalyzer.Classes.General_Types;
+﻿using HCSAnalyzer.Classes.Base_Classes.DataStructures;
 using HCSAnalyzer.Classes.Base_Classes.GUI;
 using HCSAnalyzer.Classes.Base_Classes.Viewers._1D;
+using HCSAnalyzer.Classes.General_Types;
+using LibPlateAnalysis;
+using System;
+using System.Collections.Generic;
+using System.Drawing;
+using System.Windows.Forms;
+using System.Windows.Forms.DataVisualization.Charting;
 
 namespace HCSAnalyzer.Classes.Base_Classes.Viewers
 {
@@ -38,7 +34,7 @@ namespace HCSAnalyzer.Classes.Base_Classes.Viewers
         public cChart1DGraph()
         {
             base.MouseClick += new System.Windows.Forms.MouseEventHandler(this.AssociatedChart_MouseClick);
-           
+
             base.GraphBelow = this;
         }
 
@@ -56,7 +52,7 @@ namespace HCSAnalyzer.Classes.Base_Classes.Viewers
             this.SliderForOpacity.trackBar.Value = this.Opacity;
             this.SliderForOpacity.numericUpDown.Value = this.Opacity;
 
-            if ((InputSimpleData==null)||((X_AxisValues != null) && (X_AxisValues.Count != InputSimpleData[0].Count))) return;
+            if ((InputSimpleData == null) || ((X_AxisValues != null) && (X_AxisValues.Count != InputSimpleData[0].Count))) return;
             if ((X_AxisValues != null) && (X_AxisValues.Min() <= 0) && (IsLogAxis)) return;
 
             #region multiple readouts
@@ -72,7 +68,7 @@ namespace HCSAnalyzer.Classes.Base_Classes.Viewers
                     //NewSerie.ChartType = SeriesChartType.ErrorBar;
                     NewSerie.ChartType = SeriesChartType.Point;
 
-                //    NewSerie.ChartType = SeriesChartType.Point;
+                    //    NewSerie.ChartType = SeriesChartType.Point;
 
                     //NewSerie.ChartType = SeriesChartType.SplineRange;
                     NewSerie.ShadowOffset = 0;
@@ -82,7 +78,7 @@ namespace HCSAnalyzer.Classes.Base_Classes.Viewers
                     for (int j = 0; j < item.ListPtValues.Count; j++)
                     {
                         //this.chartForPoints.Series[0].Points[j].MarkerColor = Color.FromArgb(128, GlobalInfo.ListCellularPhenotypes[(int)MachineLearning.Classes[j]].ColourForDisplay);
-                       
+
                         cExtendedList ListValues = new cExtendedList();
                         for (int IdxValue = 1; IdxValue < item.ListPtValues[j].Count; IdxValue++)
                         {
@@ -114,28 +110,28 @@ namespace HCSAnalyzer.Classes.Base_Classes.Viewers
                             DP.XValue = item.ListPtValues[j][0];
                             DP.YValues = Values;
                             DP.Color = Color.FromArgb(200, Color.Tomato);
-                           // DP.MarkerSize = 10;
+                            // DP.MarkerSize = 10;
                             NewSerie.Points.Add(DP);
                         }
                         else
                         {
-                           // Values = ListValues.ToArray();
+                            // Values = ListValues.ToArray();
                             for (int i = 0; i < ListValues.Count; i++)
                             {
-                                 DataPoint DP = new DataPoint();
-                                 DP.SetValueXY(item.ListPtValues[j][0], ListValues[i]);
-                                 DP.Color = Color.FromArgb(190, Color.Tomato);
-                                 DP.BorderColor = Color.Black;
-                                 
-                                 DP.BorderWidth = 1;
-                                 DP.MarkerSize = 8;
-                                 DP.MarkerStyle = MarkerStyle.Circle;
-                                 NewSerie.Points.Add(DP);
+                                DataPoint DP = new DataPoint();
+                                DP.SetValueXY(item.ListPtValues[j][0], ListValues[i]);
+                                DP.Color = Color.FromArgb(190, Color.Tomato);
+                                DP.BorderColor = Color.Black;
+
+                                DP.BorderWidth = 1;
+                                DP.MarkerSize = 8;
+                                DP.MarkerStyle = MarkerStyle.Circle;
+                                NewSerie.Points.Add(DP);
                             }
-                        
+
                         }
-                        
-                       // DP.Tag = DataSerie.Tag;
+
+                        // DP.Tag = DataSerie.Tag;
                         ////   Value[0] = item.ListPtValues[j];
                         //for (int IdxValue = 1; IdxValue < item.ListPtValues[j].Count; IdxValue++)
                         //{
@@ -151,7 +147,7 @@ namespace HCSAnalyzer.Classes.Base_Classes.Viewers
 
                         //DP.YValues = Values;
 
-                       
+
 
                         //if (IsBorder)
                         //{
@@ -167,10 +163,10 @@ namespace HCSAnalyzer.Classes.Base_Classes.Viewers
                         //    DP.MarkerSize = this.MarkerSize;
                         //}
                         //else
-                       // {
-                            //DP.MarkerStyle = MarkerStyle.Diamond;
-                            // DP.MarkerSize = 4;
-                       // }
+                        // {
+                        //DP.MarkerStyle = MarkerStyle.Diamond;
+                        // DP.MarkerSize = 4;
+                        // }
 
                         // DP.BorderWidth = 2;
 
@@ -214,9 +210,9 @@ namespace HCSAnalyzer.Classes.Base_Classes.Viewers
             {
                 foreach (cExtendedTable DataSerie in base.ListInput)
                 {
-                    Series NewSerie = new System.Windows.Forms.DataVisualization.Charting.Series("ComplexD_ataTable"+DataSerie.Name);
+                    Series NewSerie = new System.Windows.Forms.DataVisualization.Charting.Series("ComplexD_ataTable" + DataSerie.Name);
                     NewSerie.Tag = DataSerie.Tag;
-                    
+
                     //NewSerie.ChartType = SeriesChartType.SplineRange;
                     NewSerie.ChartType = SeriesChartType.ErrorBar;
 
@@ -233,7 +229,7 @@ namespace HCSAnalyzer.Classes.Base_Classes.Viewers
 
                         if (ListValues.Count == 0) continue;
                         double[] Values = new double[2];
-                        
+
                         double Mean = ListValues.Mean();
                         double Std = ListValues.Std();
                         if (ListValues.Count == 1)
@@ -265,7 +261,7 @@ namespace HCSAnalyzer.Classes.Base_Classes.Viewers
                         //    DP.Color = ((cWell)(DP.Tag)).GetClassColor();
 
                         //}
-                       // DP.Color = Color.FromArgb(200, Color.Tomato);
+                        // DP.Color = Color.FromArgb(200, Color.Tomato);
 
                         NewSerie.Points.Add(DP);
                     }
@@ -321,7 +317,7 @@ namespace HCSAnalyzer.Classes.Base_Classes.Viewers
                         else
                             DP.XValue = j;
 
-                      //  DP.AxisLabel = this.InputSimpleData.ListRowNames[j].ToString();
+                        //  DP.AxisLabel = this.InputSimpleData.ListRowNames[j].ToString();
 
                         if (IsBorder)
                         {
@@ -350,10 +346,10 @@ namespace HCSAnalyzer.Classes.Base_Classes.Viewers
                         if (this.InputSimpleData[IdxSimpleReadoutCurve].ListTags != null)
                         {
                             if (j >= this.InputSimpleData[IdxSimpleReadoutCurve].ListTags.Count)
-                            { 
+                            {
                                 DP.Tag = this.InputSimpleData[IdxSimpleReadoutCurve];
                                 NewSerie.Points.Add(DP);
-                               
+
                                 continue;
                             }
                             DP.Tag = this.InputSimpleData[IdxSimpleReadoutCurve].ListTags[j];
@@ -590,7 +586,7 @@ namespace HCSAnalyzer.Classes.Base_Classes.Viewers
             {
                 // Series NewSerie = new System.Windows.Forms.DataVisualization.Charting.Series(base.input[IdxSerie].Name);
                 base.CurrentSeries[IdxSerie].ChartType = SeriesChartType.FastPoint;
-             //   base.CurrentSeries[IdxSerie].ChartType = SeriesChartType.FastPoint;
+                //   base.CurrentSeries[IdxSerie].ChartType = SeriesChartType.FastPoint;
 
                 //foreach (var item in base.CurrentSeries[IdxSerie].Points)
                 //{
@@ -607,7 +603,7 @@ namespace HCSAnalyzer.Classes.Base_Classes.Viewers
             {
                 // Series NewSerie = new System.Windows.Forms.DataVisualization.Charting.Series(base.input[IdxSerie].Name);
                 base.CurrentSeries[IdxSerie].ChartType = SeriesChartType.Point;
-             //   base.CurrentSeries[IdxSerie].ChartType = SeriesChartType.FastPoint;
+                //   base.CurrentSeries[IdxSerie].ChartType = SeriesChartType.FastPoint;
 
                 foreach (var item in base.CurrentSeries[IdxSerie].Points)
                 {

@@ -1,13 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Windows.Forms;
+﻿using HCSAnalyzer.Classes.General_Types.Screen.Plate.Well.Properties;
 using LibPlateAnalysis;
-using HCSAnalyzer.Classes.General_Types.Screen.Plate.Well.Properties;
+using System;
+using System.Drawing;
+using System.Windows.Forms;
 
 namespace HCSAnalyzer.Classes.General_Types
 {
@@ -19,7 +14,7 @@ namespace HCSAnalyzer.Classes.General_Types
 
             foreach (var item in cGlobalInfo.CurrentScreening.ListWellPropertyTypes)
                 this.dataGridViewProperties.Rows.Add();
-           
+
             int Idx = 0;
 
             DataGridViewComboBoxColumn DCC = (DataGridViewComboBoxColumn)this.dataGridViewProperties.Columns[1];
@@ -41,7 +36,7 @@ namespace HCSAnalyzer.Classes.General_Types
 
                 if (item.IsLocked)
                 {
-                    this.dataGridViewProperties.Rows[Idx].DefaultCellStyle.ForeColor = Color.OrangeRed;                    
+                    this.dataGridViewProperties.Rows[Idx].DefaultCellStyle.ForeColor = Color.OrangeRed;
                     this.dataGridViewProperties.Rows[Idx].ReadOnly = true;
                 }
 
@@ -74,7 +69,7 @@ namespace HCSAnalyzer.Classes.General_Types
                 DataGridView.HitTestInfo info = dataGridViewProperties.HitTest(e.X, e.Y);
 
 
-                if ((info.RowIndex!=-1) && (dataGridViewProperties.Rows[info.RowIndex].Tag != null))
+                if ((info.RowIndex != -1) && (dataGridViewProperties.Rows[info.RowIndex].Tag != null))
                 {
                     if (dataGridViewProperties.Rows[info.RowIndex].Tag.GetType() == typeof(cPropertyType))
                     {
@@ -93,11 +88,11 @@ namespace HCSAnalyzer.Classes.General_Types
                     cPropertyType Pt = ((cPropertyType)dataGridViewProperties.Rows[info.RowIndex].Tag);
                     if (!Pt.IsLocked)
                     {
-                        ToolStripMenuItem RemoveItem = new ToolStripMenuItem("Remove ["+Pt.Name+"]");
+                        ToolStripMenuItem RemoveItem = new ToolStripMenuItem("Remove [" + Pt.Name + "]");
                         RemoveItem.Click += new EventHandler(RemoveItem_Click);
                         MaincontextMenu.Items.Add(RemoveItem);
 
-                    
+
                     }
                 }
 
@@ -134,7 +129,7 @@ namespace HCSAnalyzer.Classes.General_Types
                     double TmpValue = 0;
                     object TmpObj = Tmpwell.ListProperties.FindByName(CP.Name).GetValue();
 
-                    if ((TmpObj==null)||(!double.TryParse(TmpObj.ToString(), out TmpValue)))
+                    if ((TmpObj == null) || (!double.TryParse(TmpObj.ToString(), out TmpValue)))
                         TmpValue = 0;
 
                     cSignature NewDesc = new cSignature(TmpValue, ClassType, cGlobalInfo.CurrentScreening);
@@ -157,7 +152,7 @@ namespace HCSAnalyzer.Classes.General_Types
             FormForNewProperty WindowNewProp = new FormForNewProperty();
             if (WindowNewProp.ShowDialog() != System.Windows.Forms.DialogResult.OK) return;
 
-            cPropertyType NewPT = new cPropertyType(WindowNewProp.textBoxName.Text,((eDataType)WindowNewProp.comboBoxType.SelectedItem));
+            cPropertyType NewPT = new cPropertyType(WindowNewProp.textBoxName.Text, ((eDataType)WindowNewProp.comboBoxType.SelectedItem));
             cGlobalInfo.CurrentScreening.ListWellPropertyTypes.AddNewType(NewPT);
 
             this.dataGridViewProperties.Rows.Add();

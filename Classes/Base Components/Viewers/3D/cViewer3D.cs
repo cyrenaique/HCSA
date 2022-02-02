@@ -1,20 +1,16 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
+﻿using HCSAnalyzer.Classes._3D;
 using HCSAnalyzer.Classes.Base_Classes.DataStructures;
-using HCSAnalyzer.Classes.MetaComponents;
-using Kitware.VTK;
-using System.Windows.Forms;
-using System.Drawing;
-using ImageAnalysis;
-using HCSAnalyzer.Classes.ImageAnalysis._3D_Engine;
-using HCSAnalyzer.Classes._3D;
-using LibPlateAnalysis;
-using HCSAnalyzer.Classes.Base_Classes.GUI;
 using HCSAnalyzer.Classes.General_Types;
+using HCSAnalyzer.Classes.ImageAnalysis._3D_Engine;
 using HCSAnalyzer.Forms.FormsForImages;
+using ImageAnalysis;
+using Kitware.VTK;
+using LibPlateAnalysis;
+using System;
+using System.Collections.Generic;
+using System.Drawing;
 using System.IO;
+using System.Windows.Forms;
 
 namespace HCSAnalyzer.Classes.Base_Classes.Viewers
 {
@@ -35,7 +31,7 @@ namespace HCSAnalyzer.Classes.Base_Classes.Viewers
         vtkRenderWindowInteractor iren;
         RenderWindowControl renderWindowControl1;
         vtkLegendScaleActor legendScaleActor = null;
-       // vtkRenderer Renderer;
+        // vtkRenderer Renderer;
         ToolStripMenuItem ToolStripMenuItem_ActorsInfo = new ToolStripMenuItem("Objects Manager");
 
         public void SetInputData(c3DNewWorld Input)
@@ -65,7 +61,7 @@ namespace HCSAnalyzer.Classes.Base_Classes.Viewers
                                         | System.Windows.Forms.AnchorStyles.Right);
 
 
-           // CurrentPanel.MouseDown += new MouseEventHandler(renderWindowControl1_MouseDown);
+            // CurrentPanel.MouseDown += new MouseEventHandler(renderWindowControl1_MouseDown);
 
             this.CurrentPanel.DragDrop += new DragEventHandler(CurrentPanel_DragDrop);
             this.CurrentPanel.DragEnter += new DragEventHandler(CurrentPanel_DragEnter);
@@ -92,7 +88,7 @@ namespace HCSAnalyzer.Classes.Base_Classes.Viewers
         public void CurrentPanel_DragEnter(object sender, DragEventArgs e)
         {
 
-            if (e.Data.GetDataPresent(typeof(cImage)) 
+            if (e.Data.GetDataPresent(typeof(cImage))
                 || e.Data.GetDataPresent(typeof(cWell))
                 || e.Data.GetDataPresent(typeof(cListWells)))
             {
@@ -124,7 +120,7 @@ namespace HCSAnalyzer.Classes.Base_Classes.Viewers
                     c3DTexturedPlan _3DPlan = new c3DTexturedPlan(new cPoint3D(0, 0, 0), SourceImage);
                     _3DPlan.Run();
                     Input.AddGeometric3DObject(_3DPlan);
-                    
+
                 }
 
                 this.iren.Render();
@@ -132,7 +128,7 @@ namespace HCSAnalyzer.Classes.Base_Classes.Viewers
             else if (e.Data.GetDataPresent(typeof(cListWells)))
             {
 
-                
+
 
 
                 cListWells TmpList = (cListWells)e.Data.GetData(typeof(cListWells));
@@ -155,7 +151,7 @@ namespace HCSAnalyzer.Classes.Base_Classes.Viewers
         }
 
         #region change object display properties
-      
+
         //private void _3DObjectProperties_GetVerticesList(object sender, EventArgs e)
         //{
         //    cObject3D Obj = (cObject3D)((ToolStripMenuItem)sender).Tag;
@@ -185,7 +181,7 @@ namespace HCSAnalyzer.Classes.Base_Classes.Viewers
         //    try
         //    {
         //        cExtendedTable ET = ((cGeometric3DObject)(Obj)).GetInfo();
-               
+
         //        cDisplayExtendedTable DET = new cDisplayExtendedTable();
         //        DET.SetInputData(ET);
         //        DET.Run();
@@ -267,7 +263,7 @@ namespace HCSAnalyzer.Classes.Base_Classes.Viewers
 
         void RenderWindow_LeftButtonPressEvt(vtkObject sender, vtkObjectEventArgs e)
         {
-            
+
         }
 
         void RenderWindow_RightButtonPressEvt(vtkObject sender, vtkObjectEventArgs e)
@@ -278,7 +274,7 @@ namespace HCSAnalyzer.Classes.Base_Classes.Viewers
 
 
             ToolStripMenuItem DisplayOptItem = new ToolStripMenuItem("Display Options");
-            
+
             ToolStripMenuItem ScaleItem = new ToolStripMenuItem("Scale");
             DisplayOptItem.DropDownItems.Add(ScaleItem);
             ScaleItem.Click += new System.EventHandler(this.ScaleClicking);
@@ -300,7 +296,7 @@ namespace HCSAnalyzer.Classes.Base_Classes.Viewers
             //ToolStripMenuItem_ActorsInfo = new ToolStripMenuItem("Objects Manager");
             //ToolStripMenuItem_ActorsInfo.CheckOnClick = true;
             ToolStripMenuItem_World.DropDownItems.Add(ToolStripMenuItem_ActorsInfo);
-            
+
             ToolStripMenuItem_ActorsInfo.Click += new System.EventHandler(_ToolStripMenuItem_ActorsInfo);
 
 
@@ -324,7 +320,7 @@ namespace HCSAnalyzer.Classes.Base_Classes.Viewers
 
                     cVolumeRendering3D Obj = (cVolumeRendering3D)this.Input.ListVolume[i];
 
-                   // ToolStripMenuItem ToolStripMenuItem_3DVolumeProperties = new ToolStripMenuItem("["+Obj.GetName()+"]");
+                    // ToolStripMenuItem ToolStripMenuItem_3DVolumeProperties = new ToolStripMenuItem("["+Obj.GetName()+"]");
 
                     foreach (var item in Obj.GetExtendedContextMenu())
                     {
@@ -341,7 +337,7 @@ namespace HCSAnalyzer.Classes.Base_Classes.Viewers
                         {
                             cObject3D Obj = (cObject3D)this.Input.ListObject[i];
 
-                           // ToolStripMenuItem ToolStripMenuItem_3DObjectProperties = new ToolStripMenuItem("[" + Obj.GetName() + "] Properties");
+                            // ToolStripMenuItem ToolStripMenuItem_3DObjectProperties = new ToolStripMenuItem("[" + Obj.GetName() + "] Properties");
 
                             //ToolStripMenuItem _3DObjectProperties_Opacity = new ToolStripMenuItem("Opacity");
                             //_3DObjectProperties_Opacity.Tag = Obj;
@@ -376,14 +372,14 @@ namespace HCSAnalyzer.Classes.Base_Classes.Viewers
                             //_3DObjectProperties_Point.Click += new System.EventHandler(this._3DObjectProperties_Point);
 
 
-                           // ToolStripMenuItem_3DObjectProperties.DropDownItems.Add(new ToolStripSeparator());
+                            // ToolStripMenuItem_3DObjectProperties.DropDownItems.Add(new ToolStripSeparator());
 
                             foreach (var item in Obj.GetExtendedContextMenu())
                             {
                                 CompleteMenu.Items.Add(item);
                                 //ToolStripMenuItem_3DObjectProperties.DropDownItems.Add(item);
                             }
-                            
+
 
 
                             //ToolStripMenuItem _3DObjectProperties_AddNotation = new ToolStripMenuItem("Add Notation");
@@ -412,7 +408,7 @@ namespace HCSAnalyzer.Classes.Base_Classes.Viewers
                             //ToolStripMenuItem_3DObjectProperties.DropDownItems.Add(_3DObjectProperties_INFO);
 
 
-                           // CompleteMenu.Items.Add(ToolStripMenuItem_3DObjectProperties);
+                            // CompleteMenu.Items.Add(ToolStripMenuItem_3DObjectProperties);
                         }
 
 
@@ -519,7 +515,7 @@ namespace HCSAnalyzer.Classes.Base_Classes.Viewers
             ToolStripMenuItem ToolStripMenuItem_refresh = new ToolStripMenuItem("Refresh");
             CompleteMenu.Items.Add(ToolStripMenuItem_refresh);
             ToolStripMenuItem_refresh.Click += new System.EventHandler(this.ToolStripMenuItem_refresh);
-            
+
             CompleteMenu.Items.Add(ToolStripMenuItem_refresh);
 
 
@@ -687,7 +683,7 @@ namespace HCSAnalyzer.Classes.Base_Classes.Viewers
             if (colorDialog.ShowDialog() != DialogResult.OK) return;
             Color BackGroundColor = colorDialog.Color;
 
-           this.Input.AssociatedVTKRenderer.SetBackground(BackGroundColor.R / 255.0, BackGroundColor.G / 255.0, BackGroundColor.B / 255.0);
+            this.Input.AssociatedVTKRenderer.SetBackground(BackGroundColor.R / 255.0, BackGroundColor.G / 255.0, BackGroundColor.B / 255.0);
 
             base.CurrentPanel.Refresh();
 
@@ -704,7 +700,7 @@ namespace HCSAnalyzer.Classes.Base_Classes.Viewers
             {
                 return;
             }
-                
+
         }
 
         private void ToolStripMenuItem_SaveToImage(object sender, EventArgs e)
@@ -736,8 +732,8 @@ namespace HCSAnalyzer.Classes.Base_Classes.Viewers
             W2i.SetInput(renderWindowControl1.RenderWindow);
             W2i.Update();
 
-            vtkImageData v = W2i.GetOutput(); 
-            
+            vtkImageData v = W2i.GetOutput();
+
             Bitmap BT = v.ToBitmap(); //Here I get Invalid Argument Exception
 
             if (BT == null) return;
@@ -753,7 +749,7 @@ namespace HCSAnalyzer.Classes.Base_Classes.Viewers
                 GenerateGraph();
                 this.Input.AssociatedVTKRenderer.ResetCamera();
                 this.iren.Render();
-                
+
                 //ToolStripMenuItem_refresh
             }
             catch (Exception ex)
@@ -808,7 +804,7 @@ namespace HCSAnalyzer.Classes.Base_Classes.Viewers
 
             // iren.SetInteractorStyle(vtkInteractorStyleJoystickCamera.New());
             iren.SetInteractorStyle(vtkInteractorStyleTrackballCamera.New());
-           // iren.SetInteractorStyle(vtkInteractorStyleTrackballActor.New());
+            // iren.SetInteractorStyle(vtkInteractorStyleTrackballActor.New());
             iren.Start();
             //   iren.SetInteractorStyle(vtkInteractorStyleTerrain.New());
 
@@ -816,7 +812,7 @@ namespace HCSAnalyzer.Classes.Base_Classes.Viewers
             // iren.LeftButtonPressEvt += new vtkObject.vtkObjectEventHandler(RenderWindow_LeftButtonPressEvt);
             iren.KeyPressEvt += new vtkObject.vtkObjectEventHandler(RenderWindow_KeyPressEvt);
             iren.RightButtonPressEvt += new vtkObject.vtkObjectEventHandler(RenderWindow_RightButtonPressEvt);
-         
+
             this.Input.AssociatedVTKRenderer.SetBackground(this.Input.BackGroundColor.R / 255.0, this.Input.BackGroundColor.G / 255.0, this.Input.BackGroundColor.B / 255.0);
 
             this.Input.AssociatedVTKRenderer.SetActiveCamera(this.Input.Vtk_CameraView);

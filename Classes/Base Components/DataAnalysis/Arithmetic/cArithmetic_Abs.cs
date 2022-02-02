@@ -1,8 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using HCSAnalyzer.Classes.Base_Classes.DataStructures;
+﻿using HCSAnalyzer.Classes.Base_Classes.DataStructures;
+using System;
 
 namespace HCSAnalyzer.Classes.Base_Classes.DataProcessing
 {
@@ -21,11 +18,11 @@ namespace HCSAnalyzer.Classes.Base_Classes.DataProcessing
 
         public cFeedBackMessage Run()
         {
-           // cFeedBackMessage FeedBackMessage = new cFeedBackMessage(true);
+            // cFeedBackMessage FeedBackMessage = new cFeedBackMessage(true);
 
             if (this.Input1 == null)
             {
-                base.FeedBackMessage.IsSucceed= false;
+                base.FeedBackMessage.IsSucceed = false;
                 base.FeedBackMessage.Message = "No Basis defined.";
                 return base.FeedBackMessage;
             }
@@ -40,7 +37,7 @@ namespace HCSAnalyzer.Classes.Base_Classes.DataProcessing
             this.Title = "Abs.";
             this.Output = new cExtendedTable(this.Input1);
             this.Output.Name = "abs(" + this.Input1.Name + ")";
-            
+
             for (int Col = 0; Col < this.Input1.Count; Col++)
             {
 

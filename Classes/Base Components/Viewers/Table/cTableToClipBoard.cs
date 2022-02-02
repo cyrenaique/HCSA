@@ -1,19 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using HCSAnalyzer.Classes.Base_Classes.DataStructures;
-using HCSAnalyzer.Forms.FormsForGraphsDisplay;
+﻿using HCSAnalyzer.Classes.Base_Classes.DataStructures;
 using System.Windows.Forms;
-using System.Data;
-using LibPlateAnalysis;
-using HCSAnalyzer.Classes.Base_Classes.DataProcessing;
-using HCSAnalyzer.Classes.MetaComponents;
-using HCSAnalyzer.Classes.Base_Classes.DataAnalysis;
-using HCSAnalyzer.Classes.DataAnalysis;
-using HCSAnalyzer.Classes.Base_Classes.DataManip;
-using HCSAnalyzer.Classes.Base_Classes.Viewers._2D;
-using System.IO;
 
 namespace HCSAnalyzer.Classes.Base_Classes.Viewers
 {
@@ -22,7 +8,7 @@ namespace HCSAnalyzer.Classes.Base_Classes.Viewers
         cExtendedTable Input = null;
 
         public string Separator = "\t";
-       // public bool IsRTFFormat = false;
+        // public bool IsRTFFormat = false;
 
         public cTableToClipBoard()
         {
@@ -100,7 +86,7 @@ namespace HCSAnalyzer.Classes.Base_Classes.Viewers
                 // Export data.  
                 for (int i = 0; i < this.Input[0].Count; i++)
                 {
-                    if ((this.Input.ListRowNames != null)&&(this.Input.ListRowNames.Count>i))
+                    if ((this.Input.ListRowNames != null) && (this.Input.ListRowNames.Count > i))
                         TextToClip += this.Input.ListRowNames[i] + this.Separator;
 
                     for (int j = 0; j < this.Input.Count; j++) { TextToClip = TextToClip + this.Input[j][i] + Separator; }

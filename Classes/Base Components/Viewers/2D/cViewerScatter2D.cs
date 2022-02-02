@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using HCSAnalyzer.Classes.Base_Classes.DataStructures;
-using HCSAnalyzer.Forms.FormsForGraphsDisplay;
+﻿using HCSAnalyzer.Classes.Base_Classes.DataStructures;
 
 namespace HCSAnalyzer.Classes.Base_Classes.Viewers
 {
@@ -11,7 +6,7 @@ namespace HCSAnalyzer.Classes.Base_Classes.Viewers
     {
         public cViewerScatter2D()
         {
-            Title = "New Viewer Scatter";   
+            Title = "New Viewer Scatter";
         }
 
         cExtendedTable InputData = null;

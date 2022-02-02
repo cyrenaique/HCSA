@@ -1,8 +1,5 @@
-﻿using System;
+﻿using ImageAnalysis;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using ImageAnalysis;
 
 namespace HCSAnalyzer.Classes.Base_Classes.DataStructures
 {
@@ -13,7 +10,7 @@ namespace HCSAnalyzer.Classes.Base_Classes.DataStructures
 
         public cListExtendedTable()
         {
-        
+
         }
 
 
@@ -41,7 +38,7 @@ namespace HCSAnalyzer.Classes.Base_Classes.DataStructures
         public double Min(int Col)
         {
             double Min = double.MaxValue;
-            
+
             foreach (var item in this)
             {
                 if (Col >= item.Count) continue;
@@ -73,11 +70,11 @@ namespace HCSAnalyzer.Classes.Base_Classes.DataStructures
 
         public cListExtendedTable(cImage InputImage)
         {
-          //  this.Clear();
+            //  this.Clear();
             for (int i = 0; i < InputImage.GetNumChannels(); i++)
             {
                 cExtendedTable ET = new cExtendedTable();
-              
+
                 for (int Col = 0; Col < InputImage.Width; Col++)
                 {
                     //ET.Name = "Col. " + Col;            // update Column names
@@ -93,13 +90,13 @@ namespace HCSAnalyzer.Classes.Base_Classes.DataStructures
                 // update row names
                 ET.ListRowNames = new List<string>();
                 for (int Row = 0; Row < InputImage.Height; Row++)
-                    ET.ListRowNames.Add( "Row " + Row);
+                    ET.ListRowNames.Add("Row " + Row);
 
                 ET.DataSource = InputImage;
                 this.Add(ET);
             }
 
-            this.Name = "Table ("+InputImage.Name+")";
+            this.Name = "Table (" + InputImage.Name + ")";
         }
 
     }

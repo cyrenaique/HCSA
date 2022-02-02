@@ -1,18 +1,14 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Windows.Forms.DataVisualization.Charting;
-using System.Windows.Forms;
+﻿using HCSAnalyzer.Classes.Base_Classes.DataProcessing;
 using HCSAnalyzer.Classes.Base_Classes.DataStructures;
-using System.Drawing;
-using LibPlateAnalysis;
-using System.IO;
-using HCSAnalyzer.Classes.MetaComponents;
-using HCSAnalyzer.Classes.General_Types;
-using HCSAnalyzer.Classes.Base_Classes.GUI;
-using HCSAnalyzer.Classes.Base_Classes.DataProcessing;
 using HCSAnalyzer.Classes.Base_Components.GUI;
+using HCSAnalyzer.Classes.General_Types;
+using HCSAnalyzer.Classes.MetaComponents;
+using LibPlateAnalysis;
+using System;
+using System.Collections.Generic;
+using System.Drawing;
+using System.Windows.Forms;
+using System.Windows.Forms.DataVisualization.Charting;
 
 namespace HCSAnalyzer.Classes.Base_Classes.Viewers
 {
@@ -23,18 +19,18 @@ namespace HCSAnalyzer.Classes.Base_Classes.Viewers
         public bool IsLine = false;
         public bool IsBar = false;
         public bool ISPoint = true;
-       // FormForSingleSlider SliderForMarkerSize = new FormForSingleSlider("Marker Size");
-       // FormForSingleSlider SliderForMarkerSizeBinSize = new FormForSingleSlider("Bin number");
+        // FormForSingleSlider SliderForMarkerSize = new FormForSingleSlider("Marker Size");
+        // FormForSingleSlider SliderForMarkerSizeBinSize = new FormForSingleSlider("Bin number");
         FormForHistoBinOptions SliderForMarkerSizeBinSize = new FormForHistoBinOptions(100);
-       // FormForSingleSlider SliderForOpacity = new FormForSingleSlider("Marker Opacity");
-      //  public int Opacity = 255;
-       // public int MarkerSize = 10;
+        // FormForSingleSlider SliderForOpacity = new FormForSingleSlider("Marker Opacity");
+        //  public int Opacity = 255;
+        // public int MarkerSize = 10;
         public int BinNumber = 100;
         public bool Is100 = false;
 
 
         cExtendedTable CurrentHistogram = null;
-        
+
 
         public cChart1DStackedHistogram()
         {
@@ -43,11 +39,11 @@ namespace HCSAnalyzer.Classes.Base_Classes.Viewers
             base.IsZoomableY = false;
             base.IsAllowDisplayValue = false;
         }
-        
+
         void Refresh()
         {
             base.CurrentSeries.Clear();
-           
+
             double GlobalMinX = 0;
             double GlobalMaxX = 0;
 
@@ -60,7 +56,7 @@ namespace HCSAnalyzer.Classes.Base_Classes.Viewers
             {
                 GlobalMinX = (double)this.SliderForMarkerSizeBinSize.numericUpDownMin.Value;
                 GlobalMaxX = (double)this.SliderForMarkerSizeBinSize.numericUpDownMax.Value;
-            
+
             }
 
             for (int IdxSerie = 0; IdxSerie < InputSimpleData.Count; IdxSerie++)
@@ -87,8 +83,8 @@ namespace HCSAnalyzer.Classes.Base_Classes.Viewers
                 HB.IsBinNumberMode = this.SliderForMarkerSizeBinSize.radioButtonBinNumber.Checked;
                 HB.BinSize = (double)this.SliderForMarkerSizeBinSize.numericUpDownBinSize.Value;
 
-                if(this.BinNumber==-1)
-                    HB.BinNumber = HB.Max - HB.Min+1;
+                if (this.BinNumber == -1)
+                    HB.BinNumber = HB.Max - HB.Min + 1;
                 else
                     HB.BinNumber = this.BinNumber;
 
@@ -102,7 +98,7 @@ namespace HCSAnalyzer.Classes.Base_Classes.Viewers
                 //if (IsLine)
                 //    NewSerie.ChartType = SeriesChartType.Line;
                 //if (IsBar)
-               // NewSerie.ChartType = SeriesChartType.Column;
+                // NewSerie.ChartType = SeriesChartType.Column;
 
                 //NewSerie.ChartType = SeriesChartType.StackedColumn;
                 if (this.Is100)
@@ -119,11 +115,11 @@ namespace HCSAnalyzer.Classes.Base_Classes.Viewers
                     base.LabelAxisY = "Frequency";
                     base.CurrentChartArea.AxisY.Minimum = Double.NaN;
                     base.CurrentChartArea.AxisY.Maximum = Double.NaN;
-                 //   base.CurrentChartArea.AxisY.
+                    //   base.CurrentChartArea.AxisY.
                 }
                 //SeriesPos[i].ChartType = SeriesChartType.StackedColumn;
 
-             //   double Step = (GlobalMaxX - GlobalMinX + 1) / CurrentHistogram[0].Count;
+                //   double Step = (GlobalMaxX - GlobalMinX + 1) / CurrentHistogram[0].Count;
 
 
 
@@ -132,10 +128,10 @@ namespace HCSAnalyzer.Classes.Base_Classes.Viewers
                 {
                     double[] Value = new double[1];
                     Value[0] = CurrentHistogram[1][j];
-                    
+
                     DataPoint DP = new DataPoint();
                     DP.SetValueXY(/*Step * j + GlobalMinX*/ CurrentHistogram[0][j], Value[0]);
-                    
+
                     DP.Tag = InputSimpleData[IdxSerie].Tag;
 
                     if (IsBorder)
@@ -154,24 +150,24 @@ namespace HCSAnalyzer.Classes.Base_Classes.Viewers
                     if (InputSimpleData[IdxSerie].Tag != null)
                     {
                         if (InputSimpleData[IdxSerie].Tag.GetType() == typeof(cWellClassType))
-                         {
-                             DP.Color = ((cWellClassType)(InputSimpleData[IdxSerie].Tag)).ColourForDisplay;
-                             DP.ToolTip = ((cWellClassType)(InputSimpleData[IdxSerie].Tag)).Name + "\n";
-                         }
+                        {
+                            DP.Color = ((cWellClassType)(InputSimpleData[IdxSerie].Tag)).ColourForDisplay;
+                            DP.ToolTip = ((cWellClassType)(InputSimpleData[IdxSerie].Tag)).Name + "\n";
+                        }
                         if (InputSimpleData[IdxSerie].Tag.GetType() == typeof(cCellularPhenotype))
                         {
                             DP.Color = ((cCellularPhenotype)(InputSimpleData[IdxSerie].Tag)).ColourForDisplay;
                             DP.ToolTip = ((cCellularPhenotype)(InputSimpleData[IdxSerie].Tag)).Name + "\n";
                         }
                     }
-                   
+
                     DP.ToolTip += DP.XValue.ToString("N2") + " :\n" + DP.YValues[0];
-                    
+
                     NewSerie.Points.Add(DP);
                 }
                 base.CurrentSeries.Add(NewSerie);
             }
-         //   base.LabelAxisY = "Frequency";
+            //   base.LabelAxisY = "Frequency";
             base.Update();
 
         }
@@ -181,18 +177,18 @@ namespace HCSAnalyzer.Classes.Base_Classes.Viewers
             this.SliderForMarkerSizeBinSize.numericUpDown.Maximum = this.SliderForMarkerSizeBinSize.trackBar.Maximum = 1000;
             this.SliderForMarkerSizeBinSize.numericUpDown.Minimum = -1;
 
-            if(this.BinNumber==-1)
+            if (this.BinNumber == -1)
                 this.SliderForMarkerSizeBinSize.trackBar.Value = 0;
             else
                 this.SliderForMarkerSizeBinSize.trackBar.Value = this.BinNumber;
-            
+
             this.SliderForMarkerSizeBinSize.numericUpDown.Value = this.BinNumber;
 
             base.IsYGrid = true;
             base.IsAllowDisplayValue = true;
             base.IsAllowDisplayTable = true;
             this.Refresh();
-          
+
             base.Run();
         }
 
@@ -236,7 +232,7 @@ namespace HCSAnalyzer.Classes.Base_Classes.Viewers
 
 
             ToolStripMenuItem_100Stacked.CheckOnClick = true;
-            
+
             ToolStripMenuItem_100Stacked.Checked = this.Is100;
             ToolStripMenuItem_100Stacked.Click += new System.EventHandler(this._ToolStripMenuItem_100Stacked);
             SpecificContextMenu.DropDownItems.Add(ToolStripMenuItem_100Stacked);
@@ -268,7 +264,7 @@ namespace HCSAnalyzer.Classes.Base_Classes.Viewers
 
         private void ToolStripMenuItem_DispDataTable(object sender, EventArgs e)
         {
-           // base.da
+            // base.da
         }
 
         public string GetInfo()
@@ -286,14 +282,14 @@ namespace HCSAnalyzer.Classes.Base_Classes.Viewers
         {
             cDisplayText DT = new cDisplayText();
             DT.SetInputData(this.GetInfo());
-            DT.Title = "Info["+this.CurrentTitle.Text+"]";
+            DT.Title = "Info[" + this.CurrentTitle.Text + "]";
             DT.Run();
-         }
+        }
 
         private void _ToolStripMenuItem_100Stacked(object sender, EventArgs e)
         {
             this.Is100 = ToolStripMenuItem_100Stacked.Checked;
-         
+
             this.Run();
         }
 
@@ -302,7 +298,7 @@ namespace HCSAnalyzer.Classes.Base_Classes.Viewers
             this.SliderForMarkerSizeBinSize.numericUpDown.Minimum = -1;
             if (this.SliderForMarkerSizeBinSize.ShowDialog() != DialogResult.OK) return;
             this.BinNumber = (int)this.SliderForMarkerSizeBinSize.numericUpDown.Value;
-          
+
             this.Run();
 
             //base.Run();
@@ -315,7 +311,7 @@ namespace HCSAnalyzer.Classes.Base_Classes.Viewers
         //    double BinSize = -1;
 
 
-            
+
         //    this.Run();
         //    //base.Run();
         //}
@@ -395,7 +391,7 @@ namespace HCSAnalyzer.Classes.Base_Classes.Viewers
                 ContextMenuStrip NewMenu = new ContextMenuStrip();
                 foreach (var item in base.GetContextMenu(e))
                 {
-                    if(item!=null) NewMenu.Items.Add(item);
+                    if (item != null) NewMenu.Items.Add(item);
                 }
 
                 NewMenu.Items.Add(this.GetContextMenu());
@@ -427,51 +423,51 @@ namespace HCSAnalyzer.Classes.Base_Classes.Viewers
                 }
             }
 
-                //cListWell ListWells = new cListWell();
-                //List<DataPoint> LDP = new List<DataPoint>();
+            //cListWell ListWells = new cListWell();
+            //List<DataPoint> LDP = new List<DataPoint>();
 
-                //foreach (DataPoint item in this.Series[0].Points)
-                //{
-                //    if ((item.XValue >= MinX) && (item.XValue <= MaxX) && (item.YValues[0] >= MinY) && (item.YValues[0] <= MaxY))
-                //    {
-                //        if ((item.Tag != null) && (item.Tag.GetType() == typeof(cWell)))
-                //        {
-                //            // ListWells.Add((cWell)(item.Tag));
-                //            LDP.Add(item);
+            //foreach (DataPoint item in this.Series[0].Points)
+            //{
+            //    if ((item.XValue >= MinX) && (item.XValue <= MaxX) && (item.YValues[0] >= MinY) && (item.YValues[0] <= MaxY))
+            //    {
+            //        if ((item.Tag != null) && (item.Tag.GetType() == typeof(cWell)))
+            //        {
+            //            // ListWells.Add((cWell)(item.Tag));
+            //            LDP.Add(item);
 
-                //            //((cWell)(item.Tag)).SetClass(5);
-                //            //item.Color = ((cWell)(item.Tag)).GetClassColor();
-                //        }
-                //        if ((item.Tag != null) && (item.Tag.GetType() == typeof(cWellClass)))
-                //        {
-                //            // ListWells.Add((cWell)(item.Tag));
-                //            LDP.Add(item);
+            //            //((cWell)(item.Tag)).SetClass(5);
+            //            //item.Color = ((cWell)(item.Tag)).GetClassColor();
+            //        }
+            //        if ((item.Tag != null) && (item.Tag.GetType() == typeof(cWellClass)))
+            //        {
+            //            // ListWells.Add((cWell)(item.Tag));
+            //            LDP.Add(item);
 
-                //            //((cWell)(item.Tag)).SetClass(5);
-                //            //item.Color = ((cWell)(item.Tag)).GetClassColor();
-                //        }
+            //            //((cWell)(item.Tag)).SetClass(5);
+            //            //item.Color = ((cWell)(item.Tag)).GetClassColor();
+            //        }
 
-                //    }
-                //}
+            //    }
+            //}
 
-                //if (LDP.Count > 0)
-                //{
-                //    ToolStripMenuItem SpecificContextMenu = new ToolStripMenuItem("List " + LDP.Count + " wells");
-                //    ToolStripMenuItem ToolStripMenuItem_ChangeClass = new ToolStripMenuItem("Classes");
-                //    //ToolStripMenuItem_CopyClassToClipBoard.Click += new System.EventHandler(this.ToolStripMenuItem_CopyClassToClipBoard);
-                //    SpecificContextMenu.DropDownItems.Add(ToolStripMenuItem_ChangeClass);
+            //if (LDP.Count > 0)
+            //{
+            //    ToolStripMenuItem SpecificContextMenu = new ToolStripMenuItem("List " + LDP.Count + " wells");
+            //    ToolStripMenuItem ToolStripMenuItem_ChangeClass = new ToolStripMenuItem("Classes");
+            //    //ToolStripMenuItem_CopyClassToClipBoard.Click += new System.EventHandler(this.ToolStripMenuItem_CopyClassToClipBoard);
+            //    SpecificContextMenu.DropDownItems.Add(ToolStripMenuItem_ChangeClass);
 
-                //    cWell TmpWell = (cWell)(LDP[0].Tag);
+            //    cWell TmpWell = (cWell)(LDP[0].Tag);
 
-                //    for (int i = 0; i < TmpWell.cGlobalInfo.ListWellClasses.Count; i++)
-                //    {
-                //        ToolStripMenuItem ToolStripMenuItem_NewClass = new ToolStripMenuItem(TmpWell.cGlobalInfo.ListWellClasses[i].Name);
-                //        ToolStripMenuItem_NewClass.Click += new System.EventHandler(this.ToolStripMenuItem_NewClass);
-                //        ToolStripMenuItem_NewClass.Tag = LDP;
-                //        ToolStripMenuItem_ChangeClass.DropDownItems.Add(ToolStripMenuItem_NewClass);
-                //    }
-                //    NewMenu.Items.Add(SpecificContextMenu);
-                //}
+            //    for (int i = 0; i < TmpWell.cGlobalInfo.ListWellClasses.Count; i++)
+            //    {
+            //        ToolStripMenuItem ToolStripMenuItem_NewClass = new ToolStripMenuItem(TmpWell.cGlobalInfo.ListWellClasses[i].Name);
+            //        ToolStripMenuItem_NewClass.Click += new System.EventHandler(this.ToolStripMenuItem_NewClass);
+            //        ToolStripMenuItem_NewClass.Tag = LDP;
+            //        ToolStripMenuItem_ChangeClass.DropDownItems.Add(ToolStripMenuItem_NewClass);
+            //    }
+            //    NewMenu.Items.Add(SpecificContextMenu);
+            //}
         }
 
         private void ToolStripMenuItem_NewClass(object sender, EventArgs e)

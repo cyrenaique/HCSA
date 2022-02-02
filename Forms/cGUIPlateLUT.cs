@@ -1,16 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Windows.Forms;
-using HCSAnalyzer.Classes;
+﻿using System.Windows.Forms;
 
 namespace HCSAnalyzer.Forms
 {
     public class cGUIPlateLUT
     {
         public FormForPlateLUT CurrentFormForPlateLUT;
-        public Panel AssociatedPanel =null;
+        public Panel AssociatedPanel = null;
 
         public cGUIPlateLUT()
         {

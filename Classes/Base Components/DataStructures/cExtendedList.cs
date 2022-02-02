@@ -1,11 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Drawing;
-using Emgu.CV;
+﻿using Emgu.CV;
 using Emgu.CV.CvEnum;
 using HCSAnalyzer.Classes.Base_Classes.DataProcessing;
+using System;
+using System.Collections.Generic;
+using System.Drawing;
 //using RDotNet;
 
 namespace HCSAnalyzer.Classes.Base_Classes.DataStructures
@@ -54,7 +52,7 @@ namespace HCSAnalyzer.Classes.Base_Classes.DataStructures
         //{
         //    foreach (var item in Data)
         //        this.Add(item);
-         
+
         //}
 
         //public cExtendedList(DynamicVector Data)
@@ -67,7 +65,7 @@ namespace HCSAnalyzer.Classes.Base_Classes.DataStructures
         //    catch (Exception)
         //    {
         //        return;
-                
+
         //    }
         //}
         public cExtendedList(float[] Data)
@@ -473,7 +471,7 @@ namespace HCSAnalyzer.Classes.Base_Classes.DataStructures
             {
                 PosHisto = (int)((f - Min) / step);
                 if ((PosHisto >= 0) && (PosHisto < HistoSize))
-                histogram[PosHisto] += Increment;
+                    histogram[PosHisto] += Increment;
                 //else
                 //{
                 //}
@@ -807,7 +805,7 @@ namespace HCSAnalyzer.Classes.Base_Classes.DataStructures
             Emgu.CV.Matrix<float> Signature2 = new Emgu.CV.Matrix<float>(CompareTo.Count, 2);
 
 
-           // CvInvoke.cvCalcOpticalFlowBM(
+            // CvInvoke.cvCalcOpticalFlowBM(
 
             for (int Idx = 0; Idx < this.Count; Idx++)
             {

@@ -1,17 +1,16 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using HCSAnalyzer.Classes.Base_Classes.DataStructures;
-using HCSAnalyzer.Classes.Base_Classes;
+﻿using HCSAnalyzer.Classes.Base_Classes;
 using HCSAnalyzer.Classes.Base_Classes.DataAnalysis;
+using HCSAnalyzer.Classes.Base_Classes.DataProcessing;
+using HCSAnalyzer.Classes.Base_Classes.DataStructures;
 using HCSAnalyzer.Classes.Base_Classes.Viewers;
 using HCSAnalyzer.Classes.General_Types;
-using LibPlateAnalysis;
-using HCSAnalyzer.Forms.FormsForOptions.ClassForOptions.Children;
 using HCSAnalyzer.Classes.Machine_Learning;
 using HCSAnalyzer.Forms;
-using HCSAnalyzer.Classes.Base_Classes.DataProcessing;
+using HCSAnalyzer.Forms.FormsForOptions.ClassForOptions.Children;
+using LibPlateAnalysis;
+using System;
+using System.Collections.Generic;
+using System.Linq;
 
 namespace HCSAnalyzer.Classes.MetaComponents
 {
@@ -129,7 +128,7 @@ namespace HCSAnalyzer.Classes.MetaComponents
                 DMC.Run();
                 DTW.SetInputData(DMC.GetOutPut());
                 DTW.Title = "Systematic Errors [" + PlatesToProcess.Count + " plate(s)]";
-                
+
                 DTW.Run();
                 DTW.Display();
 
@@ -205,7 +204,7 @@ namespace HCSAnalyzer.Classes.MetaComponents
             string ErrorString = "";
             int ErrorMessage = 0;
 
-            
+
             ToReturn[0].Name = "Edge artifact";   // edge
             ToReturn[1].Name = "Column artifact";   // col
             ToReturn[2].Name = "Row artifact";   // row

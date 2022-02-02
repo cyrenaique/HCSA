@@ -1,14 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using HCSAnalyzer.Forms.FormsForImages;
-using System.Drawing;
-using ImageAnalysis;
-using Emgu.CV;
+﻿using Emgu.CV;
 using Emgu.CV.CvEnum;
-using System.Runtime.InteropServices;
 using Emgu.CV.Structure;
+using ImageAnalysis;
+using System;
 
 namespace ImageAnalysisFiltering
 {
@@ -42,7 +36,7 @@ namespace ImageAnalysisFiltering
                 IntPtr dsti = Emgu.CV.CvInvoke.cvCreateImage(Emgu.CV.CvInvoke.cvGetSize(gray), Emgu.CV.CvEnum.IplDepth.IplDepth32F, 1);
                 //TODO: Has to be checked!!!!
 
-                Emgu.CV.CvInvoke.DistanceTransform(gray, ProcessedImage,null, DistanceType, MaskSize, DistLabelType.CComp);
+                Emgu.CV.CvInvoke.DistanceTransform(gray, ProcessedImage, null, DistanceType, MaskSize, DistLabelType.CComp);
 
                 this.Output.SingleChannelImage[IdxChannel].SetNewDataFromOpenCV(ProcessedImage);
             }

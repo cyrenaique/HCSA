@@ -1,25 +1,18 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using HCSAnalyzer.Classes.Base_Classes.DataStructures;
-using HCSAnalyzer.Forms.FormsForGraphsDisplay;
-using System.Windows.Forms;
-using System.Data;
-using LibPlateAnalysis;
-using HCSAnalyzer.Classes.Base_Classes.DataProcessing;
-using HCSAnalyzer.Classes.MetaComponents;
-using HCSAnalyzer.Classes.Base_Classes.DataAnalysis;
-using HCSAnalyzer.Classes.DataAnalysis;
+﻿using HCSAnalyzer.Classes.Base_Classes.DataAnalysis;
 using HCSAnalyzer.Classes.Base_Classes.DataManip;
+using HCSAnalyzer.Classes.Base_Classes.DataProcessing;
+using HCSAnalyzer.Classes.Base_Classes.DataStructures;
 using HCSAnalyzer.Classes.Base_Classes.Viewers._2D;
+using HCSAnalyzer.Classes.MetaComponents;
+using System;
+using System.Windows.Forms;
 
 namespace HCSAnalyzer.Classes.Base_Classes.Viewers
 {
     public class cViewerTableAsRichText : cDataDisplay
     {
         cExtendedTable Input = null;
-     //   DataGridView GridView = new DataGridView();
+        //   DataGridView GridView = new DataGridView();
         ContextMenuStrip ColumnContextMenu;
         RichTextBox RichText = new RichTextBox();
 
@@ -60,7 +53,7 @@ namespace HCSAnalyzer.Classes.Base_Classes.Viewers
 
         public cFeedBackMessage Run()
         {
-          
+
             ContextMenuStrip GridViewContextMenu = new ContextMenuStrip();
 
             ToolStripMenuItem ToolStripMenuItem_DisplayAS = new ToolStripMenuItem("Display as...");
@@ -93,7 +86,7 @@ namespace HCSAnalyzer.Classes.Base_Classes.Viewers
 
             GridViewContextMenu.Items.Add(ToolStripMenuItem_DisplayAS);
 
-          
+
             CurrentPanel.Title = this.Title;
 
             CurrentPanel.Width = 0;
@@ -101,13 +94,13 @@ namespace HCSAnalyzer.Classes.Base_Classes.Viewers
 
             RichText.Width = CurrentPanel.Width;
             RichText.Height = CurrentPanel.Height;
-            
+
             this.CurrentPanel.Anchor = (System.Windows.Forms.AnchorStyles)(System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom
             | System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right);
 
 
             RichText.Anchor = (System.Windows.Forms.AnchorStyles)(System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom
-            | System.Windows.Forms.AnchorStyles.Left| System.Windows.Forms.AnchorStyles.Right);
+            | System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right);
 
 
             cTableToClipBoard TTC = new cTableToClipBoard();

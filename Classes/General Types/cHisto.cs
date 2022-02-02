@@ -1,8 +1,6 @@
-﻿using System;
+﻿using HCSAnalyzer.Classes.Base_Classes.DataStructures;
+using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using HCSAnalyzer.Classes.Base_Classes.DataStructures;
 
 namespace HCSAnalyzer.Classes
 {
@@ -54,7 +52,7 @@ namespace HCSAnalyzer.Classes
 
         public cHisto(cExtendedList OriginalValues, int NumBin)
         {
-            List<double[]> Res= OriginalValues.CreateHistogram(NumBin, false);
+            List<double[]> Res = OriginalValues.CreateHistogram(NumBin, false);
             ListValuesX = Res[0];
             ListValuesY = Res[1];
         }
@@ -105,9 +103,9 @@ namespace HCSAnalyzer.Classes
             //double RealPos = Min;
 
             int PosHisto;
-            for(int Idx=0;Idx<ListValues.Length;Idx++)
+            for (int Idx = 0; Idx < ListValues.Length; Idx++)
             {
-                double f=ListValues[Idx];
+                double f = ListValues[Idx];
                 PosHisto = (int)(((Bin - 1) * (f - Min)) / (Max - Min));
                 // if ((PosHisto >= 0) && (PosHisto < Bin))
                 histogram[PosHisto]++;
@@ -119,7 +117,7 @@ namespace HCSAnalyzer.Classes
 
         public cHisto(double[] OriginalValues, int NumBin)
         {
-            List<double[]> Res= this.CreateHistogram(OriginalValues, NumBin);
+            List<double[]> Res = this.CreateHistogram(OriginalValues, NumBin);
             ListValuesX = Res[0];
             ListValuesY = Res[1];
         }
@@ -136,12 +134,12 @@ namespace HCSAnalyzer.Classes
             }
             else
                 Array.Copy(ListXValues.ToArray(), this.ListValuesX, this.ListValuesX.Length);
-            
-            
+
+
             Array.Copy(ListYValues.ToArray(), this.ListValuesY, this.ListValuesY.Length);
-           
-            
-            
+
+
+
 
         }
 
@@ -155,8 +153,8 @@ namespace HCSAnalyzer.Classes
                 Sum += this.ListValuesY[i];
             }
 
-            return Value/Sum;
-        
+            return Value / Sum;
+
         }
 
         public cHisto(double OriginalValue)

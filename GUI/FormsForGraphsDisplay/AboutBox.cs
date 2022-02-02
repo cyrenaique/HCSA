@@ -1,12 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Drawing;
-using System.Linq;
 using System.Reflection;
 using System.Windows.Forms;
-using System.Net.Mail;
-using System.Diagnostics;
 
 namespace HCSAnalyzer.Forms
 {
@@ -31,10 +25,10 @@ namespace HCSAnalyzer.Forms
         protected void Link_Clicked(object sender, System.Windows.Forms.LinkClickedEventArgs e)
         {
             System.Diagnostics.Process proc = new System.Diagnostics.Process();
-           // if (GlobalInfo.OptionsWindow.radioButtonIE.Checked)
-                proc.StartInfo.FileName = "iexplore";
-          //  else
-           //     proc.StartInfo.FileName = "chrome";
+            // if (GlobalInfo.OptionsWindow.radioButtonIE.Checked)
+            proc.StartInfo.FileName = "iexplore";
+            //  else
+            //     proc.StartInfo.FileName = "chrome";
             proc.StartInfo.Arguments = e.LinkText;
             proc.Start();
         }

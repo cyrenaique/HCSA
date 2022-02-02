@@ -1,8 +1,5 @@
-﻿using System;
+﻿using HCSAnalyzer.Classes.Base_Classes.DataStructures;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using HCSAnalyzer.Classes.Base_Classes.DataStructures;
 using System.Windows.Forms;
 
 namespace HCSAnalyzer.Classes.Base_Classes.Viewers
@@ -24,7 +21,7 @@ namespace HCSAnalyzer.Classes.Base_Classes.Viewers
 
         public cFeedBackMessage Run()
         {
-           
+
 
             if (xListControl.Count == 0)
             {
@@ -56,7 +53,7 @@ namespace HCSAnalyzer.Classes.Base_Classes.Viewers
 
             cExtendedControl Tmp1 = this.CreateSplitter(xListControl[0], xListControl[1]);
 
-            for(int IDx=2;IDx<this.xListControl.Count;IDx++)
+            for (int IDx = 2; IDx < this.xListControl.Count; IDx++)
                 Tmp1 = this.CreateSplitter(Tmp1, xListControl[IDx]);
 
             this.OutPut.Controls.Add(Tmp1);
@@ -80,7 +77,7 @@ namespace HCSAnalyzer.Classes.Base_Classes.Viewers
 
             //SC.Panel1.Width = 
             Ctrl1.Width = SC.Panel1.Width;
-            
+
             Ctrl1.Height = SC.Panel1.Height;
             SC.Panel1.Controls.Add(Ctrl1);
 

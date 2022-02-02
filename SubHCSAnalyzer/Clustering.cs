@@ -1,19 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using weka.core;
-using System.Data;
-using weka.clusterers;
-using LibPlateAnalysis;
-using System.Windows.Forms.DataVisualization.Charting;
-using System.Drawing;
-using System.Windows.Forms;
-using weka.classifiers;
-using HCSAnalyzer.Classes;
-using weka.core.neighboursearch;
+﻿using HCSAnalyzer.Classes;
 using HCSAnalyzer.Forms.ClusteringForms;
-using HCSAnalyzer.Forms.IO;
+using LibPlateAnalysis;
+using System.Collections.Generic;
+using System.Windows.Forms;
+using weka.clusterers;
 
 namespace HCSAnalyzer
 {

@@ -1,14 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Windows.Forms;
-using HCSAnalyzer.Classes;
+﻿using HCSAnalyzer.Classes;
 using LibPlateAnalysis;
-using System.IO;
+using System;
+using System.Drawing;
+using System.Windows.Forms;
 
 namespace HCSAnalyzer.Forms
 {
@@ -45,7 +39,7 @@ namespace HCSAnalyzer.Forms
 
             Rectangle CurrentRect = new Rectangle(5, PosY, 8, Size);
 
-        
+
             SolidBrush CurrBrush = new SolidBrush(Well.GetClassColor());
 
             // draw the rectangle
@@ -101,7 +95,7 @@ namespace HCSAnalyzer.Forms
             double Min, Max;
             int ConvertedValue;
 
-           // g.DrawString("[" + Well.GetPosX() + "x" + Well.GetPosY() + "]", new Font("Arial", 8), Brushes.Black, 15, PosY - ScrollShiftY);
+            // g.DrawString("[" + Well.GetPosX() + "x" + Well.GetPosY() + "]", new Font("Arial", 8), Brushes.Black, 15, PosY - ScrollShiftY);
 
             Rectangle CurrentRect = new Rectangle(5, PosY, 8, Size);
 
@@ -109,11 +103,11 @@ namespace HCSAnalyzer.Forms
             //SolidBrush CurrBrush = new SolidBrush(Colour);
 
             // draw the rectangle
-           // g.FillRectangle(CurrBrush, CurrentRect);
+            // g.FillRectangle(CurrBrush, CurrentRect);
 
             for (int iDesc = 0; iDesc < CurrentDendo.InfoForHierarchical.ListInstances.numAttributes(); iDesc++)
             {
-              //  if (!GlobalInfo.CurrentScreen.ListDescriptors[iDesc].IsActive()) continue;
+                //  if (!GlobalInfo.CurrentScreen.ListDescriptors[iDesc].IsActive()) continue;
 
                 // specify the rect shape
                 CurrentRect = new Rectangle(PosX + RealIdx * Size, PosY, Size, Size);
@@ -123,7 +117,7 @@ namespace HCSAnalyzer.Forms
 
                 byte[][] LUT = cGlobalInfo.CurrentPlateLUT;
 
-              //  CurrentDendo.InfoForHierarchical.UpDateMinMaxDescByDesc();
+                //  CurrentDendo.InfoForHierarchical.UpDateMinMaxDescByDesc();
                 Min = CurrentDendo.InfoForHierarchical.ListMin[RealIdx];
                 Max = CurrentDendo.InfoForHierarchical.ListMax[RealIdx];
 
@@ -133,7 +127,7 @@ namespace HCSAnalyzer.Forms
                     ConvertedValue = (int)(((CurrentInstance.value(iDesc) - Min) * (LUT[0].Length - 1)) / (Max - Min));
                 if (ConvertedValue >= LUT[0].Length) ConvertedValue = LUT[0].Length - 1;
 
-                 SolidBrush CurrBrush = new SolidBrush(Color.FromArgb(LUT[0][ConvertedValue], LUT[1][ConvertedValue], LUT[2][ConvertedValue]));
+                SolidBrush CurrBrush = new SolidBrush(Color.FromArgb(LUT[0][ConvertedValue], LUT[1][ConvertedValue], LUT[2][ConvertedValue]));
 
                 // draw the rectangle
                 g.FillRectangle(CurrBrush, CurrentRect);
@@ -166,7 +160,7 @@ namespace HCSAnalyzer.Forms
             int RealIdx = 0;
             int MaxHeight = 0;
             int InitialShiftXForName = 60;
-            
+
             int SizeSquareForSignature = this.panelForDendogram.Height / RealNumToDisp;
             int SizeSquareForSignatureX = (this.panelForDendogram.Width - 60) / CurrentDendo.InfoForHierarchical.ListInstances.numAttributes();
 
@@ -186,28 +180,28 @@ namespace HCSAnalyzer.Forms
 
                 int PosY = (int)(CurrentDendo.GetTree()[i].PosY * DistBetweenLines) + ShiftY;
                 if (PosY > MaxHeight) MaxHeight = PosY;
- 
+
 
                 cWell AssociatedWell = CurrentDendo.GetTree()[i].AssociatedWell;
 
-               if (AssociatedWell != null)
+                if (AssociatedWell != null)
                     DrawSignature(AssociatedWell, SizeSquareForSignature, InitialShiftXForName, PosY - ScrollShiftY - (ShiftY / 2));
-               else
-                   DrawSignatureFromInstance(CurrentDendo.GetTree()[i].AssociatedInstance, SizeSquareForSignature, InitialShiftXForName, PosY - ScrollShiftY - (ShiftY / 2));
+                else
+                    DrawSignatureFromInstance(CurrentDendo.GetTree()[i].AssociatedInstance, SizeSquareForSignature, InitialShiftXForName, PosY - ScrollShiftY - (ShiftY / 2));
 
 
                 if (CurrentDendo.GetTree()[i].ConnectedWith == null) continue;
 
                 int PosX = (int)((CurrentDendo.GetTree()[i].PosX * MultiplicativeRatio) / MaxSize);
                 int PosXcorner = (int)((CurrentDendo.GetTree()[i].PosXCorner * MultiplicativeRatio) / MaxSize);
-                Point Start = new Point(GlobalShiftX + PosX, PosY - ScrollShiftY + SizeSquareForSignature / 2 - ShiftY / 2 );
-                Point End = new Point(GlobalShiftX + PosXcorner, PosY - ScrollShiftY + SizeSquareForSignature / 2 - ShiftY / 2 );
+                Point Start = new Point(GlobalShiftX + PosX, PosY - ScrollShiftY + SizeSquareForSignature / 2 - ShiftY / 2);
+                Point End = new Point(GlobalShiftX + PosXcorner, PosY - ScrollShiftY + SizeSquareForSignature / 2 - ShiftY / 2);
 
                 g.DrawLine(PenForBranch, Start, End);
 
                 int NextPosX = (int)((CurrentDendo.GetTree()[i].ConnectedWith.PosXCorner * MultiplicativeRatio) / MaxSize);
                 int NextPosY = (int)(CurrentDendo.GetTree()[i].ConnectedWith.PosY * DistBetweenLines) + ShiftY;
-                Point StartNew = new Point(GlobalShiftX + NextPosX, NextPosY - ScrollShiftY + SizeSquareForSignature/2- ShiftY / 2 );
+                Point StartNew = new Point(GlobalShiftX + NextPosX, NextPosY - ScrollShiftY + SizeSquareForSignature / 2 - ShiftY / 2);
 
                 g.DrawLine(PenForConnections, End, StartNew);
                 RealIdx++;

@@ -1,19 +1,14 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Windows.Forms;
-using LibPlateAnalysis;
-using HCSAnalyzer.Classes;
+﻿using HCSAnalyzer.Classes;
+using HCSAnalyzer.Classes.Base_Classes.Data;
+using HCSAnalyzer.Classes.Base_Classes.DataStructures;
 using HCSAnalyzer.Classes.DRC_Analysis.FormsForDRCAnalysis;
 using HCSAnalyzer.Forms.FormsForGraphsDisplay;
-using HCSAnalyzer.Classes.Base_Classes.Viewers;
-using HCSAnalyzer.Classes.Base_Classes.DataStructures;
+using LibPlateAnalysis;
+using System;
+using System.Collections.Generic;
+using System.Drawing;
 using System.Globalization;
-using HCSAnalyzer.Classes.Base_Classes.Data;
+using System.Windows.Forms;
 
 namespace HCSAnalyzer.Forms
 {

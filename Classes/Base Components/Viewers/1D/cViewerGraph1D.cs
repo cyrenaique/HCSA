@@ -1,14 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using HCSAnalyzer.Classes.Base_Classes.DataStructures;
-using HCSAnalyzer.GUI.FormsForGraphsDisplay.Generic;
+﻿using HCSAnalyzer.Classes.Base_Classes.DataStructures;
 
 namespace HCSAnalyzer.Classes.Base_Classes.Viewers
 {
     class cViewerGraph1D : cDataDisplay
-    {     
+    {
         //cPanelHisto CurrentPanelHisto;
         //public eOrientation Orientation = eOrientation.HORIZONTAL;
 
@@ -22,14 +17,14 @@ namespace HCSAnalyzer.Classes.Base_Classes.Viewers
         public void SetInputData(cExtendedTable input)
         {
             //CurrentPanelHisto = new cPanelHisto(ListValues, true, eGraphType.LINE, this.Orientation);
-          // Chart = new cChart1DGraph();  
+            // Chart = new cChart1DGraph();  
             Chart.InputSimpleData = input;
         }
 
         public void SetInputData(cListExtendedTable ListInput)
         {
             //CurrentPanelHisto = new cPanelHisto(ListValues, true, eGraphType.LINE, this.Orientation);
-          // Chart = new cChart1DGraph();  
+            // Chart = new cChart1DGraph();  
             Chart.ListInput = ListInput;
         }
 
@@ -41,13 +36,13 @@ namespace HCSAnalyzer.Classes.Base_Classes.Viewers
         public cFeedBackMessage Run()
         {
 
-            if ((Chart.InputSimpleData!=null) && (this.Chart.X_AxisValues == null) && (this.Chart.IsLogAxis))
+            if ((Chart.InputSimpleData != null) && (this.Chart.X_AxisValues == null) && (this.Chart.IsLogAxis))
             {
                 base.FeedBackMessage.IsSucceed = false;
                 base.FeedBackMessage.Message = "non negative X-axis values have to be specificied for logarithmic charts";
                 return base.FeedBackMessage;
             }
-            if ((Chart.InputSimpleData == null) && (Chart.ListCurves.Count==0) &&(Chart.ListInput == null))
+            if ((Chart.InputSimpleData == null) && (Chart.ListCurves.Count == 0) && (Chart.ListInput == null))
             {
                 base.FeedBackMessage.IsSucceed = false;
                 base.FeedBackMessage.Message = "No input data defined.";

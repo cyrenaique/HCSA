@@ -1,9 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
+﻿using HCSAnalyzer.Classes.Base_Classes.DataAnalysis;
 using HCSAnalyzer.Classes.Base_Classes.DataStructures;
-using HCSAnalyzer.Classes.Base_Classes.DataAnalysis;
+using System;
+using System.Collections.Generic;
 
 namespace HCSAnalyzer.Classes.Base_Classes.DataProcessing
 {
@@ -27,12 +25,12 @@ K-sample Anderson–Darling tests are available for testing whether several coll
         public double Anderson_Darling(cExtendedList tab)
         {
             //double A = 0;
-        //    double Mean1 = Mean(tab);
-        //    double STD = std(tab);
-        //    double[] norm = new double[tab.Length];
+            //    double Mean1 = Mean(tab);
+            //    double STD = std(tab);
+            //    double[] norm = new double[tab.Length];
 
-        //    for (int i = 0; i < tab.Length; i++)
-        //        norm[i] = (tab[i] - Mean1) / STD;
+            //    for (int i = 0; i < tab.Length; i++)
+            //        norm[i] = (tab[i] - Mean1) / STD;
 
             //tab.Normalize(eNormalizationType.STANDARDIZE);
 

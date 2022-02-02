@@ -1,10 +1,6 @@
-﻿using System;
+﻿using HCSAnalyzer.Classes.Base_Classes.DataStructures;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using HCSAnalyzer.Classes.Base_Classes.DataStructures;
 //using RDotNet;
-using Accord.Statistics.Testing;
 
 namespace HCSAnalyzer.Classes.Base_Classes.DataAnalysis
 {
@@ -100,7 +96,7 @@ p-value for right-tailed test (null hypothesis - the median of the first sample 
                 this.OutPut.Add(NewResult);
             }
 
-           return FeedBackMessage;
+            return FeedBackMessage;
         }
 
 

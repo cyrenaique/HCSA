@@ -50,7 +50,7 @@
 //                string lpszClass,
 //                string lpszWindow
 //                );
-			
+
 
 //            [StructLayout(LayoutKind.Sequential, CharSet=CharSet.Auto), ComVisible(false)]
 //            public class BROWSEINFO
@@ -64,7 +64,7 @@
 //                public IntPtr lParam;
 //                public int iImage;
 //            }
-			
+
 //            [ComImport, Guid("00000002-0000-0000-c000-000000000046"), SuppressUnmanagedCodeSecurity, InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
 //            public interface IMalloc
 //            {
@@ -75,7 +75,7 @@
 //                int DidAlloc(IntPtr pv);
 //                void HeapMinimize();
 //            }
- 
+
 //            public const int WM_LBUTTONDOWN = 0x0201;
 //            public const int BFFM_INITIALIZED = 1;
 //            public const int BFFM_SELCHANGED = 2;
@@ -246,13 +246,13 @@
 
 //        }
 //        #endregion
-		
+
 //        #region Private Members
 
 //        private InternalFolderBrowser m_InternalFolderBrowser = null;
 //        public event EventHandler SelectedFolderChanged;
 //        private const string MAKE_NEW_FOLDER_BUTTON = "&Make New Folder";
-		
+
 //        private ShowNewButtonHandler m_ShowNewButtonHandler = null;
 //        private const string BROWSE_FOR_FOLDER_CLASS_NAME =  "#32770";
 //        #endregion
@@ -295,7 +295,7 @@
 
 //            //Get current thread
 //            int currentThread = AppDomain.GetCurrentThreadId();
-			
+
 //            return (currentThread == activeThreadID.ToInt32());
 
 //        }
@@ -476,13 +476,13 @@
 
 namespace Ionic.Utils
 {
-using System;
-using System.Windows.Forms;
-using System.Runtime.InteropServices;
-using System.ComponentModel;
-using System.Security.Permissions;
-using System.Security;
-using System.Threading;
+    using System;
+    using System.ComponentModel;
+    using System.Runtime.InteropServices;
+    using System.Security;
+    using System.Security.Permissions;
+    using System.Threading;
+    using System.Windows.Forms;
 
     //[Designer("System.Windows.Forms.Design.FolderBrowserDialogDesigner, System.Design, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a"), DefaultEvent("HelpRequest"), SRDescription("DescriptionFolderBrowserDialog"), DefaultProperty("SelectedPath")]
     public class FolderBrowserDialogEx : System.Windows.Forms.CommonDialog
@@ -529,38 +529,38 @@ using System.Threading;
         public static FolderBrowserDialogEx PrinterBrowser()
         {
             FolderBrowserDialogEx x = new FolderBrowserDialogEx();
-	    // avoid MBRO comppiler warning when passing _rootFolderLocation as a ref:
-	    x.BecomePrinterBrowser();
+            // avoid MBRO comppiler warning when passing _rootFolderLocation as a ref:
+            x.BecomePrinterBrowser();
             return x;
         }
 
         public static FolderBrowserDialogEx ComputerBrowser()
         {
             FolderBrowserDialogEx x = new FolderBrowserDialogEx();
-	    // avoid MBRO comppiler warning when passing _rootFolderLocation as a ref:
-	    x.BecomeComputerBrowser();
+            // avoid MBRO comppiler warning when passing _rootFolderLocation as a ref:
+            x.BecomeComputerBrowser();
             return x;
         }
 
 
-	// Helpers
-	private void BecomePrinterBrowser()
-	{
+        // Helpers
+        private void BecomePrinterBrowser()
+        {
             _uiFlags += BrowseFlags.BIF_BROWSEFORPRINTER;
             Description = "Select a printer:";
             PInvoke.Shell32.SHGetSpecialFolderLocation(IntPtr.Zero, CSIDL.PRINTERS, ref this._rootFolderLocation);
             ShowNewFolderButton = false;
             ShowEditBox = false;
-	}       
+        }
 
-	private void BecomeComputerBrowser()
-	{
+        private void BecomeComputerBrowser()
+        {
             _uiFlags += BrowseFlags.BIF_BROWSEFORCOMPUTER;
             Description = "Select a computer:";
             PInvoke.Shell32.SHGetSpecialFolderLocation(IntPtr.Zero, CSIDL.NETWORK, ref this._rootFolderLocation);
             ShowNewFolderButton = false;
             ShowEditBox = false;
-	}
+        }
 
 
         private class CSIDL

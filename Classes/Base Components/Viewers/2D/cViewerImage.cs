@@ -1,12 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using ImageAnalysis;
+﻿using HCSAnalyzer.Classes.ImageAnalysis.FormsForImages;
 using HCSAnalyzer.Forms.FormsForImages;
-using System.Windows.Forms;
-using HCSAnalyzer.Classes.ImageAnalysis.FormsForImages;
+using ImageAnalysis;
+using System;
+using System.Collections.Generic;
 using System.Drawing;
+using System.Windows.Forms;
 
 namespace HCSAnalyzer.Classes.Base_Classes.Viewers._2D
 {
@@ -88,8 +86,8 @@ namespace HCSAnalyzer.Classes.Base_Classes.Viewers._2D
                 SingleLUT.textBoxForName.Text = Image.SingleChannelImage[IdxLUT].Name;
                 SingleLUT.Location = new System.Drawing.Point(0, IdxLUT * SingleLUT.Height);
 
-                if((this.ListLinearMaxColor!=null)&&(this.ListLinearMaxColor.Count>IdxLUT))
-                   SingleLUT.CreateAndUpDateLinearLUT(this.ListLinearMaxColor[IdxLUT]);
+                if ((this.ListLinearMaxColor != null) && (this.ListLinearMaxColor.Count > IdxLUT))
+                    SingleLUT.CreateAndUpDateLinearLUT(this.ListLinearMaxColor[IdxLUT]);
 
                 IP.LUTManager.panelForLUTS.Controls.Add(SingleLUT);
             }
@@ -122,7 +120,7 @@ namespace HCSAnalyzer.Classes.Base_Classes.Viewers._2D
             // this.CurrentPanel.Resize += new EventHandler(IP.panelForImage_Resize);
             this.CurrentPanel.Disposed += new EventHandler(IP.FormForImageDisplay_Disposed);
 
-          //  this.CurrentPanel.MouseDown += new MouseEventHandler(CurrentPanel_MouseDown);
+            //  this.CurrentPanel.MouseDown += new MouseEventHandler(CurrentPanel_MouseDown);
             this.CurrentPanel.DragDrop += new DragEventHandler(IP.CurrentPanel_DragDrop);
             this.CurrentPanel.DragEnter += new DragEventHandler(IP.CurrentPanel_DragEnter);
             this.CurrentPanel.AllowDrop = true;

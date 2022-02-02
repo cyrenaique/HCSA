@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using HCSAnalyzer.Classes.Base_Classes.DataStructures;
+﻿using HCSAnalyzer.Classes.Base_Classes.DataStructures;
 using weka.core;
 
 namespace HCSAnalyzer.Classes.Base_Classes.DataAnalysis
@@ -17,7 +13,7 @@ namespace HCSAnalyzer.Classes.Base_Classes.DataAnalysis
         cExtendedTable Basis = null;
         cExtendedTable DataToProject = null;
         cExtendedTable ProjectedData = null;
-        
+
         public void Set_Basis(cExtendedTable Basis)
         {
             this.Basis = Basis;
@@ -30,7 +26,7 @@ namespace HCSAnalyzer.Classes.Base_Classes.DataAnalysis
 
         public cFeedBackMessage Run()
         {
-           
+
             if (this.Basis == null)
             {
                 FeedBackMessage.IsSucceed = false;
@@ -55,7 +51,7 @@ namespace HCSAnalyzer.Classes.Base_Classes.DataAnalysis
             NewPt = DataToProject.CopyToWEKAMatrix().multiply(this.Basis.CopyToWEKAMatrix());
             ProjectedData = new cExtendedTable(NewPt);
 
-            int Idx=0;
+            int Idx = 0;
             foreach (var item in DataToProject)
             {
                 ProjectedData[Idx].Name = Basis.ListRowNames[Idx];

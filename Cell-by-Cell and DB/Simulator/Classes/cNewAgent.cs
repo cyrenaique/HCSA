@@ -1,10 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
+﻿using HCSAnalyzer.Classes;
 using HCSAnalyzer.Classes._3D;
-using HCSAnalyzer.Classes;
-using HCSAnalyzer.Classes.Base_Classes.DataStructures;
+using System;
+using System.Collections.Generic;
 
 namespace HCSAnalyzer.Cell_by_Cell_and_DB.Simulator.Classes
 {
@@ -17,8 +14,8 @@ namespace HCSAnalyzer.Cell_by_Cell_and_DB.Simulator.Classes
     {
         public void ProcessStimuli(cStimuli Stimuli)
         {
-        
-        
+
+
         }
 
 
@@ -72,7 +69,7 @@ namespace HCSAnalyzer.Cell_by_Cell_and_DB.Simulator.Classes
             cInternalProperty PositionProperty = new cInternalProperty();
             this.InternalProperties.Add("Position", PositionProperty);
 
-           // cAgentProperty VolumeProperty = new cAgentProperty(); // should be boundaries in the future
+            // cAgentProperty VolumeProperty = new cAgentProperty(); // should be boundaries in the future
             //VolumeProperty.Value = InitialVolume;
             cInternalProperty VolumeProperty = new cInternalProperty();
             this.InternalProperties.Add("Volume", VolumeProperty);
@@ -88,14 +85,14 @@ namespace HCSAnalyzer.Cell_by_Cell_and_DB.Simulator.Classes
         public cPoint3D GetAbsoluteGetPosition()
         {
             cInternalProperty TmpProp = this.InternalProperties["Position"];
-            cPoint3D ToBeReturned = new cPoint3D(0,0,0) ;//(cPoint3D)
+            cPoint3D ToBeReturned = new cPoint3D(0, 0, 0);//(cPoint3D)
 
             cNewAgent TmpAgent = this;
 
             while (TmpAgent.Parent != null)
             {
 
-               // ToBeReturned += (cPoint3D)TmpAgent.InternalProperties["Position"];
+                // ToBeReturned += (cPoint3D)TmpAgent.InternalProperties["Position"];
                 TmpAgent = TmpAgent.Parent;
             }
 
@@ -117,7 +114,7 @@ namespace HCSAnalyzer.Cell_by_Cell_and_DB.Simulator.Classes
         public void Run()
         {
             // recursive loop that will process all the objects
-            
+
             // we are at the leaf of the tree
             if (this.Count == 0)
             {
@@ -131,7 +128,7 @@ namespace HCSAnalyzer.Cell_by_Cell_and_DB.Simulator.Classes
         }
 
 
- 
+
 
 
     }

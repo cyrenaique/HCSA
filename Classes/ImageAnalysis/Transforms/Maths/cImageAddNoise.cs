@@ -1,12 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using HCSAnalyzer.Classes.Base_Classes.DataStructures;
-using HCSAnalyzer.Classes.Base_Classes.Data;
-using HCSAnalyzer.Classes.Base_Classes.DataProcessing;
-using ImageAnalysisFiltering;
+﻿using HCSAnalyzer.Classes.Base_Classes.Data;
 using ImageAnalysis;
+using ImageAnalysisFiltering;
+using System;
 
 namespace HCSAnalyzer.Classes.Base_Classes
 {
@@ -27,7 +22,7 @@ namespace HCSAnalyzer.Classes.Base_Classes
 
         public cFeedBackMessage Run()
         {
-            
+
 
             if (this.Input == null)
             {
@@ -42,8 +37,8 @@ namespace HCSAnalyzer.Classes.Base_Classes
                 base.Output = new cImage(Input.Width, Input.Height, Input.Depth, base.ListChannelsToBeProcessed.Count);
             else
                 base.Output = Input;
-            
-            
+
+
             for (int IdxChannel = 0; IdxChannel < base.ListChannelsToBeProcessed.Count; IdxChannel++)
             {
                 int CurrentChannel = base.ListChannelsToBeProcessed[IdxChannel];

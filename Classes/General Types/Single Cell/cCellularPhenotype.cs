@@ -1,19 +1,14 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using LibPlateAnalysis;
-using System.Drawing;
+﻿using System.Drawing;
 using System.Windows.Forms;
 
 namespace HCSAnalyzer.Classes.General_Types
 {
     public class cCellularPhenotype : cObjectWithClass
     {
-      
+
         public string Name;
-      
-        
+
+
         public cCellularPhenotype(Color Colour, int Idx)
         {
             this.ColourForDisplay = Colour;

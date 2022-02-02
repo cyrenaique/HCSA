@@ -1,12 +1,8 @@
-﻿using System;
+﻿using LibPlateAnalysis;
+using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
 using System.Drawing;
-using System.Linq;
-using System.Text;
 using System.Windows.Forms;
-using LibPlateAnalysis;
 
 namespace HCSAnalyzer.Forms
 {
@@ -20,13 +16,13 @@ namespace HCSAnalyzer.Forms
             this.CurrentScreening = CurrentScreen;
 
             this.dataGridView.AlternatingRowsDefaultCellStyle.BackColor = Color.LightGray;
-            
+
 
             DataGridViewComboBoxColumn Col = (DataGridViewComboBoxColumn)this.dataGridView.Columns[1];
 
             List<string> ListReplicateNames = new List<string>();
 
-           // foreach (var item in cGlobalInfo.CurrentScreening.ListReplicate)
+            // foreach (var item in cGlobalInfo.CurrentScreening.ListReplicate)
             //    ListReplicateNames.Add(item.Name);
 
             Col.DataSource = ListReplicateNames.ToArray();
@@ -37,17 +33,17 @@ namespace HCSAnalyzer.Forms
                 this.dataGridView[0, this.dataGridView.Rows.Count - 2].ValueType = typeof(string);
                 this.dataGridView[0, this.dataGridView.Rows.Count - 2].Value = TmpPlate.GetName();
 
-               // this.dataGridView[1, this.dataGridView.Rows.Count - 2].Value = TmpPlate.AssociatedReplicateType.Name;
+                // this.dataGridView[1, this.dataGridView.Rows.Count - 2].Value = TmpPlate.AssociatedReplicateType.Name;
 
                 this.dataGridView[2, this.dataGridView.Rows.Count - 2].Value = TmpPlate.IsActive;
 
             }
 
-            
+
             //dataGridView.AutoResizeColumns(DataGridViewAutoSizeColumnsMode.AllCells);
-            
+
             dataGridView.AllowUserToAddRows = false;
-            
+
 
             ContextMenuStrip ImageContextMenu = new ContextMenuStrip();
 
@@ -137,7 +133,7 @@ namespace HCSAnalyzer.Forms
         {
             //foreach (DataGridViewRow item in dataGridView.Rows)
             //    item.Cells[2].Value = false;
-          //  this.CurrentScreening.ListReplicate.Add(new cReplicateType("New Replicate"));
+            //  this.CurrentScreening.ListReplicate.Add(new cReplicateType("New Replicate"));
             UpDateDropBox();
         }
 
@@ -148,8 +144,8 @@ namespace HCSAnalyzer.Forms
 
             List<string> ListReplicateNames = new List<string>();
 
-           // foreach (var item in cGlobalInfo.CurrentScreening.ListReplicate)
-           //     ListReplicateNames.Add(item.Name);
+            // foreach (var item in cGlobalInfo.CurrentScreening.ListReplicate)
+            //     ListReplicateNames.Add(item.Name);
 
             Col.DataSource = ListReplicateNames.ToArray();
         }

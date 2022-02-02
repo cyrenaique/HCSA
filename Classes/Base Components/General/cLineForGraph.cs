@@ -1,9 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
+﻿using System.Drawing;
 using System.Windows.Forms.DataVisualization.Charting;
-using System.Drawing;
 
 namespace HCSAnalyzer.Classes.Base_Classes.General
 {
@@ -23,15 +19,15 @@ namespace HCSAnalyzer.Classes.Base_Classes.General
 
         public cLineVerticalForGraph(double Position)
         {
-           this.Position = Position;
+            this.Position = Position;
         }
 
         public void Run(Chart CurrentChart)
         {
-            
+
             this.IsInfinitive = true;
             this.LineWidth = 1;
-           // this.AllowMoving = false;
+            // this.AllowMoving = false;
             this.LineColor = Color.Gray;
             this.LineDashStyle = ChartDashStyle.Dash;
             base.AllowMoving = this.IsAllowMoving;
@@ -67,11 +63,11 @@ namespace HCSAnalyzer.Classes.Base_Classes.General
         public cLineHorizontalForGraph(double Position)
         {
             this.Position = Position;
-          
+
         }
 
         public void Run(Chart CurrentChart)
-        {  
+        {
             this.IsInfinitive = true;
             this.LineWidth = 1;
             base.AllowMoving = this.IsAllowMoving;

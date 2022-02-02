@@ -1,19 +1,8 @@
-﻿using System;
+﻿using HCSAnalyzer.Classes.Base_Classes.DataStructures;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using HCSAnalyzer.Classes.Base_Classes.DataStructures;
-using HCSAnalyzer.Forms.FormsForGraphsDisplay;
-using System.Windows.Forms;
-using System.Data;
-using LibPlateAnalysis;
-using HCSAnalyzer.Classes.Base_Classes.DataProcessing;
-using HCSAnalyzer.Classes.MetaComponents;
-using HCSAnalyzer.Classes.Base_Classes.DataAnalysis;
-using HCSAnalyzer.Classes.DataAnalysis;
-using HCSAnalyzer.Classes.Base_Classes.DataManip;
-using HCSAnalyzer.Classes.Base_Classes.Viewers._2D;
 using System.IO;
+using System.Linq;
+using System.Windows.Forms;
 
 namespace HCSAnalyzer.Classes.Base_Classes.Data
 {
@@ -29,7 +18,7 @@ namespace HCSAnalyzer.Classes.Base_Classes.Data
         public int HeaderSize = 0;
         public bool IsContainColumnHeaders = true;
         public bool IsContainRowNames = false;
-        public int RejectedRows { get; private set;}
+        public int RejectedRows { get; private set; }
 
         public cCSVToTable()
         {
@@ -78,16 +67,16 @@ namespace HCSAnalyzer.Classes.Base_Classes.Data
 
             this.Output = new cExtendedTable();
             this.Output.Name = TableName;
-            RejectedRows=0;
+            RejectedRows = 0;
 
             //using (FileStream myFile =  new FileStream(this.CSVFileName, FileMode.Open, FileAccess.Read, FileShare.ReadWrite))
 
             FileStream fs = new FileStream(CSVFileName, FileMode.Open, FileAccess.Read, FileShare.ReadWrite);
-         //   StreamReader sr = new StreamReader(fs);
+            //   StreamReader sr = new StreamReader(fs);
 
             using (StreamReader myFile = new StreamReader(fs))// new StreamReader(File.OpenRead(this.CSVFileName)))//, Encoding.Default, false))
             {
-                
+
                 // jump the header
                 for (int i = 0; i < HeaderSize; i++)
                     myFile.ReadLine();
@@ -122,13 +111,13 @@ namespace HCSAnalyzer.Classes.Base_Classes.Data
                     List<object> LValues = new List<object>();
                     while (myFile.EndOfStream != true)
                     {
-                    NEXTLOOP: ;
+                    NEXTLOOP:;
                         CurrentRow = myFile.ReadLine();
 
                         if (CurrentRow == null) continue;
 
                         Values = CurrentRow.Split(this.Separator.ToArray());
-                      //  double ResValue;
+                        //  double ResValue;
                         LValues.Clear();
                         for (int i = RowShift; i < Values.Length; i++)
                         {
@@ -165,7 +154,7 @@ namespace HCSAnalyzer.Classes.Base_Classes.Data
                     List<double> LValues = new List<double>();
                     while (myFile.EndOfStream != true)
                     {
-                    NEXTLOOP: ;
+                    NEXTLOOP:;
                         CurrentRow = myFile.ReadLine();
 
                         if (CurrentRow == null) continue;

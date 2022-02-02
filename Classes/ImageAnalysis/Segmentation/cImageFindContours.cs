@@ -1,15 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using HCSAnalyzer.Forms.FormsForImages;
-using System.Drawing;
-using ImageAnalysis;
-using Emgu.CV;
-using Emgu.CV.CvEnum;
-using System.Runtime.InteropServices;
+﻿using Emgu.CV;
 using Emgu.CV.Structure;
-using Emgu.CV.Util;
+using ImageAnalysis;
 
 namespace ImageAnalysisFiltering
 {
@@ -27,44 +18,44 @@ namespace ImageAnalysisFiltering
         public void Run()
         {
 
-                 base.Output = new cImage(Input.Width, Input.Height, Input.Depth, base.ListChannelsToBeProcessed.Count);
-                 for (int IdxChannel = 0; IdxChannel < base.ListChannelsToBeProcessed.Count; IdxChannel++)
-                 {
-                     int CurrentChannel = base.ListChannelsToBeProcessed[IdxChannel];
+            base.Output = new cImage(Input.Width, Input.Height, Input.Depth, base.ListChannelsToBeProcessed.Count);
+            for (int IdxChannel = 0; IdxChannel < base.ListChannelsToBeProcessed.Count; IdxChannel++)
+            {
+                int CurrentChannel = base.ListChannelsToBeProcessed[IdxChannel];
 
 
 
-                     Image<Gray, byte> inputImage = new Image<Gray, byte>(Input.Width, Input.Height);
+                Image<Gray, byte> inputImage = new Image<Gray, byte>(Input.Width, Input.Height);
 
-                     for (int j = 0; j < Input.Height; j++)
-                         for (int i = 0; i < Input.Width; i++)
-                             inputImage.Data[j, i, 0] = (byte)Input.SingleChannelImage[CurrentChannel].Data[i + j * Input.Width];
+                for (int j = 0; j < Input.Height; j++)
+                    for (int i = 0; i < Input.Width; i++)
+                        inputImage.Data[j, i, 0] = (byte)Input.SingleChannelImage[CurrentChannel].Data[i + j * Input.Width];
 
-                     //MCvConnectedComp CCFromMeanShift = new MCvConnectedComp();
+                //MCvConnectedComp CCFromMeanShift = new MCvConnectedComp();
 
-                     //Image<Gray, float> smoothedImage = new Image<Gray, float>(inputImage.Width, inputImage.Height);
+                //Image<Gray, float> smoothedImage = new Image<Gray, float>(inputImage.Width, inputImage.Height);
 
-                     //TODO: Fix the code below with EMGU 3.0
+                //TODO: Fix the code below with EMGU 3.0
 
-                     //IntPtr contour1 = new IntPtr();
+                //IntPtr contour1 = new IntPtr();
 
-                     //IntPtr storage = CvInvoke.cvCreateMemStorage(0);
+                //IntPtr storage = CvInvoke.cvCreateMemStorage(0);
 
-                     //Emgu.CV.CvInvoke.FindContours(inputImage, storage, ref contour1, StructSize.MCvContour, Emgu.CV.CvEnum.RetrType.Ccomp, Emgu.CV.CvEnum.ChainApproxMethod.ChainApproxSimple, new Point(0, 0));
+                //Emgu.CV.CvInvoke.FindContours(inputImage, storage, ref contour1, StructSize.MCvContour, Emgu.CV.CvEnum.RetrType.Ccomp, Emgu.CV.CvEnum.ChainApproxMethod.ChainApproxSimple, new Point(0, 0));
 
-                     //seq<Point> contour = new seq<Point>(contour1, null);
+                //seq<Point> contour = new seq<Point>(contour1, null);
 
 
-                     ////this.Output = new cImage(this.Input);
+                ////this.Output = new cImage(this.Input);
 
-                     //int IdxContour = 0;
-                     //for (; contour != null && contour.Ptr.ToInt32() != 0; contour = contour.HNext)
-                     //{
-                     //    Rectangle TmpBB = contour.BoundingRectangle;
-                     //    this.Output.SingleChannelImage[IdxChannel].DrawRectange(TmpBB, IdxContour++);
-                     //}
+                //int IdxContour = 0;
+                //for (; contour != null && contour.Ptr.ToInt32() != 0; contour = contour.HNext)
+                //{
+                //    Rectangle TmpBB = contour.BoundingRectangle;
+                //    this.Output.SingleChannelImage[IdxChannel].DrawRectange(TmpBB, IdxContour++);
+                //}
 
-                 }
+            }
             //this.output = new cImage(smoothedImage);
             return;
 

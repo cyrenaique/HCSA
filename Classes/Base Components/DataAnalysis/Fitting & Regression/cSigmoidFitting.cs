@@ -1,8 +1,6 @@
-﻿using System;
+﻿using HCSAnalyzer.Classes.Base_Classes.DataStructures;
+using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using HCSAnalyzer.Classes.Base_Classes.DataStructures;
 
 namespace HCSAnalyzer.Classes.Base_Classes.DataAnalysis
 {
@@ -12,7 +10,7 @@ namespace HCSAnalyzer.Classes.Base_Classes.DataAnalysis
         cExtendedTable Output;
         public int ConcentrationPos = 0;
 
-      
+
         public cSigmoidFitting()
         {
             this.Title = "Sigmoid Fitting";
@@ -25,7 +23,7 @@ namespace HCSAnalyzer.Classes.Base_Classes.DataAnalysis
 
         public cFeedBackMessage Run()
         {
-         
+
             if (this.Input == null)
             {
                 FeedBackMessage.IsSucceed = false;
@@ -54,7 +52,7 @@ namespace HCSAnalyzer.Classes.Base_Classes.DataAnalysis
 
         private static void function_SigmoidInhibition(double[] c, double[] x, ref double func, object obj)
         {
-            double Concentration =x[0];
+            double Concentration = x[0];
 
             func = c[0] + (c[1] - c[0]) / (1 + Math.Pow(((Math.Pow(10, c[2]) / Math.Pow(10, Concentration))), c[3]));
         }
@@ -62,12 +60,12 @@ namespace HCSAnalyzer.Classes.Base_Classes.DataAnalysis
         public static void function_SigmoidInhibitionForIntegration(double x, double xminusa, double bminusx, ref double func, object obj)
         {
             // this callback calculates f(x)=exp(x)
-           // func = Math.Exp(x);
+            // func = Math.Exp(x);
             double Concentration = x;
-          
+
             cExtendedTable TmpValuesParam = (cExtendedTable)(obj);
 
-            
+
             int IdxDesc = 0;
             double EC50 = Math.Log10(TmpValuesParam[IdxDesc][2]);
             //    double Concentration = Math.Log10(item);
@@ -105,7 +103,7 @@ namespace HCSAnalyzer.Classes.Base_Classes.DataAnalysis
 
         private cFeedBackMessage Process()
         {
-           
+
             if (this.Input[0].Count == 0)
             {
                 base.FeedBackMessage.IsSucceed = false;
@@ -137,7 +135,7 @@ namespace HCSAnalyzer.Classes.Base_Classes.DataAnalysis
                 return base.FeedBackMessage;
             }
 
-            
+
             if (MinConcentration == MaxConcentration)
             {
                 base.FeedBackMessage.IsSucceed = false;
@@ -156,7 +154,7 @@ namespace HCSAnalyzer.Classes.Base_Classes.DataAnalysis
 
             double BaseEC50 = MaxConcentration - Math.Abs(MaxConcentration - MinConcentration) / 2.0;
 
-            double[] c = new double[] { GlobalMin, GlobalMax , BaseEC50, 1 };
+            double[] c = new double[] { GlobalMin, GlobalMax, BaseEC50, 1 };
             double epsf = 0;
             double epsx = 0;
             int maxits = 0;
@@ -174,12 +172,12 @@ namespace HCSAnalyzer.Classes.Base_Classes.DataAnalysis
 
             // boundaries
             // bottom / top / EC50 / Slope
-           // double[] bndl = null;
-           // double[] bndu = null;
+            // double[] bndl = null;
+            // double[] bndu = null;
 
             // boundaries
-           // bndu = new double[] { GlobalMax, GlobalMax, MaxConcentration, 5 };
-           // bndl = new double[] { GlobalMin, GlobalMin, MinConcentration, 0.1 };
+            // bndu = new double[] { GlobalMax, GlobalMax, MaxConcentration, 5 };
+            // bndl = new double[] { GlobalMin, GlobalMin, MinConcentration, 0.1 };
 
             alglib.lsfitstate state;
             alglib.lsfitreport rep;
@@ -194,25 +192,25 @@ namespace HCSAnalyzer.Classes.Base_Classes.DataAnalysis
 
             for (int i = 0; i < this.Input[0].Count; i++)
             {
-                ConcentrationAlglib[i, 0] = Math.Log10( this.Input[ConcentrationPos][i]);
+                ConcentrationAlglib[i, 0] = Math.Log10(this.Input[ConcentrationPos][i]);
                 RawValuesForAlglib[i] = this.Input[IDxDesc][i];
             }
 
             alglib.lsfitcreatef(ConcentrationAlglib, RawValuesForAlglib, c, diffstep, out state);
             alglib.lsfitsetcond(state, epsf, epsx, maxits);
-            alglib.lsfitsetbc(state, bnd_low , bnd_up);
-           //  alglib.lsfitsetscale(state, s);
+            alglib.lsfitsetbc(state, bnd_low, bnd_up);
+            //  alglib.lsfitsetscale(state, s);
 
             alglib.lsfitfit(state, function_SigmoidInhibition, null, null);
             alglib.lsfitresults(state, out info, out c, out rep);
             RelativeError = rep.avgrelerror;
-            
+
             if (c[0] >= c[1])
             {
                 Top = c[0];
                 Bottom = c[1];
                 Slope = -c[3];
-              //  c[3] *= -1;
+                //  c[3] *= -1;
             }
             else
             {
@@ -220,8 +218,8 @@ namespace HCSAnalyzer.Classes.Base_Classes.DataAnalysis
                 Bottom = c[0];
                 Slope = c[3];
             }
-            EC50 = Math.Pow(10,c[2]);
-            
+            EC50 = Math.Pow(10, c[2]);
+
 
             this.Output = new cExtendedTable();
             this.Output.Name = this.Title + "(" + this.Input.Name + ")";
@@ -245,13 +243,13 @@ namespace HCSAnalyzer.Classes.Base_Classes.DataAnalysis
 
 
             alglib.autogkstate s;
-            
+
             alglib.autogkreport repInt;
 
             alglib.autogksmooth(MinConcentration, MaxConcentration, out s);
             alglib.autogkintegrate(s, function_SigmoidInhibitionForIntegration, this.Output);
             alglib.autogkresults(s, out AUC, out repInt);
-            
+
             this.Output.ListRowNames.Add("Area Under Curve");
             this.Output[this.Output.Count - 1].Add(AUC);
 

@@ -1,15 +1,12 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
+﻿using HCSAnalyzer.Classes._3D;
 using HCSAnalyzer.Classes.Base_Classes;
 using HCSAnalyzer.Classes.Base_Classes.DataStructures;
 using HCSAnalyzer.Classes.Base_Classes.Viewers;
-using HCSAnalyzer.Classes._3D;
 using HCSAnalyzer.Classes.Base_Classes.Viewers._3D.ComplexObjects;
-using System.Drawing;
 using HCSAnalyzer.Classes.General_Types;
 using LibPlateAnalysis;
+using System;
+using System.Collections.Generic;
 
 namespace HCSAnalyzer.Classes.MetaComponents
 {
@@ -29,7 +26,7 @@ namespace HCSAnalyzer.Classes.MetaComponents
             cPropertyType PTDesc2 = new cPropertyType("Desc. 2", eDataType.STRING);
             PTDesc2.ListPotentialString = cGlobalInfo.CurrentScreening.ListDescriptors.GetListNames();
             cProperty PropDesc2 = new cProperty(PTDesc2, null);
-            
+
             cPropertyType PTDesc3 = new cPropertyType("Desc. 3", eDataType.STRING);
             PTDesc3.ListPotentialString = cGlobalInfo.CurrentScreening.ListDescriptors.GetListNames();
             cProperty PropDesc3 = new cProperty(PTDesc3, null);
@@ -70,9 +67,9 @@ namespace HCSAnalyzer.Classes.MetaComponents
             }
 
 
-            if ((this.Input == null)||(this.Input.Count==0))
+            if ((this.Input == null) || (this.Input.Count == 0))
             {
-                
+
                 FeedBackMessage.IsSucceed = false;
                 FeedBackMessage.Message = "No input data defined.";
                 return FeedBackMessage;
@@ -220,7 +217,7 @@ namespace HCSAnalyzer.Classes.MetaComponents
                 List<cWellClassType> TypeForFilter = new List<cWellClassType>();
                 TypeForFilter.Add(item);
 
-                cExtendedTable TmpTable = ((cListWells)this.Input.Filter(TypeForFilter)).GetAverageDescriptorValues(ListDesc,false, false);
+                cExtendedTable TmpTable = ((cListWells)this.Input.Filter(TypeForFilter)).GetAverageDescriptorValues(ListDesc, false, false);
                 if (TmpTable != null)
                     LET.Add(TmpTable);
             }
@@ -250,9 +247,9 @@ namespace HCSAnalyzer.Classes.MetaComponents
 
             cDisplayToWindow DTW = new cDisplayToWindow();
             DTW.SetInputData(V3D.GetOutPut());
-               DTW.Title = "3D Scatter Plot(List "+this.Input.Count +" Wells)";
+            DTW.Title = "3D Scatter Plot(List " + this.Input.Count + " Wells)";
             DTW.Run();
-         
+
             DTW.Display();
 
 

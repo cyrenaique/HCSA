@@ -1,16 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Windows.Forms;
-using HCSAnalyzer.Classes;
-using HCSAnalyzer.GUI.FormsForGraphsDisplay.Generic;
-using HCSAnalyzer.Classes.Machine_Learning;
-using HCSAnalyzer.Classes.Base_Classes.DataStructures;
+﻿using HCSAnalyzer.Classes.Base_Classes.DataStructures;
 using HCSAnalyzer.Classes.Base_Classes.Viewers;
+using HCSAnalyzer.Classes.Machine_Learning;
+using HCSAnalyzer.GUI.FormsForGraphsDisplay.Generic;
+using System;
+using System.Windows.Forms;
 
 namespace HCSAnalyzer.Cell_by_Cell_and_DB.Simulator.Forms
 {
@@ -57,9 +50,9 @@ namespace HCSAnalyzer.Cell_by_Cell_and_DB.Simulator.Forms
 
                 if (IdxItem != null)
                 {
-                   // ToolStripMenuItem EditItem = new ToolStripMenuItem(IdxItem.Text+" -> Display Info");
-                   // EditItem.Click += new System.EventHandler(this.DisplayInfoItem);
-                   // contextMenuStripPicker.Items.Add(EditItem);
+                    // ToolStripMenuItem EditItem = new ToolStripMenuItem(IdxItem.Text+" -> Display Info");
+                    // EditItem.Click += new System.EventHandler(this.DisplayInfoItem);
+                    // contextMenuStripPicker.Items.Add(EditItem);
 
                     //ToolStripMenuItem SaveItem = new ToolStripMenuItem("Save " + IdxItem.Text);
                     ////   SaveItem.Click += new System.EventHandler(this.SaveItem);
@@ -68,11 +61,11 @@ namespace HCSAnalyzer.Cell_by_Cell_and_DB.Simulator.Forms
                     //ToolStripMenuItem DeleteItem = new ToolStripMenuItem("Delete " + IdxItem.Text);
                     ////   DeleteItem.Click += new System.EventHandler(this.DeleteItem);
                     //contextMenuStripPicker.Items.Add(DeleteItem);
-                  //  contextMenuStripPicker.Items.Add(new ToolStripSeparator());
+                    //  contextMenuStripPicker.Items.Add(new ToolStripSeparator());
                 }
 
                 if (listViewForClassifHistory.Items.Count > 0)
-                { 
+                {
                     ToolStripMenuItem DisplayGraphItem = new ToolStripMenuItem("Display Graph");
                     DisplayGraphItem.Click += new System.EventHandler(this.DisplayGraphItem);
                     contextMenuStripPicker.Items.Add(DisplayGraphItem);
@@ -94,7 +87,7 @@ namespace HCSAnalyzer.Cell_by_Cell_and_DB.Simulator.Forms
 
 
                 }
-               
+
 
                 //ToolStripMenuItem NewTypeItem = new ToolStripMenuItem("New Cell Type");
                 //// NewTypeItem.Click += new System.EventHandler(this.NewTypeItem);
@@ -137,11 +130,11 @@ namespace HCSAnalyzer.Cell_by_Cell_and_DB.Simulator.Forms
             cExtendedList ListValue = new cExtendedList();
             for (int Idx = 0; Idx < this.listViewForClassifHistory.Items.Count; Idx++)
             {
-               // this.listViewForCellPopulations.Items[Idx];
+                // this.listViewForCellPopulations.Items[Idx];
                 ListValue.Add(double.Parse(this.listViewForClassifHistory.Items[Idx].SubItems[2].Text));
             }
 
-         //   ListValue.Name = this.dt.Columns[e.ColumnIndex].ColumnName;
+            //   ListValue.Name = this.dt.Columns[e.ColumnIndex].ColumnName;
 
             cPanelHisto PanelHisto = new cPanelHisto(ListValue, eGraphType.LINE, eOrientation.HORIZONTAL);
             TMPWin.Controls.Add(PanelHisto.WindowForPanelHisto.panelForGraphContainer);
@@ -151,7 +144,7 @@ namespace HCSAnalyzer.Cell_by_Cell_and_DB.Simulator.Forms
 
         void DisplayInfoItem(object sender, EventArgs e)
         {
-           // cListAgents SelectedCellPop = (cListAgents)listViewForCellPopulations.FocusedItem.Tag;
+            // cListAgents SelectedCellPop = (cListAgents)listViewForCellPopulations.FocusedItem.Tag;
 
         }
 
@@ -180,7 +173,7 @@ namespace HCSAnalyzer.Cell_by_Cell_and_DB.Simulator.Forms
         }
 
         void UpdateInfo()
-        {   
+        {
             cClusteringObject SelectedCellModel = (cClusteringObject)listViewForClassifHistory.FocusedItem.Tag;
             richTextBoxModel.Clear();
             richTextBoxModel.AppendText(SelectedCellModel.Model.ToString());
@@ -190,7 +183,7 @@ namespace HCSAnalyzer.Cell_by_Cell_and_DB.Simulator.Forms
             richTextBoxCV.AppendText(SelectedCellModel.Evaluation.toClassDetailsString());
 
         }
-   
+
 
 
     }

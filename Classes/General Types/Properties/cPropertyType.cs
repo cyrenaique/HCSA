@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
+﻿using System.Collections.Generic;
 
 namespace HCSAnalyzer.Classes.General_Types
 {
@@ -37,7 +34,7 @@ namespace HCSAnalyzer.Classes.General_Types
 
         public string GetInfo()
         {
-            string ToReturn = "[Property Type] "+ this.Name + " - Type: " + this.Type;
+            string ToReturn = "[Property Type] " + this.Name + " - Type: " + this.Type;
             if ((this.Type == eDataType.INTEGER) || (this.Type == eDataType.DOUBLE))
             {
                 ToReturn += ". Min: " + this.Min + " - Max: " + this.Max;

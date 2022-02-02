@@ -1,13 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
+﻿using HCSAnalyzer.Classes;
+using System;
 using System.Windows.Forms;
-using HCSAnalyzer.Classes;
-using LibPlateAnalysis;
 
 namespace HCSAnalyzer.Forms
 {
@@ -42,8 +35,8 @@ namespace HCSAnalyzer.Forms
 
         private void numericUpDownColPosCtrl_ValueChanged(object sender, EventArgs e)
         {
-            if ((int)numericUpDownColPosCtrl.Value > (int)numericUpDownColumns.Value-1)
-                numericUpDownColPosCtrl.Value = numericUpDownColumns.Value-1;
+            if ((int)numericUpDownColPosCtrl.Value > (int)numericUpDownColumns.Value - 1)
+                numericUpDownColPosCtrl.Value = numericUpDownColumns.Value - 1;
         }
 
         private void numericUpDownColNegCtrl_ValueChanged(object sender, EventArgs e)

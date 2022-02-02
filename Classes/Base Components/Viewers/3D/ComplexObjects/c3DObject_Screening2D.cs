@@ -1,13 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using HCSAnalyzer.Classes.Base_Classes.DataStructures;
-using HCSAnalyzer.Classes._3D;
-using LibPlateAnalysis;
-using System.Drawing;
-using Kitware.VTK;
+﻿using HCSAnalyzer.Classes._3D;
 using HCSAnalyzer.Classes.Base_Components.Viewers._3D.ComplexObjects;
+using LibPlateAnalysis;
 
 namespace HCSAnalyzer.Classes.Base_Classes.Viewers._3D.ComplexObjects
 {
@@ -47,10 +40,10 @@ namespace HCSAnalyzer.Classes.Base_Classes.Viewers._3D.ComplexObjects
                 foreach (var itemObj in P2D.GetOutPut())
                 {
                     cPoint3D CurrentObjPos = itemObj.GetPosition() + new cPoint3D(Pos, 0, 0);
-                    itemObj.SetPosition(CurrentObjPos);    
+                    itemObj.SetPosition(CurrentObjPos);
                 }
 
-                
+
                 //P2D.GetOutPut()[0].Tag = item;
 
 

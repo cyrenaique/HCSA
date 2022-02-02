@@ -7,14 +7,22 @@
     <framework targetVersion="4.7.2" profile="Full" supportedRuntime="4.0.30319" />
   </compatibleFrameworks>
   <dependency>
+<<<<<<< HEAD
     <dependentAssembly dependencyType="install" codebase="HCSAnalyzer.exe.manifest" size="60154">
+=======
+    <dependentAssembly dependencyType="install" codebase="HCSAnalyzer.exe.manifest" size="61531">
+>>>>>>> ad245feb18ca6e2863ab0613857417b16a9b8ec9
       <assemblyIdentity name="HCSAnalyzer.exe" version="1.2.5.2" publicKeyToken="0000000000000000" language="neutral" processorArchitecture="amd64" type="win32" />
       <hash>
         <dsig:Transforms>
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
+<<<<<<< HEAD
         <dsig:DigestValue>U4fp616dLv0ZnaF+JPAjmgbAFvA1Py/+yGK5tHHKQoA=</dsig:DigestValue>
+=======
+        <dsig:DigestValue>rnhUJ2gr9AiXZqqoZgPR0gSTSsS5nv8MQgF8wCiGMO8=</dsig:DigestValue>
+>>>>>>> ad245feb18ca6e2863ab0613857417b16a9b8ec9
       </hash>
     </dependentAssembly>
   </dependency>

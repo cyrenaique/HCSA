@@ -1,14 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Windows.Forms;
-using HCSAnalyzer.Classes._3D;
+﻿using HCSAnalyzer.Classes._3D;
 using HCSAnalyzer.Classes.ImageAnalysis._3D_Engine;
 using Kitware.VTK;
+using System;
+using System.Drawing;
+using System.Windows.Forms;
 
 namespace HCSAnalyzer.Classes.Base_Components.Viewers._3D
 {
@@ -30,10 +25,10 @@ namespace HCSAnalyzer.Classes.Base_Components.Viewers._3D
             this.numericUpDownOpacityMaxPos.ValueChanged -= new EventHandler(numericUpDownOpacityMaxPos_ValueChanged);
             this.numericUpDownOpacityMaxValue.ValueChanged -= new EventHandler(numericUpDownOpacityMaxValue_ValueChanged);
             this.numericUpDownOpacityMinValue.ValueChanged -= new EventHandler(numericUpDownOpacityMinValue_ValueChanged);
-            
+
             this.numericUpDownColorMinPos.ValueChanged -= new EventHandler(numericUpDownColorMinPos_ValueChanged);
             this.numericUpDownColorMaxPos.ValueChanged -= new EventHandler(numericUpDownColorMaxPos_ValueChanged);
-            
+
 
             //Object3D.opacityTransferFunction.GetValue();
 
@@ -98,7 +93,7 @@ namespace HCSAnalyzer.Classes.Base_Components.Viewers._3D
             this.numericUpDownOpacityMaxPos.ValueChanged += new EventHandler(numericUpDownOpacityMaxPos_ValueChanged);
             this.numericUpDownOpacityMaxValue.ValueChanged += new EventHandler(numericUpDownOpacityMaxValue_ValueChanged);
             this.numericUpDownOpacityMinValue.ValueChanged += new EventHandler(numericUpDownOpacityMinValue_ValueChanged);
-            
+
             //this.panelColor.BackColor = Object3D.Colour;
 
 
@@ -148,7 +143,7 @@ namespace HCSAnalyzer.Classes.Base_Components.Viewers._3D
         void RefreshColor()
         {
             Object3D.ColorTransferFunction.RemoveAllPoints();
-//            Object3D.ColorTransferFunction = vtkColorTransferFunction.New();
+            //            Object3D.ColorTransferFunction = vtkColorTransferFunction.New();
 
             Object3D.ColorTransferFunction.AddRGBPoint((double)this.numericUpDownColorMinPos.Value, panelColor.BackColor.R / 255.0, panelColor.BackColor.G / 255.0, panelColor.BackColor.B / 255.0);
             Object3D.ColorTransferFunction.AddRGBPoint((double)this.numericUpDownColorMaxPos.Value, panelColorLast.BackColor.R / 255.0, panelColorLast.BackColor.G / 255.0, panelColorLast.BackColor.B / 255.0);

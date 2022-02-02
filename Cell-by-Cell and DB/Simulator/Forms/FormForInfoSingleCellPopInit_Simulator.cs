@@ -1,13 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Windows.Forms;
+﻿using HCSAnalyzer.Classes._3D;
 using HCSAnalyzer.Simulator.Classes;
-using HCSAnalyzer.Classes._3D;
+using System;
+using System.Collections.Generic;
+using System.Drawing;
+using System.Windows.Forms;
 
 namespace HCSAnalyzer.Simulator.Forms
 {
@@ -294,13 +290,13 @@ namespace HCSAnalyzer.Simulator.Forms
 
         private void radioButtonVolumeRandom_MouseClick(object sender, MouseEventArgs e)
         {
-        //    if (e.Button == System.Windows.Forms.MouseButtons.Right)
-        //    {
-                FormForRandSpecOfVar WindowForRandSpec = new FormForRandSpecOfVar(this.v_InitVol.RandomInfo);
-                if (WindowForRandSpec.ShowDialog() == System.Windows.Forms.DialogResult.OK)
-                    this.v_InitVol.RandomInfo = WindowForRandSpec.RandomParam;
-            
-          //  }
+            //    if (e.Button == System.Windows.Forms.MouseButtons.Right)
+            //    {
+            FormForRandSpecOfVar WindowForRandSpec = new FormForRandSpecOfVar(this.v_InitVol.RandomInfo);
+            if (WindowForRandSpec.ShowDialog() == System.Windows.Forms.DialogResult.OK)
+                this.v_InitVol.RandomInfo = WindowForRandSpec.RandomParam;
+
+            //  }
         }
 
 

@@ -1,28 +1,21 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Windows.Forms;
-using HCSAnalyzer.Simulator.Classes;
-using HCSAnalyzer.Forms;
+﻿using HCSAnalyzer.Classes;
 using HCSAnalyzer.Classes._3D;
-using HCSAnalyzer.Classes;
-using HCSAnalyzer.Forms.IO;
-using ImageAnalysis;
-using HCSAnalyzer.Forms.FormsForOptions.ClassForOptions.Children;
-using HCSAnalyzer.Simulator.Forms.Panels;
-using HCSAnalyzer.Simulator.Forms.NewCellType;
-using MIConvexHull;
-using Microsoft.Msagl.GraphViewerGdi;
-using ImageAnalysisFiltering;
 using HCSAnalyzer.Classes.Base_Classes;
 using HCSAnalyzer.Classes.Base_Classes.DataStructures;
-using HCSAnalyzer.Classes.Base_Classes.Viewers._3D.ComplexObjects;
 using HCSAnalyzer.Classes.Base_Classes.Viewers;
+using HCSAnalyzer.Classes.Base_Classes.Viewers._3D.ComplexObjects;
 using HCSAnalyzer.Classes.MetaComponents;
+using HCSAnalyzer.Forms.FormsForOptions.ClassForOptions.Children;
+using HCSAnalyzer.Forms.IO;
+using HCSAnalyzer.Simulator.Classes;
+using HCSAnalyzer.Simulator.Forms.NewCellType;
+using HCSAnalyzer.Simulator.Forms.Panels;
+using ImageAnalysis;
+using ImageAnalysisFiltering;
+using System;
+using System.Collections.Generic;
+using System.Drawing;
+using System.Windows.Forms;
 
 namespace HCSAnalyzer.Simulator.Forms
 {
@@ -83,7 +76,7 @@ namespace HCSAnalyzer.Simulator.Forms
                 foreach (cTransitionValue Transition in item.ListInitialTransitions)
                 {
                     Transition.DestType = this.ListCellTypes[Idx++];
-                }                                
+                }
             }
 
             #endregion
@@ -101,7 +94,7 @@ namespace HCSAnalyzer.Simulator.Forms
 
             NewWorld = new cWorld(new cPoint3D((int)(Parameters.ListDoubleValues.Get("numericUpDownWorldDimensionY").Value),
                                                    (Parameters.ListDoubleValues.Get("numericUpDownWorldDimensionY").Value),
-                                                   (Parameters.ListDoubleValues.Get("numericUpDownWorldDimensionZ").Value)), 
+                                                   (Parameters.ListDoubleValues.Get("numericUpDownWorldDimensionZ").Value)),
                                                    this);
 
             MyPanelForParamCellTypes = new PanelForParamCellTypes();
@@ -121,7 +114,7 @@ namespace HCSAnalyzer.Simulator.Forms
             List<string> ListNameSignature = new List<string>();
             Random RND = new Random();
 
-            if(NewWorld.ListCells!=null)    NewWorld.ListCells.Clear();
+            if (NewWorld.ListCells != null) NewWorld.ListCells.Clear();
 
             ListNameSignature.Add("PosX");
             ListNameSignature.Add("PosY");
@@ -186,12 +179,12 @@ namespace HCSAnalyzer.Simulator.Forms
                     cListValuesParam Parameters = ClusteringAlgo.GetListValuesParam();
 
                     NewWorld.ListCells.Clear();
-                    
+
                     NewWorld = new cWorld(new cPoint3D((int)(Parameters.ListDoubleValues.Get("numericUpDownWorldDimensionX").Value),
                                                            (Parameters.ListDoubleValues.Get("numericUpDownWorldDimensionY").Value),
                                                            (Parameters.ListDoubleValues.Get("numericUpDownWorldDimensionZ").Value)),
                                                            this);
-                    
+
 
                     //    // define a cell cycle
                     //    cCycle ClassicCellCycle = new cCycle(); // default cell cycle
@@ -275,19 +268,19 @@ namespace HCSAnalyzer.Simulator.Forms
                                 }
                                 CurrentCell.InitialVolume = Volume;
 
-                                if(MyVarPosType.Cst_Value==0) // center
+                                if (MyVarPosType.Cst_Value == 0) // center
                                 {
                                     cPoint3D CellPos = new cPoint3D(NewWorld.Dimensions.X / 2.0, NewWorld.Dimensions.Y / 2.0, NewWorld.Dimensions.Z / 2.0);
                                     CurrentCell.CentroidPosition = CellPos;
                                 }
-                                else if (MyVarPosType.Cst_Value==1) // random
+                                else if (MyVarPosType.Cst_Value == 1) // random
                                 {
                                     cPoint3D CellPos = new cPoint3D(NewWorld.Dimensions.X * RND.NextDouble(),
-                                                                    NewWorld.Dimensions.Y * RND.NextDouble(), 
+                                                                    NewWorld.Dimensions.Y * RND.NextDouble(),
                                                                     NewWorld.Dimensions.Z * RND.NextDouble());
                                     CurrentCell.CentroidPosition = CellPos;
                                 }
-                                else if (MyVarPosType.Cst_Value==2) // fixed
+                                else if (MyVarPosType.Cst_Value == 2) // fixed
                                 {
                                     double X_start;
 
@@ -318,8 +311,8 @@ namespace HCSAnalyzer.Simulator.Forms
                                 }
 
                                 CurrentCell.MemoryOn = true;
-                               // CurrentCell.PreviousStates.Clear();
-                                CurrentCell.Name = CurrentCell.Type.Name + " Cell_"+ IdxCell++;
+                                // CurrentCell.PreviousStates.Clear();
+                                CurrentCell.Name = CurrentCell.Type.Name + " Cell_" + IdxCell++;
 
                                 NewWorld.ListCells.Add(CurrentCell);
                             }
@@ -341,7 +334,7 @@ namespace HCSAnalyzer.Simulator.Forms
                     //---------------------------------------------------------------------
                     for (int IdxSimu = 0; IdxSimu < NumIterations; IdxSimu++)
                     {
-                      //  toolStripProgressBar.Value = IdxSimu + NumIterations * (IdxRow * NumCols + IdxCol);
+                        //  toolStripProgressBar.Value = IdxSimu + NumIterations * (IdxRow * NumCols + IdxCol);
                         //MyProgressBar.label.Text = "It. " + IdxSimu;
                         //MyProgressBar.label.Text += " - " + NewWorld.ListCells.Count + " cells.";
                         //MyProgressBar.label.Refresh();
@@ -360,7 +353,7 @@ namespace HCSAnalyzer.Simulator.Forms
                             Signature.Add(TmpCell.CentroidPosition.Z);
                             Signature.Add(TmpCell.GetVolume());
                             Signature.Add(TmpCell.CentroidPosition.DistTo(new cPoint3D(NewWorld.Dimensions.X / 2, NewWorld.Dimensions.Y / 2, NewWorld.Dimensions.Z / 2)));
-                            
+
                             cInfoAgent InfoCell = new cInfoAgent(TmpCell);
                             Signature.Add(InfoCell.GetDistPath());
 
@@ -495,8 +488,8 @@ namespace HCSAnalyzer.Simulator.Forms
         #region Display
         void Display3D()
         {
-           // cListExtendedTable LET = new cListExtendedTable();
-         //   LET.Add(this.NewWorld.ListCells.GetAssociatedTable());
+            // cListExtendedTable LET = new cListExtendedTable();
+            //   LET.Add(this.NewWorld.ListCells.GetAssociatedTable());
 
             cListExtendedTable LET = this.NewWorld.ListCells.GetAssociatedTables(ListCellTypes);
 
@@ -507,7 +500,7 @@ namespace HCSAnalyzer.Simulator.Forms
             c3DObjectScatterPoints _3DScatterPt = new c3DObjectScatterPoints();
             //_3DScatterPt.SetInputData(cGlobalInfo.CurrentScreening.GetCurrentDisplayPlate().ListActiveWells.GetDescriptorValues(cGlobalInfo.CurrentScreening.ListDescriptors.GetActiveDescriptors(), false));
             //_3DScatterPt.DrawAxis = false;
-           // _3DScatterPt.GlobalInfo = this.GlobalInfo;
+            // _3DScatterPt.GlobalInfo = this.GlobalInfo;
             _3DScatterPt.SetInputData(LET);
             _3DScatterPt.IndexColumnForSphereRadius = 3;
             //_3DScatterPt.IsLinked = true;
@@ -537,14 +530,14 @@ namespace HCSAnalyzer.Simulator.Forms
             Axis.Run(MyWorld);
 
             cListGeometric3DObject GlobalList = _3DScatterPt.GetOutPut();
-           // GlobalList.Add(Axis.GetOutPut());
+            // GlobalList.Add(Axis.GetOutPut());
 
             foreach (var item in GlobalList)
             {
                 MyWorld.AddGeometric3DObject(item);
             }
 
-           // GlobalList.Add(WorldCube);
+            // GlobalList.Add(WorldCube);
             c3DCube WorldCube = new c3DCube();
 
             WorldCube.Create(new cPoint3D(0, 0, 0), NewWorld.Dimensions, Color.AliceBlue);
@@ -559,7 +552,7 @@ namespace HCSAnalyzer.Simulator.Forms
             V3D.Run();
 
             cDisplayToWindow DTW = new cDisplayToWindow();
-            
+
             DTW.SetInputData(V3D.GetOutPut());
             DTW.Title = "3D Simulation Viewer";
             DTW.Run();
@@ -583,18 +576,18 @@ namespace HCSAnalyzer.Simulator.Forms
                 IDS.Centroid = item.CentroidPosition;
                 IDS.Radius = Math.Sqrt(item.GetVolume());
                 IDS.Value = 200;
-                if(IDS.Run().IsSucceed) IdxItem++;
+                if (IDS.Run().IsSucceed) IdxItem++;
             }
 
             int PosSliceZ = 10;
             cImage TestImage = Original3DImage.Crop(new cPoint3D(0, 0, PosSliceZ), new cPoint3D(Original3DImage.Width - 1, Original3DImage.Height - 1, PosSliceZ));
-                
+
             // add artifacts onto the image
 
             // blur the objects
             cImageFilterGaussianConvolution IFC = new cImageFilterGaussianConvolution();
             IFC.SetInputData(TestImage);
-            IFC.ListProperties.UpdateValueByName("Kernel Size",(int)9);
+            IFC.ListProperties.UpdateValueByName("Kernel Size", (int)9);
             IFC.Run();
 
             // add gaussian noise
@@ -616,7 +609,7 @@ namespace HCSAnalyzer.Simulator.Forms
                     {
                         Distance = Math.Sqrt((y - TmpIm.Height / 2) * (y - TmpIm.Height / 2) + (x - TmpIm.Width / 2) * (x - TmpIm.Width / 2));
                         //if(Distance>ShadowEffectRadius)
-                        TmpIm.SingleChannelImage[Channel].Data[x + y * TmpIm.Width] /= 1+(float)(0.01 * Distance);
+                        TmpIm.SingleChannelImage[Channel].Data[x + y * TmpIm.Width] /= 1 + (float)(0.01 * Distance);
                     }
                 }
             }
@@ -679,7 +672,7 @@ namespace HCSAnalyzer.Simulator.Forms
 
         public void EditCellType(cCellType CurrentType)
         {
-            FormForNewCellType WindowForNewCellType = new FormForNewCellType(this,CurrentType );
+            FormForNewCellType WindowForNewCellType = new FormForNewCellType(this, CurrentType);
             if (WindowForNewCellType.ShowDialog() != System.Windows.Forms.DialogResult.OK) return;
 
             int IdxCellType = -1;
@@ -692,15 +685,15 @@ namespace HCSAnalyzer.Simulator.Forms
             ListCellTypes[IdxCellType] = WindowForNewCellType.NewCellType;
 
             //cCellType NewCellType = WindowForNewCellType.NewCellType;
-            
-            
+
+
             //ListCellTypes.Find(CurrentType) = NewCellType;
             //ListCellTypes.Add(NewCellType);
             MyPanelForParamCellTypes.RefreshDisplay(this);
         }
 
         private void cellTypesRelationshipsToolStripMenuItem_Click(object sender, EventArgs e)
-        {    
+        {
             FormForCellTypeRelationships WindowForDisplay = new FormForCellTypeRelationships(this);
             //GViewer GraphView = new GViewer();
             //Microsoft.Msagl.Drawing.Graph graph = new Microsoft.Msagl.Drawing.Graph("graph");

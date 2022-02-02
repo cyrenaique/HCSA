@@ -1,10 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using HCSAnalyzer.Classes.Base_Classes.DataStructures;
+﻿using HCSAnalyzer.Classes.Base_Classes.DataAnalysis;
 using HCSAnalyzer.Classes.Base_Classes.DataProcessing;
-using HCSAnalyzer.Classes.Base_Classes.DataAnalysis;
+using HCSAnalyzer.Classes.Base_Classes.DataStructures;
+using System.Collections.Generic;
 
 namespace HCSAnalyzer.Classes.General_Types
 {
@@ -12,7 +9,7 @@ namespace HCSAnalyzer.Classes.General_Types
     public class cListWellsForDRC : cListWells
     {
         public double Concentration = -1;
-    
+
     }
 
     public class cGeneralDRC : List<cListWellsForDRC>
@@ -40,7 +37,7 @@ namespace HCSAnalyzer.Classes.General_Types
                             break;
                         }
                     }
-                    if(!IsExist)
+                    if (!IsExist)
                         ListConcentrations[0].Add(CurrentConc);
                 }
                 else
@@ -67,7 +64,7 @@ namespace HCSAnalyzer.Classes.General_Types
             {
                 object ConcentrationVal = ListWells[i].ListProperties.FindValueByName("Concentration");
                 if (ConcentrationVal == null) continue;
-               
+
                 double CurrentConc = (double)ConcentrationVal;
 
 
@@ -100,8 +97,8 @@ namespace HCSAnalyzer.Classes.General_Types
                     M.Run();
                     TableToBeReturned = M.GetOutPut();
                 }
-                
-               // this.ListAverageValues.Add(AverageWell);
+
+                // this.ListAverageValues.Add(AverageWell);
             }
 
             this.ListAverageValues = TableToBeReturned;

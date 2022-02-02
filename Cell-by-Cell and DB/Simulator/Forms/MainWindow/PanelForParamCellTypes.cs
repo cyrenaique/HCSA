@@ -1,16 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Drawing;
-using System.Data;
-using System.Linq;
-using System.Text;
-using System.Windows.Forms;
-using HCSAnalyzer.Simulator.Classes;
-using HCSAnalyzer.Simulator.Forms.NewCellType;
+﻿using HCSAnalyzer.Simulator.Classes;
+using System;
+using System.IO;
 using System.Runtime.Serialization;
 using System.Runtime.Serialization.Formatters.Binary;
-using System.IO;
+using System.Windows.Forms;
 
 namespace HCSAnalyzer.Simulator.Forms.Panels
 {
@@ -42,7 +35,7 @@ namespace HCSAnalyzer.Simulator.Forms.Panels
             if (CurrentType == null) return;
             this.panelForColor.BackColor = CurrentType.TypeColor;
             this.richTextBox.Clear();
-          //  this.richTextBox.AppendText(CurrentType.Cycle.ListProba.ToString());
+            //  this.richTextBox.AppendText(CurrentType.Cycle.ListProba.ToString());
         }
 
         private void panelForColor_MouseClick(object sender, MouseEventArgs e)
@@ -57,17 +50,17 @@ namespace HCSAnalyzer.Simulator.Forms.Panels
 
         private void addNewCellTypeToolStripMenuItem_Click(object sender, EventArgs e)
         {
-             Parent.CreateNewCellType();
+            Parent.CreateNewCellType();
         }
 
         private void editCurrentTypeToolStripMenuItem_Click(object sender, EventArgs e)
         {
-           Parent.EditCellType(Parent.ListCellTypes.FindType(comboBoxCellTypes.Text));
+            Parent.EditCellType(Parent.ListCellTypes.FindType(comboBoxCellTypes.Text));
         }
 
         private void saveCellTypeToolStripMenuItem_Click(object sender, EventArgs e)
         {
-//            Parent.ListCellTypes.FindType(comboBoxCellTypes.Text);
+            //            Parent.ListCellTypes.FindType(comboBoxCellTypes.Text);
 
             SaveFileDialog CurrSavefileDialog = new SaveFileDialog();
             CurrSavefileDialog.Filter = "opt files (*.CT)|*.CT";
@@ -83,7 +76,7 @@ namespace HCSAnalyzer.Simulator.Forms.Panels
             formatter.Serialize(stream, Parent.ListCellTypes.FindType(comboBoxCellTypes.Text));
             stream.Close();
 
-          
+
 
 
         }

@@ -1,15 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using HCSAnalyzer.Classes.Base_Classes.DataStructures;
-using HCSAnalyzer.GUI.FormsForGraphsDisplay.Generic;
+﻿using HCSAnalyzer.Classes.Base_Classes.DataStructures;
 
 
 namespace HCSAnalyzer.Classes.Base_Classes.Viewers
 {
     class cViewer2DScatterPoint : cDataDisplay
-    {     
+    {
         public cChart2DScatterPoint Chart = new cChart2DScatterPoint();
 
         public cViewer2DScatterPoint()
@@ -24,7 +19,7 @@ namespace HCSAnalyzer.Classes.Base_Classes.Viewers
 
         public cFeedBackMessage Run()
         {
-            
+
             if (Chart.InputSimpleData.Count <= 1)
             {
                 base.FeedBackMessage.IsSucceed = false;

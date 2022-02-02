@@ -1,27 +1,18 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using HCSAnalyzer.Forms.FormsForImages;
-using System.Drawing;
-using ImageAnalysis;
-using Emgu.CV;
-using Emgu.CV.CvEnum;
-using System.Runtime.InteropServices;
-using Emgu.CV.Structure;
+﻿using HCSAnalyzer.Classes._3D;
 using HCSAnalyzer.Classes.Base_Classes;
-using HCSAnalyzer.Classes._3D;
+using ImageAnalysis;
+using System;
 
 namespace ImageAnalysisFiltering
 {
     public partial class cImageAddSphere : c2DImageFilter
     {
-        public cPoint3D Centroid = new cPoint3D(double.NaN,double.NaN,double.NaN);
+        public cPoint3D Centroid = new cPoint3D(double.NaN, double.NaN, double.NaN);
 
         public double Radius = 10;
         public float Value = 255;
         public bool IsInPlace = false;
-        
+
         /// <summary>
         /// Specify if the sphere is solid or if the inside values are based on the distance to the center
         /// </summary>
@@ -53,7 +44,7 @@ namespace ImageAnalysisFiltering
             if (double.IsNaN(Centroid.Z)) Centroid.Z = this.Output.Depth / 2;
 
             double DistToCenter = 0;
-           // Centroid.Z = 0;
+            // Centroid.Z = 0;
             if (IsBinary)
             {
                 for (int z = 0; z < this.Output.Depth; z++)
@@ -75,8 +66,8 @@ namespace ImageAnalysisFiltering
                         for (int x = 0; x < this.Output.Width; x++)
                         {
                             DistToCenter = Math.Sqrt((z - Centroid.Z) * (z - Centroid.Z) + (y - Centroid.Y) * (y - Centroid.Y) + (x - Centroid.X) * (x - Centroid.X));
-                            if (DistToCenter <= Radius) this.Output.SingleChannelImage[this.outputBand].Data[x + y * this.Output.Width + z * this.Output.SliceSize] = 100/((float)DistToCenter+1);
-                            
+                            if (DistToCenter <= Radius) this.Output.SingleChannelImage[this.outputBand].Data[x + y * this.Output.Width + z * this.Output.SliceSize] = 100 / ((float)DistToCenter + 1);
+
 
                         }
 

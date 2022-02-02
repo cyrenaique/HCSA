@@ -1,9 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using HCSAnalyzer.Classes.Base_Classes.DataStructures;
-using System.Drawing;
+﻿using HCSAnalyzer.Classes.Base_Classes.DataStructures;
+using System;
 
 namespace HCSAnalyzer.Classes.Base_Classes.Data
 {
@@ -30,7 +26,7 @@ namespace HCSAnalyzer.Classes.Base_Classes.Data
         {
             this.Widht = Width;
             this.Height = Height;
-            
+
         }
 
         public cExtendedTable GetOutPut()
@@ -41,7 +37,7 @@ namespace HCSAnalyzer.Classes.Base_Classes.Data
         public cFeedBackMessage Run()
         {
 
-            ToReturn = new cExtendedTable(this.Widht,this.Height,0);
+            ToReturn = new cExtendedTable(this.Widht, this.Height, 0);
 
             RND = new Random(this.Seed);
 

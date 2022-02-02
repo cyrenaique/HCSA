@@ -1,29 +1,24 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Windows.Forms;
-using ImageAnalysis;
-using System.IO;
-using HCSAnalyzer.ObjectForNotations;
-using HCSAnalyzer.Classes;
-using HCSAnalyzer.Classes.MetaComponents;
-using HCSAnalyzer.Classes.Base_Classes.Viewers;
-using HCSAnalyzer.Classes.Base_Classes.DataStructures;
-using HCSAnalyzer.Classes.Base_Classes.DataAnalysis;
-using ImageAnalysisFiltering;
-using HCSAnalyzer.Classes.Base_Classes;
-using HCSAnalyzer.Classes.ImageAnalysis.FormsForImages;
-using System.Drawing.Imaging;
+﻿using HCSAnalyzer.Classes;
 using HCSAnalyzer.Classes._3D;
-using HCSAnalyzer.Classes.ImageAnalysis._3D_Engine.Detection;
+using HCSAnalyzer.Classes.Base_Classes;
+using HCSAnalyzer.Classes.Base_Classes.DataAnalysis;
+using HCSAnalyzer.Classes.Base_Classes.DataStructures;
+using HCSAnalyzer.Classes.Base_Classes.Viewers;
 using HCSAnalyzer.Classes.ImageAnalysis._3D_Engine;
+using HCSAnalyzer.Classes.ImageAnalysis._3D_Engine.Detection;
+using HCSAnalyzer.Classes.ImageAnalysis.FormsForImages;
+using HCSAnalyzer.Classes.MetaComponents;
+using HCSAnalyzer.ObjectForNotations;
 using IM3_Plugin3;
+using ImageAnalysis;
+using ImageAnalysisFiltering;
+using System;
+using System.Collections.Generic;
+using System.Drawing;
+using System.Drawing.Imaging;
 using System.Drawing.Text;
-using System.Threading;
+using System.IO;
+using System.Windows.Forms;
 
 namespace HCSAnalyzer.Forms.FormsForImages
 {
@@ -1944,14 +1939,14 @@ namespace HCSAnalyzer.Forms.FormsForImages
                 {
                     for (int j = 0; j < AssociatedImage.ImageSize; j++)
                     {
-                        if (AssociatedImage.SingleChannelImage[i].Data[j]>200)
+                        if (AssociatedImage.SingleChannelImage[i].Data[j] > 200)
                         {
                             AssociatedImage.SingleChannelImage[i].Data[j] = 65535;
 
                         }
-                        
+
                     }
-                    
+
                 }
                 ZoomToFit(2);
                 RefreshBMP();
@@ -2072,14 +2067,14 @@ namespace HCSAnalyzer.Forms.FormsForImages
                     {
                         cImageDisplayProperties IDP = this.AssociatedImage.AssociatedImagePanel.LUTManager.GetImageDisplayProperties();
 
-                        
+
 
                         for (int i = 0; i < this.AssociatedImage.GetNumChannels(); i++)
                         {
                             if (IDP.ListActive[i])
                             {
                                 double ValueChannel0 = this.AssociatedImage.SingleChannelImage[0].GetTotalIntensity(new cPoint3D(BottomX - ShiftX, BottomY - ShiftY, 0), new cPoint3D(TopX - ShiftX, TopY - ShiftY, 0));
-                                FinalText += ValueChannel0.ToString()+"\n";
+                                FinalText += ValueChannel0.ToString() + "\n";
                             }
 
                         }
@@ -2126,7 +2121,7 @@ namespace HCSAnalyzer.Forms.FormsForImages
 
                     string FinalText = "[" + RealX + ";" + RealY + "]\n(";
                     cImageDisplayProperties IDP = this.AssociatedImage.AssociatedImagePanel.LUTManager.GetImageDisplayProperties();
-                    
+
                     for (int IdxChannel = 0; IdxChannel < AssociatedImage.GetNumChannels(); IdxChannel++)
                     {
                         if (IDP.ListActive[IdxChannel])

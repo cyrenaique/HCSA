@@ -1,0 +1,11 @@
+{
+  "Version": 1,
+  "ProjectMap": {
+    "ff1f8666-da92-4052-aba9-c6adb629ea50": {
+      "ProjectGuid": "ff1f8666-da92-4052-aba9-c6adb629ea50",
+      "DisplayName": "HCS Analyzer",
+      "ColorIndex": 0
+    }
+  },
+  "NextColorIndex": 1
+}

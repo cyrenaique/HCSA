@@ -1,8 +1,5 @@
-﻿using System;
+﻿using HCSAnalyzer.Classes.Base_Classes.DataStructures;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using HCSAnalyzer.Classes.Base_Classes.DataStructures;
 using System.Windows.Forms;
 
 namespace HCSAnalyzer.Classes.Base_Classes.Viewers
@@ -45,22 +42,22 @@ namespace HCSAnalyzer.Classes.Base_Classes.Viewers
                     base.FeedBackMessage.IsSucceed = false;
                     base.FeedBackMessage.Message = "Control null";
                     return base.FeedBackMessage;
-                
+
                 }
                 TabPage TP = new TabPage();
-                
-                TP.Text = item.Title;
-              //  TP.AutoScroll = true;
-              //  TP.Width = item.Width;
-              //  TP.Height = item.Height;
 
-             //   item.Controls[0].Width = TP.Width - 50;
-             //   item.Controls[0].Height = TP.Height;
+                TP.Text = item.Title;
+                //  TP.AutoScroll = true;
+                //  TP.Width = item.Width;
+                //  TP.Height = item.Height;
+
+                //   item.Controls[0].Width = TP.Width - 50;
+                //   item.Controls[0].Height = TP.Height;
                 TP.Width = 0;// TC.Width * 5;
                 TP.Height = 0;// TC.Height * 5;
 
                 TP.Anchor = (System.Windows.Forms.AnchorStyles)(System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom
-              | System.Windows.Forms.AnchorStyles.Left| System.Windows.Forms.AnchorStyles.Right);
+              | System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right);
 
 
                 item.Width = TP.Width;
@@ -71,12 +68,12 @@ namespace HCSAnalyzer.Classes.Base_Classes.Viewers
                     base.FeedBackMessage.IsSucceed = false;
                     base.FeedBackMessage.Message = "List Controls null";
                     return base.FeedBackMessage;
-                
+
                 }
 
                 item.Controls[0].Width = item.Width;
                 item.Controls[0].Height = item.Height;
-                
+
                 TP.Controls.Add(item);
                 TC.TabPages.Add(TP);
             }

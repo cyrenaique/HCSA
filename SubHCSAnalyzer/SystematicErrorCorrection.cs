@@ -1,16 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using weka.core;
-using System.Data;
-using weka.clusterers;
+﻿using HCSAnalyzer.Classes;
 using LibPlateAnalysis;
-using System.Windows.Forms.DataVisualization.Charting;
+using System;
+using System.Collections.Generic;
 using System.Drawing;
 using System.Windows.Forms;
-using weka.classifiers;
-using HCSAnalyzer.Classes;
 
 namespace HCSAnalyzer
 {
@@ -19,7 +12,7 @@ namespace HCSAnalyzer
         #region Systematic Error Correction
         private void comboBoxMethodForCorrection_SelectedIndexChanged(object sender, EventArgs e)
         {
-            
+
             richTextBoxInformationForPlateCorrection.Clear();
 
             switch (comboBoxMethodForCorrection.SelectedIndex)
@@ -130,7 +123,7 @@ namespace HCSAnalyzer
 
                     }
                 }
-                
+
                 richTextBoxInformationForPlateCorrection.AppendText("\n--------------------------------\nProcess over !\n--------------------------------\n");
             }
             cGlobalInfo.CurrentScreening.GetCurrentDisplayPlate().DisplayDistribution(cGlobalInfo.CurrentScreening.ListDescriptors.GetActiveDescriptor(), false);
@@ -262,7 +255,7 @@ namespace HCSAnalyzer
 
             RefreshInfoScreeningRichBox();
             cGlobalInfo.CurrentScreening.CurrentDisplayPlateIdx = 0;
-            if(toolStripcomboBoxPlateList.Items.Count>0)
+            if (toolStripcomboBoxPlateList.Items.Count > 0)
                 toolStripcomboBoxPlateList.SelectedIndex = 0;
 
             cGlobalInfo.CurrentScreening.GetCurrentDisplayPlate().DisplayDistribution(cGlobalInfo.CurrentScreening.ListDescriptors.GetActiveDescriptor(), false);

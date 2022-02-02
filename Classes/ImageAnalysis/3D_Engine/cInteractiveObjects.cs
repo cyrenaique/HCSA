@@ -1,15 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Windows.Forms;
-using System.Drawing;
+﻿using HCSAnalyzer.Classes.ImageAnalysis._3D_Engine.Detection;
+using ImageAnalysis;
 using Kitware.VTK;
 //using IM.Imaging;
-using System.IO;
-using System.Diagnostics;
 using LibPlateAnalysis;
-using ImageAnalysis;
-using HCSAnalyzer.Classes.ImageAnalysis._3D_Engine.Detection;
+using System.Collections.Generic;
+using System.Drawing;
 //using IM.Library.Descriptor;
 
 namespace HCSAnalyzer.Classes._3D
@@ -28,7 +23,7 @@ namespace HCSAnalyzer.Classes._3D
     //        this.NumberOfIterations = NumIter;
     //    }
     //}
-    
+
 
 
     public class cContainer
@@ -120,7 +115,7 @@ namespace HCSAnalyzer.Classes._3D
         public cGeometric3DObject AttachText(string Text, double Scale, Color Colour)
         {
             c3DText AssociatedText = new c3DText(Text, this.GetPosition(), Colour, Scale);
-        
+
             AssociatedText.AssociatedObject = this;
             return AssociatedText;
         }
@@ -1005,7 +1000,7 @@ namespace HCSAnalyzer.Classes._3D
         {
             if (AssociatedObject.AlgoOutPut == null) return;
 
-           SetPosition(new cPoint3D(AssociatedObject.GetActor().GetPosition()[0], AssociatedObject.GetActor().GetPosition()[1], 0));// AssociatedObject.GetActor().GetPosition()[2]);
+            SetPosition(new cPoint3D(AssociatedObject.GetActor().GetPosition()[0], AssociatedObject.GetActor().GetPosition()[1], 0));// AssociatedObject.GetActor().GetPosition()[2]);
             //Position = new cPoint3D(0, 0, 0);// AssociatedObject.GetActor().GetPosition()[2]);
 
             vtkPlane plane = vtkPlane.New();

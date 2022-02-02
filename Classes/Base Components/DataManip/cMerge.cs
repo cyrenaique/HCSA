@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using HCSAnalyzer.Classes.Base_Classes.DataStructures;
+﻿using HCSAnalyzer.Classes.Base_Classes.DataStructures;
 
 namespace HCSAnalyzer.Classes.Base_Classes.DataAnalysis
 {
@@ -61,7 +57,7 @@ namespace HCSAnalyzer.Classes.Base_Classes.DataAnalysis
 
                 this.OutPut.Name = "Hori. Merge(" + this.Input1.Name + "," + this.Input2.Name + ")";
 
-              
+
                 return FeedBackMessage;
             }
             else
@@ -94,7 +90,7 @@ namespace HCSAnalyzer.Classes.Base_Classes.DataAnalysis
                 if ((this.OutPut.ListTags != null) && (this.Input2.ListTags != null))
                     foreach (var item in this.Input2.ListTags)
                         this.OutPut.ListTags.Add(item);
-                
+
                 this.OutPut.Name = "Vert. Merge(" + this.Input1.Name + "," + this.Input2.Name + ")";
 
                 return FeedBackMessage;

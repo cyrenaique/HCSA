@@ -1,13 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using HCSAnalyzer.Classes.Base_Classes;
-using HCSAnalyzer.Classes.Base_Classes.DataStructures;
+﻿using HCSAnalyzer.Classes.Base_Classes;
 using HCSAnalyzer.Classes.Base_Classes.Viewers;
-using ImageAnalysis;
 using HCSAnalyzer.Classes.Base_Classes.Viewers._2D;
-using System.Windows.Forms;
+using ImageAnalysis;
+using System;
+using System.Collections.Generic;
 using System.Drawing;
 
 namespace HCSAnalyzer.Classes.MetaComponents
@@ -32,7 +28,7 @@ namespace HCSAnalyzer.Classes.MetaComponents
 
             if (this.Input == null)
             {
-                
+
                 FeedBackMessage.IsSucceed = false;
                 FeedBackMessage.Message = "No input data defined.";
                 return FeedBackMessage;
@@ -43,8 +39,8 @@ namespace HCSAnalyzer.Classes.MetaComponents
             base.End();
             return FeedBackMessage;
         }
-        
-        
+
+
         void Process()
         {
             // here is the core of the meta component ...
@@ -68,9 +64,9 @@ namespace HCSAnalyzer.Classes.MetaComponents
             cDisplayToWindow MyDisplay = new cDisplayToWindow();
             MyDisplay.SetInputData(MyImageViewer.GetOutPut());
             MyDisplay.Title = this.Title;
-            
 
-            MyImageViewer.IP.Resize-= new EventHandler(MyImageViewer.IP.panelForImage_Resize);
+
+            MyImageViewer.IP.Resize -= new EventHandler(MyImageViewer.IP.panelForImage_Resize);
             MyDisplay.Run();
             MyImageViewer.IP.Resize += new EventHandler(MyImageViewer.IP.panelForImage_Resize);
             MyDisplay.Display();

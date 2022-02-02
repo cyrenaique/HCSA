@@ -1,23 +1,19 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Windows.Forms;
-using System.Drawing;
-using Kitware.VTK;
-using LibPlateAnalysis;
+﻿using HCSAnalyzer.Classes.Base_Classes;
+using HCSAnalyzer.Classes.Base_Classes.DataAnalysis;
+using HCSAnalyzer.Classes.Base_Classes.DataStructures;
 using HCSAnalyzer.Classes.Base_Classes.GUI;
 using HCSAnalyzer.Classes.General_Types;
-using ImageAnalysis;
-using HCSAnalyzer.Classes.Base_Classes;
-using HCSAnalyzer.Classes.MetaComponents;
-using HCSAnalyzer.Classes.Base_Classes.DataStructures;
-using HCSAnalyzer.Classes.Base_Classes.DataAnalysis;
 using HCSAnalyzer.Classes.ImageAnalysis._3D_Engine;
-using HCSAnalyzer.Classes.Base_Classes.Viewers;
-using HCSAnalyzer.Classes.ImageAnalysis.FormsForImages;
-using HCSAnalyzer.Classes.Base_Components.Viewers._3D;
-using HCSAnalyzer.Forms.FormsForImages;
 using HCSAnalyzer.Classes.ImageAnalysis._3D_Engine.Detection;
+using HCSAnalyzer.Classes.ImageAnalysis.FormsForImages;
+using HCSAnalyzer.Classes.MetaComponents;
+using ImageAnalysis;
+using Kitware.VTK;
+using LibPlateAnalysis;
+using System;
+using System.Collections.Generic;
+using System.Drawing;
+using System.Windows.Forms;
 
 namespace HCSAnalyzer.Classes._3D
 {
@@ -503,11 +499,11 @@ namespace HCSAnalyzer.Classes._3D
         public void Create(Color Colour, cPoint3D Pos)
         {
             // default name
-            
+
 
             if (voi == null)
             {
-                  this.SetName("T_" + Threshold + " [" + GreyLevelImage.Name + "]");
+                this.SetName("T_" + Threshold + " [" + GreyLevelImage.Name + "]");
                 vtkImageData ImageData1 = new vtkImageData();
 
                 ImageData1.SetDimensions(GreyLevelImage.Width, GreyLevelImage.Height, GreyLevelImage.Depth);
@@ -526,9 +522,9 @@ namespace HCSAnalyzer.Classes._3D
                 voi.SetVOI(0, GreyLevelImage.Width - 1, 0, GreyLevelImage.Height - 1, 0, GreyLevelImage.Depth - 1);
             }
             else
-            { 
+            {
                 this.SetName("T_" + Threshold + " [ VTK VOI ]");
-             
+
             }
 
             vtkMarchingCubes ContourObject = vtkMarchingCubes.New();
@@ -775,7 +771,7 @@ namespace HCSAnalyzer.Classes._3D
                 //}
                 //PtsForAlpha.InsertPoint(i, Alpha, 0, 0);
 
-                
+
                 if ((ListMin != null) && (ListMax != null))
                 {
                     CenterPt.X = (CenterPt.X - ListMin[0]) / (ListMax[0] - ListMin[0]);
@@ -789,7 +785,7 @@ namespace HCSAnalyzer.Classes._3D
 
                         DistToCenter.Add(CenterPt.DistTo(new cPoint3D((ET[i][0][iDxPt] - ListMin[0]) / (ListMax[0] - ListMin[0]),
                             (ET[i][1][iDxPt] - ListMin[1]) / (ListMax[1] - ListMin[1]),
-                            (ET[i][2][iDxPt]  - ListMin[2]) / (ListMax[2] - ListMin[2]) )));
+                            (ET[i][2][iDxPt] - ListMin[2]) / (ListMax[2] - ListMin[2]))));
                     }
 
 
@@ -804,7 +800,7 @@ namespace HCSAnalyzer.Classes._3D
                     }
                 }
 
-                ListRadii[i] = DistToCenter.Mean()/20;
+                ListRadii[i] = DistToCenter.Mean() / 20;
                 //ListRadii[i] = 2;
 
                 // normalize the data if required
@@ -846,7 +842,7 @@ namespace HCSAnalyzer.Classes._3D
             functionSource.SetUResolution((int)SplineFactor * (int)points.GetNumberOfPoints());
             functionSource.Update();
 
-            int n = (int) functionSource.GetOutput().GetNumberOfPoints();
+            int n = (int)functionSource.GetOutput().GetNumberOfPoints();
 
             NumberOfPt = n;
 
@@ -1074,7 +1070,7 @@ namespace HCSAnalyzer.Classes._3D
 
             // Create the color map
             vtkLookupTable colorLookupTable = vtkLookupTable.New();
-         //   colorLookupTable.Build();
+            //   colorLookupTable.Build();
 
             // no LUT then build one
             if (LUT == null)
@@ -1107,14 +1103,14 @@ namespace HCSAnalyzer.Classes._3D
     /// </summary>
     public class c3DTexturedPlan : cGeometric3DObject
     {
-        public  List<byte[][]> LUT = null;
+        public List<byte[][]> LUT = null;
         // public vtkPoints points;
 
         vtkPlaneSource plane;
         vtkTextureMapToPlane texturePlane;
         vtkTexture texture;
         cImage AssociatedImage = null;
-        cPoint3D Center = new cPoint3D(0,0,0);
+        cPoint3D Center = new cPoint3D(0, 0, 0);
         vtkImageData imageData;
         vtkLookupTable colorLookupTable = null;
 
@@ -1124,7 +1120,7 @@ namespace HCSAnalyzer.Classes._3D
             this.LUT = new List<byte[][]>();
             this.LUT.Add(NewLUT);
 
-            double LUTSize =this.LUT[0][0].Length;
+            double LUTSize = this.LUT[0][0].Length;
 
             colorLookupTable = vtkLookupTable.New();
             //colorLookupTable.SetNumberOfTableValues((int)LUTSize - 1);
@@ -1143,7 +1139,7 @@ namespace HCSAnalyzer.Classes._3D
             colorLookupTable.Build();
 
             texture.SetLookupTable(colorLookupTable);
-            
+
             cImageDisplayProperties IDP = new cImageDisplayProperties();
             IDP.ListMin = new List<double>();
             IDP.ListMin.Add(ET[0][0]);
@@ -1153,7 +1149,7 @@ namespace HCSAnalyzer.Classes._3D
 
 
             imageData = vtkImageData.FromImage(AssociatedImage.GetBitmap(1, IDP, this.LUT));
-        }     
+        }
 
         public c3DTexturedPlan(cPoint3D Center, cImage AssociatedImage)
         {
@@ -1165,7 +1161,7 @@ namespace HCSAnalyzer.Classes._3D
             this.Center = Center;
 
 
-        
+
 
             return;
 
@@ -1185,7 +1181,7 @@ namespace HCSAnalyzer.Classes._3D
             //vtkJPEGReader jPEGReader = vtkJPEGReader.New();
             //jPEGReader.SetFileName("E:\\Capture.JPG");
 
-            
+
             // Create a plane
             plane = vtkPlaneSource.New();
             plane.SetOrigin(0.0, 0.0, 0.0);
@@ -1217,7 +1213,7 @@ namespace HCSAnalyzer.Classes._3D
                 IDP.ListMin.Add(0);
                 IDP.ListMin.Add(0);
                 IDP.ListMin.Add(0);
-                
+
                 Bitmap BMp = AssociatedImage.GetBitmap(1, IDP, this.LUT);
                 imageData = vtkImageData.FromImage(BMp);
             }
@@ -1230,7 +1226,7 @@ namespace HCSAnalyzer.Classes._3D
             texture = vtkTexture.New();
             texture.SetInputConnection(voi.GetOutputPort());
 
-              //   texture.MapColorScalarsThroughLookupTableOn();
+            //   texture.MapColorScalarsThroughLookupTableOn();
 
 
 
@@ -1243,8 +1239,8 @@ namespace HCSAnalyzer.Classes._3D
             //      //    LUT = MyLut.LUT_JET;
             //      //}
 
-         //   if(this.LUT!=null)
-         //   ChangeLUT(this.LUT[0]);
+            //   if(this.LUT!=null)
+            //   ChangeLUT(this.LUT[0]);
 
 
 
@@ -1266,131 +1262,131 @@ namespace HCSAnalyzer.Classes._3D
             base.vtk_Actor.GetProperty().LightingOff();
 
             return;
-      //      // Create a plane
-      //      plane = vtkPlaneSource.New();
+            //      // Create a plane
+            //      plane = vtkPlaneSource.New();
 
-      //  //    plane.SetOrigin(0.0, 0.0, 0.0);
-      //  //    plane.SetPoint1(AssociatedImage.Width, 0.0, 0.0);
-      //  //    plane.SetPoint2(0.0, AssociatedImage.Height, 0.0);
-      //     // plane.SetPoint1(AssociatedImage.Width , 0, 0);
-      //     // plane.SetPoint2(0, /*AssociatedImage.Height*/24, 0);
+            //  //    plane.SetOrigin(0.0, 0.0, 0.0);
+            //  //    plane.SetPoint1(AssociatedImage.Width, 0.0, 0.0);
+            //  //    plane.SetPoint2(0.0, AssociatedImage.Height, 0.0);
+            //     // plane.SetPoint1(AssociatedImage.Width , 0, 0);
+            //     // plane.SetPoint2(0, /*AssociatedImage.Height*/24, 0);
 
-      //      plane.SetCenter(Center.X, Center.Y, Center.Z);
-      //      plane.SetNormal(0.0, 0.0, 1.0);
+            //      plane.SetCenter(Center.X, Center.Y, Center.Z);
+            //      plane.SetNormal(0.0, 0.0, 1.0);
 
-      //      imageData = vtkImageData.New();
+            //      imageData = vtkImageData.New();
 
-      //      vtkUnsignedShortArray UshortArray = vtkUnsignedShortArray.New();
+            //      vtkUnsignedShortArray UshortArray = vtkUnsignedShortArray.New();
 
-      //      if (AssociatedImage.AssociatedImagePanel != null)
-      //      {
-      //          cImageDisplayProperties IDP = AssociatedImage.AssociatedImagePanel.LUTManager.GetImageDisplayProperties();
+            //      if (AssociatedImage.AssociatedImagePanel != null)
+            //      {
+            //          cImageDisplayProperties IDP = AssociatedImage.AssociatedImagePanel.LUTManager.GetImageDisplayProperties();
 
-      //          UserControlSingleLUT SingleLUT = (UserControlSingleLUT)AssociatedImage.AssociatedImagePanel.LUTManager.panelForLUTS.Controls[0];
-      //          this.LUT = AssociatedImage.AssociatedImagePanel.LUTManager.GetLUTS();
-      //          imageData = vtkImageData.FromImage(AssociatedImage.GetBitmap(1, IDP, this.LUT ));
-      //      }
-      //      else
-      //      {
-      //          Bitmap BMp = AssociatedImage.GetBitmap(1, null, this.LUT);
-      //          imageData = vtkImageData.FromImage(BMp);
-      //      }
+            //          UserControlSingleLUT SingleLUT = (UserControlSingleLUT)AssociatedImage.AssociatedImagePanel.LUTManager.panelForLUTS.Controls[0];
+            //          this.LUT = AssociatedImage.AssociatedImagePanel.LUTManager.GetLUTS();
+            //          imageData = vtkImageData.FromImage(AssociatedImage.GetBitmap(1, IDP, this.LUT ));
+            //      }
+            //      else
+            //      {
+            //          Bitmap BMp = AssociatedImage.GetBitmap(1, null, this.LUT);
+            //          imageData = vtkImageData.FromImage(BMp);
+            //      }
 
-      //      vtkExtractVOI voi = vtkExtractVOI.New();
-      //      voi.SetInput(imageData);
-      //      voi.SetVOI(0, AssociatedImage.Width, 0, AssociatedImage.Height, 0, 0);
+            //      vtkExtractVOI voi = vtkExtractVOI.New();
+            //      voi.SetInput(imageData);
+            //      voi.SetVOI(0, AssociatedImage.Width, 0, AssociatedImage.Height, 0, 0);
 
-      //      texture = vtkTexture.New();
-      //      texture.SetInputConnection(voi.GetOutputPort());
+            //      texture = vtkTexture.New();
+            //      texture.SetInputConnection(voi.GetOutputPort());
 
-      // //     texture.MapColorScalarsThroughLookupTableOn();
-
-
-            
-      //   //   colorLookupTable.Build();
-
-      //      //// no LUT then build one
-      //      //if (LUT == null)
-      //      //{
-      //      //    cLUT MyLut = new cLUT();
-      //      //    LUT = MyLut.LUT_JET;
-      //      //}
-      //   //   ChangeLUT(this.LUT[0]);
+            // //     texture.MapColorScalarsThroughLookupTableOn();
 
 
-      //      //double LUTSize = this.LUT[0][0].Length;
 
-      //      //colorLookupTable = vtkLookupTable.New();
-      //      //colorLookupTable.SetNumberOfTableValues((int)LUTSize - 1);
+            //   //   colorLookupTable.Build();
 
-      //      //for (int i = 0; i < (int)LUTSize - 1; i++)
-      //      //    colorLookupTable.SetTableValue((int)LUTSize - 1 - i - 1, this.LUT[0][0][i] / LUTSize, LUT[0][1][i] / LUTSize, LUT[0][2][i] / LUTSize, 1);
-
-      //      //colorLookupTable.Build();
-
-      //    //  texture.SetLookupTable(colorLookupTable);
-      //    //  imageData = vtkImageData.FromImage(AssociatedImage.GetBitmap(1, null, this.LUT));
+            //      //// no LUT then build one
+            //      //if (LUT == null)
+            //      //{
+            //      //    cLUT MyLut = new cLUT();
+            //      //    LUT = MyLut.LUT_JET;
+            //      //}
+            //   //   ChangeLUT(this.LUT[0]);
 
 
+            //      //double LUTSize = this.LUT[0][0].Length;
+
+            //      //colorLookupTable = vtkLookupTable.New();
+            //      //colorLookupTable.SetNumberOfTableValues((int)LUTSize - 1);
+
+            //      //for (int i = 0; i < (int)LUTSize - 1; i++)
+            //      //    colorLookupTable.SetTableValue((int)LUTSize - 1 - i - 1, this.LUT[0][0][i] / LUTSize, LUT[0][1][i] / LUTSize, LUT[0][2][i] / LUTSize, 1);
+
+            //      //colorLookupTable.Build();
+
+            //    //  texture.SetLookupTable(colorLookupTable);
+            //    //  imageData = vtkImageData.FromImage(AssociatedImage.GetBitmap(1, null, this.LUT));
 
 
 
 
 
 
-      //      texturePlane = vtkTextureMapToPlane.New();
-      //      texturePlane.SetInputConnection(plane.GetOutputPort());
 
 
-      //      base.vtk_PolyDataMapper = vtkPolyDataMapper.New();
-      //      base.vtk_PolyDataMapper.SetInputConnection(texturePlane.GetOutputPort());
-
-      //      base.vtk_Actor = vtkActor.New();
-      //      base.vtk_Actor.SetMapper(base.vtk_PolyDataMapper);
-      //      base.vtk_Actor.SetTexture(texture);
-
-      //      base.SourcePolyData = plane.GetOutput();
-      //      //this.Colour = Color.FromArgb(255, 255, 255);
-
-      //      //base.vtk_Actor.GetProperty().BackfaceCullingOff();
-      //  //    base.vtk_Actor.GetProperty().LightingOff();
-      //   //   CreateVTK3DObject(0);
-
-      ////base.vtk_Actor.GetProperty().BackfaceCullingOff();
-      // //    base.vtk_Actor.GetProperty().LightingOff();
-      //      return;
+            //      texturePlane = vtkTextureMapToPlane.New();
+            //      texturePlane.SetInputConnection(plane.GetOutputPort());
 
 
-         
+            //      base.vtk_PolyDataMapper = vtkPolyDataMapper.New();
+            //      base.vtk_PolyDataMapper.SetInputConnection(texturePlane.GetOutputPort());
 
-      //      texture.InterpolateOn();
+            //      base.vtk_Actor = vtkActor.New();
+            //      base.vtk_Actor.SetMapper(base.vtk_PolyDataMapper);
+            //      base.vtk_Actor.SetTexture(texture);
 
-      //   //   vtkTextureMapToPlane texturePlane = vtkTextureMapToPlane.New();
-      //      texturePlane.SetInputConnection(plane.GetOutputPort());
+            //      base.SourcePolyData = plane.GetOutput();
+            //      //this.Colour = Color.FromArgb(255, 255, 255);
 
-      //      SourcePolyData = vtkPolyData.New();
-      //      SourcePolyData = plane.GetOutput();
+            //      //base.vtk_Actor.GetProperty().BackfaceCullingOff();
+            //  //    base.vtk_Actor.GetProperty().LightingOff();
+            //   //   CreateVTK3DObject(0);
 
-      //      vtk_PolyDataMapper = vtkPolyDataMapper.New();
-      //      vtk_PolyDataMapper.SetInputConnection(texturePlane.GetOutputPort());
+            ////base.vtk_Actor.GetProperty().BackfaceCullingOff();
+            // //    base.vtk_Actor.GetProperty().LightingOff();
+            //      return;
 
-      //    //  CreateVTK3DObject(0);
 
-      //      base.vtk_PolyDataMapper.SetInputConnection(texturePlane.GetOutputPort());
 
-      //      base.vtk_Actor.SetMapper(base.vtk_PolyDataMapper);
-      //      base.vtk_Actor.SetTexture(texture);
-      //      //base.vtk_Actor.SetScale(AssociatedImage.Width, AssociatedImage.Height, 0);
-      //      //base.vtk_Actor.GetProperty().SetOpacity(0.9);
 
-      //      //base.vtk_Actor.GetProperty().SetAmbientColor(255, 255, 255);
-      //      //base.vtk_Actor.GetProperty().SetDiffuse(1);
-      //      //base.vtk_Actor.GetProperty().SetAmbient(1);
-      //      //base.vtk_Actor.GetProperty().SetSpecular(1);
-      //      //base.vtk_Actor.GetProperty().SetSpecularColor(255, 255, 255);
-      //      //base.vtk_Actor.GetProperty().SetLighting(true);
+            //      texture.InterpolateOn();
 
-      //    //  base.vtk_Actor.GetProperty().SetLighting(true);
+            //   //   vtkTextureMapToPlane texturePlane = vtkTextureMapToPlane.New();
+            //      texturePlane.SetInputConnection(plane.GetOutputPort());
+
+            //      SourcePolyData = vtkPolyData.New();
+            //      SourcePolyData = plane.GetOutput();
+
+            //      vtk_PolyDataMapper = vtkPolyDataMapper.New();
+            //      vtk_PolyDataMapper.SetInputConnection(texturePlane.GetOutputPort());
+
+            //    //  CreateVTK3DObject(0);
+
+            //      base.vtk_PolyDataMapper.SetInputConnection(texturePlane.GetOutputPort());
+
+            //      base.vtk_Actor.SetMapper(base.vtk_PolyDataMapper);
+            //      base.vtk_Actor.SetTexture(texture);
+            //      //base.vtk_Actor.SetScale(AssociatedImage.Width, AssociatedImage.Height, 0);
+            //      //base.vtk_Actor.GetProperty().SetOpacity(0.9);
+
+            //      //base.vtk_Actor.GetProperty().SetAmbientColor(255, 255, 255);
+            //      //base.vtk_Actor.GetProperty().SetDiffuse(1);
+            //      //base.vtk_Actor.GetProperty().SetAmbient(1);
+            //      //base.vtk_Actor.GetProperty().SetSpecular(1);
+            //      //base.vtk_Actor.GetProperty().SetSpecularColor(255, 255, 255);
+            //      //base.vtk_Actor.GetProperty().SetLighting(true);
+
+            //    //  base.vtk_Actor.GetProperty().SetLighting(true);
         }
     }
 

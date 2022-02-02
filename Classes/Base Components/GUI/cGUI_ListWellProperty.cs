@@ -1,12 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using HCSAnalyzer.Classes.Base_Classes.DataStructures;
-using HCSAnalyzer.Classes.Base_Classes.Viewers;
-using System.Windows.Forms;
-using HCSAnalyzer.Forms.FormsForGraphsDisplay;
+﻿using HCSAnalyzer.Classes.Base_Classes.Viewers;
 using HCSAnalyzer.Classes.General_Types;
+using HCSAnalyzer.Forms.FormsForGraphsDisplay;
+using System.Collections.Generic;
+using System.Windows.Forms;
 
 namespace HCSAnalyzer.Classes.Base_Classes.GUI
 {
@@ -66,15 +62,15 @@ namespace HCSAnalyzer.Classes.Base_Classes.GUI
                     }
                 }
                 //else
-                    WellPropertySelection.Select(0);
+                WellPropertySelection.Select(0);
             }
 
 
-        ENDLOOP: ;
+        ENDLOOP:;
             //WellPropertySelection.GetListSelectedPlates();
             WellPropertySelection.Height = WindowToDisplay.Height - 70;
             WellPropertySelection.Width = WindowToDisplay.Width - 30;
-           // PlateSelectionPanel.SelectAll();
+            // PlateSelectionPanel.SelectAll();
             //ClassSelectionPanel.Select(0);
             //ClassSelectionPanel.Select(1);
             WellPropertySelection.Location = new System.Drawing.Point(5, 5);

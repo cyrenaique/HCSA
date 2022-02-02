@@ -1,25 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using HCSAnalyzer.Classes.Base_Classes.DataStructures;
-using HCSAnalyzer.Forms.FormsForGraphsDisplay;
-using System.Windows.Forms;
-using System.Data;
-using LibPlateAnalysis;
-using HCSAnalyzer.Classes.Base_Classes.DataProcessing;
-using HCSAnalyzer.Classes.MetaComponents;
-using HCSAnalyzer.Classes.Base_Classes.DataAnalysis;
-using HCSAnalyzer.Classes.DataAnalysis;
-using HCSAnalyzer.Classes.Base_Classes.DataManip;
-using HCSAnalyzer.Classes.Base_Classes.Viewers._2D;
+﻿using HCSAnalyzer.Classes.Base_Classes.DataStructures;
+using System;
 using System.IO;
+using System.Text;
+using System.Windows.Forms;
 //using Microsoft.Office.Interop.Excel;
-using ImageAnalysis;
 using weka.core;
 using weka.core.converters;
-using System.Drawing;
-using System.Windows.Forms.DataVisualization.Charting;
 
 namespace HCSAnalyzer.Classes.Base_Classes.Viewers
 {
@@ -160,7 +146,7 @@ namespace HCSAnalyzer.Classes.Base_Classes.Viewers
             }
             else if (this.FileType == eFileType.XLS)
             {
-              //  ExportToExcel(this.Input, FilePath, PathForImages);
+                //  ExportToExcel(this.Input, FilePath, PathForImages);
 
 
                 //Microsoft.Office.Interop.Excel.Application xlApp = new Microsoft.Office.Interop.Excel.Application();
@@ -236,136 +222,136 @@ namespace HCSAnalyzer.Classes.Base_Classes.Viewers
 
         public static void ExportToExcel(cExtendedTable Tbl, string ExcelFilePath, string PathForImages)
         {
-        //    int StartX = 1;
-        //    int StartY = 1;
+            //    int StartX = 1;
+            //    int StartY = 1;
 
-        //    try
-        //    {
-        //        //if (Tbl == null || Tbl.Columns.Count == 0)
-        //        //    throw new Exception("ExportToExcel: Null or empty input table!\n");
+            //    try
+            //    {
+            //        //if (Tbl == null || Tbl.Columns.Count == 0)
+            //        //    throw new Exception("ExportToExcel: Null or empty input table!\n");
 
-        //        // load excel, and create a new workbook
-        //        Microsoft.Office.Interop.Excel.Application excelApp = new Microsoft.Office.Interop.Excel.Application();
-        //        excelApp.Workbooks.Add();
+            //        // load excel, and create a new workbook
+            //        Microsoft.Office.Interop.Excel.Application excelApp = new Microsoft.Office.Interop.Excel.Application();
+            //        excelApp.Workbooks.Add();
 
-        //        // single worksheet
-        //        Microsoft.Office.Interop.Excel._Worksheet workSheet = excelApp.ActiveSheet;
+            //        // single worksheet
+            //        Microsoft.Office.Interop.Excel._Worksheet workSheet = excelApp.ActiveSheet;
 
-        //        string ValidName = Tbl.Name.Replace("\\", "");
-        //        ValidName = ValidName.Replace("/", "");
-        //        ValidName = ValidName.Replace("?", "");
-        //        ValidName = ValidName.Replace("*", "");
-        //        ValidName = ValidName.Replace("[", "");
-        //        ValidName = ValidName.Replace("]", "");
+            //        string ValidName = Tbl.Name.Replace("\\", "");
+            //        ValidName = ValidName.Replace("/", "");
+            //        ValidName = ValidName.Replace("?", "");
+            //        ValidName = ValidName.Replace("*", "");
+            //        ValidName = ValidName.Replace("[", "");
+            //        ValidName = ValidName.Replace("]", "");
 
-        //        if (ValidName.Length > 31)
-        //        {
-        //            ValidName = ValidName.Remove(31);
-        //        }
+            //        if (ValidName.Length > 31)
+            //        {
+            //            ValidName = ValidName.Remove(31);
+            //        }
 
-        //        workSheet.Name = ValidName;
+            //        workSheet.Name = ValidName;
 
-        //        // column headings
-        //        for (int i = 0; i < Tbl.Count; i++)
-        //        {
-        //            workSheet.Cells[StartX, (i + 1 + StartY)] = Tbl[i].Name;
-        //        }
+            //        // column headings
+            //        for (int i = 0; i < Tbl.Count; i++)
+            //        {
+            //            workSheet.Cells[StartX, (i + 1 + StartY)] = Tbl[i].Name;
+            //        }
 
-        //        if (Tbl.ListRowNames != null)
-        //        {
-        //            for (int i = 0; i < Tbl.ListRowNames.Count; i++)
-        //            {
-        //                if (Tbl.ListRowNames[i] != null)
-        //                    workSheet.Cells[(i + 1 + StartX), StartY] = Tbl.ListRowNames[i];
-        //            }
-        //        }
+            //        if (Tbl.ListRowNames != null)
+            //        {
+            //            for (int i = 0; i < Tbl.ListRowNames.Count; i++)
+            //            {
+            //                if (Tbl.ListRowNames[i] != null)
+            //                    workSheet.Cells[(i + 1 + StartX), StartY] = Tbl.ListRowNames[i];
+            //            }
+            //        }
 
-        //        for (int j = 0; j < Tbl.Count; j++)
-        //            for (int i = 0; i < Tbl[j].Count; i++)
-        //            {
-        //                workSheet.Cells[(i + 1 + StartX), (j + 1 + StartY)] = Tbl[j][i];
-        //                if ((i<Tbl[j].ListTags.Count)&&(Tbl[j].ListTags[i] != null))
-        //                {
-        //                    if (Tbl[j].ListTags[i].GetType() == typeof(cImage))
-        //                    {
-        //                        //workSheet.Cells[(i + 2), (j + 2)].AddComment(" ");
-        //                        cImage TmpImage = (cImage)Tbl[j].ListTags[i];
-        //                        workSheet.Cells[(i + 1 + StartX), (j + 1 + StartY)].Comment.Shape.Fill.UserPicture(TmpImage.GetBitmap(1, null, null));
-        //                    }
-        //                    if (Tbl[j].ListTags[i].GetType() == typeof(cWell))
-        //                    {
-        //                        cWell TmpWell = (cWell)Tbl[j].ListTags[i];
-        //                        //int r = (i + 1 + StartX);
-        //                      //  int c = (j + 1 + StartY);
+            //        for (int j = 0; j < Tbl.Count; j++)
+            //            for (int i = 0; i < Tbl[j].Count; i++)
+            //            {
+            //                workSheet.Cells[(i + 1 + StartX), (j + 1 + StartY)] = Tbl[j][i];
+            //                if ((i<Tbl[j].ListTags.Count)&&(Tbl[j].ListTags[i] != null))
+            //                {
+            //                    if (Tbl[j].ListTags[i].GetType() == typeof(cImage))
+            //                    {
+            //                        //workSheet.Cells[(i + 2), (j + 2)].AddComment(" ");
+            //                        cImage TmpImage = (cImage)Tbl[j].ListTags[i];
+            //                        workSheet.Cells[(i + 1 + StartX), (j + 1 + StartY)].Comment.Shape.Fill.UserPicture(TmpImage.GetBitmap(1, null, null));
+            //                    }
+            //                    if (Tbl[j].ListTags[i].GetType() == typeof(cWell))
+            //                    {
+            //                        cWell TmpWell = (cWell)Tbl[j].ListTags[i];
+            //                        //int r = (i + 1 + StartX);
+            //                      //  int c = (j + 1 + StartY);
 
-        //                       // workSheet.Cells[r, c].AddComment(TmpWell.GetShortInfo());
-        //                        workSheet.Cells[(i + 1 + StartX), (j + 1 + StartY)].Interior.Color = System.Drawing.ColorTranslator.ToOle(TmpWell.GetClassColor());
-
-
-        //                        cViewerStackedHistogram VSH = TmpWell.GetViewerStackedHistogram(cGlobalInfo.CurrentScreening.GetActiveDescriptors()[0]);
-                                
-        //                        //   VSH.Chart.SaveImage
-        //                        VSH.Chart.Width = 300;
-        //                        VSH.Chart.Height = 200;
-
-        //                        //MemoryStream ms = new MemoryStream();
-        //                        //VSH.Chart.SaveImage(ms, ChartImageFormat.Bmp);
-        //                        //Bitmap bm = new Bitmap(ms);
-
-        //                        string ImagePath = @"c:\temp\DIR\"+i+"_"+j+".jpg";
-        //                        VSH.Chart.SaveImage(ImagePath, ChartImageFormat.Jpeg);
-                                
-                                
-        //                        workSheet.Cells[(i + 1 + StartX), (j + 1 + StartY)].Comment.Shape.Fill.UserPicture(ImagePath);
+            //                       // workSheet.Cells[r, c].AddComment(TmpWell.GetShortInfo());
+            //                        workSheet.Cells[(i + 1 + StartX), (j + 1 + StartY)].Interior.Color = System.Drawing.ColorTranslator.ToOle(TmpWell.GetClassColor());
 
 
+            //                        cViewerStackedHistogram VSH = TmpWell.GetViewerStackedHistogram(cGlobalInfo.CurrentScreening.GetActiveDescriptors()[0]);
+
+            //                        //   VSH.Chart.SaveImage
+            //                        VSH.Chart.Width = 300;
+            //                        VSH.Chart.Height = 200;
+
+            //                        //MemoryStream ms = new MemoryStream();
+            //                        //VSH.Chart.SaveImage(ms, ChartImageFormat.Bmp);
+            //                        //Bitmap bm = new Bitmap(ms);
+
+            //                        string ImagePath = @"c:\temp\DIR\"+i+"_"+j+".jpg";
+            //                        VSH.Chart.SaveImage(ImagePath, ChartImageFormat.Jpeg);
 
 
-        //                        //Clipboard.SetImage(bm);
-
-        //                        //   cImage TmpImage = (cImage)TmpWell.DisplayInfoWindow(0);
-
-        //                        // Microsoft.Office.Interop.Excel.Range TmpRange = workSheet.Range("A2");
-
-        //                        //TmpRange.Style.Interior.Color = System.Drawing.ColorTranslator.ToOle(TmpWell.GetClassColor());
-        //                        //(Microsoft.Office.Interop.Excel.Range)(workSheet.Cells[(i + 1 + StartX), (j + 1 + StartY)]).Style.Name = "Normal";
-        //                        //Microsoft.Office.Interop.Excel._Worksheet("Sheet1").Range("A1").Interior.ColorIndex = 8;
-
-        //                        // Microsoft.Office.Interop.Excel.Range rng1 = workSheet.get_Range(workSheet.Cells[r, c], Type.Missing);
+            //                        workSheet.Cells[(i + 1 + StartX), (j + 1 + StartY)].Comment.Shape.Fill.UserPicture(ImagePath);
 
 
-        //                        //workSheet.Cells[(i + 2), (j + 2)].Comment.Shape.Fill.UserPicture(imagenames[j]);
-        //                    }
-
-        //                }
 
 
-        //            }
+            //                        //Clipboard.SetImage(bm);
 
-        //        // check fielpath
-        //        if (ExcelFilePath != null && ExcelFilePath != "")
-        //        {
-        //            try
-        //            {
-        //                workSheet.SaveAs(ExcelFilePath);
-        //                excelApp.Quit();
-        //                MessageBox.Show("Excel file saved!");
-        //            }
-        //            catch (Exception ex)
-        //            {
-        //                throw new Exception("ExportToExcel: Excel file could not be saved! Check filepath.\n"
-        //                    + ex.Message);
-        //            }
-        //        }
-        //        else    // no filepath is given
-        //        {
-        //            excelApp.Visible = true;
-        //        }
-        //    }
-        //    catch (Exception ex)
-        //    {
-        //        throw new Exception("ExportToExcel: \n" + ex.Message);
-        //    }
+            //                        //   cImage TmpImage = (cImage)TmpWell.DisplayInfoWindow(0);
+
+            //                        // Microsoft.Office.Interop.Excel.Range TmpRange = workSheet.Range("A2");
+
+            //                        //TmpRange.Style.Interior.Color = System.Drawing.ColorTranslator.ToOle(TmpWell.GetClassColor());
+            //                        //(Microsoft.Office.Interop.Excel.Range)(workSheet.Cells[(i + 1 + StartX), (j + 1 + StartY)]).Style.Name = "Normal";
+            //                        //Microsoft.Office.Interop.Excel._Worksheet("Sheet1").Range("A1").Interior.ColorIndex = 8;
+
+            //                        // Microsoft.Office.Interop.Excel.Range rng1 = workSheet.get_Range(workSheet.Cells[r, c], Type.Missing);
+
+
+            //                        //workSheet.Cells[(i + 2), (j + 2)].Comment.Shape.Fill.UserPicture(imagenames[j]);
+            //                    }
+
+            //                }
+
+
+            //            }
+
+            //        // check fielpath
+            //        if (ExcelFilePath != null && ExcelFilePath != "")
+            //        {
+            //            try
+            //            {
+            //                workSheet.SaveAs(ExcelFilePath);
+            //                excelApp.Quit();
+            //                MessageBox.Show("Excel file saved!");
+            //            }
+            //            catch (Exception ex)
+            //            {
+            //                throw new Exception("ExportToExcel: Excel file could not be saved! Check filepath.\n"
+            //                    + ex.Message);
+            //            }
+            //        }
+            //        else    // no filepath is given
+            //        {
+            //            excelApp.Visible = true;
+            //        }
+            //    }
+            //    catch (Exception ex)
+            //    {
+            //        throw new Exception("ExportToExcel: \n" + ex.Message);
+            //    }
         }
 
 

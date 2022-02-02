@@ -1,10 +1,9 @@
-﻿using System;
+﻿using HCSAnalyzer.Classes;
+using System;
 using System.Collections.Generic;
 //using System.Linq;
-using System.Text;
 using System.Data;
 using System.Drawing;
-using HCSAnalyzer.Classes;
 
 
 namespace HCSAnalyzer.Forms.FormsForGraphsDisplay
@@ -25,7 +24,7 @@ namespace HCSAnalyzer.Forms.FormsForGraphsDisplay
             {
                 this.TableValues.Columns.Add(new DataColumn(Name, typeof(string)));
             }
-//this.TableValues.Columns.Add(new DataColumn("", typeof(string)));
+            //this.TableValues.Columns.Add(new DataColumn("", typeof(string)));
             //double[] Mins = new double[IsDisplayColorMap.Count];
             //double[] Maxs = new double[IsDisplayColorMap.Count];
 
@@ -36,7 +35,7 @@ namespace HCSAnalyzer.Forms.FormsForGraphsDisplay
             //}
 
 
-            
+
             for (int Row = 0; Row < Values.Count; Row++)
             {
                 this.TableValues.Rows.Add();
@@ -72,7 +71,7 @@ namespace HCSAnalyzer.Forms.FormsForGraphsDisplay
                     }
                 }
             }
-            
+
         }
 
         private void InitializeComponent()
@@ -88,6 +87,6 @@ namespace HCSAnalyzer.Forms.FormsForGraphsDisplay
 
         }
 
-     
+
     }
 }

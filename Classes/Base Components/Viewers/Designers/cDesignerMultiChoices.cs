@@ -1,16 +1,12 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using HCSAnalyzer.Classes.Base_Classes.DataStructures;
-using System.Windows.Forms;
+﻿using HCSAnalyzer.Classes.Base_Classes.DataStructures;
 using HCSAnalyzer.Classes.Base_Components.Viewers.Designers;
+using System.Collections.Generic;
 
 namespace HCSAnalyzer.Classes.Base_Classes.Viewers
 {
     class cDesignerMultiChoices : cDesignerParent
     {
-        
+
 
         public cDesignerMultiChoices()
         {
@@ -47,10 +43,10 @@ namespace HCSAnalyzer.Classes.Base_Classes.Viewers
             //        base.FeedBackMessage.IsSucceed = false;
             //        base.FeedBackMessage.Message = "Control null";
             //        return base.FeedBackMessage;
-                
+
             //    }
             //    TabPage TP = new TabPage();
-                
+
             //    TP.Text = item.Title;
             //  //  TP.AutoScroll = true;
             //  //  TP.Width = item.Width;
@@ -69,7 +65,7 @@ namespace HCSAnalyzer.Classes.Base_Classes.Viewers
             //    item.Height = TP.Height;
             //    item.Controls[0].Width = item.Width;
             //    item.Controls[0].Height = item.Height;
-                
+
             //    TP.Controls.Add(item);
             //    TC.TabPages.Add(TP);
             //}

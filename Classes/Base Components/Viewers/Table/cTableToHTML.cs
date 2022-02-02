@@ -1,13 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
+﻿using HCSAnalyzer.Classes.Base_Classes.DataStructures;
+using HCSAnalyzer.Classes.General_Types;
+using System;
+using System.Drawing;
+using System.IO;
 using System.Text;
 using System.Windows.Forms;
-using HCSAnalyzer.Classes.Base_Classes.DataStructures;
-using System.IO;
-using System.Drawing;
 using System.Windows.Forms.DataVisualization.Charting;
-using HCSAnalyzer.Classes.General_Types;
 
 namespace HCSAnalyzer.Classes.Base_Classes.Viewers
 {

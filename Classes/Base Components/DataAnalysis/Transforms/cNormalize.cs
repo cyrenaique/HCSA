@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using HCSAnalyzer.Classes.Base_Classes.DataStructures;
-using HCSAnalyzer.Classes.Base_Classes.DataProcessing;
+﻿using HCSAnalyzer.Classes.Base_Classes.DataStructures;
 
 namespace HCSAnalyzer.Classes.Base_Classes.DataAnalysis
 {
@@ -48,13 +43,13 @@ namespace HCSAnalyzer.Classes.Base_Classes.DataAnalysis
             return this.Output;
         }
 
-     
+
         private cFeedBackMessage Process()
         {
             this.Output = new cExtendedTable(this.Input);
 
             //int IDxCOl = 0;
-           // foreach (cExtendedList item in this.Output)
+            // foreach (cExtendedList item in this.Output)
             for (int IDxCOl = 0; IDxCOl < this.Output.Count; IDxCOl++)
             {
                 this.Output[IDxCOl] = Input[IDxCOl].Normalize(this.NormalizationType);
@@ -62,8 +57,8 @@ namespace HCSAnalyzer.Classes.Base_Classes.DataAnalysis
 
             switch (this.NormalizationType)
             {
-                case eNormalizationType.STANDARDIZE :
-                    this.Output.Name = "Standardize(" + this.Input.Name + ")";        
+                case eNormalizationType.STANDARDIZE:
+                    this.Output.Name = "Standardize(" + this.Input.Name + ")";
                     break;
                 case eNormalizationType.MIN_MAX:
                     this.Output.Name = "MinMax(" + this.Input.Name + ")";

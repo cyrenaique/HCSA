@@ -1,12 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
+﻿using HCSAnalyzer.Classes;
+using System;
 using System.Windows.Forms;
-using HCSAnalyzer.Classes;
 
 namespace HCSAnalyzer.Forms.IO
 {
@@ -35,9 +29,9 @@ namespace HCSAnalyzer.Forms.IO
                 {
                     if (cGlobalInfo.CurrentScreening.ListDescriptors[i].GetName().ToLower().Contains(FilterName))
                     {
-                        if((cGlobalInfo.CurrentScreening.ListDescriptors[i].IsConnectedToDatabase && (this.checkBoxSingle.Checked))||
+                        if ((cGlobalInfo.CurrentScreening.ListDescriptors[i].IsConnectedToDatabase && (this.checkBoxSingle.Checked)) ||
                            (!cGlobalInfo.CurrentScreening.ListDescriptors[i].IsConnectedToDatabase && (this.checkBoxAverage.Checked)))
-                        cGlobalInfo.CurrentScreening.ListDescriptors.SetItemState(i, ActionState1);
+                            cGlobalInfo.CurrentScreening.ListDescriptors.SetItemState(i, ActionState1);
                     }
                 }
             }
@@ -49,7 +43,7 @@ namespace HCSAnalyzer.Forms.IO
                     {
                         if ((cGlobalInfo.CurrentScreening.ListDescriptors[i].IsConnectedToDatabase && (this.checkBoxSingle.Checked)) ||
                            (!cGlobalInfo.CurrentScreening.ListDescriptors[i].IsConnectedToDatabase && (this.checkBoxAverage.Checked)))
-                        cGlobalInfo.CurrentScreening.ListDescriptors.SetItemState(i, ActionState1);
+                            cGlobalInfo.CurrentScreening.ListDescriptors.SetItemState(i, ActionState1);
                     }
                 }
 

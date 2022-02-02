@@ -1,10 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
 using System.Windows.Forms;
 
 namespace HCSAnalyzer.Cell_by_Cell_and_DB
@@ -16,8 +11,8 @@ namespace HCSAnalyzer.Cell_by_Cell_and_DB
             InitializeComponent();
             foreach (var item in ListDescNames)
             {
-                    this.comboBoxDescriptor1.Items.Add(item);
-                    this.comboBoxDescriptor2.Items.Add(item);
+                this.comboBoxDescriptor1.Items.Add(item);
+                this.comboBoxDescriptor2.Items.Add(item);
             }
 
             //if (this.comboBoxDescriptor1.Items.Count == 0) return;
@@ -51,8 +46,8 @@ namespace HCSAnalyzer.Cell_by_Cell_and_DB
             else
             {
                 if (radioButtonSQRT.Checked)
-                    this.textBoxNewDescName.Text = "Sqrt("+ comboBoxDescriptor1.Text + ")";
-                else if(radioButtonLog.Checked)
+                    this.textBoxNewDescName.Text = "Sqrt(" + comboBoxDescriptor1.Text + ")";
+                else if (radioButtonLog.Checked)
                     this.textBoxNewDescName.Text = "Log(" + comboBoxDescriptor1.Text + ")";
                 else if (radioButtonABS.Checked)
                     this.textBoxNewDescName.Text = "Abs(" + comboBoxDescriptor1.Text + ")";

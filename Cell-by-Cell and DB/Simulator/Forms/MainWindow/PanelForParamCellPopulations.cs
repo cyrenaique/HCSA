@@ -1,25 +1,20 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Drawing;
-using System.Data;
-using System.Linq;
-using System.Text;
-using System.Windows.Forms;
+﻿using HCSAnalyzer.Classes._3D;
 using HCSAnalyzer.Simulator.Classes;
-using HCSAnalyzer.Classes._3D;
-using HCSAnalyzer.Simulator.Forms.NewCellType;
-using System.Runtime.Serialization;
+using System;
+using System.Collections.Generic;
+using System.Drawing;
 using System.IO;
+using System.Runtime.Serialization;
 using System.Runtime.Serialization.Formatters.Binary;
+using System.Windows.Forms;
 
 namespace HCSAnalyzer.Simulator.Forms.Panels
 {
     public partial class PanelForParamCellPopulations : UserControl
     {
-       // cWorld NewWorld;
-       public  cPoint3D WorldDims;
-       FormForSimuGenerator Parent;
+        // cWorld NewWorld;
+        public cPoint3D WorldDims;
+        FormForSimuGenerator Parent;
 
         public PanelForParamCellPopulations(cPoint3D WorldDims, FormForSimuGenerator Parent)
         {
@@ -39,7 +34,7 @@ namespace HCSAnalyzer.Simulator.Forms.Panels
             cListAgents SelectedCellPop = (cListAgents)listViewForCellPopulations.FocusedItem.Tag;
 
             FormForInfoSingleCellPopInit_Simulator WindowForSingleCellPop =
-            new FormForInfoSingleCellPopInit_Simulator( this.WorldDims,SelectedCellPop.AssociatedVariables, Parent, SelectedCellPop);
+            new FormForInfoSingleCellPopInit_Simulator(this.WorldDims, SelectedCellPop.AssociatedVariables, Parent, SelectedCellPop);
 
             WindowForSingleCellPop.richTextBoxDescription.Text = SelectedCellPop.Information;
 
@@ -129,7 +124,7 @@ namespace HCSAnalyzer.Simulator.Forms.Panels
             Stream stream = new FileStream(CurrSavefileDialog.FileName,
                                      FileMode.Create,
                                      FileAccess.Write, FileShare.None);
-            formatter.Serialize(stream,  (cListAgents)listViewForCellPopulations.FocusedItem.Tag);
+            formatter.Serialize(stream, (cListAgents)listViewForCellPopulations.FocusedItem.Tag);
             stream.Close();
         }
 
@@ -147,7 +142,7 @@ namespace HCSAnalyzer.Simulator.Forms.Panels
             cListVariables AssociatedListVar = new cListVariables(ListVar);
 
             FormForInfoSingleCellPopInit_Simulator WindowForSingleCellPop =
-                new FormForInfoSingleCellPopInit_Simulator(WorldDims, AssociatedListVar, Parent,null);
+                new FormForInfoSingleCellPopInit_Simulator(WorldDims, AssociatedListVar, Parent, null);
 
             if (WindowForSingleCellPop.ShowDialog() == System.Windows.Forms.DialogResult.OK)
             {

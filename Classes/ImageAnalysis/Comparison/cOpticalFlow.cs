@@ -1,18 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using HCSAnalyzer.Forms.FormsForImages;
-using System.Drawing;
-using ImageAnalysis;
-using Emgu.CV;
-using Emgu.CV.CvEnum;
-using System.Runtime.InteropServices;
-using Emgu.CV.Structure;
-using HCSAnalyzer.Classes;
-using HCSAnalyzer.Classes.General_Types;
-using HCSAnalyzer.Classes.Base_Classes;
-using ImageAnalysisFiltering;
+﻿using ImageAnalysisFiltering;
 
 namespace HCSAnalyzer.Classes.ImageAnalysis.Comparison
 {
@@ -137,9 +123,9 @@ namespace HCSAnalyzer.Classes.ImageAnalysis.Comparison
 //                Image<Gray, float> ProcessedImage = new Image<Gray, float>(inputImage.Width, inputImage.Height);
 //                ProcessedImage = inputImage.SmoothGaussian(KernelSize);
 
-                
-                
-               
+
+
+
 
 //                this.Output.SingleChannelImage[IdxChannel].SetNewDataFromOpenCV(ProcessedImage);
 

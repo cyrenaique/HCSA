@@ -1,15 +1,12 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using LibPlateAnalysis;
-using ImageAnalysis;
-using System.IO;
-using HCSAnalyzer.Classes.Base_Classes.Viewers;
-using HCSAnalyzer.Classes.Base_Classes.Data;
+﻿using HCSAnalyzer.Classes.Base_Classes.Data;
 using HCSAnalyzer.Classes.Base_Classes.DataStructures;
-using System.Data.OleDb;
+using LibPlateAnalysis;
+using System;
+using System.Collections.Generic;
 using System.Data;
+using System.Data.OleDb;
+using System.IO;
+using System.Linq;
 using System.Xml;
 
 namespace HCSAnalyzer.Classes.General_Types
@@ -232,7 +229,7 @@ namespace HCSAnalyzer.Classes.General_Types
                         }
                     }
                 }
-            _END: ;
+            _END:;
                 return ListImageMetaInfo;
             }
             #endregion
@@ -339,7 +336,7 @@ namespace HCSAnalyzer.Classes.General_Types
                     for (int Channel = 1; Channel <= NumberOfChannels; Channel++)
                     {
                         string Name = "*_" + Pos + "_s" + (this.Field + 1) + "_w" + Channel + "*.tif";
-                        if(cGlobalInfo.OptionsWindow.numericUpDownImageAccessNumberOfFields.Value==1)
+                        if (cGlobalInfo.OptionsWindow.numericUpDownImageAccessNumberOfFields.Value == 1)
                             Name = "*_" + Pos + "_w" + Channel + "*.tif";
 
                         ListDir = Directory.EnumerateFiles(NewDir, Name, SearchOption.AllDirectories);
@@ -557,7 +554,7 @@ namespace HCSAnalyzer.Classes.General_Types
 
                 List<cImageMetaInfo> ListImageMetaInfo = new List<cImageMetaInfo>();
                 string FinalPos = Pos[0] + " - " + WellObject.GetPosX().ToString("D2");
-                
+
                 // find the channels Names
                 string Prefix = FinalPos + "(fld " + (this.Field + 1).ToString("D2") + " wv ";
                 string Name = Prefix;
@@ -625,7 +622,7 @@ namespace HCSAnalyzer.Classes.General_Types
                 {
                     WellObject = (cWell)Sender;
                 }
-                
+
                 List<string> ListDir = new List<string>();
                 string ListDir2 = "";
                 try
@@ -663,7 +660,7 @@ namespace HCSAnalyzer.Classes.General_Types
                 List<cImageMetaInfo> ListImageMetaInfo = new List<cImageMetaInfo>();
 
                 string Platef = WellObject.AssociatedPlate.GetName();
-                string FinalPos = Platef+"*_" +Pos + "_T0001F" +  (this.Field + 1).ToString("D3")+ "L01A";
+                string FinalPos = Platef + "*_" + Pos + "_T0001F" + (this.Field + 1).ToString("D3") + "L01A";
 
                 // find the channels Names
                 string Prefix = FinalPos;
@@ -691,7 +688,7 @@ namespace HCSAnalyzer.Classes.General_Types
                     ListChannelNames.Add(SplittedNames[0]);
                 }
 
-               
+
                 string XMLFile = NewDir2 + "\\MeasurementDetail.mrf";
 
                 if (File.Exists(XMLFile))
@@ -774,11 +771,11 @@ namespace HCSAnalyzer.Classes.General_Types
 
                 // get the well information
                 string Pos = WellObject.GetPos();
-                
+
                 List<cImageMetaInfo> ListImageMetaInfo = new List<cImageMetaInfo>();
 
 
-                string FinalPos = "*.p"+ WellObject.AssociatedPlate.GetName()+ ".w" + Pos + ".s" +(this.Field + 1).ToString()+"_*.*";
+                string FinalPos = "*.p" + WellObject.AssociatedPlate.GetName() + ".w" + Pos + ".s" + (this.Field + 1).ToString() + "_*.*";
 
 
                 string[] ListChannels = Directory.GetFiles(InitialPath, FinalPos, SearchOption.TopDirectoryOnly);
@@ -794,7 +791,7 @@ namespace HCSAnalyzer.Classes.General_Types
                     Sep[0] = "\\";
                     string[] SplittedNames = ListChannels[Channel].Split(Sep, StringSplitOptions.None);
                     string TmpString = SplittedNames[SplittedNames.Length - 1];
-                     Sep[0] = "_";
+                    Sep[0] = "_";
                     SplittedNames = TmpString.Split(Sep, StringSplitOptions.None);
                     Sep[0] = ".";
                     SplittedNames = SplittedNames[1].Split(Sep, StringSplitOptions.None);
@@ -802,22 +799,22 @@ namespace HCSAnalyzer.Classes.General_Types
                 }
 
 
-                
-                    for (int Channel = 0; Channel < NumberOfChannels; Channel++)
-                    {
-                        string FinalName = ListChannels[Channel];
 
-                        cImageMetaInfo TmpMetaInfo = new cImageMetaInfo();
-                        TmpMetaInfo.FileName = FinalName;
-                        TmpMetaInfo.Name = ListChannelNames[Channel];
-                        TmpMetaInfo.ResolutionX = 1;
-                        TmpMetaInfo.ResolutionY = 1;
-                        TmpMetaInfo.ResolutionZ = 1;
-                        ListImageMetaInfo.Add(TmpMetaInfo);
-                    }
+                for (int Channel = 0; Channel < NumberOfChannels; Channel++)
+                {
+                    string FinalName = ListChannels[Channel];
+
+                    cImageMetaInfo TmpMetaInfo = new cImageMetaInfo();
+                    TmpMetaInfo.FileName = FinalName;
+                    TmpMetaInfo.Name = ListChannelNames[Channel];
+                    TmpMetaInfo.ResolutionX = 1;
+                    TmpMetaInfo.ResolutionY = 1;
+                    TmpMetaInfo.ResolutionZ = 1;
+                    ListImageMetaInfo.Add(TmpMetaInfo);
+                }
 
 
-                
+
                 return ListImageMetaInfo;
 
             }

@@ -1,17 +1,13 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Windows.Forms;
-using HCSAnalyzer.Forms.FormsForGraphsDisplay;
+﻿using HCSAnalyzer.Classes;
 using HCSAnalyzer.Classes.Base_Classes.DataStructures;
+using HCSAnalyzer.Classes.MetaComponents;
+using HCSAnalyzer.Forms.FormsForGraphsDisplay;
 using ImageAnalysis;
 using ImageAnalysisFiltering;
-using HCSAnalyzer.Classes;
-using HCSAnalyzer.Classes.MetaComponents;
+using System;
+using System.Collections.Generic;
+using System.Drawing;
+using System.Windows.Forms;
 
 namespace HCSAnalyzer.Cell_by_Cell_and_DB
 {
@@ -169,7 +165,7 @@ namespace HCSAnalyzer.Cell_by_Cell_and_DB
             }
 
             cDisplaySingleImage IV = new cDisplaySingleImage();
-            DensityMaps.Name = "Density Maps. K["+ this.numericUpDownKernelSize.Value +"]";
+            DensityMaps.Name = "Density Maps. K[" + this.numericUpDownKernelSize.Value + "]";
 
             if (this.checkBoxModifyColors.Checked)
                 IV.ListLinearMaxColor = new List<Color>();
@@ -182,12 +178,12 @@ namespace HCSAnalyzer.Cell_by_Cell_and_DB
                 else
                 {
                     if (this.checkBoxModifyColors.Checked)
-                    IV.ListLinearMaxColor.Add(cGlobalInfo.ListCellularPhenotypes[idxChannel].ColourForDisplay);
+                        IV.ListLinearMaxColor.Add(cGlobalInfo.ListCellularPhenotypes[idxChannel].ColourForDisplay);
                 }
                 RealIdxChannel++;
             }
-            
-  
+
+
             IV.SetInputData(DensityMaps);
             IV.Run();
 

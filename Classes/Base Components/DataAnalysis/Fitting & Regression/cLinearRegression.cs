@@ -1,8 +1,5 @@
-﻿using System;
+﻿using HCSAnalyzer.Classes.Base_Classes.DataStructures;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using HCSAnalyzer.Classes.Base_Classes.DataStructures;
 
 namespace HCSAnalyzer.Classes.Base_Classes.DataAnalysis
 {
@@ -132,15 +129,15 @@ namespace HCSAnalyzer.Classes.Base_Classes.DataAnalysis
 
             //alglib.lsfitreport Nrep;
             //alglib.lsfitresults(state, out info, out c, out Nrep);
-            
-           // alglib.fisherldan(DataForLDA, this.Input[0].Count, this.Input.Count - 1, (int)this.Input[this.Input.Count - 1].Max() + 1, out Info, out Basis);
+
+            // alglib.fisherldan(DataForLDA, this.Input[0].Count, this.Input.Count - 1, (int)this.Input[this.Input.Count - 1].Max() + 1, out Info, out Basis);
             //Output = new cExtendedTable(Basis);
             alglib.linearmodel LM = null;
             alglib.lrreport Lreport = null;
-            alglib.lrbuild(DataForLDA, this.Input[0].Count, this.Input.Count-1, out info, out LM, out Lreport);
+            alglib.lrbuild(DataForLDA, this.Input[0].Count, this.Input.Count - 1, out info, out LM, out Lreport);
 
 
-                //RelativeError = rep.avgrelerror;
+            //RelativeError = rep.avgrelerror;
             //LM.innerobj.w[0] = 1;
 
             double[] Coeff = null;
@@ -148,16 +145,16 @@ namespace HCSAnalyzer.Classes.Base_Classes.DataAnalysis
 
             alglib.lrunpack(LM, out Coeff, out NVars);
 
-            cExtendedList CL = new  cExtendedList();
+            cExtendedList CL = new cExtendedList();
             CL.AddRange(Coeff);
             CL.Name = "Coefficients";
 
             this.Output = new cExtendedTable(CL);
 
             this.Output.ListRowNames = new List<string>();
-            
+
             for (int i = 0; i < this.Output[0].Count; i++)
-                this.Output.ListRowNames.Add("Coeff_" + i);			 
+                this.Output.ListRowNames.Add("Coeff_" + i);
 
             double RelativeError = Lreport.avgrelerror;
             this.Output.ListRowNames.Add("Relative Error");

@@ -1,18 +1,16 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Windows.Forms.DataVisualization.Charting;
-using System.Windows.Forms;
-using HCSAnalyzer.Classes.Base_Classes.DataStructures;
-using System.Drawing;
-using LibPlateAnalysis;
-using System.IO;
-using HCSAnalyzer.Classes.MetaComponents;
-using HCSAnalyzer.Classes.General_Types;
-using HCSAnalyzer.Classes.Base_Classes.GUI;
+﻿using HCSAnalyzer.Classes.Base_Classes.DataStructures;
 using HCSAnalyzer.Classes.Base_Classes.General;
+using HCSAnalyzer.Classes.Base_Classes.GUI;
+using HCSAnalyzer.Classes.General_Types;
+using HCSAnalyzer.Classes.MetaComponents;
+using LibPlateAnalysis;
+using System;
+using System.Collections.Generic;
+using System.Drawing;
+using System.IO;
 using System.Runtime.Serialization.Formatters.Binary;
+using System.Windows.Forms;
+using System.Windows.Forms.DataVisualization.Charting;
 
 namespace HCSAnalyzer.Classes.Base_Classes.Viewers
 {
@@ -101,11 +99,11 @@ namespace HCSAnalyzer.Classes.Base_Classes.Viewers
             else
                 CurrentChartArea.AxisX.LabelStyle.Format = "N" + XAxisFormatDigitNumber;
 
-          //  CurrentChartArea.AxisX.Interval = 20000;
+            //  CurrentChartArea.AxisX.Interval = 20000;
             //CurrentChartArea.AxisY.LabelStyle.p
-          //  CurrentChartArea.AxisX.MajorTickMark.Interval = 30000;
-            
-            
+            //  CurrentChartArea.AxisX.MajorTickMark.Interval = 30000;
+
+
 
 
             if (this.YAxisFormatDigitNumber < 0)
@@ -225,7 +223,7 @@ namespace HCSAnalyzer.Classes.Base_Classes.Viewers
             if (DefaultAxisXMin != null)
                 this.CurrentChartArea.AxisX.Minimum = DefaultAxisXMin[0];
             //else
-                //this.CurrentChartArea.AxisX.auto
+            //this.CurrentChartArea.AxisX.auto
 
             if (DefaultAxisXMax != null)
                 this.CurrentChartArea.AxisX.Maximum = DefaultAxisXMax[0];
@@ -241,7 +239,7 @@ namespace HCSAnalyzer.Classes.Base_Classes.Viewers
         public string GetInfo()
         {
             string ToReturn = "";
-            ToReturn += this.Titles[0].Text+"\n\n";
+            ToReturn += this.Titles[0].Text + "\n\n";
             ToReturn += "Number of Series: " + this.CurrentSeries.Count + " \n";
 
             ToReturn += "X-Axis:\n";
@@ -280,7 +278,7 @@ namespace HCSAnalyzer.Classes.Base_Classes.Viewers
                     else if (item.Tag.GetType() == typeof(cCellularPhenotype))
                         newItem.MarkerBorderColor = newItem.MarkerColor = ((cCellularPhenotype)(item.Tag)).ColourForDisplay;
                     else
-                        newItem.MarkerBorderColor = newItem.MarkerColor= item.Color;
+                        newItem.MarkerBorderColor = newItem.MarkerColor = item.Color;
                 }
                 else
                 {
@@ -500,7 +498,7 @@ namespace HCSAnalyzer.Classes.Base_Classes.Viewers
             for (int i = 0; i < ET[0].Count; i++)
             {
                 DataPoint DP = new DataPoint();
-               // DP.XValue = ET[0][i];
+                // DP.XValue = ET[0][i];
 
                 List<double> LD = new List<double>();
 
@@ -523,21 +521,21 @@ namespace HCSAnalyzer.Classes.Base_Classes.Viewers
 
             if (this.GraphBelow != null)
             {
-                if(this.GraphBelow.GetType()==typeof(cChart1DGraph))
+                if (this.GraphBelow.GetType() == typeof(cChart1DGraph))
                 {
-                  //  ((cChart1DGraph)this.GraphBelow).Run();
+                    //  ((cChart1DGraph)this.GraphBelow).Run();
                 }
             }
 
 
 
-         //   ListInput = new cListExtendedTable();
-          //  ListInput.Add(ET);
+            //   ListInput = new cListExtendedTable();
+            //  ListInput.Add(ET);
 
-          ///  this.Run();
+            ///  this.Run();
 
-           // cExtendedTable doc = sender.GetType();
-           
+            // cExtendedTable doc = sender.GetType();
+
         }
 
         private void ToolStripMenuItem_CopyToclipboardSerieData(object sender, EventArgs e)
@@ -568,7 +566,7 @@ namespace HCSAnalyzer.Classes.Base_Classes.Viewers
 
                 }
 
-             //   NewTable.Tag = HTR.Series;
+                //   NewTable.Tag = HTR.Series;
 
                 DataFormats.Format format = DataFormats.GetFormat(typeof(cExtendedTable).FullName);
 
@@ -580,8 +578,8 @@ namespace HCSAnalyzer.Classes.Base_Classes.Viewers
 
                 //DataPoint PtToTransfer = HTR.Series.Points[Res.PointIndex];
                 //Res.Series.Tag
-               
-              //  Clipboard.SetDataObject(NewTable, false);
+
+                //  Clipboard.SetDataObject(NewTable, false);
             }
 
 
@@ -590,9 +588,9 @@ namespace HCSAnalyzer.Classes.Base_Classes.Viewers
             // Clipboard.SetData(format, users);
             //SeriesForClip SFC = new SeriesForClip();
             //SFC = (SeriesForClip)HTR.Series;
-           // cExtendedTable AT = new cExtendedTable();
+            // cExtendedTable AT = new cExtendedTable();
 
-          //  IsSerializable(AT);
+            //  IsSerializable(AT);
 
 
             //Clipboard.SetData("HCSAnalyzer2DChartDataSeries", SFC);
@@ -649,7 +647,7 @@ namespace HCSAnalyzer.Classes.Base_Classes.Viewers
         }
 
         public double GetAxisXMin()
-        { 
+        {
             return this.CurrentChartArea.AxisX.Minimum;
         }
 

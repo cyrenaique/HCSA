@@ -8,29 +8,17 @@
  /************************************************************************/
 #endregion
 
-using System;
-using System.ComponentModel;
-using System.Windows.Forms;
-using System.Windows.Forms.Integration;
-using System.Drawing;
-using System.Collections.Generic;
-using System.Text;
-using System.Linq;
-using IM3_Plugin3;
-using System.Collections;
-using System.Xml.Serialization;
-using System.IO;
-using System.Runtime.Serialization;
-using System.Runtime.Serialization.Formatters.Binary;
-using System.Data;
-using System.Xml;
-using System.Threading;
 using HCSAnalyzer.Classes._3D;
-using HCSAnalyzer.Forms.FormsForImages;
-using ImageAnalysis;
-using HCSAnalyzer.Classes.ImageAnalysis._3D_Engine.Detection;
-using HCSAnalyzer.Classes.ImageAnalysis._3D_Engine;
 using HCSAnalyzer.Classes.Base_Classes.Viewers;
+using HCSAnalyzer.Classes.ImageAnalysis._3D_Engine;
+using HCSAnalyzer.Classes.ImageAnalysis._3D_Engine.Detection;
+using ImageAnalysis;
+using System;
+using System.Collections.Generic;
+using System.Data;
+using System.Drawing;
+using System.Linq;
+using System.Windows.Forms;
 
 
 
@@ -63,7 +51,7 @@ namespace IM3_Plugin3
         static DataTable CurrentTable;
         public cImage AssociatedImage = null;
 
-      //  Image ImageToDisp = new Bitmap(@"C:\Workspace\IM3\IM3 Plugin3\bin\Background.png");
+        //  Image ImageToDisp = new Bitmap(@"C:\Workspace\IM3\IM3 Plugin3\bin\Background.png");
 
 
         ///// <summary>
@@ -133,11 +121,11 @@ namespace IM3_Plugin3
             Random = 1,
             Indexed = 2,
         }
-      
+
 
         private void buttonProcessImage_Click(object sender, EventArgs e)
         {
-           Form  FormTmpform = Form.ActiveForm;
+            Form FormTmpform = Form.ActiveForm;
             //IntPtr handle = GetActiveWindow();
 
             //Sequence SeqToAnalyse = IMGlobal.CurrentSequence;
@@ -160,16 +148,16 @@ namespace IM3_Plugin3
 
         private void AnalyseSequence(cImage SeqToAnalyse)
         {
-        //    //FormForThumbnails WindThumbnail = new FormForThumbnails();
+            //    //FormForThumbnails WindThumbnail = new FormForThumbnails();
 
-        //    //for (int k = 0; k < ListFormForControl.Count; k++)
-        //    //{
-        //    //        FormForControl Obj = ListFormForControl.ElementAt(ListFormForControl.Count - k-1);
-        //    //        Obj.DisplayThumbnail(WindThumbnail);
-        //    //}
-        //    //WindThumbnail.Show();
+            //    //for (int k = 0; k < ListFormForControl.Count; k++)
+            //    //{
+            //    //        FormForControl Obj = ListFormForControl.ElementAt(ListFormForControl.Count - k-1);
+            //    //        Obj.DisplayThumbnail(WindThumbnail);
+            //    //}
+            //    //WindThumbnail.Show();
 
-        //    //return;
+            //    //return;
 
 
             #region initialization
@@ -183,19 +171,19 @@ namespace IM3_Plugin3
                 Current3DWorld = new c3DNewWorld(new cPoint3D(SeqToAnalyse.Width, SeqToAnalyse.Height, SeqToAnalyse.Depth),
                                                  new cPoint3D(SeqToAnalyse.Resolution));
             }
-          else
+            else
             {
-        //     //   Current3DWorld.ren1.
-              //  Current3DWorld.Terminate();
+                //     //   Current3DWorld.ren1.
+                //  Current3DWorld.Terminate();
                 Current3DWorld = null;
-                 Current3DWorld = new c3DNewWorld(new cPoint3D(SeqToAnalyse.Width, SeqToAnalyse.Height, SeqToAnalyse.Depth),
-                                                         new cPoint3D(SeqToAnalyse.Resolution));
-        
+                Current3DWorld = new c3DNewWorld(new cPoint3D(SeqToAnalyse.Width, SeqToAnalyse.Height, SeqToAnalyse.Depth),
+                                                        new cPoint3D(SeqToAnalyse.Resolution));
+
             }
 
             for (int k = 0; k < ListFormForControl.Count; k++)
             {
-                FormForControl Obj = ListFormForControl.ElementAt(ListFormForControl.Count - k-1);
+                FormForControl Obj = ListFormForControl.ElementAt(ListFormForControl.Count - k - 1);
                 if (Obj.numericUpDownChannel.Value >= SeqToAnalyse.GetNumChannels())
                 {
                     MessageBox.Show("Wrong number of channels", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
@@ -203,14 +191,14 @@ namespace IM3_Plugin3
                 }
             }
 
-        //   // Current3DWorld.ListObjControl = ListFormForControl;
-        //    //   dataGridViewForClassif.DataSource = CurrentTable;
-        //    if (DataGrid == null)
-        //    {
-        //        DataGrid = new FormForDataGridView();
-        //        DataGrid.Show();
-        //    }
-        //    Current3DWorld.SetLinkToDataGridView(DataGrid.dataGridViewForResults);
+            //   // Current3DWorld.ListObjControl = ListFormForControl;
+            //    //   dataGridViewForClassif.DataSource = CurrentTable;
+            //    if (DataGrid == null)
+            //    {
+            //        DataGrid = new FormForDataGridView();
+            //        DataGrid.Show();
+            //    }
+            //    Current3DWorld.SetLinkToDataGridView(DataGrid.dataGridViewForResults);
 
             Current3DWorld.ListMetaObjectList = new List<cMetaBiologicalObjectList>();
             cMetaBiologicalObjectList ListMetacells = new cMetaBiologicalObjectList("List Meta Objects");
@@ -220,7 +208,7 @@ namespace IM3_Plugin3
             #region Detection
             for (int k = 0; k < ListFormForControl.Count; k++)
             {
-                FormForControl Obj = ListFormForControl.ElementAt(ListFormForControl.Count - k -1);
+                FormForControl Obj = ListFormForControl.ElementAt(ListFormForControl.Count - k - 1);
 
                 if (Obj.radioButtonIsVolume.Checked)    // we have to detect a volume !
                 {
@@ -242,7 +230,7 @@ namespace IM3_Plugin3
                     if (Obj.WindowForVolumeDetection.checkBoxVolumeSmooth.Checked)
                         Detection.MeshSmoother = new cMeshSmoother((int)Obj.WindowForVolumeDetection.numericUpDownSmoothIterations.Value);
 
-                    if ((Obj.comboBoxContainer.SelectedItem !=null) && (Obj.comboBoxContainer.SelectedItem.ToString() != ""))
+                    if ((Obj.comboBoxContainer.SelectedItem != null) && (Obj.comboBoxContainer.SelectedItem.ToString() != ""))
                     {
                         Detection.SetContainers(Current3DWorld.GetListBiologicalObjectsOfType(Obj.comboBoxContainer.Items[0].ToString()));
                         if (Obj.InOrOut.radioButtonIn.Checked) Detection.SetContainersMode(0);
@@ -255,16 +243,16 @@ namespace IM3_Plugin3
                     if (Obj.WindowForVolumeDetection.checkBoxIsRegionGrowing.Checked == false)  // no region growing direct detection
                     {
                         Obj.AssociatedBiologicalObjectList = Detection.IntensityThreshold((float)Obj.WindowForVolumeDetection.numericUpDownIntensityThreshold.Value,
-                                                                                          (float)Obj.WindowForVolumeDetection.numericUpDownVolumeMinVol.Value, 
+                                                                                          (float)Obj.WindowForVolumeDetection.numericUpDownVolumeMinVol.Value,
                                                                                           (float)Obj.WindowForVolumeDetection.numericUpDownVolumeMaxVol.Value);
                     }
-                   else // region growing
-                   {
+                    else // region growing
+                    {
                         if (Obj.WindowForVolumeDetection.radioButtonRegionsBased.Checked) // start from a segmentation
                         {
                             if (Obj.WindowForVolumeDetection.radioButtonVolumeDetectionNew.Checked) // a new segmentation has to be performed
                             {
-        //                        // Image3D CurrentPatch = new Image3D(2 * Radius, 2 * Radius, 1, CurrentImageToProcess.NumBands);
+                                //                        // Image3D CurrentPatch = new Image3D(2 * Radius, 2 * Radius, 1, CurrentImageToProcess.NumBands);
                                 cImage CurrentBinary = new cImage(SeqToAnalyse.Width, SeqToAnalyse.Height, SeqToAnalyse.Depth, 1);
 
                                 for (int i = 0; i < CurrentBinary.ImageSize; i++)
@@ -278,7 +266,7 @@ namespace IM3_Plugin3
                                     CurrentConnectivity = eConnectivity.THREED_6;
 
                                 ConnectedComponentSet OFNucleus = new ConnectedComponentSet(CurrentBinary, null, null, 0, CurrentConnectivity, (int)Obj.WindowForVolumeDetection.numericUpDownRegionBasedMinArea.Value, (int)Obj.WindowForVolumeDetection.numericUpDownRegionBasedMaxArea.Value);
-        //                      //  RegionGrowing = new cRegionGrowing(OFNucleus, NewSeq[0], (int)numericUpDownChannelForRegionGrowing.Value, (float)numericUpDownIntensityForRegionGrowing.Value, (int)numericUpDownMaxNucleusArea.Value);
+                                //                      //  RegionGrowing = new cRegionGrowing(OFNucleus, NewSeq[0], (int)numericUpDownChannelForRegionGrowing.Value, (float)numericUpDownIntensityForRegionGrowing.Value, (int)numericUpDownMaxNucleusArea.Value);
                                 int NumIterations = -1;
                                 if (Obj.WindowForVolumeDetection.checkBoxIsConvergence.Checked == false) NumIterations = (int)Obj.WindowForVolumeDetection.numericUpDownIterationNumber.Value;
 
@@ -289,26 +277,26 @@ namespace IM3_Plugin3
                                                                                             (float)Obj.WindowForVolumeDetection.numericUpDownVolumeMaxVol.Value, NumIterations, MergingRatio);
 
                             }
-        //                    else
-        //                    {
-        //                        throw new System.ArgumentException("Not implemented", "Error");
-        //                    }
-        //                }
-        //                else // start from seeds points
-        //                {
+                            //                    else
+                            //                    {
+                            //                        throw new System.ArgumentException("Not implemented", "Error");
+                            //                    }
+                            //                }
+                            //                else // start from seeds points
+                            //                {
 
-        //                        // first gather the seeds
-        //                        if (Obj.WindowForVolumeDetection.comboBoxExistingSpotsDetected.Items.Count == 0) break;
-        //                       List<cBiological3DObject> ListSeeds = Current3DWorld.GetListBiologicalObjectsOfType(Obj.WindowForVolumeDetection.comboBoxExistingSpotsDetected.Items[0].ToString());
+                            //                        // first gather the seeds
+                            //                        if (Obj.WindowForVolumeDetection.comboBoxExistingSpotsDetected.Items.Count == 0) break;
+                            //                       List<cBiological3DObject> ListSeeds = Current3DWorld.GetListBiologicalObjectsOfType(Obj.WindowForVolumeDetection.comboBoxExistingSpotsDetected.Items[0].ToString());
 
-        //                       int NumIterations = -1;
-        //                       if (Obj.WindowForVolumeDetection.checkBoxIsConvergence.Checked == false) NumIterations = (int)Obj.WindowForVolumeDetection.numericUpDownIterationNumber.Value;
+                            //                       int NumIterations = -1;
+                            //                       if (Obj.WindowForVolumeDetection.checkBoxIsConvergence.Checked == false) NumIterations = (int)Obj.WindowForVolumeDetection.numericUpDownIterationNumber.Value;
 
-        //                       float MergingRatio = (float)((Obj.WindowForVolumeDetection.trackBarMergingStrength.Maximum - Obj.WindowForVolumeDetection.trackBarMergingStrength.Value) / 100.0);
-        //                       Obj.AssociatedBiologicalObjectList = Detection.RegionGrowing(ListSeeds,
-        //                                                                                   (float)Obj.WindowForVolumeDetection.numericUpDownIntensityForRegionGrowing.Value, 
-        //                                                                                   (float)Obj.WindowForVolumeDetection.numericUpDownVolumeMinVol.Value,
-        //                                                                                   (float)Obj.WindowForVolumeDetection.numericUpDownVolumeMaxVol.Value, NumIterations, MergingRatio);
+                            //                       float MergingRatio = (float)((Obj.WindowForVolumeDetection.trackBarMergingStrength.Maximum - Obj.WindowForVolumeDetection.trackBarMergingStrength.Value) / 100.0);
+                            //                       Obj.AssociatedBiologicalObjectList = Detection.RegionGrowing(ListSeeds,
+                            //                                                                                   (float)Obj.WindowForVolumeDetection.numericUpDownIntensityForRegionGrowing.Value, 
+                            //                                                                                   (float)Obj.WindowForVolumeDetection.numericUpDownVolumeMinVol.Value,
+                            //                                                                                   (float)Obj.WindowForVolumeDetection.numericUpDownVolumeMaxVol.Value, NumIterations, MergingRatio);
                         }
                     }
                     if (Obj.AssociatedBiologicalObjectList != null)
@@ -319,10 +307,10 @@ namespace IM3_Plugin3
                         {
                             cBiological3DVolume TmpVol = (cBiological3DVolume)Obj.AssociatedBiologicalObjectList[i];
                             Obj.AssociatedBiologicalObjectList[i].SetType(Obj.textBoxName.Text);
-        //                    TmpVol.ThumbnailnewImage = imageListForThumbnail.Images[Obj.AssociatedBiologicalObjectList[i].GetType() + ".jpg"];
+                            //                    TmpVol.ThumbnailnewImage = imageListForThumbnail.Images[Obj.AssociatedBiologicalObjectList[i].GetType() + ".jpg"];
                             Obj.AssociatedBiologicalObjectList[i].Name = Obj.textBoxName.Text + " " + i;
-          //                  Obj.AssociatedBiologicalObjectList[i].IsMaster = Obj.IsMasterObject();
-        //                    List<double> Res = TmpVol.Information.GetInformation();
+                            //                  Obj.AssociatedBiologicalObjectList[i].IsMaster = Obj.IsMasterObject();
+                            //                    List<double> Res = TmpVol.Information.GetInformation();
 
                             if (Obj.checkBoxIsDisplayName.Checked)
                             {
@@ -348,7 +336,7 @@ namespace IM3_Plugin3
                             if (Obj.IsMasterObject())
                             {
                                 cMetaBiologicalObject Cell = new cMetaBiologicalObject(Obj.WindowForMaster.textBoxName.Text + i, Current3DWorld.ListMetaObjectList[0], Obj.AssociatedBiologicalObjectList[i]);
-        //                        // Cell.AddObject(Obj.AssociatedBiologicalObjectList[i]);
+                                //                        // Cell.AddObject(Obj.AssociatedBiologicalObjectList[i]);
                                 Current3DWorld.ListMetaObjectList[0].Add(Cell);
                             }
                         }
@@ -385,9 +373,9 @@ namespace IM3_Plugin3
                         else Detection.SetContainersMode(1);
                     }
 
-                    Obj.AssociatedBiologicalObjectList = Detection.HessianDetection((float)Obj.WindowForSpotDetection.numericUpDownSpotRadius.Value, 
-                                                                                    (float)Obj.WindowForSpotDetection.numericUpDownIntensityThreshold.Value, 
-                                                                                    (int)Obj.WindowForSpotDetection.numericUpDownSpotLocality.Value, 
+                    Obj.AssociatedBiologicalObjectList = Detection.HessianDetection((float)Obj.WindowForSpotDetection.numericUpDownSpotRadius.Value,
+                                                                                    (float)Obj.WindowForSpotDetection.numericUpDownIntensityThreshold.Value,
+                                                                                    (int)Obj.WindowForSpotDetection.numericUpDownSpotLocality.Value,
                                                                                     (double)Obj.WindowForSpotDetection.numericUpDownSphereDisplayRadius.Value);
 
                     Obj.richTextBoxInfo.AppendText(Obj.AssociatedBiologicalObjectList.Count + " objects detected.");
@@ -396,40 +384,40 @@ namespace IM3_Plugin3
                         cBiologicalSpot TmpSpot = (cBiologicalSpot)Obj.AssociatedBiologicalObjectList[i];
                         TmpSpot.Name = Obj.textBoxName.Text + " " + i;
                         TmpSpot.SetType(Obj.textBoxName.Text);
-        //                TmpSpot.ThumbnailnewImage = imageListForThumbnail.Images[Obj.AssociatedBiologicalObjectList[i].GetType() + ".jpg"];
+                        //                TmpSpot.ThumbnailnewImage = imageListForThumbnail.Images[Obj.AssociatedBiologicalObjectList[i].GetType() + ".jpg"];
 
-        //                if (Obj.checkBoxIsDisplayName.Checked)
-        //                    TmpSpot.AddText(TmpSpot.Name, Current3DWorld, (double)Obj.ForText.numericUpDownArrowScale.Value, Obj.ForText.buttonChangeColorPositive.BackColor);
+                        //                if (Obj.checkBoxIsDisplayName.Checked)
+                        //                    TmpSpot.AddText(TmpSpot.Name, Current3DWorld, (double)Obj.ForText.numericUpDownArrowScale.Value, Obj.ForText.buttonChangeColorPositive.BackColor);
 
-                            if (Obj.checkIsBoxPointingArrow.Checked)
-                            {
-                                cGeometric3DObject AssociatedArrow = TmpSpot.AttachPointingArrow((double)Obj.ForArrow.numericUpDownArrowScale.Value, Obj.ForArrow.buttonChangeColorPositive.BackColor);
-                                Current3DWorld.AddGeometric3DObject(AssociatedArrow);
-                            }
+                        if (Obj.checkIsBoxPointingArrow.Checked)
+                        {
+                            cGeometric3DObject AssociatedArrow = TmpSpot.AttachPointingArrow((double)Obj.ForArrow.numericUpDownArrowScale.Value, Obj.ForArrow.buttonChangeColorPositive.BackColor);
+                            Current3DWorld.AddGeometric3DObject(AssociatedArrow);
+                        }
 
-        //                TmpSpot.SetOpacity((double)Obj.ColorOpacity.numericUpDownValue.Value);
+                        //                TmpSpot.SetOpacity((double)Obj.ColorOpacity.numericUpDownValue.Value);
 
 
-        //                // if the object it the Master then create a meta-object and put it inside
+                        //                // if the object it the Master then create a meta-object and put it inside
                         if (Obj.IsMasterObject())
                         {
                             cMetaBiologicalObject Cell = new cMetaBiologicalObject("Cell " + i, Current3DWorld.ListMetaObjectList[0], Obj.AssociatedBiologicalObjectList[i]);
-        //                 //   Cell.AddObject(Obj.AssociatedBiologicalObjectList[i]);
+                            //                 //   Cell.AddObject(Obj.AssociatedBiologicalObjectList[i]);
                             Current3DWorld.ListMetaObjectList[0].Add(Cell);
                         }
 
-        //                /*cMetaBiologicalObject Cell = */
-        //                //Current3DWorld.ListMetaObjectList[0].AssociateWith(Current3DWorld.ListMetaObjectList[0].FindTheClosestVolumeFrom(TmpSpot.GetCentroid(), 20), TmpSpot);
+                        //                /*cMetaBiologicalObject Cell = */
+                        //                //Current3DWorld.ListMetaObjectList[0].AssociateWith(Current3DWorld.ListMetaObjectList[0].FindTheClosestVolumeFrom(TmpSpot.GetCentroid(), 20), TmpSpot);
                     }
 
 
-        //            if (Obj.radioButtonColorSingle.Checked)
-        //                Current3DWorld.AddBiological3DObjects(Obj.AssociatedBiologicalObjectList, Obj.buttonChangeColorPositive.BackColor, eColorMode.Regular);
-        //            else if (Obj.radioButtonColorRandom.Checked)
-        //                Current3DWorld.AddBiological3DObjects(Obj.AssociatedBiologicalObjectList, Obj.buttonChangeColorPositive.BackColor, eColorMode.Random);
-        //            else if (Obj.radioButtonColorIndexed.Checked)
-        //                Current3DWorld.AddBiological3DObjects(Obj.AssociatedBiologicalObjectList, Obj.buttonChangeColorPositive.BackColor, eColorMode.Indexed);
-                    
+                    //            if (Obj.radioButtonColorSingle.Checked)
+                    //                Current3DWorld.AddBiological3DObjects(Obj.AssociatedBiologicalObjectList, Obj.buttonChangeColorPositive.BackColor, eColorMode.Regular);
+                    //            else if (Obj.radioButtonColorRandom.Checked)
+                    //                Current3DWorld.AddBiological3DObjects(Obj.AssociatedBiologicalObjectList, Obj.buttonChangeColorPositive.BackColor, eColorMode.Random);
+                    //            else if (Obj.radioButtonColorIndexed.Checked)
+                    //                Current3DWorld.AddBiological3DObjects(Obj.AssociatedBiologicalObjectList, Obj.buttonChangeColorPositive.BackColor, eColorMode.Indexed);
+
 
                 }
                 else if (Obj.radioButtonIsVolumeRendering.Checked)
@@ -438,11 +426,11 @@ namespace IM3_Plugin3
                                                new cPoint3D((float)Obj.WindowForPreProcessing.numericUpDownShiftX.Value, (float)Obj.WindowForPreProcessing.numericUpDownShiftY.Value, (float)Obj.WindowForPreProcessing.numericUpDownShiftZ.Value),
                                                null, Current3DWorld));
 
-                  //  cVolume3D Volume = new cVolume3D(SeqToAnalyse, (int)Obj.numericUpDownChannel.Value, new cPoint3D((float)Obj.WindowForPreProcessing.numericUpDownShiftX.Value, (float)Obj.WindowForPreProcessing.numericUpDownShiftY.Value, (float)Obj.WindowForPreProcessing.numericUpDownShiftZ.Value));
-                  //  Current3DWorld.AddVolume3D(Volume, Color.Black, Obj.buttonChangeColorPositive.BackColor);
+                    //  cVolume3D Volume = new cVolume3D(SeqToAnalyse, (int)Obj.numericUpDownChannel.Value, new cPoint3D((float)Obj.WindowForPreProcessing.numericUpDownShiftX.Value, (float)Obj.WindowForPreProcessing.numericUpDownShiftY.Value, (float)Obj.WindowForPreProcessing.numericUpDownShiftZ.Value));
+                    //  Current3DWorld.AddVolume3D(Volume, Color.Black, Obj.buttonChangeColorPositive.BackColor);
                 }
 
-        //        Thread oThread = new Thread(new ThreadStart(Obj.DisplayDone));
+                //        Thread oThread = new Thread(new ThreadStart(Obj.DisplayDone));
 
 
             }
@@ -454,7 +442,7 @@ namespace IM3_Plugin3
             // let's associate the objects
             for (int k = 0; k < ListFormForControl.Count; k++)
             {
-                FormForControl Obj = ListFormForControl.ElementAt(ListFormForControl.Count - k -1);
+                FormForControl Obj = ListFormForControl.ElementAt(ListFormForControl.Count - k - 1);
 
                 // that's a volume rendering ... no connection
                 if (Obj.radioButtonIsVolumeRendering.Checked) continue;
@@ -476,17 +464,17 @@ namespace IM3_Plugin3
                             ObjectToIdentify = MetaCellList.FindTheClosestVolumeCentroidFrom(CurrentSubObj.GetCentroid(), (double)Obj.WindowDistanceToMaster.numericUpDownDistanceMaxToMaster.Value);
                             break;
                         case 2:
-        //                    //cBiological3DVolume CurrentVolume
+                            //                    //cBiological3DVolume CurrentVolume
                             ObjectToIdentify = MetaCellList.FindTheClosestVolumeFrom(CurrentSubObj, (double)Obj.WindowDistanceToMaster.numericUpDownDistanceMaxToMaster.Value, out ClosestPt);
                             break;
                         default:
                             break;
-                   }
+                    }
 
                     if (ObjectToIdentify == null) continue;
                     cMetaBiologicalObject Cell = MetaCellList.AssociateWith(ObjectToIdentify, CurrentSubObj);
 
-        //            // --------------  draw information and links between the objects ---------------------
+                    //            // --------------  draw information and links between the objects ---------------------
                     if (Obj.WindowDistanceToMaster.checkBoxDrawLinkToMasterCenter.Checked)
                     {
                         c3DLine CurrLine = new c3DLine(CurrentSubObj.GetCentroid(), ObjectToIdentify.GetCentroid());
@@ -496,11 +484,11 @@ namespace IM3_Plugin3
                         //    CurrLine.DisplayLenght(Current3DWorld, 0.4);
                     }
 
-        //            // --------------  draw information and links between the objects ---------------------
+                    //            // --------------  draw information and links between the objects ---------------------
                     if (Obj.WindowDistanceToMaster.checkBoxDrawLinkToMasterEdges.Checked)
                     {
                         c3DLine CurrLine1 = new c3DLine(CurrentSubObj.GetCentroid(), ClosestPt);
-                        
+
                         Current3DWorld.AddGeometric3DObject(CurrLine1);
 
                         //if(Obj.WindowDistanceToMaster.checkBoxDisplayBranchToEdgesDistance.Checked)
@@ -515,12 +503,12 @@ namespace IM3_Plugin3
             {
                 FormForControl Obj = ListFormForControl.ElementAt(ListFormForControl.Count - k - 1);
                 // the object is the master
-        //      //  if (!Obj.IsMasterObject()) continue;
+                //      //  if (!Obj.IsMasterObject()) continue;
 
                 if (!Obj.WindowForMaster.checkBoxDrawAssociatedDelaunay.Checked) continue;
                 foreach (cMetaBiologicalObject CurrentMeta in MetaCellList)
                 {
-                    Current3DWorld.AddGeometric3DObject(CurrentMeta.GenerateDelaunay(2.0f,true));
+                    Current3DWorld.AddGeometric3DObject(CurrentMeta.GenerateDelaunay(2.0f, true));
                 }
             }
 
@@ -531,71 +519,71 @@ namespace IM3_Plugin3
             }
 
 
-        //    if (PostProcessWindow.checkBoxExportMetaObjectSignatures.Checked)
-        //    {
-        //        if (CurrentTable == null)
-        //        {
-        //            CurrentTable = new DataTable();
+            //    if (PostProcessWindow.checkBoxExportMetaObjectSignatures.Checked)
+            //    {
+            //        if (CurrentTable == null)
+            //        {
+            //            CurrentTable = new DataTable();
 
-        //            if (CurrentExperiment == null)
-        //                CurrentTable.Columns.Add(new DataColumn("Image Idx", typeof(int)));
-        //            else
-        //            {
-        //                CurrentTable.Columns.Add(new DataColumn("Image Col.", typeof(int)));
-        //                CurrentTable.Columns.Add(new DataColumn("Image Row", typeof(int)));
-        //            }
+            //            if (CurrentExperiment == null)
+            //                CurrentTable.Columns.Add(new DataColumn("Image Idx", typeof(int)));
+            //            else
+            //            {
+            //                CurrentTable.Columns.Add(new DataColumn("Image Col.", typeof(int)));
+            //                CurrentTable.Columns.Add(new DataColumn("Image Row", typeof(int)));
+            //            }
 
-        //            CurrentTable.Columns.Add(new DataColumn("Meta Object Name", typeof(string)));
+            //            CurrentTable.Columns.Add(new DataColumn("Meta Object Name", typeof(string)));
 
-        //            foreach (string DescName in MetaCellList[0].GetSignatureNames())
-        //                CurrentTable.Columns.Add(new DataColumn(DescName, typeof(double)));
+            //            foreach (string DescName in MetaCellList[0].GetSignatureNames())
+            //                CurrentTable.Columns.Add(new DataColumn(DescName, typeof(double)));
 
-        //            CurrentTable.Columns.Add(new DataColumn("Class", typeof(double)));
-        //        }
+            //            CurrentTable.Columns.Add(new DataColumn("Class", typeof(double)));
+            //        }
 
-        //        foreach (cMetaBiologicalObject CurrentMeta in MetaCellList)
-        //        {
-        //            List<double> CurrentSignature = CurrentMeta.GetSignature();
+            //        foreach (cMetaBiologicalObject CurrentMeta in MetaCellList)
+            //        {
+            //            List<double> CurrentSignature = CurrentMeta.GetSignature();
 
-        //            CurrentTable.Rows.Add();
-        //            if (CurrentExperiment == null)
-        //            {
-        //                CurrentTable.Rows[CurrentTable.Rows.Count - 1][0] = IdxImageProcessed;
-        //                CurrentTable.Rows[CurrentTable.Rows.Count - 1][1] = CurrentMeta.Name;
+            //            CurrentTable.Rows.Add();
+            //            if (CurrentExperiment == null)
+            //            {
+            //                CurrentTable.Rows[CurrentTable.Rows.Count - 1][0] = IdxImageProcessed;
+            //                CurrentTable.Rows[CurrentTable.Rows.Count - 1][1] = CurrentMeta.Name;
 
-        //                for (int Idx = 0; Idx < CurrentSignature.Count; Idx++)
-        //                    CurrentTable.Rows[CurrentTable.Rows.Count - 1][Idx + 2] = CurrentSignature[Idx];
-        //            }
-        //            else
-        //            {
-        //                CurrentTable.Rows[CurrentTable.Rows.Count - 1][0] = CurrentExperiment.Column;
-        //                CurrentTable.Rows[CurrentTable.Rows.Count - 1][1] = CurrentExperiment.Row;
-        //                CurrentTable.Rows[CurrentTable.Rows.Count - 1][2] = CurrentMeta.Name;
+            //                for (int Idx = 0; Idx < CurrentSignature.Count; Idx++)
+            //                    CurrentTable.Rows[CurrentTable.Rows.Count - 1][Idx + 2] = CurrentSignature[Idx];
+            //            }
+            //            else
+            //            {
+            //                CurrentTable.Rows[CurrentTable.Rows.Count - 1][0] = CurrentExperiment.Column;
+            //                CurrentTable.Rows[CurrentTable.Rows.Count - 1][1] = CurrentExperiment.Row;
+            //                CurrentTable.Rows[CurrentTable.Rows.Count - 1][2] = CurrentMeta.Name;
 
-        //                for (int Idx = 0; Idx < CurrentSignature.Count; Idx++)
-        //                    CurrentTable.Rows[CurrentTable.Rows.Count - 1][Idx + 3] = CurrentSignature[Idx];
-        //            }
+            //                for (int Idx = 0; Idx < CurrentSignature.Count; Idx++)
+            //                    CurrentTable.Rows[CurrentTable.Rows.Count - 1][Idx + 3] = CurrentSignature[Idx];
+            //            }
 
-        //            // Current3DWorld.CopyMetaObjectSignatureToTable(CurrentMeta, 0);
-        //        }
-        //        if (DataGrid != null)
-        //        {
-        //            DataGrid.dataGridViewForResults.DataSource = CurrentTable;
-        //            DataGrid.Update();
-        //            IdxImageProcessed++;
-        //        }
-        //    }
+            //            // Current3DWorld.CopyMetaObjectSignatureToTable(CurrentMeta, 0);
+            //        }
+            //        if (DataGrid != null)
+            //        {
+            //            DataGrid.dataGridViewForResults.DataSource = CurrentTable;
+            //            DataGrid.Update();
+            //            IdxImageProcessed++;
+            //        }
+            //    }
 
             #endregion
 
-        //    //CurrentTable = new DataTable();
-        //    if (CurrentExperiment == null)
-        //    {
-        //        if (PostProcessWindow.checkBoxDisplayBottomPlate.Checked) Current3DWorld.DisplayBottom(Color.FromArgb(255, 255, 255));
-        //        Current3DWorld.SetBackgroundColor(PostProcessWindow.buttonChangeColorPositive.BackColor);
-        //        Current3DWorld.Render();
-        //    }
-        //    // Current3DWorld.SetLinkToDataGridView(dataGridViewForClassif);
+            //    //CurrentTable = new DataTable();
+            //    if (CurrentExperiment == null)
+            //    {
+            //        if (PostProcessWindow.checkBoxDisplayBottomPlate.Checked) Current3DWorld.DisplayBottom(Color.FromArgb(255, 255, 255));
+            //        Current3DWorld.SetBackgroundColor(PostProcessWindow.buttonChangeColorPositive.BackColor);
+            //        Current3DWorld.Render();
+            //    }
+            //    // Current3DWorld.SetLinkToDataGridView(dataGridViewForClassif);
 
 
 
@@ -610,7 +598,7 @@ namespace IM3_Plugin3
 
         }
 
-        static int IdxImageProcessed=0;
+        static int IdxImageProcessed = 0;
 
         public void UpDateContainers()
         {
@@ -619,16 +607,16 @@ namespace IM3_Plugin3
                 List<String> ListContainers = new List<string>();
                 for (int j = 0; j < i; j++)
                 {
-                    if (ListFormForControl.ElementAt(ListFormForControl.Count - j -1).radioButtonIsVolume.Checked)
+                    if (ListFormForControl.ElementAt(ListFormForControl.Count - j - 1).radioButtonIsVolume.Checked)
                         ListContainers.Add(ListFormForControl.ElementAt(ListFormForControl.Count - j - 1).textBoxName.Text);
                 }
-                ListFormForControl.ElementAt(ListFormForControl.Count - i -1).UpdateContainers(ListContainers);
+                ListFormForControl.ElementAt(ListFormForControl.Count - i - 1).UpdateContainers(ListContainers);
             }
         }
 
         public void UpDateSpotList()
         {
-           // this.ListDetectedSpots = new List<string>();
+            // this.ListDetectedSpots = new List<string>();
 
             for (int i = 1; i < ListFormForControl.Count; i++)
             {
@@ -636,7 +624,7 @@ namespace IM3_Plugin3
                 for (int j = 0; j < i; j++)
                 {
                     if (ListFormForControl.ElementAt(ListFormForControl.Count - j - 1).RadioButtonIsSpot.Checked)
-                        ListSpotsAvalaible.Add(ListFormForControl.ElementAt(ListFormForControl.Count - j -1).textBoxName.Text);
+                        ListSpotsAvalaible.Add(ListFormForControl.ElementAt(ListFormForControl.Count - j - 1).textBoxName.Text);
                 }
                 ListFormForControl.ElementAt(ListFormForControl.Count - i - 1).ListDetectedSpots.Clear();
                 ListFormForControl.ElementAt(ListFormForControl.Count - i - 1).ListDetectedSpots.AddRange(ListSpotsAvalaible);
@@ -669,10 +657,10 @@ namespace IM3_Plugin3
         {
             GlobalStatus = new FinalGlobalStatus();
 
-            for(int IdxCtrl=0;IdxCtrl<ListFormForControl.Count;IdxCtrl++)
+            for (int IdxCtrl = 0; IdxCtrl < ListFormForControl.Count; IdxCtrl++)
             {
 
-                GlobalStatus.GlobalStatus.Add(ListFormForControl.ElementAt(ListFormForControl.Count - IdxCtrl-1).GenerateCurrentStatus());
+                GlobalStatus.GlobalStatus.Add(ListFormForControl.ElementAt(ListFormForControl.Count - IdxCtrl - 1).GenerateCurrentStatus());
             }
 
             SaveFileDialog CurrSaveFileDialog = new SaveFileDialog();
@@ -693,7 +681,7 @@ namespace IM3_Plugin3
             string fileName = CurrOpenFileDialog.FileName;
 
             GlobalStatus = new FinalGlobalStatus();
-           GlobalStatus = GlobalStatus.Load(fileName);
+            GlobalStatus = GlobalStatus.Load(fileName);
 
             ListFormForControl.Clear();
             ListCtrl.Clear();
@@ -708,15 +696,15 @@ namespace IM3_Plugin3
                 CurrentFormFor3DObject.panelGroup.Text = "Object " + IdxNewObj;
                 CurrentFormFor3DObject.textBoxName.Text = "Object " + IdxNewObj;
 
-               // CurrentFormFor3DObject.panelGroup.BackgroundImage = ImageToDisp;
+                // CurrentFormFor3DObject.panelGroup.BackgroundImage = ImageToDisp;
                 CurrentFormFor3DObject.panelGroup.BackgroundImageLayout = ImageLayout.None;
                 CurrentFormFor3DObject.Parent = this;
 
                 ListFormForControl.Push(CurrentFormFor3DObject);
                 ListCtrl.Push(CurrentFormFor3DObject.panelGroup);
-            }   
-            
-            
+            }
+
+
             panelFor3DControls.Controls.AddRange(ListCtrl.ToArray());
             textBoxNumberOfObjects.Text = panelFor3DControls.Controls.Count.ToString();
             UpDateContainers();
@@ -727,14 +715,14 @@ namespace IM3_Plugin3
         {
             int NewIDx = (int)(int.Parse(textBoxNumberOfObjects.Text) + 1);
 
-            FormForControl CurrentFormFor3DObject = new FormForControl(this,new cPoint3D(50*NewIDx,50,0));
+            FormForControl CurrentFormFor3DObject = new FormForControl(this, new cPoint3D(50 * NewIDx, 50, 0));
 
             CurrentFormFor3DObject.ImList = imageListForThumbnail;
             CurrentFormFor3DObject.panelGroup.Location = new Point(0, (NewIDx - 1) * CurrentFormFor3DObject.panelGroup.Height - panelFor3DControls.VerticalScroll.Value);
             CurrentFormFor3DObject.panelGroup.Text = "Object " + NewIDx;
             CurrentFormFor3DObject.textBoxName.Text = "Object " + NewIDx;
 
-          //  CurrentFormFor3DObject.panelGroup.BackgroundImage = ImageToDisp;
+            //  CurrentFormFor3DObject.panelGroup.BackgroundImage = ImageToDisp;
             CurrentFormFor3DObject.panelGroup.BackgroundImageLayout = ImageLayout.None;
             CurrentFormFor3DObject.Parent = this;
 
@@ -744,7 +732,7 @@ namespace IM3_Plugin3
             textBoxNumberOfObjects.Text = panelFor3DControls.Controls.Count.ToString();
             UpDateContainers();
             UpDateSpotList();
-            
+
 
         }
 

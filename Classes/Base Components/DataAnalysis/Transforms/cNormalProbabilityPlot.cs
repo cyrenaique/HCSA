@@ -1,9 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
+﻿using HCSAnalyzer.Classes.Base_Classes.DataProcessing;
 using HCSAnalyzer.Classes.Base_Classes.DataStructures;
-using HCSAnalyzer.Classes.Base_Classes.DataProcessing;
+using System;
+using System.Collections.Generic;
 
 namespace HCSAnalyzer.Classes.Base_Classes.DataAnalysis
 {
@@ -46,10 +44,10 @@ namespace HCSAnalyzer.Classes.Base_Classes.DataAnalysis
             return this.Output;
         }
 
-     
+
         private cFeedBackMessage Process()
         {
-         
+
             cExtendedTable TmpTable = new cExtendedTable(this.Input[this.IdxColumnToProcess]);
 
             cSort S = new cSort();
@@ -81,12 +79,12 @@ namespace HCSAnalyzer.Classes.Base_Classes.DataAnalysis
             this.Output.Add(new cExtendedList());
 
             this.Output.ListTags = new List<object>();
-            
+
             for (int i = 0; i < N.GetOutPut()[0].Count; i++)
             {
                 this.Output[1].Add(N.GetOutPut()[0][i]);
-                if(S.GetOutPut()[0].ListTags!=null)
-                this.Output.ListTags.Add(S.GetOutPut()[0].ListTags[i]);
+                if (S.GetOutPut()[0].ListTags != null)
+                    this.Output.ListTags.Add(S.GetOutPut()[0].ListTags[i]);
             }
 
             this.Output[0].Name = "";

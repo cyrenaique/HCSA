@@ -1,10 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
+﻿using HCSAnalyzer.Classes._3D;
 using ImageAnalysis;
+using System;
 using System.Collections;
-using HCSAnalyzer.Classes._3D;
+using System.Collections.Generic;
 
 namespace HCSAnalyzer.Classes.ImageAnalysis._3D_Engine.Detection
 {

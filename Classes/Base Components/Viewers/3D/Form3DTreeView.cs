@@ -1,13 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Windows.Forms;
-using HCSAnalyzer.Classes._3D;
+﻿using HCSAnalyzer.Classes._3D;
 using HCSAnalyzer.Classes.ImageAnalysis._3D_Engine;
+using System;
+using System.Collections.Generic;
+using System.Windows.Forms;
 
 namespace HCSAnalyzer.Classes.Base_Components.Viewers._3D
 {
@@ -105,7 +100,7 @@ namespace HCSAnalyzer.Classes.Base_Components.Viewers._3D
                 }
                 catch
                 {
-                
+
                 }
             }
 

@@ -1,17 +1,13 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using HCSAnalyzer.Classes.Base_Classes.DataStructures;
+﻿using HCSAnalyzer.Classes.Base_Classes.DataStructures;
 using HCSAnalyzer.GUI.FormsForGraphsDisplay.Generic;
 
 namespace HCSAnalyzer.Classes.Base_Classes.Viewers
 {
     class cViewerGraph : cDataDisplay
-    {     
+    {
         cPanelHisto CurrentPanelHisto;
         public eOrientation Orientation = eOrientation.HORIZONTAL;
-   
+
         public cViewerGraph()
         {
             this.Title = "Graph Viewer";
@@ -24,7 +20,7 @@ namespace HCSAnalyzer.Classes.Base_Classes.Viewers
 
         public cFeedBackMessage Run()
         {
-           
+
 
             this.CurrentPanel = new cExtendedControl();
             this.CurrentPanel.Title = this.Title;

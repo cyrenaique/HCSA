@@ -1,14 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using HCSAnalyzer.Classes.Base_Classes;
+﻿using HCSAnalyzer.Classes.Base_Classes;
+using HCSAnalyzer.Classes.Base_Classes.DataAnalysis;
 using HCSAnalyzer.Classes.Base_Classes.DataStructures;
 using HCSAnalyzer.Classes.Base_Classes.Viewers;
-using HCSAnalyzer.Classes.Base_Classes.DataAnalysis;
 using HCSAnalyzer.Classes.Base_Classes.Viewers._1D;
-using System.Windows.Forms.DataVisualization.Charting;
 using System.Windows.Forms;
+using System.Windows.Forms.DataVisualization.Charting;
 
 namespace HCSAnalyzer.Classes.MetaComponents
 {
@@ -20,7 +16,7 @@ namespace HCSAnalyzer.Classes.MetaComponents
         public cComputeAndDisplayDRC()
         {
             this.Title = "Compute Display and display DRCs";
-            
+
         }
 
         public cFeedBackMessage Run()
@@ -38,7 +34,7 @@ namespace HCSAnalyzer.Classes.MetaComponents
         void Process()
         {
             cDesignerTab DT = new cDesignerTab();
-                        
+
             for (int i = 0; i < this.Input.Count; i++)
             {
                 cExtendedTable FinalTable = this.Input[i];
@@ -50,7 +46,7 @@ namespace HCSAnalyzer.Classes.MetaComponents
                 //cLinearRegression LR = new cLinearRegression();
                 //LR.SetInputData(FinalTable);
                 //LR.Run();
-                
+
                 cSigmoidFitting SF = new cSigmoidFitting();
                 SF.SetInputData(FinalTable);
                 if (SF.Run().IsSucceed == false) continue;
@@ -97,7 +93,7 @@ namespace HCSAnalyzer.Classes.MetaComponents
                 for (int IdxCurve = 0; IdxCurve < FinalTable.Count; IdxCurve++)
                 {
                     cSerieInfoDesign TmpSerieInfo = new cSerieInfoDesign();
-                   // TmpSerieInfo.color = GlobalInfo.ListCellularPhenotypes[IdxCurve % GlobalInfo.ListCellularPhenotypes.Count].ColourForDisplay;
+                    // TmpSerieInfo.color = GlobalInfo.ListCellularPhenotypes[IdxCurve % GlobalInfo.ListCellularPhenotypes.Count].ColourForDisplay;
                     TmpSerieInfo.markerStyle = MarkerStyle.Circle;
                     VS1.Chart.ArraySeriesInfo[IdxCurve] = TmpSerieInfo;
                 }

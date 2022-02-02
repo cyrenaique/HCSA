@@ -1,12 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Drawing;
-using System.Data;
-using System.Linq;
-using System.Text;
 using System.Windows.Forms;
-using HCSAnalyzer.Simulator.Classes;
 
 namespace HCSAnalyzer.Simulator.Forms.NewCellType
 {
@@ -31,8 +24,8 @@ namespace HCSAnalyzer.Simulator.Forms.NewCellType
             this.dataGridViewForProbaTransition[0, this.dataGridViewForProbaTransition.Rows.Count - 1].Value = 1;
 
             //dataGridViewForProbaTransition.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.AllCells;
-         //   dataGridViewForProbaTransition.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.ColumnHeader;
-            this.dataGridViewForProbaTransition.AutoResizeRowHeadersWidth( DataGridViewRowHeadersWidthSizeMode.AutoSizeToAllHeaders);//[0].AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
+            //   dataGridViewForProbaTransition.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.ColumnHeader;
+            this.dataGridViewForProbaTransition.AutoResizeRowHeadersWidth(DataGridViewRowHeadersWidthSizeMode.AutoSizeToAllHeaders);//[0].AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
 
         }
 

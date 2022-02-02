@@ -1,9 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
+﻿using HCSAnalyzer.Classes.Base_Classes.DataStructures;
 using HCSAnalyzer.GUI.FormsForGraphsDisplay.Generic;
-using HCSAnalyzer.Classes.Base_Classes.DataStructures;
+using System.Collections.Generic;
 
 
 namespace HCSAnalyzer.Classes.Base_Classes.Viewers
@@ -12,7 +9,7 @@ namespace HCSAnalyzer.Classes.Base_Classes.Viewers
     {
         public cViewerHisto()
         {
-        
+
         }
 
         FormForDisplay TMPWin = new FormForDisplay();
@@ -25,8 +22,8 @@ namespace HCSAnalyzer.Classes.Base_Classes.Viewers
             TMPWin.Controls.Add(PanelHisto.WindowForPanelHisto.panelForGraphContainer);
 
             //TMPWin.panel.Controls.Add(CpdToDisplayHisto);
-            
-        
+
+
         }
 
         public void Display()

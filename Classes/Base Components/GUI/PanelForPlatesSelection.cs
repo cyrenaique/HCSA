@@ -1,13 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Windows.Controls;
-using HCSAnalyzer.Classes;
-using System.Windows.Forms;
-using HCSAnalyzer.Classes.Base_Classes.GUI;
+﻿using HCSAnalyzer.Classes;
 using HCSAnalyzer.Classes.General_Types;
 using LibPlateAnalysis;
+using System;
+using System.Collections.Generic;
+using System.Windows.Forms;
 
 namespace HCSAnalyzer.Forms.FormsForGraphsDisplay
 {
@@ -15,11 +11,11 @@ namespace HCSAnalyzer.Forms.FormsForGraphsDisplay
     {
         public List<System.Windows.Forms.CheckBox> ListCheckBoxes;
         public List<System.Windows.Forms.RadioButton> ListRadioButtons;
-        
+
 
         public PanelForPlatesSelection(bool IsCheckBoxes, cListPlates InitialList, bool SelectOnlyActive)
         {
-            
+
             if (InitialList == null)
                 InitialList = cGlobalInfo.CurrentScreening.ListPlatesAvailable;
 
@@ -45,7 +41,7 @@ namespace HCSAnalyzer.Forms.FormsForGraphsDisplay
                     if (SelectOnlyActive)
                     {
                         cPlate TmpPlate = cGlobalInfo.CurrentScreening.ListPlatesActive.FindPlate(InitialList[IdxPlate]);
-                        if(TmpPlate==null)
+                        if (TmpPlate == null)
                             CurrentCheckBox.Checked = false;
                         else
                             CurrentCheckBox.Checked = true;
@@ -96,7 +92,7 @@ namespace HCSAnalyzer.Forms.FormsForGraphsDisplay
 
 
             if (sender.GetType() == typeof(System.Windows.Forms.CheckBox))
-            {   
+            {
                 contextMenuStripPicker.Items.Add(new ToolStripSeparator());
                 System.Windows.Forms.CheckBox Box = (System.Windows.Forms.CheckBox)sender;
                 cPlate CurrentPlate = (cPlate)Box.Tag;

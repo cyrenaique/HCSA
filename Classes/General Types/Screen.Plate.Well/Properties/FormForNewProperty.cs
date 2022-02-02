@@ -1,12 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
 using System.Windows.Forms;
-using LibPlateAnalysis;
 
 namespace HCSAnalyzer.Classes.General_Types.Screen.Plate.Well.Properties
 {
@@ -24,7 +17,7 @@ namespace HCSAnalyzer.Classes.General_Types.Screen.Plate.Well.Properties
             comboBoxType.Text = eDataType.DOUBLE.ToString();
 
             this.numericUpDownNumberMin.Value = this.numericUpDownNumberMax.Minimum = this.numericUpDownNumberMin.Minimum = (decimal)cPropertyType.DefaultMin;
-            this.numericUpDownNumberMax.Value = this.numericUpDownNumberMin.Maximum = this.numericUpDownNumberMax.Maximum = (decimal)cPropertyType.DefaultMax; 
+            this.numericUpDownNumberMax.Value = this.numericUpDownNumberMin.Maximum = this.numericUpDownNumberMax.Maximum = (decimal)cPropertyType.DefaultMax;
 
         }
 
@@ -46,10 +39,10 @@ namespace HCSAnalyzer.Classes.General_Types.Screen.Plate.Well.Properties
 
         private void comboBoxType_SelectedIndexChanged(object sender, EventArgs e)
         {
-            if(comboBoxType.Text==eDataType.DOUBLE.ToString()||comboBoxType.Text==eDataType.INTEGER.ToString())
+            if (comboBoxType.Text == eDataType.DOUBLE.ToString() || comboBoxType.Text == eDataType.INTEGER.ToString())
             {
                 this.panelForOptionsNumber.Visible = true;
-                if(comboBoxType.Text==eDataType.DOUBLE.ToString())
+                if (comboBoxType.Text == eDataType.DOUBLE.ToString())
                 {
                     this.numericUpDownNumberMin.DecimalPlaces = 4;
                     this.numericUpDownNumberMax.DecimalPlaces = 4;
@@ -66,7 +59,7 @@ namespace HCSAnalyzer.Classes.General_Types.Screen.Plate.Well.Properties
             {
                 this.panelForOptionsNumber.Visible = false;
             }
-               
+
         }
 
     }

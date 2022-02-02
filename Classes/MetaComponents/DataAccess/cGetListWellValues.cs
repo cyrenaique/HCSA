@@ -1,15 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
+﻿using HCSAnalyzer.Classes.Base_Classes;
 using HCSAnalyzer.Classes.Base_Classes.DataStructures;
-using HCSAnalyzer.Classes.Base_Classes;
-using HCSAnalyzer.Classes.Base_Classes.DataAnalysis;
-using HCSAnalyzer.Classes.Base_Classes.Viewers;
-using LibPlateAnalysis;
 using HCSAnalyzer.Classes.General_Types;
-using ImageAnalysis;
 using HCSAnalyzer.Classes.ImageAnalysis.FormsForImages;
+using ImageAnalysis;
+using LibPlateAnalysis;
+using System;
+using System.Collections.Generic;
 
 
 namespace HCSAnalyzer.Classes.MetaComponents
@@ -40,7 +36,7 @@ namespace HCSAnalyzer.Classes.MetaComponents
                 return FeedBackMessage;
             }
             return Process();
-            
+
             //return FeedBackMessage;
         }
 
@@ -96,7 +92,7 @@ namespace HCSAnalyzer.Classes.MetaComponents
                     cGetImageFromWells GIFW = new cGetImageFromWells();
                     GIFW.SetInputData(new cListWells(item));
                     if (!GIFW.Run().IsSucceed) continue;
-                
+
 
                     IV.SetInputData(GIFW.GetOutPut());
                     IV.Title = " - Field: " + ((int)(GIFW.ListProperties.FindByName("Field").GetValue()));
@@ -104,8 +100,8 @@ namespace HCSAnalyzer.Classes.MetaComponents
                     //IV.Title += " - C: "+ item.ListProperties.FindByName("Concentration").GetValue().ToString();
                     IV.IsDisplayScale = true;
                     //IV.ListLinearMaxColor.Add(System.Drawing.Color.FromArgb(255,200,200,200));
-                    
-                    
+
+
                     IV.IsUseSavedDefaultDisplayProperties = true;
                     IV.Run();
 
@@ -134,8 +130,8 @@ namespace HCSAnalyzer.Classes.MetaComponents
                     System.Drawing.Bitmap titi = AccessedImage.GetBitmap(0.2f, IP, ListLUTs);
                     this.Output.ListTags.Add(titi);
                 }
-            
-            
+
+
             }
 
 
