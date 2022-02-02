@@ -2059,10 +2059,7 @@
     </Compile>
     <None Include="app.config" />
     <None Include="key_file.snk" />
-<<<<<<< HEAD
-=======
     <None Include="packages.config" />
->>>>>>> ad245feb18ca6e2863ab0613857417b16a9b8ec9
     <None Include="Properties\app.manifest" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
