@@ -1,15 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using HCSAnalyzer.Classes.Base_Classes.DataStructures;
-using System.Windows.Forms.DataVisualization.Charting;
-using System.Drawing;
+﻿using HCSAnalyzer.Classes.Base_Classes.DataStructures;
 using HCSAnalyzer.Classes.Base_Classes.General;
-using System.Windows.Forms;
 using HCSAnalyzer.Classes.MetaComponents;
 using LibPlateAnalysis;
-using System.IO;
+using System;
+using System.Drawing;
+using System.Windows.Forms;
+using System.Windows.Forms.DataVisualization.Charting;
 
 namespace HCSAnalyzer.Classes.Base_Classes.Viewers
 {
@@ -191,11 +187,11 @@ namespace HCSAnalyzer.Classes.Base_Classes.Viewers
                     else
                         CurrentSeries.Points[IdxValue].Label = "";
 
-                    string TmpToolTip = this.Input[idxCol].Name ;
+                    string TmpToolTip = this.Input[idxCol].Name;
 
                     if (idxRow < this.Input.ListRowNames.Count)
                     {
-                        TmpToolTip +=  "\n vs.\n" + this.Input.ListRowNames[idxRow] + "\n\n" + Value.ToString("N" + DigitNumber);
+                        TmpToolTip += "\n vs.\n" + this.Input.ListRowNames[idxRow] + "\n\n" + Value.ToString("N" + DigitNumber);
                     }
 
                     CurrentSeries.Points[IdxValue].ToolTip = TmpToolTip;

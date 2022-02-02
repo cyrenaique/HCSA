@@ -1,13 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
+﻿using HCSAnalyzer.Classes._3D;
 using HCSAnalyzer.Classes.Base_Classes.DataStructures;
-using HCSAnalyzer.Classes._3D;
-using LibPlateAnalysis;
-using System.Drawing;
-using Kitware.VTK;
 using HCSAnalyzer.Classes.Base_Components.Viewers._3D.ComplexObjects;
+using System.Drawing;
 
 namespace HCSAnalyzer.Classes.Base_Classes.Viewers._3D.ComplexObjects
 {
@@ -113,18 +107,18 @@ namespace HCSAnalyzer.Classes.Base_Classes.Viewers._3D.ComplexObjects
                 if (MinLenght == 0) MinLenght = 1;
 
 
-                c3DLine XAxis = new c3DLine(Pt0, Pt1,Color.Black);
+                c3DLine XAxis = new c3DLine(Pt0, Pt1, Color.Black);
                 XAxis.Tag = this.Input[0].Tag;
                 XAxis.SetName("Axis - " + this.Input[0].Name);
 
                 ListObjects.AddObject(XAxis);
 
-                c3DLine YAxis = new c3DLine(Pt0, Pt2,Color.Black);
+                c3DLine YAxis = new c3DLine(Pt0, Pt2, Color.Black);
                 YAxis.Tag = this.Input[1].Tag;
                 YAxis.SetName("Axis - " + this.Input[1].Name);
                 ListObjects.AddObject(YAxis);
 
-                c3DLine ZAxis = new c3DLine(Pt0, Pt3,Color.Black);
+                c3DLine ZAxis = new c3DLine(Pt0, Pt3, Color.Black);
                 ZAxis.Tag = this.Input[2].Tag;
                 ZAxis.SetName("Axis - " + this.Input[2].Name);
                 ListObjects.AddObject(ZAxis);

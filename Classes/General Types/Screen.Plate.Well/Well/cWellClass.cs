@@ -1,15 +1,12 @@
-﻿using System;
+﻿using HCSAnalyzer.Classes.Base_Classes.DataStructures;
+using HCSAnalyzer.Classes.Base_Classes.GUI;
+using HCSAnalyzer.Classes.Base_Classes.Viewers;
+using HCSAnalyzer.Classes.MetaComponents;
+using LibPlateAnalysis;
+using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.Drawing;
 using System.Windows.Forms;
-using LibPlateAnalysis;
-using HCSAnalyzer.Classes.Base_Classes.DataStructures;
-using HCSAnalyzer.Classes.MetaComponents;
-using HCSAnalyzer.Classes.Base_Classes.Viewers;
-using System.Windows.Forms.DataVisualization.Charting;
-using HCSAnalyzer.Classes.Base_Classes.GUI;
 
 namespace HCSAnalyzer.Classes.General_Types
 {
@@ -78,53 +75,53 @@ namespace HCSAnalyzer.Classes.General_Types
                 {
                     ListWells.AddRange(CurrentPlate.ListWells.Filter(ListForCurrentClass));
                 }
-                    cExtendedTable FinalTable = new cExtendedTable();
-                    FinalTable.Name = "Stacked Histogram: " + ListWells.Count + " wells";
+                cExtendedTable FinalTable = new cExtendedTable();
+                FinalTable.Name = "Stacked Histogram: " + ListWells.Count + " wells";
 
-                    int Idx = 0;
+                int Idx = 0;
+                foreach (var item in cGlobalInfo.ListCellularPhenotypes)
+                {
+                    FinalTable.Add(new cExtendedList());
+                    FinalTable[Idx].Name = item.Name;
+                    FinalTable[Idx].Tag = item;
+
+                    Idx++;
+                }
+
+                foreach (cWell TmpWell in ListWells)
+                {
+                    TmpWell.AssociatedPlate.DBConnection = new cDBConnection(TmpWell.AssociatedPlate, TmpWell.SQLTableName);
+
+                    int IDx = 0;
                     foreach (var item in cGlobalInfo.ListCellularPhenotypes)
                     {
-                        FinalTable.Add(new cExtendedList());
-                        FinalTable[Idx].Name = item.Name;
-                        FinalTable[Idx].Tag = item;
-                       
-                        Idx++;
+                        if (GUIClasses.GetOutPut()[0][IDx] == 0) { IDx++; continue; }
+                        List<cCellularPhenotype> ListCellularPhenotypesToBeSelected = new List<cCellularPhenotype>();
+                        ListCellularPhenotypesToBeSelected.Add(item);
+
+                        cExtendedTable TmpET = TmpWell.AssociatedPlate.DBConnection.GetWellValues(TmpWell,
+                                                 LCDT, ListCellularPhenotypesToBeSelected);
+
+                        if (TmpET.Count > 0) FinalTable[IDx].AddRange(TmpET[0]);
+                        IDx++;
                     }
+                    TmpWell.AssociatedPlate.DBConnection.CloseConnection();
+                }
 
-                    foreach (cWell TmpWell in ListWells)
-                    {
-                        TmpWell.AssociatedPlate.DBConnection = new cDBConnection(TmpWell.AssociatedPlate, TmpWell.SQLTableName);
+                cViewerStackedHistogram VSH = new cViewerStackedHistogram();
+                VSH.SetInputData(FinalTable);
+                VSH.Chart.BinNumber = LCDT[0].GetBinNumber();
+                VSH.Chart.IsShadow = false;
+                VSH.Chart.IsBorder = false;
+                VSH.Chart.IsXGrid = true;
+                VSH.Chart.IsYGrid = true;
+                VSH.Chart.LabelAxisX = LCDT[0].GetName();
 
-                        int IDx = 0;
-                        foreach (var item in cGlobalInfo.ListCellularPhenotypes)
-                        {
-                            if (GUIClasses.GetOutPut()[0][IDx] == 0) { IDx++; continue; }
-                            List<cCellularPhenotype> ListCellularPhenotypesToBeSelected = new List<cCellularPhenotype>();
-                            ListCellularPhenotypesToBeSelected.Add(item);
-
-                            cExtendedTable TmpET = TmpWell.AssociatedPlate.DBConnection.GetWellValues(TmpWell,
-                                                     LCDT, ListCellularPhenotypesToBeSelected);
-
-                            if (TmpET.Count > 0) FinalTable[IDx].AddRange(TmpET[0]);
-                            IDx++;
-                        }
-                        TmpWell.AssociatedPlate.DBConnection.CloseConnection();
-                    }
-
-                    cViewerStackedHistogram VSH = new cViewerStackedHistogram();
-                    VSH.SetInputData(FinalTable);
-                    VSH.Chart.BinNumber = LCDT[0].GetBinNumber();
-                    VSH.Chart.IsShadow = false;
-                    VSH.Chart.IsBorder = false;
-                    VSH.Chart.IsXGrid = true;
-                    VSH.Chart.IsYGrid = true;
-                    VSH.Chart.LabelAxisX = LCDT[0].GetName();
-
-                    VSH.Run();
-                    VSH.Chart.Width = 0;
-                    VSH.Chart.Height = 0;
-                    VSH.GetOutPut().Title = cGlobalInfo.CurrentScreening.GetName();
-                    DT.SetInputData(VSH.GetOutPut());
+                VSH.Run();
+                VSH.Chart.Width = 0;
+                VSH.Chart.Height = 0;
+                VSH.GetOutPut().Title = cGlobalInfo.CurrentScreening.GetName();
+                DT.SetInputData(VSH.GetOutPut());
             }
             else
             {
@@ -137,7 +134,7 @@ namespace HCSAnalyzer.Classes.General_Types
                 foreach (cPlate CurrentPlate in ListPlates)
                 {
                     ListWells = CurrentPlate.ListWells.Filter(ListForCurrentClass);
-                        
+
                     cExtendedTable FinalTable = new cExtendedTable();
                     FinalTable.Name = "Stacked Histogram: " + ListWells.Count + " wells - " + CurrentPlate.GetName();
 
@@ -147,13 +144,13 @@ namespace HCSAnalyzer.Classes.General_Types
                         FinalTable.Add(new cExtendedList());
                         FinalTable[Idx].Name = item.Name;
                         FinalTable[Idx].Tag = item;
-                        
+
                         if (GUIClasses.GetOutPut()[0][Idx] == 0)
                         {
                             Idx++;
                             continue;
                         }
-                        
+
                         Idx++;
                     }
 
@@ -185,7 +182,7 @@ namespace HCSAnalyzer.Classes.General_Types
                     VSH.Chart.IsXGrid = true;
                     VSH.Chart.IsYGrid = true;
                     VSH.Chart.LabelAxisX = LCDT[0].GetName();
-                   
+
 
                     VSH.Run();
                     VSH.Chart.Width = 0;

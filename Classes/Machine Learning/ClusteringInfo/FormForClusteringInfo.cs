@@ -1,14 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Windows.Forms;
-using HCSAnalyzer.Forms.FormsForOptions.ClassForOptions;
+﻿using HCSAnalyzer.Classes;
 using HCSAnalyzer.Forms.FormsForOptions.ClassForOptions.Children;
-using HCSAnalyzer.Classes;
+using System.Collections.Generic;
+using System.Windows.Forms;
 
 namespace HCSAnalyzer.Forms.FormsForOptions
 {
@@ -28,7 +21,7 @@ namespace HCSAnalyzer.Forms.FormsForOptions
         private void treeViewForOptions_AfterSelect(object sender, TreeViewEventArgs e)
         {
             this.panelForDisplay.Controls.Clear();
-            string TagName= (string)e.Node.Tag;
+            string TagName = (string)e.Node.Tag;
 
             Panel PanelToDisp = ListClusteringAlgo.GetPanel(TagName);
             if (PanelToDisp == null) return;
@@ -58,7 +51,7 @@ namespace HCSAnalyzer.Forms.FormsForOptions
             {
                 richTextBoxForInfo.Clear();
                 richTextBoxForInfo.AppendText("CobWeb Clustering\n------------------------------------------------------\nFor more information, go to: http://en.wikipedia.org/wiki/Cobweb_(clustering)");
-            }            
+            }
             else if (TagName == "Manual")
             {
                 richTextBoxForInfo.Clear();
@@ -74,10 +67,10 @@ namespace HCSAnalyzer.Forms.FormsForOptions
 
         private void richTextBoxForInfo_LinkClicked(object sender, LinkClickedEventArgs e)
         {
-          cGlobalInfo.WindowHCSAnalyzer.ClickOnLink(e.LinkText);
+            cGlobalInfo.WindowHCSAnalyzer.ClickOnLink(e.LinkText);
         }
     }
 
-  
+
 
 }

@@ -1,16 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Windows.Forms;
-using HCSAnalyzer.Classes;
-using HCSAnalyzer.Classes.Base_Classes.DataStructures;
-using HCSAnalyzer.Forms.FormsForGraphsDisplay;
+﻿using HCSAnalyzer.Classes;
 using HCSAnalyzer.Classes.Base_Classes.GUI;
 using HCSAnalyzer.Classes.General_Types;
+using HCSAnalyzer.Forms.FormsForGraphsDisplay;
+using System;
+using System.Collections.Generic;
+using System.Drawing;
+using System.Windows.Forms;
 
 namespace HCSAnalyzer.Forms
 {
@@ -47,7 +42,7 @@ namespace HCSAnalyzer.Forms
             HitClassPanel.Select(1);
             panelForHitClass.Controls.Add(HitClassPanel);
 
-            NonHitClassPanel = new PanelForClassSelection( false, eClassType.WELL);
+            NonHitClassPanel = new PanelForClassSelection(false, eClassType.WELL);
             NonHitClassPanel.Height = panelForNonHitClass.Height;
             NonHitClassPanel.UnSelectAll();
             NonHitClassPanel.Select(0);
@@ -217,7 +212,7 @@ namespace HCSAnalyzer.Forms
                     }
                     #endregion
 
-                 //   if (!IsHit) continue;
+                    //   if (!IsHit) continue;
 
                     #region Filter the properties
                     // get the value associated to the selected descriptor
@@ -306,7 +301,7 @@ namespace HCSAnalyzer.Forms
                         if (IsHit) TmpWell.SetClass(HitClass);
                         else
                         {
-                            if(this.checkBoxIsRejectedClass.Checked)
+                            if (this.checkBoxIsRejectedClass.Checked)
                                 TmpWell.SetClass(NonHitClass);
                         }
                     }

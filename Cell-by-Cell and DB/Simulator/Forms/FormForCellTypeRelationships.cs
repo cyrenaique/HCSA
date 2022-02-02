@@ -1,13 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Windows.Forms;
+﻿using HCSAnalyzer.Simulator.Classes;
 using Microsoft.Msagl.GraphViewerGdi;
-using HCSAnalyzer.Simulator.Classes;
+using System;
+using System.Windows.Forms;
 
 namespace HCSAnalyzer.Simulator.Forms
 {
@@ -28,14 +22,14 @@ namespace HCSAnalyzer.Simulator.Forms
             GraphView.Anchor = (AnchorStyles.Bottom | AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right);
 
             RefreshDisplay();
-            
+
         }
 
-    
+
 
         void RefreshDisplay()
         {
-         
+
 
             foreach (cCellType item in Parent.ListCellTypes)
             {
@@ -63,13 +57,13 @@ namespace HCSAnalyzer.Simulator.Forms
 
             }
 
-            GraphView.Graph =  graph;
-            
-            GraphView.Dock = System.Windows.Forms.DockStyle.Fill; 
+            GraphView.Graph = graph;
+
+            GraphView.Dock = System.Windows.Forms.DockStyle.Fill;
 
             this.panel.Controls.Add(GraphView);
 
-        
+
         }
 
         private void refreshToolStripMenuItem_Click(object sender, EventArgs e)

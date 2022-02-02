@@ -1,15 +1,12 @@
-﻿using System;
+﻿using HCSAnalyzer.Classes.Base_Classes.DataStructures;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using HCSAnalyzer.Classes.Base_Classes.DataStructures;
 
 namespace HCSAnalyzer.Classes.Base_Classes.DataAnalysis
 {
     class cCorrelationMatrix : cDataAnalysisComponent
     {
         eCorrelationType CorrelationType = eCorrelationType.PEARSON;
-        cExtendedTable Input; 
+        cExtendedTable Input;
         cExtendedTable OutPut;
 
         public cCorrelationMatrix()
@@ -22,7 +19,7 @@ namespace HCSAnalyzer.Classes.Base_Classes.DataAnalysis
             this.CorrelationType = Type;
         }
 
-        public void  SetInputData(cExtendedTable Input)
+        public void SetInputData(cExtendedTable Input)
         {
             this.Input = Input;
         }

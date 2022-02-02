@@ -1,12 +1,7 @@
-﻿using System;
+﻿using HCSAnalyzer.Forms.FormsForGraphsDisplay;
+using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
 using System.Windows.Forms;
-using HCSAnalyzer.Forms.FormsForGraphsDisplay;
 
 namespace HCSAnalyzer.Classes.Base_Classes.GUI
 {
@@ -22,18 +17,18 @@ namespace HCSAnalyzer.Classes.Base_Classes.GUI
 
         private void comboBoxStatistics_SelectedIndexChanged(object sender, EventArgs e)
         {
-            string FinalName = comboBoxStatistics.Text + "(" ;
+            string FinalName = comboBoxStatistics.Text + "(";
 
             PanelForClassSelection CurrentPanel = (PanelForClassSelection)this.panelForSubPopulation.Controls[0];
             List<bool> ListRes = CurrentPanel.GetListSelectedClass();
 
             int Idx = 0;
-            int IdxName =0;
+            int IdxName = 0;
             foreach (var item in CurrentPanel.GetListSelectedClass())
             {
-                if(item)
+                if (item)
                 {
-                    FinalName += cGlobalInfo.ListCellularPhenotypes[Idx].Name +",";
+                    FinalName += cGlobalInfo.ListCellularPhenotypes[Idx].Name + ",";
                     IdxName++;
                 }
                 Idx++;
@@ -43,7 +38,7 @@ namespace HCSAnalyzer.Classes.Base_Classes.GUI
                 FinalName = FinalName.Remove(FinalName.Length - 1);
 
             this.textBoxDescName.Text = FinalName + ")";
-            
+
         }
     }
 }

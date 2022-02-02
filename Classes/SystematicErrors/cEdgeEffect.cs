@@ -1,9 +1,6 @@
-﻿using System;
+﻿using HCSAnalyzer.Classes.Base_Classes.DataStructures;
+using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using LibPlateAnalysis;
-using HCSAnalyzer.Classes.Base_Classes.DataStructures;
 
 namespace HCSAnalyzer.Classes
 {
@@ -41,7 +38,7 @@ namespace HCSAnalyzer.Classes
 
             for (int Y = 0; Y < cGlobalInfo.CurrentScreening.Rows + 2; Y++)
             {
-                Mask[0,Y] = 1;
+                Mask[0, Y] = 1;
                 Mask[cGlobalInfo.CurrentScreening.Columns + 1, Y] = 1;
             }
         }
@@ -51,23 +48,23 @@ namespace HCSAnalyzer.Classes
             for (int j = 0; j < Height; j++)
                 for (int i = 0; i < Width; i++)
                 {
-                    
-                    if (Mask[i,j] == 0)
+
+                    if (Mask[i, j] == 0)
                     {
-                        output[i,j] = input[i, j] + (input[i + 1,j] + input[i - 1,j] + input[i,j+1] + input[i,j-1] - 4 * input[i,j]) * CoeffDiff;
+                        output[i, j] = input[i, j] + (input[i + 1, j] + input[i - 1, j] + input[i, j + 1] + input[i, j - 1] - 4 * input[i, j]) * CoeffDiff;
                     }
                     else
-                        output[i,j] = Mask[i,j];
+                        output[i, j] = Mask[i, j];
                 }
 
             // normalize the plate
-             cExtendedList LextPlate = new cExtendedList();
+            cExtendedList LextPlate = new cExtendedList();
 
             // compute average 
-             for (int Y = 0; Y < cGlobalInfo.CurrentScreening.Rows; Y++)
-                 for (int X = 0; X < cGlobalInfo.CurrentScreening.Columns; X++)
+            for (int Y = 0; Y < cGlobalInfo.CurrentScreening.Rows; Y++)
+                for (int X = 0; X < cGlobalInfo.CurrentScreening.Columns; X++)
                 {
-                    LextPlate.Add(output[X+1, Y+1]);
+                    LextPlate.Add(output[X + 1, Y + 1]);
                 }
 
             double Average = LextPlate.Mean();
@@ -76,8 +73,8 @@ namespace HCSAnalyzer.Classes
             for (int Y = 0; Y < cGlobalInfo.CurrentScreening.Rows; Y++)
                 for (int X = 0; X < cGlobalInfo.CurrentScreening.Columns; X++)
                 {
-                    output[X+1, Y+1] = (output[X+1, Y+1] - Average) / Stdev;
-                }           
+                    output[X + 1, Y + 1] = (output[X + 1, Y + 1] - Average) / Stdev;
+                }
 
 
 
@@ -117,7 +114,7 @@ namespace HCSAnalyzer.Classes
                 for (int Y = 0; Y < cGlobalInfo.CurrentScreening.Rows; Y++)
                     for (int X = 0; X < cGlobalInfo.CurrentScreening.Columns; X++)
                     {
-                        CurrentDist += Math.Sqrt( (this.DiffusionMaps[Iter][X, Y] - TmpPlate[X, Y]) * (this.DiffusionMaps[Iter][X, Y] - TmpPlate[X, Y]));
+                        CurrentDist += Math.Sqrt((this.DiffusionMaps[Iter][X, Y] - TmpPlate[X, Y]) * (this.DiffusionMaps[Iter][X, Y] - TmpPlate[X, Y]));
                     }
 
                 if (CurrentDist < Dist)
@@ -132,7 +129,7 @@ namespace HCSAnalyzer.Classes
 
         public double[] FindBestShiftMultCoeff(double[,] inputPlate, int IdxDiff)
         {
-            double[,] TmpPlate = new double[cGlobalInfo.CurrentScreening.Columns,cGlobalInfo.CurrentScreening.Rows];
+            double[,] TmpPlate = new double[cGlobalInfo.CurrentScreening.Columns, cGlobalInfo.CurrentScreening.Rows];
             double[] ShiftMult = new double[2];
 
             double MaxDist = double.MaxValue;
@@ -167,7 +164,7 @@ namespace HCSAnalyzer.Classes
         public double[,] CorrectThePlate(double[,] inputPlate, int IdxDiff, double Shift, double MultCoeff)
         {
             double[,] CorrectedPlate = new double[cGlobalInfo.CurrentScreening.Columns, cGlobalInfo.CurrentScreening.Rows];
-            
+
             for (int Y = 0; Y < cGlobalInfo.CurrentScreening.Rows; Y++)
                 for (int X = 0; X < cGlobalInfo.CurrentScreening.Columns; X++)
                 {
@@ -176,7 +173,7 @@ namespace HCSAnalyzer.Classes
 
 
             return CorrectedPlate;
-        
+
         }
 
 

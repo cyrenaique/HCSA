@@ -1,17 +1,13 @@
-﻿using System;
+﻿using HCSAnalyzer.Classes.Base_Classes.DataStructures;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using HCSAnalyzer.Classes.Base_Classes.DataStructures;
-using LibPlateAnalysis;
 
 namespace HCSAnalyzer.Classes.Base_Classes.DataAnalysis
 {
-    
+
 
     class cDistanceMahalanobis : cDataAnalysisComponent
     {
-     //   public eDistances DistanceType = eDistances.EUCLIDEAN;
+        //   public eDistances DistanceType = eDistances.EUCLIDEAN;
 
         cExtendedTable Input;
         cExtendedTable OutPut;
@@ -50,7 +46,7 @@ namespace HCSAnalyzer.Classes.Base_Classes.DataAnalysis
                 }
                 this.OutPut.Add(NewResult);
             }
-          
+
         }
 
         public cExtendedTable GetOutPut()
@@ -60,14 +56,14 @@ namespace HCSAnalyzer.Classes.Base_Classes.DataAnalysis
 
         public cFeedBackMessage Run()
         {
-         
+
             if (this.Input == null)
             {
                 FeedBackMessage.IsSucceed = false;
                 FeedBackMessage.Message = "No input data defined.";
                 return FeedBackMessage;
             }
-            
+
             // ------------- now proceed ------------- 
 
             Process();

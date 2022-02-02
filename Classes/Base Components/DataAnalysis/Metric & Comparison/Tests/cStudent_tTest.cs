@@ -1,10 +1,6 @@
-﻿using System;
+﻿using HCSAnalyzer.Classes.Base_Classes.DataStructures;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using HCSAnalyzer.Classes.Base_Classes.DataStructures;
 //using RDotNet;
-using Accord.Statistics.Testing;
 
 namespace HCSAnalyzer.Classes.Base_Classes.DataAnalysis
 {
@@ -21,7 +17,7 @@ namespace HCSAnalyzer.Classes.Base_Classes.DataAnalysis
 
         public cStudent_tTest()
         {
-           
+
             this.Title = "Student's t-Test";
             base.Info = @"
 Student's t-tests
@@ -78,7 +74,7 @@ p-value for right-tailed test (null hypothesis - mean of the first sample is les
                 return FeedBackMessage;
             }
             // ------------- now proceed ------------- 
-           
+
             this.OutPut = new cExtendedTable();
             this.OutPut.ListRowNames = new List<string>();
 
@@ -103,11 +99,11 @@ p-value for right-tailed test (null hypothesis - mean of the first sample is les
                     double lefttail;
                     double righttail;
 
-                    if(this.IsUnequalVariance)
+                    if (this.IsUnequalVariance)
                         alglib.unequalvariancettest(this.Input[IdxCol].ToArray(), this.Input[IdxCol].Count, this.Input[IdxColBis].ToArray(), this.Input[IdxColBis].Count, out bothtails, out lefttail, out righttail);
                     else
                         alglib.studentttest2(this.Input[IdxCol].ToArray(), this.Input[IdxCol].Count, this.Input[IdxColBis].ToArray(), this.Input[IdxColBis].Count, out bothtails, out lefttail, out righttail);
-                   
+
                     //alglib.mannwhitneyutest(
 
                     if (FTestTails == eFTestTails.BOTH)
@@ -122,7 +118,7 @@ p-value for right-tailed test (null hypothesis - mean of the first sample is les
                 this.OutPut.Add(NewResult);
             }
 
-           return FeedBackMessage;
+            return FeedBackMessage;
         }
 
 

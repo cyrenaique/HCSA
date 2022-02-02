@@ -1,16 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using HCSAnalyzer.Forms.FormsForImages;
-using System.Drawing;
-using ImageAnalysis;
-using Emgu.CV;
-using Emgu.CV.CvEnum;
-using System.Runtime.InteropServices;
-using Emgu.CV.Structure;
+﻿using HCSAnalyzer.Classes.Base_Classes;
 using HCSAnalyzer.Classes.General_Types;
-using HCSAnalyzer.Classes.Base_Classes;
+using ImageAnalysis;
+using System;
 
 namespace ImageAnalysisFiltering
 {
@@ -22,7 +13,7 @@ namespace ImageAnalysisFiltering
         {
             this.Title = "Binning";
 
-            cProperty Prop2 = new cProperty(new cPropertyType("Binning", eDataType.INTEGER),null);
+            cProperty Prop2 = new cProperty(new cPropertyType("Binning", eDataType.INTEGER), null);
             Prop2.PropertyType.Min = 2;
             Prop2.PropertyType.IntType = eIntegerType.EVEN;
             Prop2.Info = "Define the new image binning.";
@@ -75,7 +66,7 @@ namespace ImageAnalysisFiltering
                 //else
                 base.Output = new cImage((int)(base.Input.Width / Binning),
                                         (int)(base.Input.Height / Binning),
-                                        (int)(base.Input.Depth / Binning)+1, 
+                                        (int)(base.Input.Depth / Binning) + 1,
                                         base.Input.GetNumChannels());
 
                 for (int band = 0; band < base.Input.GetNumChannels(); band++)
@@ -95,7 +86,7 @@ namespace ImageAnalysisFiltering
                                 outData[minX + minY * base.Output.Width + minZ * base.Output.SliceSize] += inData[i + j * base.Input.Width + k * base.Input.SliceSize];
                             }
                 }
-            
+
             }
 
             for (int i = 0; i < this.Input.GetNumChannels(); i++)

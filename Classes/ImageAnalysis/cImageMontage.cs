@@ -1,15 +1,12 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
+﻿using HCSAnalyzer.Classes._3D;
 using ImageAnalysis;
-using HCSAnalyzer.Classes._3D;
+using System.Collections.Generic;
 
 namespace HCSAnalyzer.Classes.ImageAnalysis
 {
-    public class cImageMontage 
+    public class cImageMontage
     {
-        cPoint3D MontageDimensions = new cPoint3D(0,0,0);
+        cPoint3D MontageDimensions = new cPoint3D(0, 0, 0);
         List<cImage> ListImage = null;
         int NumberOfChannels;
         cPoint3D Resolution = new cPoint3D(1, 1, 1);
@@ -18,7 +15,7 @@ namespace HCSAnalyzer.Classes.ImageAnalysis
         {
             foreach (var item in ListImage)
             {
-                
+
             }
 
             return MontageDimensions;
@@ -70,11 +67,11 @@ namespace HCSAnalyzer.Classes.ImageAnalysis
 
         public cImage GetMontage()
         {
-            cImage MyIm = new cImage((int)this.MontageDimensions.X, (int)this.MontageDimensions.Y, (int)this.MontageDimensions.Z,this.NumberOfChannels);
+            cImage MyIm = new cImage((int)this.MontageDimensions.X, (int)this.MontageDimensions.Y, (int)this.MontageDimensions.Z, this.NumberOfChannels);
             MyIm.Resolution = new cPoint3D(this.Resolution);
 
             return MyIm;
-        
+
         }
 
     }

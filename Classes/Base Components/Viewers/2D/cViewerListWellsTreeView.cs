@@ -1,17 +1,14 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using HCSAnalyzer.Classes.Base_Classes.DataStructures;
-using HCSAnalyzer.GUI.FormsForGraphsDisplay.Generic;
-using HCSAnalyzer.Classes.General_Types;
-using System.Windows.Forms;
-using LibPlateAnalysis;
+﻿using HCSAnalyzer.Classes.Base_Classes.DataAnalysis;
 using HCSAnalyzer.Classes.Base_Classes.DataProcessing;
+using HCSAnalyzer.Classes.Base_Classes.DataStructures;
 using HCSAnalyzer.Classes.Base_Classes.Viewers._1D;
-using System.Windows.Forms.DataVisualization.Charting;
-using HCSAnalyzer.Classes.Base_Classes.DataAnalysis;
+using HCSAnalyzer.Classes.General_Types;
+using LibPlateAnalysis;
+using System;
+using System.Collections.Generic;
 using System.IO;
+using System.Windows.Forms;
+using System.Windows.Forms.DataVisualization.Charting;
 
 namespace HCSAnalyzer.Classes.Base_Classes.Viewers
 {

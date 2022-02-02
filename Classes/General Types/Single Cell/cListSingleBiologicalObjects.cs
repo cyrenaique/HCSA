@@ -1,7 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.Windows.Forms;
 
 namespace HCSAnalyzer.Classes.General_Types
@@ -10,7 +8,7 @@ namespace HCSAnalyzer.Classes.General_Types
     {
         public cGlobalInfo GlobalInfo;
         int NewClass;
-       // public object Sender;
+        // public object Sender;
 
         public cListSingleBiologicalObjects()
         {

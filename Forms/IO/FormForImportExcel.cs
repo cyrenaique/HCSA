@@ -1,20 +1,13 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
+﻿using LibPlateAnalysis;
+using System;
 using System.Windows.Forms;
-using LibPlateAnalysis;
-using HCSAnalyzer.Classes;
 
 namespace HCSAnalyzer
 {
     public partial class FormForImportExcel : Form
     {
         private bool FirstTime = true;
-        public bool IsImportCSV =  false;
+        public bool IsImportCSV = false;
         public bool IsAppend;
         public int ModeWell;
         public char Separator = ',';

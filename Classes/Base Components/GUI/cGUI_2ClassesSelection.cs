@@ -1,11 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using HCSAnalyzer.Forms;
-using HCSAnalyzer.Forms.FormsForGraphsDisplay;
-using HCSAnalyzer.Classes.Base_Classes.DataStructures;
+﻿using HCSAnalyzer.Classes.Base_Classes.DataStructures;
 using HCSAnalyzer.Classes.Base_Classes.Viewers;
+using HCSAnalyzer.Forms.FormsForGraphsDisplay;
+using System.Collections.Generic;
 using System.Windows.Forms;
 
 namespace HCSAnalyzer.Classes.Base_Classes.GUI
@@ -40,14 +36,14 @@ namespace HCSAnalyzer.Classes.Base_Classes.GUI
             ClassSelectionPanel1.Select(0);
             ClassSelectionPanel1.Location = new System.Drawing.Point(10, 10);
             ClassSelectionPanel1.Width = 140;
-            if(ClassSelectionPanel1.ListCheckBoxes!=null)
-                ClassSelectionPanel1.Height = ClassSelectionPanel1.ListCheckBoxes.Count*25;
+            if (ClassSelectionPanel1.ListCheckBoxes != null)
+                ClassSelectionPanel1.Height = ClassSelectionPanel1.ListCheckBoxes.Count * 25;
             else
                 ClassSelectionPanel1.Height = ClassSelectionPanel1.ListRadioButtons.Count * 25;
             ClassSelectionPanel1.BorderStyle = BorderStyle.Fixed3D;
 
 
-            PanelForClassSelection ClassSelectionPanel2 = new PanelForClassSelection( PanelRight_IsCheckBoxes, this.ClassType);
+            PanelForClassSelection ClassSelectionPanel2 = new PanelForClassSelection(PanelRight_IsCheckBoxes, this.ClassType);
             ClassSelectionPanel2.UnSelectAll();
             ClassSelectionPanel2.Select(1);
             ClassSelectionPanel2.Location = new System.Drawing.Point(10 + ClassSelectionPanel1.Width, 10);
@@ -57,7 +53,7 @@ namespace HCSAnalyzer.Classes.Base_Classes.GUI
             else
                 ClassSelectionPanel2.Height = ClassSelectionPanel2.ListRadioButtons.Count * 25;
             ClassSelectionPanel2.BorderStyle = BorderStyle.Fixed3D;
-           
+
 
 
 
@@ -70,7 +66,7 @@ namespace HCSAnalyzer.Classes.Base_Classes.GUI
             WindowToDisplay.Controls.Add(ClassSelectionPanel1);
             WindowToDisplay.Controls.Add(ClassSelectionPanel2);
             WindowToDisplay.Width = ClassSelectionPanel1.Width + ClassSelectionPanel2.Width + 28;
-            WindowToDisplay.Height = ClassSelectionPanel1.Height + ReturnButton.Height+ 48;
+            WindowToDisplay.Height = ClassSelectionPanel1.Height + ReturnButton.Height + 48;
 
 
             if (WindowToDisplay.ShowDialog() != System.Windows.Forms.DialogResult.OK)
@@ -111,7 +107,7 @@ namespace HCSAnalyzer.Classes.Base_Classes.GUI
 
 
             return FeedBackMessage;
-            
+
         }
 
 

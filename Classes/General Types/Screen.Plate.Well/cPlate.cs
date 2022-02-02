@@ -1,33 +1,25 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Windows.Forms;
-using System.Drawing;
-using System.Windows.Forms.DataVisualization.Charting;
-using System.IO;
-using HCSAnalyzer;
+﻿using HCSAnalyzer;
 using HCSAnalyzer.Classes;
-using weka.core;
-using System.Windows.Threading;
 using HCSAnalyzer.Classes._3D;
-using System.Data.SQLite;
-using System.Data;
-using HCSAnalyzer.Forms.FormsForGraphsDisplay;
-using HCSAnalyzer.Controls;
+using HCSAnalyzer.Classes.Base_Classes;
 using HCSAnalyzer.Classes.Base_Classes.DataStructures;
-using System.Text;
+using HCSAnalyzer.Classes.Base_Classes.GUI;
+using HCSAnalyzer.Classes.Base_Classes.Viewers;
+using HCSAnalyzer.Classes.Base_Classes.Viewers._3D.ComplexObjects;
 using HCSAnalyzer.Classes.General_Types;
 using HCSAnalyzer.Classes.MetaComponents;
-using Kitware.VTK;
-using HCSAnalyzer.Classes.Base_Classes.Viewers;
-using HCSAnalyzer.Classes.Base_Classes;
-using HCSAnalyzer.Classes.Base_Classes.GUI;
-using HCSAnalyzer.Classes.Base_Classes.DataAnalysis;
-using ImageAnalysis;
-using HCSAnalyzer.Classes.Base_Classes.Viewers._2D;
-using ImageAnalysisFiltering;
+using HCSAnalyzer.Controls;
+using HCSAnalyzer.Forms.FormsForGraphsDisplay;
 using HCSAnalyzer.Forms.IO;
-using HCSAnalyzer.Classes.Base_Classes.Viewers._3D.ComplexObjects;
+using ImageAnalysis;
+using System;
+using System.Collections.Generic;
+using System.Drawing;
+using System.IO;
+using System.Text;
+using System.Windows.Forms;
+using System.Windows.Forms.DataVisualization.Charting;
+using weka.core;
 
 namespace LibPlateAnalysis
 {
@@ -291,7 +283,7 @@ namespace LibPlateAnalysis
         {
             cInfoForHierarchical InfoForHierarchical = new cInfoForHierarchical();
             weka.core.FastVector atts = new FastVector();
-            
+
 
             int columnNo = 0;
 
@@ -480,10 +472,10 @@ namespace LibPlateAnalysis
                 cGlobalInfo.LabelForClass.Update();
 
                 cGlobalInfo.WindowHCSAnalyzer.UpdateQCDisplay();
-        
+
             }
 
-            
+
 
             return ListNumObjectPerClasse;
         }
@@ -607,7 +599,7 @@ namespace LibPlateAnalysis
             }
             catch (Exception)
             {
-                return false;                
+                return false;
             }
 
             return true;
@@ -1005,13 +997,13 @@ namespace LibPlateAnalysis
                     }
                     else
                     {
-                       
-                       
+
+
                         for (int j = 0; j < ParentScreening.Rows; j++)
                             for (int i = 0; i < ParentScreening.Columns; i++)
                             {
                                 cWell TempWell = GetWell(i, j, false);
-                                if (TempWell == null) continue;                               
+                                if (TempWell == null) continue;
                                 LChart.Add(TempWell.BuildChart(IdxDescriptor, MinMax));
                             }
                     }
@@ -1020,12 +1012,12 @@ namespace LibPlateAnalysis
                 //thread.Start();
                 if (cGlobalInfo.ViewMode != eViewMode.IMAGE)
                 {
-                   
-                        cGlobalInfo.panelForPlate.Controls.AddRange(LChart.ToArray());
-                   
-                    
+
+                    cGlobalInfo.panelForPlate.Controls.AddRange(LChart.ToArray());
+
+
                 }
-                    
+
 
                 //cGlobalInfo.panelForPlate.HorizontalScroll.Value = PosScrollX;
                 //cGlobalInfo.panelForPlate.VerticalScroll.Value = PosScrollY;
@@ -1110,12 +1102,12 @@ namespace LibPlateAnalysis
             Screening2D.Run(MyWorld);
             MyWorld.AddGeometric3DObjects(Screening2D.GetOutPut());
 
-           // c3DObject_Plate2D Plate2D = new c3DObject_Plate2D();
-           // Plate2D.SetInputData(this);
-           // Plate2D.Run(MyWorld);
-           // MyWorld.AddGeometric3DObjects(Plate2D.GetOutPut());
+            // c3DObject_Plate2D Plate2D = new c3DObject_Plate2D();
+            // Plate2D.SetInputData(this);
+            // Plate2D.Run(MyWorld);
+            // MyWorld.AddGeometric3DObjects(Plate2D.GetOutPut());
 
-           // MyWorld.BackGroundColor = Color.White;
+            // MyWorld.BackGroundColor = Color.White;
 
 
             V3D.Run();
@@ -1162,8 +1154,8 @@ namespace LibPlateAnalysis
             for (int j = 0; j < ToReturn.Height; j++)
                 for (int i = 0; i < ToReturn.Width; i++)
                 {
-                    cWell TmpWell = this.GetWell(i , j , true);
-                    if(TmpWell==null) continue;
+                    cWell TmpWell = this.GetWell(i, j, true);
+                    if (TmpWell == null) continue;
 
                     Color C = TmpWell.GetClassColor();
 

@@ -1,17 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
+﻿using HCSAnalyzer.Classes._3D;
 using HCSAnalyzer.Classes.Base_Classes.DataStructures;
-using HCSAnalyzer.Forms;
-using System.Windows.Forms;
-using HCSAnalyzer.Forms._3D;
-using LibPlateAnalysis;
 using Kitware.VTK;
-using HCSAnalyzer.Classes._3D;
-using HCSAnalyzer.Forms.FormsForGraphsDisplay;
-using System.Windows.Forms.DataVisualization.Charting;
+using System;
 using System.Drawing;
+using System.Windows.Forms;
 
 namespace HCSAnalyzer.Classes.Base_Classes.Viewers
 {

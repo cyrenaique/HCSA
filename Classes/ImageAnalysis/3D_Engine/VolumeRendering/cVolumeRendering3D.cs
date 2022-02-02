@@ -1,16 +1,14 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Windows.Forms;
-using System.Drawing;
-using Kitware.VTK;
-using HCSAnalyzer.Classes._3D;
-using ImageAnalysis;
+﻿using HCSAnalyzer.Classes._3D;
 using HCSAnalyzer.Classes.Base_Classes;
 using HCSAnalyzer.Classes.Base_Classes.DataStructures;
-using HCSAnalyzer.Classes.ImageAnalysis._3D_Engine.VolumeRendering;
 using HCSAnalyzer.Classes.Base_Classes.Viewers._3D.ComplexObjects;
 using HCSAnalyzer.Classes.Base_Components.Viewers._3D;
+using HCSAnalyzer.Classes.ImageAnalysis._3D_Engine.VolumeRendering;
+using ImageAnalysis;
+using Kitware.VTK;
+using System;
+using System.Collections.Generic;
+using System.Windows.Forms;
 
 namespace HCSAnalyzer.Classes.ImageAnalysis._3D_Engine
 {
@@ -84,7 +82,7 @@ namespace HCSAnalyzer.Classes.ImageAnalysis._3D_Engine
             {
                 //cLUT MyLut = new cLUT();
                 //LUT = MyLut.LUT_JET;
-                ColorTransferFunction.AddRGBPoint(0, 0 , 0, 0);
+                ColorTransferFunction.AddRGBPoint(0, 0, 0, 0);
                 ColorTransferFunction.AddRGBPoint(1, 1, 1, 1);
             }
 
@@ -93,21 +91,21 @@ namespace HCSAnalyzer.Classes.ImageAnalysis._3D_Engine
             //for (int i = 0; i < (int)LUTSize; i++)
             //{
             //    colorTransferFunction.AddRGBPoint(i, LUT[0][i] / LUTSize, LUT[1][i] / LUTSize, LUT[2][i] / LUTSize);
-                
+
             //}
 
             ColorTransferFunction.Build();
 
             volumeProperty = vtkVolumeProperty.New();
             volumeProperty.SetColor(ColorTransferFunction);
-        
+
             volumeProperty.SetScalarOpacity(opacityTransferFunction);
             volumeProperty.SetInterpolationTypeToNearest();
             volumeProperty.ShadeOff();
 
             vtkVolumeTextureMapper3D volumeTextureMapper = vtkVolumeTextureMapper3D.New();
             volumeTextureMapper.SetInputConnection(voi.GetOutputPort());
-            
+
             //vtkVolumeRayCastCompositeFunction compositeFunction = vtkVolumeRayCastCompositeFunction.New();
             //vtkVolumeRayCastMapper volumeMapper = vtkVolumeRayCastMapper.New();
             //volumeMapper.SetVolumeRayCastFunction(compositeFunction);
@@ -128,14 +126,14 @@ namespace HCSAnalyzer.Classes.ImageAnalysis._3D_Engine
             vtk_volume = vtkVolume.New();
             // vtkFloatArray floatArray = vtkFloatArray.New();
             //vtkCharArray charArray = vtkCharArray.New();
-          //  vtkUnsignedShortArray UshortArray = vtkUnsignedShortArray.New();
+            //  vtkUnsignedShortArray UshortArray = vtkUnsignedShortArray.New();
 
             vtkExtractVOI voi = vtkExtractVOI.New();
-          //  vtkPiecewiseFunction opacityTransferFunction = vtkPiecewiseFunction.New();
+            //  vtkPiecewiseFunction opacityTransferFunction = vtkPiecewiseFunction.New();
             vtkColorTransferFunction colorTransferFunction = vtkColorTransferFunction.New();
             vtkVolumeProperty volumeProperty = vtkVolumeProperty.New();
 
-           // imageData.GetPointData().SetScalars(UshortArray);
+            // imageData.GetPointData().SetScalars(UshortArray);
 
             voi = vtkExtractVOI.New();
             voi.SetInput(imageData);
@@ -205,7 +203,7 @@ namespace HCSAnalyzer.Classes.ImageAnalysis._3D_Engine
             vtk_volume.SetPosition(Pos.X, Pos.Y, Pos.Z);
 
         }
-      
+
         public void SetPosition(cPoint3D Pos)
         {
             this.vtk_volume.SetPosition(Pos.X, Pos.Y, Pos.Z);
@@ -213,7 +211,7 @@ namespace HCSAnalyzer.Classes.ImageAnalysis._3D_Engine
 
         public cPoint3D GetPosition()
         {
-            double[] P=  vtk_volume.GetPosition();
+            double[] P = vtk_volume.GetPosition();
             return new cPoint3D(P[0], P[1], P[2]);
         }
 
@@ -230,14 +228,14 @@ namespace HCSAnalyzer.Classes.ImageAnalysis._3D_Engine
         public void Update()
         {
             if (this.AssociatedWorld == null) return;
-          //  this.AssociatedWorld.AssociatedVTKRenderer.Render();
+            //  this.AssociatedWorld.AssociatedVTKRenderer.Render();
             this.AssociatedWorld.AssociatedrenderWindow.RenderWindow.Render();
         }
 
         public void ShowWindowVolumeRenderingOption()
         {
             this.WindowVolumeRenderingOption.Visible = true;
-          
+
         }
 
         public List<ToolStripMenuItem> GetExtendedContextMenu()
@@ -306,7 +304,7 @@ namespace HCSAnalyzer.Classes.ImageAnalysis._3D_Engine
             //_3DObjectProperties_GetInfo.Click += new System.EventHandler(this._3DObjectProperties_GetInfo);
 
             //MainMenu.DropDownItems.Add(_3DObjectProperties_INFO);
-          //  #endregion
+            //  #endregion
 
             ListToReturn.Add(MainMenu);
 
@@ -322,19 +320,19 @@ namespace HCSAnalyzer.Classes.ImageAnalysis._3D_Engine
 
             this.AssociatedWorld = AssociatedWorld;
 
-            
+
         }
 
         public void AddMeToTheWorld(vtkRenderer World)
         {
             World.AddVolume(this.vtk_volume);
-         //   vtkColorTransferFunction ColorTransferFunction = vtkColorTransferFunction.New();
+            //   vtkColorTransferFunction ColorTransferFunction = vtkColorTransferFunction.New();
 
             //ColorTransferFunction.AddRGBPoint(range[0] + (range[1] - range[0]) / 6.0, 0.0, 0.0, 0.1);
             //ColorTransferFunction.AddRGBPoint(range[1], 0.1, 0.6, 0.0);
 
-          //  ColorTransferFunction.AddRGBPoint(0, FirstColor.R / 255.0, FirstColor.G / 255.0, FirstColor.B / 255.0);
-         //   ColorTransferFunction.AddRGBPoint(255, LastColor.R / 255.0, LastColor.G / 255.0, LastColor.B / 255.0);
+            //  ColorTransferFunction.AddRGBPoint(0, FirstColor.R / 255.0, FirstColor.G / 255.0, FirstColor.B / 255.0);
+            //   ColorTransferFunction.AddRGBPoint(255, LastColor.R / 255.0, LastColor.G / 255.0, LastColor.B / 255.0);
             //ColorTransferFunction.AddRGBPoint(/*range[1]*/3000, FirstColor.R / 255.0, FirstColor.G / 255.0, FirstColor.B / 255.0);
 
 
@@ -357,7 +355,7 @@ namespace HCSAnalyzer.Classes.ImageAnalysis._3D_Engine
 
 
 
-           // this.vtk_volume.GetProperty().SetColor(ColorTransferFunction);
+            // this.vtk_volume.GetProperty().SetColor(ColorTransferFunction);
 
 
 
@@ -366,15 +364,15 @@ namespace HCSAnalyzer.Classes.ImageAnalysis._3D_Engine
 
         private void _3DObjectProperties_Opacity(object sender, EventArgs e)
         {
-           // ChangeOpacity(100, 500, 0.1);
+            // ChangeOpacity(100, 500, 0.1);
 
             FormFor3DVolumeDisplayParam _3DVolumeParam = new FormFor3DVolumeDisplayParam(this);
             _3DVolumeParam.Show();
         }
 
         private void _3DObjectProperties_Segment(object sender, EventArgs e)
-        {  
-            
+        {
+
             c3DObjectMeshFromImage MyMesh = new c3DObjectMeshFromImage();
 
             if (this.AssociatedImage == null)
@@ -405,29 +403,29 @@ namespace HCSAnalyzer.Classes.ImageAnalysis._3D_Engine
             this.AssociatedWorld.AddGeometric3DObjects(MyMesh.GetOutPut());
             this.AssociatedWorld.Redraw();
 
-        
+
         }
 
         public void ChangeOpacity(double StartingPt, double EndingPt, double OpacityMax)
         {
-         //   vtkPiecewiseFunction opacityTransferFunction = vtkPiecewiseFunction.New();// this.vtk_volume.GetProperty().GetScalarOpacity();
-         //   opacityTransferFunction.RemoveAllPoints();
+            //   vtkPiecewiseFunction opacityTransferFunction = vtkPiecewiseFunction.New();// this.vtk_volume.GetProperty().GetScalarOpacity();
+            //   opacityTransferFunction.RemoveAllPoints();
             //MaxOpacity = Opacity;
             //if (MaxOpacity < 0) MaxOpacity = 0;
             //if (MaxOpacity > 1) MaxOpacity = 1;
-       //     opacityTransferFunction.AddPoint(StartingPt, 0.0);
-         //   opacityTransferFunction.AddPoint(EndingPt, OpacityMax);
-          //  vtk_volume.GetProperty().SetScalarOpacity(opacityTransferFunction);
+            //     opacityTransferFunction.AddPoint(StartingPt, 0.0);
+            //   opacityTransferFunction.AddPoint(EndingPt, OpacityMax);
+            //  vtk_volume.GetProperty().SetScalarOpacity(opacityTransferFunction);
 
-        //    return;  
-            
-            
-            cExtendedTable ET = new cExtendedTable(2,2,0);
+            //    return;  
+
+
+            cExtendedTable ET = new cExtendedTable(2, 2, 0);
             ET[0][0] = StartingPt;
             //ET[1][0] = 0;
             ET[0][1] = EndingPt;
             //ET[1][1] = OpacityMax;
-            
+
             cvtkPiecewiseFunctionBuilder vtkPiecewiseFunctionBuilder = new cvtkPiecewiseFunctionBuilder();
             vtkPiecewiseFunctionBuilder.ListProperties.FindByName("Min. Opacity").IsGUIforValue = true;
             vtkPiecewiseFunctionBuilder.ListProperties.FindByName("Min. Opacity").SetNewValue(0.0);

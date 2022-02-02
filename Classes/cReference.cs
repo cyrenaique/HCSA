@@ -1,19 +1,16 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using LibPlateAnalysis;
-using System.Windows.Forms.DataVisualization.Charting;
-using System.Drawing;
-using HCSAnalyzer.Classes.Base_Classes.DataStructures;
+﻿using HCSAnalyzer.Classes.Base_Classes.DataStructures;
 using HCSAnalyzer.Classes.General_Types;
+using LibPlateAnalysis;
+using System.Collections.Generic;
+using System.Drawing;
+using System.Windows.Forms.DataVisualization.Charting;
 
 namespace HCSAnalyzer.Classes
 {
     public class cReference : cListWells //: List<cExtendedList>
     {
 
-      //  List<cWell> ListWellsForReference;
+        //  List<cWell> ListWellsForReference;
 
         //public List<cWell> GetReferenceWells()
         //{
@@ -29,7 +26,7 @@ namespace HCSAnalyzer.Classes
         //    //foreach (cDescriptor Desc in WellsForReference[0].ListDescriptors)
         //    //{
         //    //    cExtendedList NewList = new cExtendedList();
-                
+
         //    //    for (int i = 0; i < Desc.GetAssociatedType().GetBinNumber(); i++)
         //    //    {
         //    //        double CurrentVal = 0;
@@ -91,16 +88,16 @@ namespace HCSAnalyzer.Classes
             // CurrentSeries.BorderWidth = 3;
             CurrentSeries.ChartArea = "ChartArea" + DescriptorIdx;
 
-           // CurrentSeries.Name = "Series" + PosX + "x" + PosY;
+            // CurrentSeries.Name = "Series" + PosX + "x" + PosY;
             ChartToReturn.Series.Add(CurrentSeries);
 
             Title CurrentTitle = new Title("Reference");
             // ChartToReturn.Titles.Add(CurrentTitle);
 
-           // ChartToReturn.Width = 100;
-          //  ChartToReturn.Height = 48;
+            // ChartToReturn.Width = 100;
+            //  ChartToReturn.Height = 48;
 
-           // ChartToReturn.Update();
+            // ChartToReturn.Update();
             //  ChartToReturn.Show();
 
             return ChartToReturn;

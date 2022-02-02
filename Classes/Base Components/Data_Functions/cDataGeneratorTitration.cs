@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using HCSAnalyzer.Classes.Base_Classes.DataStructures;
-using System.Drawing;
+﻿using HCSAnalyzer.Classes.Base_Classes.DataStructures;
 
 namespace HCSAnalyzer.Classes.Base_Classes.Data
 {

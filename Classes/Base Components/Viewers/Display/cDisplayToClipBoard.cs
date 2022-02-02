@@ -1,11 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using HCSAnalyzer.Classes.Base_Classes.DataStructures;
+﻿using HCSAnalyzer.Classes.Base_Classes.DataStructures;
 using System.Drawing;
-using System.Windows;
-using System.Windows.Forms;
 using System.IO;
 
 namespace HCSAnalyzer.Classes.Base_Classes.Viewers
@@ -19,16 +13,16 @@ namespace HCSAnalyzer.Classes.Base_Classes.Viewers
 
         public cDisplayToClipBoard()
         {
-           // ControlsToDisplay = new List<cExtendedControl>();
+            // ControlsToDisplay = new List<cExtendedControl>();
         }
 
         public void SetInputData(cExtendedControl Input)
         {
-          //  foreach (var item in Input)
+            //  foreach (var item in Input)
             this.ControlToDisplay = Input;
             //{
             //    ControlsToDisplay.Add(item);
-           // }
+            // }
 
         }
 
@@ -56,7 +50,7 @@ namespace HCSAnalyzer.Classes.Base_Classes.Viewers
         {
             ControlToDisplay.CreateGraphics();
 
-         //   ControlToDisplay.Show();
+            //   ControlToDisplay.Show();
 
             ControlToDisplay.Anchor = (System.Windows.Forms.AnchorStyles)(System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom
             | System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right);
@@ -75,12 +69,12 @@ namespace HCSAnalyzer.Classes.Base_Classes.Viewers
 
 
             MemoryStream ms = new MemoryStream();
-           // this.chart.SaveImage(ms, ChartImageFormat.Bmp);
-           // Bitmap bm = new Bitmap(ms);
+            // this.chart.SaveImage(ms, ChartImageFormat.Bmp);
+            // Bitmap bm = new Bitmap(ms);
             System.Windows.Forms.Clipboard.SetImage(bmp);
 
-          //  bmp.Save(fileName);
-           // bmp.Dispose();
+            //  bmp.Save(fileName);
+            // bmp.Dispose();
 
 
         }

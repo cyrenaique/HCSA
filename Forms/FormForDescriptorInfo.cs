@@ -1,12 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
 using System.Drawing;
-using System.Linq;
-using System.Text;
 using System.Windows.Forms;
-using HCSAnalyzer.Classes;
 
 namespace LibPlateAnalysis
 {
@@ -14,21 +8,21 @@ namespace LibPlateAnalysis
     {
 
         public cDescriptorType CurrentDesc = null;
-        
+
         int OriginalBinNumber;
 
 
         public FormForDescriptorInfo(cDescriptorType CurrentDesc)
         {
             this.CurrentDesc = CurrentDesc;
-            InitializeComponent(); 
+            InitializeComponent();
             this.textBoxNameDescriptor.Text = CurrentDesc.GetName();
             this.richTextBoxDescription.Text = CurrentDesc.description;
             this.labelDataType.Text = CurrentDesc.GetDataType();
             if (CurrentDesc.GetDataType() == "Single")
                 this.numericUpDownBinValue.Visible = false;
             this.numericUpDownBinValue.Value = CurrentDesc.GetBinNumber();
-        
+
             this.OriginalBinNumber = CurrentDesc.GetBinNumber();
 
             if (CurrentDesc.IsConnectedToDatabase)
@@ -47,7 +41,7 @@ namespace LibPlateAnalysis
         private void button1_Click(object sender, EventArgs e)
         {
             this.Visible = false;
-            if(CurrentDesc.GetName()!=this.textBoxNameDescriptor.Text)
+            if (CurrentDesc.GetName() != this.textBoxNameDescriptor.Text)
                 this.CurrentDesc.ChangeName(this.textBoxNameDescriptor.Text);
 
             if (this.numericUpDownBinValue.Value != OriginalBinNumber)

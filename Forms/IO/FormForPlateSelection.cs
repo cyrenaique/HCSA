@@ -1,10 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
 using System.Windows.Forms;
 
 namespace HCSAnalyzer.Forms.IO
@@ -22,7 +17,7 @@ namespace HCSAnalyzer.Forms.IO
                 string CurrentNode = ListNames[i];
 
                 string[] ShortListNames = CurrentNode.Split('\\');
-                TreeNode TN = new TreeNode(ShortListNames[ShortListNames.Length-1]);
+                TreeNode TN = new TreeNode(ShortListNames[ShortListNames.Length - 1]);
 
                 TN.Tag = CurrentNode;
                 TN.Checked = true;//IsMultipleSelection;
@@ -45,7 +40,7 @@ namespace HCSAnalyzer.Forms.IO
 
                 System.Diagnostics.Process.Start("explorer.exe", "/select," + filename);
 
-                    //System.Diagnostics.Process.Start();
+                //System.Diagnostics.Process.Start();
             }
             // If the file is not found, handle the exception and inform the user. 
             catch (System.ComponentModel.Win32Exception)
@@ -101,7 +96,7 @@ namespace HCSAnalyzer.Forms.IO
 
                 ToReturn.Add((string)(this.MaintreeView.Nodes[0].Tag));
 
-            
+
             }
 
             return ToReturn.ToArray();
@@ -110,7 +105,7 @@ namespace HCSAnalyzer.Forms.IO
 
         private void MaintreeView_DoubleClick(object sender, EventArgs e)
         {
-            
+
         }
 
     }

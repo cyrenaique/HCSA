@@ -1,15 +1,12 @@
-﻿using System;
+﻿using HCSAnalyzer.Classes;
+using HCSAnalyzer.Forms.FormsForGraphsDisplay;
+using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
 using System.Drawing;
-using System.Linq;
+using System.IO;
 using System.Text;
 using System.Windows.Forms;
-using System.IO;
 using System.Windows.Forms.DataVisualization.Charting;
-using HCSAnalyzer.Forms.FormsForGraphsDisplay;
-using HCSAnalyzer.Classes;
 
 namespace LibPlateAnalysis
 {
@@ -190,7 +187,7 @@ namespace LibPlateAnalysis
             }
         }
 
-   
+
 
 
     }

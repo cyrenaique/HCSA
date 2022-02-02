@@ -1,14 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using HCSAnalyzer.Classes.Base_Classes.DataStructures;
-using HCSAnalyzer.Classes.MetaComponents;
-using Kitware.VTK;
-using System.Windows.Forms;
-using System.Drawing;
+﻿using HCSAnalyzer.Classes.ImageAnalysis._3D_Engine;
 using ImageAnalysis;
-using HCSAnalyzer.Classes.ImageAnalysis._3D_Engine;
+using Kitware.VTK;
+using System;
+using System.Collections.Generic;
+using System.Drawing;
+using System.Windows.Forms;
 
 namespace HCSAnalyzer.Classes.Base_Classes.Viewers
 {
@@ -29,22 +25,22 @@ namespace HCSAnalyzer.Classes.Base_Classes.Viewers
         #endregion
 
         public void SetInputData(cSingleChannelImage InputImage)
-        {   
+        {
             this.Input = InputImage;
             base.Title += ": " + Input.Name;
 
-            this.InputVolume = new cVolumeRendering3D(InputImage, new Classes._3D.cPoint3D(0, 0, 0),null, null);
+            this.InputVolume = new cVolumeRendering3D(InputImage, new Classes._3D.cPoint3D(0, 0, 0), null, null);
         }
 
         public void SetInputData(cVolumeRendering3D InputVolume)
         {
-          //  base.Title += ": " + InputVolume.Name;
+            //  base.Title += ": " + InputVolume.Name;
             this.InputVolume = InputVolume;
         }
 
         public void SetInputData(vtkImageData VTKData)
         {
-          //  base.Title += ": " + InputVolume.Name;
+            //  base.Title += ": " + InputVolume.Name;
             this.ListVTKData.Add(VTKData);
         }
 
@@ -113,7 +109,7 @@ namespace HCSAnalyzer.Classes.Base_Classes.Viewers
                 Renderer.AddActor2D(imageActor);
             }
 
-            if ((this.InputVolume!=null) && (this.InputVolume.vtk_volume != null))
+            if ((this.InputVolume != null) && (this.InputVolume.vtk_volume != null))
             {
                 Renderer.AddVolume(this.InputVolume.vtk_volume);
             }

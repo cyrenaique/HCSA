@@ -1,12 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
+﻿using HCSAnalyzer.Classes;
+using System;
 using System.Windows.Forms;
-using HCSAnalyzer.Classes;
 
 namespace HCSAnalyzer.Forms.ClusteringForms
 {
@@ -24,7 +18,7 @@ namespace HCSAnalyzer.Forms.ClusteringForms
         {
             cGlobalInfo.OptionsWindow.tabControlWindowOption.SelectedTab = cGlobalInfo.OptionsWindow.tabPageClustering;
 
-           // this.GlobalInfo.OptionsWindow.CurrentScreen = this.CurrentScreen;
+            // this.GlobalInfo.OptionsWindow.CurrentScreen = this.CurrentScreen;
             cGlobalInfo.OptionsWindow.Visible = true;
             cGlobalInfo.OptionsWindow.Update();
         }

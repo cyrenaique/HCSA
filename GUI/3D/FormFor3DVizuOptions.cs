@@ -1,10 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
 using System.Windows.Forms;
 
 namespace HCSAnalyzer.Forms._3D
@@ -12,7 +6,7 @@ namespace HCSAnalyzer.Forms._3D
     public partial class FormFor3DVizuOptions : Form
     {
 
-   //     public FormFor3DDataDisplay Parent = null;
+        //     public FormFor3DDataDisplay Parent = null;
         FormFor3DDataDisplay Parent;
 
         public FormFor3DVizuOptions(FormFor3DDataDisplay Parent)
@@ -61,7 +55,7 @@ namespace HCSAnalyzer.Forms._3D
 
         private void numericUpDownRadiusSphere_ValueChanged(object sender, EventArgs e)
         {
-            Parent.RadiusSphere =   (double)this.numericUpDownRadiusSphere.Value / 100.0;
+            Parent.RadiusSphere = (double)this.numericUpDownRadiusSphere.Value / 100.0;
             Parent.SphereSource.SetRadius(Parent.RadiusSphere);
             Parent.renderWindowControl1.Invalidate();
         }

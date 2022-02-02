@@ -1,13 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using HCSAnalyzer.Classes.Base_Classes.DataStructures;
-using HCSAnalyzer.Classes.Base_Classes;
+﻿using HCSAnalyzer.Classes.Base_Classes;
 using HCSAnalyzer.Classes.Base_Classes.DataAnalysis;
-using HCSAnalyzer.Classes.Base_Classes.Viewers;
-using LibPlateAnalysis;
+using HCSAnalyzer.Classes.Base_Classes.DataStructures;
 using HCSAnalyzer.Classes.General_Types;
+using LibPlateAnalysis;
+using System.Collections.Generic;
 
 namespace HCSAnalyzer.Classes.MetaComponents
 {
@@ -23,7 +19,7 @@ namespace HCSAnalyzer.Classes.MetaComponents
 
         public cFeedBackMessage Run()
         {
-            
+
             if (this.Input == null)
             {
                 FeedBackMessage.IsSucceed = false;
@@ -31,7 +27,7 @@ namespace HCSAnalyzer.Classes.MetaComponents
                 return FeedBackMessage;
             }
             Process();
-            
+
             return FeedBackMessage;
         }
 

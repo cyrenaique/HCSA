@@ -1,18 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using HCSAnalyzer.Forms.FormsForImages;
-using System.Drawing;
-using HCSAnalyzer.Classes;
-using HCSAnalyzer.Classes.Base_Classes.DataStructures;
-using System.Windows.Forms;
-using Emgu.CV;
-using Emgu.CV.Structure;
-using HCSAnalyzer.Classes.Base_Classes.DataAnalysis;
-using HCSAnalyzer.Classes.Base_Classes.Viewers;
-using HCSAnalyzer.Classes.Base_Classes.DataProcessing;
-using HCSAnalyzer.Classes.MetaComponents;
+﻿using System.Collections.Generic;
 
 namespace ImageAnalysis
 {
@@ -35,7 +21,7 @@ namespace ImageAnalysis
         }
 
 
-        
+
 
 
         #endregion

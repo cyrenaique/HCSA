@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
+﻿using System.Collections.Generic;
 using System.Drawing;
 
 namespace HCSAnalyzer.Classes.ImageAnalysis._2D_Engine
@@ -9,15 +6,15 @@ namespace HCSAnalyzer.Classes.ImageAnalysis._2D_Engine
 
     public class c2DBiologicalObject
     {
-    
-    
+
+
     }
 
 
     public class cListPixel : List<Point>
     {
-        
-    
+
+
     }
 
 
@@ -55,7 +52,7 @@ namespace HCSAnalyzer.Classes.ImageAnalysis._2D_Engine
 
     public class c2DObjectPoint : c2DBasicBiologicalObject
     {
-      //  public 
+        //  public 
     }
 
     public class c2DObjectCurve : c2DBasicBiologicalObject

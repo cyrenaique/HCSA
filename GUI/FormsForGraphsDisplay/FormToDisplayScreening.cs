@@ -1,16 +1,12 @@
-﻿using System;
+﻿using HCSAnalyzer.Classes;
+using HCSAnalyzer.Classes.Base_Classes.DataStructures;
+using HCSAnalyzer.Forms.FormsForOptions;
+using LibPlateAnalysis;
+using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
 using System.Drawing;
-using System.Linq;
 using System.Text;
 using System.Windows.Forms;
-using LibPlateAnalysis;
-using HCSAnalyzer.Classes;
-using System.IO;
-using HCSAnalyzer.Forms.FormsForOptions;
-using HCSAnalyzer.Classes.Base_Classes.DataStructures;
 
 namespace HCSAnalyzer.Controls
 {
@@ -51,16 +47,16 @@ namespace HCSAnalyzer.Controls
                 if (!IsOnlyColors) this.panelForPlates.Controls.Add(PanelList[i]);
 
                 if (PanelList[i].Tag != null)
-                 {
-                     cPlate CurrentPlate = (cPlate)PanelList[i].Tag;
-                     Label TextToAdd = new Label();
-                     TextBox TB = new TextBox();
-                     TB.Text = CurrentPlate.GetName();
-                     TB.ReadOnly = true;
-                     TB.Location = new Point(PanelList[i].Location.X, PanelList[i].Location.Y + PanelList[i].Height);
-                     TB.Width = PanelList[i].Width;
-                     this.panelForPlates.Controls.Add(TB);
-                 }
+                {
+                    cPlate CurrentPlate = (cPlate)PanelList[i].Tag;
+                    Label TextToAdd = new Label();
+                    TextBox TB = new TextBox();
+                    TB.Text = CurrentPlate.GetName();
+                    TB.ReadOnly = true;
+                    TB.Location = new Point(PanelList[i].Location.X, PanelList[i].Location.Y + PanelList[i].Height);
+                    TB.Width = PanelList[i].Width;
+                    this.panelForPlates.Controls.Add(TB);
+                }
 
             }
 
@@ -173,11 +169,11 @@ namespace HCSAnalyzer.Controls
 
     public class cWindowToDisplayEntireScreening : cWindowToDisplayGeneralArray
     {
-       // cGlobalInfo GlobalInfo;
+        // cGlobalInfo GlobalInfo;
 
         public cWindowToDisplayEntireScreening(List<cPanelForDisplayArray> PanelList, string Text, int XNumber)
         {
-          //  this.GlobalInfo = GlobalInfo;
+            //  this.GlobalInfo = GlobalInfo;
             this.XNumber = XNumber;
             this.Text += " : " + Text;
             cExtendedList GlobalValues = new cExtendedList();
@@ -301,8 +297,8 @@ namespace HCSAnalyzer.Controls
         public cPlate AssociatedPlate = null;
         protected byte[][] LUT;
         public cWindowToDisplayGeneralArray ParentWindow;
-        
-        
+
+
         public cExtendedList GetListValues()
         {
             if (ValuesMatrix == null) return null;
@@ -449,7 +445,7 @@ namespace HCSAnalyzer.Controls
                 formGraphics.DrawImage((Image)BMP, PosXMatrix, PosYMatrix, ValuesMatrix[0].Length * CellSize, ValuesMatrix.Length * CellSize);
 
 
-                
+
                 return;
                 // if (this.AssociatedPlate == null)
                 //{
@@ -525,7 +521,7 @@ namespace HCSAnalyzer.Controls
 
             }
 
-        
+
 
 
 
@@ -534,7 +530,7 @@ namespace HCSAnalyzer.Controls
 
     public partial class FormToDisplayPlate : cPanelForDisplayArray
     {
-     //   cScreening CompleteScreening;
+        //   cScreening CompleteScreening;
         public cWindowToDisplayEntireScreening WindowToDisplayEntireScreening;
         cPlate PlateToDisplay;
 
@@ -544,8 +540,8 @@ namespace HCSAnalyzer.Controls
             // this.WindowToDisplayEntireScreening = WindowToDisplayEntireScreening;
             this.PlateToDisplay = PlateToDisplay;
 
-          //  this.CompleteScreening = CompleteScreening;
-          //  this.CurrentScreening = CompleteScreening;
+            //  this.CompleteScreening = CompleteScreening;
+            //  this.CurrentScreening = CompleteScreening;
             this.LUT = cGlobalInfo.CurrentPlateLUT;
             this.AssociatedPlate = PlateToDisplay;
             base.Tag = PlateToDisplay;
@@ -749,7 +745,7 @@ namespace HCSAnalyzer.Controls
 
         public FormToDisplayDistanceMap(cPlate CurrentPlate)
         {
-         //   this.CurrentScreening = CompleteScreening;
+            //   this.CurrentScreening = CompleteScreening;
             cLUT TmpLUT = new cLUT();
             this.LUT = TmpLUT.LUT_FIRE;
             this.AssociatedPlate = CurrentPlate;

@@ -1,13 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using HCSAnalyzer.Classes.Base_Classes.DataStructures;
+﻿using HCSAnalyzer.Classes.Base_Classes.DataStructures;
 using LibPlateAnalysis;
+using System.Collections.Generic;
 
 namespace HCSAnalyzer.Classes.Base_Classes.DataAnalysis
 {
-    
+
 
     class cDistances : cDataAnalysisComponent
     {
@@ -82,7 +79,7 @@ namespace HCSAnalyzer.Classes.Base_Classes.DataAnalysis
                     }
                     this.OutPut.Add(NewResult);
                 }
-            } 
+            }
             if (this.DistanceType == eDistances.EMD)
             {
                 this.OutPut.Name = "Earth Mover";
@@ -99,7 +96,7 @@ namespace HCSAnalyzer.Classes.Base_Classes.DataAnalysis
                     this.OutPut.Add(NewResult);
                 }
             }
-        
+
         }
 
         public cExtendedTable GetOutPut()

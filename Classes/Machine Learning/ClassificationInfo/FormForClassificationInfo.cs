@@ -1,13 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Windows.Forms;
-using HCSAnalyzer.Classes;
+﻿using HCSAnalyzer.Classes;
 using HCSAnalyzer.Forms.FormsForOptions.ClassForOptions.Children;
+using System;
+using System.Windows.Forms;
 using weka.classifiers.functions.supportVector;
 
 namespace HCSAnalyzer.Forms.FormsForOptions.ClassificationInfo
@@ -29,10 +23,10 @@ namespace HCSAnalyzer.Forms.FormsForOptions.ClassificationInfo
 
             this.treeViewForOptions.ExpandAll();
             this.treeViewForOptions.SelectedNode = this.treeViewForOptions.Nodes[0].Nodes[0];
-        
+
             this.treeViewForOptions.SelectedNode.EnsureVisible();  //scroll if necessary
             this.treeViewForOptions.SelectedNode.Checked = true;
-          //  this.treeViewForOptions.Focus();
+            //  this.treeViewForOptions.Focus();
         }
 
         private void treeViewForOptions_AfterSelect(object sender, TreeViewEventArgs e)
@@ -73,7 +67,7 @@ namespace HCSAnalyzer.Forms.FormsForOptions.ClassificationInfo
             {
                 richTextBoxForInfo.Clear();
                 richTextBoxForInfo.AppendText("KNN\n------------------------------------------------------\nK-nearest neighbours classifier. Can select appropriate value of K based on cross-validation. Can also do distance weighting.\nFor more information, go to: http://en.wikipedia.org/wiki/K-nearest_neighbor_algorithm");
-            }  
+            }
             else if (TagName == "Perceptron")
             {
                 richTextBoxForInfo.Clear();
@@ -83,7 +77,7 @@ namespace HCSAnalyzer.Forms.FormsForOptions.ClassificationInfo
             {
                 richTextBoxForInfo.Clear();
                 richTextBoxForInfo.AppendText("Zero R(ule) classifier\n------------------------------------------------------\nFor more information, go to: http://weka.wikispaces.com/ZeroR");
-            }  
+            }
             else if (TagName == "OneR")
             {
                 richTextBoxForInfo.Clear();

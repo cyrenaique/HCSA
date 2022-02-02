@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-
-namespace HCSAnalyzer.Classes.General_Types
+﻿namespace HCSAnalyzer.Classes.General_Types
 {
     public class cDRCPoint : cListWells
     {
@@ -12,7 +7,7 @@ namespace HCSAnalyzer.Classes.General_Types
 
         public cDRCPoint()
         {
-        
+
         }
     }
 }

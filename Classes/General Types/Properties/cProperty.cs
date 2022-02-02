@@ -1,7 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.Windows.Forms;
 
 namespace HCSAnalyzer.Classes.General_Types
@@ -17,9 +14,9 @@ namespace HCSAnalyzer.Classes.General_Types
         NumericUpDown CtrlForInt;
 
         public object GetValue()
-        {   
+        {
             if (this.Value == null) return null;
-            
+
             if (PropertyType.IsConstant)
             {
                 if (this.PropertyType.Type == eDataType.DOUBLE)
@@ -115,12 +112,12 @@ namespace HCSAnalyzer.Classes.General_Types
                 double DefaultValue = 0;
                 if ((TmpObj != null) && (TmpObj.GetType() == typeof(double)))
                     DefaultValue = (double)TmpObj;
-             
+
 
                 CtrlForDouble.DecimalPlaces = 4;
                 CtrlForDouble.Minimum = (decimal)this.PropertyType.Min;
                 CtrlForDouble.Maximum = (decimal)this.PropertyType.Max;
-                
+
                 CtrlForDouble.Value = (decimal)DefaultValue;
 
                 CtrlForDouble.Location = new System.Drawing.Point(TextName.Width + 10, TextName.Location.Y);
@@ -142,10 +139,10 @@ namespace HCSAnalyzer.Classes.General_Types
                 CtrlForInt.Minimum = (decimal)this.PropertyType.Min;
                 CtrlForInt.Maximum = (decimal)this.PropertyType.Max;
                 CtrlForInt.Value = (decimal)DefaultValue;
-                
-                if((PropertyType.IntType == eIntegerType.EVEN)||(PropertyType.IntType == eIntegerType.ODD))
+
+                if ((PropertyType.IntType == eIntegerType.EVEN) || (PropertyType.IntType == eIntegerType.ODD))
                 {
-                    CtrlForInt.Increment=2;
+                    CtrlForInt.Increment = 2;
                 }
 
                 CtrlForInt.Location = new System.Drawing.Point(TextName.Width + 10, TextName.Location.Y);
@@ -163,7 +160,7 @@ namespace HCSAnalyzer.Classes.General_Types
 
                 CtrlForBool.Checked = DefaultValue;
 
-                CtrlForBool.Location = new System.Drawing.Point(TextName.Width + 2, TextName.Location.Y-4);
+                CtrlForBool.Location = new System.Drawing.Point(TextName.Width + 2, TextName.Location.Y - 4);
                 ToBeReturned.Width = CtrlForBool.Location.X + CtrlForBool.Width + 40;
                 ToBeReturned.Height = CtrlForBool.Height;
                 ToBeReturned.Controls.Add(CtrlForBool);
@@ -176,7 +173,7 @@ namespace HCSAnalyzer.Classes.General_Types
 
                     foreach (var item in this.PropertyType.ListPotentialString)
                     {
-                       ComboForString.Items.Add(item); 
+                        ComboForString.Items.Add(item);
                     }
 
                     string DefaultValue = "";
@@ -215,7 +212,7 @@ namespace HCSAnalyzer.Classes.General_Types
         {
             if (PropertyType.IntType == eIntegerType.BOTH) return;
 
-            else if ((PropertyType.IntType == eIntegerType.EVEN)&&((((int)CtrlForInt.Value)%2)==1))
+            else if ((PropertyType.IntType == eIntegerType.EVEN) && ((((int)CtrlForInt.Value) % 2) == 1))
                 CtrlForInt.Value = (int)CtrlForInt.Value + 1;
             else if ((PropertyType.IntType == eIntegerType.ODD) && ((((int)CtrlForInt.Value) % 2) == 0))
                 CtrlForInt.Value = (int)CtrlForInt.Value + 1;

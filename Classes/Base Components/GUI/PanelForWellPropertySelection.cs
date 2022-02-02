@@ -1,13 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Windows.Controls;
-using HCSAnalyzer.Classes;
-using System.Windows.Forms;
-using HCSAnalyzer.Classes.Base_Classes.GUI;
+﻿using HCSAnalyzer.Classes;
 using HCSAnalyzer.Classes.General_Types;
-using LibPlateAnalysis;
+using System;
+using System.Collections.Generic;
+using System.Windows.Forms;
 
 namespace HCSAnalyzer.Forms.FormsForGraphsDisplay
 {
@@ -19,7 +14,7 @@ namespace HCSAnalyzer.Forms.FormsForGraphsDisplay
 
         public PanelForWellPropertySelection(bool IsCheckBoxes)
         {
-            
+
             this.AutoScroll = true;
             this.MouseDown += new System.Windows.Forms.MouseEventHandler(this.PanelForClassSelection_MouseDown);
 
@@ -28,7 +23,7 @@ namespace HCSAnalyzer.Forms.FormsForGraphsDisplay
             else
                 ListRadioButtons = new List<System.Windows.Forms.RadioButton>();
 
-            
+
             for (int Idx = 0; Idx < cGlobalInfo.CurrentScreening.ListWellPropertyTypes.Count; Idx++)
             {
                 cPropertyType CurrentType = cGlobalInfo.CurrentScreening.ListWellPropertyTypes[Idx];
@@ -40,7 +35,7 @@ namespace HCSAnalyzer.Forms.FormsForGraphsDisplay
                     CurrentCheckBox.Tag = CurrentType;
                     CurrentCheckBox.Location = new System.Drawing.Point(5, CurrentCheckBox.Height * Idx);
 
-                   CurrentCheckBox.Checked = true;
+                    CurrentCheckBox.Checked = true;
 
                     System.Windows.Forms.ToolTip ToolTipForPlate = new System.Windows.Forms.ToolTip();
                     ToolTipForPlate.SetToolTip(CurrentCheckBox, CurrentType.GetInfo());
@@ -84,7 +79,7 @@ namespace HCSAnalyzer.Forms.FormsForGraphsDisplay
             UnselectItem.Click += new System.EventHandler(this.UnselectItem);
             contextMenuStripPicker.Items.Add(UnselectItem);
 
-         
+
 
             //if (sender.GetType() == typeof(System.Windows.Forms.CheckBox))
             //{   

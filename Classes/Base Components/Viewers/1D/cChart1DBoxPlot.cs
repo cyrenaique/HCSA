@@ -1,16 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Windows.Forms.DataVisualization.Charting;
-using System.Windows.Forms;
-using HCSAnalyzer.Classes.Base_Classes.DataStructures;
-using System.Drawing;
+﻿using HCSAnalyzer.Classes.Base_Classes.GUI;
 using LibPlateAnalysis;
-using System.IO;
-using HCSAnalyzer.Classes.MetaComponents;
-using HCSAnalyzer.Classes.General_Types;
-using HCSAnalyzer.Classes.Base_Classes.GUI;
+using System;
+using System.Collections.Generic;
+using System.Drawing;
+using System.Windows.Forms;
+using System.Windows.Forms.DataVisualization.Charting;
 
 namespace HCSAnalyzer.Classes.Base_Classes.Viewers
 {
@@ -56,11 +50,11 @@ namespace HCSAnalyzer.Classes.Base_Classes.Viewers
                 {
                     //this.chartForPoints.Series[0].Points[j].MarkerColor = Color.FromArgb(128, GlobalInfo.ListCellularPhenotypes[(int)MachineLearning.Classes[j]].ColourForDisplay);
                     DataPoint DP = new DataPoint();
-                   // double[] Value = new double[1];
-                   // Value[0] = this.input[IdxSerie][j];
-                    DP.YValues =  this.InputSimpleData[IdxSerie].ToArray();
+                    // double[] Value = new double[1];
+                    // Value[0] = this.input[IdxSerie][j];
+                    DP.YValues = this.InputSimpleData[IdxSerie].ToArray();
 
-                   // NewSerie.YValuesPerPoint = 6;
+                    // NewSerie.YValuesPerPoint = 6;
 
                     //NewSerie.Points.DataBindY(this.input[IdxSerie].ToArray());
 
@@ -68,7 +62,7 @@ namespace HCSAnalyzer.Classes.Base_Classes.Viewers
 
 
                     // Specify data series name for the Box Plot.
-                   // Chart1.Series["BoxPlotSeries"]["BoxPlotSeries"] = "DataSeries";
+                    // Chart1.Series["BoxPlotSeries"]["BoxPlotSeries"] = "DataSeries";
 
 
                     DP.XValue = IdxSerie;
@@ -138,7 +132,7 @@ namespace HCSAnalyzer.Classes.Base_Classes.Viewers
             SpecificContextMenu.DropDownItems.Add(ToolStripMenuItem_MarkerSize);
 
 
-          
+
             return this.SpecificContextMenu;
         }
 

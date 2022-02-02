@@ -1,11 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
+﻿using HCSAnalyzer.Classes.Base_Classes.DataStructures;
 using System.Windows.Forms;
-using HCSAnalyzer.Classes.Base_Classes.DataStructures;
-using System.IO;
-using System.Drawing;
 
 namespace HCSAnalyzer.Classes.Base_Classes.Viewers
 {
@@ -27,11 +21,11 @@ namespace HCSAnalyzer.Classes.Base_Classes.Viewers
 
         public cFeedBackMessage Run()
         {
-            
-            WindowToDisplay = new FormForDisplay();
-            
 
-            if ((ControlToDisplay == null)||(ControlToDisplay.Controls.Count==0))
+            WindowToDisplay = new FormForDisplay();
+
+
+            if ((ControlToDisplay == null) || (ControlToDisplay.Controls.Count == 0))
             {
                 base.FeedBackMessage.IsSucceed = false;
                 base.FeedBackMessage.Message += ": No input defined!";
@@ -55,7 +49,7 @@ namespace HCSAnalyzer.Classes.Base_Classes.Viewers
             WindowToDisplay.Controls.Add(ControlToDisplay);
 
 
-         
+
             WindowToDisplay.Text = base.Title;
             return base.FeedBackMessage;
         }
@@ -71,12 +65,12 @@ namespace HCSAnalyzer.Classes.Base_Classes.Viewers
             {
 
 
-           //     WindowToDisplay.Visible = false;
-                WindowToDisplay.Show();     
-                
-                
-              //  System.Drawing.Bitmap bmp = new System.Drawing.Bitmap(WindowToDisplay.panelForControls.Width, WindowToDisplay.panelForControls.Height);
-              //  WindowToDisplay.panelForControls.DrawToBitmap(bmp, WindowToDisplay.panelForControls.ClientRectangle);
+                //     WindowToDisplay.Visible = false;
+                WindowToDisplay.Show();
+
+
+                //  System.Drawing.Bitmap bmp = new System.Drawing.Bitmap(WindowToDisplay.panelForControls.Width, WindowToDisplay.panelForControls.Height);
+                //  WindowToDisplay.panelForControls.DrawToBitmap(bmp, WindowToDisplay.panelForControls.ClientRectangle);
 
 
                 //System.Drawing.Graphics G =  WindowToDisplay.panelForControls.CreateGraphics();
@@ -90,7 +84,7 @@ namespace HCSAnalyzer.Classes.Base_Classes.Viewers
                 //MemoryStream ms = new MemoryStream();
                 //this.SaveImage(ms, ChartImageFormat.Bmp);
                 //Bitmap bm = new Bitmap(ms);
-               // Clipboard.SetImage(bmp);
+                // Clipboard.SetImage(bmp);
 
             }
 

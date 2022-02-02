@@ -1,16 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using HCSAnalyzer.Classes.Base_Classes;
+﻿using HCSAnalyzer.Classes.Base_Classes;
 using HCSAnalyzer.Classes.Base_Classes.DataStructures;
 using HCSAnalyzer.Classes.Base_Classes.Viewers;
-using HCSAnalyzer.Classes.Base_Classes.DataAnalysis;
-using HCSAnalyzer.Classes.Base_Classes.Viewers._1D;
-using System.Windows.Forms.DataVisualization.Charting;
-using System.Windows.Forms;
 using HCSAnalyzer.Classes.General_Types;
 using LibPlateAnalysis;
+using System.Collections.Generic;
 
 namespace HCSAnalyzer.Classes.MetaComponents
 {
@@ -86,7 +79,7 @@ namespace HCSAnalyzer.Classes.MetaComponents
                 foreach (cPlate TmpPlate in CompleteScreening.ListPlatesActive)
                     FullTableAverage.ListRowNames.Add(TmpPlate.GetName());
 
-              //  cDescriptorsType CurrentDesc = CompleteScreening.ListDescriptors.GetActiveDescriptor();
+                //  cDescriptorsType CurrentDesc = CompleteScreening.ListDescriptors.GetActiveDescriptor();
                 int RealIdx = 0;
                 for (int i = 0; i < Input[0].Count; i++)
                 {
@@ -144,7 +137,7 @@ namespace HCSAnalyzer.Classes.MetaComponents
             CDW1.Display();
 
 
-             
+
             return FeedBackMessage;
         }
 

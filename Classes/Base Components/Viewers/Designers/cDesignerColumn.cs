@@ -1,13 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using HCSAnalyzer.Classes.Base_Classes.DataStructures;
-using System.Windows.Forms;
+﻿using HCSAnalyzer.Classes.Base_Classes.DataStructures;
 using HCSAnalyzer.Classes.Base_Classes.Viewers;
+using System.Collections.Generic;
+using System.Windows.Forms;
 
 namespace HCSAnalyzer.Classes.Base_Classes
-    {
+{
     class cDesignerColumn : cDesignerParent
     {
 
@@ -26,7 +23,7 @@ namespace HCSAnalyzer.Classes.Base_Classes
 
         public cFeedBackMessage Run()
         {
-            
+
 
             if (xListControl.Count == 0)
             {
@@ -41,18 +38,18 @@ namespace HCSAnalyzer.Classes.Base_Classes
 
             //NewPanel.columns
             //NewPanel.ColumnStyles = new TableLayoutColumnStyleCollection(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F);
-            
+
             NewPanel.CellBorderStyle = TableLayoutPanelCellBorderStyle.Single;
             NewPanel.AutoSizeMode = AutoSizeMode.GrowAndShrink;
-                 NewPanel.Anchor = ((System.Windows.Forms.AnchorStyles)(System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
-                            | System.Windows.Forms.AnchorStyles.Left
-                            | System.Windows.Forms.AnchorStyles.Right);
+            NewPanel.Anchor = ((System.Windows.Forms.AnchorStyles)(System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
+                       | System.Windows.Forms.AnchorStyles.Left
+                       | System.Windows.Forms.AnchorStyles.Right);
 
 
-                 for (int IDx = 0; IDx < this.xListControl.Count; IDx++)
-                 {
-                     NewPanel.Controls.Add(this.xListControl[IDx], IDx, 0);
-                 }
+            for (int IDx = 0; IDx < this.xListControl.Count; IDx++)
+            {
+                NewPanel.Controls.Add(this.xListControl[IDx], IDx, 0);
+            }
 
 
 

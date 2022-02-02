@@ -1,14 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using HCSAnalyzer.Forms.FormsForImages;
-using System.Drawing;
-using ImageAnalysis;
-using Emgu.CV;
-using Emgu.CV.CvEnum;
-using System.Runtime.InteropServices;
+﻿using Emgu.CV;
 using Emgu.CV.Structure;
+using ImageAnalysis;
 
 namespace ImageAnalysisFiltering
 {
@@ -40,7 +32,7 @@ namespace ImageAnalysisFiltering
 
                 this.Output.SingleChannelImage[IdxChannel].SetNewDataFromOpenCV(ProcessedImage);
             }
-            
+
             return;
         }
 

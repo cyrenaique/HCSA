@@ -1,20 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Windows.Forms;
-using LibPlateAnalysis;
-using System.Reflection;
-using System.IO;
-using System.Runtime.Serialization;
-using System.Runtime.Serialization.Formatters.Binary;
-using HCSAnalyzer.Forms.FormsForGraphsDisplay;
+﻿using HCSAnalyzer.Classes;
 using HCSAnalyzer.Classes.General_Types;
-using HCSAnalyzer.Classes;
 using HCSAnalyzer.Forms.FormsForOptions;
+using LibPlateAnalysis;
+using System;
+using System.Drawing;
+using System.IO;
+using System.Windows.Forms;
 
 namespace HCSAnalyzer
 {
@@ -73,9 +64,9 @@ namespace HCSAnalyzer
             else if (this.radioButtonImageAccessCellomics.Checked)
                 cGlobalInfo.ImageAccessor.ImagingPlatformType = Classes.General_Types.eImagingPlatformType.CELLOMICS;
             else if (this.radioButtonImageAccessINCell.Checked)
-                cGlobalInfo.ImageAccessor.ImagingPlatformType = Classes.General_Types.eImagingPlatformType.INCELL;  
+                cGlobalInfo.ImageAccessor.ImagingPlatformType = Classes.General_Types.eImagingPlatformType.INCELL;
             else if (this.radioButtonImageAccessCV7000.Checked)
-                cGlobalInfo.ImageAccessor.ImagingPlatformType = Classes.General_Types.eImagingPlatformType.CV7000;  
+                cGlobalInfo.ImageAccessor.ImagingPlatformType = Classes.General_Types.eImagingPlatformType.CV7000;
             else if (this.radioButtonImageAccessBuiltIn.Checked)
                 cGlobalInfo.ImageAccessor.ImagingPlatformType = Classes.General_Types.eImagingPlatformType.BUILTIN;
         }
@@ -269,9 +260,9 @@ namespace HCSAnalyzer
 
         private void treeViewOptions_AfterSelect(object sender, TreeViewEventArgs e)
         {
-           Panel CurrentPanel = null;
+            Panel CurrentPanel = null;
             panelForSpecificOption.Controls.Clear();
-           
+
             switch (e.Node.Text)
             {
                 case "Graphs":
@@ -300,19 +291,19 @@ namespace HCSAnalyzer
                     break;
                 case "Z' graphs":
                     CurrentPanel = this.FFAllOptions.panelZScoreGraph;
-                    break;    
+                    break;
                 case "World Defaults":
                     CurrentPanel = this.FFAllOptions.panel3DWorldDefaults;
                     break;
                 case "Image Viewer":
                     CurrentPanel = this.FFAllOptions.panelImageViewer;
-                    break;    
+                    break;
                 case "HTML export":
                     CurrentPanel = this.FFAllOptions.panelHTMLExport;
-                    break;     
+                    break;
                 case "Well":
                     CurrentPanel = CreatePanelForWellProperties();
-                    break;  
+                    break;
                 case "Screening":
                     if (cGlobalInfo.CurrentScreening != null)
                     {
@@ -321,15 +312,15 @@ namespace HCSAnalyzer
                     }
                     CurrentPanel = this.FFAllOptions.panelScreening;
 
-                    break;     
+                    break;
                 default:
-                   // panelForSpecificOption = null;
-                   
+                    // panelForSpecificOption = null;
+
                     break;
 
             }
 
-            if(CurrentPanel!=null)
+            if (CurrentPanel != null)
             {
                 CurrentPanel.Location = new Point(0, 0);
                 panelForSpecificOption.Controls.Add(CurrentPanel);

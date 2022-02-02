@@ -1,23 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
+﻿using HCSAnalyzer.Classes._3D;
 using HCSAnalyzer.Classes.Base_Classes.DataStructures;
-using HCSAnalyzer.Forms.FormsForGraphsDisplay;
-using System.Windows.Forms;
-using System.Data;
-using LibPlateAnalysis;
-using HCSAnalyzer.Classes.Base_Classes.DataProcessing;
-using HCSAnalyzer.Classes.MetaComponents;
-using HCSAnalyzer.Classes.Base_Classes.DataAnalysis;
-using HCSAnalyzer.Classes.DataAnalysis;
-using HCSAnalyzer.Classes.Base_Classes.DataManip;
-using HCSAnalyzer.Classes.Base_Classes.Viewers._2D;
-using System.IO;
-using HCSAnalyzer.Classes._3D;
+using HCSAnalyzer.Classes.General_Types;
 using ImageAnalysis;
 using ImageAnalysisFiltering;
-using HCSAnalyzer.Classes.General_Types;
+using System;
 
 namespace HCSAnalyzer.Classes.Base_Classes.DataAnalysis
 {
@@ -27,10 +13,10 @@ namespace HCSAnalyzer.Classes.Base_Classes.DataAnalysis
         cListExtendedTable Input;
         cListGeometric3DObject ListObjects;
 
-       // public int Width = 256;
-       // public int Height = 256;
-      //  public int Depth = 256;
-     //   public int KernelSize = 10;
+        // public int Width = 256;
+        // public int Height = 256;
+        //  public int Depth = 256;
+        //   public int KernelSize = 10;
         public bool IsNormalized = true;
 
         public cBuildDensityMap()
@@ -169,7 +155,7 @@ namespace HCSAnalyzer.Classes.Base_Classes.DataAnalysis
             }
 
             this.Output = new cImage(ImWidth, ImHeight, ImDepth, this.Input.Count);
-            
+
             cImageDrawKernel GK = new cImageDrawKernel();
             GK.sigma_x = KernelSize;
             GK.sigma_y = KernelSize;
@@ -192,7 +178,7 @@ namespace HCSAnalyzer.Classes.Base_Classes.DataAnalysis
                 double MaxZ = 0;
                 double MinZ = 0;
 
-                if (CurrentTable.Count>2)
+                if (CurrentTable.Count > 2)
                 {
                     MaxZ = CurrentTable[2].Max();
                     MinZ = CurrentTable[2].Min();
@@ -210,7 +196,7 @@ namespace HCSAnalyzer.Classes.Base_Classes.DataAnalysis
                         double TmpValueY = (ImHeight * (CurrentTable[1][j] - MinY)) / (MaxY - MinY) - K.Height / 2;
                         double TmpValueZ = (ImDepth * (CurrentTable[2][j] - MinZ)) / (MaxZ - MinZ) - K.Depth / 2;
 
-                        this.Output.AddInto(K, (int)TmpValueX,  (int)TmpValueY, (int)TmpValueZ, IdxChannel);
+                        this.Output.AddInto(K, (int)TmpValueX, (int)TmpValueY, (int)TmpValueZ, IdxChannel);
                     }
                 }
                 else

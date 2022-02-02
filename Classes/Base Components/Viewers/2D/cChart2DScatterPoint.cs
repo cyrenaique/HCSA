@@ -1,19 +1,16 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Windows.Forms.DataVisualization.Charting;
-using System.Windows.Forms;
-using HCSAnalyzer.Classes.Base_Classes.DataStructures;
-using System.Drawing;
-using LibPlateAnalysis;
-using System.IO;
-using HCSAnalyzer.Classes.MetaComponents;
-using HCSAnalyzer.Classes.General_Types;
+﻿using HCSAnalyzer.Classes.Base_Classes.DataStructures;
 using HCSAnalyzer.Classes.Base_Classes.GUI;
-using ImageAnalysis;
+using HCSAnalyzer.Classes.General_Types;
 using HCSAnalyzer.Classes.ImageAnalysis.FormsForImages;
+using HCSAnalyzer.Classes.MetaComponents;
 using HCSAnalyzer.Forms.IO;
+using ImageAnalysis;
+using LibPlateAnalysis;
+using System;
+using System.Collections.Generic;
+using System.Drawing;
+using System.Windows.Forms;
+using System.Windows.Forms.DataVisualization.Charting;
 
 namespace HCSAnalyzer.Classes.Base_Classes.Viewers
 {
@@ -613,12 +610,12 @@ namespace HCSAnalyzer.Classes.Base_Classes.Viewers
                     {
                         cSingleBiologicalObject TmpBioObj = ((cSingleBiologicalObject)this.InputSimpleData.ListTags[MyList[IdxPt]]);
                         List<cImageMetaInfo> ListMeta = cGlobalInfo.ImageAccessor.GetImageInfo(TmpBioObj);
-                        if (ListMeta==null) continue;
+                        if (ListMeta == null) continue;
                         cImage Image = new cImage(ListMeta);
                         TmpBioObj.BD_BoxMax.Z = TmpBioObj.BD_BoxMin.Z = 0;
                         cImage CroppedImaged = Image.Crop(TmpBioObj.BD_BoxMin, TmpBioObj.BD_BoxMax);
 
-                        if((cGlobalInfo.TmpImageDisplayProperties==null)||(cGlobalInfo.TmpImageDisplayProperties.ListMin.Count != CroppedImaged.GetNumChannels()))
+                        if ((cGlobalInfo.TmpImageDisplayProperties == null) || (cGlobalInfo.TmpImageDisplayProperties.ListMin.Count != CroppedImaged.GetNumChannels()))
                         {
                             ET.ListTags.Add(CroppedImaged.GetBitmap(1f, null, null));
                         }
@@ -628,12 +625,12 @@ namespace HCSAnalyzer.Classes.Base_Classes.Viewers
                             ET.ListTags.Add(CroppedImaged.GetBitmap(1f, IP, null));
                         }
 
-                        FP.richTextBoxForComment.AppendText("Object "+ IdxPt +" / "+MyList.Count +"\n");
+                        FP.richTextBoxForComment.AppendText("Object " + IdxPt + " / " + MyList.Count + "\n");
                     }
 
                 }
                 FP.progressBar.Value = IdxPt;
-                
+
                 FP.Refresh();
                 IdxPt++;
             }

@@ -1,16 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using HCSAnalyzer.Classes.Base_Classes;
-using HCSAnalyzer.Classes.Base_Classes.DataStructures;
-using HCSAnalyzer.Classes.Base_Classes.Viewers;
-using HCSAnalyzer.Classes.Base_Classes.DataAnalysis;
-using HCSAnalyzer.Classes.Base_Classes.Viewers._1D;
-using System.Windows.Forms.DataVisualization.Charting;
-using System.Windows.Forms;
+﻿using HCSAnalyzer.Classes.Base_Classes;
 using HCSAnalyzer.Classes.General_Types;
 using ImageAnalysis;
+using System;
 
 namespace HCSAnalyzer.Classes.MetaComponents
 {
@@ -97,7 +88,7 @@ namespace HCSAnalyzer.Classes.MetaComponents
             }
 
             cImage NewImage = new cImage(Width, Height, Depth, 1);
-            NewImage.Name = "Image [" + Width + ", " + Height + ", " + Depth + "]"; 
+            NewImage.Name = "Image [" + Width + ", " + Height + ", " + Depth + "]";
 
             cDisplaySingleImage DSI = new cDisplaySingleImage();
             DSI.SetInputData(NewImage);

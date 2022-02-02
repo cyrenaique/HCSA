@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using HCSAnalyzer.Classes.Base_Classes.DataStructures;
-using System.Windows.Forms;
+﻿using HCSAnalyzer.Classes.Base_Classes.DataStructures;
 
 namespace HCSAnalyzer.Classes.Base_Classes.Viewers
 {
@@ -35,7 +30,7 @@ namespace HCSAnalyzer.Classes.Base_Classes.Viewers
             this.Title = base.OutPut.Title;
 
 
-         
+
             return base.FeedBackMessage;
         }
 

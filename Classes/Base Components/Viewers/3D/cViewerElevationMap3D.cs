@@ -1,14 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
+﻿using HCSAnalyzer.Classes._3D;
 using HCSAnalyzer.Classes.Base_Classes.DataStructures;
-using HCSAnalyzer.Classes.MetaComponents;
-using Kitware.VTK;
-using System.Windows.Forms;
-using System.Drawing;
-using HCSAnalyzer.Classes._3D;
 using ImageAnalysis;
+using System;
+using System.Drawing;
+using System.Windows.Forms;
 
 namespace HCSAnalyzer.Classes.Base_Classes.Viewers
 {
@@ -97,22 +92,22 @@ namespace HCSAnalyzer.Classes.Base_Classes.Viewers
 
             cListGeometric3DObject GlobalList = new cListGeometric3DObject("Elevation Map MetaObject");
 
-            if(this.Input!=null)
-            foreach (var item in this.Input)
-            {
-                c3DElevationMap _3DMap = new c3DElevationMap(new cPoint3D(-this.Input[0].Count / 2, -this.Input[0][0].Count / 2, 0), item, this.LUT);
-                _3DMap.SetName("Elevation Map [" + item.Name +"]");
-                GlobalList.Add(_3DMap);
-            }
+            if (this.Input != null)
+                foreach (var item in this.Input)
+                {
+                    c3DElevationMap _3DMap = new c3DElevationMap(new cPoint3D(-this.Input[0].Count / 2, -this.Input[0][0].Count / 2, 0), item, this.LUT);
+                    _3DMap.SetName("Elevation Map [" + item.Name + "]");
+                    GlobalList.Add(_3DMap);
+                }
 
             if (this.InputImage != null)
             {
                 for (int i = 0; i < this.InputImage.GetNumChannels(); i++)
                 {
                     c3DElevationMap _3DMapFromImage = new c3DElevationMap(new cPoint3D(0, 0, 0), this.InputImage, i, 0);
-                    if(this.InputImage.AssociatedImagePanel!=null)
-                    _3DMapFromImage.SetOpacity(this.InputImage.AssociatedImagePanel.LUTManager.GetImageDisplayProperties().ListOpacity[i]/100.0);
-                    _3DMapFromImage.SetName("Elevation Map [" + this.InputImage.SingleChannelImage[i].Name+"]");
+                    if (this.InputImage.AssociatedImagePanel != null)
+                        _3DMapFromImage.SetOpacity(this.InputImage.AssociatedImagePanel.LUTManager.GetImageDisplayProperties().ListOpacity[i] / 100.0);
+                    _3DMapFromImage.SetName("Elevation Map [" + this.InputImage.SingleChannelImage[i].Name + "]");
                     GlobalList.Add(_3DMapFromImage);
                 }
             }
@@ -122,7 +117,7 @@ namespace HCSAnalyzer.Classes.Base_Classes.Viewers
                 MyWorld.AddGeometric3DObject(item);
             }
 
-            MyWorld.BackGroundColor = cGlobalInfo.OptionsWindow.FFAllOptions.panelFor3DBackColor.BackColor; 
+            MyWorld.BackGroundColor = cGlobalInfo.OptionsWindow.FFAllOptions.panelFor3DBackColor.BackColor;
             V3D.SetInputData(MyWorld);
             V3D.Run();
 
@@ -165,13 +160,13 @@ namespace HCSAnalyzer.Classes.Base_Classes.Viewers
             //vtkPolyData output = vtkPolyData.New();
             //output.ShallowCopy(vtkPolyData.SafeDownCast(elevationFilter.GetOutput()));
 
-         
+
             //// Generate the colors for each point based on the color map
             //vtkUnsignedCharArray colors = vtkUnsignedCharArray.New();
             //colors.SetNumberOfComponents(3);
             //colors.SetName("Colors");
             //output.GetPointData().AddArray(colors);
-   
+
             //// Visualize
             //vtkPolyDataMapper mapper = vtkPolyDataMapper.New();
             //mapper.SetInput(output);

@@ -1,14 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using HCSAnalyzer.Forms.FormsForImages;
-using System.Drawing;
-using ImageAnalysis;
-using Emgu.CV;
-using Emgu.CV.CvEnum;
-using System.Runtime.InteropServices;
+﻿using Emgu.CV;
 using Emgu.CV.Structure;
+using ImageAnalysis;
 
 namespace ImageAnalysisFiltering
 {
@@ -50,7 +42,7 @@ namespace ImageAnalysisFiltering
 
                     for (int j = 0; j < Input.Height; j++)
                         for (int i = 0; i < Input.Width; i++)
-                            this.Output.SingleChannelImage[IdxChannel].Data[i + j * Input.Width] = ProcessedImage.Data[j, i,0];
+                            this.Output.SingleChannelImage[IdxChannel].Data[i + j * Input.Width] = ProcessedImage.Data[j, i, 0];
                 }
 
             }

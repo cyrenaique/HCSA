@@ -1,15 +1,11 @@
-﻿using System;
+﻿using HCSAnalyzer.Forms.FormsForGraphsDisplay;
+using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.Drawing;
-using System.Windows.Forms;
-using System.Runtime.Serialization;
 using System.IO;
+using System.Runtime.Serialization;
 using System.Runtime.Serialization.Formatters.Binary;
-using System.Xml.Serialization;
-using System.Xml;
-using HCSAnalyzer.Forms.FormsForGraphsDisplay;
+using System.Windows.Forms;
 
 namespace HCSAnalyzer.Classes.General_Types
 {
@@ -26,8 +22,8 @@ namespace HCSAnalyzer.Classes.General_Types
         public bool radioButtonImageAccessOperetta35Checked;
         public bool radioButtonImageAccessImageXpressChecked;
         public bool radioButtonImageAccessCellomicsChecked;
-        public bool radioButtonImageAccessINCellChecked;  
-        public bool radioButtonImageAccessCV7000Checked;  
+        public bool radioButtonImageAccessINCellChecked;
+        public bool radioButtonImageAccessCV7000Checked;
         public bool radioButtonImageAccessBuiltInChecked;
         public string CurrentFormForPlateLUTtoolStripComboBoxLUTText;
         public int numericUpDownImageAccessNumberOfChannels;
@@ -65,7 +61,7 @@ namespace HCSAnalyzer.Classes.General_Types
             DataForcGlobalInfoToBeExported.radioButtonImageAccessImageXpressChecked = cGlobalInfo.OptionsWindow.radioButtonImageAccessImageXpress.Checked;
             DataForcGlobalInfoToBeExported.radioButtonImageAccessCellomicsChecked = cGlobalInfo.OptionsWindow.radioButtonImageAccessCellomics.Checked;
             DataForcGlobalInfoToBeExported.radioButtonImageAccessINCellChecked = cGlobalInfo.OptionsWindow.radioButtonImageAccessINCell.Checked;
-            DataForcGlobalInfoToBeExported.radioButtonImageAccessCV7000Checked = cGlobalInfo.OptionsWindow.radioButtonImageAccessCV7000.Checked;       
+            DataForcGlobalInfoToBeExported.radioButtonImageAccessCV7000Checked = cGlobalInfo.OptionsWindow.radioButtonImageAccessCV7000.Checked;
             DataForcGlobalInfoToBeExported.radioButtonImageAccessBuiltInChecked = cGlobalInfo.OptionsWindow.radioButtonImageAccessBuiltIn.Checked;
 
             DataForcGlobalInfoToBeExported.CurrentFormForPlateLUTtoolStripComboBoxLUTText = cGlobalInfo.GUIPlateLUT.CurrentFormForPlateLUT.toolStripComboBoxLUT.Text;
@@ -168,7 +164,7 @@ namespace HCSAnalyzer.Classes.General_Types
             foreach (var item in MyObj.ListPhenotypeNames)
             {
                 cGlobalInfo.ListCellularPhenotypes[Idx].Name = item;
-                
+
                 PanelForPhenotypeEditing PFCE = (PanelForPhenotypeEditing)cGlobalInfo.OptionsWindow.panelForCellularPhenotypes.Controls[0];
                 PFCE.ListTextBoxes[Idx].Text = item;
                 Idx++;
@@ -197,8 +193,8 @@ namespace HCSAnalyzer.Classes.General_Types
                 cGlobalInfo.OptionsWindow.radioButtonImageAccessINCell.Checked = MyObj.radioButtonImageAccessINCellChecked;
 
             if (MyObj.radioButtonImageAccessCV7000Checked != null)
-                cGlobalInfo.OptionsWindow.radioButtonImageAccessCV7000.Checked = MyObj.radioButtonImageAccessCV7000Checked;  
-            
+                cGlobalInfo.OptionsWindow.radioButtonImageAccessCV7000.Checked = MyObj.radioButtonImageAccessCV7000Checked;
+
             if (MyObj.radioButtonImageAccessBuiltInChecked != null)
                 cGlobalInfo.OptionsWindow.radioButtonImageAccessBuiltIn.Checked = MyObj.radioButtonImageAccessBuiltInChecked;
 

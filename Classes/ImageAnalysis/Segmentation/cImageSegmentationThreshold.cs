@@ -1,22 +1,13 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using HCSAnalyzer.Forms.FormsForImages;
-using System.Drawing;
-using ImageAnalysis;
-using Emgu.CV;
-using Emgu.CV.CvEnum;
-using System.Runtime.InteropServices;
-using Emgu.CV.Structure;
+﻿using HCSAnalyzer.Classes.Base_Classes;
 using HCSAnalyzer.Classes.General_Types;
-using HCSAnalyzer.Classes.Base_Classes;
+using ImageAnalysis;
+using System;
 
 namespace ImageAnalysisFiltering
 {
     public partial class cImageSegmentationThreshold : c2DImageFilter
     {
-        
+
         public float MaxValue = 255;
         public bool IsInvert = false;
 
@@ -59,7 +50,7 @@ namespace ImageAnalysisFiltering
                 return base.FeedBackMessage;
             }
 
-          
+
 
             base.Output = new cImage(Input, false);
             //base.Output = new cImage(Input.Width, Input.Height, Input.Depth, base.ListChannelsToBeProcessed.Count);
@@ -70,26 +61,26 @@ namespace ImageAnalysisFiltering
                 if (IsInvert)
                 {
                     for (int k = 0; k < Input.Depth; k++)
-                    for (int j = 0; j < Input.Height; j++)
-                        for (int i = 0; i < Input.Width; i++)
-                        {
-                            if (Input.SingleChannelImage[CurrentChannel].Data[i + j * Input.Width + k*Input.SliceSize] > Threshold)
-                                this.Output.SingleChannelImage[IdxChannel].Data[i + j * Input.Width + k * Input.SliceSize] = this.MaxValue;
-                            else
-                                this.Output.SingleChannelImage[IdxChannel].Data[i + j * Input.Width + k * Input.SliceSize] = 0;
-                        }
+                        for (int j = 0; j < Input.Height; j++)
+                            for (int i = 0; i < Input.Width; i++)
+                            {
+                                if (Input.SingleChannelImage[CurrentChannel].Data[i + j * Input.Width + k * Input.SliceSize] > Threshold)
+                                    this.Output.SingleChannelImage[IdxChannel].Data[i + j * Input.Width + k * Input.SliceSize] = this.MaxValue;
+                                else
+                                    this.Output.SingleChannelImage[IdxChannel].Data[i + j * Input.Width + k * Input.SliceSize] = 0;
+                            }
                 }
                 else
                 {
-                    for(int k =0; k<Input.Depth;k++)
-                    for (int j = 0; j < Input.Height; j++)
-                        for (int i = 0; i < Input.Width; i++)
-                        {
-                            if (Input.SingleChannelImage[CurrentChannel].Data[i + j * Input.Width + k*Input.SliceSize] < Threshold)
-                                this.Output.SingleChannelImage[IdxChannel].Data[i + j * Input.Width + k*Input.SliceSize] = 0;
-                            else
-                                this.Output.SingleChannelImage[IdxChannel].Data[i + j * Input.Width + k * Input.SliceSize] = this.MaxValue;
-                        }
+                    for (int k = 0; k < Input.Depth; k++)
+                        for (int j = 0; j < Input.Height; j++)
+                            for (int i = 0; i < Input.Width; i++)
+                            {
+                                if (Input.SingleChannelImage[CurrentChannel].Data[i + j * Input.Width + k * Input.SliceSize] < Threshold)
+                                    this.Output.SingleChannelImage[IdxChannel].Data[i + j * Input.Width + k * Input.SliceSize] = 0;
+                                else
+                                    this.Output.SingleChannelImage[IdxChannel].Data[i + j * Input.Width + k * Input.SliceSize] = this.MaxValue;
+                            }
                 }
             }
             base.End();

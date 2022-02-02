@@ -1,36 +1,33 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using LibPlateAnalysis;
-using System.Drawing;
-using System.Windows.Forms;
-using HCSAnalyzer.Classes._3D;
-using ImageAnalysis;
-using HCSAnalyzer.Classes.Base_Classes.Viewers;
+﻿using HCSAnalyzer.Classes._3D;
 using HCSAnalyzer.Classes.Base_Classes.DataStructures;
 using HCSAnalyzer.Classes.MetaComponents;
+using ImageAnalysis;
+using LibPlateAnalysis;
+using System;
+using System.Collections.Generic;
+using System.Drawing;
+using System.Windows.Forms;
 
 namespace HCSAnalyzer.Classes.General_Types
 {
     public class cSingleBiologicalObject : cGeneralComponent
     {
         //public int Class = 0;
-       // cGlobalInfo GlobalInfo;
+        // cGlobalInfo GlobalInfo;
         cCellularPhenotype CellularPhenotypeType;
         public cWell AssociatedWell;
         public cPoint3D Position = new cPoint3D(-1, -1, -1);
         public cPoint3D BD_BoxMin = new cPoint3D(-1, -1, 0);
         public cPoint3D BD_BoxMax = new cPoint3D(-1, -1, 0);
 
-        public int ImageField =0;
+        public int ImageField = 0;
         public double ClassificationConfidence = 1;
-      //  static cImageAccessor ImageAccessor;
+        //  static cImageAccessor ImageAccessor;
 
         public cSingleBiologicalObject(cCellularPhenotype CellularPhenotypeType, cWell AssociatedWell, int Idx)
         {
-         //   this.GlobalInfo = GlobalInfo;
-         //   this.Class = Class;
+            //   this.GlobalInfo = GlobalInfo;
+            //   this.Class = Class;
             this.CellularPhenotypeType = CellularPhenotypeType;
             this.AssociatedWell = AssociatedWell;
 
@@ -51,7 +48,7 @@ namespace HCSAnalyzer.Classes.General_Types
         {
             List<ToolStripMenuItem> ListToReturn = new List<ToolStripMenuItem>();
 
-            List<ToolStripMenuItem> WellMenu  = this.AssociatedWell.GetExtendedContextMenu();
+            List<ToolStripMenuItem> WellMenu = this.AssociatedWell.GetExtendedContextMenu();
 
             for (int IdxMenu = 0; IdxMenu < WellMenu.Count; IdxMenu++)
             {
@@ -60,7 +57,7 @@ namespace HCSAnalyzer.Classes.General_Types
 
 
             #region Context Menu
-            base.SpecificContextMenu = new ToolStripMenuItem("Object ["+this.CellularPhenotypeType.Name+"]");
+            base.SpecificContextMenu = new ToolStripMenuItem("Object [" + this.CellularPhenotypeType.Name + "]");
             // ToolStripSeparator Sep = new ToolStripSeparator();
             // base.SpecificContextMenu.Items.Add(Sep);
 
@@ -143,8 +140,8 @@ namespace HCSAnalyzer.Classes.General_Types
             cImage Image = new cImage(ListInfo);
             this.BD_BoxMax.Z = this.BD_BoxMin.Z = 0;
 
-           // this.BD_BoxMin.Y = Image.Height - this.BD_BoxMin.Y;
-           // this.BD_BoxMax.Y = Image.Height - this.BD_BoxMax.Y;
+            // this.BD_BoxMin.Y = Image.Height - this.BD_BoxMin.Y;
+            // this.BD_BoxMax.Y = Image.Height - this.BD_BoxMax.Y;
 
             if (this.BD_BoxMin.Y > this.BD_BoxMax.Y)
             {
@@ -164,16 +161,16 @@ namespace HCSAnalyzer.Classes.General_Types
 
         public cPoint3D GetPosition()
         {
-           cDescriptorType DescTypeForPosX = cGlobalInfo.CurrentScreening.ListDescriptors.GetDescriptorByName(cGlobalInfo.OptionsWindow.comboBoxDescriptorForPosX.Text);
-           cDescriptorType DescTypeForPosY = cGlobalInfo.CurrentScreening.ListDescriptors.GetDescriptorByName(cGlobalInfo.OptionsWindow.comboBoxDescriptorForPosY.Text);
+            cDescriptorType DescTypeForPosX = cGlobalInfo.CurrentScreening.ListDescriptors.GetDescriptorByName(cGlobalInfo.OptionsWindow.comboBoxDescriptorForPosX.Text);
+            cDescriptorType DescTypeForPosY = cGlobalInfo.CurrentScreening.ListDescriptors.GetDescriptorByName(cGlobalInfo.OptionsWindow.comboBoxDescriptorForPosY.Text);
 
-           if ((DescTypeForPosX == null) || (DescTypeForPosY == null))
-           {
-               this.Position = new cPoint3D(-1, -1, -1);
-               return this.Position;
-           }
-           return this.Position;
+            if ((DescTypeForPosX == null) || (DescTypeForPosY == null))
+            {
+                this.Position = new cPoint3D(-1, -1, -1);
+                return this.Position;
+            }
+            return this.Position;
         }
-   
+
     }
 }

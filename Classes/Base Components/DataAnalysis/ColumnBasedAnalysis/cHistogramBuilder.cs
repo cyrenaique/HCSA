@@ -1,8 +1,5 @@
-﻿using System;
+﻿using HCSAnalyzer.Classes.Base_Classes.DataStructures;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using HCSAnalyzer.Classes.Base_Classes.DataStructures;
 
 namespace HCSAnalyzer.Classes.Base_Classes.DataProcessing
 {
@@ -65,7 +62,7 @@ namespace HCSAnalyzer.Classes.Base_Classes.DataProcessing
                 //if (double.IsNaN(this.Min) || double.IsNaN(this.Max))
                 //    Res = Input[0].CreateHistogram(this.BinNumber, this.IsNormalized);
                 //else
-                    Res = Input[0].CreateHistogram(this.Min, this.Max, this.BinSize);
+                Res = Input[0].CreateHistogram(this.Min, this.Max, this.BinSize);
             }
 
             if (Res.Count == 0)

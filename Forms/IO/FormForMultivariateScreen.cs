@@ -1,13 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
+﻿using HCSAnalyzer.Classes;
+using System;
 using System.Drawing;
-using System.Linq;
-using System.Text;
 using System.Windows.Forms;
-using LibPlateAnalysis;
-using HCSAnalyzer.Classes;
 
 namespace HCSAnalyzer.Forms
 {
@@ -38,7 +32,7 @@ namespace HCSAnalyzer.Forms
             string[] ListName = new string[(int)this.numericUpDownColumns.Value + 1];
             for (int i = 0; i < ListName.Length - 1; i++)
                 ListName[i] = i.ToString();
-            ListName[ListName.Length-1] = "Entire plate";
+            ListName[ListName.Length - 1] = "Entire plate";
 
             columnPosition.DataSource = ListName;
             columnPosition.Name = "Column";
@@ -74,12 +68,12 @@ namespace HCSAnalyzer.Forms
                 if (i >= ListName.Length) Position = ListName.Length - 1;
                 dataGridViewForCompounds.Rows[i].Cells[IdxPosCol].Value = ListName[Position];// Position.ToString();
 
-                if(i==2)
-                    dataGridViewForCompounds.Rows[i].Cells[IdxPosCol].Value = ListName[ListName.Length-1];// Position.ToString();
+                if (i == 2)
+                    dataGridViewForCompounds.Rows[i].Cells[IdxPosCol].Value = ListName[ListName.Length - 1];// Position.ToString();
 
                 IdxPosCol++;
 
-                if(i<3)
+                if (i < 3)
                     dataGridViewForCompounds.Rows[i].Cells[IdxPosCol].Value = true;
                 else
                     dataGridViewForCompounds.Rows[i].Cells[IdxPosCol].Value = false;
@@ -92,16 +86,16 @@ namespace HCSAnalyzer.Forms
                     if ((j % 2) == 0)
                     {
                         Value = i * 20;
-                        dataGridViewForCompounds.Rows[i].Cells[j+1].Style.Font = new Font(dataGridViewForCompounds.Font, FontStyle.Bold);
+                        dataGridViewForCompounds.Rows[i].Cells[j + 1].Style.Font = new Font(dataGridViewForCompounds.Font, FontStyle.Bold);
                     }
                     else
                     {
                         Value = 5;
                     }
-                    dataGridViewForCompounds.Rows[i].Cells[j+1].Value = Value.ToString();
+                    dataGridViewForCompounds.Rows[i].Cells[j + 1].Value = Value.ToString();
 
-                    if(((j%4)==0)||((j%4)==1))
-                        dataGridViewForCompounds.Rows[i].Cells[j+1].Style.BackColor = Color.Beige;
+                    if (((j % 4) == 0) || ((j % 4) == 1))
+                        dataGridViewForCompounds.Rows[i].Cells[j + 1].Style.BackColor = Color.Beige;
                 }
             }
         }

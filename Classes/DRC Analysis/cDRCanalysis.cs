@@ -1,15 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using LibPlateAnalysis;
-using System.Windows.Forms.DataVisualization.Charting;
-using System.Drawing;
-using HCSAnalyzer.Forms.FormsForOptions;
-using System.Windows.Forms;
-using System.IO;
+﻿using HCSAnalyzer.Classes.Base_Classes.DataStructures;
 using HCSAnalyzer.Forms.FormsForDRCAnalysis;
-using HCSAnalyzer.Classes.Base_Classes.DataStructures;
+using LibPlateAnalysis;
+using System;
+using System.Collections.Generic;
+using System.Windows.Forms;
+using System.Windows.Forms.DataVisualization.Charting;
 
 namespace HCSAnalyzer.Classes
 {
@@ -185,7 +180,7 @@ namespace HCSAnalyzer.Classes
 
                 cDRC CurrentDRC = this.GetDRC(Desc);
                 ListRespondingDescriptors.Add(CurrentDRC.IsResponding(WindowDRCSelection));
-                
+
                 //    ListRespondingDescritpors.Add(1);
                 //else
                 //    ListRespondingDescritpors.Add(0);
@@ -298,7 +293,7 @@ namespace HCSAnalyzer.Classes
 
             foreach (double[] listVal in Y_RawData)
             {
-                for(int i=0;i<listVal.Length;i++)
+                for (int i = 0; i < listVal.Length; i++)
                 {
                     if (listVal[i] >= Max) Max = listVal[i];
                     if (listVal[i] <= Min) Min = listVal[i];
@@ -309,7 +304,7 @@ namespace HCSAnalyzer.Classes
 
             foreach (double Val in Y_Estimated)
             {
-                NormalizedY_Estimated.Add((Val - Min)/(Max-Min));
+                NormalizedY_Estimated.Add((Val - Min) / (Max - Min));
             }
 
             return NormalizedY_Estimated;
@@ -369,7 +364,7 @@ namespace HCSAnalyzer.Classes
 
         private static void function_SigmoidInhibition(double[] c, double[] x, ref double func, object obj)
         {
-            func = c[0] + (c[1] - c[0]) / (1 + Math.Pow(((Math.Pow(10, c[2]) / Math.Pow(10,x[0]))), c[3]));
+            func = c[0] + (c[1] - c[0]) / (1 + Math.Pow(((Math.Pow(10, c[2]) / Math.Pow(10, x[0]))), c[3]));
         }
 
         #endregion
@@ -428,7 +423,7 @@ namespace HCSAnalyzer.Classes
 
             if (GlobalMax == GlobalMin) return;
 
-            double BaseEC50 = MaxConcentration- Math.Abs(MaxConcentration - MinConcentration) / 2.0;
+            double BaseEC50 = MaxConcentration - Math.Abs(MaxConcentration - MinConcentration) / 2.0;
 
             double[] c = new double[] { GlobalMin, GlobalMax, BaseEC50, 1 };
             double epsf = 0;
@@ -442,8 +437,8 @@ namespace HCSAnalyzer.Classes
             double[] bndu = null;
 
             // boundaries
-            bndu = new double[] { GlobalMax, GlobalMax,MaxConcentration, 5 };
-            bndl = new double[] { GlobalMin, GlobalMin,MinConcentration, -5 };
+            bndu = new double[] { GlobalMax, GlobalMax, MaxConcentration, 5 };
+            bndl = new double[] { GlobalMin, GlobalMin, MinConcentration, -5 };
 
             // c = new double[] { 0, 0, 0, 1 };
             // s = new double[] { 1, 1, 1.0e-9, 1 };
@@ -495,9 +490,9 @@ namespace HCSAnalyzer.Classes
             ResultFit.Y_Estimated = new cExtendedList();
             for (int IdxConc = 0; IdxConc < ResultFit.ConcentrationValues.Count; IdxConc++)
             {
-                ResultFit.Y_Estimated.Add(c[0] + (c[1] - c[0]) 
-                    / (1 + Math.Pow((Math.Pow(10, c[2]) / Math.Pow(10,ResultFit.GetLogConcentrations()[IdxConc])), c[3])));
-             //   ResultFit.Y_Estimated.Add(c[0] + (c[1] - c[0]) / (1 + Math.Pow(((c[2]) /  ResultFit.GetLogConcentrations()[IdxConc]), c[3])));
+                ResultFit.Y_Estimated.Add(c[0] + (c[1] - c[0])
+                    / (1 + Math.Pow((Math.Pow(10, c[2]) / Math.Pow(10, ResultFit.GetLogConcentrations()[IdxConc])), c[3])));
+                //   ResultFit.Y_Estimated.Add(c[0] + (c[1] - c[0]) / (1 + Math.Pow(((c[2]) /  ResultFit.GetLogConcentrations()[IdxConc]), c[3])));
             }
             return;
         }

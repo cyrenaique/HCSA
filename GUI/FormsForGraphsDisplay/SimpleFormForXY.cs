@@ -1,18 +1,13 @@
-﻿using System;
+﻿using HCSAnalyzer.Classes;
+using HCSAnalyzer.Classes.General_Types;
+using HCSAnalyzer.Forms.FormsForGraphsDisplay;
+using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
 using System.Drawing;
-using System.Linq;
+using System.IO;
 using System.Text;
 using System.Windows.Forms;
-using System.IO;
 using System.Windows.Forms.DataVisualization.Charting;
-using HCSAnalyzer.Forms.FormsForGraphsDisplay;
-using HCSAnalyzer.Classes.General_Types;
-using HCSAnalyzer.Classes;
-using System.Diagnostics;
-using System.Threading.Tasks;
 
 namespace LibPlateAnalysis
 {
@@ -160,7 +155,7 @@ namespace LibPlateAnalysis
                 ListPlate = CompleteScreening.ListPlatesActive;
 
             for (int i = 0; i < ListPlate.Count; i++)
-            {            
+            {
                 cPlate CurrentPlate = ListPlate[i];
                 for (int IdxValue = 0; IdxValue < CompleteScreening.Columns; IdxValue++)
                     for (int IdxValue0 = 0; IdxValue0 < CompleteScreening.Rows; IdxValue0++)
@@ -200,8 +195,8 @@ namespace LibPlateAnalysis
                 return false;
             }
 
-           
-            
+
+
             CurrentChartArea.CursorX.IsUserSelectionEnabled = true;
             CurrentChartArea.CursorY.IsUserSelectionEnabled = true;
             CurrentChartArea.BorderColor = Color.Black;
@@ -323,6 +318,6 @@ namespace LibPlateAnalysis
             WellToTransfer.DisplayInfoWindow(CompleteScreening.ListDescriptors.CurrentSelectedDescriptorIdx);
         }
 
-        
+
     }
 }

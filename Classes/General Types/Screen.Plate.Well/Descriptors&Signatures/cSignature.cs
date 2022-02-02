@@ -1,21 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Windows.Forms;
-using HCSAnalyzer.Classes;
-using HCSAnalyzer.Classes.Base_Classes.DataStructures;
-using System.Windows.Forms.DataVisualization.Charting;
-using System.Windows;
-using System.Drawing;
-using HCSAnalyzer.Forms.IO;
-using HCSAnalyzer.Forms.FormsForGraphsDisplay;
-using HCSAnalyzer.Controls;
-using HCSAnalyzer.Classes.Base_Classes.GUI;
-using HCSAnalyzer.Classes.Base_Classes.Viewers;
-using HCSAnalyzer.Classes.General_Types;
+﻿using HCSAnalyzer.Classes;
 using HCSAnalyzer.Classes.Base_Classes.DataAnalysis;
 using HCSAnalyzer.Classes.Base_Classes.DataProcessing;
+using HCSAnalyzer.Classes.Base_Classes.DataStructures;
+using HCSAnalyzer.Classes.General_Types;
+using System;
+using System.Collections.Generic;
 
 namespace LibPlateAnalysis
 {
@@ -29,7 +18,7 @@ namespace LibPlateAnalysis
 
             return null;
         }
-    
+
     }
 
     public class cSignature
@@ -68,7 +57,7 @@ namespace LibPlateAnalysis
         /// <returns>if scalar mode: average else distance between histograms</returns>
         public double GetValue()
         {
-            if ((cGlobalInfo.CurrentScreening.Reference == null)||( Type.GetBinNumber()==1))
+            if ((cGlobalInfo.CurrentScreening.Reference == null) || (Type.GetBinNumber() == 1))
             {
                 //if (Type.GetBinNumber() > 1)
                 //{
@@ -85,12 +74,12 @@ namespace LibPlateAnalysis
             {
                 //System.Windows.Forms.MessageBox.Show("GetValue() not implemented", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
 
-                List<cDescriptorType> Listdesc= new List<cDescriptorType>();
+                List<cDescriptorType> Listdesc = new List<cDescriptorType>();
                 Listdesc.Add(Type);
 
                 cExtendedTable Et = cGlobalInfo.CurrentScreening.Reference.GetSingleObjectDescriptorValues(Listdesc);
 
-                
+
                 cHistogramBuilder HB = new cHistogramBuilder();
                 HB.BinNumber = Type.GetBinNumber();
                 HB.Min = 0;// Histogram.Min();
@@ -103,7 +92,7 @@ namespace LibPlateAnalysis
 
                 cListWells TmpListWells = new cListWells(AssociatedWell);
                 Et = TmpListWells.GetSingleObjectDescriptorValues(Listdesc);
-                
+
                 HB = new cHistogramBuilder();
                 HB.BinNumber = Type.GetBinNumber();
                 HB.Min = 0;// Histogram.Min();
@@ -117,16 +106,16 @@ namespace LibPlateAnalysis
                 DistanceToCompute.SetInputData(TableForDistances);
 
                 if (cGlobalInfo.OptionsWindow.radioButtonDistributionMetricEuclidean.Checked)
-                    DistanceToCompute.DistanceType= eDistances.EUCLIDEAN;
+                    DistanceToCompute.DistanceType = eDistances.EUCLIDEAN;
                 //    return Histogram.Dist_Euclidean(cGlobalInfo.CurrentScreening.Reference[cGlobalInfo.CurrentScreening.ListDescriptors.IndexOf(Type)]);
                 else if (cGlobalInfo.OptionsWindow.radioButtonDistributionMetricManhattan.Checked)
                     DistanceToCompute.DistanceType = eDistances.MANHATTAN;
                 //    return HistoValues.Dist_Manhattan(cGlobalInfo.CurrentScreening.Reference[cGlobalInfo.CurrentScreening.ListDescriptors.IndexOf(Type)]);
                 else if (cGlobalInfo.OptionsWindow.radioButtonDistributionMetricCosine.Checked)
-                //    return HistoValues.Dist_VectorCosine(cGlobalInfo.CurrentScreening.Reference[cGlobalInfo.CurrentScreening.ListDescriptors.IndexOf(Type)]);
+                    //    return HistoValues.Dist_VectorCosine(cGlobalInfo.CurrentScreening.Reference[cGlobalInfo.CurrentScreening.ListDescriptors.IndexOf(Type)]);
                     DistanceToCompute.DistanceType = eDistances.VECTOR_COS;
                 else if (cGlobalInfo.OptionsWindow.radioButtonDistributionMetricBhattacharyya.Checked)
-                    DistanceToCompute.DistanceType= eDistances.BHATTACHARYYA;
+                    DistanceToCompute.DistanceType = eDistances.BHATTACHARYYA;
                 //    return HistoValues.Dist_BhattacharyyaCoefficient(cGlobalInfo.CurrentScreening.Reference[cGlobalInfo.CurrentScreening.ListDescriptors.IndexOf(Type)]);
                 else //if(cGlobalInfo.OptionsWindow.radioButtonDistributionMetricEMD.Checked)
                     DistanceToCompute.DistanceType = eDistances.EMD;
@@ -136,11 +125,11 @@ namespace LibPlateAnalysis
 
 
 
-                
-           //     TableForDistances.Add(
+
+                //     TableForDistances.Add(
                 DistanceToCompute.Run();
                 return DistanceToCompute.GetOutPut()[0][1];
-                
+
 
             }
 
@@ -237,7 +226,7 @@ namespace LibPlateAnalysis
                 AssociatedWell.AssociatedPlate.DBConnection = new cDBConnection(AssociatedWell.AssociatedPlate, AssociatedWell.SQLTableName);
                 List<cDescriptorType> LCDT = new List<cDescriptorType>();
                 LCDT.Add(this.GetAssociatedType());
-                cExtendedTable ToReturn = AssociatedWell.AssociatedPlate.DBConnection.GetWellValues(AssociatedWell, LCDT );
+                cExtendedTable ToReturn = AssociatedWell.AssociatedPlate.DBConnection.GetWellValues(AssociatedWell, LCDT);
                 AssociatedWell.AssociatedPlate.DBConnection.CloseConnection();
                 return ToReturn[0].ToArray();
             }

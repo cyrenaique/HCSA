@@ -1,9 +1,5 @@
-﻿using System;
+﻿using HCSAnalyzer.Classes.Base_Classes.DataStructures;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using HCSAnalyzer.Classes.Base_Classes.DataStructures;
-using weka.core;
 
 
 namespace HCSAnalyzer.Classes.Base_Classes.DataAnalysis
@@ -78,7 +74,7 @@ namespace HCSAnalyzer.Classes.Base_Classes.DataAnalysis
 
             for (int IdxPCA = 0; IdxPCA < base.NewBasis.Count; IdxPCA++)
             {
-                NewBasis[IdxPCA].Name = "PCA_"+(IdxPCA+1);
+                NewBasis[IdxPCA].Name = "PCA_" + (IdxPCA + 1);
                 NewBasis.ListRowNames.Add(Input[IdxPCA].Name);
             }
 

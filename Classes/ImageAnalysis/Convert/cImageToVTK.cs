@@ -1,16 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using HCSAnalyzer.Forms.FormsForImages;
-using System.Drawing;
+﻿using HCSAnalyzer.Classes.Base_Classes;
 using ImageAnalysis;
-using Emgu.CV;
-using Emgu.CV.CvEnum;
-using System.Runtime.InteropServices;
-using Emgu.CV.Structure;
-using HCSAnalyzer.Classes.General_Types;
-using HCSAnalyzer.Classes.Base_Classes;
 
 namespace ImageAnalysisFiltering
 {
@@ -44,11 +33,11 @@ namespace ImageAnalysisFiltering
 
                 for (k = 0; k < base.Output.Depth; k++)
 
-                        for (j = 0; j < base.Output.Height; j++)
-                            for (i = 0; i < base.Output.Width; i++, cpt++)
-                            {
-                                outData[cpt] = inData[i + (base.Input.Height - j - 1) * base.Input.Width + k * base.Input.SliceSize];
-                            }
+                    for (j = 0; j < base.Output.Height; j++)
+                        for (i = 0; i < base.Output.Width; i++, cpt++)
+                        {
+                            outData[cpt] = inData[i + (base.Input.Height - j - 1) * base.Input.Width + k * base.Input.SliceSize];
+                        }
             }
 
 

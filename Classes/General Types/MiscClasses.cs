@@ -1,15 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Collections;
 //using Emgu.CV;
 //using Emgu.CV.Structure;
 //using Emgu.CV.CvEnum;
-using System.Runtime.InteropServices;
-using Emgu.CV;
-using Emgu.CV.CvEnum;
-using System.Drawing;
 
 namespace HCSAnalyzer.Classes
 {

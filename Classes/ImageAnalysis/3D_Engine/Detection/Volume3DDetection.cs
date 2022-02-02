@@ -1,11 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using HCSAnalyzer.Classes._3D;
-using ImageAnalysis;
-using System.Drawing;
+﻿using HCSAnalyzer.Classes._3D;
 using HCSAnalyzer.Classes.Base_Classes.DataStructures;
+using ImageAnalysis;
+using System;
+using System.Collections.Generic;
+using System.Drawing;
 
 namespace HCSAnalyzer.Classes.ImageAnalysis._3D_Engine.Detection
 {
@@ -79,7 +77,7 @@ namespace HCSAnalyzer.Classes.ImageAnalysis._3D_Engine.Detection
         /// <param name="radius"></param>
         protected void Median3D(cImage input, int inputBand, cImage output, int outputBand, int radius)
         {
-           // MathTools math = new MathTools();
+            // MathTools math = new MathTools();
 
             //float[] inp = input.SingleChannelImage[inputBand].Data, outp = output.SingleChannelImage[outputBand].Data;
 
@@ -247,7 +245,7 @@ namespace HCSAnalyzer.Classes.ImageAnalysis._3D_Engine.Detection
                             AddedPt++;
                         }
 
-                    next: ;
+                    next:;
                     }
             return ListSpots;
         }

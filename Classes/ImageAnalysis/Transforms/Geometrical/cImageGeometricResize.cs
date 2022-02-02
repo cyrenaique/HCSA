@@ -1,23 +1,17 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using HCSAnalyzer.Forms.FormsForImages;
-using System.Drawing;
-using ImageAnalysis;
-using Emgu.CV;
+﻿using Emgu.CV;
 using Emgu.CV.CvEnum;
-using System.Runtime.InteropServices;
 using Emgu.CV.Structure;
-using HCSAnalyzer.Classes.General_Types;
 using HCSAnalyzer.Classes.Base_Classes;
+using HCSAnalyzer.Classes.General_Types;
+using ImageAnalysis;
+using System;
 
 namespace ImageAnalysisFiltering
 {
     public partial class cImageGeometricResize : c2DImageFilter
     {
         public Inter InterpolationType = Inter.Nearest;
-     //   public double Scale = 0.5;
+        //   public double Scale = 0.5;
 
         public cImageGeometricResize()
         {
@@ -28,7 +22,7 @@ namespace ImageAnalysisFiltering
             Prop1.SetNewValue((double)0.5);
             base.ListProperties.Add(Prop1);
 
-            cProperty Prop2 = new cProperty(new cPropertyType("Maximum Width", eDataType.INTEGER),null);
+            cProperty Prop2 = new cProperty(new cPropertyType("Maximum Width", eDataType.INTEGER), null);
             Prop2.PropertyType.Min = 0;
             Prop2.Info = "Define the maximum width of the image. If set to 0, then unlimited";
             Prop2.SetNewValue((int)0);
@@ -83,9 +77,9 @@ namespace ImageAnalysisFiltering
             if (this.Input.Depth == 1)
             {
                 int RequestedWith = (int)(this.Input.Width * Scale);
-                
+
                 // compute the new scale
-                if ((MaxWidth!=0) && (RequestedWith > MaxWidth))
+                if ((MaxWidth != 0) && (RequestedWith > MaxWidth))
                 {
                     Scale = (double)MaxWidth / (double)this.Input.Width;
                 }
@@ -108,7 +102,7 @@ namespace ImageAnalysisFiltering
                         base.Output = new cImage(ProcessedImage.Width, ProcessedImage.Height, 1, base.ListChannelsToBeProcessed.Count);
 
                     this.Output.SingleChannelImage[IdxChannel].SetNewDataFromOpenCV(ProcessedImage);
-                     
+
                 }
             }
             else
@@ -142,10 +136,10 @@ namespace ImageAnalysisFiltering
                                 minY = (int)Math.Floor(posY);
                                 minZ = (int)Math.Floor(posZ);
 
-                                outData[cpt] = inData[minX + minY *base.Input.Width + minZ * base.Input.SliceSize];
+                                outData[cpt] = inData[minX + minY * base.Input.Width + minZ * base.Input.SliceSize];
                             }
                 }
-            
+
             }
 
             for (int i = 0; i < this.Input.GetNumChannels(); i++)

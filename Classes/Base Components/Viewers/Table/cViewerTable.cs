@@ -1,21 +1,16 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using HCSAnalyzer.Classes.Base_Classes.DataStructures;
-using HCSAnalyzer.Forms.FormsForGraphsDisplay;
-using System.Windows.Forms;
-using System.Data;
-using LibPlateAnalysis;
-using HCSAnalyzer.Classes.Base_Classes.DataProcessing;
-using HCSAnalyzer.Classes.MetaComponents;
+﻿using HCSAnalyzer.Classes._3D;
 using HCSAnalyzer.Classes.Base_Classes.DataAnalysis;
-using HCSAnalyzer.Classes.DataAnalysis;
 using HCSAnalyzer.Classes.Base_Classes.DataManip;
-using HCSAnalyzer.Classes.Base_Classes.Viewers._2D;
-using HCSAnalyzer.Classes.General_Types;
-using HCSAnalyzer.Classes._3D;
+using HCSAnalyzer.Classes.Base_Classes.DataProcessing;
+using HCSAnalyzer.Classes.Base_Classes.DataStructures;
 using HCSAnalyzer.Classes.Base_Classes.Viewers._3D.ComplexObjects;
+using HCSAnalyzer.Classes.DataAnalysis;
+using HCSAnalyzer.Classes.General_Types;
+using HCSAnalyzer.Classes.MetaComponents;
+using LibPlateAnalysis;
+using System;
+using System.Collections.Generic;
+using System.Windows.Forms;
 
 namespace HCSAnalyzer.Classes.Base_Classes.Viewers
 {
@@ -26,7 +21,7 @@ namespace HCSAnalyzer.Classes.Base_Classes.Viewers
         ContextMenuStrip ColumnContextMenu;
 
         public int DigitNumber = 2;
-       
+
         public cExtendedTable GetLiveListValues()
         {
             cExtendedTable CET = new cExtendedTable();
@@ -51,7 +46,7 @@ namespace HCSAnalyzer.Classes.Base_Classes.Viewers
         public cViewerTable()
         {
             Title = "Table Viewer";
-          //  this.GridView.ShowCellToolTips = false;
+            //  this.GridView.ShowCellToolTips = false;
 
             this.GridView.CellMouseClick += new DataGridViewCellMouseEventHandler(GridView_CellMouseClick);
             //this.GridView.CellMouseEnter += new DataGridViewCellEventHandler(GridView_CellMouseEnter);
@@ -60,7 +55,7 @@ namespace HCSAnalyzer.Classes.Base_Classes.Viewers
         void GridView_CellMouseEnter(object sender, DataGridViewCellEventArgs e)
         {
             //ToolTip tt = new ToolTip();
-            
+
 
             //if (e.RowIndex == -1 && e.ColumnIndex != -1)
             //{
@@ -102,7 +97,7 @@ namespace HCSAnalyzer.Classes.Base_Classes.Viewers
                 ToolStripMenuItem_Display2DScatterGraph.Click += new System.EventHandler(this.ToolStripMenuItem_Display2DScatterGraph);
             }
 
-            if(GridView.SelectedColumns.Count == 3)
+            if (GridView.SelectedColumns.Count == 3)
             {
                 ToolStripMenuItem ToolStripMenuItem_Display3DScatterGraph = new ToolStripMenuItem("3D Scatter Graph");
                 ToolStripMenuItem_DisplayAS.DropDownItems.Add(ToolStripMenuItem_Display3DScatterGraph);
@@ -207,7 +202,7 @@ namespace HCSAnalyzer.Classes.Base_Classes.Viewers
 
                 DataGridViewColumn Column = GridView.SelectedColumns[0];
 
-                ToolStripMenuItem ColumnContextMenu = new ToolStripMenuItem("Column [" + Column.Name+"]");
+                ToolStripMenuItem ColumnContextMenu = new ToolStripMenuItem("Column [" + Column.Name + "]");
 
                 ToolStripMenuItem ToolStripMenuItem_DisplayGraph = new ToolStripMenuItem("Display Graph");
                 ColumnContextMenu.DropDownItems.Add(ToolStripMenuItem_DisplayGraph);
@@ -314,7 +309,7 @@ namespace HCSAnalyzer.Classes.Base_Classes.Viewers
 
                     MultiColumnContextMenu.DropDownItems.Add(ToolStripMenuItem_CorrelationAnalysis);
 
-                  
+
 
                     GridViewContextMenu.Items.Add(MultiColumnContextMenu);
                 }
@@ -322,7 +317,7 @@ namespace HCSAnalyzer.Classes.Base_Classes.Viewers
             #endregion
 
             // specific menu for the clicked cell
-            if (/*(e.ColumnIndex > -1)&&*/(e.RowIndex > -1)&&(Input.ListTags != null))
+            if (/*(e.ColumnIndex > -1)&&*/(e.RowIndex > -1) && (Input.ListTags != null))
             {
                 if (Input.ListTags[e.RowIndex].GetType() == typeof(cWellClassType))
                 {
@@ -341,7 +336,7 @@ namespace HCSAnalyzer.Classes.Base_Classes.Viewers
                     cListWells TmpClass = ((cListWells)Input.ListTags[e.RowIndex]);
 
                     //foreach (var item in TmpClass.GetContextMenu())
-                        GridViewContextMenu.Items.Add(TmpClass.GetExtendedContextMenu());
+                    GridViewContextMenu.Items.Add(TmpClass.GetExtendedContextMenu());
                 }
 
             }
@@ -395,7 +390,7 @@ namespace HCSAnalyzer.Classes.Base_Classes.Viewers
             for (int IdxRow = 0; IdxRow < Input[0].Count; IdxRow++)
                 GridView.Rows.Add();
 
-            if ((Input.ListRowNames!=null)&&(Input.ListRowNames.Count > 0))
+            if ((Input.ListRowNames != null) && (Input.ListRowNames.Count > 0))
             {
                 for (int IdxRow = 0; IdxRow < Input.ListRowNames.Count; IdxRow++)
                     GridView.Rows[IdxRow].HeaderCell.Value = Input.ListRowNames[IdxRow];
@@ -421,14 +416,14 @@ namespace HCSAnalyzer.Classes.Base_Classes.Viewers
                     }
                     else
                     {
-                        if(Input[Col].Count>IdxRow)
-                        GridView[Col, IdxRow].Value = Input[Col][IdxRow];
+                        if (Input[Col].Count > IdxRow)
+                            GridView[Col, IdxRow].Value = Input[Col][IdxRow];
                     }
                 }
             }
             //CurrentPanel = new cExtendedControl();           
 
-            GridView.TopLeftHeaderCell.Value =this.Title;
+            GridView.TopLeftHeaderCell.Value = this.Title;
             //GridView.row[0].HeaderText = "aaaa";
 
             CurrentPanel.Title = this.Title;
@@ -476,11 +471,11 @@ namespace HCSAnalyzer.Classes.Base_Classes.Viewers
                     CET[i].ListTags = new List<object>();
             }
 
-            if(this.Input.ListTags!=null)
-            foreach (var item in this.Input.ListTags)
-            {
-                CET.ListTags.Add(item);
-            }
+            if (this.Input.ListTags != null)
+                foreach (var item in this.Input.ListTags)
+                {
+                    CET.ListTags.Add(item);
+                }
 
             //for (int i = 0; i < GridView.SelectedColumns.Count; i++)
             {
@@ -492,8 +487,8 @@ namespace HCSAnalyzer.Classes.Base_Classes.Viewers
                 //        CET[i].ListTags.Add(this.Input[i].ListTags[Idx]);
                 //    }
                 //}
-                    //foreach (var item in this.Input[i].ListTags)
-                    //CET[i].ListTags.Add(item);
+                //foreach (var item in this.Input[i].ListTags)
+                //CET[i].ListTags.Add(item);
             }
 
 
@@ -515,10 +510,10 @@ namespace HCSAnalyzer.Classes.Base_Classes.Viewers
         private void ToolStripMenuItem_DisplayInfo(object sender, EventArgs e)
         {
             cDisplayText DT = new cDisplayText();
-            DT.SetInputData("["+ this.Input[GridView.SelectedColumns[0].Index].Name + "]\n\n"+this.Input[GridView.SelectedColumns[0].Index].GetInfo());
+            DT.SetInputData("[" + this.Input[GridView.SelectedColumns[0].Index].Name + "]\n\n" + this.Input[GridView.SelectedColumns[0].Index].GetInfo());
             DT.Run();
         }
-        
+
         private void ToolStripMenuItem_DisplayHisto(object sender, EventArgs e)
         {
             cExtendedTable CET = new cExtendedTable();
@@ -856,7 +851,7 @@ namespace HCSAnalyzer.Classes.Base_Classes.Viewers
             DTW.SetInputData(CDNP.GetOutPut());
             DTW.Title = "Normality Test";
             DTW.Run();
-            
+
             DTW.Display();
 
             //cNormalityJarqueBera NJB = new cNormalityJarqueBera();
@@ -867,7 +862,7 @@ namespace HCSAnalyzer.Classes.Base_Classes.Viewers
             //    System.Windows.Forms.MessageBox.Show(FM.Message, "Error !", MessageBoxButtons.OK, MessageBoxIcon.Error);
             //    return;
             //}
-           
+
             //cDisplayExtendedTable CDT = new cDisplayExtendedTable();
             //CDT.SetInputData(NJB.GetOutPut());
             //CDT.Run();
@@ -894,7 +889,7 @@ namespace HCSAnalyzer.Classes.Base_Classes.Viewers
                     CET.ListTags.Add(item);
             }
 
-            CET.Name = "Sub["+this.Input.Name+"]";
+            CET.Name = "Sub[" + this.Input.Name + "]";
 
             CC.SetInputData(CET);
             //CC.ListProperties.FindByName("Number of Clusters").SetNewValue((int)3);
@@ -961,7 +956,7 @@ namespace HCSAnalyzer.Classes.Base_Classes.Viewers
         private void ToolStripMenuItem_Display3DScatterGraph(object sender, EventArgs e)
         {
             cExtendedTable CET = new cExtendedTable();
-            
+
             foreach (DataGridViewColumn item in GridView.SelectedColumns)
             {
                 CET.Add(Input[item.Index]);
@@ -972,7 +967,7 @@ namespace HCSAnalyzer.Classes.Base_Classes.Viewers
                 CET.ListTags = new List<object>();
                 foreach (var item in this.Input.ListTags)
                 {
-                    CET.ListTags.Add(item);    
+                    CET.ListTags.Add(item);
                 }
             }
 
@@ -1000,19 +995,19 @@ namespace HCSAnalyzer.Classes.Base_Classes.Viewers
 
 
             cListGeometric3DObject GlobalList = _3DScatterPt.GetOutPut();
-          
+
             foreach (var item in GlobalList)
             {
                 MyWorld.AddGeometric3DObject(item);
             }
-                     
+
 
             V3D.SetInputData(MyWorld);
             V3D.Run();
 
             cDisplayToWindow DTW = new cDisplayToWindow();
             DTW.SetInputData(V3D.GetOutPut());
-            DTW.Title = "3D Scatter Graph ("+ this.Input.Name +")";
+            DTW.Title = "3D Scatter Graph (" + this.Input.Name + ")";
             DTW.Run();
             DTW.Display();
         }
@@ -1029,7 +1024,7 @@ namespace HCSAnalyzer.Classes.Base_Classes.Viewers
 
             cDisplayToWindow DW = new cDisplayToWindow();
             DW.SetInputData(CD.GetOutPut());
-            DW.Title = "2D Scatter Graph (" + this.Input.Name +")";
+            DW.Title = "2D Scatter Graph (" + this.Input.Name + ")";
             DW.Run();
             DW.Display();
         }
@@ -1090,7 +1085,7 @@ namespace HCSAnalyzer.Classes.Base_Classes.Viewers
             THTML.ListProperties.FindByName("Open HTML File ?").SetNewValue((bool)true);
             THTML.ListProperties.FindByName("Open HTML File ?").IsGUIforValue = true;
 
-           // THTML.IsDisplayResult = true;
+            // THTML.IsDisplayResult = true;
             THTML.Run();
         }
 

@@ -1,12 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
+﻿using HCSAnalyzer.Classes._3D;
+using System;
 using System.Windows.Forms;
-using HCSAnalyzer.Classes._3D;
 
 namespace HCSAnalyzer.Classes.Base_Components.Viewers._3D
 {
@@ -25,7 +19,7 @@ namespace HCSAnalyzer.Classes.Base_Components.Viewers._3D
             this.numericUpDownPosY.ValueChanged -= new EventHandler(numericUpDownPosY_ValueChanged);
             this.numericUpDownPosZ.ValueChanged -= new EventHandler(numericUpDownPosZ_ValueChanged);
             this.numericUpDownOpacity.ValueChanged -= new EventHandler(numericUpDownOpacity_ValueChanged);
-            
+
             this.radioButtonSolid.CheckedChanged -= new EventHandler(radioButtonSolid_CheckedChanged);
             this.radioButtonWireFrame.CheckedChanged -= new EventHandler(radioButtonWireFrame_CheckedChanged);
             this.radioButtonPoint.CheckedChanged -= new EventHandler(radioButtonPoint_CheckedChanged);
@@ -52,7 +46,7 @@ namespace HCSAnalyzer.Classes.Base_Components.Viewers._3D
             this.radioButtonSolid.CheckedChanged += new EventHandler(radioButtonSolid_CheckedChanged);
             this.radioButtonWireFrame.CheckedChanged += new EventHandler(radioButtonWireFrame_CheckedChanged);
             this.radioButtonPoint.CheckedChanged += new EventHandler(radioButtonPoint_CheckedChanged);
-            
+
             this.numericUpDownPosX.Value = (decimal)Object3D.GetPosition().X;
             this.numericUpDownPosY.Value = (decimal)Object3D.GetPosition().Y;
             this.numericUpDownPosZ.Value = (decimal)Object3D.GetPosition().Z;
@@ -80,7 +74,7 @@ namespace HCSAnalyzer.Classes.Base_Components.Viewers._3D
             cPoint3D CurrentPos = Object3D.GetPosition();
             CurrentPos.X = (double)this.numericUpDownPosX.Value;
             Object3D.SetPosition(CurrentPos);
-          //  Object3D.AssociatedWorld.Redraw();
+            //  Object3D.AssociatedWorld.Redraw();
         }
 
         private void numericUpDownPosY_ValueChanged(object sender, EventArgs e)

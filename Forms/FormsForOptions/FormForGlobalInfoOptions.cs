@@ -1,16 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Windows.Forms;
-using HCSAnalyzer.Forms.FormsForOptions.PanelForOptions;
-using HCSAnalyzer.Forms.FormsForOptions.ClassForOptions;
+﻿using HCSAnalyzer.Forms.FormsForOptions.ClassForOptions;
+using System;
+using System.IO;
 using System.Runtime.Serialization;
 using System.Runtime.Serialization.Formatters.Binary;
-using System.IO;
+using System.Windows.Forms;
 
 
 namespace HCSAnalyzer.Forms.FormsForOptions
@@ -23,7 +16,7 @@ namespace HCSAnalyzer.Forms.FormsForOptions
         {
             InitializeComponent();
 
-           
+
 
 
 
@@ -98,7 +91,7 @@ namespace HCSAnalyzer.Forms.FormsForOptions
                                       FileAccess.Read,
                                       FileShare.Read);
 
-           // MyObject obj = (MyObject)formatter.Deserialize(fromStream);
+            // MyObject obj = (MyObject)formatter.Deserialize(fromStream);
             stream.Close();
 
 

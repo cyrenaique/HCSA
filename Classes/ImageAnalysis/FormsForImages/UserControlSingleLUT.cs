@@ -1,18 +1,12 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
+﻿using HCSAnalyzer.Classes;
+using HCSAnalyzer.Classes.Base_Classes.DataStructures;
+using HCSAnalyzer.Classes.ImageAnalysis.FormsForImages;
+using ImageAnalysis;
+using System;
 using System.Drawing;
-using System.Data;
-using System.Linq;
-using System.Text;
-using System.Windows.Forms;
-using HCSAnalyzer.Classes;
 using System.Drawing.Imaging;
 using System.Runtime.InteropServices;
-using ImageAnalysis;
-using HCSAnalyzer.Classes.Base_Classes.DataStructures;
-using HCSAnalyzer.Classes.Base_Classes.Viewers;
-using HCSAnalyzer.Classes.ImageAnalysis.FormsForImages;
+using System.Windows.Forms;
 
 namespace HCSAnalyzer.Forms.FormsForImages
 {
@@ -84,7 +78,7 @@ namespace HCSAnalyzer.Forms.FormsForImages
             this.trackBarGamma.ValueChanged += new System.EventHandler(this.trackBarGamma_ValueChanged);
             this.comboBoxForLUT.SelectedValueChanged += new System.EventHandler(this.comboBoxForLUT_SelectedValueChanged);
             this.pictureBoxForColorSample.DoubleClick += new System.EventHandler(this.pictureBoxForColorSample_DoubleClick);
-            
+
             this.MouseDown += new System.Windows.Forms.MouseEventHandler(this.UserControlSingleLUT_MouseDown);
             this.toolStripMenuItemGammaDefault.Click += new System.EventHandler(this.toolStripMenuItemGammaDefault_Click);
             this.textBoxForName.TextChanged += new System.EventHandler(this.textBoxForName_TextChanged);
@@ -92,7 +86,7 @@ namespace HCSAnalyzer.Forms.FormsForImages
             this.BringToFront();
         }
 
-            
+
         private void UserControlSingleLUT_MouseDown(object sender, MouseEventArgs e)
         {
             if (e.Button != MouseButtons.Right) return;
@@ -329,13 +323,13 @@ namespace HCSAnalyzer.Forms.FormsForImages
 
         public void CreateAndUpDateLinearLUT(Color MaxColor)
         {
-            this.MaxColorForLinear = MaxColor; 
+            this.MaxColorForLinear = MaxColor;
             this.SelectedLUT = ListLUT.LUT_LINEAR;
             UpDateLinearLUT();
             UpDateColorSampleImage();
-        } 
+        }
 
-        
+
         public void UpdateFromDisplayProperties(cImageDisplayProperties ImageDisplayProperties, int IdxChannel)
         {
             // this.numericUpDownMaxValue.ValueChanged -=  new EventHandler(numericUpDownMaxValue_ValueChanged);

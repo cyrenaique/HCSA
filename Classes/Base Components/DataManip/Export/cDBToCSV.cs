@@ -1,14 +1,12 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
+﻿using HCSAnalyzer.Classes.Base_Classes;
 using HCSAnalyzer.Classes.Base_Classes.DataStructures;
-using HCSAnalyzer.Classes.Base_Classes;
 using HCSAnalyzer.Classes.General_Types;
-using System.IO;
-using LibPlateAnalysis;
-using System.Windows.Forms;
 using HCSAnalyzer.Forms.IO;
+using LibPlateAnalysis;
+using System.Collections.Generic;
+using System.IO;
+using System.Text;
+using System.Windows.Forms;
 
 namespace HCSAnalyzer.Classes.Base_Components.DataManip
 {
@@ -52,7 +50,7 @@ namespace HCSAnalyzer.Classes.Base_Components.DataManip
                 CurrSaveFileDialog.Filter = "CSV file (*.csv)|*.csv";
                 System.Windows.Forms.DialogResult Res = CurrSaveFileDialog.ShowDialog();
                 if (Res != System.Windows.Forms.DialogResult.OK)
-                    return new cFeedBackMessage(false,this);
+                    return new cFeedBackMessage(false, this);
                 FilePath = CurrSaveFileDialog.FileName;
             }
 
@@ -65,7 +63,7 @@ namespace HCSAnalyzer.Classes.Base_Components.DataManip
             catch (IOException ex)
             {
                 MessageBox.Show("File currently used by another application.\n", "Saving error !", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                return new cFeedBackMessage(false,this);
+                return new cFeedBackMessage(false, this);
             }
 
             // create the file
@@ -95,7 +93,7 @@ namespace HCSAnalyzer.Classes.Base_Components.DataManip
 
 
                 int IdxWell = 0;
-                foreach(cWell TmpWell in this.Input)
+                foreach (cWell TmpWell in this.Input)
                 {
                     cListWells TmpList = new cListWells(TmpWell);
 

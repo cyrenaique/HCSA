@@ -1,9 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
+﻿using HCSAnalyzer.Classes.Base_Classes.DataStructures;
 using LibPlateAnalysis;
-using HCSAnalyzer.Classes.Base_Classes.DataStructures;
 
 namespace HCSAnalyzer.Classes.General_Types
 {
@@ -42,7 +38,7 @@ namespace HCSAnalyzer.Classes.General_Types
                 this.GeneralMin = MinMax[0][0];
                 this.GeneralMax = MinMax[0][1];
             }
-        
+
         }
 
 

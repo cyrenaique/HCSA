@@ -1,18 +1,13 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Windows.Forms;
-using HCSAnalyzer.Classes;
-using System.IO;
-using System.Windows.Forms.DataVisualization.Charting;
-using HCSAnalyzer.Forms.FormsForGraphsDisplay;
-using HCSAnalyzer.Classes.Base_Classes.DataStructures;
+﻿using HCSAnalyzer.Classes.Base_Classes.DataStructures;
 using HCSAnalyzer.Classes.Base_Classes.Viewers;
+using HCSAnalyzer.Forms.FormsForGraphsDisplay;
 using LibPlateAnalysis;
+using System;
+using System.Collections.Generic;
+using System.Drawing;
+using System.IO;
+using System.Windows.Forms;
+using System.Windows.Forms.DataVisualization.Charting;
 
 namespace HCSAnalyzer.GUI.FormsForGraphsDisplay.Generic
 {
@@ -376,7 +371,7 @@ namespace HCSAnalyzer.GUI.FormsForGraphsDisplay.Generic
         {
             if (e.Button == System.Windows.Forms.MouseButtons.Right)
             {
-              //  contextMenuStrip = new System.Windows.Forms.ContextMenuStrip();
+                //  contextMenuStrip = new System.Windows.Forms.ContextMenuStrip();
 
 
                 HitTestResult Res = this.chart.HitTest(e.X, e.Y, ChartElementType.DataPoint);

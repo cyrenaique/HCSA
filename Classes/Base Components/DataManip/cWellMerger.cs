@@ -1,11 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using HCSAnalyzer.Classes.Base_Classes.DataStructures;
+﻿using HCSAnalyzer.Classes.Base_Classes.GUI;
 using HCSAnalyzer.Classes.General_Types;
 using LibPlateAnalysis;
-using HCSAnalyzer.Classes.Base_Classes.GUI;
+using System.Collections.Generic;
 
 namespace HCSAnalyzer.Classes.Base_Classes.DataAnalysis
 {
@@ -34,7 +30,7 @@ namespace HCSAnalyzer.Classes.Base_Classes.DataAnalysis
 
         public cFeedBackMessage Run()
         {
-           
+
             if (this.Input == null)
             {
                 FeedBackMessage.IsSucceed = false;
@@ -51,13 +47,13 @@ namespace HCSAnalyzer.Classes.Base_Classes.DataAnalysis
                     return FeedBackMessage;
                 }
                 ListSelectedProp = GUI_ListWellProperty.GetOutPut();
-            
+
             }
 
 
             this.OutPut = new cListListWells();
 
-            foreach(cWell TmpWell in this.Input)
+            foreach (cWell TmpWell in this.Input)
             {
                 bool IsSimilar = false;
                 for (int i = 0; i < this.OutPut.Count; i++)
@@ -124,7 +120,7 @@ namespace HCSAnalyzer.Classes.Base_Classes.DataAnalysis
 
                     LW.Add(TmpWell);
                     this.OutPut.Add(LW);
-                NEXTLOOP: ;
+                NEXTLOOP:;
                 }
             }
 

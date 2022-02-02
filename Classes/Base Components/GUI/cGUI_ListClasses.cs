@@ -1,11 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using HCSAnalyzer.Forms;
-using HCSAnalyzer.Forms.FormsForGraphsDisplay;
-using HCSAnalyzer.Classes.Base_Classes.DataStructures;
+﻿using HCSAnalyzer.Classes.Base_Classes.DataStructures;
 using HCSAnalyzer.Classes.Base_Classes.Viewers;
+using HCSAnalyzer.Forms.FormsForGraphsDisplay;
+using System.Collections.Generic;
 using System.Windows.Forms;
 
 namespace HCSAnalyzer.Classes.Base_Classes.GUI
@@ -24,8 +20,8 @@ namespace HCSAnalyzer.Classes.Base_Classes.GUI
 
         //public object GetListClasses()
         //{
-            
-        
+
+
         //}
 
         public cGUI_ListClasses()
@@ -44,8 +40,8 @@ namespace HCSAnalyzer.Classes.Base_Classes.GUI
             WindowToDisplay.Text = "Class Selection";
             WindowToDisplay.FormBorderStyle = FormBorderStyle.FixedSingle;
 
-            PanelForClassSelection ClassSelectionPanel = new PanelForClassSelection( this.IsCheckBoxes, this.ClassType);
-            
+            PanelForClassSelection ClassSelectionPanel = new PanelForClassSelection(this.IsCheckBoxes, this.ClassType);
+
             //ClassSelectionPanel.Height = WindowToDisplay.Height;
             if (this.IsSelectAll && this.IsCheckBoxes)
             {
@@ -60,12 +56,12 @@ namespace HCSAnalyzer.Classes.Base_Classes.GUI
             ClassSelectionPanel.Location = new System.Drawing.Point(10, 10);
             ClassSelectionPanel.Width = 150;
 
-            if(IsCheckBoxes)
-                ClassSelectionPanel.Height = ClassSelectionPanel.ListCheckBoxes.Count*25;
+            if (IsCheckBoxes)
+                ClassSelectionPanel.Height = ClassSelectionPanel.ListCheckBoxes.Count * 25;
             else
                 ClassSelectionPanel.Height = ClassSelectionPanel.ListRadioButtons.Count * 25;
             ClassSelectionPanel.BorderStyle = BorderStyle.Fixed3D;
-           // MyPanel.Controls.Add(ClassSelectionPanel);
+            // MyPanel.Controls.Add(ClassSelectionPanel);
 
 
 
@@ -77,7 +73,7 @@ namespace HCSAnalyzer.Classes.Base_Classes.GUI
 
             WindowToDisplay.Controls.Add(ClassSelectionPanel);
             WindowToDisplay.Width = ClassSelectionPanel.Width + 28;
-            WindowToDisplay.Height = ClassSelectionPanel.Height + ReturnButton.Height+ 48;
+            WindowToDisplay.Height = ClassSelectionPanel.Height + ReturnButton.Height + 48;
 
 
             if (WindowToDisplay.ShowDialog() != System.Windows.Forms.DialogResult.OK)
@@ -103,9 +99,9 @@ namespace HCSAnalyzer.Classes.Base_Classes.GUI
                 if (item)
                 {
                     this.ListSelectedClass[0].Add(1);
-                    if(this.ClassType== eClassType.WELL)
+                    if (this.ClassType == eClassType.WELL)
                         this.ListSelectedClass[0].ListTags.Add(cGlobalInfo.ListWellClasses[Idx]);
-                    else if(this.ClassType == eClassType.PHENOTYPE)
+                    else if (this.ClassType == eClassType.PHENOTYPE)
                         this.ListSelectedClass[0].ListTags.Add(cGlobalInfo.ListCellularPhenotypes[Idx]);
 
                     NumSelected++;
@@ -119,7 +115,7 @@ namespace HCSAnalyzer.Classes.Base_Classes.GUI
                 Idx++;
             }
 
-            if (NumSelected==0)
+            if (NumSelected == 0)
             {
                 FeedBackMessage.IsSucceed = false;
                 FeedBackMessage.Message = "No class selected !";
@@ -135,7 +131,7 @@ namespace HCSAnalyzer.Classes.Base_Classes.GUI
 
 
             return FeedBackMessage;
-            
+
         }
 
 

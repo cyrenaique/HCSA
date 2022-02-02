@@ -1,15 +1,12 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Windows.Forms;
-using System.Drawing;
-using Kitware.VTK;
-using System.Data;
-using System.Windows.Forms.DataVisualization.Charting;
-using System.IO;
-using LibPlateAnalysis;
+﻿using HCSAnalyzer.Classes.Base_Components.Viewers._3D;
 using HCSAnalyzer.Classes.ImageAnalysis._3D_Engine;
-using HCSAnalyzer.Classes.Base_Components.Viewers._3D;
+using Kitware.VTK;
+using LibPlateAnalysis;
+using System;
+using System.Collections.Generic;
+using System.Data;
+using System.Drawing;
+using System.Windows.Forms;
 
 namespace HCSAnalyzer.Classes._3D
 {
@@ -19,7 +16,7 @@ namespace HCSAnalyzer.Classes._3D
         {
             World.AddLight(this);
         }
-    
+
     }
 
 
@@ -53,9 +50,9 @@ namespace HCSAnalyzer.Classes._3D
         vtkLegendScaleActor legendScaleActor = null;
         public vtkCamera Vtk_CameraView;
 
-      //  public vtkRenderer ren1;
+        //  public vtkRenderer ren1;
         //public vtkRenderWindow renWin;
-     //   public vtkRenderWindowInteractor iren;
+        //   public vtkRenderWindowInteractor iren;
 
         private DataGridView pDataGridView = null;
         private ContextMenuStrip contextMenuStripActorPicker = null;
@@ -93,14 +90,14 @@ namespace HCSAnalyzer.Classes._3D
             }
             catch (Exception e)
             {
-                cGlobalInfo.WindowHCSAnalyzer.richTextBoxConsole.AppendText(this.ToString() +"\n\t"+ e.Message + "\n");
+                cGlobalInfo.WindowHCSAnalyzer.richTextBoxConsole.AppendText(this.ToString() + "\n\t" + e.Message + "\n");
                 return false;
             }
 
         }
 
         #region 3D world creation
-  
+
 
         /// <summary>
         /// Create a 3D world
@@ -111,11 +108,11 @@ namespace HCSAnalyzer.Classes._3D
         public c3DNewWorld(cPoint3D Dimensions, cPoint3D Resolution)
         {
 
-            
+
             // int[] Pos =  renWin.GetPosition();
 
             //,
-        //    if (CurrentrenderWindowControl == null)
+            //    if (CurrentrenderWindowControl == null)
             {
                 //renWin = vtkRenderWindow.New();
                 //renWin.LineSmoothingOn();
@@ -123,7 +120,7 @@ namespace HCSAnalyzer.Classes._3D
                 //renWin.SetWindowName("3D World");
                 //renWin.BordersOn();
                 //renWin.DoubleBufferOn();
-               // renWin.SetSize(WinPos[0], WinPos[1]);
+                // renWin.SetSize(WinPos[0], WinPos[1]);
 
                 //this.ren1 = vtkRenderer.New();
                 //   if(WinPos!=null)            renWin.SetPosition(WinPos[0], WinPos[1]);
@@ -157,7 +154,7 @@ namespace HCSAnalyzer.Classes._3D
 
 
             // iren.LeftButtonPressEvt += new vtkObject.vtkObjectEventHandler(RenderWindow_LeftButtonPressEvt);
-           // iren.KeyPressEvt += new vtkObject.vtkObjectEventHandler(RenderWindow_KeyPressEvt);
+            // iren.KeyPressEvt += new vtkObject.vtkObjectEventHandler(RenderWindow_KeyPressEvt);
             //iren.RightButtonPressEvt += new vtkObject.vtkObjectEventHandler(RenderWindow_RightButtonPressEvt);
 
             //Render();
@@ -186,17 +183,17 @@ namespace HCSAnalyzer.Classes._3D
             ListObject = new List<cObject3D>();
             ListVolume = new List<cVolumeRendering3D>();
 
-            
-             this.Vtk_CameraView = vtkCamera.New();
-             this.Vtk_CameraView.SetPosition(this.SizeX / 2, this.SizeY / 2, this.SizeZ * 20);
-             this.Vtk_CameraView.SetFocalPoint(this.SizeX / 2.0, this.SizeY / 2.0, 0);
 
-             AssociatedWindowFor3DTreeView = new Form3DTreeView(this);
-             AssociatedWindowFor3DTreeView.Show();
-             AssociatedWindowFor3DTreeView.Visible = false;
+            this.Vtk_CameraView = vtkCamera.New();
+            this.Vtk_CameraView.SetPosition(this.SizeX / 2, this.SizeY / 2, this.SizeZ * 20);
+            this.Vtk_CameraView.SetFocalPoint(this.SizeX / 2.0, this.SizeY / 2.0, 0);
+
+            AssociatedWindowFor3DTreeView = new Form3DTreeView(this);
+            AssociatedWindowFor3DTreeView.Show();
+            AssociatedWindowFor3DTreeView.Visible = false;
 
 
-             cGlobalInfo.AddNewWorld(this);
+            cGlobalInfo.AddNewWorld(this);
 
             // this.Name = "World "+ (cGlobalInfo.GetList3DWorlds().Count + 1);
             // cGlobalInfo.List3DWorlds.Add(this);
@@ -612,12 +609,12 @@ namespace HCSAnalyzer.Classes._3D
         //            if (Class == 0)
         //            {
         //               // MetaObject.GenerateAndDisplayBoundingBox(1.0f, Color.Red, false, this);
-                       
+
         //            }
         //            else
         //            {
         //               // MetaObject.GenerateAndDisplayBoundingBox(1.0f, Color.Green, false, this);
-                       
+
         //            }
         //            renWin.Render();
         //        }
@@ -641,7 +638,7 @@ namespace HCSAnalyzer.Classes._3D
                     this.legendScaleActor.SetVisibility(0);
             }
 
-           // this.renWin.Render();
+            // this.renWin.Render();
         }
 
         void TypeNameClicking(object sender, EventArgs e)
@@ -799,8 +796,8 @@ namespace HCSAnalyzer.Classes._3D
         //    this.CurrentScreen.GlobalInfo.OptionsWindow.Update();
         //}
 
-      //  void RenderWindow_KeyPressEvt(vtkObject sender, vtkObjectEventArgs e)
-       // {
+        //  void RenderWindow_KeyPressEvt(vtkObject sender, vtkObjectEventArgs e)
+        // {
         //    sbyte KeyCode = this.iren.GetKeyCode();
 
         //    // R : Reset view
@@ -959,13 +956,13 @@ namespace HCSAnalyzer.Classes._3D
         //     int numActors = Picker.Pick(Pos[0], Pos[1], 0, this.ren1);
         //     if (numActors != 1) return;
         //     vtkActor PickedActor = Picker.GetActor();
-      //  }
+        //  }
 
         #region Objects Association
         public int KeepOnlyObjectsInsideTheOthers(List<cInteractive3DObject> ListContent, List<cInteractive3DObject> ListContainer)
         {
             int RemovedObjects = 0;
-            for (int IdxContent = 0; IdxContent < ListContent.Count; )
+            for (int IdxContent = 0; IdxContent < ListContent.Count;)
             {
                 cInteractive3DObject CurrentContent = ListContent[IdxContent];
                 cPoint3D TestCentriolPt = new cPoint3D(CurrentContent.GetCentroid().X, CurrentContent.GetCentroid().Y, CurrentContent.GetCentroid().Z);
@@ -1001,7 +998,7 @@ namespace HCSAnalyzer.Classes._3D
             ListObject.Add(Object3D);
             Object3D.AssociatedWorld = this;
 
-            if (Object3D.AssociatedWorld.AssociatedVTKRenderer!=null)
+            if (Object3D.AssociatedWorld.AssociatedVTKRenderer != null)
                 Object3D.AddMeToTheWorld(Object3D.AssociatedWorld.AssociatedVTKRenderer);
         }
 
@@ -1061,7 +1058,7 @@ namespace HCSAnalyzer.Classes._3D
                     if (object3DList[i] == null) continue;
                     NumObj++;
 
-                   // object3DList[i].GetActor().GetProperty().SetColor(Colour.R / 255.0, Colour.G / 255.0, Colour.B / 255.0);
+                    // object3DList[i].GetActor().GetProperty().SetColor(Colour.R / 255.0, Colour.G / 255.0, Colour.B / 255.0);
                     object3DList[i].Colour = Colour;
                     AddBiological3DObject(object3DList[i]);
                 }
@@ -1108,10 +1105,10 @@ namespace HCSAnalyzer.Classes._3D
             AddObject3D((cObject3D)object3D);
 
             object3D.AssociatedWorld = this;
-            if(AssociatedVTKRenderer!=null)
+            if (AssociatedVTKRenderer != null)
                 AssociatedVTKRenderer.AddViewProp(object3D.GetActor());
 
-          
+
         }
 
         public void AddVolume3D(cVolumeRendering3D Volume3D)
@@ -1123,7 +1120,7 @@ namespace HCSAnalyzer.Classes._3D
             if (AssociatedVTKRenderer != null)
                 AssociatedVTKRenderer.AddViewProp(Volume3D.vtk_volume);
 
-          //  Volume3D.AddMeToTheWorld(ren1, FirstColor, LastColor);
+            //  Volume3D.AddMeToTheWorld(ren1, FirstColor, LastColor);
         }
 
         #endregion
@@ -1149,7 +1146,7 @@ namespace HCSAnalyzer.Classes._3D
             ////Light.SetFocalPoint(1.875, 0.6125, 0);
             //Light.
             Light.SetPosition(0.875, 1.6125, 1.0);
-            Light.SetColor(color.R/256.0, color.G/256.0,color.B/256.0);
+            Light.SetColor(color.R / 256.0, color.G / 256.0, color.B / 256.0);
 
             ListLights.Add(Light);
         }
@@ -1173,30 +1170,30 @@ namespace HCSAnalyzer.Classes._3D
 
         #endregion
 
-      //  public void Render()
-      //  {
-            //ren1.ResetCamera();
-            //ren1.GetActiveCamera().Roll(180);
-            //ren1.GetActiveCamera().Azimuth(180);
-            ////   ren1.GetActiveCamera().Dolly(1.4);
-            //renWin.Render();
-      //  }
+        //  public void Render()
+        //  {
+        //ren1.ResetCamera();
+        //ren1.GetActiveCamera().Roll(180);
+        //ren1.GetActiveCamera().Azimuth(180);
+        ////   ren1.GetActiveCamera().Dolly(1.4);
+        //renWin.Render();
+        //  }
 
-     //   public void SimpleRender()
-     //   {
-             //renWin.Render();
-     //   }
+        //   public void SimpleRender()
+        //   {
+        //renWin.Render();
+        //   }
 
-      //  public void Terminate()
-       // {
-         //   for (int IdxObj = 0; IdxObj < ListObject.Count; IdxObj++)
-         //   {
-         //       ren1.RemoveActor(ListObject[IdxObj].GetActor());
-         //   }
-            //  ren1.Clear();
-          //  renWin.Dispose();
-          //  iren.GetRenderWindow().FinalizeWrapper();
-          //  iren.TerminateApp();
-       // }
+        //  public void Terminate()
+        // {
+        //   for (int IdxObj = 0; IdxObj < ListObject.Count; IdxObj++)
+        //   {
+        //       ren1.RemoveActor(ListObject[IdxObj].GetActor());
+        //   }
+        //  ren1.Clear();
+        //  renWin.Dispose();
+        //  iren.GetRenderWindow().FinalizeWrapper();
+        //  iren.TerminateApp();
+        // }
     }
 }

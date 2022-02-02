@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
+﻿using System.Collections.Generic;
 
 namespace HCSAnalyzer.Cell_by_Cell_and_DB.Simulator.Classes
 {
@@ -17,13 +14,13 @@ namespace HCSAnalyzer.Cell_by_Cell_and_DB.Simulator.Classes
 
         public cStimulus(string Name)
         {
-        
+
         }
     }
 
     public class cStimuli : List<cStimulus>
     {
-    
+
         //public c
 
     }

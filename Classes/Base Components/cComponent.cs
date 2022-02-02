@@ -1,17 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Drawing;
-using HCSAnalyzer.Classes._3D;
-using HCSAnalyzer.Classes.Base_Classes;
+﻿using HCSAnalyzer.Classes.Base_Classes;
 using HCSAnalyzer.Classes.Base_Classes.DataStructures;
-using System.Windows.Forms;
 using HCSAnalyzer.Classes.Base_Classes.Viewers;
+using HCSAnalyzer.Classes.Base_Components.GUI;
 using HCSAnalyzer.Classes.General_Types;
 using System.Diagnostics;
-using HCSAnalyzer.Classes.Base_Components.GUI;
-using System.IO;
+using System.Drawing;
+using System.Windows.Forms;
 
 namespace HCSAnalyzer.Classes
 {
@@ -51,30 +45,30 @@ namespace HCSAnalyzer.Classes
         void WriteToLog()
         {
 
-        //    string FileName = "HCSA.log";
-        //    StreamWriter stream = new StreamWriter(FileName, true, System.Text.Encoding.ASCII);
+            //    string FileName = "HCSA.log";
+            //    StreamWriter stream = new StreamWriter(FileName, true, System.Text.Encoding.ASCII);
 
-        //    stream.WriteLine(this.Title);
-        //    stream.WriteLine(DateTime.Now);
-        //    if(this.GetInfo()!=null)
-        //        stream.WriteLine(this.Info);
+            //    stream.WriteLine(this.Title);
+            //    stream.WriteLine(DateTime.Now);
+            //    if(this.GetInfo()!=null)
+            //        stream.WriteLine(this.Info);
 
-        //    if ((ListProperties != null) && (ListProperties.Count > 0))
-        //    {
-        //        foreach (var item in ListProperties)
-        //        {
-        //            item.PropertyType.GetInfo();
-        //            stream.WriteLine(item.PropertyType.GetInfo());
-        //            if(item.GetValue()==null)
-        //                stream.WriteLine(" Value: NULL");
-        //            else
-        //             stream.WriteLine(" Value: " + item.GetValue().ToString());
+            //    if ((ListProperties != null) && (ListProperties.Count > 0))
+            //    {
+            //        foreach (var item in ListProperties)
+            //        {
+            //            item.PropertyType.GetInfo();
+            //            stream.WriteLine(item.PropertyType.GetInfo());
+            //            if(item.GetValue()==null)
+            //                stream.WriteLine(" Value: NULL");
+            //            else
+            //             stream.WriteLine(" Value: " + item.GetValue().ToString());
 
-        //        }
-        //    }
-        //    stream.WriteLine();
+            //        }
+            //    }
+            //    stream.WriteLine();
 
-        //    stream.Dispose();
+            //    stream.Dispose();
         }
 
         protected bool Start()

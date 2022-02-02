@@ -1,49 +1,32 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Windows.Forms;
-using HCSAnalyzer.Classes;
-using weka.core;
-using weka.clusterers;
-using weka.classifiers;
-using LibPlateAnalysis;
-using HCSAnalyzer.Forms.IO;
-using System.Threading.Tasks;
-using HCSAnalyzer.Forms.FormsForOptions.ClassForOptions;
-using HCSAnalyzer.Forms.FormsForOptions;
-using HCSAnalyzer.Forms.FormsForOptions.ClusteringInfo;
-using Microsoft.Msagl.GraphViewerGdi;
-using HCSAnalyzer.Forms.FormsForOptions.ClassForOptions.Children;
-using HCSAnalyzer.Forms.FormsForOptions.ClassificationInfo;
-using weka.classifiers.trees;
-using weka.classifiers.lazy;
-using weka.classifiers.functions;
-using weka.classifiers.functions.supportVector;
-using weka.classifiers.rules;
-using weka.classifiers.bayes;
-using HCSAnalyzer.Classes.Machine_Learning;
+﻿using HCSAnalyzer.Cell_by_Cell_and_DB;
 using HCSAnalyzer.Cell_by_Cell_and_DB.Simulator.Forms;
-using HCSAnalyzer.GUI.FormsForGraphsDisplay.Generic;
-using HCSAnalyzer.Classes.Base_Classes.DataStructures;
+using HCSAnalyzer.Classes;
 using HCSAnalyzer.Classes.Base_Classes;
-using HCSAnalyzer.Classes.MetaComponents;
-using HCSAnalyzer.Classes.Base_Classes.Data;
-using ImageAnalysis;
-using ImageAnalysisFiltering;
-using HCSAnalyzer.Classes.Base_Classes.DataProcessing;
-using HCSAnalyzer.Cell_by_Cell_and_DB;
-using System.Windows.Forms.DataVisualization.Charting;
-using HCSAnalyzer.Classes.General_Types;
+using HCSAnalyzer.Classes.Base_Classes.DataAnalysis;
+using HCSAnalyzer.Classes.Base_Classes.DataStructures;
 using HCSAnalyzer.Classes.Base_Classes.GUI;
 using HCSAnalyzer.Classes.Base_Classes.Viewers;
+using HCSAnalyzer.Classes.General_Types;
+using HCSAnalyzer.Classes.Machine_Learning;
+using HCSAnalyzer.Classes.MetaComponents;
+using HCSAnalyzer.Forms.FormsForOptions;
+using HCSAnalyzer.Forms.FormsForOptions.ClassForOptions;
+using HCSAnalyzer.Forms.FormsForOptions.ClassForOptions.Children;
+using HCSAnalyzer.Forms.FormsForOptions.ClassificationInfo;
+using HCSAnalyzer.GUI.FormsForGraphsDisplay.Generic;
+using LibPlateAnalysis;
+using Microsoft.Msagl.GraphViewerGdi;
+using System;
+using System.Collections.Generic;
+using System.Drawing;
 using System.IO;
 using System.Runtime.Serialization;
 using System.Runtime.Serialization.Formatters.Binary;
-using HCSAnalyzer.Classes.Base_Classes.DataAnalysis;
+using System.Windows.Forms;
+using System.Windows.Forms.DataVisualization.Charting;
+using weka.classifiers;
+using weka.classifiers.trees;
+using weka.core;
 
 namespace HCSAnalyzer.Forms.FormsForGraphsDisplay
 {
@@ -328,10 +311,10 @@ namespace HCSAnalyzer.Forms.FormsForGraphsDisplay
             #region manage context menu on the graph elements
             HitTestResult Res = null;
 
-            if(e!=null)
+            if (e != null)
                 Res = this.chartForPoints.HitTest(e.X, e.Y, ChartElementType.DataPoint);
 
-            if ((Res!=null)&&(Res.Series != null))
+            if ((Res != null) && (Res.Series != null))
             {
                 DataPoint PtToTransfer = Res.Series.Points[Res.PointIndex];
                 //Res.Series.Tag
@@ -1029,7 +1012,7 @@ namespace HCSAnalyzer.Forms.FormsForGraphsDisplay
 
             MachineLearning.PerformTraining(WinClassifInfo,
                                             InstancesList,
-                //MachineLearning.NumberOfClusters,
+                                            //MachineLearning.NumberOfClusters,
                                             this.richTextBoxForResults,
                                             this.panelForGraphicalResults,
                                             out ModelEvaluation, true);
@@ -1583,7 +1566,7 @@ namespace HCSAnalyzer.Forms.FormsForGraphsDisplay
 
             for (int i = 0; i < TSIC.Count; i++)
             {
-                 processToolStripMenuItem.DropDownItems.Add(TSIC[i]);
+                processToolStripMenuItem.DropDownItems.Add(TSIC[i]);
             }
         }
 

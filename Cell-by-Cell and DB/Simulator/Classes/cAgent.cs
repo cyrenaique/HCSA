@@ -1,12 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using HCSAnalyzer.Classes._3D;
-using HCSAnalyzer.Classes;
-using System.Drawing;
-using HCSAnalyzer.Simulator.Forms;
+﻿using HCSAnalyzer.Classes._3D;
 using HCSAnalyzer.Classes.Base_Classes.DataStructures;
+using HCSAnalyzer.Simulator.Forms;
+using System;
+using System.Collections.Generic;
+using System.Drawing;
 
 namespace HCSAnalyzer.Simulator.Classes
 {
@@ -45,9 +42,9 @@ namespace HCSAnalyzer.Simulator.Classes
             {
                 cCellType TmpCellType = ListCellTypes[i];
 
-               // ListTables.Add(new cExtendedTable());
-                
-                
+                // ListTables.Add(new cExtendedTable());
+
+
                 cExtendedTable ToReturn = new cExtendedTable();
                 ToReturn.Tag = TmpCellType;
                 ToReturn.ListRowNames = new List<string>();
@@ -61,7 +58,7 @@ namespace HCSAnalyzer.Simulator.Classes
                 ToReturn.Add(ListZ);
                 cExtendedList ListVolume = new cExtendedList("Volume");
                 ToReturn.Add(ListVolume);
-                
+
                 foreach (var item in this)
                 {
                     if (item.Type == TmpCellType)

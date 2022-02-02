@@ -1,21 +1,16 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Windows.Forms;
-using Kitware.VTK;
+﻿using HCSAnalyzer.Classes;
 using HCSAnalyzer.Classes._3D;
-using LibPlateAnalysis;
-using System.Windows.Forms.DataVisualization.Charting;
-using System.Runtime.InteropServices;
-using HCSAnalyzer.Forms._3D;
-using HCSAnalyzer.Classes;
-using HCSAnalyzer.Forms.FormsForGraphsDisplay;
 using HCSAnalyzer.Classes.Base_Classes.DataStructures;
 using HCSAnalyzer.Classes.General_Types;
+using HCSAnalyzer.Forms._3D;
+using HCSAnalyzer.Forms.FormsForGraphsDisplay;
+using Kitware.VTK;
+using LibPlateAnalysis;
+using System;
+using System.Collections.Generic;
+using System.Drawing;
+using System.Windows.Forms;
+using System.Windows.Forms.DataVisualization.Charting;
 
 namespace HCSAnalyzer.Forms
 {
@@ -24,7 +19,7 @@ namespace HCSAnalyzer.Forms
         FormFor3DVizuOptions WindowFormFor3DVizuOptions = null;
         public cScreening CompleteScreening = null;
         vtkOrientationMarkerWidget widget;
-       public double RadiusSphere = 0.01;
+        public double RadiusSphere = 0.01;
         public double SphereOpacity = 1;
         private bool IsFullScreen;
         c3DWorld CurrentWorld = null;
@@ -111,7 +106,7 @@ namespace HCSAnalyzer.Forms
         }
 
         public List<double> ListScales = new List<double>();
-       
+
         public void DisplayXYZ()
         {
             if (CompleteScreening == null) return;
@@ -131,13 +126,13 @@ namespace HCSAnalyzer.Forms
             if (CurrentWorld == null)
             {
                 CurrentWorld = new c3DWorld(new cPoint3D(1000, 1000, 1000), new cPoint3D(ListScales[DescX], ListScales[DescY], ListScales[DescZ]), this.renderWindowControl1, Pos, CompleteScreening);
-                light = vtkLight.New(); 
+                light = vtkLight.New();
                 CurrentWorld.SetBackgroundColor(Color.Black);
-               // CurrentWorld.ren1.AddLight(light);
+                // CurrentWorld.ren1.AddLight(light);
                 //CurrentWorld.ren1.RemoveAllLights();
             }
 
-           
+
             CurrentWorld.ren1.RemoveAllViewProps();
 
             //  if (widget != null) widget.SetEnabled(0);
@@ -256,7 +251,7 @@ namespace HCSAnalyzer.Forms
             vtkPolyData polydata = vtkPolyData.New();
             polydata.SetPoints(Allpoints);
             polydata.GetPointData().SetScalars(colors);
-           // vtkSphereSource SphereSource = vtkSphereSource.New();
+            // vtkSphereSource SphereSource = vtkSphereSource.New();
             SphereSource.SetRadius(RadiusSphere);
             //SphereSource
             vtkGlyph3D glyph3D = vtkGlyph3D.New();
@@ -274,15 +269,15 @@ namespace HCSAnalyzer.Forms
             actorSpheres.SetMapper(mapper);
             actorSpheres.GetProperty().SetOpacity(this.SphereOpacity);
             CurrentWorld.ren1.AddActor(actorSpheres);
-            
+
             if (this.IsLightAutomated)
             {
                 CurrentWorld.ren1.RemoveAllLights();
                 CurrentWorld.ren1.AutomaticLightCreationOn();
-               // this.light.SetIntensity(0);
+                // this.light.SetIntensity(0);
             }
             else
-            {  
+            {
                 CurrentWorld.ren1.RemoveAllLights();
                 CurrentWorld.ren1.AddLight(light);
                 this.light.SetIntensity(this.LightIntensity);
@@ -291,9 +286,9 @@ namespace HCSAnalyzer.Forms
                 actorSpheres.GetProperty().SetAmbient(this.LightAmbient);
                 actorSpheres.GetProperty().SetDiffuse(this.LightDiffuse);
                 actorSpheres.GetProperty().SetSpecular(this.LightSpecular);
-                
 
-                
+
+
                 light.SetFocalPoint(0.5, 0.5, 1);
                 light.SetPosition(0.5, 0.5, -1);
 
@@ -307,12 +302,12 @@ namespace HCSAnalyzer.Forms
                     CurrentWorld.ren1.AddViewProp(lightActor);
                 }
 
-               
 
-               
-            } 
-            
-            
+
+
+            }
+
+
             #region Connect For DRC
             if ((CompleteScreening.GetCurrentDisplayPlate().ListDRCRegions != null) && (cGlobalInfo.OptionsWindow.checkBoxConnectDRCPts.Checked))
             {

@@ -1,14 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Windows.Forms;
-using HCSAnalyzer.Classes;
-using LibPlateAnalysis;
+﻿using HCSAnalyzer.Classes;
 using HCSAnalyzer.Classes.General_Types;
+using System;
+using System.Windows.Forms;
 
 namespace HCSAnalyzer.Forms
 {

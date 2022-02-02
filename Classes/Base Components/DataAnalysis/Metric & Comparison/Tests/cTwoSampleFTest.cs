@@ -1,8 +1,5 @@
-﻿using System;
+﻿using HCSAnalyzer.Classes.Base_Classes.DataStructures;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using HCSAnalyzer.Classes.Base_Classes.DataStructures;
 
 namespace HCSAnalyzer.Classes.Base_Classes.DataAnalysis
 {
@@ -55,7 +52,7 @@ Output parameters:
     -- ALGLIB --
         Copyright 19.09.2006 by Bochkanov Sergey
 *************************************************************************";
-            
+
         }
 
         public void SetInputData(cExtendedTable Input)
@@ -76,7 +73,7 @@ Output parameters:
                 this.OutPut.Name += " (left tail)";
             else if (FTestTails == eFTestTails.RIGHT)
                 this.OutPut.Name += " (right tail)";
-                
+
 
             for (int IdxCol = 0; IdxCol < this.Input.Count; IdxCol++)
             {
@@ -126,10 +123,10 @@ Output parameters:
                     double righttail;
 
                     alglib.ftest(this.Input[IdxCol].ToArray(), this.Input[IdxCol].Count, this.Input[IdxColBis].ToArray(), this.Input[IdxColBis].Count, out bothtails, out lefttail, out righttail);
-                    
-                    if(FTestTails== eFTestTails.BOTH)
+
+                    if (FTestTails == eFTestTails.BOTH)
                         NewResult.Add(bothtails);
-                    else if(FTestTails == eFTestTails.LEFT)
+                    else if (FTestTails == eFTestTails.LEFT)
                         NewResult.Add(lefttail);
                     else if (FTestTails == eFTestTails.RIGHT)
                         NewResult.Add(righttail);

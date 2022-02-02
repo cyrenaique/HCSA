@@ -1,8 +1,5 @@
-﻿using System;
+﻿using HCSAnalyzer.Classes.Base_Classes.DataStructures;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using HCSAnalyzer.Classes.Base_Classes.DataStructures;
 
 namespace HCSAnalyzer.Classes.Base_Classes.DataAnalysis
 {
@@ -30,7 +27,7 @@ namespace HCSAnalyzer.Classes.Base_Classes.DataAnalysis
 
         public cFeedBackMessage Run()
         {
-            if (this.Input == null | this.Input.Count==0)
+            if (this.Input == null | this.Input.Count == 0)
             {
                 FeedBackMessage.IsSucceed = false;
                 FeedBackMessage.Message = "No input data defined.";
@@ -58,7 +55,7 @@ namespace HCSAnalyzer.Classes.Base_Classes.DataAnalysis
             }
 
             this.OutPut = new cExtendedTable(Mat);
-            
+
 
             if (this.Input.ListRowNames != null)
             {
@@ -66,7 +63,7 @@ namespace HCSAnalyzer.Classes.Base_Classes.DataAnalysis
                 this.OutPut.ListRowNames.AddRange(this.Input.ListRowNames.ToArray());
             }
 
-            int IdxCOl=0;
+            int IdxCOl = 0;
             foreach (var item in this.Input)
             {
                 this.OutPut[IdxCOl++].Name = item.Name;

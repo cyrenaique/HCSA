@@ -1,25 +1,12 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using LibPlateAnalysis;
-using System.Windows.Forms;
-using HCSAnalyzer.Classes.Base_Classes.DataStructures;
-using HCSAnalyzer.Classes.MetaComponents;
-using HCSAnalyzer.Classes.Base_Classes.Viewers;
+﻿using HCSAnalyzer.Classes._3D;
 using HCSAnalyzer.Classes.Base_Classes.DataAnalysis;
-using HCSAnalyzer.Classes.Base_Classes.Viewers._1D;
-using System.Windows.Forms.DataVisualization.Charting;
-using HCSAnalyzer.Forms.IO;
-using HCSAnalyzer.Forms.FormsForGraphsDisplay;
-using HCSAnalyzer.Classes.Base_Classes.GUI;
 using HCSAnalyzer.Classes.Base_Classes.DataProcessing;
-using HCSAnalyzer.Classes.Base_Classes;
-using HCSAnalyzer.Classes._3D;
-using System.Drawing;
+using HCSAnalyzer.Classes.Base_Classes.DataStructures;
+using HCSAnalyzer.Classes.Base_Classes.Viewers;
 using HCSAnalyzer.Classes.Base_Classes.Viewers._3D.ComplexObjects;
-using System.IO;
-using HCSAnalyzer.Classes.Base_Components.DataManip;
+using LibPlateAnalysis;
+using System.Collections.Generic;
+using System.Drawing;
 
 namespace HCSAnalyzer.Classes.General_Types
 {
@@ -142,11 +129,11 @@ namespace HCSAnalyzer.Classes.General_Types
 
 
 
-           // c3DCube SpaceCube = new c3DCube();
-           // SpaceCube.Create(new cPoint3D(ListMin[0], ListMin[1], ListMin[2]), new cPoint3D(ListMax[0], ListMax[1], ListMax[2]), Color.Red);
-           // SpaceCube.SetOpacity(0.1);
+            // c3DCube SpaceCube = new c3DCube();
+            // SpaceCube.Create(new cPoint3D(ListMin[0], ListMin[1], ListMin[2]), new cPoint3D(ListMax[0], ListMax[1], ListMax[2]), Color.Red);
+            // SpaceCube.SetOpacity(0.1);
 
-           // GlobalList.Add(SpaceCube);
+            // GlobalList.Add(SpaceCube);
 
             cListGeometric3DObject SpheresList = new cListGeometric3DObject("Starting Concentration Spheres");
             cListGeometric3DObject DRCList = new cListGeometric3DObject("List DRCs");
@@ -201,7 +188,7 @@ namespace HCSAnalyzer.Classes.General_Types
                 My3dDRC.SetName(SingleDRCListWells.Tag.ToString());
                 DRCList.AddObject(My3dDRC);
 
-                c3DSphere TmpSphere = new c3DSphere(My3dDRC.ListAveragePts[0], 0.030 , Color.FromArgb(100, My3dDRC.Colour));
+                c3DSphere TmpSphere = new c3DSphere(My3dDRC.ListAveragePts[0], 0.030, Color.FromArgb(100, My3dDRC.Colour));
                 TmpSphere.SetName(My3dDRC.GetName() + " - Starting Pt");
                 SpheresList.AddObject(TmpSphere);
 
@@ -230,7 +217,7 @@ namespace HCSAnalyzer.Classes.General_Types
             {
                 MyWorld.Redraw();
             }
-                #endregion
+            #endregion
         }
     }
 }

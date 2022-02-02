@@ -1,16 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using HCSAnalyzer.Forms.FormsForImages;
-using System.Drawing;
-using ImageAnalysis;
-using Emgu.CV;
+﻿using Emgu.CV;
 using Emgu.CV.CvEnum;
-using System.Runtime.InteropServices;
 using Emgu.CV.Structure;
 using HCSAnalyzer.Classes.Base_Classes;
 using HCSAnalyzer.Classes.General_Types;
+using ImageAnalysis;
+using System;
 
 namespace ImageAnalysisFiltering
 {
@@ -69,7 +63,7 @@ namespace ImageAnalysisFiltering
             }
 
 
-            Output = new cImage(Input.Width,Input.Height,Input.Depth, base.ListChannelsToBeProcessed.Count);
+            Output = new cImage(Input.Width, Input.Height, Input.Depth, base.ListChannelsToBeProcessed.Count);
 
             for (int IdxChannel = 0; IdxChannel < base.ListChannelsToBeProcessed.Count; IdxChannel++)
             {
@@ -90,14 +84,14 @@ namespace ImageAnalysisFiltering
                 term.Type = TermCritType.Iter | TermCritType.Eps;
 
                 Matrix<Single> centers = new Matrix<Single>(ClusterCount, Input.Width * Input.Height);
-                CvInvoke.Kmeans(samples, ClusterCount, finalClusters, term, Attempts,0, null);
+                CvInvoke.Kmeans(samples, ClusterCount, finalClusters, term, Attempts, 0, null);
 
                 for (int j = 0; j < Input.Height; j++)
                     for (int i = 0; i < Input.Width; i++)
                         this.Output.SingleChannelImage[IdxChannel].Data[i + j * Input.Width] = finalClusters[i * this.Input.Height + j, 0];
             }
             base.End();
-            
+
             return FeedBackMessage;
         }
     }

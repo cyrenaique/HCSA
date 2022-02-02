@@ -1,8 +1,5 @@
-﻿using System;
+﻿using HCSAnalyzer.Classes.Base_Classes.DataStructures;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using HCSAnalyzer.Classes.Base_Classes.DataStructures;
 
 namespace HCSAnalyzer.Classes.Base_Classes.DataAnalysis
 {
@@ -37,7 +34,7 @@ namespace HCSAnalyzer.Classes.Base_Classes.DataAnalysis
                 this.OutPut.Name += " (left tail)";
             else if (FTestTails == eFTestTails.RIGHT)
                 this.OutPut.Name += " (right tail)";
-                
+
 
             for (int IdxCol = 0; IdxCol < this.Input.Count; IdxCol++)
             {
@@ -92,10 +89,10 @@ namespace HCSAnalyzer.Classes.Base_Classes.DataAnalysis
                     double righttail;
 
                     alglib.onesamplesigntest(this.Input[IdxCol].ToArray(), this.Input[IdxCol].Count, this.Input[IdxColBis].Median(), out bothtails, out lefttail, out righttail);
-                    
-                    if(FTestTails== eFTestTails.BOTH)
+
+                    if (FTestTails == eFTestTails.BOTH)
                         NewResult.Add(bothtails);
-                    else if(FTestTails == eFTestTails.LEFT)
+                    else if (FTestTails == eFTestTails.LEFT)
                         NewResult.Add(lefttail);
                     else if (FTestTails == eFTestTails.RIGHT)
                         NewResult.Add(righttail);
@@ -115,7 +112,7 @@ namespace HCSAnalyzer.Classes.Base_Classes.DataAnalysis
 
         public cFeedBackMessage Run()
         {
-         
+
             if (this.Input == null)
             {
                 FeedBackMessage.IsSucceed = false;

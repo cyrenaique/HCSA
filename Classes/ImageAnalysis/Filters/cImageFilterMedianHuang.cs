@@ -1,14 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using ImageAnalysis;
 using System.Linq;
-using System.Text;
-using HCSAnalyzer.Forms.FormsForImages;
-using System.Drawing;
-using ImageAnalysis;
-using Emgu.CV;
-using Emgu.CV.CvEnum;
-using System.Runtime.InteropServices;
-using Emgu.CV.Structure;
 
 namespace ImageAnalysisFiltering
 {
@@ -50,33 +41,33 @@ namespace ImageAnalysisFiltering
             float max = input.SingleChannelImage[inputChannel].Data.Max();
             if (min == max)
             {
-                for (int i = 0; i < input.Height*input.Width; i++) output.SingleChannelImage[outputChannel].Data[i] = minBound;
+                for (int i = 0; i < input.Height * input.Width; i++) output.SingleChannelImage[outputChannel].Data[i] = minBound;
             }
             else
-                for (int i = 0; i < input.Width*input.Height; i++)
+                for (int i = 0; i < input.Width * input.Height; i++)
                     output.SingleChannelImage[outputChannel].Data[i] = ((maxBound - minBound) * (input.SingleChannelImage[inputChannel].Data[i] - min) / (max - min)) + minBound;
 
 
             return output;
         }
 
-    /// <summary> Rescales each band of the given image to [minBound,maxBound] 
-    /// </summary>
-    /// <param name="input">the input image</param>
-    /// <param name="output">the output image</param>
-    /// <param name="minBound">the final minimum value</param>
-    /// <param name="maxBound">the final maximum value</param>
-          //private cImage Rescale(cImage input, cImage output, float minBound, float maxBound)
-          //{
-          //    for (int band = 0; band < input.NumChannels; band++) Rescale(input.Data[band], output.Data[band], minBound, maxBound);
+        /// <summary> Rescales each band of the given image to [minBound,maxBound] 
+        /// </summary>
+        /// <param name="input">the input image</param>
+        /// <param name="output">the output image</param>
+        /// <param name="minBound">the final minimum value</param>
+        /// <param name="maxBound">the final maximum value</param>
+        //private cImage Rescale(cImage input, cImage output, float minBound, float maxBound)
+        //{
+        //    for (int band = 0; band < input.NumChannels; band++) Rescale(input.Data[band], output.Data[band], minBound, maxBound);
 
-          //}
+        //}
 
- 
+
         public int Radius = 3;
         public int HistoSize = 256;
         public bool IsSliceBySliceRescaling = false;
-      
+
 
 
 
@@ -106,7 +97,7 @@ namespace ImageAnalysisFiltering
             cImage RescaledInput = new cImage(Input.Width, Input.Height, Input.Depth, 1);
             int[] Histo = new int[HistoSize];
 
-        //    Rescale(Input, inputBand, RescaledInput, 0, 0, HistoSize - 1);
+            //    Rescale(Input, inputBand, RescaledInput, 0, 0, HistoSize - 1);
 
             float[] inp = RescaledInput.SingleChannelImage[0].Data;
             float[] outp = Output.SingleChannelImage[outputBand].Data;

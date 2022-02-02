@@ -1,9 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using HCSAnalyzer.Classes._3D;
+﻿using HCSAnalyzer.Classes._3D;
 using HCSAnalyzer.Simulator.Forms;
+using System;
 
 namespace HCSAnalyzer.Simulator.Classes
 {
@@ -32,15 +29,15 @@ namespace HCSAnalyzer.Simulator.Classes
 
                 int InitialCellCount = ListCells.Count;
 
-                for(int IdxCell=0;IdxCell<InitialCellCount;IdxCell++)
+                for (int IdxCell = 0; IdxCell < InitialCellCount; IdxCell++)
                 {
-                //    if (ListCells[IdxCell].Type.CurrentType == eCellType.APOPTOTIC)
-                //    {
-                //        ListCells.Remove(ListCells[IdxCell]);
-                //        IdxCell--;
-                //        continue;
-                //    }
-                    ListCells[IdxCell].RunSingleTick(RND,this.Parent);
+                    //    if (ListCells[IdxCell].Type.CurrentType == eCellType.APOPTOTIC)
+                    //    {
+                    //        ListCells.Remove(ListCells[IdxCell]);
+                    //        IdxCell--;
+                    //        continue;
+                    //    }
+                    ListCells[IdxCell].RunSingleTick(RND, this.Parent);
 
 
                 }

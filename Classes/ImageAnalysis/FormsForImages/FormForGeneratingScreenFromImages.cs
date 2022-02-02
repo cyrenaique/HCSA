@@ -1,25 +1,19 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Windows.Forms;
+﻿using Emgu.CV;
+using Emgu.CV.Structure;
 using HCSAnalyzer.Classes.General_Types;
-using System.IO;
-using System.Diagnostics;
-using LibPlateAnalysis;
-using ImageAnalysis;
 using HCSAnalyzer.Classes.MetaComponents;
 using HCSAnalyzer.Forms.IO;
+using ImageAnalysis;
+using LibPlateAnalysis;
+using System;
+using System.Collections.Generic;
+using System.Data;
 using System.Data.OleDb;
-using System.Xml;
-using System.Threading;
+using System.Diagnostics;
+using System.IO;
+using System.Linq;
 using System.Threading.Tasks;
-using Emgu.CV;
-using Emgu.CV.Structure;
-using Emgu.CV.Features2D;
+using System.Windows.Forms;
 
 
 namespace HCSAnalyzer.Classes.ImageAnalysis.FormsForImages
@@ -343,7 +337,7 @@ namespace HCSAnalyzer.Classes.ImageAnalysis.FormsForImages
             //  return;
 
             //  if (this.CurrentScreening == null)
-            
+
             string[] ForNames = this.textBoxImageRoot.Text.Split('\\');
             cGlobalInfo.CurrentScreening = new cScreening(ForNames[ForNames.Length - 1]);
             cGlobalInfo.CurrentScreening.Columns = 24;
@@ -494,7 +488,7 @@ namespace HCSAnalyzer.Classes.ImageAnalysis.FormsForImages
                     double AverageValue = 0;
 
                     //Parallel.For(0, (int)this.numericUpDownFieldNumber.Value, IdxField =>
-                    for(int IdxField=0;IdxField< this.numericUpDownFieldNumber.Value;IdxField++ )
+                    for (int IdxField = 0; IdxField < this.numericUpDownFieldNumber.Value; IdxField++)
                     {
                         //var watch = Stopwatch.StartNew();
                         cGetImageFromWells IFW = new cGetImageFromWells();

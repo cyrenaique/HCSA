@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using HCSAnalyzer.Classes.Base_Classes.DataStructures;
+﻿using HCSAnalyzer.Classes.Base_Classes.DataStructures;
 
 namespace HCSAnalyzer.Classes.Base_Classes.DataAnalysis
 {
@@ -12,7 +8,7 @@ namespace HCSAnalyzer.Classes.Base_Classes.DataAnalysis
         cExtendedTable OutPut;
         public int MinNumberOfData = 0;
         public int MaxNumberOfData = int.MaxValue;
-        
+
         public cClean()
         {
             this.Title = "Clean";
@@ -30,7 +26,7 @@ namespace HCSAnalyzer.Classes.Base_Classes.DataAnalysis
 
         public cFeedBackMessage Run()
         {
-            if(this.Input == null)
+            if (this.Input == null)
             {
                 FeedBackMessage.IsSucceed = false;
                 FeedBackMessage.Message = "No input data defined.";

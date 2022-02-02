@@ -1,7 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 
 namespace HCSAnalyzer.Simulator.Classes
 {
@@ -28,7 +26,7 @@ namespace HCSAnalyzer.Simulator.Classes
         public cClassForVariable FindVariable(string Name)
         {
             foreach (cClassForVariable item in this)
-                if (item.Name == Name) return item;                
+                if (item.Name == Name) return item;
 
             return null;
         }

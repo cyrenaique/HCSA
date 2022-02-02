@@ -1,26 +1,16 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using weka.core;
-//using System.Data;
-using weka.clusterers;
-using LibPlateAnalysis;
-using System.Windows.Forms.DataVisualization.Charting;
-using System.Drawing;
-using System.Windows.Forms;
-using Microsoft.Msagl.GraphViewerGdi;
-using HCSAnalyzer.Forms;
-using weka.attributeSelection;
-using weka.filters;
-using weka.classifiers;
-using HCSAnalyzer.Classes;
-using Microsoft.Research.Science.Data;
-using Microsoft.Research.Science.Data.Imperative;
-using System.IO;
-using HCSAnalyzer.Forms.IO;
-using HCSAnalyzer.Classes.General_Types;
+﻿using HCSAnalyzer.Classes;
 using HCSAnalyzer.Classes.Base_Classes.DataStructures;
+using HCSAnalyzer.Classes.General_Types;
+using HCSAnalyzer.Forms;
+//using System.Data;
+using LibPlateAnalysis;
+using System;
+using System.Collections.Generic;
+using System.Drawing;
+using System.IO;
+using System.Linq;
+using System.Windows.Forms;
+using weka.classifiers;
 
 namespace HCSAnalyzer
 {
@@ -30,7 +20,7 @@ namespace HCSAnalyzer
         {
             try
             {
-                using (FileStream fs = new FileStream(file, FileMode.Open,FileAccess.Read))
+                using (FileStream fs = new FileStream(file, FileMode.Open, FileAccess.Read))
                 {
                     //fs.CanWrite;
                 }
@@ -196,7 +186,7 @@ namespace HCSAnalyzer
 
             while (CSVsr.EndOfStream != true)
             {
-            NEXT: ;
+            NEXT:;
                 CsvRow CurrentDesc = new CsvRow();
                 if (CSVsr.ReadRow(CurrentDesc) == false) break;
 
@@ -232,7 +222,7 @@ namespace HCSAnalyzer
 
                 if (ColSelectedForName != -1)
                 {
-                    
+
                     CurrentWell.SetCpdName(CurrentDesc[ColSelectedForName]);
                 }
                 else
@@ -240,33 +230,33 @@ namespace HCSAnalyzer
                     CurrentWell.SetAsNoneSelected();
                 }
 
-                //if (ColLocusID != -1)
+            //if (ColLocusID != -1)
             //{
             //    double CurrentValue;
 
-                //    if (!double.TryParse(CurrentDesc[ColLocusID], out CurrentValue))
+            //    if (!double.TryParse(CurrentDesc[ColLocusID], out CurrentValue))
             //        goto NEXTSTEP;
 
-                //    CurrentWell.LocusID = CurrentValue;
+            //    CurrentWell.LocusID = CurrentValue;
 
-                //}
+            //}
             //if (ColConcentration != -1)
             //{
             //    double CurrentValue;
 
-                //    if (!double.TryParse(CurrentDesc[ColConcentration], out CurrentValue))
+            //    if (!double.TryParse(CurrentDesc[ColConcentration], out CurrentValue))
             //        goto NEXTSTEP;
 
 
-                //    CurrentWell.Concentration = CurrentValue;
+            //    CurrentWell.Concentration = CurrentValue;
 
-                //}
-            NEXTSTEP: ;
+            //}
+            NEXTSTEP:;
 
-                //if (ColInfo != -1)
+            //if (ColInfo != -1)
             //    CurrentWell.Info = CurrentDesc[ColInfo];
 
-                //if (ColClass != -1)
+            //if (ColClass != -1)
             //{
             //    int CurrentValue;
             //    if (!int.TryParse(CurrentDesc[ColClass], out CurrentValue))
@@ -274,7 +264,7 @@ namespace HCSAnalyzer
             //    CurrentWell.SetClass(CurrentValue);
             //}
 
-            NEXTLOOP: ;
+            NEXTLOOP:;
 
             }
 

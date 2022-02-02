@@ -1,20 +1,17 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using HCSAnalyzer.Forms;
-using System.Drawing;
+﻿using HCSAnalyzer.Forms;
 using LibPlateAnalysis;
+using System;
+using System.Collections.Generic;
+using System.Windows.Forms;
 using weka.clusterers;
 using weka.core;
 using weka.core.neighboursearch;
-using System.Windows.Forms;
 
 
 namespace HCSAnalyzer.Classes
 {
     public class cDendoGram
-    {    
+    {
         private cOurTree OurTree;
         private System.Windows.Forms.Panel PanelDendogram;
         cGlobalInfo GlobalInfo;
@@ -22,7 +19,7 @@ namespace HCSAnalyzer.Classes
         int NumClusters;
 
         public cDendoGram(cGlobalInfo GlobalInfo, Instances ListInstances, int NumClusters)
-        { 
+        {
             this.GlobalInfo = GlobalInfo;
             InfoForHierarchical = new cInfoForHierarchical();
             InfoForHierarchical.ListInstances = ListInstances;
@@ -77,7 +74,7 @@ namespace HCSAnalyzer.Classes
             OptionDistance += " -R first-last\"";
 
 
-            string[] TAGS_LINK_TYPE = { "SINGLE", "COMPLETE","AVERAGE", "MEAN", "CENTROID", "WARD", "ADJCOMPLETE"};
+            string[] TAGS_LINK_TYPE = { "SINGLE", "COMPLETE", "AVERAGE", "MEAN", "CENTROID", "WARD", "ADJCOMPLETE" };
 
             string WekaOption = "-L " + TAGS_LINK_TYPE[cGlobalInfo.OptionsWindow.comboBoxHierarchicalLinkType.SelectedIndex] + OptionDistance;
 
@@ -94,7 +91,7 @@ namespace HCSAnalyzer.Classes
             }
 
             HClusterer.buildClusterer(this.InfoForHierarchical.ListInstances);
-            
+
             GenerateDendogram(HClusterer.graph(), TAGS_LINK_TYPE[cGlobalInfo.OptionsWindow.comboBoxHierarchicalLinkType.SelectedIndex], cGlobalInfo.OptionsWindow.comboBoxHierarchicalDistance.SelectedItem.ToString());
         }
 
@@ -102,7 +99,7 @@ namespace HCSAnalyzer.Classes
         {
             this.GlobalInfo = GlobalInfo;
             this.InfoForHierarchical = InfoHierachical;
-            GenerateDendogram(GeneratedHierarchicalClusterer.graph(), 
+            GenerateDendogram(GeneratedHierarchicalClusterer.graph(),
                                 GeneratedHierarchicalClusterer.getLinkType().toString(),
                                 GeneratedHierarchicalClusterer.getDistanceFunction().ToString());
 
@@ -134,7 +131,7 @@ namespace HCSAnalyzer.Classes
                 this.PosY = PosY;
                 this.PosXCorner = PosX + this.BranchLenght;
                 this.PosX = PosX;
-             
+
             }
 
         }
@@ -192,18 +189,18 @@ namespace HCSAnalyzer.Classes
                     Node1 = new Node(Name, BranchLenght, CurrentIdx++, 0);
                     if (Name.IndexOf("Input") == -1)
                     {
-                        if (OurDendo.InfoForHierarchical!=null)
+                        if (OurDendo.InfoForHierarchical != null)
                         {
-                            if(OurDendo.InfoForHierarchical.ListIndexedWells.Count > 0)
-                            {    
+                            if (OurDendo.InfoForHierarchical.ListIndexedWells.Count > 0)
+                            {
                                 int ValPos = (int)(double.Parse(Name));
                                 Node1.AssociatedWell = OurDendo.InfoForHierarchical.ListIndexedWells[ValPos];
                                 Node1.AssociatedInstance = OurDendo.InfoForHierarchical.ListInstances.instance(ValPos);
                             }
                             else
-                            {    
+                            {
                                 int ValPos = (int)(double.Parse(Name));
-                               // Node1.AssociatedWell = OurDendo.InfoForHierarchical.ListIndexedWells[ValPos];
+                                // Node1.AssociatedWell = OurDendo.InfoForHierarchical.ListIndexedWells[ValPos];
                                 Node1.AssociatedInstance = OurDendo.InfoForHierarchical.ListInstances.instance(ValPos);
                             }
 
@@ -229,7 +226,7 @@ namespace HCSAnalyzer.Classes
                     Node2 = new Node(Name, BranchLenght, CurrentIdx++, 0);
                     if (Name.IndexOf("Input") == -1)
                     {
-                        if (OurDendo.InfoForHierarchical!=null)
+                        if (OurDendo.InfoForHierarchical != null)
                         {
                             if (OurDendo.InfoForHierarchical.ListIndexedWells.Count > 0)
                             {

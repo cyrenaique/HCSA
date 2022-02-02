@@ -1,13 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using HCSAnalyzer.Forms.FormsForOptions.PanelForOptions;
-using System.Windows.Forms;
-using HCSAnalyzer.Forms.FormsForOptions.ClusteringInfo;
+﻿using HCSAnalyzer.Classes.Machine_Learning.ClassificationInfo;
 using HCSAnalyzer.Forms.FormsForOptions.ClassificationInfo;
-using HCSAnalyzer.Classes;
-using HCSAnalyzer.Classes.Machine_Learning.ClassificationInfo;
+using HCSAnalyzer.Forms.FormsForOptions.ClusteringInfo;
+using HCSAnalyzer.Forms.FormsForOptions.PanelForOptions;
+using System;
+using System.Collections.Generic;
+using System.Windows.Forms;
 
 namespace HCSAnalyzer.Forms.FormsForOptions.ClassForOptions.Children
 {
@@ -64,14 +61,14 @@ namespace HCSAnalyzer.Forms.FormsForOptions.ClassForOptions.Children
 
     }
 
-    
+
     public class cListValuesParam
     {
         public cListDoubleValues ListDoubleValues = new cListDoubleValues();
         public cListCheckValues ListCheckValues = new cListCheckValues();
         public cListColorValue ListColorValues = new cListColorValue();
         public cListTextValue ListTextValues = new cListTextValue();
-        
+
     }
 
     #region Parent Class
@@ -114,7 +111,7 @@ namespace HCSAnalyzer.Forms.FormsForOptions.ClassForOptions.Children
         {
             cListValuesParam ListValuesParam = new cListValuesParam();
             IEnumerable<Control> ListAllCtrls = GetAllControls(this.PanelToDisplay);
-                
+
             foreach (Control ctl in ListAllCtrls)
             {
                 Type CtlType = ctl.GetType();
@@ -170,12 +167,12 @@ namespace HCSAnalyzer.Forms.FormsForOptions.ClassForOptions.Children
         public cListClassificationAlgo(FormForClassificationInfo ForClassificationInfo)
         {
             this.Add(new cParamJ48("J48"));
-            this.Add(new cParamRandomForest("RandomForest")); 
+            this.Add(new cParamRandomForest("RandomForest"));
             this.Add(new cParamRandomTree("RandomTree"));
             this.Add(new cParamKStar("KStar"));
             this.Add(new cParamSVM("SVM", ForClassificationInfo));
             this.Add(new cParamKNN("KNN"));
-            this.Add(new cParamPerceptron("Perceptron")); 
+            this.Add(new cParamPerceptron("Perceptron"));
             this.Add(new cParamZeroR("ZeroR"));
             this.Add(new cParamOneR("OneR"));
             this.Add(new cParamNaiveBayes("NaiveBayes"));
@@ -275,7 +272,7 @@ namespace HCSAnalyzer.Forms.FormsForOptions.ClassForOptions.Children
             PanelForParamPerceptron PanelForOption = new PanelForParamPerceptron();
             this.PanelToDisplay = PanelForOption.panel;
         }
-    }   
+    }
     [Serializable]
     public class cParamZeroR : cParamAlgo
     {
@@ -285,7 +282,7 @@ namespace HCSAnalyzer.Forms.FormsForOptions.ClassForOptions.Children
             PanelForParamZeroR PanelForOption = new PanelForParamZeroR();
             this.PanelToDisplay = PanelForOption.panel;
         }
-    } 
+    }
     [Serializable]
     public class cParamOneR : cParamAlgo
     {
@@ -307,7 +304,7 @@ namespace HCSAnalyzer.Forms.FormsForOptions.ClassForOptions.Children
         }
     }
     [Serializable]
-    public class cParamLogistic: cParamAlgo
+    public class cParamLogistic : cParamAlgo
     {
         public cParamLogistic(string Name)
             : base(Name)
@@ -393,8 +390,8 @@ namespace HCSAnalyzer.Forms.FormsForOptions.ClassForOptions.Children
             PanelForParamFarthestFirst PanelForOption = new PanelForParamFarthestFirst();
             this.PanelToDisplay = PanelForOption.panel;
         }
-    }   
-    
+    }
+
     [Serializable]
     public class cParamCobWeb : cParamAlgo
     {
@@ -404,9 +401,9 @@ namespace HCSAnalyzer.Forms.FormsForOptions.ClassForOptions.Children
             PanelForParamCobWeb PanelForOption = new PanelForParamCobWeb();
             this.PanelToDisplay = PanelForOption.panel;
         }
-    }  
-    
+    }
 
-#endregion
+
+    #endregion
 
 }

@@ -1,8 +1,5 @@
-﻿using System;
+﻿using HCSAnalyzer.Forms.FormsForImages;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using HCSAnalyzer.Forms.FormsForImages;
 
 namespace HCSAnalyzer.Classes.ImageAnalysis.FormsForImages
 {
@@ -39,8 +36,8 @@ namespace HCSAnalyzer.Classes.ImageAnalysis.FormsForImages
                 ListOpacity.Add(SingleLUT.trackBarOpacity.Value);
             }
 
-            
-        
+
+
         }
 
 

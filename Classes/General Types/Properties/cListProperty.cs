@@ -1,8 +1,5 @@
-﻿using System;
+﻿using LibPlateAnalysis;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using LibPlateAnalysis;
 
 namespace HCSAnalyzer.Classes.General_Types
 {
@@ -51,7 +48,7 @@ namespace HCSAnalyzer.Classes.General_Types
             else if (PropTypeData == eDataType.STRING)
             {
                 if ((ComparisonType != eComparison.E) && (ComparisonType != eComparison.NE) &&
-                    (ComparisonType != eComparison.I) && (ComparisonType != eComparison.NI) ) return false;
+                    (ComparisonType != eComparison.I) && (ComparisonType != eComparison.NI)) return false;
 
                 string Value1 = (string)Prop1.GetValue();
                 string Value2 = (string)Prop2.GetValue();
@@ -190,7 +187,7 @@ namespace HCSAnalyzer.Classes.General_Types
         public cListWellProperty(cWell AssociatedWell)
         {
             this.AssociatedWell = AssociatedWell;
-            if (cGlobalInfo.CurrentScreening.ListWellPropertyTypes==null) return;
+            if (cGlobalInfo.CurrentScreening.ListWellPropertyTypes == null) return;
             foreach (var item in cGlobalInfo.CurrentScreening.ListWellPropertyTypes)
             {
                 this.Add(new cProperty(item, null));

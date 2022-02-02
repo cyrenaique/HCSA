@@ -1,24 +1,20 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Windows.Forms;
-using LibPlateAnalysis;
+﻿using HCSAnalyzer.Classes;
 using HCSAnalyzer.Classes.Base_Classes.DataStructures;
-using HCSAnalyzer.Classes;
-using System.Drawing.Imaging;
-using System.Runtime.InteropServices;
 using HCSAnalyzer.Classes.MetaComponents;
 using Kitware.VTK;
+using LibPlateAnalysis;
+using System;
+using System.Collections.Generic;
+using System.Drawing;
+using System.Drawing.Imaging;
+using System.Runtime.InteropServices;
+using System.Windows.Forms;
 
 namespace HCSAnalyzer.Forms
 {
     public partial class FormForPlateLUT : Form
     {
-       
+
         double GlobalMax = 1;
         double GlobalMin = 0;
         double LocalMin = 0;
@@ -50,7 +46,7 @@ namespace HCSAnalyzer.Forms
             else
             {
                 int Value = (int)(((this.GlobalMax - this.LocalMax) * 100) / (this.GlobalMax - this.GlobalMin));
-                if((Value>0)&&(Value<=100))
+                if ((Value > 0) && (Value <= 100))
                     this.trackBarForPlateLUTMax.Value = Value;
             }
             UpDatePlateColor();
@@ -60,7 +56,7 @@ namespace HCSAnalyzer.Forms
         {
             if (cGlobalInfo.CurrentScreening == null) return;
             if (numericUpDownGeneralMin.Value > numericUpDownGeneralMax.Value) numericUpDownGeneralMin.Value = numericUpDownGeneralMax.Value;
-         
+
             this.GlobalMin = (double)numericUpDownGeneralMin.Value;
             if (this.LocalMin < this.GlobalMin)
             {
@@ -70,7 +66,7 @@ namespace HCSAnalyzer.Forms
             }
             else
             {
-              //  this.GlobalMin = this.LocalMin;
+                //  this.GlobalMin = this.LocalMin;
             }
 
             this.labelMin.Text = this.LocalMin.ToString("N3");
@@ -93,8 +89,8 @@ namespace HCSAnalyzer.Forms
             byte[][] LUT = cGlobalInfo.CurrentPlateLUT;
 
             Bitmap bmp = new Bitmap(pictureBoxForLUT.Width, pictureBoxForLUT.Height, System.Drawing.Imaging.PixelFormat.Format8bppIndexed);
-           // double ActiveHeight = 
-            int StartY = (int)((pictureBoxForLUT.Height*(100 - trackBarForPlateLUTMax.Value)) / 100.0);
+            // double ActiveHeight = 
+            int StartY = (int)((pictureBoxForLUT.Height * (100 - trackBarForPlateLUTMax.Value)) / 100.0);
             int EndY = (int)((pictureBoxForLUT.Height * (100 - trackBarForPlateLUTMin.Value)) / 100.0);
 
             int DeltaY = EndY - StartY;
@@ -137,8 +133,8 @@ namespace HCSAnalyzer.Forms
                     rgbValues[i + (pictureBoxForLUT.Height - j - 1) * bmpData.Stride] = (byte)(255);
                 }
 
-            
-            
+
+
             Marshal.Copy(rgbValues, 0, ptr, bytes);
             bmp.UnlockBits(bmpData);
 
@@ -212,7 +208,7 @@ namespace HCSAnalyzer.Forms
             this.labelMin.Text = this.LocalMin.ToString("N3");
 
             // compute new slider position
-            this.trackBarForPlateLUTMin.Value = (int)(((this.LocalMin - this.GlobalMin) * 100) / (this.GlobalMax-this.GlobalMin));
+            this.trackBarForPlateLUTMin.Value = (int)(((this.LocalMin - this.GlobalMin) * 100) / (this.GlobalMax - this.GlobalMin));
         }
 
         public void RefreshMinMax()
@@ -258,7 +254,7 @@ namespace HCSAnalyzer.Forms
                 this.GlobalMax = MinMaxTable[0][1];
                 SetNewLocalMax(this.GlobalMax);
             }
-            /*if ((this.GlobalMax < this.LocalMax)||(this.labelMax.Text=="###"))*/ 
+            /*if ((this.GlobalMax < this.LocalMax)||(this.labelMax.Text=="###"))*/
             //this.numericUpDownGeneralMax.ValueChanged += new EventHandler(numericUpDownGeneralMax_ValueChanged);
 
             UpDatePlateColor();
@@ -268,16 +264,16 @@ namespace HCSAnalyzer.Forms
 
         private void currentPlateOnlyToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            RefreshMinMax(); 
-           // SetNewLocalMax(this.GlobalMax);
-          //  SetNewLocalMin(this.GlobalMin);
+            RefreshMinMax();
+            // SetNewLocalMax(this.GlobalMax);
+            //  SetNewLocalMin(this.GlobalMin);
         }
 
         private void refreshToolStripMenuItem_Click(object sender, EventArgs e)
         {
             RefreshMinMax();
-           // SetNewLocalMax(this.GlobalMax);
-           // SetNewLocalMin(this.GlobalMin);
+            // SetNewLocalMax(this.GlobalMax);
+            // SetNewLocalMin(this.GlobalMin);
 
         }
 
@@ -321,84 +317,84 @@ namespace HCSAnalyzer.Forms
                 case "HSV":
                     cGlobalInfo.ChangeLUT(Classes.Base_Classes.General.eDefinedLUTs.HSV);
                     this.UpDatePlateColor();
-                break;
+                    break;
                 case "FIRE":
                     cGlobalInfo.ChangeLUT(Classes.Base_Classes.General.eDefinedLUTs.FIRE);
                     this.UpDatePlateColor();
-                break;
+                    break;
                 case "GREEN_TO_RED":
                     cGlobalInfo.ChangeLUT(Classes.Base_Classes.General.eDefinedLUTs.GREEN_TO_RED);
                     this.UpDatePlateColor();
-                break;
+                    break;
                 case "JET":
                     cGlobalInfo.ChangeLUT(Classes.Base_Classes.General.eDefinedLUTs.JET);
                     this.UpDatePlateColor();
-                break;
+                    break;
                 case "HOT":
                     cGlobalInfo.ChangeLUT(Classes.Base_Classes.General.eDefinedLUTs.HOT);
                     this.UpDatePlateColor();
-                break;
+                    break;
                 case "COOL":
                     cGlobalInfo.ChangeLUT(Classes.Base_Classes.General.eDefinedLUTs.COOL);
                     this.UpDatePlateColor();
-                break;
+                    break;
                 case "SPRING":
                     cGlobalInfo.ChangeLUT(Classes.Base_Classes.General.eDefinedLUTs.SPRING);
                     this.UpDatePlateColor();
-                break;
+                    break;
                 case "SUMMER":
                     cGlobalInfo.ChangeLUT(Classes.Base_Classes.General.eDefinedLUTs.SUMMER);
                     this.UpDatePlateColor();
-                break;
+                    break;
                 case "AUTUMN":
                     cGlobalInfo.ChangeLUT(Classes.Base_Classes.General.eDefinedLUTs.AUTUMN);
                     this.UpDatePlateColor();
-                break;
+                    break;
                 case "WINTER":
                     cGlobalInfo.ChangeLUT(Classes.Base_Classes.General.eDefinedLUTs.WINTER);
                     this.UpDatePlateColor();
-                break;
+                    break;
                 case "BONE":
                     cGlobalInfo.ChangeLUT(Classes.Base_Classes.General.eDefinedLUTs.BONE);
                     this.UpDatePlateColor();
-                break;
+                    break;
                 case "COPPER":
                     cGlobalInfo.ChangeLUT(Classes.Base_Classes.General.eDefinedLUTs.COPPER);
                     this.UpDatePlateColor();
-                break; 
+                    break;
                 case "GD":
                     cGlobalInfo.ChangeLUT(Classes.Base_Classes.General.eDefinedLUTs.GD);
                     this.UpDatePlateColor();
-                break;
+                    break;
                 case "LINEAR":
                     cGlobalInfo.ChangeLUT(Classes.Base_Classes.General.eDefinedLUTs.LINEAR);
                     this.UpDatePlateColor();
-                break;
+                    break;
                 default:
-                break;
+                    break;
             }
         }
 
         private void dataTableToolStripMenuItem_Click(object sender, EventArgs e)
         {
             cDisplayExtendedTable CDT = new cDisplayExtendedTable();
-            
+
             cExtendedTable ET = new cExtendedTable();
             ET.Name = toolStripComboBoxLUT.Text;
             ET.ListRowNames = new List<string>();
 
-            byte[][] Res=  cGlobalInfo.CurrentPlateLUT;
+            byte[][] Res = cGlobalInfo.CurrentPlateLUT;
 
 
             vtkColorTransferFunction TF = vtkColorTransferFunction.New();
 
-           // double[] ListValues =  {-100.0, -90.0, -80.0, -70.0, -60.000004, -50.0, -40.0, -30.000002, -20.0, 20.0, 30.000002, 40.0, 50.0, 60.000004, 70.0, 80.0, 90.0, 100.0};
+            // double[] ListValues =  {-100.0, -90.0, -80.0, -70.0, -60.000004, -50.0, -40.0, -30.000002, -20.0, 20.0, 30.000002, 40.0, 50.0, 60.000004, 70.0, 80.0, 90.0, 100.0};
 
 
 
             for (int i = 0; i < Res[0].Length; i++)
             {
-                TF.AddRGBPoint((double)(255.0*i)/Res[0].Length, Res[0][i] / 255.0, Res[1][i] / 255.0, Res[2][i] / 255.0);
+                TF.AddRGBPoint((double)(255.0 * i) / Res[0].Length, Res[0][i] / 255.0, Res[1][i] / 255.0, Res[2][i] / 255.0);
             }
             TF.Build();
 
@@ -408,16 +404,16 @@ namespace HCSAnalyzer.Forms
             ET.Add(new cExtendedList("Blue"));
 
             for (int i = 0; i < 255; i++)
-			{
+            {
                 double[] Test = TF.GetColor(i);
-                ET[0].Add((char)(Test[0]*255));
-                ET[1].Add((char)(Test[1]*255));
-                ET[2].Add((char)(Test[2]*255));
- 
+                ET[0].Add((char)(Test[0] * 255));
+                ET[1].Add((char)(Test[1] * 255));
+                ET[2].Add((char)(Test[2] * 255));
 
-			}
 
-            
+            }
+
+
 
 
 
@@ -432,7 +428,7 @@ namespace HCSAnalyzer.Forms
             //ET.Add(new cExtendedList("Green"));
             //for (int i = 0; i < Res[1].Length; i++)
             //    ET[1].Add(Res[1][i]);
-            
+
             //ET.Add(new cExtendedList("Blue"));
             //for (int i = 0; i < Res[2].Length; i++)
             //    ET[2].Add(Res[2][i]);

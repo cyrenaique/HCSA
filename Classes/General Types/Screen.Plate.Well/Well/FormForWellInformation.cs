@@ -1,19 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
+﻿using LibPlateAnalysis;
+using System;
 using System.Drawing;
-using System.Linq;
+using System.IO;
 using System.Text;
 using System.Windows.Forms;
-using System.IO;
 using System.Windows.Forms.DataVisualization.Charting;
-using LibPlateAnalysis;
-using ImageAnalysis;
-using ImageAnalysisFiltering;
-using HCSAnalyzer.Classes.MetaComponents;
-using HCSAnalyzer.Classes.General_Types;
-using HCSAnalyzer.Classes;
 
 namespace HCSAnalyzer.Forms
 {
@@ -108,5 +99,5 @@ namespace HCSAnalyzer.Forms
 
 
 
-  }
+    }
 }

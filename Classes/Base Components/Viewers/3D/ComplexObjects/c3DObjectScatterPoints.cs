@@ -1,27 +1,23 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
+﻿using HCSAnalyzer.Classes._3D;
 using HCSAnalyzer.Classes.Base_Classes.DataStructures;
-using HCSAnalyzer.Classes._3D;
-using LibPlateAnalysis;
-using System.Drawing;
-using Kitware.VTK;
 using HCSAnalyzer.Classes.Base_Components.Viewers._3D.ComplexObjects;
 using HCSAnalyzer.Classes.General_Types;
+using LibPlateAnalysis;
+using System;
+using System.Drawing;
 
 namespace HCSAnalyzer.Classes.Base_Classes.Viewers._3D.ComplexObjects
 {
     class c3DObjectScatterPoints : cComplexObject
     {
         public double Radius = 3;
-       // public bool IsLinked = false;
-       // public bool DrawAxis = true;
+        // public bool IsLinked = false;
+        // public bool DrawAxis = true;
         public int ValueToBeDisplayed = -1;
         public int IndexColumnForSphereRadius = -1;
-      //  public cGlobalInfo GlobalInfo = null;
-      //  public bool IsNormalized = false;
-      
+        //  public cGlobalInfo GlobalInfo = null;
+        //  public bool IsNormalized = false;
+
         cListExtendedTable Input;
 
 
@@ -124,7 +120,7 @@ namespace HCSAnalyzer.Classes.Base_Classes.Viewers._3D.ComplexObjects
             {
                 base.GenerateError("-Link Points ?- cast didn't work");
                 return base.FeedBackMessage;
-           }
+            }
             #endregion
 
 
@@ -159,7 +155,7 @@ namespace HCSAnalyzer.Classes.Base_Classes.Viewers._3D.ComplexObjects
             if (MaxLenght <= 0) MaxLenght = 1;
 
             for (int CurrentSerie = 0; CurrentSerie < this.Input.Count; CurrentSerie++)
-            {   
+            {
                 cExtendedTable CurrentTable = this.Input[CurrentSerie];
                 if ((IndexColumnForSphereRadius > 0) && (IndexColumnForSphereRadius < CurrentTable.Count))
                 {
@@ -177,10 +173,10 @@ namespace HCSAnalyzer.Classes.Base_Classes.Viewers._3D.ComplexObjects
                 cPoint3D Pt = null;
                 for (int IdxPt = 0; IdxPt < CurrentTable[0].Count; IdxPt++)
                 {
-                    if(IsNormalized)
-                    Pt = new cPoint3D((CurrentTable[0][IdxPt] - MinX) / DeltaX, (CurrentTable[1][IdxPt] - MinY) / DeltaY, (CurrentTable[2][IdxPt] - MinZ) / DeltaZ);
+                    if (IsNormalized)
+                        Pt = new cPoint3D((CurrentTable[0][IdxPt] - MinX) / DeltaX, (CurrentTable[1][IdxPt] - MinY) / DeltaY, (CurrentTable[2][IdxPt] - MinZ) / DeltaZ);
                     else
-                    Pt = new cPoint3D(CurrentTable[0][IdxPt], CurrentTable[1][IdxPt], CurrentTable[2][IdxPt]);
+                        Pt = new cPoint3D(CurrentTable[0][IdxPt], CurrentTable[1][IdxPt], CurrentTable[2][IdxPt]);
 
                     double Rad = this.Radius;
                     if ((IndexColumnForSphereRadius > 0) && (IndexColumnForSphereRadius < CurrentTable.Count))
@@ -188,16 +184,16 @@ namespace HCSAnalyzer.Classes.Base_Classes.Viewers._3D.ComplexObjects
                         Rad = this.Radius * ((CurrentTable[IndexColumnForSphereRadius][IdxPt] - MinRad)) / DeltaRad;
                         Rad /= 200;
                     }
-                 
-                    if(IndexColumnForSphereRadius>-1)
-                    Rad = CurrentTable[IndexColumnForSphereRadius][IdxPt];
+
+                    if (IndexColumnForSphereRadius > -1)
+                        Rad = CurrentTable[IndexColumnForSphereRadius][IdxPt];
 
                     if (IsNormalized) Rad /= 300.0;
                     else
                     {
                         Rad = MaxLenght / 100.0;
                     }
-                    
+
                     c3DSphere Sphere = new c3DSphere(Pt, Rad);
                     //c3DPoint Sphere = new c3DPoint(Pt);
                     if ((CurrentTable.ListRowNames != null) && (CurrentTable.ListRowNames.Count > IdxPt))
@@ -235,11 +231,11 @@ namespace HCSAnalyzer.Classes.Base_Classes.Viewers._3D.ComplexObjects
                 }
 
                 ListObjects.AddRange(TmpListObjects);
-              
+
                 #region Draw Links
                 if (IsLinked)
                 {
-                    cListGeometric3DObject ListLinks = new cListGeometric3DObject( "Links MetaObject");
+                    cListGeometric3DObject ListLinks = new cListGeometric3DObject("Links MetaObject");
 
                     for (int IdxPt = 1; IdxPt < CurrentTable[0].Count; IdxPt++)
                     {
@@ -253,14 +249,14 @@ namespace HCSAnalyzer.Classes.Base_Classes.Viewers._3D.ComplexObjects
                         }
                         else
                         {
-                            Pt1 = new cPoint3D(CurrentTable[0][IdxPt], CurrentTable[1][IdxPt] , CurrentTable[2][IdxPt] );
-                            Pt0 = new cPoint3D(CurrentTable[0][IdxPt - 1] , CurrentTable[1][IdxPt - 1] , CurrentTable[2][IdxPt - 1] );
+                            Pt1 = new cPoint3D(CurrentTable[0][IdxPt], CurrentTable[1][IdxPt], CurrentTable[2][IdxPt]);
+                            Pt0 = new cPoint3D(CurrentTable[0][IdxPt - 1], CurrentTable[1][IdxPt - 1], CurrentTable[2][IdxPt - 1]);
                         }
-                       // new cPoint3D((CurrentTable[0][IdxPt] - MinX) / DeltaX, (CurrentTable[1][IdxPt] - MinY) / DeltaY, (CurrentTable[2][IdxPt] - MinZ) / DeltaZ);
+                        // new cPoint3D((CurrentTable[0][IdxPt] - MinX) / DeltaX, (CurrentTable[1][IdxPt] - MinY) / DeltaY, (CurrentTable[2][IdxPt] - MinZ) / DeltaZ);
                         //cPoint3D Pt0 = new cPoint3D((CurrentTable[0][IdxPt - 1] - MinX) / DeltaX, (CurrentTable[1][IdxPt - 1] - MinY) / DeltaY, (CurrentTable[2][IdxPt - 1] - MinZ) / DeltaZ);
 
                         c3DLine Line = new c3DLine(Pt0, Pt1);
-                        Line.SetName("Link ["+(IdxPt-1)+";"+IdxPt+"]"); 
+                        Line.SetName("Link [" + (IdxPt - 1) + ";" + IdxPt + "]");
                         ListLinks.AddObject(Line);
                     }
 
@@ -304,7 +300,7 @@ namespace HCSAnalyzer.Classes.Base_Classes.Viewers._3D.ComplexObjects
                     T[2].Add(MinZ);
                     T[2].Add(MaxZ);
                 }
-              
+
                 Axis.SetInputData(T);
                 Axis.Run(_3DWorld);
 

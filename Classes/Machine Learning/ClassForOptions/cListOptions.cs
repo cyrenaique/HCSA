@@ -1,10 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
+﻿using HCSAnalyzer.Classes;
 using HCSAnalyzer.Forms.FormsForOptions.ClassForOptions.Children;
+using System;
+using System.Collections.Generic;
 using System.Windows.Forms;
-using HCSAnalyzer.Classes;
 
 namespace HCSAnalyzer.Forms.FormsForOptions.ClassForOptions
 {

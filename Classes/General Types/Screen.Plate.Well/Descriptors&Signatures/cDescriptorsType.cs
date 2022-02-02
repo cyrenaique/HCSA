@@ -1,19 +1,13 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Windows.Forms;
-using HCSAnalyzer.Classes;
+﻿using HCSAnalyzer.Classes;
 using HCSAnalyzer.Classes.Base_Classes.DataStructures;
-using System.Windows.Forms.DataVisualization.Charting;
-using System.Windows;
-using System.Drawing;
-using HCSAnalyzer.Forms.IO;
-using HCSAnalyzer.Forms.FormsForGraphsDisplay;
-using HCSAnalyzer.Controls;
 using HCSAnalyzer.Classes.Base_Classes.GUI;
 using HCSAnalyzer.Classes.Base_Classes.Viewers;
 using HCSAnalyzer.Classes.General_Types;
+using HCSAnalyzer.Controls;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Windows.Forms;
 
 namespace LibPlateAnalysis
 {
@@ -23,7 +17,7 @@ namespace LibPlateAnalysis
     public class cDescriptorsLinearCombination : List<cDescriptorType>
     {
         cExtendedList ListWeights;// = new cExtendedList();
-     //   cGlobalInfo GlobalInfo;
+                                  //   cGlobalInfo GlobalInfo;
         cViewerTable Sender = null;
         string Name;
 
@@ -41,7 +35,7 @@ namespace LibPlateAnalysis
             this.ListWeights = new cExtendedList();
             //this.ListWeights.Name = ListWeights.Name;
             //this.ListWeights = ListWeights;
-           // this.GlobalInfo = GlobalInfo;
+            // this.GlobalInfo = GlobalInfo;
             this.Name = ListWeights.Name;
             this.Sender = Sender;
         }
@@ -64,14 +58,14 @@ namespace LibPlateAnalysis
 
             if (this.Sender != null)
             {
-                cExtendedTable CT =  this.Sender.GetLiveListValues();
-                if((CT==null)||(CT.Count==0))
+                cExtendedTable CT = this.Sender.GetLiveListValues();
+                if ((CT == null) || (CT.Count == 0))
                     return;
 
                 this.ListWeights = CT[0];
-                    if (this.ListWeights == null) return;
+                if (this.ListWeights == null) return;
 
-                    this.Name = this.Sender.Title;
+                this.Name = this.Sender.Title;
 
             }
 
@@ -94,11 +88,11 @@ namespace LibPlateAnalysis
                     cListSignature LDesc = new cListSignature();
                     double NewValue = 0;
 
-                    for (int IdxActiveDesc = 0; IdxActiveDesc < this.Count; IdxActiveDesc++)                    
+                    for (int IdxActiveDesc = 0; IdxActiveDesc < this.Count; IdxActiveDesc++)
 
-                            NewValue += this.ListWeights[IdxActiveDesc] * Tmpwell.ListSignatures[index[IdxActiveDesc]].GetValue();
-                        
-                        
+                        NewValue += this.ListWeights[IdxActiveDesc] * Tmpwell.ListSignatures[index[IdxActiveDesc]].GetValue();
+
+
 
                     cSignature NewDesc = new cSignature(NewValue, NewType, cGlobalInfo.CurrentScreening);
                     LDesc.Add(NewDesc);
@@ -122,7 +116,7 @@ namespace LibPlateAnalysis
         private int NumBin;
         //cGlobalInfo GlobalInfo;
         public FormForDescriptorInfo WindowDescriptorInfo;
-        public double Weight  { get; private set; }
+        public double Weight { get; private set; }
         private bool ActiveState;
 
         void CommonInit()
@@ -169,7 +163,7 @@ namespace LibPlateAnalysis
             this.ActiveState = IsActive;
             this.NumBin = BinNumber;
             this.IsConnectedToDatabase = IsConnectedToDB;
-           // this.GlobalInfo = GlobalInfo;
+            // this.GlobalInfo = GlobalInfo;
             CommonInit();
 
             CreateAssociatedWindow();
@@ -213,7 +207,7 @@ namespace LibPlateAnalysis
             this.ActiveState = IsActive;
             this.NumBin = BinNumber;
             this.IsConnectedToDatabase = false;
-           // this.GlobalInfo = GlobalInfo;
+            // this.GlobalInfo = GlobalInfo;
             CommonInit();
             CreateAssociatedWindow();
         }
@@ -252,8 +246,8 @@ namespace LibPlateAnalysis
                     }
                 }
 
-               
-            } 
+
+            }
             this.Name = Name;
             this.ActiveState = IsActive;
             this.NumBin = BinNumber;
@@ -263,7 +257,7 @@ namespace LibPlateAnalysis
             CommonInit();
             CreateAssociatedWindow();
         }
-  
+
         public string GetName()
         {
             return Name;
@@ -372,7 +366,7 @@ namespace LibPlateAnalysis
             else
                 NewState = "active";
 
-            ToolStripMenuItem DescriptorsSetAsInActive = new ToolStripMenuItem("Set as "+NewState);
+            ToolStripMenuItem DescriptorsSetAsInActive = new ToolStripMenuItem("Set as " + NewState);
             DescriptorsSetAsInActive.Click += new System.EventHandler(this.DescriptorsSetAsInActive);
             base.SpecificContextMenu.DropDownItems.Add(DescriptorsSetAsInActive);
 
@@ -382,7 +376,7 @@ namespace LibPlateAnalysis
 
         void DescriptorsView(object sender, EventArgs e)
         {
-          //  GlobalInfo.CurrentScreen.GetCurrentDisplayPlate().DisplayDescriptorsWindow();
+            //  GlobalInfo.CurrentScreen.GetCurrentDisplayPlate().DisplayDescriptorsWindow();
 
             List<cPanelForDisplayArray> ListPlates = new List<cPanelForDisplayArray>();
 
@@ -401,14 +395,14 @@ namespace LibPlateAnalysis
         void DescriptorsSetAsInActive(object sender, EventArgs e)
         {
             for (int i = 0; i < cGlobalInfo.WindowHCSAnalyzer.checkedListBoxActiveDescriptors.Items.Count; i++)
-			{
+            {
                 if (cGlobalInfo.WindowHCSAnalyzer.checkedListBoxActiveDescriptors.Items[i].ToString() == this.Name)
                 {
                     this.ActiveState = !this.ActiveState;
                     cGlobalInfo.WindowHCSAnalyzer.checkedListBoxActiveDescriptors.SetItemChecked(i, this.ActiveState);
                     return;
                 }
-			}
+            }
         }
 
         void StackedHistoDescItem(object sender, EventArgs e)
@@ -576,38 +570,38 @@ namespace LibPlateAnalysis
 
             cDisplayToWindow CDW1 = new cDisplayToWindow();
 
-            
 
-           // if ((ProcessModeCurrentPlateOnlyToolStripMenuItem.Checked) || (ProcessModeEntireScreeningToolStripMenuItem.Checked))
+
+            // if ((ProcessModeCurrentPlateOnlyToolStripMenuItem.Checked) || (ProcessModeEntireScreeningToolStripMenuItem.Checked))
             {
                 cListWells ListWellsToProcess = new cListWells(null);
                 List<cPlate> PlateList = new List<cPlate>();
 
-//                if (ProcessModeCurrentPlateOnlyToolStripMenuItem.Checked)
-//                    PlateList.Add(GlobalInfo.CurrentScreen.GetCurrentDisplayPlate());
-//                else
-//                {
-                    foreach (cPlate TmpPlate in cGlobalInfo.CurrentScreening.ListPlatesActive) PlateList.Add(TmpPlate);
-//                }
+                //                if (ProcessModeCurrentPlateOnlyToolStripMenuItem.Checked)
+                //                    PlateList.Add(GlobalInfo.CurrentScreen.GetCurrentDisplayPlate());
+                //                else
+                //                {
+                foreach (cPlate TmpPlate in cGlobalInfo.CurrentScreening.ListPlatesActive) PlateList.Add(TmpPlate);
+                //                }
 
                 foreach (cPlate TmpPlate in PlateList)
                     foreach (cWell item in TmpPlate.ListActiveWells)
                         if ((item.GetCurrentClassIdx() != -1) && (ListClassSelected[item.GetCurrentClassIdx()] == 1)) ListWellsToProcess.Add(item);
 
 
-               // if (ProcessModeCurrentPlateOnlyToolStripMenuItem.Checked)
-               //     CDW1.Title = GlobalInfo.CurrentScreen.ListDescriptors[GlobalInfo.CurrentScreen.ListDescriptors.CurrentSelectedDescriptor].GetName() + " - Stacked Histogram (" + PlateList[0].Name + ")";
-               // else
+                // if (ProcessModeCurrentPlateOnlyToolStripMenuItem.Checked)
+                //     CDW1.Title = GlobalInfo.CurrentScreen.ListDescriptors[GlobalInfo.CurrentScreen.ListDescriptors.CurrentSelectedDescriptor].GetName() + " - Stacked Histogram (" + PlateList[0].Name + ")";
+                // else
 
 
                 CDW1.Title = this.GetName() + " - Stacked Histogram - " + ListWellsToProcess.Count + " Wells";
-                    //CDW1.Title = GlobalInfo.CurrentScreen.ListDescriptors[GlobalInfo.CurrentScreen.ListDescriptors.CurrentSelectedDescriptorIdx].GetName() + " - Stacked Histogram - " + PlateList.Count + " plates";
+                //CDW1.Title = GlobalInfo.CurrentScreen.ListDescriptors[GlobalInfo.CurrentScreen.ListDescriptors.CurrentSelectedDescriptorIdx].GetName() + " - Stacked Histogram - " + PlateList.Count + " plates";
 
 
 
                 int IdxDesc = cGlobalInfo.CurrentScreening.ListDescriptors.GetDescriptorIndex(this);
 
-               
+
                 cExtendedTable NewTable = ListWellsToProcess.GetAverageDescriptorValues(IdxDesc);
                 NewTable.Name = CDW1.Title;
 
@@ -711,11 +705,11 @@ namespace LibPlateAnalysis
         public List<cDescriptorType> GetActiveDescriptors()
         {
             List<cDescriptorType> ToReturn = new List<cDescriptorType>();
-            
+
             foreach (cDescriptorType TmpDesc in this)
                 if (TmpDesc.IsActive()) ToReturn.Add(TmpDesc);
 
-            return ToReturn;            
+            return ToReturn;
         }
 
         public List<cDescriptorType> GetActiveSingleCellDescriptors()
@@ -723,7 +717,7 @@ namespace LibPlateAnalysis
             List<cDescriptorType> ToReturn = new List<cDescriptorType>();
 
             foreach (cDescriptorType TmpDesc in this)
-                if (TmpDesc.IsActive()&&(TmpDesc.IsConnectedToDatabase)) ToReturn.Add(TmpDesc);
+                if (TmpDesc.IsActive() && (TmpDesc.IsConnectedToDatabase)) ToReturn.Add(TmpDesc);
 
             return ToReturn;
         }
@@ -939,7 +933,7 @@ namespace LibPlateAnalysis
             int Idx = 0;
             foreach (var item in this)
             {
-                ToBeReturned += "[" + Idx + "] - " + item.GetName()+"\n";
+                ToBeReturned += "[" + Idx + "] - " + item.GetName() + "\n";
                 if (item.IsActive())
                     ToBeReturned += "\tActive\n";
                 else
@@ -951,7 +945,7 @@ namespace LibPlateAnalysis
                     ToBeReturned += "\tWell Averaged.\n";
 
                 ToBeReturned += "\tWeight: " + item.Weight + "\n";
-                ToBeReturned += "\tInfo:\n\t" + item.description+"\n\n";
+                ToBeReturned += "\tInfo:\n\t" + item.description + "\n\n";
 
                 Idx++;
             }
@@ -963,7 +957,7 @@ namespace LibPlateAnalysis
 
         public cExtendedTable GetDataTable()
         {
-            cExtendedTable ToBeReturned = new cExtendedTable(3,this.Count,0);
+            cExtendedTable ToBeReturned = new cExtendedTable(3, this.Count, 0);
 
             ToBeReturned.Name = "List Descriptors";
 
@@ -979,7 +973,7 @@ namespace LibPlateAnalysis
             {
                 ToBeReturned.ListRowNames.Add(item.GetName());
                 ToBeReturned.ListTags.Add(item);
-                if(item.IsActive())
+                if (item.IsActive())
                     ToBeReturned[0][Idx] = 1;
                 if (item.IsConnectedToDatabase)
                     ToBeReturned[1][Idx] = 1;
@@ -990,7 +984,7 @@ namespace LibPlateAnalysis
 
 
             return ToBeReturned;
-        
+
         }
 
 

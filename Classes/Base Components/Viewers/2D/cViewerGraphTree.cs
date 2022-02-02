@@ -1,11 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using HCSAnalyzer.Classes.Base_Classes.DataStructures;
-using HCSAnalyzer.GUI.FormsForGraphsDisplay.Generic;
+﻿using HCSAnalyzer.Classes.Base_Classes.DataStructures;
 using HCSAnalyzer.Classes.General_Types;
 using Microsoft.Msagl.GraphViewerGdi;
+using System;
+using System.Collections.Generic;
+using System.Linq;
 
 namespace HCSAnalyzer.Classes.Base_Classes.Viewers
 {
@@ -123,10 +121,10 @@ namespace HCSAnalyzer.Classes.Base_Classes.Viewers
 
             GViewer GraphView = new GViewer();
 
-            GraphView.Graph = ComputeAndDisplayGraph(this.Input,false);
+            GraphView.Graph = ComputeAndDisplayGraph(this.Input, false);
             GraphView.Dock = System.Windows.Forms.DockStyle.Fill;
 
-           // this.panel.Controls.Add(GraphView);
+            // this.panel.Controls.Add(GraphView);
 
 
 

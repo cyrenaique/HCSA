@@ -1,30 +1,24 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using HCSAnalyzer.Classes.Base_Classes.DataStructures;
-using HCSAnalyzer.Classes.Base_Classes.DataProcessing;
-using HCSAnalyzer.Classes.Base_Classes.Viewers;
-using HCSAnalyzer.Classes.MetaComponents;
-using ImageAnalysis;
-using Emgu.CV;
+﻿using Emgu.CV;
 using Emgu.CV.Structure;
-using System.Windows.Forms;
-using HCSAnalyzer;
-using System.Drawing;
-using HCSAnalyzer.Forms.FormsForImages;
-using HCSAnalyzer.Classes._3D;
-using IM3_Plugin3;
-using HCSAnalyzer.Classes.Base_Classes.Viewers._3D.ComplexObjects;
 using HCSAnalyzer.Classes;
-using System.Threading;
+using HCSAnalyzer.Classes._3D;
+using HCSAnalyzer.Classes.Base_Classes.DataProcessing;
+using HCSAnalyzer.Classes.Base_Classes.DataStructures;
+using HCSAnalyzer.Classes.Base_Classes.Viewers;
+using HCSAnalyzer.Classes.Base_Classes.Viewers._3D.ComplexObjects;
+using HCSAnalyzer.Classes.MetaComponents;
+using HCSAnalyzer.Forms.FormsForImages;
+using System;
+using System.Collections.Generic;
+using System.Drawing;
 using System.Threading.Tasks;
+using System.Windows.Forms;
 
 namespace ImageAnalysis
 {
     public partial class cSingleChannelImage : IDisposable
     {
-        public float[] Data;       
+        public float[] Data;
         public int Width { get; private set; }
         public int Height { get; private set; }
         public int Depth { get; private set; }
@@ -193,7 +187,7 @@ namespace ImageAnalysis
             return true;
         }
 
-    
+
         public bool SetNewDataFromOpenCV(Image<Gray, byte> CVImage)
         {
             if (CVImage.Width * CVImage.Height != this.Data.Length) return false;

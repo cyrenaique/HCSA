@@ -1,15 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using HCSAnalyzer.Classes.Base_Classes.DataStructures;
-using HCSAnalyzer.GUI.FormsForGraphsDisplay.Generic;
+﻿using HCSAnalyzer.Classes.Base_Classes.DataStructures;
 using HCSAnalyzer.Classes.General_Types;
+using System;
 
 namespace HCSAnalyzer.Classes.Base_Classes.Viewers
 {
     public class cViewerStackedHistogram : cDataDisplay
-    {     
+    {
         //cPanelHisto CurrentPanelHisto;
         //public eOrientation Orientation = eOrientation.HORIZONTAL;
 
@@ -33,7 +29,7 @@ namespace HCSAnalyzer.Classes.Base_Classes.Viewers
         public void SetInputData(cExtendedTable input)
         {
             //CurrentPanelHisto = new cPanelHisto(ListValues, true, eGraphType.LINE, this.Orientation);
-          // Chart = new cChart1DGraph();  
+            // Chart = new cChart1DGraph();  
             Chart.InputSimpleData = input;
             Chart.LabelAxisY = "Frequency";
             base.InputData = input;

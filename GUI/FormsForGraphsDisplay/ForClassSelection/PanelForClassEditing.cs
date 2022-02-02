@@ -1,14 +1,11 @@
 ﻿
 
+using HCSAnalyzer.Classes;
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Windows.Controls;
-using HCSAnalyzer.Classes;
-using System.Windows.Forms;
 using System.Drawing;
 using System.IO;
+using System.Windows.Forms;
 
 namespace HCSAnalyzer.Forms.FormsForGraphsDisplay
 {
@@ -42,27 +39,27 @@ namespace HCSAnalyzer.Forms.FormsForGraphsDisplay
                 PanelForColor.Height = 13;
                 PanelForColor.BackColor = cGlobalInfo.ListWellClasses[IdxClass].ColourForDisplay;
                 PanelForColor.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-                PanelForColor.Location = new System.Drawing.Point(5, PanelForColor.Height * IdxClass-2);
+                PanelForColor.Location = new System.Drawing.Point(5, PanelForColor.Height * IdxClass - 2);
                 PanelForColor.Tag = IdxClass;
                 PanelForColor.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.MouseDoubleClick);
                 ListPanelColor.Add(PanelForColor);
-                 
+
                 System.Windows.Forms.TextBox CurrentTextBox = new System.Windows.Forms.TextBox();
                 CurrentTextBox.Text = cGlobalInfo.ListWellClasses[IdxClass].Name;// "Class " + IdxClass;
 
                 ListToolTips.Add(new System.Windows.Forms.ToolTip());
-                
+
                 ListToolTips[IdxClass].SetToolTip(CurrentTextBox, CurrentTextBox.Text);
                 //System.Windows.Forms.ToolTip TT = new System.Windows.Forms.ToolTip();
                 //TT.SetToolTip(CurrentTextBox, CurrentTextBox.Text);
 
-                CurrentTextBox.Location = new System.Drawing.Point(PanelForColor.Width+15, (CurrentTextBox.Height+5) * IdxClass);
+                CurrentTextBox.Location = new System.Drawing.Point(PanelForColor.Width + 15, (CurrentTextBox.Height + 5) * IdxClass);
                 CurrentTextBox.TextChanged += new EventHandler(CurrentTextBox_TextChanged);
                 CurrentTextBox.Tag = IdxClass;
                 ListTextBoxes.Add(CurrentTextBox);
 
-                PanelForColor.Location = new System.Drawing.Point(5, CurrentTextBox.Location.Y+5);
-               
+                PanelForColor.Location = new System.Drawing.Point(5, CurrentTextBox.Location.Y + 5);
+
             }
             this.Controls.AddRange(ListPanelColor.ToArray());
             this.Controls.AddRange(ListTextBoxes.ToArray());
@@ -110,7 +107,7 @@ namespace HCSAnalyzer.Forms.FormsForGraphsDisplay
             ListToolTips[Idx].RemoveAll();
             ListToolTips[Idx].SetToolTip(((System.Windows.Forms.TextBox)sender), ((System.Windows.Forms.TextBox)sender).Text);
 
-       
+
             Changed(this, e);
         }
 

@@ -5,24 +5,20 @@
 // ----------------------------------------------
 
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System;
-using System.IO;
 using System.Globalization;
+using System.IO;
 
 namespace HCSAnalyzer.Classes._3D
 {
     public class Matrix : IEquatable<Matrix>
     {
 
-               #region Fields
+        #region Fields
         private double[][] data;
-		private int rows;
-		private int columns;
+        private int rows;
+        private int columns;
 
-		private static Random random = new Random();
+        private static Random random = new Random();
         #endregion // Fields
 
         #region Constructors
@@ -30,55 +26,55 @@ namespace HCSAnalyzer.Classes._3D
 		/// <param name="rows">Number of rows.</param>
 		/// <param name="columns">Number of columns.</param>
 		public Matrix(int rows, int columns)
-		{
-			this.rows = rows;
-			this.columns = columns;
-			this.data = new double[rows][];
-			for (int i = 0; i < rows; i++)
-			{
-				this.data[i] = new double[columns];
-			}
-		}
-	
-		/// <summary>Constructs a matrix of the given size and assigns a given value to all diagonal elements.</summary>
-		/// <param name="rows">Number of rows.</param>
-		/// <param name="columns">Number of columns.</param>
-		/// <param name="value">Value to assign to the diagnoal elements.</param>
-		public Matrix(int rows, int columns, double value)
-		{
-			this.rows = rows;
-			this.columns = columns;
-			this.data = new double[rows][];
+        {
+            this.rows = rows;
+            this.columns = columns;
+            this.data = new double[rows][];
+            for (int i = 0; i < rows; i++)
+            {
+                this.data[i] = new double[columns];
+            }
+        }
 
-			for (int i = 0; i < rows; i++)
-			{
-				data[i] = new double[columns];
-			}
+        /// <summary>Constructs a matrix of the given size and assigns a given value to all diagonal elements.</summary>
+        /// <param name="rows">Number of rows.</param>
+        /// <param name="columns">Number of columns.</param>
+        /// <param name="value">Value to assign to the diagnoal elements.</param>
+        public Matrix(int rows, int columns, double value)
+        {
+            this.rows = rows;
+            this.columns = columns;
+            this.data = new double[rows][];
 
-			for (int i = 0; i < rows; i++)
-			{
-				data[i][i] = value;
-			}
-		}
-	
-		/// <summary>Constructs a matrix from the given array.</summary>
-		/// <param name="value">The array the matrix gets constructed from.</param>
-		//[CLSCompliant(false)]
-		public Matrix(double[][] value)
-		{
-			this.rows = value.Length;
-			this.columns = value[0].Length;
-	
-			for (int i = 0; i < rows; i++)
-			{
-				if (value[i].Length != columns)
-				{
-					throw new ArgumentException("Argument out of range."); 
-				}
-			}
-	
-			this.data = value;
-		}
+            for (int i = 0; i < rows; i++)
+            {
+                data[i] = new double[columns];
+            }
+
+            for (int i = 0; i < rows; i++)
+            {
+                data[i][i] = value;
+            }
+        }
+
+        /// <summary>Constructs a matrix from the given array.</summary>
+        /// <param name="value">The array the matrix gets constructed from.</param>
+        //[CLSCompliant(false)]
+        public Matrix(double[][] value)
+        {
+            this.rows = value.Length;
+            this.columns = value[0].Length;
+
+            for (int i = 0; i < rows; i++)
+            {
+                if (value[i].Length != columns)
+                {
+                    throw new ArgumentException("Argument out of range.");
+                }
+            }
+
+            this.data = value;
+        }
         #endregion // Constructors
 
         #region IEquatable<Matrix>
@@ -101,125 +97,125 @@ namespace HCSAnalyzer.Classes._3D
         {
             return Equals(this, other);
         }
-        
+
         /// <summary>
         /// Determines weather two instances are equal.
         /// </summary>
         /// <param name="left"></param>
         /// <param name="right"></param>
         /// <returns></returns>
-		public static bool Equals(Matrix left, Matrix right)
-		{
-			if (((object) left) == ((object) right))
-			{
-				return true;
-			}
+        public static bool Equals(Matrix left, Matrix right)
+        {
+            if (((object)left) == ((object)right))
+            {
+                return true;
+            }
 
-			if ((((object) left) == null) || (((object) right) == null))
-			{
-				return false;
-			}
+            if ((((object)left) == null) || (((object)right) == null))
+            {
+                return false;
+            }
 
-			if ((left.Rows != right.Rows) || (left.Columns != right.Columns))
-			{
-				return false;
-			}
+            if ((left.Rows != right.Rows) || (left.Columns != right.Columns))
+            {
+                return false;
+            }
 
-			for (int i = 0; i < left.Rows; i++)
-			{
-				for (int j = 0; j < left.Columns; j++)
-				{
-					if (left[i, j] != right[i, j])
-					{
-						return false;	
-					}	
-				}	
-			}
-			
-			return true;
-		}
+            for (int i = 0; i < left.Rows; i++)
+            {
+                for (int j = 0; j < left.Columns; j++)
+                {
+                    if (left[i, j] != right[i, j])
+                    {
+                        return false;
+                    }
+                }
+            }
+
+            return true;
+        }
         #endregion // IEquatable<Matrix>
 
         /// <summary>Serves as a hash function for a particular type, suitable for use in hashing algorithms and data structures like a hash table.</summary>
 		public override int GetHashCode()
-		{
-			return (this.Rows + this.Columns);
-		}
+        {
+            return (this.Rows + this.Columns);
+        }
 
         #region Accessors
         public double[][] Array
-		{
-			get 
-			{ 
-				return this.data; 
-			}
-		}
-	
-		/// <summary>Returns the number of columns.</summary>
-		public int Rows
-		{
-			get 
-			{ 
-				return this.rows; 
-			}
-		}
+        {
+            get
+            {
+                return this.data;
+            }
+        }
 
-		/// <summary>Returns the number of columns.</summary>
-		public int Columns
-		{
-			get 
-			{ 
-				return this.columns; 
-			}
-		}
+        /// <summary>Returns the number of columns.</summary>
+        public int Rows
+        {
+            get
+            {
+                return this.rows;
+            }
+        }
 
-		/// <summary>Return <see langword="true"/> if the matrix is a square matrix.</summary>
-		public bool Square
-		{
-			get 
-			{ 
-				return (rows == columns); 
-			}
-		}
+        /// <summary>Returns the number of columns.</summary>
+        public int Columns
+        {
+            get
+            {
+                return this.columns;
+            }
+        }
 
-		/// <summary>Returns <see langword="true"/> if the matrix is symmetric.</summary>
-		public bool Symmetric
-		{
-			get
-			{
-				if (this.Square)
-				{
-					for (int i = 0; i < rows; i++)
-					{
-						for (int j = 0; j <= i; j++)
-						{
-							if (data[i][j] != data[j][i])
-							{
-								return false;
-							}
-						}
-					}
+        /// <summary>Return <see langword="true"/> if the matrix is a square matrix.</summary>
+        public bool Square
+        {
+            get
+            {
+                return (rows == columns);
+            }
+        }
 
-					return true;
-				}
+        /// <summary>Returns <see langword="true"/> if the matrix is symmetric.</summary>
+        public bool Symmetric
+        {
+            get
+            {
+                if (this.Square)
+                {
+                    for (int i = 0; i < rows; i++)
+                    {
+                        for (int j = 0; j <= i; j++)
+                        {
+                            if (data[i][j] != data[j][i])
+                            {
+                                return false;
+                            }
+                        }
+                    }
 
-				return false;
-			}
-		}
+                    return true;
+                }
 
-		/// <summary>Access the value at the given location.</summary>
-		public double this[int row, int column]
-		{
-			set 
-			{ 
-				this.data[row][column] = value; 
-			}
-			
-			get 
-			{ 
-				return this.data[row][column]; 
-			}
-		}
+                return false;
+            }
+        }
+
+        /// <summary>Access the value at the given location.</summary>
+        public double this[int row, int column]
+        {
+            set
+            {
+                this.data[row][column] = value;
+            }
+
+            get
+            {
+                return this.data[row][column];
+            }
+        }
         #endregion // Accessors
 
         #region Submatrix
@@ -229,139 +225,139 @@ namespace HCSAnalyzer.Classes._3D
 		/// <param name="startColumn">Start column index</param>
 		/// <param name="endColumn">End column index</param>
 		public Matrix Submatrix(int startRow, int endRow, int startColumn, int endColumn)
-		{
-			if ((startRow > endRow) || (startColumn > endColumn) ||  (startRow < 0) || (startRow >= this.rows) ||  (endRow < 0) || (endRow >= this.rows) ||  (startColumn < 0) || (startColumn >= this.columns) ||  (endColumn < 0) || (endColumn >= this.columns)) 
-            { 
-				throw new ArgumentException("Argument out of range."); 
-			} 
-			
-			Matrix X = new Matrix(endRow - startRow + 1, endColumn - startColumn + 1);
-			double[][] x = X.Array;
-			for (int i = startRow; i <= endRow; i++)
-			{
-				for (int j = startColumn; j <= endColumn; j++)
-				{
-					x[i - startRow][j - startColumn] = data[i][j];
-				}
-			}
-					
-			return X;
-		}
+        {
+            if ((startRow > endRow) || (startColumn > endColumn) || (startRow < 0) || (startRow >= this.rows) || (endRow < 0) || (endRow >= this.rows) || (startColumn < 0) || (startColumn >= this.columns) || (endColumn < 0) || (endColumn >= this.columns))
+            {
+                throw new ArgumentException("Argument out of range.");
+            }
 
-		/// <summary>Returns a sub matrix extracted from the current matrix.</summary>
-		/// <param name="rowIndexes">Array of row indices</param>
-		/// <param name="columnIndexes">Array of column indices</param>
-		public Matrix Submatrix(int[] rowIndexes, int[] columnIndexes)
-		{
-			Matrix X = new Matrix(rowIndexes.Length, columnIndexes.Length);
-			double[][] x = X.Array;
-			for (int i = 0; i < rowIndexes.Length; i++)
-			{
-				for (int j = 0; j < columnIndexes.Length; j++)
-				{
+            Matrix X = new Matrix(endRow - startRow + 1, endColumn - startColumn + 1);
+            double[][] x = X.Array;
+            for (int i = startRow; i <= endRow; i++)
+            {
+                for (int j = startColumn; j <= endColumn; j++)
+                {
+                    x[i - startRow][j - startColumn] = data[i][j];
+                }
+            }
+
+            return X;
+        }
+
+        /// <summary>Returns a sub matrix extracted from the current matrix.</summary>
+        /// <param name="rowIndexes">Array of row indices</param>
+        /// <param name="columnIndexes">Array of column indices</param>
+        public Matrix Submatrix(int[] rowIndexes, int[] columnIndexes)
+        {
+            Matrix X = new Matrix(rowIndexes.Length, columnIndexes.Length);
+            double[][] x = X.Array;
+            for (int i = 0; i < rowIndexes.Length; i++)
+            {
+                for (int j = 0; j < columnIndexes.Length; j++)
+                {
                     if ((rowIndexes[i] < 0) || (rowIndexes[i] >= rows) || (columnIndexes[j] < 0) || (columnIndexes[j] >= columns))
-                    { 
-						throw new ArgumentException("Argument out of range."); 
+                    {
+                        throw new ArgumentException("Argument out of range.");
                     }
 
-					x[i][j] = data[rowIndexes[i]][columnIndexes[j]];
-				}
-			}
+                    x[i][j] = data[rowIndexes[i]][columnIndexes[j]];
+                }
+            }
 
-			return X;
-		}
+            return X;
+        }
 
-		/// <summary>Returns a sub matrix extracted from the current matrix.</summary>
-		/// <param name="i0">Starttial row index</param>
-		/// <param name="i1">End row index</param>
-		/// <param name="c">Array of row indices</param>
-		public Matrix Submatrix(int i0, int i1, int[] c)
-		{
-			if ((i0 > i1) || (i0 < 0) || (i0 >= this.rows) || (i1 < 0) || (i1 >= this.rows)) 
-			{ 
-            	throw new ArgumentException("Argument out of range."); 
-			} 
-			
-			Matrix X = new Matrix(i1 - i0 + 1, c.Length);
-			double[][] x = X.Array;
-			for (int i = i0; i <= i1; i++)
-			{
-				for (int j = 0; j < c.Length; j++)
-				{
-                    if ((c[j] < 0) || (c[j] >= columns)) 
-                    { 
-						throw new ArgumentException("Argument out of range."); 
-                    } 
+        /// <summary>Returns a sub matrix extracted from the current matrix.</summary>
+        /// <param name="i0">Starttial row index</param>
+        /// <param name="i1">End row index</param>
+        /// <param name="c">Array of row indices</param>
+        public Matrix Submatrix(int i0, int i1, int[] c)
+        {
+            if ((i0 > i1) || (i0 < 0) || (i0 >= this.rows) || (i1 < 0) || (i1 >= this.rows))
+            {
+                throw new ArgumentException("Argument out of range.");
+            }
 
-					x[i - i0][j] = data[i][c[j]];
-				}
-			}
+            Matrix X = new Matrix(i1 - i0 + 1, c.Length);
+            double[][] x = X.Array;
+            for (int i = i0; i <= i1; i++)
+            {
+                for (int j = 0; j < c.Length; j++)
+                {
+                    if ((c[j] < 0) || (c[j] >= columns))
+                    {
+                        throw new ArgumentException("Argument out of range.");
+                    }
 
-			return X;
-		}
+                    x[i - i0][j] = data[i][c[j]];
+                }
+            }
 
-		/// <summary>Returns a sub matrix extracted from the current matrix.</summary>
-		/// <param name="r">Array of row indices</param>
-		/// <param name="j0">Start column index</param>
-		/// <param name="j1">End column index</param>
-		public Matrix Submatrix(int[] r, int j0, int j1)
-		{
-			if ((j0 > j1) || (j0 < 0) || (j0 >= columns) || (j1 < 0) || (j1 >= columns)) 
-			{ 
-				throw new ArgumentException("Argument out of range."); 
-			} 
-			
-			Matrix X = new Matrix(r.Length, j1-j0+1);
-			double[][] x = X.Array;
-			for (int i = 0; i < r.Length; i++)
-			{
-				for (int j = j0; j <= j1; j++) 
-				{
-					if ((r[i] < 0) || (r[i] >= this.rows))
-					{
-						throw new ArgumentException("Argument out of range."); 
-					}
+            return X;
+        }
 
-					x[i][j - j0] = data[r[i]][j];
-				}
-			}
+        /// <summary>Returns a sub matrix extracted from the current matrix.</summary>
+        /// <param name="r">Array of row indices</param>
+        /// <param name="j0">Start column index</param>
+        /// <param name="j1">End column index</param>
+        public Matrix Submatrix(int[] r, int j0, int j1)
+        {
+            if ((j0 > j1) || (j0 < 0) || (j0 >= columns) || (j1 < 0) || (j1 >= columns))
+            {
+                throw new ArgumentException("Argument out of range.");
+            }
 
-			return X;
-		}
+            Matrix X = new Matrix(r.Length, j1 - j0 + 1);
+            double[][] x = X.Array;
+            for (int i = 0; i < r.Length; i++)
+            {
+                for (int j = j0; j <= j1; j++)
+                {
+                    if ((r[i] < 0) || (r[i] >= this.rows))
+                    {
+                        throw new ArgumentException("Argument out of range.");
+                    }
+
+                    x[i][j - j0] = data[r[i]][j];
+                }
+            }
+
+            return X;
+        }
         #endregion // Submatrix
 
 
         /// <summary>Creates a copy of the matrix.</summary>
 		public Matrix Clone()
-		{
-			Matrix X = new Matrix(rows, columns);
-			double[][] x = X.Array;
-			for (int i = 0; i < rows; i++)
-			{
-				for (int j = 0; j < columns; j++)
-				{
-					x[i][j] = data[i][j];
-				}
-			}
+        {
+            Matrix X = new Matrix(rows, columns);
+            double[][] x = X.Array;
+            for (int i = 0; i < rows; i++)
+            {
+                for (int j = 0; j < columns; j++)
+                {
+                    x[i][j] = data[i][j];
+                }
+            }
 
-			return X;
-		}
+            return X;
+        }
 
-		/// <summary>Returns the transposed matrix.</summary>
-		public Matrix Transpose()
-		{
-			Matrix X = new Matrix(columns, rows);
-			double[][] x = X.Array;
-			for (int i = 0; i < rows; i++)
-			{
-				for (int j = 0; j < columns; j++)
-				{
-					x[j][i] = data[i][j];
-				}
-			}
+        /// <summary>Returns the transposed matrix.</summary>
+        public Matrix Transpose()
+        {
+            Matrix X = new Matrix(columns, rows);
+            double[][] x = X.Array;
+            for (int i = 0; i < rows; i++)
+            {
+                for (int j = 0; j < columns; j++)
+                {
+                    x[j][i] = data[i][j];
+                }
+            }
 
-			return X;
-		}
+            return X;
+        }
 
         /// <summary>Returns the diagonal matrix.</summary>
         public Matrix DiagMat()
@@ -376,7 +372,7 @@ namespace HCSAnalyzer.Classes._3D
 
             return X;
         }
-        
+
         /// <summary>Returns the matrix of absolute valued elements.</summary>
         public Matrix Abs()
         {
@@ -392,382 +388,382 @@ namespace HCSAnalyzer.Classes._3D
 
             return X;
         }
-        
-		/// <summary>Returns the One Norm for the matrix.</summary>
-		/// <value>The maximum column sum.</value>
-		public double Norm1
-		{
-			get
-			{
-				double f = 0;
-				for (int j = 0; j < columns; j++)
-				{
-					double s = 0;
-					for (int i = 0; i < rows; i++)
-					{
-						s += Math.Abs(data[i][j]);
-					}
 
-					f = Math.Max(f, s);
-				}
-				return f;
-			}		
-		}
+        /// <summary>Returns the One Norm for the matrix.</summary>
+        /// <value>The maximum column sum.</value>
+        public double Norm1
+        {
+            get
+            {
+                double f = 0;
+                for (int j = 0; j < columns; j++)
+                {
+                    double s = 0;
+                    for (int i = 0; i < rows; i++)
+                    {
+                        s += Math.Abs(data[i][j]);
+                    }
 
-		/// <summary>Returns the Infinity Norm for the matrix.</summary>
-		/// <value>The maximum row sum.</value>
-		public double InfinityNorm
-		{
-			get
-			{
-				double f = 0;
-				for (int i = 0; i < rows; i++)
-				{
-					double s = 0;
-					for (int j = 0; j < columns; j++)
-						s += Math.Abs(data[i][j]);
-					f = Math.Max(f, s);
-				}
-				return f;
-			}
-		}
+                    f = Math.Max(f, s);
+                }
+                return f;
+            }
+        }
 
-		/// <summary>Returns the Frobenius Norm for the matrix.</summary>
-		/// <value>The square root of sum of squares of all elements.</value>
-		public double FrobeniusNorm
-		{
-			get
-			{
-				double f = 0;
-				for (int i = 0; i < rows; i++)
-				{
-					for (int j = 0; j < columns; j++)
-					{
-						f = Hypotenuse(f, data[i][j]);
-					}
-				}
+        /// <summary>Returns the Infinity Norm for the matrix.</summary>
+        /// <value>The maximum row sum.</value>
+        public double InfinityNorm
+        {
+            get
+            {
+                double f = 0;
+                for (int i = 0; i < rows; i++)
+                {
+                    double s = 0;
+                    for (int j = 0; j < columns; j++)
+                        s += Math.Abs(data[i][j]);
+                    f = Math.Max(f, s);
+                }
+                return f;
+            }
+        }
 
-				return f;
-			}					
-		}
+        /// <summary>Returns the Frobenius Norm for the matrix.</summary>
+        /// <value>The square root of sum of squares of all elements.</value>
+        public double FrobeniusNorm
+        {
+            get
+            {
+                double f = 0;
+                for (int i = 0; i < rows; i++)
+                {
+                    for (int j = 0; j < columns; j++)
+                    {
+                        f = Hypotenuse(f, data[i][j]);
+                    }
+                }
 
-		/// <summary>Unary minus.</summary>
-		public static Matrix Negate(Matrix value)
-		{
-			if (value == null)
-			{
-				throw new ArgumentNullException("value");
-			}
+                return f;
+            }
+        }
 
-			int rows = value.Rows;
-			int columns = value.Columns;
-			double[][] data = value.Array;
+        /// <summary>Unary minus.</summary>
+        public static Matrix Negate(Matrix value)
+        {
+            if (value == null)
+            {
+                throw new ArgumentNullException("value");
+            }
 
-			Matrix X = new Matrix(rows, columns);
-			double[][] x = X.Array;
-			for (int i = 0; i < rows; i++)
-			{
-				for (int j = 0; j < columns; j++)
-				{
-					x[i][j] = -data[i][j];
-				}
-			}
+            int rows = value.Rows;
+            int columns = value.Columns;
+            double[][] data = value.Array;
 
-			return X;
-		}
+            Matrix X = new Matrix(rows, columns);
+            double[][] x = X.Array;
+            for (int i = 0; i < rows; i++)
+            {
+                for (int j = 0; j < columns; j++)
+                {
+                    x[i][j] = -data[i][j];
+                }
+            }
 
-		/// <summary>Unary minus.</summary>
-		public static Matrix operator-(Matrix value)
-		{
-			if (value == null)
-			{
-				throw new ArgumentNullException("value");
-			}
+            return X;
+        }
 
-			return Negate(value);
-		}
+        /// <summary>Unary minus.</summary>
+        public static Matrix operator -(Matrix value)
+        {
+            if (value == null)
+            {
+                throw new ArgumentNullException("value");
+            }
 
-		/// <summary>Matrix equality.</summary>
-		public static bool operator==(Matrix left, Matrix right)
-		{
-			return Equals(left, right);
-		}
+            return Negate(value);
+        }
 
-		/// <summary>Matrix inequality.</summary>
-		public static bool operator!=(Matrix left, Matrix right)
-		{
-			return !Equals(left, right);
-		}
+        /// <summary>Matrix equality.</summary>
+        public static bool operator ==(Matrix left, Matrix right)
+        {
+            return Equals(left, right);
+        }
 
-		/// <summary>Matrix addition.</summary>
-		public static Matrix Add(Matrix left, Matrix right)
-		{
-			if (left == null)
-			{
-				throw new ArgumentNullException("left");
-			}
+        /// <summary>Matrix inequality.</summary>
+        public static bool operator !=(Matrix left, Matrix right)
+        {
+            return !Equals(left, right);
+        }
 
-			if (right == null)
-			{
-				throw new ArgumentNullException("right");
-			}
+        /// <summary>Matrix addition.</summary>
+        public static Matrix Add(Matrix left, Matrix right)
+        {
+            if (left == null)
+            {
+                throw new ArgumentNullException("left");
+            }
 
-			int rows = left.Rows;
-			int columns = left.Columns;
-			double[][] data = left.Array;
+            if (right == null)
+            {
+                throw new ArgumentNullException("right");
+            }
 
-			if ((rows != right.Rows) || (columns != right.Columns))
-			{
-				throw new ArgumentException("Matrix dimension do not match.");
-			}
+            int rows = left.Rows;
+            int columns = left.Columns;
+            double[][] data = left.Array;
 
-			Matrix X = new Matrix(rows, columns);
-			double[][] x = X.Array;
-			for (int i = 0; i < rows; i++)
-			{
-				for (int j = 0; j < columns; j++)
-				{
-					x[i][j] = data[i][j] + right[i,j];
-				}
-			}
-			return X;
-		}
+            if ((rows != right.Rows) || (columns != right.Columns))
+            {
+                throw new ArgumentException("Matrix dimension do not match.");
+            }
 
-		/// <summary>Matrix addition.</summary>
-		public static Matrix operator+(Matrix left, Matrix right)
-		{
-			if (left == null)
-			{
-				throw new ArgumentNullException("left");
-			}
+            Matrix X = new Matrix(rows, columns);
+            double[][] x = X.Array;
+            for (int i = 0; i < rows; i++)
+            {
+                for (int j = 0; j < columns; j++)
+                {
+                    x[i][j] = data[i][j] + right[i, j];
+                }
+            }
+            return X;
+        }
 
-			if (right == null)
-			{
-				throw new ArgumentNullException("right");
-			}
+        /// <summary>Matrix addition.</summary>
+        public static Matrix operator +(Matrix left, Matrix right)
+        {
+            if (left == null)
+            {
+                throw new ArgumentNullException("left");
+            }
 
-			return Add(left, right);
-		}
+            if (right == null)
+            {
+                throw new ArgumentNullException("right");
+            }
 
-		/// <summary>Matrix subtraction.</summary>
-		public static Matrix Subtract(Matrix left, Matrix right)
-		{
-			if (left == null)
-			{
-				throw new ArgumentNullException("left");
-			}
+            return Add(left, right);
+        }
 
-			if (right == null)
-			{
-				throw new ArgumentNullException("right");
-			}
+        /// <summary>Matrix subtraction.</summary>
+        public static Matrix Subtract(Matrix left, Matrix right)
+        {
+            if (left == null)
+            {
+                throw new ArgumentNullException("left");
+            }
 
-			int rows = left.Rows;
-			int columns = left.Columns;
-			double[][] data = left.Array;
+            if (right == null)
+            {
+                throw new ArgumentNullException("right");
+            }
 
-			if ((rows != right.Rows) || (columns != right.Columns))
-			{
-				throw new ArgumentException("Matrix dimension do not match.");
-			}
+            int rows = left.Rows;
+            int columns = left.Columns;
+            double[][] data = left.Array;
 
-			Matrix X = new Matrix(rows, columns);
-			double[][] x = X.Array;
-			for (int i = 0; i < rows; i++)
-			{
-				for (int j = 0; j < columns; j++)
-				{
-					x[i][j] = data[i][j] - right[i,j];
-				}
-			}
-			return X;
-		}
+            if ((rows != right.Rows) || (columns != right.Columns))
+            {
+                throw new ArgumentException("Matrix dimension do not match.");
+            }
 
-		/// <summary>Matrix subtraction.</summary>
-		public static Matrix operator-(Matrix left, Matrix right)
-		{
-			if (left == null)
-			{
-				throw new ArgumentNullException("left");
-			}
+            Matrix X = new Matrix(rows, columns);
+            double[][] x = X.Array;
+            for (int i = 0; i < rows; i++)
+            {
+                for (int j = 0; j < columns; j++)
+                {
+                    x[i][j] = data[i][j] - right[i, j];
+                }
+            }
+            return X;
+        }
 
-			if (right == null)
-			{
-				throw new ArgumentNullException("right");
-			}
+        /// <summary>Matrix subtraction.</summary>
+        public static Matrix operator -(Matrix left, Matrix right)
+        {
+            if (left == null)
+            {
+                throw new ArgumentNullException("left");
+            }
 
-			return Subtract(left, right);
-		}
+            if (right == null)
+            {
+                throw new ArgumentNullException("right");
+            }
 
-		/// <summary>Matrix-scalar multiplication.</summary>
-		public static Matrix Multiply(Matrix left, double right)
-		{
-			if (left == null)
-			{
-				throw new ArgumentNullException("left");
-			}
+            return Subtract(left, right);
+        }
 
-			int rows = left.Rows;
-			int columns = left.Columns;
-			double[][] data = left.Array;
+        /// <summary>Matrix-scalar multiplication.</summary>
+        public static Matrix Multiply(Matrix left, double right)
+        {
+            if (left == null)
+            {
+                throw new ArgumentNullException("left");
+            }
 
-			Matrix X = new Matrix(rows, columns);
+            int rows = left.Rows;
+            int columns = left.Columns;
+            double[][] data = left.Array;
 
-			double[][] x = X.Array;
-			for (int i = 0; i < rows; i++)
-			{
-				for (int j = 0; j < columns; j++)
-				{
-					x[i][j] = data[i][j] * right;
-				}
-			}
+            Matrix X = new Matrix(rows, columns);
 
-			return X;
-		}
+            double[][] x = X.Array;
+            for (int i = 0; i < rows; i++)
+            {
+                for (int j = 0; j < columns; j++)
+                {
+                    x[i][j] = data[i][j] * right;
+                }
+            }
 
-		/// <summary>Matrix-scalar multiplication.</summary>
-		public static Matrix operator*(Matrix left, double right)
-		{
-			if (left == null)
-			{
-				throw new ArgumentNullException("left");
-			}
+            return X;
+        }
 
-			return Multiply(left, right);
-		}
+        /// <summary>Matrix-scalar multiplication.</summary>
+        public static Matrix operator *(Matrix left, double right)
+        {
+            if (left == null)
+            {
+                throw new ArgumentNullException("left");
+            }
 
-		/// <summary>Matrix-matrix multiplication.</summary>
-		public static Matrix Multiply(Matrix left, Matrix right)
-		{
-			if (left == null)
-			{
-				throw new ArgumentNullException("left");
-			}
+            return Multiply(left, right);
+        }
 
-			if (right == null)
-			{
-				throw new ArgumentNullException("right");
-			}
+        /// <summary>Matrix-matrix multiplication.</summary>
+        public static Matrix Multiply(Matrix left, Matrix right)
+        {
+            if (left == null)
+            {
+                throw new ArgumentNullException("left");
+            }
 
-			int rows = left.Rows;
-			double[][] data = left.Array;
+            if (right == null)
+            {
+                throw new ArgumentNullException("right");
+            }
 
-			if (right.Rows != left.columns)
-			{
-				throw new ArgumentException("Matrix dimensions are not valid.");
-			}
+            int rows = left.Rows;
+            double[][] data = left.Array;
 
-			int columns = right.Columns;
-			Matrix X = new Matrix(rows, columns);
-			double[][] x = X.Array;
+            if (right.Rows != left.columns)
+            {
+                throw new ArgumentException("Matrix dimensions are not valid.");
+            }
 
-			int size = left.columns;
-			double[] column = new double[size];
-			for (int j = 0; j < columns; j++)
-			{
-				for (int k = 0; k < size; k++)
-				{
-					column[k] = right[k,j];
-				}
-				for (int i = 0; i < rows; i++)
-				{
-					double[] row = data[i];
-					double s = 0;
-					for (int k = 0; k < size; k++)
-					{
-						s += row[k] * column[k];
-					}
-					x[i][j] = s;
-				} 
-			}
+            int columns = right.Columns;
+            Matrix X = new Matrix(rows, columns);
+            double[][] x = X.Array;
 
-			return X;
-		}
+            int size = left.columns;
+            double[] column = new double[size];
+            for (int j = 0; j < columns; j++)
+            {
+                for (int k = 0; k < size; k++)
+                {
+                    column[k] = right[k, j];
+                }
+                for (int i = 0; i < rows; i++)
+                {
+                    double[] row = data[i];
+                    double s = 0;
+                    for (int k = 0; k < size; k++)
+                    {
+                        s += row[k] * column[k];
+                    }
+                    x[i][j] = s;
+                }
+            }
 
-		/// <summary>Matrix-matrix multiplication.</summary>
-		public static Matrix operator*(Matrix left, Matrix right)
-		{
-			if (left == null)
-			{
-				throw new ArgumentNullException("left");
-			}
+            return X;
+        }
 
-			if (right == null)
-			{
-				throw new ArgumentNullException("right");
-			}
-			
-			return Multiply(left, right);
-		}
-        
-		/// <summary>Returns the LHS solution vetor if the matrix is square or the least squares solution otherwise.</summary>
-		public Matrix Solve(Matrix rightHandSide)
-		{
-			return (rows == columns) ? new LuDecomposition(this).Solve(rightHandSide) : new QrDecomposition(this).Solve(rightHandSide);
-		}
+        /// <summary>Matrix-matrix multiplication.</summary>
+        public static Matrix operator *(Matrix left, Matrix right)
+        {
+            if (left == null)
+            {
+                throw new ArgumentNullException("left");
+            }
 
-		/// <summary>Inverse of the matrix if matrix is square, pseudoinverse otherwise.</summary>
-		public Matrix Inverse
-		{
-			get 
-			{ 
-				return this.Solve(Diagonal(rows, rows, 1.0)); 
-			}
-		}
+            if (right == null)
+            {
+                throw new ArgumentNullException("right");
+            }
 
-		/// <summary>Determinant if matrix is square.</summary>
-		public double Determinant
-		{
-			get 
-			{ 
-				return new LuDecomposition(this).Determinant; 
-			}
-		}
+            return Multiply(left, right);
+        }
 
-		/// <summary>Returns the trace of the matrix.</summary>
-		/// <returns>Sum of the diagonal elements.</returns>
-		public double Trace
-		{
-			get
-			{
-				double trace = 0;
-				for (int i = 0; i < Math.Min(rows, columns); i++)
-				{
-					trace += data[i][i];
-				}
-				return trace;
-			}
-		}
-        
-		/// <summary>Returns a matrix filled with random values.</summary>
-		public static Matrix Random(int rows, int columns)
-		{
-			Matrix X = new Matrix(rows, columns);
-			double[][] x = X.Array;
-			for (int i = 0; i < rows; i++)
-			{
-				for (int j = 0; j < columns; j++)
-				{
-					x[i][j] = random.NextDouble();
-				}
-			}
-			return X;
-		}
+        /// <summary>Returns the LHS solution vetor if the matrix is square or the least squares solution otherwise.</summary>
+        public Matrix Solve(Matrix rightHandSide)
+        {
+            return (rows == columns) ? new LuDecomposition(this).Solve(rightHandSide) : new QrDecomposition(this).Solve(rightHandSide);
+        }
 
-		/// <summary>Returns a diagonal matrix of the given size.</summary>
-		public static Matrix Diagonal(int rows, int columns, double value)
-		{
-			Matrix X = new Matrix(rows, columns);
-			double[][] x = X.Array;
-			for (int i = 0; i < rows; i++)
-			{
-				for (int j = 0; j < columns; j++)
-				{
-					x[i][j] = ((i == j) ? value : 0.0);
-				}
-			}
-			return X;
-		}
+        /// <summary>Inverse of the matrix if matrix is square, pseudoinverse otherwise.</summary>
+        public Matrix Inverse
+        {
+            get
+            {
+                return this.Solve(Diagonal(rows, rows, 1.0));
+            }
+        }
+
+        /// <summary>Determinant if matrix is square.</summary>
+        public double Determinant
+        {
+            get
+            {
+                return new LuDecomposition(this).Determinant;
+            }
+        }
+
+        /// <summary>Returns the trace of the matrix.</summary>
+        /// <returns>Sum of the diagonal elements.</returns>
+        public double Trace
+        {
+            get
+            {
+                double trace = 0;
+                for (int i = 0; i < Math.Min(rows, columns); i++)
+                {
+                    trace += data[i][i];
+                }
+                return trace;
+            }
+        }
+
+        /// <summary>Returns a matrix filled with random values.</summary>
+        public static Matrix Random(int rows, int columns)
+        {
+            Matrix X = new Matrix(rows, columns);
+            double[][] x = X.Array;
+            for (int i = 0; i < rows; i++)
+            {
+                for (int j = 0; j < columns; j++)
+                {
+                    x[i][j] = random.NextDouble();
+                }
+            }
+            return X;
+        }
+
+        /// <summary>Returns a diagonal matrix of the given size.</summary>
+        public static Matrix Diagonal(int rows, int columns, double value)
+        {
+            Matrix X = new Matrix(rows, columns);
+            double[][] x = X.Array;
+            for (int i = 0; i < rows; i++)
+            {
+                for (int j = 0; j < columns; j++)
+                {
+                    x[i][j] = ((i == j) ? value : 0.0);
+                }
+            }
+            return X;
+        }
 
         /// <summary>Returns a entries of zero matrix of the given size.</summary>
         public static Matrix Zeros(int rows, int columns)
@@ -783,7 +779,7 @@ namespace HCSAnalyzer.Classes._3D
             }
             return X;
         }
-        
+
         /// <summary>Returns a entries of one matrix of the given size.</summary>
         public static Matrix Ones(int rows, int columns)
         {
@@ -798,42 +794,42 @@ namespace HCSAnalyzer.Classes._3D
             }
             return X;
         }
-        
-		/// <summary>Returns the matrix in a textual form.</summary>
-		public override string ToString()
-		{
-			using (StringWriter writer = new StringWriter(CultureInfo.InvariantCulture))
-			{
-				for (int i = 0; i < rows; i++)
-				{
-					for (int j = 0; j < columns; j++)
-					{
-						writer.Write(this.data[i][j] + " ");
-					}
-	
-					writer.WriteLine();
-				}
 
-				return writer.ToString();
-			}
-		}
+        /// <summary>Returns the matrix in a textual form.</summary>
+        public override string ToString()
+        {
+            using (StringWriter writer = new StringWriter(CultureInfo.InvariantCulture))
+            {
+                for (int i = 0; i < rows; i++)
+                {
+                    for (int j = 0; j < columns; j++)
+                    {
+                        writer.Write(this.data[i][j] + " ");
+                    }
 
-		private static double Hypotenuse(double a, double b) 
-		{
-			if (Math.Abs(a) > Math.Abs(b))
-			{
-				double r = b / a;
-				return Math.Abs(a) * Math.Sqrt(1 + r * r);
-			}
+                    writer.WriteLine();
+                }
 
-			if (b != 0)
-			{
-				double r = a / b;
-				return Math.Abs(b) * Math.Sqrt(1 + r * r);
-			}
+                return writer.ToString();
+            }
+        }
 
-			return 0.0;
-		}
+        private static double Hypotenuse(double a, double b)
+        {
+            if (Math.Abs(a) > Math.Abs(b))
+            {
+                double r = b / a;
+                return Math.Abs(a) * Math.Sqrt(1 + r * r);
+            }
+
+            if (b != 0)
+            {
+                double r = a / b;
+                return Math.Abs(b) * Math.Sqrt(1 + r * r);
+            }
+
+            return 0.0;
+        }
 
     }
 

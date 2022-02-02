@@ -1,13 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
+﻿using HCSAnalyzer.Classes;
 using System.Drawing;
-using System.Linq;
-using System.Text;
 using System.Windows.Forms;
-using LibPlateAnalysis;
-using HCSAnalyzer.Classes;
 
 namespace HCSAnalyzer.Forms
 {
@@ -20,7 +13,7 @@ namespace HCSAnalyzer.Forms
         {
             InitializeComponent();
             comboBoxDestinationClass.SelectedIndex = 0;
-           // comboBoxOriginalClass.SelectedIndex = 0;
+            // comboBoxOriginalClass.SelectedIndex = 0;
             this.GlobalInfo = GlobalInfo;
         }
 

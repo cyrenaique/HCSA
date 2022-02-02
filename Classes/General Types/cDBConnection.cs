@@ -1,13 +1,11 @@
-﻿using System;
+﻿using HCSAnalyzer.Classes.Base_Classes.DataProcessing;
+using HCSAnalyzer.Classes.Base_Classes.DataStructures;
+using HCSAnalyzer.Forms.FormsForGraphsDisplay;
+using LibPlateAnalysis;
+using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.Data;
 using System.Data.SQLite;
-using LibPlateAnalysis;
-using HCSAnalyzer.Forms.FormsForGraphsDisplay;
-using HCSAnalyzer.Classes.Base_Classes.DataStructures;
-using HCSAnalyzer.Classes.Base_Classes.DataProcessing;
 
 namespace HCSAnalyzer.Classes.General_Types
 {
@@ -251,7 +249,7 @@ namespace HCSAnalyzer.Classes.General_Types
             cExtendedTable ToReturn = new cExtendedTable();
             //ToReturn.ListTags = new List<object>();
 
-            
+
             foreach (var item in ListDescType)
             {
                 if (item.IsConnectedToDatabase == false) continue;
@@ -259,7 +257,7 @@ namespace HCSAnalyzer.Classes.General_Types
                 TmpList.Name = item.GetName();
                 TmpList.Tag = item;
 
-               // TmpList.ListTags = new List<object>();
+                // TmpList.ListTags = new List<object>();
 
                 SQLiteCommand mycommand = new SQLiteCommand(_SQLiteConnection);
                 mycommand.CommandText = "SELECT \"" + item.GetName() + "\" FROM \"" + TmpWell.SQLTableName + "\" WHERE Phenotype_Class IN (";
@@ -415,52 +413,52 @@ namespace HCSAnalyzer.Classes.General_Types
         {
             cExtendedTable ToReturn = new cExtendedTable();
 
-          //  foreach (var item in ListDescType)
-           // {
-                cExtendedList TmpList = new cExtendedList();
-                TmpList.Name = "Phenotype_Class";
-                //TmpList.Tag = item;
+            //  foreach (var item in ListDescType)
+            // {
+            cExtendedList TmpList = new cExtendedList();
+            TmpList.Name = "Phenotype_Class";
+            //TmpList.Tag = item;
 
-                TmpList.ListTags = new List<object>();
+            TmpList.ListTags = new List<object>();
 
-                SQLiteCommand mycommand = new SQLiteCommand(_SQLiteConnection);
+            SQLiteCommand mycommand = new SQLiteCommand(_SQLiteConnection);
 
-                if (PhenotypesToBeSelected != null)
+            if (PhenotypesToBeSelected != null)
+            {
+                mycommand.CommandText = "SELECT \"" + "Phenotype_Class" + "\" FROM \"" + TmpWell.SQLTableName + "\" WHERE Phenotype_Class IN (";
+
+                foreach (var PhenotypeClass in PhenotypesToBeSelected)
                 {
-                    mycommand.CommandText = "SELECT \"" + "Phenotype_Class" + "\" FROM \"" + TmpWell.SQLTableName + "\" WHERE Phenotype_Class IN (";
-
-                    foreach (var PhenotypeClass in PhenotypesToBeSelected)
-                    {
-                        mycommand.CommandText += PhenotypeClass.Idx + ",";
-                    }
-                    mycommand.CommandText = mycommand.CommandText.Remove(mycommand.CommandText.Length - 1);
-                    mycommand.CommandText += ")";
+                    mycommand.CommandText += PhenotypeClass.Idx + ",";
                 }
-                else
-                {
-                    mycommand.CommandText = "SELECT \"" + "Phenotype_Class" + "\" FROM \"" + TmpWell.SQLTableName + "\"";
-                }
+                mycommand.CommandText = mycommand.CommandText.Remove(mycommand.CommandText.Length - 1);
+                mycommand.CommandText += ")";
+            }
+            else
+            {
+                mycommand.CommandText = "SELECT \"" + "Phenotype_Class" + "\" FROM \"" + TmpWell.SQLTableName + "\"";
+            }
 
-                //mycommand.CommandText = "SELECT *, FROM \"" + TableName + "\"";
-                SQLiteDataReader value = mycommand.ExecuteReader();
-                // value.Read();
-                int Pos = value.GetOrdinal("Phenotype_Class");
+            //mycommand.CommandText = "SELECT *, FROM \"" + TableName + "\"";
+            SQLiteDataReader value = mycommand.ExecuteReader();
+            // value.Read();
+            int Pos = value.GetOrdinal("Phenotype_Class");
 
-                if (Pos != -1)
-                {
-                    while (value.Read())    TmpList.Add(value.GetFloat(Pos));
-                }
+            if (Pos != -1)
+            {
+                while (value.Read()) TmpList.Add(value.GetFloat(Pos));
+            }
 
-                ToReturn.Add(TmpList);
+            ToReturn.Add(TmpList);
 
-                mycommand.Dispose();
-                mycommand = null;
-                value.Close();
-                value.Dispose();
-                value = null;
+            mycommand.Dispose();
+            mycommand = null;
+            value.Close();
+            value.Dispose();
+            value = null;
 
 
-           // }
+            // }
             return ToReturn;
 
 
@@ -530,7 +528,7 @@ namespace HCSAnalyzer.Classes.General_Types
             int BB_MaxX = value.GetOrdinal(cGlobalInfo.OptionsWindow.comboBoxDescForBoundingMaxX.Text);
             int BB_MinY = value.GetOrdinal(cGlobalInfo.OptionsWindow.comboBoxDescForBoundingMinY.Text);
             int BB_MaxY = value.GetOrdinal(cGlobalInfo.OptionsWindow.comboBoxDescForBoundingMaxY.Text);
-            
+
             int PosField = value.GetOrdinal(cGlobalInfo.OptionsWindow.comboBoxDescriptorForField.Text);
             int PosIdx = value.GetOrdinal("rowid");
 
@@ -885,7 +883,7 @@ namespace HCSAnalyzer.Classes.General_Types
         /// <param name="DefaultValue">Array of values</param>
         /// <returns>Return the number of table (i.e. wells) processed</returns>
         public void CreateNewColumn(cDescriptorType NewDescType, cDescriptorType Desc0, cDescriptorType Desc1,
-                                    cSingleCellOperations SingleCellOperations, 
+                                    cSingleCellOperations SingleCellOperations,
                                     cGlobalInfo GlobalInfo, ref cListWells ListWell)
         {
             string ColumnName = NewDescType.GetName();
@@ -956,7 +954,7 @@ namespace HCSAnalyzer.Classes.General_Types
                 string[] Positions = item.Split('x');
 
                 cWell TmpWell = ListWell.GetFirstWell(int.Parse(Positions[1]), int.Parse(Positions[2]));
-                if(TmpWell!=null) TmpWell.AddSignatures(LDesc);
+                if (TmpWell != null) TmpWell.AddSignatures(LDesc);
                 #endregion
 
                 NumTableProcessed++;
@@ -1035,7 +1033,7 @@ namespace HCSAnalyzer.Classes.General_Types
                 // compute the new values
                 List<cDescriptorType> LDes = new List<cDescriptorType>();
                 LDes.Add(Desc0);
-              //  LDes.Add(Desc1);
+                //  LDes.Add(Desc1);
                 cExtendedTable LValues = this.GetWellValues(item, LDes);
                 cExtendedList ListResults = new cExtendedList();// LValues[0].Operation(LValues[1], OperationType);
 

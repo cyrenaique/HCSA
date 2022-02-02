@@ -1,29 +1,18 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using HCSAnalyzer.Forms.FormsForImages;
-using System.Drawing;
-using HCSAnalyzer.Classes;
-using HCSAnalyzer.Classes.Base_Classes.DataStructures;
-using System.Windows.Forms;
-using Emgu.CV;
+﻿using Emgu.CV;
 using Emgu.CV.Structure;
-using HCSAnalyzer.Classes.Base_Classes.DataAnalysis;
-using HCSAnalyzer.Classes.Base_Classes.Viewers;
-using HCSAnalyzer.Classes.Base_Classes.DataProcessing;
-using HCSAnalyzer.Classes.MetaComponents;
-using HCSAnalyzer;
-using Kitware.VTK;
-using HCSAnalyzer.Classes.ImageAnalysis._3D_Engine;
+using HCSAnalyzer.Classes;
 using HCSAnalyzer.Classes._3D;
-using System.IO;
-using FreeImageAPI;
-using System.Net;
-using HCSAnalyzer.Classes.ImageAnalysis.FormsForImages;
+using HCSAnalyzer.Classes.Base_Classes.DataStructures;
 using HCSAnalyzer.Classes.General_Types;
-using System.Threading;
-using System.Diagnostics;
+using HCSAnalyzer.Classes.ImageAnalysis.FormsForImages;
+using HCSAnalyzer.Forms.FormsForImages;
+using System;
+using System.Collections.Generic;
+using System.Drawing;
+using System.IO;
+using System.Linq;
+using System.Net;
+using System.Windows.Forms;
 
 namespace ImageAnalysis
 {
@@ -592,11 +581,11 @@ namespace ImageAnalysis
             }
         }
 
-       public  void LoadFromPath(/*string Path, string FileName*/List<cImageMetaInfo> ListImageMetaInfo)
+        public void LoadFromPath(/*string Path, string FileName*/List<cImageMetaInfo> ListImageMetaInfo)
         {
             if (ListImageMetaInfo == null) return;
             int ChannelStart = 0;
-           
+
             for (int IdxName = 0; IdxName < ListImageMetaInfo.Count; IdxName++)
             {
                 string CurrentName = ListImageMetaInfo[IdxName].FileName;
@@ -631,7 +620,7 @@ namespace ImageAnalysis
                 int NumBytePerPixel = 0;
                 int NumBitsPerPixel = 0;
                 int NumChannels = 0;
-                object ResMeta = null;             
+                object ResMeta = null;
 
 
                 switch (Extension)
@@ -766,14 +755,14 @@ namespace ImageAnalysis
                         int PageCount = 1;
                         this.Depth = PageCount;
                         NumChannels = 1;
-                        
+
                         Mat myImage = new Mat(CurrentName, Emgu.CV.CvEnum.LoadImageType.AnyDepth);
                         //watch.Stop();
                         //cGlobalInfo.WindowHCSAnalyzer.richTextBoxConsole.AppendText("Opencv = " + watch.ElapsedMilliseconds + "\n");
 
                         for (int IDxPlane = 0; IDxPlane < PageCount; IDxPlane++)
                         {
-                            
+
                             if (IDxPlane == 0)
                             {
                                 this.Width = myImage.Width;
@@ -791,15 +780,15 @@ namespace ImageAnalysis
                                     if (ListImageMetaInfo[IdxChannel].ResolutionZ != -1) this.Resolution.Z = ListImageMetaInfo[IdxChannel].ResolutionZ;
                                     Image<Gray, float> myImage2 = myImage.ToImage<Gray, float>();
                                     //var watch2 = Stopwatch.StartNew();
-                                    
+
                                     TmpChannelImage.SetNewDataFromOpenCV(myImage2);
                                     //watch2.Stop();
                                     //cGlobalInfo.WindowHCSAnalyzer.richTextBoxConsole.AppendText("Convert = " + watch2.ElapsedMilliseconds + "\n");
                                     this.SingleChannelImage.Add(TmpChannelImage);
                                 }
                             }
-                           
-                            
+
+
 
                         }
 
@@ -809,15 +798,15 @@ namespace ImageAnalysis
 
                         //goto NEXTLOOP;                      
 
-                       
+
                         break;
-                       
+
                 }
 
-                #endregion
-                #endregion
+            #endregion
+            #endregion
 
-                NEXTLOOP:;
+            NEXTLOOP:;
 
                 ChannelStart += NumChannels;
 
@@ -825,14 +814,14 @@ namespace ImageAnalysis
 
 
             }
-           
+
 
 
         }
 
 
 
-       
+
     }
 
 

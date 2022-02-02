@@ -1,14 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Windows.Forms;
-using LibPlateAnalysis;
+﻿using HCSAnalyzer.Classes;
 using HCSAnalyzer.Classes.General_Types;
-using HCSAnalyzer.Classes;
+using System;
+using System.Drawing;
+using System.Windows.Forms;
 
 namespace HCSAnalyzer.Forms
 {
@@ -39,12 +33,12 @@ namespace HCSAnalyzer.Forms
         {
             int NeutralClass = comboBoxForNeutralClass.SelectedIndex;
             string Result;
-            if(IsPCA)
+            if (IsPCA)
                 Result = cGlobalInfo.WindowHCSAnalyzer.GeneratePCADescriptor(PlatesToProcess, (int)numericUpDownNumberOfAxis.Value, NeutralClass);
             else
                 Result = cGlobalInfo.WindowHCSAnalyzer.GenerateLDADescriptor(PlatesToProcess, NeutralClass);
 
-         
+
             this.Close();
         }
 

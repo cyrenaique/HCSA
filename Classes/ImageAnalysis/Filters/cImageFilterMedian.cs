@@ -1,16 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using HCSAnalyzer.Forms.FormsForImages;
-using System.Drawing;
-using ImageAnalysis;
-using Emgu.CV;
-using Emgu.CV.CvEnum;
-using System.Runtime.InteropServices;
+﻿using Emgu.CV;
 using Emgu.CV.Structure;
-using HCSAnalyzer.Classes.General_Types;
 using HCSAnalyzer.Classes.Base_Classes;
+using HCSAnalyzer.Classes.General_Types;
+using ImageAnalysis;
+using System;
 
 namespace ImageAnalysisFiltering
 {
@@ -33,7 +26,7 @@ namespace ImageAnalysisFiltering
         {
             base.Start();
 
-            if(base.IsFull3DImage)
+            if (base.IsFull3DImage)
                 base.Output = new cImage(base.Input, false);
             else
                 base.Output = new cImage(Input.Width, Input.Height, 1, base.ListChannelsToBeProcessed.Count);
@@ -65,14 +58,14 @@ namespace ImageAnalysisFiltering
 
                 if (base.IsFull3DImage)
                 {
-                   
+
                 }
                 else
                 {
                     for (int j = 0; j < Input.Height; j++)
                         for (int i = 0; i < Input.Width; i++)
-                            inputImage.Data[j, i, 0] = Input.SingleChannelImage[CurrentChannel].Data[i + j * Input.Width + base.SliceIndex* Input.SliceSize]; 
-                    
+                            inputImage.Data[j, i, 0] = Input.SingleChannelImage[CurrentChannel].Data[i + j * Input.Width + base.SliceIndex * Input.SliceSize];
+
                     Image<Gray, float> ProcessedImage = new Image<Gray, float>(inputImage.Width, inputImage.Height);
                     ProcessedImage = inputImage.SmoothMedian(KernelSize);
                     this.Output.SingleChannelImage[IdxChannel].SetNewDataFromOpenCV(ProcessedImage);

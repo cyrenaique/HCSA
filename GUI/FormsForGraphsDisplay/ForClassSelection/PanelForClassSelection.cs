@@ -1,14 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Windows.Controls;
-using HCSAnalyzer.Classes;
-using System.Windows.Forms;
+﻿using HCSAnalyzer.Classes;
 using HCSAnalyzer.Classes.Base_Classes.GUI;
 using HCSAnalyzer.Classes.General_Types;
+using System;
+using System.Collections.Generic;
 using System.Drawing;
 using System.IO;
+using System.Windows.Forms;
 
 namespace HCSAnalyzer.Forms.FormsForGraphsDisplay
 {
@@ -17,7 +14,7 @@ namespace HCSAnalyzer.Forms.FormsForGraphsDisplay
     {
         public List<System.Windows.Forms.CheckBox> ListCheckBoxes;
         public List<System.Windows.Forms.RadioButton> ListRadioButtons;
-    
+
     }
 
 
@@ -37,74 +34,74 @@ namespace HCSAnalyzer.Forms.FormsForGraphsDisplay
             {
                 PanelForPhenotypeEditing PFPE = (PanelForPhenotypeEditing)(cGlobalInfo.OptionsWindow.panelForCellularPhenotypes.Controls[0]);
                 PFPE.Changed += new PanelForPhenotypeEditing.ChangedEventHandler(PFPE_Changed);
-            }    
+            }
 
-             if (IsCheckBoxes)
-                    ListCheckBoxes = new List<System.Windows.Forms.CheckBox>();
-                else
-                    ListRadioButtons = new List<System.Windows.Forms.RadioButton>();
+            if (IsCheckBoxes)
+                ListCheckBoxes = new List<System.Windows.Forms.CheckBox>();
+            else
+                ListRadioButtons = new List<System.Windows.Forms.RadioButton>();
 
-                for (int IdxClass = 0; IdxClass < NumClass; IdxClass++)
-                {
-                    System.Windows.Forms.Panel PanelForColor = new System.Windows.Forms.Panel();
-                    PanelForColor.Width = 13;
-                    PanelForColor.Height = 13;
-                    if (ClassType == eClassType.WELL)
-                        PanelForColor.BackColor = cGlobalInfo.ListWellClasses[IdxClass].ColourForDisplay;
-                    else if (ClassType == eClassType.PHENOTYPE)
-                        PanelForColor.BackColor = cGlobalInfo.ListCellularPhenotypes[IdxClass].ColourForDisplay;
+            for (int IdxClass = 0; IdxClass < NumClass; IdxClass++)
+            {
+                System.Windows.Forms.Panel PanelForColor = new System.Windows.Forms.Panel();
+                PanelForColor.Width = 13;
+                PanelForColor.Height = 13;
+                if (ClassType == eClassType.WELL)
+                    PanelForColor.BackColor = cGlobalInfo.ListWellClasses[IdxClass].ColourForDisplay;
+                else if (ClassType == eClassType.PHENOTYPE)
+                    PanelForColor.BackColor = cGlobalInfo.ListCellularPhenotypes[IdxClass].ColourForDisplay;
 
-                    PanelForColor.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-                    PanelForColor.Location = new System.Drawing.Point(5, PanelForColor.Height * IdxClass);
-                    PanelForColor.MouseDown += new System.Windows.Forms.MouseEventHandler(this.PanelForClassSelection_MouseDown);
-
-                    if (IsCheckBoxes)
-                    {
-                        System.Windows.Forms.CheckBox CurrentCheckBox = new System.Windows.Forms.CheckBox();
-                        if (ClassType == eClassType.WELL)
-                            CurrentCheckBox.Text = cGlobalInfo.ListWellClasses[IdxClass].Name;
-                        else if (ClassType == eClassType.PHENOTYPE)
-                            CurrentCheckBox.Text = cGlobalInfo.ListCellularPhenotypes[IdxClass].Name;
-
-                        CurrentCheckBox.Location = new System.Drawing.Point(PanelForColor.Width + 15, CurrentCheckBox.Height * IdxClass);
-                        CurrentCheckBox.Checked = true;
-                        CurrentCheckBox.CheckedChanged += new EventHandler(CurrentCheckBox_CheckedChanged);
-                        CurrentCheckBox.MouseDown += new System.Windows.Forms.MouseEventHandler(this.PanelForClassSelection_MouseDown);
-
-                        System.Windows.Forms.ToolTip TT = new System.Windows.Forms.ToolTip();
-                        TT.SetToolTip(CurrentCheckBox, CurrentCheckBox.Text);
-                        
-
-                        ListCheckBoxes.Add(CurrentCheckBox);
-                        PanelForColor.Location = new System.Drawing.Point(5, CurrentCheckBox.Location.Y + 5);
-                    }
-                    else
-                    {
-                        System.Windows.Forms.RadioButton CurrentRadioButton = new System.Windows.Forms.RadioButton();
-                        if (ClassType == eClassType.WELL)
-                              CurrentRadioButton.Text = cGlobalInfo.ListWellClasses[IdxClass].Name;
-                        else if (ClassType == eClassType.PHENOTYPE)
-                            CurrentRadioButton.Text = cGlobalInfo.ListCellularPhenotypes[IdxClass].Name;
-                        CurrentRadioButton.Location = new System.Drawing.Point(PanelForColor.Width + 15, CurrentRadioButton.Height * IdxClass);
-                        CurrentRadioButton.Checked = false;
-                        CurrentRadioButton.MouseDown += new System.Windows.Forms.MouseEventHandler(this.PanelForClassSelection_MouseDown);
-
-                        System.Windows.Forms.ToolTip TT = new System.Windows.Forms.ToolTip();
-                        TT.SetToolTip(CurrentRadioButton, CurrentRadioButton.Text);
-
-
-                        ListRadioButtons.Add(CurrentRadioButton);
-                        PanelForColor.Location = new System.Drawing.Point(5, CurrentRadioButton.Location.Y + 5);
-                    }
-                    this.Controls.Add(PanelForColor);
-                }
+                PanelForColor.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+                PanelForColor.Location = new System.Drawing.Point(5, PanelForColor.Height * IdxClass);
+                PanelForColor.MouseDown += new System.Windows.Forms.MouseEventHandler(this.PanelForClassSelection_MouseDown);
 
                 if (IsCheckBoxes)
-                    this.Controls.AddRange(ListCheckBoxes.ToArray());
-                else
-                    this.Controls.AddRange(ListRadioButtons.ToArray());
+                {
+                    System.Windows.Forms.CheckBox CurrentCheckBox = new System.Windows.Forms.CheckBox();
+                    if (ClassType == eClassType.WELL)
+                        CurrentCheckBox.Text = cGlobalInfo.ListWellClasses[IdxClass].Name;
+                    else if (ClassType == eClassType.PHENOTYPE)
+                        CurrentCheckBox.Text = cGlobalInfo.ListCellularPhenotypes[IdxClass].Name;
 
-             // (PanelForPhenotypeEditing)cGlobalInfo.OptionsWindow.panelForCellularPhenotypes.Controls[0].Pane
+                    CurrentCheckBox.Location = new System.Drawing.Point(PanelForColor.Width + 15, CurrentCheckBox.Height * IdxClass);
+                    CurrentCheckBox.Checked = true;
+                    CurrentCheckBox.CheckedChanged += new EventHandler(CurrentCheckBox_CheckedChanged);
+                    CurrentCheckBox.MouseDown += new System.Windows.Forms.MouseEventHandler(this.PanelForClassSelection_MouseDown);
+
+                    System.Windows.Forms.ToolTip TT = new System.Windows.Forms.ToolTip();
+                    TT.SetToolTip(CurrentCheckBox, CurrentCheckBox.Text);
+
+
+                    ListCheckBoxes.Add(CurrentCheckBox);
+                    PanelForColor.Location = new System.Drawing.Point(5, CurrentCheckBox.Location.Y + 5);
+                }
+                else
+                {
+                    System.Windows.Forms.RadioButton CurrentRadioButton = new System.Windows.Forms.RadioButton();
+                    if (ClassType == eClassType.WELL)
+                        CurrentRadioButton.Text = cGlobalInfo.ListWellClasses[IdxClass].Name;
+                    else if (ClassType == eClassType.PHENOTYPE)
+                        CurrentRadioButton.Text = cGlobalInfo.ListCellularPhenotypes[IdxClass].Name;
+                    CurrentRadioButton.Location = new System.Drawing.Point(PanelForColor.Width + 15, CurrentRadioButton.Height * IdxClass);
+                    CurrentRadioButton.Checked = false;
+                    CurrentRadioButton.MouseDown += new System.Windows.Forms.MouseEventHandler(this.PanelForClassSelection_MouseDown);
+
+                    System.Windows.Forms.ToolTip TT = new System.Windows.Forms.ToolTip();
+                    TT.SetToolTip(CurrentRadioButton, CurrentRadioButton.Text);
+
+
+                    ListRadioButtons.Add(CurrentRadioButton);
+                    PanelForColor.Location = new System.Drawing.Point(5, CurrentRadioButton.Location.Y + 5);
+                }
+                this.Controls.Add(PanelForColor);
+            }
+
+            if (IsCheckBoxes)
+                this.Controls.AddRange(ListCheckBoxes.ToArray());
+            else
+                this.Controls.AddRange(ListRadioButtons.ToArray());
+
+            // (PanelForPhenotypeEditing)cGlobalInfo.OptionsWindow.panelForCellularPhenotypes.Controls[0].Pane
 
 
         }
@@ -141,7 +138,7 @@ namespace HCSAnalyzer.Forms.FormsForGraphsDisplay
 
         private void PanelForClassSelection_MouseDown(object sender, MouseEventArgs e)
         {
-            if (this.ListCheckBoxes==null) return;
+            if (this.ListCheckBoxes == null) return;
 
             // right button clicked... context menu
             if (e.Button == System.Windows.Forms.MouseButtons.Right)
@@ -201,18 +198,18 @@ namespace HCSAnalyzer.Forms.FormsForGraphsDisplay
                 }
             }
 
-                return SelectedClass;
+            return SelectedClass;
         }
-  
+
         public List<cWellClassType> GetListSelectedClassTypes()
         {
             List<cWellClassType> SelectedClass = new List<cWellClassType>();
 
-            int IDx =0;
+            int IDx = 0;
 
             if (this.ListCheckBoxes != null)
             {
-                
+
                 foreach (var item in this.ListCheckBoxes)
                 {
                     if (item.Checked)
@@ -223,18 +220,18 @@ namespace HCSAnalyzer.Forms.FormsForGraphsDisplay
             }
             else
             {
-           foreach (var item in this.ListRadioButtons)
+                foreach (var item in this.ListRadioButtons)
                 {
                     if (item.Checked)
                         SelectedClass.Add(cGlobalInfo.ListWellClasses[IDx]);
 
                     IDx++;
-                }  
-            
+                }
+
             }
             return SelectedClass;
         }
-        
+
         public List<bool> GetListSelectedClass()
         {
             List<bool> SelectedClass = new List<bool>();
@@ -251,14 +248,14 @@ namespace HCSAnalyzer.Forms.FormsForGraphsDisplay
             }
             else
             {
-           foreach (var item in this.ListRadioButtons)
+                foreach (var item in this.ListRadioButtons)
                 {
                     if (item.Checked)
                         SelectedClass.Add(true);
                     else
                         SelectedClass.Add(false);
-                }  
-            
+                }
+
             }
             return SelectedClass;
         }
@@ -306,7 +303,7 @@ namespace HCSAnalyzer.Forms.FormsForGraphsDisplay
                     }
                     Idx++;
                 }
-            
+
             }
         }
 

@@ -1,23 +1,18 @@
-﻿using System;
+﻿using HCSAnalyzer.Classes.Base_Classes.DataStructures;
+using HCSAnalyzer.GUI.FormsForGraphsDisplay.Generic;
+using System;
 using System.Collections.Generic;
-using System.ComponentModel;
 using System.Data;
 using System.Drawing;
-using System.Linq;
-using System.Text;
 using System.Windows.Forms;
-using HCSAnalyzer.Classes;
-using weka.core;
 using System.Windows.Forms.DataVisualization.Charting;
-using HCSAnalyzer.GUI.FormsForGraphsDisplay.Generic;
-using HCSAnalyzer.Classes.Base_Classes.DataStructures;
 
 namespace HCSAnalyzer.Forms.FormsForGraphsDisplay
 {
     public partial class cDisplayScatter2D : Form
     {
         private DataTable dt;
-       // cGlobalInfo GlobalInfo;
+        // cGlobalInfo GlobalInfo;
 
         public cDisplayScatter2D(DataTable dt)
         {
@@ -41,7 +36,7 @@ namespace HCSAnalyzer.Forms.FormsForGraphsDisplay
             this.dataGridViewForTable.DataSource = dt;
             //this.GlobalInfo = GlobalInfo;
 
-  
+
         }
 
         public cDisplayScatter2D(List<cExtendedList> MyData)
@@ -62,7 +57,7 @@ namespace HCSAnalyzer.Forms.FormsForGraphsDisplay
             #endregion
 
             this.chartForPoints.BorderlineColor = Color.Black;
-           
+
             //this.GlobalInfo = null;
 
 
@@ -111,8 +106,8 @@ namespace HCSAnalyzer.Forms.FormsForGraphsDisplay
             //DataGridView NewDataGridView = new DataGridView();
             //NewDataGridView.DataSource = CurrentTable;
 
-           // FormToDisplayDataTable FDT = new FormToDisplayDataTable(CurrentTable, null);
-           // FDT.Show();
+            // FormToDisplayDataTable FDT = new FormToDisplayDataTable(CurrentTable, null);
+            // FDT.Show();
 
             return CurrentTable;
         }
@@ -152,9 +147,9 @@ namespace HCSAnalyzer.Forms.FormsForGraphsDisplay
 
                 for (int j = 0; j < dt.Rows.Count; j++)
                 {
-                    int MarkerArea = (int)((45* (ListVolumes[j] - MinVolume)) / (MaxVolume - MinVolume))+3;
+                    int MarkerArea = (int)((45 * (ListVolumes[j] - MinVolume)) / (MaxVolume - MinVolume)) + 3;
                     this.chartForPoints.Series[0].Points[j].MarkerSize = MarkerArea;
-                   Color C = this.chartForPoints.Series[0].Points[j].Color;// = 
+                    Color C = this.chartForPoints.Series[0].Points[j].Color;// = 
                 }
             }
 
@@ -162,7 +157,7 @@ namespace HCSAnalyzer.Forms.FormsForGraphsDisplay
             {
                 //int ConvertedValue = (int)(((Classes[j] - 0) * (LUT[0].Length - 1)) / (eval.getNumClusters() - 0));
                 //  this.chartForPoints.Series[0].Points[j].MarkerColor = GlobalInfo.ListCellularPhenotypes[(int)MachineLearning.Classes[j]].ColourForDisplay;
-                this.chartForPoints.Series[0].Points[j].MarkerColor = Color.FromArgb(128, Color.OrangeRed );
+                this.chartForPoints.Series[0].Points[j].MarkerColor = Color.FromArgb(128, Color.OrangeRed);
             }
 
             if (checkBoxIsVolumeConstant.Checked)
@@ -250,7 +245,7 @@ namespace HCSAnalyzer.Forms.FormsForGraphsDisplay
         //private void applyClassificationModelToolStripMenuItem_Click(object sender, EventArgs e)
         //{
         //    return;
-            
+
         //    Instances ListInstancesTOClassify = GlobalInfo.CurrentScreen.CellBasedClassification.CreateInstancesWithoutClass(dt);
 
         //    FastVector attVals = new FastVector();
@@ -275,7 +270,7 @@ namespace HCSAnalyzer.Forms.FormsForGraphsDisplay
         //    }
 
         //    byte[][] LUT = GlobalInfo.LUT;
-   
+
         //        for (int j = 0; j < this.chartForPoints.Series[0].Points.Count; j++)
         //        {
         //            int ConvertedValue = (int)(((ListIdx[j] - Min) * (LUT[0].Length - 1)) / (Max - Min));
@@ -299,13 +294,13 @@ namespace HCSAnalyzer.Forms.FormsForGraphsDisplay
             DataGridViewRow DR = (DataGridViewRow)Res.Series.Points[Res.PointIndex].Tag;
             if (DR.Index == -1) return;
             dataGridViewForTable.CurrentRow.Selected = false;
-           // dataGridViewForTable.SelectedRows.SelectedRows.Clear();
+            // dataGridViewForTable.SelectedRows.SelectedRows.Clear();
             DR.Selected = true;
 
             dataGridViewForTable.FirstDisplayedScrollingRowIndex = DR.Index;
-            
 
-        //   
+
+            //   
             //DR.
 
             /*cWell WellToTransfer = (cWell)(PtToTransfer.Tag);
@@ -347,7 +342,7 @@ namespace HCSAnalyzer.Forms.FormsForGraphsDisplay
             else
             {
                 ImageOriginal.RotateFlip(RotateFlipType.Rotate90FlipNone);
-            }  
+            }
             buttonCollapseVertical.BackgroundImage = ImageOriginal;
         }
 
@@ -357,7 +352,7 @@ namespace HCSAnalyzer.Forms.FormsForGraphsDisplay
             System.Drawing.Image ImageOriginal = (System.Drawing.Image)(Properties.Resources.Arrow);
             if (splitContainerHorizontal.Panel1Collapsed)
             {
-               // ImageOriginal.RotateFlip(RotateFlipType.Rotate270FlipNone);
+                // ImageOriginal.RotateFlip(RotateFlipType.Rotate270FlipNone);
             }
             else
             {

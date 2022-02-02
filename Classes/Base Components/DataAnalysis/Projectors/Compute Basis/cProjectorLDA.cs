@@ -1,8 +1,5 @@
-﻿using System;
+﻿using HCSAnalyzer.Classes.Base_Classes.DataStructures;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using HCSAnalyzer.Classes.Base_Classes.DataStructures;
 
 namespace HCSAnalyzer.Classes.Base_Classes.DataAnalysis
 {
@@ -41,7 +38,7 @@ namespace HCSAnalyzer.Classes.Base_Classes.DataAnalysis
                 FeedBackMessage.IsSucceed = false;
                 FeedBackMessage.Message = "LDA basis construction not achieved.\nCheck your data validity.";
                 return FeedBackMessage;
-            
+
             }
 
             return FeedBackMessage;
@@ -93,7 +90,7 @@ namespace HCSAnalyzer.Classes.Base_Classes.DataAnalysis
             *************************************************************************/
             // alglib.pcabuildbasis(DataForLDA, MyData[0].Count, MyData.Count, out Info, out s2, out Basis);
 
-            if ((int)this.Input[this.Input.Count - 1].Max() + 1==2)
+            if ((int)this.Input[this.Input.Count - 1].Max() + 1 == 2)
             {
                 alglib.fisherlda(DataForLDA, this.Input[0].Count, this.Input.Count - 1, (int)this.Input[this.Input.Count - 1].Max() + 1, out Info, out Base2);
                 base.NewBasis = new cExtendedTable(Base2);
@@ -113,7 +110,7 @@ namespace HCSAnalyzer.Classes.Base_Classes.DataAnalysis
                 NewBasis[0].Name = "LDA_" + (0 + 1);
                 for (int IdxLDA = 0; IdxLDA < base.NewBasis[0].Count; IdxLDA++)
                 {
-                    
+
                     NewBasis.ListRowNames.Add(this.Input[IdxLDA].Name);
                 }
 
@@ -142,10 +139,10 @@ namespace HCSAnalyzer.Classes.Base_Classes.DataAnalysis
                     NewBasis.ListRowNames.Add(this.Input[IdxLDA].Name);
                 }
             }
-           
 
 
-            
+
+
 
 
         }

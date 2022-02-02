@@ -1,8 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using HCSAnalyzer.Classes.Base_Classes.DataStructures;
+﻿using HCSAnalyzer.Classes.Base_Classes.DataStructures;
+using System;
 
 namespace HCSAnalyzer.Classes.Base_Classes.DataProcessing
 {
@@ -23,7 +20,7 @@ namespace HCSAnalyzer.Classes.Base_Classes.DataProcessing
 
         public cFeedBackMessage Run()
         {
-          
+
             if (this.Input1 == null)
             {
                 FeedBackMessage.IsSucceed = false;
@@ -38,9 +35,9 @@ namespace HCSAnalyzer.Classes.Base_Classes.DataProcessing
 
         void Process()
         {
-            this.Title = "Log_"+ this.Base +"";
+            this.Title = "Log_" + this.Base + "";
             this.Output = new cExtendedTable(this.Input1);
-            this.Output.Name = "Log_"+this.Base+"(" + this.Output.Name + ")";
+            this.Output.Name = "Log_" + this.Base + "(" + this.Output.Name + ")";
 
             for (int Col = 0; Col < this.Input1.Count; Col++)
                 for (int Row = 0; Row < this.Input1[0].Count; Row++)

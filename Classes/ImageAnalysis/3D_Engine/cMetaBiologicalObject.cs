@@ -1,9 +1,8 @@
-﻿using System;
+﻿using Kitware.VTK;
+using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Windows.Forms;
 using System.Drawing;
-using Kitware.VTK;
+using System.Linq;
 using System.Runtime.InteropServices;
 
 
@@ -543,7 +542,7 @@ namespace HCSAnalyzer.Classes._3D
         private cListPoints3D GetMinMaxPt()
         {
             cListPoints3D ListMinMax = new cListPoints3D();
-            
+
 
             double MinX = double.MaxValue, MinY = double.MaxValue, MinZ = double.MaxValue;
             double MaxX = double.MinValue, MaxY = double.MinValue, MaxZ = double.MinValue;

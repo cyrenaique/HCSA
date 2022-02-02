@@ -1,13 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Data.SQLite;
-using System.Windows.Forms;
-using System.Data;
-using System.IO;
+﻿using HCSAnalyzer.Classes.Base_Classes;
 using HCSAnalyzer.Classes.Base_Classes.DataStructures;
-using HCSAnalyzer.Classes.Base_Classes;
+using System.Collections.Generic;
+using System.Data;
+using System.Data.SQLite;
+using System.IO;
 
 namespace HCSAnalyzer.Classes
 {
@@ -20,7 +16,7 @@ namespace HCSAnalyzer.Classes
 
         public cWellForDatabase(string PlateName, int PosX, int PosY)
         {
-            this.PlateName = PlateName.Replace(' ','_');
+            this.PlateName = PlateName.Replace(' ', '_');
             this.PosX = PosX;
             this.PosY = PosY;
         }
@@ -57,7 +53,7 @@ namespace HCSAnalyzer.Classes
         public cSQLiteDatabase(string PlateName, List<string> ListValueNames, bool EraseExistingFile)
         {
 
-            if ((EraseExistingFile)&&(File.Exists(PlateName + ".db")))
+            if ((EraseExistingFile) && (File.Exists(PlateName + ".db")))
             {
                 File.Delete(PlateName + ".db");
             }
@@ -67,7 +63,7 @@ namespace HCSAnalyzer.Classes
 
             _SQLiteConnection = new SQLiteConnection("Data Source=" + PlateName + ".db");
             _SQLiteConnection.Open();
-       }
+        }
 
         public void SaveTableForHCS_Analyzer(DataTable TableToSave, int PosX, int PosY)
         {
@@ -117,7 +113,7 @@ namespace HCSAnalyzer.Classes
 
         public cFeedBackMessage AddNewWell(cWellForDatabase WellForDatabase)
         {
-            cFeedBackMessage FeedBackMessage = new cFeedBackMessage(true,null);
+            cFeedBackMessage FeedBackMessage = new cFeedBackMessage(true, null);
             //string WellName = "\"" + WellForDatabase.PlateName + "_" + 
             string WellName = "\"Wellx" + WellForDatabase.PosX + "x" + WellForDatabase.PosY + "\"";
 
@@ -136,7 +132,7 @@ namespace HCSAnalyzer.Classes
             {
                 cmdInsert.ExecuteNonQuery();
             }
-            catch(SQLiteException excep)
+            catch (SQLiteException excep)
             {
                 FeedBackMessage.Message += " : " + excep.Message;
                 FeedBackMessage.IsSucceed = false;
@@ -153,7 +149,7 @@ namespace HCSAnalyzer.Classes
             int Idx = 0;
             foreach (string TmpDescValue in NamesDescriptors)
             {
-                sql += "\"" + TmpDescValue  + "\", ";
+                sql += "\"" + TmpDescValue + "\", ";
             }
             string TmpSql1 = sql;
             sql = TmpSql1.Remove(TmpSql1.Length - 2);
@@ -185,7 +181,7 @@ namespace HCSAnalyzer.Classes
             }
             mytransaction.Commit();
 
-            
+
             mycommand.Dispose();
             mycommand = null;
 

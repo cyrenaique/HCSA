@@ -1,20 +1,6 @@
-﻿using System;
+﻿using ImageAnalysis;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using HCSAnalyzer.Classes.Base_Classes.DataStructures;
-using HCSAnalyzer.Forms.FormsForGraphsDisplay;
 using System.Windows.Forms;
-using System.Data;
-using LibPlateAnalysis;
-using HCSAnalyzer.Classes.Base_Classes.DataProcessing;
-using HCSAnalyzer.Classes.MetaComponents;
-using HCSAnalyzer.Classes.Base_Classes.DataAnalysis;
-using HCSAnalyzer.Classes.DataAnalysis;
-using HCSAnalyzer.Classes.Base_Classes.DataManip;
-using HCSAnalyzer.Classes.Base_Classes.Viewers._2D;
-using System.IO;
-using ImageAnalysis;
 
 namespace HCSAnalyzer.Classes.Base_Classes.Viewers
 {
@@ -99,7 +85,7 @@ namespace HCSAnalyzer.Classes.Base_Classes.Viewers
             for (int channel = 0; channel < this.Input.GetNumChannels(); channel++)
             {
                 metadata.setChannelID("Channel:0:" + channel, 0, channel);
-                metadata.setChannelSamplesPerPixel( new ome.xml.model.primitives.PositiveInteger(new java.lang.Integer(1)), 0, channel);
+                metadata.setChannelSamplesPerPixel(new ome.xml.model.primitives.PositiveInteger(new java.lang.Integer(1)), 0, channel);
             }
 
             MyWritter.setMetadataRetrieve(metadata);

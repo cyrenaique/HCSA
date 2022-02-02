@@ -1,8 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
+﻿using System.Collections.Generic;
 using System.IO;
+using System.Linq;
 
 namespace LibPlateAnalysis
 {
@@ -11,14 +9,14 @@ namespace LibPlateAnalysis
         string MainPath;
         string CurrentPlateName;
         string CurrentPath;
-    //    List<string> ListDescriptorNames;
+        //    List<string> ListDescriptorNames;
 
 
         public cExportDatabase(string Path)
         {
             this.MainPath = Path;
 
-           // this.ListDescriptorNames = new List<string>();
+            // this.ListDescriptorNames = new List<string>();
 
             //for (int i = 0; i < ListDescriptorName.Count; i++)
             //{
@@ -26,22 +24,22 @@ namespace LibPlateAnalysis
             //    this.ListDescriptorNames.Add(TmpString);
             //}
         }
-/*
-        public void InitiateNewPlate(string PlateName)
-        {
-            this.CurrentPlateName = PlateName;
-            IEnumerable<string> ListFile = Directory.EnumerateDirectories(this.MainPath);
+        /*
+                public void InitiateNewPlate(string PlateName)
+                {
+                    this.CurrentPlateName = PlateName;
+                    IEnumerable<string> ListFile = Directory.EnumerateDirectories(this.MainPath);
 
-            if (ListFile.Contains(PlateName))
-            {
-                CompleteScreening.ConsoleWriteLine("the plate already exist, saving process aborded");
-                return;
-            }
+                    if (ListFile.Contains(PlateName))
+                    {
+                        CompleteScreening.ConsoleWriteLine("the plate already exist, saving process aborded");
+                        return;
+                    }
 
-            this.CurrentPath = MainPath + "\\" + this.CurrentPlateName;
-            Directory.CreateDirectory(this.CurrentPath);
-        }
-        */
+                    this.CurrentPath = MainPath + "\\" + this.CurrentPlateName;
+                    Directory.CreateDirectory(this.CurrentPath);
+                }
+                */
         //public void AddWell(int Col, int Row, List<double[]> Values)
         //{
         //    if (this.ListDescriptorNames.Count != Values.Count)
@@ -67,7 +65,7 @@ namespace LibPlateAnalysis
             IEnumerable<string> ListFile = Directory.EnumerateDirectories(this.MainPath);
             this.CurrentPath = MainPath + "\\" + PlateName;
 
-            if (ListFile.Contains(PlateName)==false)
+            if (ListFile.Contains(PlateName) == false)
                 Directory.CreateDirectory(this.CurrentPath);
 
             string FileName = CurrentPath + "\\" + Col + "x" + Row + ".txt";

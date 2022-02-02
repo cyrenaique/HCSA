@@ -1,14 +1,8 @@
-﻿using System;
+﻿using HCSAnalyzer.Forms.FormsForImages;
+using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
 using System.Drawing;
-using System.Linq;
-using System.Text;
 using System.Windows.Forms;
-using HCSAnalyzer.Classes;
-using HCSAnalyzer.Classes.ImageAnalysis.FormsForImages;
-using HCSAnalyzer.Forms.FormsForImages;
 
 namespace HCSAnalyzer.Classes.ImageAnalysis.FormsForImages
 {
@@ -75,7 +69,7 @@ namespace HCSAnalyzer.Classes.ImageAnalysis.FormsForImages
 
             cGlobalInfo.OptionsWindow.panelForCurrentLUTList.Controls.Clear();
 
-            int IDxBand=  0;
+            int IDxBand = 0;
             foreach (var item in this.panelForLUTS.Controls)
             {
                 UserControlSingleLUT SingleLUT = new UserControlSingleLUT();
@@ -121,7 +115,7 @@ namespace HCSAnalyzer.Classes.ImageAnalysis.FormsForImages
                 return false;
             }
 
-             for (int IdxChannel = 0; IdxChannel < this.panelForLUTS.Controls.Count; IdxChannel++)
+            for (int IdxChannel = 0; IdxChannel < this.panelForLUTS.Controls.Count; IdxChannel++)
             {
                 UserControlSingleLUT SingleLUT = (UserControlSingleLUT)this.panelForLUTS.Controls[IdxChannel];
 
@@ -132,7 +126,7 @@ namespace HCSAnalyzer.Classes.ImageAnalysis.FormsForImages
                 //SingleLUT.comboBoxForLUT.Text = ImageDisplayProperties.ListLUT[IdxChannel];
             }
 
-             return true;
+            return true;
         }
 
         public void UnselectAll()
@@ -176,7 +170,7 @@ namespace HCSAnalyzer.Classes.ImageAnalysis.FormsForImages
             ToBeReturned.DropDownItems.Add(ToolStripMenuItem_ActiveAll);
 
             return ToBeReturned;
-        
+
         }
 
 
@@ -189,6 +183,6 @@ namespace HCSAnalyzer.Classes.ImageAnalysis.FormsForImages
         {
             this.SelectAll();
         }
-        
+
     }
 }

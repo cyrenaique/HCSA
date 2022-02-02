@@ -1,8 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using HCSAnalyzer.Classes.Base_Classes.DataStructures;
+﻿using HCSAnalyzer.Classes.Base_Classes.DataStructures;
 using HCSAnalyzer.Classes.General_Types;
 using Kitware.VTK;
+using System;
 
 // once implemented, you can then call it like this:
 // 
@@ -121,7 +120,7 @@ namespace HCSAnalyzer.Classes.Base_Classes
 
             for (int i = 0; i < this.Input[0].Count; i++)
             {
-                ToReturn.AddPoint(this.Input[0][i], this.Input[1][i]);    
+                ToReturn.AddPoint(this.Input[0][i], this.Input[1][i]);
             }
 
 
