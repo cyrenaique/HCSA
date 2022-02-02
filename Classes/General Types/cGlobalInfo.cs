@@ -183,12 +183,12 @@ namespace HCSAnalyzer.Classes
             Color.DeepPink,
             Color.DeepSkyBlue,
             Color.DimGray,
-<<<<<<< HEAD
-            Color.DodgerBlue
-=======
+
+            Color.DodgerBlue,
+
             Color.DodgerBlue,
             Color.Chartreuse
->>>>>>> ad245feb18ca6e2863ab0613857417b16a9b8ec9
+
         };
 
         //private Color[] ColorForClass = new Color[] { Color.LightGreen, Color.Tomato, Color.Olive, Color.Orange, Color.Yellow, Color.Violet, Color.Pink, Color.Purple, Color.Salmon, Color.RoyalBlue };

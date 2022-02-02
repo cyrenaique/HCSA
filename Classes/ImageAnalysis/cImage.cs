@@ -756,7 +756,9 @@ namespace ImageAnalysis
                         this.Depth = PageCount;
                         NumChannels = 1;
 
-                        Mat myImage = new Mat(CurrentName, Emgu.CV.CvEnum.LoadImageType.AnyDepth);
+                        //Mat myImage = new Mat(CurrentName, Emgu.CV.CvEnum.DepthType.Cv16U);
+                        Mat myImage = new Mat();
+                        //Emgu.CV.CvEnum.DepthType.
                         //watch.Stop();
                         //cGlobalInfo.WindowHCSAnalyzer.richTextBoxConsole.AppendText("Opencv = " + watch.ElapsedMilliseconds + "\n");
 

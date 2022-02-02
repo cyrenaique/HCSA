@@ -818,11 +818,7 @@ namespace HCSAnalyzer
                 }
 
                 int ConvertedNaNValue = 0;
-<<<<<<< HEAD
-                
-=======
 
->>>>>>> ad245feb18ca6e2863ab0613857417b16a9b8ec9
                 while (CSVsr.EndOfStream != true)
                 {
                 NEXT:;
@@ -976,38 +972,17 @@ namespace HCSAnalyzer
 
                         //if (!double.TryParse(CurrentDesc[ColLocusID], out CurrentValue))
                         //    goto NEXTSTEP;
-<<<<<<< HEAD
-
-                        CurrentWell.ListProperties.UpdateValueByName("Locus ID", CurrentDesc[ColLocusID]);
-
-                    }
-
-                    if (Coltags != -1)
-=======
 
                         CurrentWell.ListProperties.UpdateValueByName("Locus ID", CurrentDesc[ColLocusID]);
 
                     }
                     CurrentWell.SetClass(2);
                     if (Coltags != -1 || ColClass !=-1)
->>>>>>> ad245feb18ca6e2863ab0613857417b16a9b8ec9
                     {
                         //double CurrentValue;
 
                         //if (!double.TryParse(CurrentDesc[ColLocusID], out CurrentValue))
                         //    goto NEXTSTEP;
-<<<<<<< HEAD
-
-                        CurrentWell.ListProperties.UpdateValueByName("tags", CurrentDesc[Coltags]);
-                        float CurrentValue = 0;
-                        if (!float.TryParse(CurrentDesc[Coltags], out CurrentValue))
-                        {
-                            if (!class_string.Contains(CurrentDesc[Coltags]))
-                            {
-                                class_string.Add(CurrentDesc[Coltags]);
-                                CurrentWell.SetClass(class_string.Count - 1);
-
-=======
                         if (Coltags==-1)
                         {
                             Coltags = ColClass;
@@ -1033,17 +1008,12 @@ namespace HCSAnalyzer
                                     CurrentWell.SetClass(class_string.Count - 1);
                                     CurrentWell.ListProperties.UpdateValueByName("Class", class_string.Count - 1);
                                 }
->>>>>>> ad245feb18ca6e2863ab0613857417b16a9b8ec9
                             }
                             else
                             {
                                 int idx_str = class_string.IndexOf(CurrentDesc[Coltags]);
-<<<<<<< HEAD
-                                CurrentWell.SetClass(idx_str);
-=======
                                 CurrentWell.SetClass(idx_str%31);
                                 CurrentWell.ListProperties.UpdateValueByName("Class", idx_str%31);
->>>>>>> ad245feb18ca6e2863ab0613857417b16a9b8ec9
                             }
 
 
@@ -1067,35 +1037,6 @@ namespace HCSAnalyzer
                     if ((ColInfo != -1) && (ColInfo < CurrentDesc.Count))
                         CurrentWell.Info = CurrentDesc[ColInfo];
 
-<<<<<<< HEAD
-                    if (ColClass != -1)
-                    {
-                        float CurrentValue = 0;
-                        if (!float.TryParse(CurrentDesc[ColClass], out CurrentValue))
-                        {
-                            if (!class_string.Contains(CurrentDesc[ColClass]))
-                            {
-                                class_string.Add(CurrentDesc[ColClass]);
-                                CurrentWell.SetClass(class_string.Count - 1);
-
-                            }
-                            else
-                            {
-                                int idx_str = class_string.IndexOf(CurrentDesc[ColClass]);
-                                CurrentWell.SetClass(idx_str);
-                            }
-
-
-                            goto NEXTLOOP;
-                        }
-
-                        CurrentWell.SetClass((int)CurrentValue);
-                    }
-                    //else
-                    //{
-                    //    CurrentWell.SetClass(2);
-                    //}
-=======
                     //if (ColClass != -1)
                     //{
                     //    float CurrentValue = 0;
@@ -1123,7 +1064,6 @@ namespace HCSAnalyzer
                 //{
                 //    CurrentWell.SetClass(2);
                 //}
->>>>>>> ad245feb18ca6e2863ab0613857417b16a9b8ec9
 
                 NEXTLOOP:;
 

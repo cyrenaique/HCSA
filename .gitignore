@@ -2,7 +2,7 @@
 # This .gitignore file was automatically created by Microsoft(R) Visual Studio.
 ################################################################################
 
-.vs/*
+.vs/
 *.ide
 *.ide-shm
 *.ide-wal
@@ -11,7 +11,10 @@
 *.suo
 *.CopyComplete
 *.dll
-.vscode/*
-bin/*
-obj/*
+.vscode/
+bin/
+obj/
 *.exe
+*.config
+obj/
+packages/

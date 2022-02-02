@@ -22,7 +22,7 @@ using HCSAnalyzer.Classes.Base_Classes.Viewers;
 using HCSAnalyzer.Classes.Base_Classes.Viewers._3D.ComplexObjects;
 using HCSAnalyzer.Classes.DataAnalysis;
 using HCSAnalyzer.Classes.General_Types;
-<<<<<<< HEAD
+
 using HCSAnalyzer.Classes.Base_Classes.Viewers._1D;
 using System.Net;
 using HCSAnalyzer.Cell_by_Cell_and_DB;
@@ -36,8 +36,7 @@ using HCSAnalyzer.Classes.Base_Classes.Viewers._3D.ComplexObjects;
 using HCSAnalyzer.Classes.Base_Components.GUI;
 using HCSAnalyzer.Forms.ComplexForms;
 using System.Globalization;
-=======
->>>>>>> ad245feb18ca6e2863ab0613857417b16a9b8ec9
+
 using HCSAnalyzer.Classes.ImageAnalysis.FormsForImages;
 using HCSAnalyzer.Classes.Machine_Learning;
 using HCSAnalyzer.Classes.MetaComponents;

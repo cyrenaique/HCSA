@@ -84,11 +84,7 @@ namespace HCSAnalyzer.Classes.Base_Classes.DataProcessing
                 this.Output.ListRowNames.Add("Max");
             if (IsMean)
                 this.Output.ListRowNames.Add("Mean");
-<<<<<<< HEAD
-                
-=======
 
->>>>>>> ad245feb18ca6e2863ab0613857417b16a9b8ec9
             if (IsMedian)
                 this.Output.ListRowNames.Add("Median");
             if (IsStdDev)
