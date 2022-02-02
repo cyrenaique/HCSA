@@ -2,7 +2,7 @@
 # This .gitignore file was automatically created by Microsoft(R) Visual Studio.
 ################################################################################
 
-/.vs/HCS Analyzer/v15/Server/sqlite3/db.lock
+.vs/*
 *.ide
 *.ide-shm
 *.ide-wal
@@ -10,4 +10,8 @@
 *.xml
 *.suo
 *.CopyComplete
-/obj/x64/Debug/HCS Analyzer.csproj.CoreCompileInputs.cache
+*.dll
+.vscode/*
+bin/*
+obj/*
+*.exe
