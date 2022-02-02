@@ -353,16 +353,16 @@ namespace HCSAnalyzer.Classes
                 #region Free Image engine
 
                 ToReturn += PropSeparator + "FreeImage engine:\n\n";
-                if (FreeImage.IsAvailable())
-                {
+                //if (FreeImage.IsAvailable())
+                //{
 
-                    ToReturn += " Available!\n";
-                    ToReturn += " Version: " + FreeImage.GetVersion() + "\n";
-                }
-                else
-                {
-                    ToReturn += " Not available!\n";
-                }
+                //    ToReturn += " Available!\n";
+                //    ToReturn += " Version: " + FreeImage.GetVersion() + "\n";
+                //}
+                //else
+                //{
+                //    ToReturn += " Not available!\n";
+                //}
 
                 //Assembly assembly = Assembly.LoadFrom("Accord.dll");
                 //Version ver = assembly.GetName().Version;

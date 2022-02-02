@@ -72,7 +72,7 @@ namespace HCSAnalyzer.Classes.Base_Classes.DataAnalysis
             double[] PercentPointFunction = new double[Num];
 
             for (int i = 0; i < Num; i++)
-                PercentPointFunction[i] = alglib.normaldistr.invnormaldistribution(CumulativeProba[i]);
+                PercentPointFunction[i] = 2.0;// alglib.normaldistr.invnormaldistribution(CumulativeProba[i]);
 
             this.Output = new cExtendedTable(new cExtendedList(PercentPointFunction));
 

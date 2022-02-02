@@ -573,13 +573,13 @@ namespace HCSAnalyzer
             //if (cGlobalInfo.OptionsWindow.radioButtonWellPosModeSingle.Checked) Mode = 1;
             CsvFileReader CSVsr = new CsvFileReader(PathNames[0]);
             CSVsr.Separator = FromExcel.Separator;
-            using (var stream = File.OpenRead(PathNames[0]))
-            using (var reader = new ArrowFileReader(stream))
-            {
-                var data_S = reader.ReadNextRecordBatch();
+            //using (var stream = File.OpenRead(PathNames[0]))
+            //using (var reader = new ArrowFileReader(stream))
+            //{
+            //    var data_S = reader.ReadNextRecordBatch();
                 
-                MessageBox.Show("Nmbr of cols.", data_S.ColumnCount.ToString(), MessageBoxButtons.OK, MessageBoxIcon.Information);
-            }
+            //    MessageBox.Show("Nmbr of cols.", data_S.ColumnCount.ToString(), MessageBoxButtons.OK, MessageBoxIcon.Information);
+            //}
                 for (int i = 0; i < InfoForFileImporter.numericUpDownHeaderSize.Value; i++)
             {
                 CsvRow TNames = new CsvRow();

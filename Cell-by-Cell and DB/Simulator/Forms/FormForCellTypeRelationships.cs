@@ -51,7 +51,7 @@ namespace HCSAnalyzer.Simulator.Forms
                     Microsoft.Msagl.Drawing.Edge Currentedge = new Microsoft.Msagl.Drawing.Edge(item.Name, Transitions.Value.ToString(), Transitions.DestType.Name);
                     //Currentedge.Label.FontSize = Transitions.Value;
                     //Currentedge.LabelText = ;
-                    graph.Edges.Add(Currentedge);
+                    graph.AddEdge(item.Name, Transitions.Value.ToString(), Transitions.DestType.Name);
                 }
 
 

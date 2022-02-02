@@ -461,7 +461,7 @@ namespace HCSAnalyzer
 
                     Microsoft.Msagl.Drawing.Edge Currentedge = new Microsoft.Msagl.Drawing.Edge(stringNodeIdxStart, ""/*NodeIdx.ToString()*/, stringNodeIdxEnd);
                     Currentedge.LabelText = CurrLabelString.Remove(CurrLabelString.IndexOf("]") - 1);
-                    graph.Edges.Add(Currentedge);
+                    graph.AddEdge(stringNodeIdxStart, ""/*NodeIdx.ToString()*/, stringNodeIdxEnd);
                 }
 
                 NextReturnPos = DotString.IndexOf("\n");

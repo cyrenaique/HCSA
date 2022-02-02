@@ -80,7 +80,7 @@
             this.gViewerForTreeClassif.TabIndex = 13;
             this.gViewerForTreeClassif.ToolBarIsVisible = true;
             this.gViewerForTreeClassif.ZoomF = 1D;
-            this.gViewerForTreeClassif.ZoomFraction = 0.5D;
+            //this.gViewerForTreeClassif.ZoomFraction = 0.5D;
             this.gViewerForTreeClassif.ZoomWindowThreshold = 0.05D;
             // 
             // splitContainer1

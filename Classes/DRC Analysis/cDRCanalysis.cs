@@ -467,7 +467,7 @@ namespace HCSAnalyzer.Classes
             }
 
             alglib.lsfitcreatef(ConcentrationAlglib, RawValuesForAlglib, c, diffstep, out state);
-            alglib.lsfitsetcond(state, epsf, epsx, maxits);
+            alglib.lsfitsetcond(state, epsx, maxits);
             alglib.lsfitsetbc(state, bndl, bndu);
             // alglib.lsfitsetscale(state, s);
 
