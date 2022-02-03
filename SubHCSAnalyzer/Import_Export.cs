@@ -206,12 +206,15 @@ namespace HCSAnalyzer
             //if (CurrOpenFileDialog.FileNames[0].Remove(0, CurrOpenFileDialog.FileNames[0].Length - 4) == ".mtr") LoadMTRAssay(CurrOpenFileDialog);
             //if (CurrOpenFileDialog.FileNames[0].Remove(0, CurrOpenFileDialog.FileNames[0].Length - 4) == ".txt") LoadTXTAssay(CurrOpenFileDialog);
             if (CurrOpenFileDialog.FileNames[0].Remove(0, CurrOpenFileDialog.FileNames[0].Length - 4) == ".csv") LoadCSVAssay(CurrOpenFileDialog.FileNames, true);
+            if (CurrOpenFileDialog.FileNames[0].Remove(0, CurrOpenFileDialog.FileNames[0].Length - 4) == ".fth") //LoadCSVAssay(CurrOpenFileDialog.FileNames, true);
+                                                                                                                 //LoadFt();
+            { }
         }
 
         private void importToolStripMenuItem_Click(object sender, EventArgs e)
         {
             OpenFileDialog CurrOpenFileDialog = new OpenFileDialog();
-            CurrOpenFileDialog.Filter = "csv files (*.csv)|*.csv|txt files (*.txt)|*.txt| All files (*.*)|*.*"; //|mtr files (*.mtr)|*.mtr
+            CurrOpenFileDialog.Filter = "csv files (*.csv)|*.csv|txt files (*.txt)|*.txt|fth files (*.fth)|*.fth|All files (*.*)|*.*"; //|mtr files (*.mtr)|*.mtr
             CurrOpenFileDialog.Multiselect = true;
 
             DialogResult Res = CurrOpenFileDialog.ShowDialog();
@@ -221,15 +224,16 @@ namespace HCSAnalyzer
 
             //  if (CurrOpenFileDialog.FileNames[0].Remove(0, CurrOpenFileDialog.FileNames[0].Length - 4) == ".mtr") LoadMTRAssay(CurrOpenFileDialog);
             //  if (CurrOpenFileDialog.FileNames[0].Remove(0, CurrOpenFileDialog.FileNames[0].Length - 4) == ".txt") LoadTXTAssay(CurrOpenFileDialog);
-            //  if (CurrOpenFileDialog.FileNames[0].Remove(0, CurrOpenFileDialog.FileNames[0].Length - 4) == ".csv")
+              if (CurrOpenFileDialog.FileNames[0].Remove(0, CurrOpenFileDialog.FileNames[0].Length - 4) == ".csv")
             {
                 FormForImportExcel CSVFeedBackWindow = LoadCSVAssay(CurrOpenFileDialog.FileNames, false);
                 if (CSVFeedBackWindow == null) return;
                 if (CSVFeedBackWindow.ShowDialog() != System.Windows.Forms.DialogResult.OK) return;
                 ProcessOK(CSVFeedBackWindow);
 
-                UpdateUIAfterLoading();// LoadCSVAssay(CurrOpenFileDialog.FileNames, false);
+                UpdateUIAfterLoading();// LoadCSVAssay(CurrOpenFileDialog.FileNames, false);            
             }
+              
 
 
         }
@@ -370,7 +374,6 @@ namespace HCSAnalyzer
                 LoadingProcedure(CSVFeedBackWindow);
 
             //this.Dispose();       
-
 
 
         }
