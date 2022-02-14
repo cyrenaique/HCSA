@@ -1003,29 +1003,33 @@ namespace HCSAnalyzer
                     
                      
                     CurrentWell.SetClass(2);
-                    Apache.Arrow.StringArray tags_temp = (Apache.Arrow.StringArray)data_S.Column(Coltags);
-                    string tags_val = tags_temp.GetString(j);
-                    CurrentWell.ListProperties.UpdateValueByName("tags", tags_val);
-                    if (!class_string.Contains(tags_val))
+                    if (Coltags>0)
                     {
-                        class_string.Add(tags_val);
-                        if (class_string.Count - 1 > 30)
+                        Apache.Arrow.StringArray tags_temp = (Apache.Arrow.StringArray)data_S.Column(Coltags);
+                        string tags_val = tags_temp.GetString(j);
+                        CurrentWell.ListProperties.UpdateValueByName("tags", tags_val);
+                        if (!class_string.Contains(tags_val))
                         {
-                            CurrentWell.SetClass((class_string.Count - 1) % 31);
-                            CurrentWell.ListProperties.UpdateValueByName("Class", (class_string.Count - 1) % 31);
+                            class_string.Add(tags_val);
+                            if (class_string.Count - 1 > 30)
+                            {
+                                CurrentWell.SetClass((class_string.Count - 1) % 31);
+                                CurrentWell.ListProperties.UpdateValueByName("Class", (class_string.Count - 1) % 31);
+                            }
+                            else
+                            {
+                                CurrentWell.SetClass(class_string.Count - 1);
+                                CurrentWell.ListProperties.UpdateValueByName("Class", class_string.Count - 1);
+                            }
                         }
                         else
                         {
-                            CurrentWell.SetClass(class_string.Count - 1);
-                            CurrentWell.ListProperties.UpdateValueByName("Class", class_string.Count - 1);
+                            int idx_str = class_string.IndexOf(tags_val);
+                            CurrentWell.SetClass(idx_str % 31);
+                            CurrentWell.ListProperties.UpdateValueByName("Class", idx_str % 31);
                         }
                     }
-                    else
-                    {
-                        int idx_str = class_string.IndexOf(tags_val);
-                        CurrentWell.SetClass(idx_str % 31);
-                        CurrentWell.ListProperties.UpdateValueByName("Class", idx_str % 31);
-                    }
+                    
 
                 }
 
