@@ -734,8 +734,8 @@ namespace HCSAnalyzer.Classes.Base_Classes.DataStructures
                 Mean2 = CompareTo.Median();
                 Mean1 = this.Median();
 
-                Std1 = this.MAD(true);
-                Std2 = CompareTo.MAD(true);
+                Std1 = this.MAD(false);
+                Std2 = CompareTo.MAD(false);
             }
             else
             {
