@@ -6759,7 +6759,7 @@ namespace HCSAnalyzer
 
             try
             {
-                ListFiles = Directory.GetFiles(Path, "*.csv", SearchOption.AllDirectories);
+                ListFiles = Directory.GetFiles(Path, "*.fth", SearchOption.AllDirectories);
             }
             catch (System.Exception excep)
             {

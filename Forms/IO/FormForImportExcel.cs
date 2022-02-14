@@ -8,6 +8,7 @@ namespace HCSAnalyzer
     {
         private bool FirstTime = true;
         public bool IsImportCSV = false;
+        public bool IsImportFTH = false;
         public bool IsAppend;
         public int ModeWell;
         public char Separator = ',';

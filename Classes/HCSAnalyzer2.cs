@@ -193,6 +193,16 @@ namespace HCSAnalyzer
 
                     UpdateUIAfterLoading();
                 }
+
+                if (files[0].Remove(0, files[0].Length - 4) == ".fth")
+                {
+                    FormForImportExcel CSVFeedBackWindow = LoadFTHAssay(files, false);
+                    if (CSVFeedBackWindow == null) return;
+                    if (CSVFeedBackWindow.ShowDialog() != System.Windows.Forms.DialogResult.OK) return;
+                    ProcessOK(CSVFeedBackWindow);
+
+                    UpdateUIAfterLoading();
+                }
             }
             return;
         }
