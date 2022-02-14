@@ -214,7 +214,7 @@ namespace HCSAnalyzer
         private void importToolStripMenuItem_Click(object sender, EventArgs e)
         {
             OpenFileDialog CurrOpenFileDialog = new OpenFileDialog();
-            CurrOpenFileDialog.Filter = "csv files (*.csv)|*.csv|txt files (*.txt)|*.txt|fth files (*.fth)|*.fth|All files (*.*)|*.*"; //|mtr files (*.mtr)|*.mtr
+            CurrOpenFileDialog.Filter = "fth files (*.fth)|*.fth|csv files (*.csv)|*.csv|txt files (*.txt)|*.txt|All files (*.*)|*.*"; //|mtr files (*.mtr)|*.mtr
             CurrOpenFileDialog.Multiselect = true;
 
             DialogResult Res = CurrOpenFileDialog.ShowDialog();
@@ -270,7 +270,7 @@ namespace HCSAnalyzer
             //if ((CurrOpenFileDialog.FileNames[0].Remove(0, CurrOpenFileDialog.FileNames[0].Length - 4) == ".csv") || (CurrOpenFileDialog.FileNames[0].Remove(0, CurrOpenFileDialog.FileNames[0].Length - 4) == ".CSV"))
             else
             {
-                FormForImportExcel CSVFeedBackWindow = LoadCSVAssay(FileNames, false);
+                FormForImportExcel CSVFeedBackWindow = LoadFTHAssay(FileNames, false);
                 if (CSVFeedBackWindow == null) return;
                 if (CSVFeedBackWindow.ShowDialog() != System.Windows.Forms.DialogResult.OK) return;
                 ProcessOK(CSVFeedBackWindow);
