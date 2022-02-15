@@ -562,36 +562,36 @@ namespace LibPlateAnalysis
             {
                 return Color.FromArgb(14, 35, 61);
             }
-            if ((this.GetCurrentClassIdx() <31))
+            if ((this.GetCurrentClassIdx() <32))
             {
                 return cGlobalInfo.ListWellClasses[this.GetCurrentClassIdx()].ColourForDisplay;
             }
 
             else
-            return cGlobalInfo.ListWellClasses[this.GetCurrentClassIdx()%31].ColourForDisplay;
+            return cGlobalInfo.ListWellClasses[this.GetCurrentClassIdx()%32].ColourForDisplay;
         }
 
         public cWellClassType GetClassType()
         {
             if (this.GetCurrentClassIdx() == -1) return null;
-            if ((this.GetCurrentClassIdx() < 31))
+            if ((this.GetCurrentClassIdx() < 32))
             {
                 return cGlobalInfo.ListWellClasses[this.GetCurrentClassIdx()];
             }
 
             else
-            return cGlobalInfo.ListWellClasses[this.GetCurrentClassIdx()%31];
+            return cGlobalInfo.ListWellClasses[this.GetCurrentClassIdx()%32];
         }
 
         public string GetClassName()
         {
             if (this.GetCurrentClassIdx() == -1) return "Inactive";
-            if ((this.GetCurrentClassIdx() < 31))
+            if ((this.GetCurrentClassIdx() < 32))
             {
                 return cGlobalInfo.ListWellClasses[this.GetCurrentClassIdx()].Name;
             }
             else
-            return cGlobalInfo.ListWellClasses[this.GetCurrentClassIdx()%31].Name;
+            return cGlobalInfo.ListWellClasses[this.GetCurrentClassIdx()%32].Name;
         }
 
         public string GetShortInfo()
