@@ -322,7 +322,7 @@ namespace HCSAnalyzer.Classes.Base_Classes.Viewers
                         if (IsBorder)
                         {
                             DP.MarkerBorderColor = Color.Black;
-                            DP.MarkerBorderWidth = 0;// 1;
+                            DP.MarkerBorderWidth =  1;
                         }
 
                         if ((ArraySeriesInfo != null) && (ArraySeriesInfo[IdxSimpleReadoutCurve] != null))
@@ -334,9 +334,9 @@ namespace HCSAnalyzer.Classes.Base_Classes.Viewers
                         }
                         else
                         {
-                            int IdxColor = IdxSimpleReadoutCurve % LUTProcess.GetNumberOfColors();
-                            NewSerie.Color = LUTProcess.GetColor(IdxColor);
-                            DP.Color = Color.FromArgb(this.Opacity, LUTProcess.GetColor(IdxColor));
+                            //int IdxColor = IdxSimpleReadoutCurve % LUTProcess.GetNumberOfColors();
+                            NewSerie.Color = Color.Aquamarine;// LUTProcess.GetColor(IdxColor);
+                            DP.Color = Color.Aquamarine;// FromArgb(this.Opacity, LUTProcess.GetColor(IdxColor));
                             DP.MarkerStyle = MarkerStyle.Circle;
                             DP.MarkerSize = this.MarkerSize;
                         }
