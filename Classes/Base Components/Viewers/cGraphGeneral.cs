@@ -803,7 +803,7 @@ namespace HCSAnalyzer.Classes.Base_Classes.Viewers
             this.BackgroundColor = CD.Color;
             this.CurrentChartArea.BackColor = this.BackgroundColor;
             this.BackColor = this.BackgroundColor;
-
+            
             this.Update();
         }
     }
