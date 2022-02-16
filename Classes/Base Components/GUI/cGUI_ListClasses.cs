@@ -38,7 +38,7 @@ namespace HCSAnalyzer.Classes.Base_Classes.GUI
         {
             FormForDisplay WindowToDisplay = new FormForDisplay();
             WindowToDisplay.Text = "Class Selection";
-            WindowToDisplay.FormBorderStyle = FormBorderStyle.FixedSingle;
+            WindowToDisplay.FormBorderStyle = FormBorderStyle.Sizable;
 
             PanelForClassSelection ClassSelectionPanel = new PanelForClassSelection(this.IsCheckBoxes, this.ClassType);
 
