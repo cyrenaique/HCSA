@@ -48,12 +48,16 @@
             // 
             // splitContainerForClassSelection
             // 
-            this.splitContainerForClassSelection.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
-                        | System.Windows.Forms.AnchorStyles.Left)
-                        | System.Windows.Forms.AnchorStyles.Right)));
+            this.splitContainerForClassSelection.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.splitContainerForClassSelection.Location = new System.Drawing.Point(3, 4);
             this.splitContainerForClassSelection.Name = "splitContainerForClassSelection";
             this.splitContainerForClassSelection.Orientation = System.Windows.Forms.Orientation.Horizontal;
+            // 
+            // splitContainerForClassSelection.Panel1
+            // 
+            this.splitContainerForClassSelection.Panel1.Paint += new System.Windows.Forms.PaintEventHandler(this.splitContainerForClassSelection_Panel1_Paint);
             // 
             // splitContainerForClassSelection.Panel2
             // 
@@ -67,9 +71,10 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.ClientSize = new System.Drawing.Size(151, 306);
             this.Controls.Add(this.splitContainerForClassSelection);
-            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.SizableToolWindow;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "FormForMultipleClassSelection";
             this.Text = "Select Classes";

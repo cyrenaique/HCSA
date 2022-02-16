@@ -8,5 +8,10 @@ namespace HCSAnalyzer.Forms.IO
         {
             InitializeComponent();
         }
+
+        private void splitContainerForClassSelection_Panel1_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
     }
 }

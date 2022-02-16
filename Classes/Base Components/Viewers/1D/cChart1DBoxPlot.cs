@@ -40,7 +40,7 @@ namespace HCSAnalyzer.Classes.Base_Classes.Viewers
                 NewSerie["BoxPlotShowMedian"] = "true";
                 NewSerie["BoxPlotShowAverage"] = "true";
                 NewSerie["BoxPlotShowUnusualValues"] = "true";
-
+                NewSerie.Color = Color.Azure;
 
                 //Chart1.Series["Series1"]["BoxPlotShowMedian"] = "false";
                 //Chart1.Series["Series1"]["BoxPlotShowAverage"] = "false";

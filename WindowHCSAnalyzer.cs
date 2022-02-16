@@ -2403,7 +2403,9 @@ namespace HCSAnalyzer
                 VG1.Chart.MarkerSize = 4;
                 VG1.Chart.DefaultAxisYMax = new cExtendedList();
                 VG1.Chart.DefaultAxisYMax.Add(1);
-
+                //VG1.Chart.ForeColor= Color.FromArgb(57, 40, 57);
+                //VG1.Chart.BackgroundColor= Color.FromArgb(0, 0, 0);
+                //VG1.Chart.BackColor = Color.FromArgb(0, 0, 0);
                 if (!cGlobalInfo.OptionsWindow.FFAllOptions.checkBoxZscoreMinValueAutomated.Checked)
                 {
                     VG1.Chart.DefaultAxisYMin = new cExtendedList();
