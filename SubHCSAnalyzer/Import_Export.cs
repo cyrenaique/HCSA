@@ -1040,7 +1040,7 @@ namespace HCSAnalyzer
 
             FromExcel.Dispose();
 
-            MessageBox.Show("FTH file loaded:\n" + WellLoaded + " well(s) loaded\n" + FailToLoad + " well(s) rejected.", "Process finished !", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            MessageBox.Show("FTH file loaded:\n" + WellLoaded + " well(s) loaded\n" + FailToLoad + " well(s) rejected.", "Process finished !", MessageBoxButtons.OK, MessageBoxIcon.None);
 
             this.toolStripcomboBoxPlateList.Items.Clear();
             //List<string> Name_plate = new List<string>();

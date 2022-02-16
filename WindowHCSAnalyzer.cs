@@ -203,7 +203,7 @@ namespace HCSAnalyzer
 
         private void HCSAnalyzer_FormClosing(object sender, System.ComponentModel.CancelEventArgs e)
         {
-            if (MessageBox.Show("Are you sure you want close HCS-Analyzer ?", "Warning !", MessageBoxButtons.YesNo, MessageBoxIcon.Warning) == System.Windows.Forms.DialogResult.Yes)
+            if (MessageBox.Show("Are you sure you want close HCS-Analyzer ?", "Warning !", MessageBoxButtons.YesNo, MessageBoxIcon.None) == System.Windows.Forms.DialogResult.Yes)
                 e.Cancel = false;
             else
             {

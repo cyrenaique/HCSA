@@ -25,7 +25,7 @@ namespace HCSAnalyzer.Classes.Base_Classes.Viewers
         protected ChartArea CurrentChartArea = new ChartArea("ChartArea");
         protected List<Series> CurrentSeries = new List<Series>();
 
-        public Color BackgroundColor = Color.FromArgb(255, 255, 255);
+        public Color BackgroundColor = Color.FromArgb(40, 40, 40);
         public Color GridColor = Color.Silver;
         public bool IsShadow = false;
         public bool IsBorder = true;
@@ -79,7 +79,7 @@ namespace HCSAnalyzer.Classes.Base_Classes.Viewers
         protected void Run()
         {
             base.ChartAreas.Clear();
-
+            this.ForeColor = Color.Red;
             this.BackColor = this.BackgroundColor;
             CurrentChartArea.BackColor = this.BackgroundColor;
 
@@ -90,7 +90,8 @@ namespace HCSAnalyzer.Classes.Base_Classes.Viewers
             else
                 CurrentTitle.Text = "Curves 1D";
 
-            CurrentTitle.Font = new System.Drawing.Font("Arial", 11, FontStyle.Bold);
+            CurrentTitle.Font = new Font("Arial", 11, FontStyle.Bold);
+            CurrentTitle.ForeColor = Color.White;
             this.Titles.Clear();
             this.Titles.Add(CurrentTitle);
 
@@ -124,7 +125,7 @@ namespace HCSAnalyzer.Classes.Base_Classes.Viewers
             CurrentChartArea.Axes[1].LabelStyle.Enabled = true;
             CurrentChartArea.Axes[1].MajorGrid.Enabled = this.IsXGrid;
             CurrentChartArea.Axes[1].MajorGrid.LineColor = GridColor;
-
+            
             this.ChartAreas.Add(CurrentChartArea);
             this.Series.Clear();
 
@@ -160,14 +161,16 @@ namespace HCSAnalyzer.Classes.Base_Classes.Viewers
             CurrentChartArea.CursorX.IsUserSelectionEnabled = this.IsSelectable;
             CurrentChartArea.CursorY.IsUserSelectionEnabled = this.IsSelectable;
 
-            CurrentChartArea.CursorX.SelectionColor = Color.Black;
-            CurrentChartArea.CursorY.SelectionColor = Color.Black;
+            CurrentChartArea.CursorX.SelectionColor = Color.White;
+            CurrentChartArea.CursorY.SelectionColor = Color.White;
 
-            CurrentChartArea.CursorX.LineColor = Color.Black;
-            CurrentChartArea.CursorY.LineColor = Color.Black;
+            CurrentChartArea.CursorX.LineColor = Color.White;
+            CurrentChartArea.CursorY.LineColor = Color.White;
             CurrentChartArea.CursorX.LineWidth = 1;
             CurrentChartArea.CursorY.LineWidth = 1;
-
+            CurrentChartArea.AxisX.TitleForeColor = Color.White;
+            CurrentChartArea.AxisY.TitleForeColor = Color.White;
+            
             if (this.IsZoomableX)
             {
                 this.ChartAreas[0].AxisX.ScaleView.Zoomable = this.IsZoomableX;
@@ -268,7 +271,7 @@ namespace HCSAnalyzer.Classes.Base_Classes.Viewers
                 newItem.ImageStyle = LegendImageStyle.Marker;
                 newItem.MarkerStyle = MarkerStyle.Square;
                 newItem.MarkerSize = 8;
-                newItem.ShadowColor = Color.Black;
+                newItem.ShadowColor = Color.White;
                 newItem.ShadowOffset = 1;
 
                 if (item.Tag != null)
