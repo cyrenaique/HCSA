@@ -756,8 +756,8 @@ namespace ImageAnalysis
                         this.Depth = PageCount;
                         NumChannels = 1;
 
-                        //Mat myImage = new Mat(CurrentName, Emgu.CV.CvEnum.DepthType.Cv16U);
-                        Mat myImage = new Mat();
+                        Mat myImage = new Mat(CurrentName, Emgu.CV.CvEnum.ImreadModes.Grayscale);
+                        //Mat myImage = new Mat();
                         //Emgu.CV.CvEnum.DepthType.
                         //watch.Stop();
                         //cGlobalInfo.WindowHCSAnalyzer.richTextBoxConsole.AppendText("Opencv = " + watch.ElapsedMilliseconds + "\n");
@@ -776,7 +776,7 @@ namespace ImageAnalysis
                                 for (int IdxChannel = 0; IdxChannel < NumChannels; IdxChannel++)
                                 {
                                     cSingleChannelImage TmpChannelImage = new cSingleChannelImage(this.Width, this.Height, this.Depth, new cPoint3D(1, 1, 1));
-                                    if (ListImageMetaInfo[IdxName].Name != "") TmpChannelImage.Name = ListImageMetaInfo[IdxName].Name;
+                                    if (ListImageMetaInfo[IdxName].Name != "") TmpChannelImage.Name = ListImageMetaInfo[IdxName].FileName;
                                     if (ListImageMetaInfo[IdxChannel].ResolutionX != -1) this.Resolution.X = ListImageMetaInfo[IdxChannel].ResolutionX;
                                     if (ListImageMetaInfo[IdxChannel].ResolutionY != -1) this.Resolution.Y = ListImageMetaInfo[IdxChannel].ResolutionY;
                                     if (ListImageMetaInfo[IdxChannel].ResolutionZ != -1) this.Resolution.Z = ListImageMetaInfo[IdxChannel].ResolutionZ;
