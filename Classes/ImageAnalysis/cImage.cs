@@ -756,7 +756,7 @@ namespace ImageAnalysis
                         this.Depth = PageCount;
                         NumChannels = 1;
 
-                        Mat myImage = new Mat(CurrentName, Emgu.CV.CvEnum.ImreadModes.Grayscale);
+                        Mat myImage = new Mat(CurrentName, Emgu.CV.CvEnum.ImreadModes.AnyDepth);
                         //Mat myImage = new Mat();
                         //Emgu.CV.CvEnum.DepthType.
                         //watch.Stop();
