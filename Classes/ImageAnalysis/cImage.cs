@@ -559,7 +559,7 @@ namespace ImageAnalysis
         public void AddInto(cImage SubImage, int Dest_PosX, int Dest_PosY, int Dest_PosZ, int Dest_Channel)
         {
             if (SubImage.GetNumChannels() > 1) return;
-
+            //
             for (int Z = 0; Z < SubImage.Depth; Z++)
             {
                 int OriginalPosZ = Dest_PosZ + Z;
