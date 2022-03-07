@@ -19,4 +19,3 @@ obj/
 obj/
 **/packages/**
 packages/Microsoft.NETCore.Platforms.1.1.0/.signature.p7s
-Dlls/
