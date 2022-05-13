@@ -2238,27 +2238,31 @@ namespace LibPlateAnalysis
 
             foreach (cWell item in this.ListActiveWells)
             {
-
-                List<cImageMetaInfo> ListMetaInfo = cGlobalInfo.ImageAccessor.GetImageInfo(item);
-
-                cImage Image = new cImage(ListMetaInfo);
-                Image.Name = "Image [" + item.GetShortInfo() + "] - Field [" + cGlobalInfo.ImageAccessor.Field + "]";
+                if (item.GetClassName() == cGlobalInfo.WindowHCSAnalyzer.comboBoxClass.Text)
+                {
 
 
-                cImage FinaleImage = Image.Crop(new cPoint3D(400, 400, 0), new cPoint3D(800 + 400, 800 + 400, 0));
+                    List<cImageMetaInfo> ListMetaInfo = cGlobalInfo.ImageAccessor.GetImageInfo(item);
 
-                //cImageGeometricResize IR = new cImageGeometricResize();
-                //IR.SetInputData(Image);
-                //IR.InterpolationType = Emgu.CV.CvEnum.INTER.CV_INTER_LINEAR;
-                //IR.ListProperties.UpdateValueByName("Scale", (double)0.25);
-                //IR.Run();
+                    cImage Image = new cImage(ListMetaInfo);
+                    Image.Name = "Image [" + item.GetShortInfo() + "] - Field [" + cGlobalInfo.ImageAccessor.Field + "]";
 
-                //cImage FinaleImage = IR.GetOutPut();
-                //FinaleImage.Name = "Image [" + item.GetShortInfo()+"] - Field ["+ cWell.cGlobalInfo.ImageAccessor.Field + "]";
+                    
+                    cImage FinaleImage = Image.Crop(new cPoint3D(400, 400, 0), new cPoint3D(800 + 400, 800 + 400, 0));
+                    FinaleImage.Name = "Image [" + item.GetShortInfo() + "] - Field [" + cGlobalInfo.ImageAccessor.Field + "]";
+                    //cImageGeometricResize IR = new cImageGeometricResize();
+                    //IR.SetInputData(Image);
+                    //IR.InterpolationType = Emgu.CV.CvEnum.INTER.CV_INTER_LINEAR;
+                    //IR.ListProperties.UpdateValueByName("Scale", (double)0.25);
+                    //IR.Run();
 
-                cDisplaySingleImage IV = new cDisplaySingleImage();
-                IV.SetInputData(FinaleImage);
-                IV.Run();
+                    //cImage FinaleImage = IR.GetOutPut();
+                    //FinaleImage.Name = "Image [" + item.GetShortInfo()+"] - Field ["+ cWell.cGlobalInfo.ImageAccessor.Field + "]";
+
+                    cDisplaySingleImage IV = new cDisplaySingleImage();
+                    IV.SetInputData(FinaleImage);
+                    IV.Run();
+                }
 
             }
 
