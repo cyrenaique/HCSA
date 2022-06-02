@@ -1,8 +1,9 @@
 ﻿#############################################################################
 # This .gitignore file was automatically created by Microsoft(R) Visual Studio.
 ################################################################################
-
+*.csproj
 .vs/
+.vs/HCS Analyzer/
 *.ide
 *.ide-shm
 *.ide-wal

@@ -237,7 +237,8 @@ namespace HCSAnalyzer
             {
                 FormForImportExcel CSVFeedBackWindow = LoadFTHAssay(CurrOpenFileDialog.FileNames, false);
                 if (CSVFeedBackWindow == null) return;
-                if (CSVFeedBackWindow.ShowDialog() != System.Windows.Forms.DialogResult.OK) return;
+                if (CSVFeedBackWindow.ShowDialog() != System.Windows.Forms.DialogResult.OK)
+                    return;
                 ProcessOK(CSVFeedBackWindow);
 
                 UpdateUIAfterLoading();// LoadCSVAssay(CurrOpenFileDialog.FileNames, false);            
@@ -622,72 +623,79 @@ namespace HCSAnalyzer
                 NewCol.ReadOnly = true;
                 FromExcel.dataGridViewForImport.Columns.Add("Readout " + i, "Readout " + i);
             }
-            if (schema.HasMetadata)
+            //if (schema.HasMetadata)
+            //{
+            //var meta = schema.Metadata;
+            int ia = 0;
+
+            foreach (var key in data_S.Schema.Fields.Keys)
             {
-                var meta = schema.Metadata;
-                int i = 0;
+                int IdxRow = 0;
+                FromExcel.dataGridViewForImport.Rows.Add();
+                FromExcel.dataGridViewForImport.Rows[ia].Cells[IdxRow++].Value = key;
+                if (ia == 0) FromExcel.dataGridViewForImport.Rows[ia].Cells[IdxRow++].Value = true;
+                else if (ia == 1) FromExcel.dataGridViewForImport.Rows[ia].Cells[IdxRow++].Value = true;
+                else if ((ia == 2) && ((FromExcel.ModeWell == 1) || (FromExcel.ModeWell == 3))) FromExcel.dataGridViewForImport.Rows[ia].Cells[IdxRow++].Value = true;
+                else FromExcel.dataGridViewForImport.Rows[ia].Cells[IdxRow++].Value = false;
 
-                foreach (var key in data_S.Schema.Fields.Keys)
+
+                if (key.Contains("Plate"))
                 {
-                    int IdxRow = 0;
-                    FromExcel.dataGridViewForImport.Rows.Add();
-                    FromExcel.dataGridViewForImport.Rows[i].Cells[IdxRow++].Value = key;
-                    if (i == 0) FromExcel.dataGridViewForImport.Rows[i].Cells[IdxRow++].Value = true;
-                    else if (i == 1) FromExcel.dataGridViewForImport.Rows[i].Cells[IdxRow++].Value = true;
-                    else if ((i == 2) && ((FromExcel.ModeWell == 1) || (FromExcel.ModeWell == 3))) FromExcel.dataGridViewForImport.Rows[i].Cells[IdxRow++].Value = true;
-                    else FromExcel.dataGridViewForImport.Rows[i].Cells[IdxRow++].Value = false;
+                    FromExcel.dataGridViewForImport.Rows[ia].Cells[IdxRow++].Value = "Plate name";
+                }
+                else if (key.Contains("Well") & !key.Contains("Class"))
+                {
+                    FromExcel.dataGridViewForImport.Rows[ia].Cells[IdxRow++].Value = "Well position";
+                }
+                else if (key.Contains("Class"))
+                {
+                    FromExcel.dataGridViewForImport.Rows[ia].Cells[IdxRow++].Value = "Class";
+                }
+
+                else if (key.Contains("tags"))
+                {
+                    FromExcel.dataGridViewForImport.Rows[ia].Cells[IdxRow++].Value = "tags";
+                }
+                else
+                {
+                    FromExcel.dataGridViewForImport.Rows[ia].Cells[IdxRow++].Value = "Descriptor";
+                }
 
 
-                    if (key.Contains("Plate"))
+                for (int j = 0; j < 4; j++)
+                {
+                    if (ia < data_S.ColumnCount)
                     {
-                        FromExcel.dataGridViewForImport.Rows[i].Cells[IdxRow++].Value = "Plate name";
-                    }
-                    else if (key.Contains("Well") & !key.Contains("Class"))
-                    {
-                        FromExcel.dataGridViewForImport.Rows[i].Cells[IdxRow++].Value = "Well position";
-                    }
-                    else if (key.Contains("Class"))
-                    {
-                        FromExcel.dataGridViewForImport.Rows[i].Cells[IdxRow++].Value = "Class";
-                    }
-
-                    else if (key.Contains("tags"))
-                    {
-                        FromExcel.dataGridViewForImport.Rows[i].Cells[IdxRow++].Value = "tags";
-                    }
-                    else
-                    {
-                        FromExcel.dataGridViewForImport.Rows[i].Cells[IdxRow++].Value = "Descriptor";
-                    }
-
-
-                    for (int j = 0; j < 4; j++)
-                    {
-                        if (i < data_S.ColumnCount)
+                        var truc = data_S.Column(ia).GetType();
+                        if (truc.FullName == "Apache.Arrow.StringArray")
                         {
-                            var truc = data_S.Column(i).GetType();
-                            if (truc.FullName == "Apache.Arrow.StringArray")
-                            {
-                                Apache.Arrow.StringArray toto = (Apache.Arrow.StringArray)data_S.Column(i);
-                                string titi = toto.GetString(0);
-                                FromExcel.dataGridViewForImport.Rows[i].Cells[IdxRow + j].Value = titi;
-                            }
-                            if (truc.FullName == "Apache.Arrow.FloatArray")
-                            {
-                                Apache.Arrow.FloatArray toto = (Apache.Arrow.FloatArray)data_S.Column(i);
-                                float titi = (float)toto.GetValue(0);
-                                FromExcel.dataGridViewForImport.Rows[i].Cells[IdxRow + j].Value = titi.ToString();
-                            }
-
-                            if (truc.FullName != "Apache.Arrow.FloatArray" && truc.FullName != "Apache.Arrow.StringArray")
-                                FromExcel.dataGridViewForImport.Rows[i].Cells[j].Value = "";
+                            Apache.Arrow.StringArray toto = (Apache.Arrow.StringArray)data_S.Column(ia);
+                            string titi = toto.GetString(0);
+                            FromExcel.dataGridViewForImport.Rows[ia].Cells[IdxRow + j].Value = titi;
+                        }
+                        else if (truc.FullName == "Apache.Arrow.FloatArray")
+                        {
+                            Apache.Arrow.FloatArray toto = (Apache.Arrow.FloatArray)data_S.Column(ia);
+                            float titi = (float)toto.GetValue(0);
+                            FromExcel.dataGridViewForImport.Rows[ia].Cells[IdxRow + j].Value = titi.ToString();
+                        }
+                        else if (truc.FullName == "Apache.Arrow.Int16Array")
+                        {
+                            Apache.Arrow.Int16Array toto = (Apache.Arrow.Int16Array)data_S.Column(ia);
+                            float titi = (float)toto.GetValue(0);
+                            FromExcel.dataGridViewForImport.Rows[ia].Cells[IdxRow + j].Value = titi.ToString();
                         }
 
+                        //if (truc.FullName != "Apache.Arrow.FloatArray" && truc.FullName != "Apache.Arrow.StringArray")
+                        else
+                            FromExcel.dataGridViewForImport.Rows[ia].Cells[j].Value = "";
                     }
 
-                    i++;
                 }
+
+                ia++;
             }
+            //}
 
             FromExcel.dataGridViewForImport.Update();
             //   FromExcel.dataGridViewForImport.MouseClick += new System.Windows.Forms.MouseEventHandler(this.dataGridViewForImport_MouseClick);
@@ -953,7 +961,7 @@ namespace HCSAnalyzer
 
                 #endregion
 
-              
+
                 if (!FromExcel.IsAppend)
                 {
                     for (int idxDesc = 0; idxDesc < ColsForDescriptors.Length; idxDesc++)
@@ -965,16 +973,16 @@ namespace HCSAnalyzer
                 }
                 int ConvertedNaNValue = 0;
                 //for (int i = 0; i < data_S.ColumnCount; i++)
-                    for (int j = 0; j < data_S.Length; j++)
-                    {
-                        //int len = data_S.Length;
-                        int[] Pos = new int[2];
-                        Apache.Arrow.StringArray toto = (Apache.Arrow.StringArray)data_S.Column(ColWellPos);
-                        string well = toto.GetString(j);
-                        Pos = ConvertPosition(well);
+                for (int j = 0; j < data_S.Length; j++)
+                {
+                    //int len = data_S.Length;
+                    int[] Pos = new int[2];
+                    Apache.Arrow.StringArray toto = (Apache.Arrow.StringArray)data_S.Column(ColWellPos);
+                    string well = toto.GetString(j);
+                    Pos = ConvertPosition(well);
 
-                        Apache.Arrow.StringArray plate_temp = (Apache.Arrow.StringArray)data_S.Column(ColPlateName);
-                        cPlate CurrentPlate = cGlobalInfo.CurrentScreening.GetPlateIfNameIsContainIn(plate_temp.GetString(j));
+                    Apache.Arrow.StringArray plate_temp = (Apache.Arrow.StringArray)data_S.Column(ColPlateName);
+                    cPlate CurrentPlate = cGlobalInfo.CurrentScreening.GetPlateIfNameIsContainIn(plate_temp.GetString(j));
 
                     if (CurrentPlate == null)
                     {
@@ -983,27 +991,38 @@ namespace HCSAnalyzer
                     }
 
                     cListSignature LDesc = new cListSignature();
-                        for (int idxDesc = 0; idxDesc < ColsForDescriptors.Length; idxDesc++)
+                    for (int idxDesc = 0; idxDesc < ColsForDescriptors.Length; idxDesc++)
+                    {
+                        double Value;
+
+                        cSignature CurrentDescriptor;
+                        var truc = data_S.Column(ColsForDescriptors[idxDesc]).GetType();
+                        if (truc.FullName == "Apache.Arrow.FloatArray")
                         {
-                            double Value;
-                          
-                            cSignature CurrentDescriptor;
-                            Apache.Arrow.FloatArray val_temp= (Apache.Arrow.FloatArray)data_S.Column(ColsForDescriptors[idxDesc]);
+                            Apache.Arrow.FloatArray val_temp = (Apache.Arrow.FloatArray)data_S.Column(ColsForDescriptors[idxDesc]);
                             Value = (double)val_temp.GetValue(j);
-                            CurrentDescriptor = new cSignature(Value, cGlobalInfo.CurrentScreening.ListDescriptors[idxDesc/* + ShiftIdx*/], cGlobalInfo.CurrentScreening);
-                            LDesc.Add(CurrentDescriptor);
-                           
-
-
                         }
 
-                     cWell CurrentWell = new cWell(LDesc, Pos[0], Pos[1], cGlobalInfo.CurrentScreening, CurrentPlate);
-                        CurrentPlate.AddWell(CurrentWell);
+                        else
+                        {
+                            Apache.Arrow.Int16Array val_temp = (Apache.Arrow.Int16Array)data_S.Column(ColsForDescriptors[idxDesc]);
+                            Value = (double)val_temp.GetValue(j);
+                        }
+                        
+                        CurrentDescriptor = new cSignature(Value, cGlobalInfo.CurrentScreening.ListDescriptors[idxDesc/* + ShiftIdx*/], cGlobalInfo.CurrentScreening);
+                        LDesc.Add(CurrentDescriptor);
+
+
+
+                    }
+
+                    cWell CurrentWell = new cWell(LDesc, Pos[0], Pos[1], cGlobalInfo.CurrentScreening, CurrentPlate);
+                    CurrentPlate.AddWell(CurrentWell);
                     WellLoaded++;
-                    
-                     
+
+
                     CurrentWell.SetClass(2);
-                    if (Coltags>0)
+                    if (Coltags > 0)
                     {
                         Apache.Arrow.StringArray tags_temp = (Apache.Arrow.StringArray)data_S.Column(Coltags);
                         string tags_val = tags_temp.GetString(j);
@@ -1029,7 +1048,7 @@ namespace HCSAnalyzer
                             CurrentWell.ListProperties.UpdateValueByName("Class", idx_str % 31);
                         }
                     }
-                    
+
 
                 }
 
@@ -1052,12 +1071,12 @@ namespace HCSAnalyzer
                 PlateListWindow.listBoxPlateNameToProcess.Items.Add(Name);
                 PlateListWindow.listBoxAvaliableListPlates.Items.Add(Name);
             }
- 
- 
+
+
 
             UpdateUIAfterLoading();
-        
-            cGlobalInfo.CurrentScreening.SetSelectionType(comboBoxClass.SelectedIndex - 1);     
+
+            cGlobalInfo.CurrentScreening.SetSelectionType(comboBoxClass.SelectedIndex - 1);
 
             cGlobalInfo.CurrentScreening.ListDescriptors.SetCurrentSelectedDescriptor(0);
             cGlobalInfo.CurrentScreening.GetCurrentDisplayPlate().DisplayDistribution(cGlobalInfo.CurrentScreening.ListDescriptors[0], true);
@@ -1456,7 +1475,7 @@ namespace HCSAnalyzer
         //   FormForImportExcel FromExcel;
         string[] PathNames;
 
-        
+
 
         private void linkToolStripMenuItem_Click(object sender, EventArgs e)
         {
@@ -1502,7 +1521,7 @@ namespace HCSAnalyzer
 
             return;
 
-           
+
         }
 
         private int GetColIdxFor(string StringToBeDetected, FormForImportExcel FromExcel)
