@@ -161,7 +161,7 @@
             this.Controls.Add(this.label1);
             this.Controls.Add(this.buttonOk);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.Fixed3D;
-            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
+            //this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "FormForDescriptorInfo";
             this.Text = "Info Descriptor";
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDownBinValue)).EndInit();
