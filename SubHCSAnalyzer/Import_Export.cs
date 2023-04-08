@@ -616,13 +616,25 @@ namespace HCSAnalyzer
                 columnType.DataSource = new string[] { "Plate name", "Well position", "Class", "Name", "Locus ID", "Concentration", "Info", "Descriptor", "tags" };
             columnType.Name = "Type";
             FromExcel.dataGridViewForImport.Columns.Add(columnType);
-
-            for (int i = 0; i < data_S.ColumnCount; i++)
+            if (data_S.ColumnCount<100)
             {
-                DataGridViewColumn NewCol = new DataGridViewColumn();
-                NewCol.ReadOnly = true;
-                FromExcel.dataGridViewForImport.Columns.Add("Readout " + i, "Readout " + i);
+                for (int i = 0; i < data_S.ColumnCount; i++)
+                {
+                    DataGridViewColumn NewCol = new DataGridViewColumn();
+                    NewCol.ReadOnly = true;
+                    FromExcel.dataGridViewForImport.Columns.Add("Readout " + i, "Readout " + i);
+                }
             }
+            else
+            {
+                for (int i = 0; i < 100; i++)
+                {
+                    DataGridViewColumn NewCol = new DataGridViewColumn();
+                    NewCol.ReadOnly = true;
+                    FromExcel.dataGridViewForImport.Columns.Add("Readout " + i, "Readout " + i);
+                }
+            }
+           
             //if (schema.HasMetadata)
             //{
             //var meta = schema.Metadata;
@@ -652,7 +664,7 @@ namespace HCSAnalyzer
                     FromExcel.dataGridViewForImport.Rows[ia].Cells[IdxRow++].Value = "Class";
                 }
 
-                else if (key.Contains("tags"))
+                else if (key.Contains("Tags") || key.Contains("tags"))
                 {
                     FromExcel.dataGridViewForImport.Rows[ia].Cells[IdxRow++].Value = "tags";
                 }
@@ -672,18 +684,21 @@ namespace HCSAnalyzer
                             Apache.Arrow.StringArray toto = (Apache.Arrow.StringArray)data_S.Column(ia);
                             string titi = toto.GetString(0);
                             FromExcel.dataGridViewForImport.Rows[ia].Cells[IdxRow + j].Value = titi;
+                            //FromExcel.dataGridViewForImport.Rows[ia].Cells[IdxRow + j].Value = "titi";
                         }
                         else if (truc.FullName == "Apache.Arrow.FloatArray")
                         {
                             Apache.Arrow.FloatArray toto = (Apache.Arrow.FloatArray)data_S.Column(ia);
                             float titi = (float)toto.GetValue(0);
                             FromExcel.dataGridViewForImport.Rows[ia].Cells[IdxRow + j].Value = titi.ToString();
+                            //FromExcel.dataGridViewForImport.Rows[ia].Cells[IdxRow + j].Value = "titi";
                         }
                         else if (truc.FullName == "Apache.Arrow.Int16Array")
                         {
                             Apache.Arrow.Int16Array toto = (Apache.Arrow.Int16Array)data_S.Column(ia);
                             float titi = (float)toto.GetValue(0);
                             FromExcel.dataGridViewForImport.Rows[ia].Cells[IdxRow + j].Value = titi.ToString();
+                            //FromExcel.dataGridViewForImport.Rows[ia].Cells[IdxRow + j].Value = "titi";
                         }
 
                         //if (truc.FullName != "Apache.Arrow.FloatArray" && truc.FullName != "Apache.Arrow.StringArray")

@@ -3096,7 +3096,7 @@ namespace HCSAnalyzer
             this.KeyPreview = true;
             this.MainMenuStrip = this.menuStripFile;
             this.Name = "HCSAnalyzer";
-            this.Text = "HCS analyzer v2022 Robust";
+            this.Text = "HCS analyzer v2022 FTH";
             this.Load += new System.EventHandler(this.HCSAnalyzer_Load);
             this.Shown += new System.EventHandler(this.HCSAnalyzer_Shown);
             this.DragDrop += new System.Windows.Forms.DragEventHandler(this.HCSAnalyzer_DragDrop);
